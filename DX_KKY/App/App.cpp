@@ -1,11 +1,13 @@
 #include <Windows.h>
+#include <string_view>
+
 #include <EnginePlatform/EngineWindow.h>
+// EnginePlatform에 존재하는 enginewindow기능을 당연히 이용하고 싶을 것이다.
 
 #pragma comment (lib, "EngineBase.lib")
 #pragma comment (lib, "EnginePlatform.lib")
 
-
-class EngineCore
+class UEngineCore
 {
 public:
 	void Update()
@@ -29,10 +31,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	// void(*_Update)()
 
-	EngineCore Core;
+	UEngineCore Core;
 
 	UEngineWindow::WindowMessageLoop(
-		std::bind(&EngineCore::Update, &Core),
-		std::bind(&EngineCore::End, &Core)
+		std::bind(&UEngineCore::Update, &Core),
+		std::bind(&UEngineCore::End, &Core)
 	);
 }
