@@ -48,7 +48,6 @@ public:
 		}
 	}
 
-
 	void SetVolume(float _Volume);
 
 private:

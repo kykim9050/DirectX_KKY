@@ -4,15 +4,24 @@
     <Filter Include="Core">
       <UniqueIdentifier>{f5082a5f-fa43-48af-985d-2c44e73f5487}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{1b4debf6-d179-4ce3-994a-3676f0d69d81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

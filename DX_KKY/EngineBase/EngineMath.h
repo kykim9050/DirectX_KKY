@@ -782,7 +782,6 @@ public:
 	}
 };
 
-
 using FMatrix = float4x4;
 
 class Color8Bit

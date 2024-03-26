@@ -1,3 +1,4 @@
+#include "PreCompile.h"
 #include "EnginePath.h"
 #include "EngineDebug.h"
 #include <Windows.h>
@@ -22,6 +23,7 @@ UEnginePath::UEnginePath(std::filesystem::path _Path)
 UEnginePath::~UEnginePath() 
 {
 }
+
 
 std::string UEnginePath::GetExtension() const
 {
