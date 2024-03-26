@@ -159,9 +159,17 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineOption.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineOption.cpp">
       <SubType>
       </SubType>
     </ClCompile>
