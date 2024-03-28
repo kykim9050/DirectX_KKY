@@ -28,8 +28,11 @@
     <Filter Include="Object\Actor\GameMode">
       <UniqueIdentifier>{b4988886-f717-418e-a662-0ee8f0ff091c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Component\Rendering">
-      <UniqueIdentifier>{63da4692-620a-44ea-bb89-143cf7f6d662}</UniqueIdentifier>
+    <Filter Include="Object\Rendering">
+      <UniqueIdentifier>{d9f3f86a-9f28-4ea1-8e2d-01df76c7a357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Rendering\Component">
+      <UniqueIdentifier>{42d4b899-e121-4617-83d9-e300e9c5ab83}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,14 +66,20 @@
     <ClInclude Include="Actor.h">
       <Filter>Object\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="ActorComponent.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="SceneComponent.h">
       <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Object\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Object\Rendering\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,14 +113,20 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Object\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="ActorComponent.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="SceneComponent.cpp">
       <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Object\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Object\Rendering\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
