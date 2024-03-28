@@ -19,6 +19,18 @@
     <Filter Include="Resources\Texture">
       <UniqueIdentifier>{77768754-6635-4033-8d44-e3562bd1d7b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{2e1e19ad-92ff-49f5-bcc4-5c30c63ce549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component">
+      <UniqueIdentifier>{5acb7726-b52a-4397-815e-bf172f4dda14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor\GameMode">
+      <UniqueIdentifier>{b4988886-f717-418e-a662-0ee8f0ff091c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Rendering">
+      <UniqueIdentifier>{63da4692-620a-44ea-bb89-143cf7f6d662}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -39,6 +51,27 @@
     <ClInclude Include="EngineTexture.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TickObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>Object\Actor\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -58,6 +91,27 @@
     </ClCompile>
     <ClCompile Include="EngineTexture.cpp">
       <Filter>Resources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TickObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Object\Actor\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Object\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
