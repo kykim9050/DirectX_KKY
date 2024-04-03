@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <FxCompile Include="ColorShader.fx" />
     <FxCompile Include="ImageShader.fx">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
@@ -135,7 +136,9 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="EngineShaderBase.hlsli" />
     <None Include="EngineVertex.hlsli" />
+    <None Include="TransformData.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
