@@ -15,14 +15,13 @@ void ATitleAnimation::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorScale3D(FVector(960.0f, 540.0f, 100.0f));
-
+	SetActorScale3D(FVector(1090.0f, 620.0f, 0.0f));
+	SetActorLocation(FVector(0.0f, -(360.0f - 310.0f), 0.0f));
 
 	Renderer->SetSprite("Title_Animation");
 	Renderer->SetSamplering(ETextureSampling::LINEAR);
-	Renderer->CreateAnimation("TitlePlay", "Title_Animation", 0.08f);
+	Renderer->CreateAnimation("TitlePlay", "Title_Animation", 0.085f);
 	Renderer->ChangeAnimation("TitlePlay");
-
 }
 
 void ATitleAnimation::Tick(float _DeltaTime)
