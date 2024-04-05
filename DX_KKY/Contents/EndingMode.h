@@ -4,6 +4,7 @@
 // Ό³Έν :
 class AEndingMode : public AGameMode
 {
+	GENERATED_BODY(AGameMode)
 public:
 	// constrcuter destructer
 	AEndingMode();
@@ -16,6 +17,11 @@ public:
 	AEndingMode& operator=(AEndingMode&& _Other) noexcept = delete;
 
 protected:
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
+	void LevelEnd(ULevel* _NextLevel);
+	void LevelStart(ULevel* _PrevLevel);
 
 private:
 
