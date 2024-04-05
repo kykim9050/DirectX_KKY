@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "ContentsCore.h"
 #include "PlayGameMode.h"
+#include "TitleGameMode.h"
+#include <EngineCore/EngineSprite.h>
 
 UContentsCore::UContentsCore()
 {
@@ -19,11 +21,21 @@ void UContentsCore::Initialize()
 		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
 		for (UEngineFile& File : Files)
 		{
-			UEngineTexture::Load(File.GetFullPath());
+			UEngineSprite::Load(File.GetFullPath());
 		}
+
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+		}
+
+		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
 	}
 
 	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
-	GEngine->ChangeLevel("PlayLevel");
+	GEngine->CreateLevel<ATitleGameMode>("TitleLevel");
+	GEngine->ChangeLevel("TitleLevel");
 }
 
