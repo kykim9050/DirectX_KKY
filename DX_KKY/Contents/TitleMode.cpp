@@ -18,8 +18,9 @@ void ATitleMode::BeginPlay()
 
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
-	GetWorld()->SpawnActor<ATitleLogo>("TitleLogo");
-	GetWorld()->SpawnActor<ATitleAnimation>("TitleAnimation");
+
+	std::shared_ptr<ATitleAnimation> TitleAni = GetWorld()->SpawnActor<ATitleAnimation>("TitleAnimation");
+	std::shared_ptr<ATitleLogo> TitleLogo = GetWorld()->SpawnActor<ATitleLogo>("TitleLogo");
 }
 
 void ATitleMode::Tick(float _DeltaTime)
