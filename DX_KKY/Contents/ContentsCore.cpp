@@ -23,15 +23,18 @@ void UContentsCore::Initialize()
 		{
 			UEngineSprite::Load(File.GetFullPath());
 		}
+	}
 
-		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+	{	
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
 		for (size_t i = 0; i < Directorys.size(); i++)
 		{
 			std::string Name = Directorys[i].GetFolderName();
 			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
 		}
-
-		//UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
 	}
 
 	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
