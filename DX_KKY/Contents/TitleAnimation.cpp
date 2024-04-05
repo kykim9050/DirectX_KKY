@@ -18,9 +18,9 @@ void ATitleAnimation::BeginPlay()
 	SetActorScale3D(FVector(960.0f, 540.0f, 100.0f));
 
 
-	Renderer->SetSprite("Title");
+	Renderer->SetSprite("Title_Animation");
 	Renderer->SetSamplering(ETextureSampling::LINEAR);
-	Renderer->CreateAnimation("TitlePlay", "Title", 0.08f);
+	Renderer->CreateAnimation("TitlePlay", "Title_Animation", 0.08f);
 	Renderer->ChangeAnimation("TitlePlay");
 
 }
