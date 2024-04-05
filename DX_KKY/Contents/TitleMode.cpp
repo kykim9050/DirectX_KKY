@@ -1,17 +1,17 @@
 #include "PreCompile.h"
-#include "TitleGameMode.h"
+#include "TitleMode.h"
 #include "TitleLogo.h"
 #include <EngineCore/Camera.h>
 
-ATitleGameMode::ATitleGameMode() 
+ATitleMode::ATitleMode() 
 {
 }
 
-ATitleGameMode::~ATitleGameMode() 
+ATitleMode::~ATitleMode()
 {
 }
 
-void ATitleGameMode::BeginPlay() 
+void ATitleMode::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -20,18 +20,18 @@ void ATitleGameMode::BeginPlay()
 	GetWorld()->SpawnActor<ATitleLogo>("TitleLogo");
 }
 
-void ATitleGameMode::Tick(float _DeltaTime)
+void ATitleMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
 }
 
-void ATitleGameMode::LevelEnd(ULevel* _NextLevel)
+void ATitleMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 }
 
-void ATitleGameMode::LevelStart(ULevel* _PrevLevel)
+void ATitleMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 

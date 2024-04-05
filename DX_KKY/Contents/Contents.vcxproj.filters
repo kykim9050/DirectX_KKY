@@ -42,11 +42,11 @@
     <ClInclude Include="TitleLogo.h">
       <Filter>Level\TitleLevel\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="TitleGameMode.h">
-      <Filter>Level\TitleLevel</Filter>
-    </ClInclude>
     <ClInclude Include="EndingMode.h">
       <Filter>Level\EndingLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleMode.h">
+      <Filter>Level\TitleLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,11 +65,11 @@
     <ClCompile Include="TitleLogo.cpp">
       <Filter>Level\TitleLevel\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="TitleGameMode.cpp">
-      <Filter>Level\TitleLevel</Filter>
-    </ClCompile>
     <ClCompile Include="EndingMode.cpp">
       <Filter>Level\EndingLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleMode.cpp">
+      <Filter>Level\TitleLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
