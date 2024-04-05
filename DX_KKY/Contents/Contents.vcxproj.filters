@@ -19,11 +19,14 @@
     <Filter Include="Level\TitleLevel">
       <UniqueIdentifier>{30a984f3-e3f6-40e5-9e0b-699c666422fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\TitleLevel\Actor">
-      <UniqueIdentifier>{81a2f3ae-5915-4069-a832-ddf07a4e665a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\EndingLevel">
       <UniqueIdentifier>{7768b6e5-0ea0-4435-a7cf-d0b1af463f13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\EndingLevel\Object">
+      <UniqueIdentifier>{81469bc5-d9c1-4371-b8ba-b3b860ed6494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\TitleLevel\Object">
+      <UniqueIdentifier>{81a2f3ae-5915-4069-a832-ddf07a4e665a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -40,7 +43,7 @@
       <Filter>Level\PlayLevel\Object</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>Level\TitleLevel\Actor</Filter>
+      <Filter>Level\TitleLevel\Object</Filter>
     </ClInclude>
     <ClInclude Include="EndingMode.h">
       <Filter>Level\EndingLevel</Filter>
@@ -49,7 +52,10 @@
       <Filter>Level\TitleLevel</Filter>
     </ClInclude>
     <ClInclude Include="TitleAnimation.h">
-      <Filter>Level\TitleLevel\Actor</Filter>
+      <Filter>Level\TitleLevel\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingAnimation.h">
+      <Filter>Level\EndingLevel\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +72,7 @@
       <Filter>Level\PlayLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <Filter>Level\TitleLevel\Actor</Filter>
+      <Filter>Level\TitleLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="EndingMode.cpp">
       <Filter>Level\EndingLevel</Filter>
@@ -75,7 +81,10 @@
       <Filter>Level\TitleLevel</Filter>
     </ClCompile>
     <ClCompile Include="TitleAnimation.cpp">
-      <Filter>Level\TitleLevel\Actor</Filter>
+      <Filter>Level\TitleLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingAnimation.cpp">
+      <Filter>Level\EndingLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
