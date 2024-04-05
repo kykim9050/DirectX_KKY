@@ -48,6 +48,9 @@
     <ClInclude Include="TitleMode.h">
       <Filter>Level\TitleLevel</Filter>
     </ClInclude>
+    <ClInclude Include="TitleAnimation.h">
+      <Filter>Level\TitleLevel\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="TitleMode.cpp">
       <Filter>Level\TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleAnimation.cpp">
+      <Filter>Level\TitleLevel\Actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
