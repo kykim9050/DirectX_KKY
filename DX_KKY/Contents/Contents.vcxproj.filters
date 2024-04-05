@@ -22,6 +22,9 @@
     <Filter Include="Level\TitleLevel\Actor">
       <UniqueIdentifier>{81a2f3ae-5915-4069-a832-ddf07a4e665a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\EndingLevel">
+      <UniqueIdentifier>{7768b6e5-0ea0-4435-a7cf-d0b1af463f13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -42,6 +45,9 @@
     <ClInclude Include="TitleGameMode.h">
       <Filter>Level\TitleLevel</Filter>
     </ClInclude>
+    <ClInclude Include="EndingMode.h">
+      <Filter>Level\EndingLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -61,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>Level\TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingMode.cpp">
+      <Filter>Level\EndingLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
