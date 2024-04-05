@@ -16,6 +16,12 @@
     <Filter Include="Level\PlayLevel\Object">
       <UniqueIdentifier>{dd9d0db2-9714-402b-b906-e382d197626f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\TitleLevel">
+      <UniqueIdentifier>{30a984f3-e3f6-40e5-9e0b-699c666422fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\TitleLevel\Actor">
+      <UniqueIdentifier>{81a2f3ae-5915-4069-a832-ddf07a4e665a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -30,6 +36,12 @@
     <ClInclude Include="Player.h">
       <Filter>Level\PlayLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Level\TitleLevel\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleGameMode.h">
+      <Filter>Level\TitleLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -43,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Level\PlayLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Level\TitleLevel\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp">
+      <Filter>Level\TitleLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
