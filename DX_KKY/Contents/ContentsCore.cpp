@@ -41,6 +41,6 @@ void UContentsCore::Initialize()
 	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<ATitleMode>("TitleLevel");
 	GEngine->CreateLevel<AEndingMode>("EndingLevel");
-	GEngine->ChangeLevel("EndingLevel");
+	GEngine->ChangeLevel("TitleLevel");
 }
 

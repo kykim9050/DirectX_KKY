@@ -20,8 +20,10 @@ void ATitleAnimation::BeginPlay()
 
 	Renderer->SetSprite("Title_Animation");
 	Renderer->SetSamplering(ETextureSampling::LINEAR);
-	Renderer->CreateAnimation("TitlePlay", "Title_Animation", 0.085f);
+	Renderer->CreateAnimation("TitlePlay", "Title_Animation", 0.045f);
 	Renderer->ChangeAnimation("TitlePlay");
+	Renderer->SetPlusColor(FVector(0.2f, 0.2f, 0.2f, 1.0f));
+
 }
 
 void ATitleAnimation::Tick(float _DeltaTime)
