@@ -13,9 +13,6 @@
     <Filter Include="Level\PlayLevel">
       <UniqueIdentifier>{66d37b75-2f42-4ec2-b691-b502be16dd3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\PlayLevel\Object">
-      <UniqueIdentifier>{dd9d0db2-9714-402b-b906-e382d197626f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\TitleLevel">
       <UniqueIdentifier>{30a984f3-e3f6-40e5-9e0b-699c666422fc}</UniqueIdentifier>
     </Filter>
@@ -27,6 +24,15 @@
     </Filter>
     <Filter Include="Level\TitleLevel\Object">
       <UniqueIdentifier>{81a2f3ae-5915-4069-a832-ddf07a4e665a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\PlayLevel\TutorialLevel">
+      <UniqueIdentifier>{387a5eea-e460-40cc-8315-e2be152d592d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\PlayLevel\CommonObject">
+      <UniqueIdentifier>{dd9d0db2-9714-402b-b906-e382d197626f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\TestLevel">
+      <UniqueIdentifier>{2f6a8295-fa7e-4b0a-978f-f2daa1e2f0e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -40,7 +46,7 @@
       <Filter>Level\PlayLevel</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Level\PlayLevel\Object</Filter>
+      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
       <Filter>Level\TitleLevel\Object</Filter>
@@ -57,6 +63,12 @@
     <ClInclude Include="EndingAnimation.h">
       <Filter>Level\EndingLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="TutorialMode.h">
+      <Filter>Level\PlayLevel\TutorialLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TestGameMode.h">
+      <Filter>Level\TestLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -69,7 +81,7 @@
       <Filter>Level\PlayLevel</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Level\PlayLevel\Object</Filter>
+      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>Level\TitleLevel\Object</Filter>
@@ -85,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="EndingAnimation.cpp">
       <Filter>Level\EndingLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialMode.cpp">
+      <Filter>Level\PlayLevel\TutorialLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TestGameMode.cpp">
+      <Filter>Level\TestLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

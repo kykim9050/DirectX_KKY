@@ -19,8 +19,8 @@ void ATitleAnimation::BeginPlay()
 	SetActorLocation(FVector(0.0f, -(360.0f - 310.0f), 0.0f));
 
 	Renderer->SetSprite("Title_Animation");
-	Renderer->SetSamplering(ETextureSampling::LINEAR);
 	Renderer->CreateAnimation("TitlePlay", "Title_Animation", 0.045f);
+	Renderer->SetSamplering(ETextureSampling::LINEAR);
 	Renderer->ChangeAnimation("TitlePlay");
 	Renderer->SetPlusColor(FVector(0.2f, 0.2f, 0.2f, 1.0f));
 
