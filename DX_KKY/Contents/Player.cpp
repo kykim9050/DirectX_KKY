@@ -18,9 +18,9 @@ void APlayer::BeginPlay()
 
 	SetActorScale3D(FVector(200.0f, 200.0f, 0.0f));
 
-	Renderer->SetSprite("Idle");
-	Renderer->CreateAnimation("CupHead_Idle", "Idle", 0.1f);
-	Renderer->ChangeAnimation("CupHead_Idle");
+	Renderer->SetSprite("Cuphead_Idle");
+	Renderer->CreateAnimation("Player_Idle", "Cuphead_Idle", 0.1f);
+	Renderer->ChangeAnimation("Player_Idle");
 }
 
 void APlayer::Tick(float _DeltaTime)
