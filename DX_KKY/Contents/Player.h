@@ -25,5 +25,7 @@ protected:
 private:
 	USpriteRenderer* Renderer;
 
+	void CreatePlayerAnimation();
+
 };
 
