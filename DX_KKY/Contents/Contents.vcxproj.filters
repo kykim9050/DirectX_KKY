@@ -69,6 +69,9 @@
     <ClInclude Include="TestGameMode.h">
       <Filter>Level\TestLevel</Filter>
     </ClInclude>
+    <ClInclude Include="MapBase.h">
+      <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -103,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="TestGameMode.cpp">
       <Filter>Level\TestLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBase.cpp">
+      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
