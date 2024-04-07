@@ -2,6 +2,7 @@
 #include <EngineCore/Actor.h>
 
 // Ό³Έν :
+class USpriteRenderer;
 class AMapBase : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -21,8 +22,9 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	void SetMapFile(std::string_view _MapFileName);
 
 private:
-
+	USpriteRenderer* Renderer;
 };
 

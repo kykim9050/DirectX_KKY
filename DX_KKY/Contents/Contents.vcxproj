@@ -200,6 +200,10 @@
     </ClInclude>
     <ClInclude Include="TitleLogo.h" />
     <ClInclude Include="TitleMode.h" />
+    <ClInclude Include="TutorialMap.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TutorialMode.h">
       <SubType>
       </SubType>
@@ -240,6 +244,10 @@
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp" />
     <ClCompile Include="TitleMode.cpp" />
+    <ClCompile Include="TutorialMap.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TutorialMode.cpp">
       <SubType>
       </SubType>
