@@ -25,3 +25,8 @@ void AMapBase::SetMapFile(std::string_view _MapFileName)
 {
 	Renderer->SetSprite(_MapFileName);
 }
+
+void AMapBase::SetMapScale(FVector _Scale)
+{
+	SetActorScale3D(_Scale);
+}

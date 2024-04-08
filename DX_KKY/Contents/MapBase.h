@@ -23,6 +23,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 	void SetMapFile(std::string_view _MapFileName);
+	void SetMapScale(FVector _Scale);
 
 private:
 	USpriteRenderer* Renderer;
