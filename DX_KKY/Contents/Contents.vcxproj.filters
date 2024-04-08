@@ -43,6 +43,9 @@
     <Filter Include="ContentsHelper">
       <UniqueIdentifier>{a9c5b52c-539c-4de3-bbf4-8032644a7158}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\WorldLevel\Object">
+      <UniqueIdentifier>{590efd6d-e592-4294-8155-ea6e72a19e8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -93,6 +96,9 @@
     <ClInclude Include="ContentsEnumClass.h">
       <Filter>ContentsHelper</Filter>
     </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -139,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="WorldGameMode.cpp">
       <Filter>Level\PlayLevel\WorldLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
