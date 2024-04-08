@@ -40,6 +40,9 @@
     <Filter Include="Level\PlayLevel\WorldLevel">
       <UniqueIdentifier>{c8112701-da87-47d6-8b22-88a7f5616059}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ContentsHelper">
+      <UniqueIdentifier>{a9c5b52c-539c-4de3-bbf4-8032644a7158}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -86,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="WorldGameMode.h">
       <Filter>Level\PlayLevel\WorldLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEnumClass.h">
+      <Filter>ContentsHelper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 #include "Player.h"
 
 #include "TestGameMode.h"
-
+#include "ContentsEnumClass.h"
 
 ATestGameMode::ATestGameMode()
 {
@@ -20,7 +20,7 @@ void ATestGameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 
-	GetWorld()->SpawnActor<APlayer>("Player");
+	GetWorld()->SpawnActor<APlayer>("Player", static_cast<int>(EActorType::Player));
 }
 
 void ATestGameMode::Tick(float _DeltaTime)
