@@ -37,6 +37,9 @@
     <Filter Include="Level\PlayLevel\TutorialLevel\Object">
       <UniqueIdentifier>{0154f638-cc1e-4786-8c25-9d9a4af96e73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\WorldLevel">
+      <UniqueIdentifier>{c8112701-da87-47d6-8b22-88a7f5616059}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -81,6 +84,9 @@
     <ClInclude Include="MapSubObject.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
+    <ClInclude Include="WorldGameMode.h">
+      <Filter>Level\PlayLevel\WorldLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -124,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="MapSubObject.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldGameMode.cpp">
+      <Filter>Level\PlayLevel\WorldLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
