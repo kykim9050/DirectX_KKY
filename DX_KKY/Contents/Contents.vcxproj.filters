@@ -45,9 +45,6 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="PlayGameMode.h">
-      <Filter>Level\PlayLevel</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
@@ -88,9 +85,6 @@
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayGameMode.cpp">
-      <Filter>Level\PlayLevel</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
