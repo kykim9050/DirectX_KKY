@@ -16,6 +16,16 @@ public:
 	AMapSubObject(AMapSubObject&& _Other) noexcept = delete;
 	AMapSubObject& operator=(const AMapSubObject& _Other) = delete;
 	AMapSubObject& operator=(AMapSubObject&& _Other) noexcept = delete;
+	
+	inline void SetMapSubObject(std::string_view _Filename)
+	{
+		SetMapFile(_Filename);
+	}
+
+	inline void SetMapSubObjectScale(FVector _Scale)
+	{
+		SetMapScale(_Scale);
+	}
 
 protected:
 	void BeginPlay() override;

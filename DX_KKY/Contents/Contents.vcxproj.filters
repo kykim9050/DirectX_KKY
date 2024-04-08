@@ -79,7 +79,7 @@
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
     <ClInclude Include="MapSubObject.h">
-      <Filter>Level\PlayLevel\TutorialLevel\Object</Filter>
+      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -123,7 +123,7 @@
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
     <ClCompile Include="MapSubObject.cpp">
-      <Filter>Level\PlayLevel\TutorialLevel\Object</Filter>
+      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
