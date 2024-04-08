@@ -34,8 +34,15 @@ void APlayer::Tick(float _DeltaTime)
 
 	float Speed = 100.0f;
 
-	if (true == UEngineInput::IsDown(VK_LEFT) || true == UEngineInput::IsPress(VK_RIGHT))
+	if (true == UEngineInput::IsDown(VK_LEFT))
 	{
+		SetActorScale3D(FVector(-200.0f, 200.0f, 0.0f));
+		Renderer->ChangeAnimation("Player_Run");
+	}
+
+	if (true == UEngineInput::IsPress(VK_RIGHT))
+	{
+		SetActorScale3D(FVector(200.0f, 200.0f, 0.0f));
 		Renderer->ChangeAnimation("Player_Run");
 	}
 
