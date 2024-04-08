@@ -1,6 +1,5 @@
 ﻿#include "PreCompile.h"
 #include "ContentsCore.h"
-#include "PlayGameMode.h"
 #include "TitleMode.h"
 #include "EndingMode.h"
 #include "TestGameMode.h"
@@ -40,7 +39,6 @@ void UContentsCore::Initialize()
 		}
 	}
 
-	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<ATitleMode>("TitleLevel");
 	GEngine->CreateLevel<AEndingMode>("EndingLevel");
 	GEngine->CreateLevel<ATestGameMode>("TestLevel");
