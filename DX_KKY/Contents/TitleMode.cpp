@@ -6,6 +6,7 @@
 
 ATitleMode::ATitleMode() 
 {
+	InputOn();
 }
 
 ATitleMode::~ATitleMode()
