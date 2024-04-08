@@ -1,8 +1,11 @@
 #pragma once
+#include <EngineCore/GameMode.h>
 
 // Ό³Έν :
-class ATutorialMode
+class ATutorialMode : public AGameMode
 {
+	GENERATED_BODY(AGameMode)
+
 public:
 	// constrcuter destructer
 	ATutorialMode();
@@ -15,6 +18,8 @@ public:
 	ATutorialMode& operator=(ATutorialMode&& _Other) noexcept = delete;
 
 protected:
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 
 private:
 

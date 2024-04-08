@@ -4,6 +4,7 @@
 #include "TitleMode.h"
 #include "EndingMode.h"
 #include "TestGameMode.h"
+#include "TutorialMode.h"
 #include <EngineCore/EngineSprite.h>
 
 UContentsCore::UContentsCore()
@@ -39,10 +40,11 @@ void UContentsCore::Initialize()
 		}
 	}
 
-	//GEngine->CreateLevel<APlayGameMode>("PlayLevel");
+	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<ATitleMode>("TitleLevel");
-	//GEngine->CreateLevel<AEndingMode>("EndingLevel");
+	GEngine->CreateLevel<AEndingMode>("EndingLevel");
 	GEngine->CreateLevel<ATestGameMode>("TestLevel");
-	GEngine->ChangeLevel("TitleLevel");
+	GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
+	GEngine->ChangeLevel("TutorialLevel");
 }
 
