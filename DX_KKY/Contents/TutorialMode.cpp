@@ -3,6 +3,7 @@
 
 #include "TutorialMode.h"
 #include "Player.h"
+#include "TutorialMap.h"
 
 ATutorialMode::ATutorialMode()
 {
@@ -20,6 +21,7 @@ void ATutorialMode::BeginPlay()
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 
 	GetWorld()->SpawnActor<APlayer>("Player");
+	GetWorld()->SpawnActor<ATutorialMap>("TutorialMap");
 }
 
 void ATutorialMode::Tick(float _DeltaTime)
