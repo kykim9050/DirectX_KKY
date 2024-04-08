@@ -215,6 +215,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WorldGameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -263,6 +267,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TutorialMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WorldGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>
