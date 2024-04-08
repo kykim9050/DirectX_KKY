@@ -18,6 +18,11 @@ public:
 	AMapBase& operator=(const AMapBase& _Other) = delete;
 	AMapBase& operator=(AMapBase&& _Other) noexcept = delete;
 
+	inline FVector GetMapScale()
+	{
+		return GetActorTransform().GetScale();
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
