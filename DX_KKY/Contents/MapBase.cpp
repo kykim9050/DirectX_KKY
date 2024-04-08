@@ -30,3 +30,4 @@ void AMapBase::SetMapScale(FVector _Scale)
 {
 	SetActorScale3D(_Scale);
 }
+
