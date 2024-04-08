@@ -5,6 +5,8 @@
 #include "TestGameMode.h"
 #include "TutorialMode.h"
 #include <EngineCore/EngineSprite.h>
+#include "WorldGameMode.h"
+
 
 UContentsCore::UContentsCore()
 {
@@ -43,6 +45,7 @@ void UContentsCore::Initialize()
 	GEngine->CreateLevel<AEndingMode>("EndingLevel");
 	GEngine->CreateLevel<ATestGameMode>("TestLevel");
 	GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
-	GEngine->ChangeLevel("TutorialLevel");
+	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
+	GEngine->ChangeLevel("WorldLevel");
 }
 
