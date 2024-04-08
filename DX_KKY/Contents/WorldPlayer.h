@@ -5,7 +5,7 @@
 class USpriteRenderer;
 class AWorldPlayer : public AActor
 {
-	GENERATED_BODY(UTickObject)
+	GENERATED_BODY(AActor)
 
 public:
 	// constrcuter destructer
