@@ -4,6 +4,7 @@
 #include "EndingMode.h"
 #include "EndingAnimation.h"
 #include "OldFilmEffect.h"
+#include "ContentsEnumClass.h"
 
 AEndingMode::AEndingMode()
 {
@@ -20,8 +21,8 @@ void AEndingMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 
-	std::shared_ptr<AActor> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect");
-	std::shared_ptr<AEndingAnimation> TitleAni = GetWorld()->SpawnActor<AEndingAnimation>("EndingAnimation");
+	std::shared_ptr<AActor> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
+	std::shared_ptr<AEndingAnimation> TitleAni = GetWorld()->SpawnActor<AEndingAnimation>("EndingAnimation",static_cast<int>(EActorType::BackGroundAnimation));
 }
 
 void AEndingMode::Tick(float _DeltaTime)
