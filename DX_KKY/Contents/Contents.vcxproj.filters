@@ -78,6 +78,9 @@
     <ClInclude Include="OldFilmEffect.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
+    <ClInclude Include="MapSubObject.h">
+      <Filter>Level\PlayLevel\TutorialLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -118,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="OldFilmEffect.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MapSubObject.cpp">
+      <Filter>Level\PlayLevel\TutorialLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
