@@ -99,6 +99,9 @@
     <ClInclude Include="WorldMap.h">
       <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="WorldPlayer.h">
+      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -147,6 +150,9 @@
       <Filter>Level\PlayLevel\WorldLevel</Filter>
     </ClCompile>
     <ClCompile Include="WorldMap.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldPlayer.cpp">
       <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
