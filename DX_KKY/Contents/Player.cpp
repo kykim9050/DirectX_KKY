@@ -6,6 +6,7 @@
 APlayer::APlayer() 
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("PlayerRenderer");
+	InputOn();
 }
 
 APlayer::~APlayer() 
