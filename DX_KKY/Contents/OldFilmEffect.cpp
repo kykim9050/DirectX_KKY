@@ -22,7 +22,9 @@ void AOldFilmEffect::BeginPlay()
 
 	Renderer->ChangeAnimation("OldFilmAni");
 
-	SetActorScale3D(FVector{1280.0f, 720.0f});
+	FVector WindowScale = GEngine->EngineWindow.GetWindowScale();
+
+	SetActorScale3D(WindowScale);
 }
 
 void AOldFilmEffect::Tick(float _DeltaTime)

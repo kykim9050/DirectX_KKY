@@ -28,12 +28,12 @@ void ATutorialMode::BeginPlay()
 	std::shared_ptr<AActor>	TutorialMap = GetWorld()->SpawnActor<ATutorialMap>("TutorialMap");
 	std::shared_ptr<AMapSubObject> BackScreen = GetWorld()->SpawnActor<AMapSubObject>("BackScreen");
 	
-
+	FVector WindowScale = GEngine->EngineWindow.GetWindowScale();
 
 	FrontScreen->SetMapSubObject("tutorial_room_front_layer_0001.png");
 	BackScreen->SetMapSubObject("tutorial_room_back_layer_0001.png");
-	FrontScreen->SetMapSubObjectScale(FVector{ 1280.0f, 720.0f, 0.0f });
-	BackScreen->SetMapSubObjectScale(FVector{ 1280.0f, 720.0f, 0.0f });
+	FrontScreen->SetMapSubObjectScale(WindowScale);
+	BackScreen->SetMapSubObjectScale(WindowScale);
 
 	OldFilm->AddActorLocation(FVector{ 0.0f, 0.0f, 0.0f });
 	FrontScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 50.0f });
