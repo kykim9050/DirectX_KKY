@@ -16,15 +16,11 @@ APlayer::~APlayer()
 void APlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	SetActorScale3D(FVector(200.0f, 200.0f, 0.0f));
-
-	//Renderer->SetSprite("Cuphead_Idle");
 
 	CreatePlayerAnimation();
 	
 	Renderer->ChangeAnimation("Player_Idle");
-
+	Renderer->SetAutoSize(1.0f, true);
 }
 
 void APlayer::Tick(float _DeltaTime)
@@ -36,24 +32,28 @@ void APlayer::Tick(float _DeltaTime)
 
 	if (true == IsDown(VK_LEFT))
 	{
-		SetActorScale3D(FVector(-200.0f, 200.0f, 0.0f));
 		Renderer->ChangeAnimation("Player_Run");
+		Renderer->SetAutoSize(1.0f, true);
+		SetActorScale3D(FVector());
 	}
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		SetActorScale3D(FVector(200.0f, 200.0f, 0.0f));
 		Renderer->ChangeAnimation("Player_Run");
+		Renderer->SetAutoSize(1.0f, true);
 	}
 
 	if (true == IsDown('Z'))
 	{
 		Renderer->ChangeAnimation("Player_Jump");
+		Renderer->SetAutoSize(1.0f, true);
+
 	}
 	
 	if (true == IsDown('S'))
 	{
 		Renderer->ChangeAnimation("Player_Idle");
+		Renderer->SetAutoSize(1.0f, true);
 	}
 
 
