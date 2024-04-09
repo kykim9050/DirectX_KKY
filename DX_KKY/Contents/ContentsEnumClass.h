@@ -28,3 +28,16 @@ enum class EEndingRenderingOrder
 	Animation,
 	DisplayEffect,
 };
+
+enum class EWorldPlayerDir
+{
+	None,
+	Up,
+	RightUp,
+	Right,
+	RightDown,
+	Down,
+	LeftDown,
+	Left,
+	LeftUp,
+};

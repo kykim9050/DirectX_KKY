@@ -28,6 +28,8 @@ protected:
 	void Idle(float _DeltaTime);
 
 private:
+	void KeyCheck(float _DeltaTime);
+
 	inline float GetSpeed() const
 	{
 		return Speed;
@@ -37,5 +39,6 @@ private:
 	USpriteRenderer* Renderer;
 	float Speed = 200.0f;
 
+	EWorldPlayerDir Dir = EWorldPlayerDir::None;
 };
 
