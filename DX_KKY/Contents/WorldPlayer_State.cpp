@@ -15,6 +15,16 @@ void AWorldPlayer::StateInit()
 		State.CreateState("LeftIdle");
 		State.CreateState("LeftUpIdle");
 
+		State.CreateState("UpWalk");
+		State.CreateState("RightUpWalk");
+		State.CreateState("RightWalk");
+		State.CreateState("RightDownWalk");
+		State.CreateState("DownWalk");
+		State.CreateState("LeftDownWalk");
+		State.CreateState("LeftWalk");
+		State.CreateState("LeftUpWalk");
+
+
 		State.SetUpdateFunction("UpIdle", std::bind(&AWorldPlayer::UpIdle, this, std::placeholders::_1));
 		State.SetUpdateFunction("RightUpIdle", std::bind(&AWorldPlayer::RightUpIdle, this, std::placeholders::_1));
 		State.SetUpdateFunction("RightIdle", std::bind(&AWorldPlayer::RightIdle, this, std::placeholders::_1));
@@ -24,57 +34,106 @@ void AWorldPlayer::StateInit()
 		State.SetUpdateFunction("LeftIdle", std::bind(&AWorldPlayer::LeftIdle, this, std::placeholders::_1));
 		State.SetUpdateFunction("LeftUpIdle", std::bind(&AWorldPlayer::LeftUpIdle, this, std::placeholders::_1));
 
+		State.SetUpdateFunction("UpWalk", std::bind(&AWorldPlayer::UpWalk, this, std::placeholders::_1));
+		State.SetUpdateFunction("RightUpWalk", std::bind(&AWorldPlayer::RightUpWalk, this, std::placeholders::_1));
+		State.SetUpdateFunction("RightWalk", std::bind(&AWorldPlayer::RightWalk, this, std::placeholders::_1));
+		State.SetUpdateFunction("RightDownWalk", std::bind(&AWorldPlayer::RightDownWalk, this, std::placeholders::_1));
+		State.SetUpdateFunction("DownWalk", std::bind(&AWorldPlayer::DownWalk, this, std::placeholders::_1));
+		State.SetUpdateFunction("LeftDownWalk", std::bind(&AWorldPlayer::LeftDownWalk, this, std::placeholders::_1));
+		State.SetUpdateFunction("LeftWalk", std::bind(&AWorldPlayer::LeftWalk, this, std::placeholders::_1));
+		State.SetUpdateFunction("LeftUpWalk", std::bind(&AWorldPlayer::LeftUpWalk, this, std::placeholders::_1));
+
 
 		State.SetStartFunction("UpIdle", [=]
 			{
 				Renderer->ChangeAnimation("WPlayer_UpIdle");
 			}
 		);
-
 		State.SetStartFunction("RightUpIdle", [=]
 			{
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
-
 		State.SetStartFunction("RightIdle", [=]
 			{
 				Renderer->ChangeAnimation("WPlayer_StraightIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
-
 		State.SetStartFunction("RightDownIdle", [=]
 			{
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
-		
 		State.SetStartFunction("DownIdle", [=]
 			{
 				Renderer->ChangeAnimation("WPlayer_DownIdle");
 			}
 		);
-
 		State.SetStartFunction("LeftDownIdle", [=]
 			{
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
-
 		State.SetStartFunction("LeftIdle", [=]
 			{
 				Renderer->ChangeAnimation("WPlayer_StraightIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
-
 		State.SetStartFunction("LeftUpIdle", [=]
 			{
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpIdle");
+				Renderer->SetDir(EEngineDir::Left);
+			}
+		);
+	
+		State.SetStartFunction("UpWalk", [=]
+			{
+				Renderer->ChangeAnimation("WPlayer_UpWalk");
+			}
+		);
+		State.SetStartFunction("RightUpWalk", [=]
+			{
+				Renderer->ChangeAnimation("WPlayer_DiagonalUpWalk");
+				Renderer->SetDir(EEngineDir::Right);
+			}
+		);
+		State.SetStartFunction("RightWalk", [=]
+			{
+				Renderer->ChangeAnimation("WPlayer_StraightWalk");
+				Renderer->SetDir(EEngineDir::Right);
+			}
+		);
+		State.SetStartFunction("RightDownWalk", [=]
+			{
+				Renderer->ChangeAnimation("WPlayer_DiagonalDownWalk");
+				Renderer->SetDir(EEngineDir::Right);
+			}
+		);
+		State.SetStartFunction("DownWalk", [=]
+			{
+				Renderer->ChangeAnimation("WPlayer_DownWalk");
+			}
+		);
+		State.SetStartFunction("LeftDownWalk", [=]
+			{
+				Renderer->ChangeAnimation("WPlayer_DiagonalDownWalk");
+				Renderer->SetDir(EEngineDir::Left);
+			}
+		);
+		State.SetStartFunction("LeftWalk", [=]
+			{
+				Renderer->ChangeAnimation("WPlayer_StraightWalk");
+				Renderer->SetDir(EEngineDir::Left);
+			}
+		);
+		State.SetStartFunction("LeftUpWalk", [=]
+			{
+				Renderer->ChangeAnimation("WPlayer_DiagonalUpWalk");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
@@ -82,56 +141,87 @@ void AWorldPlayer::StateInit()
 
 	Renderer->SetAutoSize(1.0f, true);
 	State.ChangeState("RightDownIdle");
-
-
-
-	//Renderer->CreateAnimation("WPlayer_DiagonalUpIdle", "DiagonalUpIdle", 0.067f);
-	//Renderer->CreateAnimation("WPlayer_UpWalk", "UpWalk", 0.067f);
-	//Renderer->CreateAnimation("WPlayer_DownWalk", "DownWalk", 0.067f);
-	//Renderer->CreateAnimation("WPlayer_DiagonalUpWalk", "DiagonalUpWalk", 0.067f);
-	//Renderer->CreateAnimation("WPlayer_DiagonalDownWalk", "DiagonalDownWalk", 0.067f);
-	//Renderer->CreateAnimation("WPlayer_StraightWalk", "StraightWalk", 0.067f);
 }
-
 
 void AWorldPlayer::UpIdle(float _DeltaTime)
 {
-	DirCheck();
+
 }
 
 void AWorldPlayer::RightUpIdle(float _DeltaTime)
 {
-	DirCheck();
+
 }
 
 void AWorldPlayer::RightIdle(float _DeltaTime)
 {
-	DirCheck();
+
 }
 
 void AWorldPlayer::RightDownIdle(float _DeltaTime)
 {
-	DirCheck();
+
 }
 
 void AWorldPlayer::DownIdle(float _DeltaTime)
 {
-	DirCheck();
+
 }
 
 void AWorldPlayer::LeftDownIdle(float _DeltaTime)
 {
-	DirCheck();
+	
 }
 
 void AWorldPlayer::LeftIdle(float _DeltaTime)
 {
-	DirCheck();
+	
 }
 
 void AWorldPlayer::LeftUpIdle(float _DeltaTime)
 {
-	DirCheck();
+	
+}
+
+
+void AWorldPlayer::UpWalk(float _DeltaTime)
+{
+
+}
+
+void AWorldPlayer::RightUpWalk(float _DeltaTime)
+{
+
+}
+
+void AWorldPlayer::RightWalk(float _DeltaTime)
+{
+
+}
+
+void AWorldPlayer::RightDownWalk(float _DeltaTime)
+{
+
+}
+
+void AWorldPlayer::DownWalk(float _DeltaTime)
+{
+
+}
+
+void AWorldPlayer::LeftDownWalk(float _DeltaTime)
+{
+
+}
+
+void AWorldPlayer::LeftWalk(float _DeltaTime)
+{
+
+}
+
+void AWorldPlayer::LeftUpWalk(float _DeltaTime)
+{
+
 }
 
 
