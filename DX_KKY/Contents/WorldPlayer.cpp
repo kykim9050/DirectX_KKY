@@ -21,7 +21,7 @@ void AWorldPlayer::BeginPlay()
 	
 	CreatePlayerAnimation();
 
-	Renderer->ChangeAnimation("WPlayer_Idle");
+	Renderer->ChangeAnimation("WPlayer_UpWalk");
 }
 
 void AWorldPlayer::Tick(float _DeltaTime)

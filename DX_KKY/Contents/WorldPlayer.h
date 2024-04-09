@@ -25,6 +25,7 @@ protected:
 	void CreatePlayerAnimation();
 
 private:
+	UStateManager WPlayerState = UStateManager();
 	USpriteRenderer* Renderer;
 };
 
