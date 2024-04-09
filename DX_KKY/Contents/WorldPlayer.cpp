@@ -17,12 +17,8 @@ void AWorldPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorScale3D(FVector(60.0f, 86.0f, 0.0f));
-	
 	CreatePlayerAnimation();
 	StateInit();
-
-	//Renderer->ChangeAnimation("WPlayer_UpWalk");
 }
 
 void AWorldPlayer::Tick(float _DeltaTime)
