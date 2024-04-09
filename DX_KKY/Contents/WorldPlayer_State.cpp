@@ -145,53 +145,283 @@ void AWorldPlayer::StateInit()
 
 void AWorldPlayer::UpIdle(float _DeltaTime)
 {
+	if(true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
 
 }
 
 void AWorldPlayer::RightUpIdle(float _DeltaTime)
 {
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
 
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
 }
 
 void AWorldPlayer::RightIdle(float _DeltaTime)
 {
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
 
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
 }
 
 void AWorldPlayer::RightDownIdle(float _DeltaTime)
 {
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
 
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
 }
 
 void AWorldPlayer::DownIdle(float _DeltaTime)
 {
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
 
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
 }
 
 void AWorldPlayer::LeftDownIdle(float _DeltaTime)
 {
-	
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
 }
 
 void AWorldPlayer::LeftIdle(float _DeltaTime)
 {
-	
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
 }
 
 void AWorldPlayer::LeftUpIdle(float _DeltaTime)
 {
-	
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
 }
 
 
 void AWorldPlayer::UpWalk(float _DeltaTime)
 {
+	if (true == IsFree(VK_UP))
+	{
+		State.ChangeState("UpIdle");
+		return;
+	}
 
+	if(true == IsPress(VK_UP) && true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftUpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_UP) && true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightUpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
+
+	AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
 }
 
 void AWorldPlayer::RightUpWalk(float _DeltaTime)
 {
+	// Up, Right 둘다 때면 RightUpIdle
+	if (true == IsFree(VK_UP) && true == IsFree(VK_RIGHT))
+	{
+		State.ChangeState("RightUpIdle");
+		return;
+	}
 
+	// Up 누르고 Right는 안누를 때  UpWalk
+	if (true == IsPress(VK_UP) && true == IsFree(VK_RIGHT))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	// Right 누르고 Up은 안누를 때 RightWalk
+	if (true == IsPress(VK_RIGHT) && true == IsFree(VK_UP))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
+
+	// 누르고 있을때는 AddActorLocation
+	AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
+	AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
 }
 
 void AWorldPlayer::RightWalk(float _DeltaTime)
