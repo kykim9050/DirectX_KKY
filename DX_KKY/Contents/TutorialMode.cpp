@@ -28,7 +28,7 @@ void ATutorialMode::BeginPlay()
 	std::shared_ptr<AActor> Player = GetWorld()->SpawnActor<APlayer>("Player", static_cast<int>(EActorType::Player));
 	std::shared_ptr<AActor>	TutorialMap = GetWorld()->SpawnActor<ATutorialMap>("TutorialMap", static_cast<int>(EActorType::Map));
 	std::shared_ptr<AMapSubObject> BackScreen = GetWorld()->SpawnActor<AMapSubObject>("BackScreen", static_cast<int>(EActorType::BackGroundSubStaticObject));
-	
+
 	FVector WindowScale = GEngine->EngineWindow.GetWindowScale();
 
 	FrontScreen->SetMapSubObject("tutorial_room_front_layer_0001.png");
