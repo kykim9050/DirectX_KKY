@@ -10,3 +10,4 @@
 #include <EngineCore/StateManager.h>
 
 #include "ContentsEnumClass.h"
+#include "ContentsValue.h"
