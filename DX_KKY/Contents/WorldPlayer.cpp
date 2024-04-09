@@ -4,6 +4,7 @@
 #include "WorldPlayer.h"
 
 AWorldPlayer::AWorldPlayer()
+	: Dir(EWorldPlayerDir::RightDown)
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("PlayerRenderer");
 	InputOn();

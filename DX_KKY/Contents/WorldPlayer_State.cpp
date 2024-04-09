@@ -21,15 +21,16 @@ void AWorldPlayer::StateInit()
 
 void AWorldPlayer::Idle(float _DeltaTime)
 {
+	KeyCheck(_DeltaTime);
 
-	if (true == IsPress(VK_LEFT))
-	{
-		AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
-	}
+	Renderer->SetAutoSize(1.0f, true);
+}
 
-	if (true == IsPress(VK_RIGHT))
+void AWorldPlayer::KeyCheck(float _DeltaTime)
+{
+	if(true == IsPress(VK_DOWN))
 	{
-		AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
+		AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
 	}
 
 	if (true == IsPress(VK_UP))
@@ -37,10 +38,13 @@ void AWorldPlayer::Idle(float _DeltaTime)
 		AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
 	}
 
-	if (true == IsPress(VK_DOWN))
+	if (true == IsPress(VK_RIGHT))
 	{
-		AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
+		AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
 	}
 
-	Renderer->SetAutoSize(1.0f, true);
+	if (true == IsPress(VK_LEFT))
+	{
+		AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
+	}
 }
