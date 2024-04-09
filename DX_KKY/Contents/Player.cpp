@@ -34,13 +34,14 @@ void APlayer::Tick(float _DeltaTime)
 	{
 		Renderer->ChangeAnimation("Player_Run");
 		Renderer->SetAutoSize(1.0f, true);
-		SetActorScale3D(FVector());
+		Renderer->SetDir(EEngineDir::Left);
 	}
 
 	if (true == IsPress(VK_RIGHT))
 	{
 		Renderer->ChangeAnimation("Player_Run");
 		Renderer->SetAutoSize(1.0f, true);
+		Renderer->SetDir(EEngineDir::Right);
 	}
 
 	if (true == IsDown('Z'))
