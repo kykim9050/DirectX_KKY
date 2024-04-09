@@ -15,7 +15,7 @@ void AEndingAnimation::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorScale3D(FVector(1280.0f, 720.0f, 0.0f));
+	SetActorScale3D(GEngine->EngineWindow.GetWindowScale());
 	
 	Renderer->SetSprite("Ending_Animation");
 	Renderer->SetSamplering(ETextureSampling::LINEAR);
