@@ -31,7 +31,6 @@ void AWorldPlayer::Tick(float _DeltaTime)
 
 void AWorldPlayer::CreatePlayerAnimation()
 {
-	Renderer->CreateAnimation("WPlayer_Idle", "DiagonalDownIdle", 0.067f);
 	Renderer->CreateAnimation("WPlayer_UpIdle", "UpIdle", 0.067f);
 	Renderer->CreateAnimation("WPlayer_DownIdle", "DownIdle", 0.067f);
 	Renderer->CreateAnimation("WPlayer_DiagonalUpIdle", "DiagonalUpIdle", 0.067f);

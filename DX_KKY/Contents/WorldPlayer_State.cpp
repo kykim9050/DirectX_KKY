@@ -5,21 +5,21 @@
 
 void AWorldPlayer::StateInit()
 {
-	State.CreateState("Idle");
+	State.CreateState("RightDownIdle");
 
-	State.SetUpdateFunction("Idle", std::bind(&AWorldPlayer::Idle, this, std::placeholders::_1));
+	State.SetUpdateFunction("RightDownIdle", std::bind(&AWorldPlayer::RightDownIdle, this, std::placeholders::_1));
 
-	State.SetStartFunction("Idle", [=]
+	State.SetStartFunction("RightDownIdle", [=]
 		{
-			Renderer->ChangeAnimation("WPlayer_Idle");
+			Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 		}
 	);
 
-	State.ChangeState("Idle");
+	State.ChangeState("RightDownIdle");
 }
 
 
-void AWorldPlayer::Idle(float _DeltaTime)
+void AWorldPlayer::RightDownIdle(float _DeltaTime)
 {
 	KeyCheck(_DeltaTime);
 
