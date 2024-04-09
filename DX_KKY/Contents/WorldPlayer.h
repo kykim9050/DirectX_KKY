@@ -31,13 +31,13 @@ protected:
 private:
 	void KeyCheck(float _DeltaTime);
 
-	//void UpIdle(float _DeltaTime);
+	void UpIdle(float _DeltaTime);
 	//void RightUpIdle(float _DeltaTime);
-	//void RightIdle(float _DeltaTime);
+	void RightIdle(float _DeltaTime);
 	void RightDownIdle(float _DeltaTime);
-	//void DownIdle(float _DeltaTime);
+	void DownIdle(float _DeltaTime);
 	//void LeftDownIdle(float _DeltaTime);
-	//void LeftIdle(float _DeltaTime);
+	void LeftIdle(float _DeltaTime);
 	//void LeftUpIdle(float _DeltaTime);
 
 	//void UpWalk(float _DeltaTime);
