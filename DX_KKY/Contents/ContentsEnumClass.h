@@ -9,3 +9,22 @@ enum class EActorType
 	Map,
 	Player,
 };
+
+enum class ERenderingOrder
+{
+	None,
+	DisplayEffect,
+};
+
+enum class ETitleRenderingOrder
+{
+	None,
+
+};
+
+enum class EEndingRenderingOrder
+{
+	None,
+	Animation,
+	DisplayEffect,
+};
