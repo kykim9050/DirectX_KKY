@@ -28,7 +28,14 @@ protected:
 	void Idle(float _DeltaTime);
 
 private:
+	inline float GetSpeed() const
+	{
+		return Speed;
+	}
+
 	UStateManager State = UStateManager();
 	USpriteRenderer* Renderer;
+	float Speed = 200.0f;
+
 };
 

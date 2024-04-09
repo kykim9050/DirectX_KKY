@@ -21,5 +21,26 @@ void AWorldPlayer::StateInit()
 
 void AWorldPlayer::Idle(float _DeltaTime)
 {
+
+	if (true == IsPress(VK_LEFT))
+	{
+		AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
+	}
+
+	if (true == IsPress(VK_UP))
+	{
+		AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
+	}
+
 	Renderer->SetAutoSize(1.0f, true);
 }
