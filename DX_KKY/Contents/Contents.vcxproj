@@ -299,6 +299,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="WorldPlayer_State.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

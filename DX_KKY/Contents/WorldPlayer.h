@@ -24,8 +24,11 @@ protected:
 
 	void CreatePlayerAnimation();
 
+	void StateInit();
+	void Idle(float _DeltaTime);
+
 private:
-	UStateManager WPlayerState = UStateManager();
+	UStateManager State = UStateManager();
 	USpriteRenderer* Renderer;
 };
 
