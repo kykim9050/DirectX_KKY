@@ -161,5 +161,8 @@
     <ClCompile Include="ContentsValue.cpp">
       <Filter>ContentsHelper</Filter>
     </ClCompile>
+    <ClCompile Include="WorldPlayer_State.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
