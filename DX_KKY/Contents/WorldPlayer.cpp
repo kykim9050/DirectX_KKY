@@ -42,3 +42,19 @@ void AWorldPlayer::CreatePlayerAnimation()
 	Renderer->CreateAnimation("WPlayer_DiagonalDownWalk", "DiagonalDownWalk", 0.037f);
 	Renderer->CreateAnimation("WPlayer_StraightWalk", "StraightWalk", 0.037f);
 }
+
+bool AWorldPlayer::MapCollisionCheck()
+{
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+	static std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;
+
+	Color8Bit Color = CheckTexture->GetColor(Pos, Color8Bit::Black);
+
+	if (Color != Color8Bit::Black)
+	{
+		return false;
+	}
+
+	return true;
+}
