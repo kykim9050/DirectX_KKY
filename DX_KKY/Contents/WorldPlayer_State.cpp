@@ -46,46 +46,54 @@ void AWorldPlayer::StateInit()
 
 		State.SetStartFunction("UpIdle", [=]
 			{
+				Dir = EWorldPlayerDir::Up;
 				Renderer->ChangeAnimation("WPlayer_UpIdle");
 			}
 		);
 		State.SetStartFunction("RightUpIdle", [=]
 			{
+				Dir = EWorldPlayerDir::RightUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("RightIdle", [=]
 			{
+				Dir = EWorldPlayerDir::Right;
 				Renderer->ChangeAnimation("WPlayer_StraightIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("RightDownIdle", [=]
 			{
+				Dir = EWorldPlayerDir::RightDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("DownIdle", [=]
 			{
+				Dir = EWorldPlayerDir::Down;
 				Renderer->ChangeAnimation("WPlayer_DownIdle");
 			}
 		);
 		State.SetStartFunction("LeftDownIdle", [=]
 			{
+				Dir = EWorldPlayerDir::LeftDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
 		State.SetStartFunction("LeftIdle", [=]
 			{
+				Dir = EWorldPlayerDir::Left;
 				Renderer->ChangeAnimation("WPlayer_StraightIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
 		State.SetStartFunction("LeftUpIdle", [=]
 			{
+				Dir = EWorldPlayerDir::LeftUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
@@ -93,46 +101,54 @@ void AWorldPlayer::StateInit()
 	
 		State.SetStartFunction("UpWalk", [=]
 			{
+				Dir = EWorldPlayerDir::Up;
 				Renderer->ChangeAnimation("WPlayer_UpWalk");
 			}
 		);
 		State.SetStartFunction("RightUpWalk", [=]
 			{
+				Dir = EWorldPlayerDir::RightUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpWalk");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("RightWalk", [=]
 			{
+				Dir = EWorldPlayerDir::Right;
 				Renderer->ChangeAnimation("WPlayer_StraightWalk");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("RightDownWalk", [=]
 			{
+				Dir = EWorldPlayerDir::RightDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownWalk");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("DownWalk", [=]
 			{
+				Dir = EWorldPlayerDir::Down;
 				Renderer->ChangeAnimation("WPlayer_DownWalk");
 			}
 		);
 		State.SetStartFunction("LeftDownWalk", [=]
 			{
+				Dir = EWorldPlayerDir::LeftDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownWalk");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
 		State.SetStartFunction("LeftWalk", [=]
 			{
+				Dir = EWorldPlayerDir::Left;
 				Renderer->ChangeAnimation("WPlayer_StraightWalk");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
 		State.SetStartFunction("LeftUpWalk", [=]
 			{
+				Dir = EWorldPlayerDir::LeftUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpWalk");
 				Renderer->SetDir(EEngineDir::Left);
 			}
@@ -396,7 +412,15 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 		return;
 	}
 
-	AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
+
+	if (false == MapCollisionCheck())
+	{
+		AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Down);
+	}
 }
 
 void AWorldPlayer::RightUpWalk(float _DeltaTime)
@@ -423,8 +447,16 @@ void AWorldPlayer::RightUpWalk(float _DeltaTime)
 	}
 
 	// 누르고 있을때는 AddActorLocation
-	AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
-	AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
+	if (false == MapCollisionCheck())
+	{
+		AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
+		AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Down);
+		AddActorLocation(FVector::Left);
+	}
 }
 
 void AWorldPlayer::RightWalk(float _DeltaTime)
@@ -462,7 +494,14 @@ void AWorldPlayer::RightWalk(float _DeltaTime)
 		return;
 	}
 
-	AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
+	if (false == MapCollisionCheck())
+	{
+		AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Left);
+	}
 }
 
 void AWorldPlayer::RightDownWalk(float _DeltaTime)
@@ -485,8 +524,17 @@ void AWorldPlayer::RightDownWalk(float _DeltaTime)
 		return;
 	}
 
-	AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
-	AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
+	if (false == MapCollisionCheck())
+	{
+		AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
+		AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Up);
+		AddActorLocation(FVector::Left);
+	}
+
 }
 
 void AWorldPlayer::DownWalk(float _DeltaTime)
@@ -529,6 +577,10 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
 	}
+	else
+	{
+		AddActorLocation(FVector::Up);
+	}
 }
 
 void AWorldPlayer::LeftDownWalk(float _DeltaTime)
@@ -551,8 +603,16 @@ void AWorldPlayer::LeftDownWalk(float _DeltaTime)
 		return;
 	}
 
-	AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
-	AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
+	if (false == MapCollisionCheck())
+	{
+		AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
+		AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Up);
+		AddActorLocation(FVector::Right);
+	}
 }
 
 void AWorldPlayer::LeftWalk(float _DeltaTime)
@@ -590,7 +650,14 @@ void AWorldPlayer::LeftWalk(float _DeltaTime)
 		return;
 	}
 
-	AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
+	if (false == MapCollisionCheck())
+	{
+		AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Right);
+	}
 }
 
 void AWorldPlayer::LeftUpWalk(float _DeltaTime)
@@ -613,6 +680,14 @@ void AWorldPlayer::LeftUpWalk(float _DeltaTime)
 		return;
 	}
 
-	AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
-	AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
+	if (false == MapCollisionCheck())
+	{
+		AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
+		AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Down);
+		AddActorLocation(FVector::Right);
+	}
 }
