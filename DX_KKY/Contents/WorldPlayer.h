@@ -30,7 +30,6 @@ protected:
 	void CreatePlayerAnimation();
 
 	void StateInit();
-	void Idle(float _DeltaTime);
 
 private:
 	void UpIdle(float _DeltaTime);
