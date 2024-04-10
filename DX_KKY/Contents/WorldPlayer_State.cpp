@@ -417,6 +417,10 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
 	}
+	else
+	{
+		AddActorLocation(FVector::Down);
+	}
 }
 
 void AWorldPlayer::RightUpWalk(float _DeltaTime)
@@ -447,6 +451,11 @@ void AWorldPlayer::RightUpWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
 		AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Down);
+		AddActorLocation(FVector::Left);
 	}
 }
 
@@ -489,6 +498,10 @@ void AWorldPlayer::RightWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
 	}
+	else
+	{
+		AddActorLocation(FVector::Left);
+	}
 }
 
 void AWorldPlayer::RightDownWalk(float _DeltaTime)
@@ -515,6 +528,11 @@ void AWorldPlayer::RightDownWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
 		AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Up);
+		AddActorLocation(FVector::Left);
 	}
 
 }
@@ -559,6 +577,10 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
 	}
+	else
+	{
+		AddActorLocation(FVector::Up);
+	}
 }
 
 void AWorldPlayer::LeftDownWalk(float _DeltaTime)
@@ -585,6 +607,11 @@ void AWorldPlayer::LeftDownWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
 		AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Up);
+		AddActorLocation(FVector::Right);
 	}
 }
 
@@ -627,6 +654,10 @@ void AWorldPlayer::LeftWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
 	}
+	else
+	{
+		AddActorLocation(FVector::Right);
+	}
 }
 
 void AWorldPlayer::LeftUpWalk(float _DeltaTime)
@@ -653,5 +684,10 @@ void AWorldPlayer::LeftUpWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
 		AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
+	}
+	else
+	{
+		AddActorLocation(FVector::Down);
+		AddActorLocation(FVector::Right);
 	}
 }
