@@ -36,9 +36,9 @@ void AWorldPlayer::CreatePlayerAnimation()
 	Renderer->CreateAnimation("WPlayer_DiagonalUpIdle", "DiagonalUpIdle", 0.067f);
 	Renderer->CreateAnimation("WPlayer_DiagonalDownIdle", "DiagonalDownIdle", 0.067f);
 	Renderer->CreateAnimation("WPlayer_StraightIdle", "StraightIdle", 0.067f);
-	Renderer->CreateAnimation("WPlayer_UpWalk", "UpWalk", 0.067f);
-	Renderer->CreateAnimation("WPlayer_DownWalk", "DownWalk", 0.067f);
-	Renderer->CreateAnimation("WPlayer_DiagonalUpWalk", "DiagonalUpWalk", 0.067f);
-	Renderer->CreateAnimation("WPlayer_DiagonalDownWalk", "DiagonalDownWalk", 0.067f);
-	Renderer->CreateAnimation("WPlayer_StraightWalk", "StraightWalk", 0.067f);
+	Renderer->CreateAnimation("WPlayer_UpWalk", "UpWalk", 0.037f);
+	Renderer->CreateAnimation("WPlayer_DownWalk", "DownWalk", 0.037f);
+	Renderer->CreateAnimation("WPlayer_DiagonalUpWalk", "DiagonalUpWalk", 0.037f);
+	Renderer->CreateAnimation("WPlayer_DiagonalDownWalk", "DiagonalDownWalk", 0.037f);
+	Renderer->CreateAnimation("WPlayer_StraightWalk", "StraightWalk", 0.037f);
 }

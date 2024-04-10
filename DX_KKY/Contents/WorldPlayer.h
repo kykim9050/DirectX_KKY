@@ -28,9 +28,6 @@ protected:
 	void Idle(float _DeltaTime);
 
 private:
-	void KeyCheck(float _DeltaTime);
-	void DirCheck();
-
 	void UpIdle(float _DeltaTime);
 	void RightUpIdle(float _DeltaTime);
 	void RightIdle(float _DeltaTime);
@@ -53,10 +50,15 @@ private:
 	{
 		return Speed;
 	}
+	inline float GetDiagonalSpeed() const
+	{
+		return DiagonalSpeed;
+	}
 
 	UStateManager State = UStateManager();
 	USpriteRenderer* Renderer;
-	float Speed = 200.0f;
+	float Speed = 230.0f;
+	float DiagonalSpeed = 170.0f;
 
 	EWorldPlayerDir Dir = EWorldPlayerDir::None;
 };

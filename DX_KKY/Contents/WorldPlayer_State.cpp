@@ -369,16 +369,19 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 		return;
 	}
 
-	if(true == IsPress(VK_UP) && true == IsPress(VK_LEFT))
+	if(true == IsPress(VK_UP))
 	{
-		State.ChangeState("LeftUpWalk");
-		return;
-	}
+		if (true == IsPress(VK_LEFT))
+		{
+			State.ChangeState("LeftUpWalk");
+			return;
+		}
 
-	if (true == IsPress(VK_UP) && true == IsPress(VK_RIGHT))
-	{
-		State.ChangeState("RightUpWalk");
-		return;
+		if (true == IsPress(VK_RIGHT))
+		{
+			State.ChangeState("RightUpWalk");
+			return;
+		}
 	}
 
 	if (true == IsPress(VK_LEFT))
@@ -406,174 +409,206 @@ void AWorldPlayer::RightUpWalk(float _DeltaTime)
 	}
 
 	// Up 누르고 Right는 안누를 때  UpWalk
-	if (true == IsPress(VK_UP) && true == IsFree(VK_RIGHT))
+	if (true == IsUp(VK_RIGHT))
 	{
 		State.ChangeState("UpWalk");
 		return;
 	}
 
 	// Right 누르고 Up은 안누를 때 RightWalk
-	if (true == IsPress(VK_RIGHT) && true == IsFree(VK_UP))
+	if (true == IsUp(VK_UP))
 	{
 		State.ChangeState("RightWalk");
 		return;
 	}
 
 	// 누르고 있을때는 AddActorLocation
-	AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
-	AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
+	AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
+	AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
 }
 
 void AWorldPlayer::RightWalk(float _DeltaTime)
 {
+	if (true == IsFree(VK_RIGHT))
+	{
+		State.ChangeState("RightIdle");
+		return;
+	}
 
+	if (true == IsPress(VK_RIGHT))
+	{
+		if (true == IsPress(VK_UP))
+		{
+			State.ChangeState("RightUpWalk");
+			return;
+		}
+
+		if (true == IsPress(VK_DOWN))
+		{
+			State.ChangeState("RightDownWalk");
+			return;
+		}
+	}
+
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
 }
 
 void AWorldPlayer::RightDownWalk(float _DeltaTime)
 {
+	if (true == IsFree(VK_DOWN) && true == IsFree(VK_RIGHT))
+	{
+		State.ChangeState("RightDownIdle");
+		return;
+	}
 
+	if (true == IsUp(VK_RIGHT))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsUp(VK_DOWN))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
+
+	AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
+	AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
 }
 
 void AWorldPlayer::DownWalk(float _DeltaTime)
 {
+	if (true == IsFree(VK_DOWN))
+	{
+		State.ChangeState("DownIdle");
+		return;
+	}
 
+	if (true == IsPress(VK_DOWN))
+	{
+		if (true == IsPress(VK_LEFT))
+		{
+			State.ChangeState("LeftDownWalk");
+			return;
+		}
+
+		if (true == IsPress(VK_RIGHT))
+		{
+			State.ChangeState("RightDownWalk");
+			return;
+		}
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("RightWalk");
+		return;
+	}
+
+	AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
 }
 
 void AWorldPlayer::LeftDownWalk(float _DeltaTime)
 {
+	if (true == IsFree(VK_DOWN) && true == IsFree(VK_LEFT))
+	{
+		State.ChangeState("LeftDownIdle");
+		return;
+	}
 
+	if (true == IsUp(VK_LEFT))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsUp(VK_DOWN))
+	{
+		State.ChangeState("LeftWalk");
+		return;
+	}
+
+	AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
+	AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
 }
 
 void AWorldPlayer::LeftWalk(float _DeltaTime)
 {
+	if (true == IsFree(VK_LEFT))
+	{
+		State.ChangeState("LeftIdle");
+		return;
+	}
 
+	if (true == IsPress(VK_LEFT))
+	{
+		if (true == IsPress(VK_UP))
+		{
+			State.ChangeState("LeftUpWalk");
+			return;
+		}
+
+		if (true == IsPress(VK_DOWN))
+		{
+			State.ChangeState("LeftDownWalk");
+			return;
+		}
+	}
+
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
 }
 
 void AWorldPlayer::LeftUpWalk(float _DeltaTime)
 {
-
-}
-
-
-//void AWorldPlayer::KeyCheck(float _DeltaTime)
-//{
-//	if(true == IsPress(VK_DOWN))
-//	{
-//		AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
-//		//State.ChangeState("DownIdle");
-//
-//	}
-//
-//	if (true == IsPress(VK_UP))
-//	{
-//		AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
-//		//State.ChangeState("UpIdle");
-//	}
-//
-//	if (true == IsPress(VK_RIGHT))
-//	{
-//		AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
-//		//State.ChangeState("RightIdle");
-//	}
-//
-//	if (true == IsPress(VK_LEFT))
-//	{
-//		AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
-//		//State.ChangeState("LeftIdle");
-//	}
-//}
-
-void AWorldPlayer::DirCheck()
-{
-	if (true == IsAnykeyFree())
+	if (true == IsFree(VK_UP) && true == IsFree(VK_LEFT))
 	{
-		switch (Dir)
-		{
-		case EWorldPlayerDir::Up:
-		{
-			State.ChangeState("UpIdle");
-			break;
-		}
-		case EWorldPlayerDir::RightUp:
-		{
-			State.ChangeState("RightUpIdle");
-			break;
-		}
-		case EWorldPlayerDir::Right:
-		{
-			State.ChangeState("RightIdle");
-			break;
-		}
-		case EWorldPlayerDir::RightDown:
-		{
-			State.ChangeState("RightDownIdle");
-			break;
-		}
-		case EWorldPlayerDir::Down:
-		{
-			State.ChangeState("DownIdle");
-			break;
-		}
-		case EWorldPlayerDir::LeftDown:
-		{
-			State.ChangeState("LeftDownIdle");
-			break;
-		}
-		case EWorldPlayerDir::Left:
-		{
-			State.ChangeState("LeftIdle");
-			break;
-		}
-		case EWorldPlayerDir::LeftUp:
-		{
-			State.ChangeState("LeftUpIdle");
-			break;
-		}
-		default:
-			break;
-		}
-
+		State.ChangeState("LeftUpIdle");
 		return;
 	}
 
-	if (IsPress(VK_UP) && IsFree(VK_RIGHT))
+	if (true == IsUp(VK_LEFT))
 	{
-		Dir = EWorldPlayerDir::Up;
+		State.ChangeState("UpWalk");
+		return;
 	}
 
-	if (IsPress(VK_UP) && IsPress(VK_RIGHT))
+	if (true == IsUp(VK_UP))
 	{
-		Dir = EWorldPlayerDir::RightUp;
+		State.ChangeState("LeftWalk");
+		return;
 	}
 
-	if (IsPress(VK_RIGHT) && IsFree(VK_DOWN))
-	{
-		Dir = EWorldPlayerDir::Right;
-	}
-
-	if (IsPress(VK_RIGHT) && IsPress(VK_DOWN))
-	{
-		Dir = EWorldPlayerDir::RightDown;
-	}
-
-	if (IsPress(VK_DOWN) && IsFree(VK_LEFT))
-	{
-		Dir = EWorldPlayerDir::Down;
-	}
-
-	if (IsPress(VK_DOWN) && IsPress(VK_LEFT))
-	{
-		Dir = EWorldPlayerDir::LeftDown;
-	}
-
-	if (IsPress(VK_LEFT) && IsFree(VK_UP))
-	{
-		Dir = EWorldPlayerDir::Left;
-	}
-
-	if (IsPress(VK_LEFT) && IsPress(VK_UP))
-	{
-		Dir = EWorldPlayerDir::LeftUp;
-	}
-
+	AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
+	AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
 }
