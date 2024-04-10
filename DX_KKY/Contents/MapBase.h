@@ -23,12 +23,13 @@ public:
 		return GetActorTransform().GetScale();
 	}
 
+	void SetMapFile(std::string_view _MapFileName);
+	void SetMapScale(FVector _Scale);
+	void SetAutoScale();
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
-	void SetMapFile(std::string_view _MapFileName);
-	void SetMapScale(FVector _Scale);
 
 private:
 	USpriteRenderer* Renderer;
