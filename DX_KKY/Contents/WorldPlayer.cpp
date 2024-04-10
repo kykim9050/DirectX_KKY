@@ -48,6 +48,42 @@ bool AWorldPlayer::MapCollisionCheck()
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 	static std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;
+	
+	float CheckOffset = 10.0f;
+
+	switch (Dir)
+	{
+	case EWorldPlayerDir::Up:
+		Pos.Y = Pos.Y - CheckOffset;
+		break;
+	case EWorldPlayerDir::RightUp:
+		Pos.X = Pos.X + CheckOffset;
+		Pos.Y = Pos.Y - CheckOffset;
+		break;
+	case EWorldPlayerDir::Right:
+		Pos.X = Pos.X + CheckOffset;
+		break;
+	case EWorldPlayerDir::RightDown:
+		Pos.X = Pos.X + CheckOffset;
+		Pos.Y = Pos.Y + CheckOffset;
+		break;
+	case EWorldPlayerDir::Down:
+		Pos.Y = Pos.Y + CheckOffset;
+		break;
+	case EWorldPlayerDir::LeftDown:
+		Pos.X = Pos.X - CheckOffset;
+		Pos.Y = Pos.Y + CheckOffset;
+		break;
+	case EWorldPlayerDir::Left:
+		Pos.X = Pos.X - CheckOffset;
+		break;
+	case EWorldPlayerDir::LeftUp:
+		Pos.X = Pos.X - CheckOffset;
+		Pos.Y = Pos.Y - CheckOffset;
+		break;
+	default:
+		break;
+	}
 
 	Color8Bit Color = CheckTexture->GetColor(Pos, Color8Bit::Black);
 
