@@ -176,6 +176,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsEnumClass.h" />
+    <ClInclude Include="ContentsFunction.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsValue.h">
       <SubType>
       </SubType>
@@ -231,6 +235,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ContentsFunction.cpp">
       <SubType>
       </SubType>
     </ClCompile>

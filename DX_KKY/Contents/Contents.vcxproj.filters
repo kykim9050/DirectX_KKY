@@ -102,6 +102,9 @@
     <ClInclude Include="ContentsValue.h">
       <Filter>ContentsHelper</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsFunction.h">
+      <Filter>ContentsHelper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -157,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="WorldPlayer_State.cpp">
       <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsFunction.cpp">
+      <Filter>ContentsHelper</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
