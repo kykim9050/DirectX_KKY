@@ -3,7 +3,7 @@
 
 // Ό³Έν :
 class USpriteRenderer;
-class AMapBase : public AActor
+class AMapBase : public AActor , public UNameObject
 {
 	GENERATED_BODY(AActor)
 
@@ -25,6 +25,7 @@ public:
 
 	void SetMapFile(std::string_view _MapFileName);
 	void SetMapScale(FVector _Scale);
+
 	void SetAutoScale();
 
 protected:

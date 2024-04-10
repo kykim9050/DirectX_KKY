@@ -20,9 +20,6 @@ void AWorldGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation(FVector(0.0f, 0.0f, UContentsValue::CameraInitZValue));
-
 	std::shared_ptr<AActor> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
 	std::shared_ptr<AMapSubObject> MapLayer = GetWorld()->SpawnActor<AMapSubObject>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
 	std::shared_ptr<AActor> WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
@@ -56,7 +53,11 @@ void AWorldGameMode::BeginPlay()
 	MapLayer->SetMapSubObject("WorldMap_Layer.png");
 	MapLayer->SetMapSubObjectScale(WMap->GetMapScale());
 
-	
+	// 콜리젼 맵을 가져와서 ContentsValue 클래스에 정보 저장
+	UContentsValue::ColMapTexture = UEngineTexture::FindRes(WCMap->GetName());
+
+	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
+	Camera->SetActorLocation(FVector(0.0f, 0.0f, UContentsValue::CameraInitZValue));
 
 	OldFilm->AddActorLocation(FVector{ 0.0f, 0.0f, 0.0f });
 	MapLayer->AddActorLocation(FVector{ 0.0f, 0.0f, 50.0f });
