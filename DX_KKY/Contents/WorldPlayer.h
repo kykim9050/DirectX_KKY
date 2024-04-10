@@ -46,6 +46,8 @@ private:
 	void LeftWalk(float _DeltaTime);
 	void LeftUpWalk(float _DeltaTime);
 
+	bool MapCollisionCheck();
+
 	inline float GetSpeed() const
 	{
 		return Speed;

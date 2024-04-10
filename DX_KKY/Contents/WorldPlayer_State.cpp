@@ -525,18 +525,9 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 	}
 	
 
+	if (false == MapCollisionCheck())
 	{
-		float4 Pos = GetActorLocation();
-		Pos.Y = -Pos.Y;
-		static std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;
-
-
-		Color8Bit Color = CheckTexture->GetColor(Pos, Color8Bit::Black);
-
-		if (Color != Color8Bit::Black)
-		{
-			AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
-		}
+		AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
 	}
 }
 
