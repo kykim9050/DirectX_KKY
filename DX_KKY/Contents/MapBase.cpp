@@ -23,6 +23,7 @@ void AMapBase::Tick(float _DeltaTime)
 
 void AMapBase::SetMapFile(std::string_view _MapFileName)
 {
+	SetName(_MapFileName);
 	Renderer->SetSprite(_MapFileName);
 }
 
