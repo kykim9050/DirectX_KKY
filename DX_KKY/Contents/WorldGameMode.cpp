@@ -3,7 +3,6 @@
 
 #include "ContentsEnumClass.h"
 #include "WorldGameMode.h"
-#include "WorldMap.h"
 #include "MapSubObject.h"
 #include "WorldPlayer.h"
 #include "OldFilmEffect.h"

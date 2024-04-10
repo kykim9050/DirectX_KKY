@@ -224,10 +224,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="WorldMap.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="WorldPlayer.h">
       <SubType>
       </SubType>
@@ -288,10 +284,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="WorldGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="WorldMap.cpp">
       <SubType>
       </SubType>
     </ClCompile>
