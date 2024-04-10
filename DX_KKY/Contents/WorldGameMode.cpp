@@ -55,15 +55,16 @@ void AWorldGameMode::BeginPlay()
 
 	// 콜리젼 맵을 가져와서 ContentsValue 클래스에 정보 저장
 	UContentsValue::ColMapTexture = UEngineTexture::FindRes(WCMap->GetName());
+	float4 ColMapScale = UContentsValue::ColMapTexture->GetScale();
 
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation(FVector(0.0f, 0.0f, UContentsValue::CameraInitZValue));
+	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
 
-	OldFilm->AddActorLocation(FVector{ 0.0f, 0.0f, 0.0f });
-	MapLayer->AddActorLocation(FVector{ 0.0f, 0.0f, 50.0f });
-	WPlayer->AddActorLocation(FVector{ 0.0f, 0.0f, 100.0f });
-	WorldMap->AddActorLocation(FVector{ 0.0f, 0.0f, 200.0f });
-	WorldCollisionMap->AddActorLocation(FVector{ 0.0f, 0.0f, 300.0f });
+	OldFilm->AddActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 0.0f });
+	WPlayer->AddActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
+	MapLayer->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f});
+	WMap->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
+	WCMap->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
 }
 
 void AWorldGameMode::Tick(float _DeltaTime)
