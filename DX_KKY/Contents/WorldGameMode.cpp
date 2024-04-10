@@ -20,7 +20,7 @@ void AWorldGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	std::shared_ptr<AActor> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
+	OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
 	std::shared_ptr<AMapSubObject> MapLayer = GetWorld()->SpawnActor<AMapSubObject>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
 	std::shared_ptr<AActor> WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
 	std::shared_ptr<AActor>	WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
@@ -60,6 +60,10 @@ void AWorldGameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
 
+	UICamera = GetWorld()->GetMainCamera();
+	UICamera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
+
+
 	OldFilm->AddActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 0.0f });
 	WPlayer->AddActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
 	MapLayer->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f});
@@ -70,4 +74,23 @@ void AWorldGameMode::BeginPlay()
 void AWorldGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	CameraMove(_DeltaTime);
+}
+
+void AWorldGameMode::CameraMove(float _DeltaTime)
+{
+	FVector PlayerPos = AWorldPlayer::GetMainPlayer()->GetActorLocation();
+	PlayerPos.Z = 0.0f;
+	FVector CameraPos = UICamera->GetActorLocation();
+	CameraPos.Z = 0.0f;
+
+	FVector ChasePlayerVector = PlayerPos - CameraPos;
+
+	if (1.0f >= ChasePlayerVector.Size3D())
+	{
+		return;
+	}
+
+	UICamera->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
+	OldFilm->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
 }

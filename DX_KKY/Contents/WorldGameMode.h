@@ -2,6 +2,7 @@
 #include <EngineCore/GameMode.h>
 
 // 설명 :
+class UCamera;
 class AWorldGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -22,6 +23,12 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
+	/// <summary>
+	/// 임시 기능
+	/// </summary>
+	void CameraMove(float _DeltaTime);
 
+	std::shared_ptr<UCamera> UICamera = std::shared_ptr<UCamera>();
+	std::shared_ptr<AActor> OldFilm = std::shared_ptr<AActor>();
 };
 
