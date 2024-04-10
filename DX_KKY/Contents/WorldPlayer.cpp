@@ -3,6 +3,8 @@
 
 #include "WorldPlayer.h"
 
+std::shared_ptr<AWorldPlayer> AWorldPlayer:: MainPlayer = std::shared_ptr<AWorldPlayer>();
+
 AWorldPlayer::AWorldPlayer()
 	: Dir(EWorldPlayerDir::RightDown)
 {
@@ -17,6 +19,8 @@ AWorldPlayer::~AWorldPlayer()
 void AWorldPlayer::BeginPlay()
 {
 	Super::BeginPlay();
+
+	SetMainPlayer(shared_from_this());
 
 	CreatePlayerAnimation();
 	StateInit();

@@ -3,7 +3,7 @@
 
 // Ό³Έν :
 class USpriteRenderer;
-class AWorldPlayer : public AActor
+class AWorldPlayer : public AActor, public std::enable_shared_from_this<AWorldPlayer>
 {
 	GENERATED_BODY(AActor)
 
@@ -18,6 +18,11 @@ public:
 	AWorldPlayer& operator=(const AWorldPlayer& _Other) = delete;
 	AWorldPlayer& operator=(AWorldPlayer&& _Other) noexcept = delete;
 
+	inline static std::shared_ptr<AWorldPlayer> GetMainPlayer()
+	{
+		return MainPlayer;
+	}
+		
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -55,6 +60,12 @@ private:
 	inline float GetDiagonalSpeed() const
 	{
 		return DiagonalSpeed;
+	}
+
+	static std::shared_ptr<AWorldPlayer> MainPlayer;
+	inline void SetMainPlayer(std::shared_ptr<AWorldPlayer> _Player)
+	{
+		MainPlayer = _Player;
 	}
 
 	UStateManager State = UStateManager();
