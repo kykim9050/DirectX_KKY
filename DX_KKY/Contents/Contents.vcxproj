@@ -224,6 +224,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WorldDust.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WorldGameMode.h">
       <SubType>
       </SubType>
@@ -288,6 +292,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TutorialMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WorldDust.cpp">
       <SubType>
       </SubType>
     </ClCompile>
