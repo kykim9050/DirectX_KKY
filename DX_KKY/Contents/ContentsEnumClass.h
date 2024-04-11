@@ -8,6 +8,7 @@ enum class EActorType
 	BackGroundSubStaticObject,
 	Map,
 	Player,
+	Dust,
 };
 
 enum class ERenderingOrder
