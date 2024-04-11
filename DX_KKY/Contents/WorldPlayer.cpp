@@ -101,10 +101,23 @@ bool AWorldPlayer::MapCollisionCheck()
 	return true;
 }
 
-void AWorldPlayer::MakeDust()
+void AWorldPlayer::MakeDust(float _DeltaTime)
 {
-	std::shared_ptr<AWorldDust> Dust = GetWorld()->SpawnActor<AWorldDust>("WorldDust", static_cast<int>(EActorType::Dust));
-	
-	DustInitXOffset *= -1;
-	Dust->SetActorLocation(FVector(GetActorLocation().X + DustInitXOffset, GetActorLocation().Y, 25.0f));
+	{
+		DustDelayTime -= _DeltaTime;
+
+		if (0.0f >= DustDelayTime)
+		{
+			DustDelayTime = DustDelayTimeInit + DustDelayTime;
+			std::shared_ptr<AWorldDust> Dust = GetWorld()->SpawnActor<AWorldDust>("WorldDust", static_cast<int>(EActorType::Dust));
+
+			DustInitXOffset *= -1;
+			Dust->SetActorLocation(FVector(GetActorLocation().X + DustInitXOffset, GetActorLocation().Y, 25.0f));
+		}
+	}
+}
+
+void AWorldPlayer::ResetDustDelayTime()
+{
+	DustDelayTime = 1.0f;
 }

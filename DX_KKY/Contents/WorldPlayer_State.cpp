@@ -46,12 +46,14 @@ void AWorldPlayer::StateInit()
 
 		State.SetStartFunction("UpIdle", [=]
 			{
+				ResetDustDelayTime();
 				Dir = EWorldPlayerDir::Up;
 				Renderer->ChangeAnimation("WPlayer_UpIdle");
 			}
 		);
 		State.SetStartFunction("RightUpIdle", [=]
 			{
+				ResetDustDelayTime();
 				Dir = EWorldPlayerDir::RightUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpIdle");
 				Renderer->SetDir(EEngineDir::Right);
@@ -59,6 +61,7 @@ void AWorldPlayer::StateInit()
 		);
 		State.SetStartFunction("RightIdle", [=]
 			{
+				ResetDustDelayTime();
 				Dir = EWorldPlayerDir::Right;
 				Renderer->ChangeAnimation("WPlayer_StraightIdle");
 				Renderer->SetDir(EEngineDir::Right);
@@ -66,6 +69,7 @@ void AWorldPlayer::StateInit()
 		);
 		State.SetStartFunction("RightDownIdle", [=]
 			{
+				ResetDustDelayTime();
 				Dir = EWorldPlayerDir::RightDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 				Renderer->SetDir(EEngineDir::Right);
@@ -73,12 +77,14 @@ void AWorldPlayer::StateInit()
 		);
 		State.SetStartFunction("DownIdle", [=]
 			{
+				ResetDustDelayTime();
 				Dir = EWorldPlayerDir::Down;
 				Renderer->ChangeAnimation("WPlayer_DownIdle");
 			}
 		);
 		State.SetStartFunction("LeftDownIdle", [=]
 			{
+				ResetDustDelayTime();
 				Dir = EWorldPlayerDir::LeftDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 				Renderer->SetDir(EEngineDir::Left);
@@ -86,6 +92,7 @@ void AWorldPlayer::StateInit()
 		);
 		State.SetStartFunction("LeftIdle", [=]
 			{
+				ResetDustDelayTime();
 				Dir = EWorldPlayerDir::Left;
 				Renderer->ChangeAnimation("WPlayer_StraightIdle");
 				Renderer->SetDir(EEngineDir::Left);
@@ -93,6 +100,7 @@ void AWorldPlayer::StateInit()
 		);
 		State.SetStartFunction("LeftUpIdle", [=]
 			{
+				ResetDustDelayTime();
 				Dir = EWorldPlayerDir::LeftUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpIdle");
 				Renderer->SetDir(EEngineDir::Left);
@@ -422,19 +430,7 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 		AddActorLocation(FVector::Down);
 	}
 
-
-	// MakeDust 함수 테스트 실행
-	{
-		static float _DelayTime = 0.5f;
-
-		_DelayTime -= _DeltaTime;
-
-		if (0.0f >= _DelayTime)
-		{
-			_DelayTime = 0.5f + _DelayTime;
-			MakeDust();
-		}
-	}
+	MakeDust(_DeltaTime);
 }
 
 void AWorldPlayer::RightUpWalk(float _DeltaTime)
@@ -471,6 +467,8 @@ void AWorldPlayer::RightUpWalk(float _DeltaTime)
 		AddActorLocation(FVector::Down);
 		AddActorLocation(FVector::Left);
 	}
+
+	MakeDust(_DeltaTime);
 }
 
 void AWorldPlayer::RightWalk(float _DeltaTime)
@@ -516,6 +514,8 @@ void AWorldPlayer::RightWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Left);
 	}
+
+	MakeDust(_DeltaTime);
 }
 
 void AWorldPlayer::RightDownWalk(float _DeltaTime)
@@ -548,6 +548,8 @@ void AWorldPlayer::RightDownWalk(float _DeltaTime)
 		AddActorLocation(FVector::Up);
 		AddActorLocation(FVector::Left);
 	}
+
+	MakeDust(_DeltaTime);
 
 }
 
@@ -595,6 +597,8 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Up);
 	}
+
+	MakeDust(_DeltaTime);
 }
 
 void AWorldPlayer::LeftDownWalk(float _DeltaTime)
@@ -627,6 +631,8 @@ void AWorldPlayer::LeftDownWalk(float _DeltaTime)
 		AddActorLocation(FVector::Up);
 		AddActorLocation(FVector::Right);
 	}
+
+	MakeDust(_DeltaTime);
 }
 
 void AWorldPlayer::LeftWalk(float _DeltaTime)
@@ -672,6 +678,8 @@ void AWorldPlayer::LeftWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Right);
 	}
+
+	MakeDust(_DeltaTime);
 }
 
 void AWorldPlayer::LeftUpWalk(float _DeltaTime)
@@ -704,4 +712,6 @@ void AWorldPlayer::LeftUpWalk(float _DeltaTime)
 		AddActorLocation(FVector::Down);
 		AddActorLocation(FVector::Right);
 	}
+
+	MakeDust(_DeltaTime);
 }
