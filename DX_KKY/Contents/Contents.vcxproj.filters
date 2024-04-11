@@ -34,9 +34,6 @@
     <Filter Include="Level\TestLevel">
       <UniqueIdentifier>{2f6a8295-fa7e-4b0a-978f-f2daa1e2f0e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\PlayLevel\TutorialLevel\Object">
-      <UniqueIdentifier>{0154f638-cc1e-4786-8c25-9d9a4af96e73}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\PlayLevel\WorldLevel">
       <UniqueIdentifier>{c8112701-da87-47d6-8b22-88a7f5616059}</UniqueIdentifier>
     </Filter>
@@ -80,9 +77,6 @@
     </ClInclude>
     <ClInclude Include="MapBase.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
-    </ClInclude>
-    <ClInclude Include="TutorialMap.h">
-      <Filter>Level\PlayLevel\TutorialLevel\Object</Filter>
     </ClInclude>
     <ClInclude Include="OldFilmEffect.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
@@ -142,9 +136,6 @@
     </ClCompile>
     <ClCompile Include="MapBase.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
-    </ClCompile>
-    <ClCompile Include="TutorialMap.cpp">
-      <Filter>Level\PlayLevel\TutorialLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="OldFilmEffect.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
