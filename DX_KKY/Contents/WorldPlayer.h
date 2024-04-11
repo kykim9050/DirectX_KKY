@@ -51,7 +51,8 @@ private:
 	void LeftUpWalk(float _DeltaTime);
 
 	bool MapCollisionCheck();
-	void MakeDust();
+	void MakeDust(float _DeltaTime);
+	void ResetDustDelayTime();
 
 	inline float GetSpeed() const
 	{
@@ -75,6 +76,8 @@ private:
 
 	EWorldPlayerDir Dir = EWorldPlayerDir::None;
 
-	float DustInitXOffset = 15.0f;
+	float DustInitXOffset = -15.0f;
+	float DustDelayTime = 1.0f;
+	float DustDelayTimeInit = 0.35f;
 };
 
