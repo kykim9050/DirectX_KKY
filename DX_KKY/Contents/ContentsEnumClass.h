@@ -19,8 +19,8 @@ enum class ERenderingOrder
 	Animation,
 	StaticObject,
 	Object,
-	Player,
 	Dust,
+	Player,
 	FrontLayer,
 	OldFilmEffect,
 };

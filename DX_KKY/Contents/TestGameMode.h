@@ -17,6 +17,11 @@ public:
 	ATestGameMode& operator=(const ATestGameMode& _Other) = delete;
 	ATestGameMode& operator=(ATestGameMode&& _Other) noexcept = delete;
 
+	inline static std::shared_ptr<UCamera> GetCamera()
+	{
+		return Camera;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -25,6 +30,6 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 
 private:
-
+	static std::shared_ptr<UCamera> Camera;
 };
 
