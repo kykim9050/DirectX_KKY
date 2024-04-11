@@ -16,14 +16,21 @@ void AWorldDust::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//Renderer->CreateAnimation("WorldDust_1", "WorldDustA", 0.1f, false);
-	Renderer->CreateAnimation("WorldDust_1", "WorldDustA", 0.05f);
+	
+	Renderer->CreateAnimation("WorldDust_1", "WorldDustA", 0.05f, false);
 	Renderer->CreateAnimation("WorldDust_2", "WorldDustB", 0.05f, false);
 	Renderer->CreateAnimation("WorldDust_3", "WorldDustC", 0.05f, false);
 	Renderer->CreateAnimation("WorldDust_4", "WorldDustD", 0.05f, false);
 	Renderer->CreateAnimation("WorldDust_5", "WorldDustE", 0.05f, false);
 	Renderer->CreateAnimation("WorldDust_6", "WorldDustF", 0.05f, false);
 	Renderer->SetOrder(ERenderingOrder::Dust);
+	
+	Renderer->SetFrameCallback("WorldDust_1", 19, [this]()
+		{
+			// 액터를 사라지도록 Destroy 함수로 변경 필요
+			Renderer->SetActive(false);
+		}
+	);
 
 	Renderer->ChangeAnimation("WorldDust_1");
 	Renderer->SetAutoSize(1.0f, true);
