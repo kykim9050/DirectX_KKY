@@ -2,6 +2,7 @@
 #include <EngineCore/Actor.h>
 
 // Ό³Έν :
+class UStateManager;
 class USpriteRenderer;
 class APlayer : public AActor
 {
@@ -29,8 +30,21 @@ protected:
 
 private:
 	USpriteRenderer* Renderer;
+	UStateManager State = UStateManager();
 
+	float RunSpeed = 500.0f;
+
+	void StateInit();
 	void CreatePlayerAnimation();
 
+	void IdleLeft(float _DeltaTime);
+	void IdleRight(float _DeltaTime);
+	void RunLeft(float _DeltaTime);
+	void RunRight(float _DeltaTime);
+		
+	inline float GetRunSpeed() const
+	{
+		return RunSpeed;
+	}
 };
 

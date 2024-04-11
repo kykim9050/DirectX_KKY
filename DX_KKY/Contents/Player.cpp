@@ -22,6 +22,8 @@ void APlayer::BeginPlay()
 	Renderer->ChangeAnimation("Player_Idle");
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::Player);
+
+	StateInit();
 }
 
 void APlayer::Tick(float _DeltaTime)
@@ -29,36 +31,7 @@ void APlayer::Tick(float _DeltaTime)
 	// 위에 뭔가를 쳐야할때도 있다.
 	Super::Tick(_DeltaTime);
 
-	float Speed = 100.0f;
-
-	if (true == IsDown(VK_LEFT))
-	{
-		Renderer->ChangeAnimation("Player_Run");
-		Renderer->SetAutoSize(1.0f, true);
-		Renderer->SetDir(EEngineDir::Left);
-	}
-
-	if (true == IsPress(VK_RIGHT))
-	{
-		Renderer->ChangeAnimation("Player_Run");
-		Renderer->SetAutoSize(1.0f, true);
-		Renderer->SetDir(EEngineDir::Right);
-	}
-
-	if (true == IsDown('Z'))
-	{
-		Renderer->ChangeAnimation("Player_Jump");
-		Renderer->SetAutoSize(1.0f, true);
-
-	}
-	
-	if (true == IsDown('S'))
-	{
-		Renderer->ChangeAnimation("Player_Idle");
-		Renderer->SetAutoSize(1.0f, true);
-	}
-
-
+	State.Update(_DeltaTime);
 }
 
 void APlayer::CreatePlayerAnimation()
