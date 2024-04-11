@@ -2,6 +2,7 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "WorldPlayer.h"
+#include "WorldDust.h"
 
 std::shared_ptr<AWorldPlayer> AWorldPlayer:: MainPlayer = std::shared_ptr<AWorldPlayer>();
 
@@ -101,5 +102,7 @@ bool AWorldPlayer::MapCollisionCheck()
 
 void AWorldPlayer::MakeDust()
 {
-	int a = 0;
+	std::shared_ptr<AWorldDust> Dust = GetWorld()->SpawnActor<AWorldDust>("WorldDust", static_cast<int>(EActorType::Dust));
+	
+	Dust->SetActorLocation(FVector(GetActorLocation().X, GetActorLocation().Y, 25.0f));
 }
