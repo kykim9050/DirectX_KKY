@@ -20,14 +20,16 @@ enum class ERenderingOrder
 enum class ETitleRenderingOrder
 {
 	None,
-
+	BackGroundImg,
+	Animation,
+	OldFilmEffect,
 };
 
 enum class EEndingRenderingOrder
 {
 	None,
 	Animation,
-	DisplayEffect,
+	OldFilmEffect,
 };
 
 enum class EWorldPlayerDir
