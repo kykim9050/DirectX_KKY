@@ -27,7 +27,7 @@ void AWorldDust::BeginPlay()
 
 	Renderer->ChangeAnimation("WorldDust_1");
 	Renderer->SetAutoSize(1.0f, true);
-	Renderer->SetOrder(10);
+	Renderer->SetOrder(ERenderingOrder::Dust);
 }
 
 void AWorldDust::Tick(float _DeltaTime)

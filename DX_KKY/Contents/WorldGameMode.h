@@ -28,7 +28,7 @@ private:
 	/// </summary>
 	void CameraMove(float _DeltaTime);
 
-	std::shared_ptr<UCamera> UICamera = std::shared_ptr<UCamera>();
+	std::shared_ptr<UCamera> Camera = std::shared_ptr<UCamera>();
 	std::shared_ptr<AActor> OldFilm = std::shared_ptr<AActor>();
 };
 
