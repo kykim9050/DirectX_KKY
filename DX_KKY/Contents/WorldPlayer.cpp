@@ -98,3 +98,8 @@ bool AWorldPlayer::MapCollisionCheck()
 
 	return true;
 }
+
+void AWorldPlayer::MakeDust()
+{
+	int a = 0;
+}
