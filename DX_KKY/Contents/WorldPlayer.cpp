@@ -22,6 +22,7 @@ void AWorldPlayer::BeginPlay()
 	Super::BeginPlay();
 
 	SetMainPlayer(shared_from_this());
+	Renderer->SetOrder(ERenderingOrder::Player);
 
 	CreatePlayerAnimation();
 	StateInit();

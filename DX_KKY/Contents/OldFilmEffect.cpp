@@ -21,6 +21,7 @@ void AOldFilmEffect::BeginPlay()
 	CreateOFEFAnimation();
 
 	Renderer->ChangeAnimation("OldFilmAni");
+	Renderer->SetOrder(ERenderingOrder::OldFilmEffect);
 
 	FVector WindowScale = GEngine->EngineWindow.GetWindowScale();
 

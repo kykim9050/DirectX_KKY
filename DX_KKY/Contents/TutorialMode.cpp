@@ -36,8 +36,6 @@ void ATutorialMode::BeginPlay()
 	FrontScreen->SetMapSubObjectScale(WindowScale);
 	BackScreen->SetMapSubObjectScale(WindowScale);
 
-	OldFilm->SetOrder(EStageRenderingOrder::OldFilmEffect);
-
 
 	OldFilm->AddActorLocation(FVector{ 0.0f, 0.0f, 0.0f });
 	FrontScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 100.0f });

@@ -23,7 +23,7 @@ void ATitleAnimation::BeginPlay()
 	Renderer->SetSamplering(ETextureSampling::LINEAR);
 
 	Renderer->ChangeAnimation("TitlePlay");
-	Renderer->SetOrder(ETitleRenderingOrder::Animation);
+	Renderer->SetOrder(ERenderingOrder::Animation);
 }
 
 void ATitleAnimation::Tick(float _DeltaTime)

@@ -14,30 +14,11 @@ enum class EActorType
 enum class ERenderingOrder
 {
 	None,
-	DisplayEffect,
-};
-
-enum class ETitleRenderingOrder
-{
-	None,
-	BackGroundImg,
-	Animation,
-	OldFilmEffect,
-};
-
-enum class EEndingRenderingOrder
-{
-	None,
-	Animation,
-	OldFilmEffect,
-};
-
-enum class EStageRenderingOrder
-{
-	None,
 	BackLayer,
-	TutorialObject,
+	Animation,
+	Object,
 	Player,
+	Dust,
 	FrontLayer,
 	OldFilmEffect,
 };
