@@ -28,14 +28,14 @@ public:
 
 	void SetAutoScale();
 
+protected:
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
 	inline USpriteRenderer* GetRenderer() const
 	{
 		return Renderer;
 	}
-
-protected:
-	void BeginPlay() override;
-	void Tick(float _DeltaTime) override;
 
 private:
 	USpriteRenderer* Renderer;
