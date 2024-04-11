@@ -16,6 +16,7 @@ enum class ERenderingOrder
 	None,
 	BackLayer,
 	Animation,
+	StaticObject,
 	Object,
 	Player,
 	Dust,
