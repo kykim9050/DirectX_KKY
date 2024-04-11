@@ -78,6 +78,6 @@ private:
 
 	float DustInitXOffset = -15.0f;
 	float DustDelayTime = 1.0f;
-	float DustDelayTimeInit = 0.35f;
+	float DustDelayTimeInit = 0.3f;
 };
 
