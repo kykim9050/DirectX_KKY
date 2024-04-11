@@ -37,3 +37,10 @@ enum class EWorldPlayerDir
 	Left,
 	LeftUp,
 };
+
+enum class EActorDir
+{
+	None,
+	Left,
+	Right,
+};
