@@ -2,6 +2,7 @@
 #include <EngineCore/GameMode.h>
 
 // Ό³Έν :
+class AOldFilmEffect;
 class ATestGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -17,9 +18,9 @@ public:
 	ATestGameMode& operator=(const ATestGameMode& _Other) = delete;
 	ATestGameMode& operator=(ATestGameMode&& _Other) noexcept = delete;
 
-	inline static std::shared_ptr<UCamera> GetCamera()
+	inline static std::shared_ptr<AOldFilmEffect> GetOldFilm() 
 	{
-		return Camera;
+		return OldFilm;
 	}
 
 protected:
@@ -30,6 +31,7 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 
 private:
-	static std::shared_ptr<UCamera> Camera;
+	std::shared_ptr<UCamera> Camera;
+	static std::shared_ptr<AOldFilmEffect> OldFilm;
 };
 
