@@ -74,5 +74,7 @@ private:
 	float DiagonalSpeed = 170.0f;
 
 	EWorldPlayerDir Dir = EWorldPlayerDir::None;
+
+	float DustInitXOffset = 15.0f;
 };
 

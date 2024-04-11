@@ -105,5 +105,6 @@ void AWorldPlayer::MakeDust()
 {
 	std::shared_ptr<AWorldDust> Dust = GetWorld()->SpawnActor<AWorldDust>("WorldDust", static_cast<int>(EActorType::Dust));
 	
-	Dust->SetActorLocation(FVector(GetActorLocation().X, GetActorLocation().Y, 25.0f));
+	DustInitXOffset *= -1;
+	Dust->SetActorLocation(FVector(GetActorLocation().X + DustInitXOffset, GetActorLocation().Y, 25.0f));
 }
