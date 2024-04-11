@@ -42,3 +42,8 @@ void AMapBase::SetAutoScale()
 #endif // _DEBUG
 	Renderer->SetAutoSize(1.0f, true);
 }
+
+void AMapBase::SetOrdering(int _Order)
+{
+	Renderer->SetOrder(_Order);
+}

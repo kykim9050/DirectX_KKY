@@ -28,14 +28,17 @@ public:
 
 	void SetAutoScale();
 
+	template<typename EnumType>
+	void SetOrdering(EnumType _Order)
+	{
+		SetOrdering(static_cast<int>(_Order));
+	}
+
+	void SetOrdering(int _Order);
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
-	inline USpriteRenderer* GetRenderer() const
-	{
-		return Renderer;
-	}
 
 private:
 	USpriteRenderer* Renderer;
