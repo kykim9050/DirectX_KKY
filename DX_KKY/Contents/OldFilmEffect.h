@@ -17,6 +17,16 @@ public:
 	AOldFilmEffect& operator=(const AOldFilmEffect& _Other) = delete;
 	AOldFilmEffect& operator=(AOldFilmEffect&& _Other) noexcept = delete;
 
+	template<typename EnumType>
+	void SetOrder(EnumType _Order)
+	{
+		SetOrder(static_cast<int>(_Order));
+	}
+
+	void SetOrder(int _Order);
+
+
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

@@ -3,8 +3,13 @@
 #include "Player.h"
 
 #include "TestGameMode.h"
-#include "ContentsEnumClass.h"
 #include "WorldDust.h"
+#include "WorldGameMode.h"
+#include "MapSubObject.h"
+#include "WorldPlayer.h"
+#include "OldFilmEffect.h"
+#include "TitleAnimation.h"
+#include "TitleLogo.h"
 
 ATestGameMode::ATestGameMode()
 {
@@ -21,10 +26,11 @@ void ATestGameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, UContentsValue::CameraInitZValue));
 
-	//GetWorld()->SpawnActor<APlayer>("Player", static_cast<int>(EActorType::Player));
-	std::shared_ptr<AWorldDust> Dust = GetWorld()->SpawnActor<AWorldDust>("WorldDust", static_cast<int>(EActorType::Dust));
+	std::shared_ptr<AActor> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
+	std::shared_ptr<ATitleLogo> TitleLogo = GetWorld()->SpawnActor<ATitleLogo>("TitleLogo", static_cast<int>(EActorType::BackGroundSubStaticObject));
+	std::shared_ptr<ATitleAnimation> TitleAni = GetWorld()->SpawnActor<ATitleAnimation>("TitleAnimation", static_cast<int>(EActorType::BackGroundAnimation));
 
-	Dust->SetActorLocation(FVector(0.0f, 0.0f, 100.0f));
+
 }
 
 void ATestGameMode::Tick(float _DeltaTime)

@@ -36,3 +36,8 @@ void AOldFilmEffect::CreateOFEFAnimation()
 {
 	Renderer->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
 }
+
+void AOldFilmEffect::SetOrder(int _Order)
+{
+	Renderer->SetOrder(_Order);
+}
