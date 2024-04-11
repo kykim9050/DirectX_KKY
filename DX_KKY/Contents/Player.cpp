@@ -21,6 +21,7 @@ void APlayer::BeginPlay()
 	
 	Renderer->ChangeAnimation("Player_Idle");
 	Renderer->SetAutoSize(1.0f, true);
+	Renderer->SetOrder(EStageRenderingOrder::Player);
 }
 
 void APlayer::Tick(float _DeltaTime)

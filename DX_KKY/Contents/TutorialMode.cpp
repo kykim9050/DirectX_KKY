@@ -25,7 +25,7 @@ void ATutorialMode::BeginPlay()
 
 	std::shared_ptr<AActor> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
 	std::shared_ptr<AMapSubObject> FrontScreen = GetWorld()->SpawnActor<AMapSubObject>("FrontScreen", static_cast<int>(EActorType::BackGroundSubStaticObject));
-	std::shared_ptr<AActor> Player = GetWorld()->SpawnActor<APlayer>("Player", static_cast<int>(EActorType::Player));
+	std::shared_ptr<APlayer> Player = GetWorld()->SpawnActor<APlayer>("Player", static_cast<int>(EActorType::Player));
 	std::shared_ptr<AActor>	TutorialMap = GetWorld()->SpawnActor<ATutorialMap>("TutorialMap", static_cast<int>(EActorType::Map));
 	std::shared_ptr<AMapSubObject> BackScreen = GetWorld()->SpawnActor<AMapSubObject>("BackScreen", static_cast<int>(EActorType::BackGroundSubStaticObject));
 
@@ -35,6 +35,8 @@ void ATutorialMode::BeginPlay()
 	BackScreen->SetMapSubObject("tutorial_room_back_layer_0001.png");
 	FrontScreen->SetMapSubObjectScale(WindowScale);
 	BackScreen->SetMapSubObjectScale(WindowScale);
+
+	OldFilm->SetOrder(EStageRenderingOrder::OldFilmEffect);
 
 	OldFilm->AddActorLocation(FVector{ 0.0f, 0.0f, 0.0f });
 	FrontScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 50.0f });

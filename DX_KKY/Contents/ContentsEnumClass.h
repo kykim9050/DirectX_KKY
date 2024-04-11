@@ -32,6 +32,16 @@ enum class EEndingRenderingOrder
 	OldFilmEffect,
 };
 
+enum class EStageRenderingOrder
+{
+	None,
+	BackLayer,
+	TutorialObject,
+	Player,
+	FrontLayer,
+	OldFilmEffect,
+};
+
 enum class EWorldPlayerDir
 {
 	None,
