@@ -2,8 +2,8 @@
 #include <EngineCore/Camera.h>
 
 #include "WorldGameMode.h"
-#include "MapSubObject.h"
 #include "WorldPlayer.h"
+#include "MapBase.h"
 #include "OldFilmEffect.h"
 
 
