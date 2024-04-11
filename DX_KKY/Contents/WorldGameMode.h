@@ -2,7 +2,7 @@
 #include <EngineCore/GameMode.h>
 
 // 설명 :
-class UCamera;
+class AOldFilmEffect;
 class AWorldGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -18,17 +18,20 @@ public:
 	AWorldGameMode& operator=(const AWorldGameMode& _Other) = delete;
 	AWorldGameMode& operator=(AWorldGameMode&& _Other) noexcept = delete;
 
+	inline static std::shared_ptr<AOldFilmEffect> GetOldFilm()
+	{
+		return OldFilm;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-private:
-	/// <summary>
-	/// 임시 기능
-	/// </summary>
-	void CameraMove(float _DeltaTime);
+	void LevelEnd(ULevel* _NextLevel);
+	void LevelStart(ULevel* _PrevLevel);
 
-	std::shared_ptr<UCamera> Camera = std::shared_ptr<UCamera>();
-	std::shared_ptr<AActor> OldFilm = std::shared_ptr<AActor>();
+private:
+	std::shared_ptr<UCamera> Camera;
+	static std::shared_ptr<AOldFilmEffect> OldFilm;
 };
 

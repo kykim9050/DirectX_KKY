@@ -7,6 +7,8 @@
 #include "OldFilmEffect.h"
 
 
+std::shared_ptr<AOldFilmEffect> AWorldGameMode::OldFilm = nullptr;
+
 AWorldGameMode::AWorldGameMode()
 {
 }
@@ -48,28 +50,21 @@ void AWorldGameMode::BeginPlay()
 	MapLayer->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f });
 	WorldMap->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
 	WorldCollisionMap->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
+
 }
 
 void AWorldGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	CameraMove(_DeltaTime);
 }
 
-void AWorldGameMode::CameraMove(float _DeltaTime)
+void AWorldGameMode::LevelEnd(ULevel* _NextLevel)
 {
-	FVector PlayerPos = AWorldPlayer::GetMainPlayer()->GetActorLocation();
-	PlayerPos.Z = 0.0f;
-	FVector CameraPos = Camera->GetActorLocation();
-	CameraPos.Z = 0.0f;
+	Super::LevelEnd(_NextLevel);
+}
 
-	FVector ChasePlayerVector = PlayerPos - CameraPos;
+void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
+{
+	Super::LevelStart(_PrevLevel);
 
-	if (1.0f >= ChasePlayerVector.Size3D())
-	{
-		return;
-	}
-
-	Camera->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
-	OldFilm->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
 }

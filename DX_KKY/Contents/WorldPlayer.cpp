@@ -4,7 +4,7 @@
 
 #include "WorldPlayer.h"
 #include "WorldDust.h"
-#include "TestGameMode.h"
+#include "WorldGameMode.h"
 #include "OldFilmEffect.h"
 
 std::shared_ptr<AWorldPlayer> AWorldPlayer:: MainPlayer = std::shared_ptr<AWorldPlayer>();
@@ -140,5 +140,5 @@ void AWorldPlayer::CameraMove(float _DeltaTime)
 	}
 
 	GetWorld()->GetMainCamera()->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
-	ATestGameMode::GetOldFilm()->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
+	AWorldGameMode::GetOldFilm()->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
 }
