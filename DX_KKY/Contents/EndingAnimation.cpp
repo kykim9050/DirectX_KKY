@@ -22,8 +22,8 @@ void AEndingAnimation::BeginPlay()
 
 	Renderer->CreateAnimation("EndingPlay", "Ending_Animation", 0.03f, false);
 	Renderer->ChangeAnimation("EndingPlay");
+	Renderer->SetOrder(ERenderingOrder::Animation);
 
-	Renderer->SetOrder(EEndingRenderingOrder::Animation);
 }
 
 void AEndingAnimation::Tick(float _DeltaTime)

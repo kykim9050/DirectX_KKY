@@ -23,6 +23,7 @@ void AWorldDust::BeginPlay()
 	Renderer->CreateAnimation("WorldDust_4", "WorldDustD", 0.05f, false);
 	Renderer->CreateAnimation("WorldDust_5", "WorldDustE", 0.05f, false);
 	Renderer->CreateAnimation("WorldDust_6", "WorldDustF", 0.05f, false);
+	Renderer->SetOrder(ERenderingOrder::Dust);
 
 	Renderer->ChangeAnimation("WorldDust_1");
 	Renderer->SetAutoSize(1.0f, true);

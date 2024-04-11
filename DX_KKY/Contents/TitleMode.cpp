@@ -27,7 +27,6 @@ void ATitleMode::BeginPlay()
 	std::shared_ptr<ATitleLogo> TitleLogo = GetWorld()->SpawnActor<ATitleLogo>("TitleLogo", static_cast<int>(EActorType::BackGroundSubStaticObject));
 	
 	std::shared_ptr<AActor> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
-	OldFilm->SetOrder(ETitleRenderingOrder::OldFilmEffect);
 }
 
 void ATitleMode::Tick(float _DeltaTime)
