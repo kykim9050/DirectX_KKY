@@ -38,11 +38,12 @@ void ATutorialMode::BeginPlay()
 
 	OldFilm->SetOrder(EStageRenderingOrder::OldFilmEffect);
 
+
 	OldFilm->AddActorLocation(FVector{ 0.0f, 0.0f, 0.0f });
-	FrontScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 50.0f });
-	Player->AddActorLocation(FVector{ 0.0f, 0.0f, 100.0f });
-	TutorialMap->AddActorLocation(FVector{ 0.0f, 0.0f, 200.0f });
-	BackScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 300.0f });
+	FrontScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 100.0f });
+	Player->AddActorLocation(FVector{ 0.0f, 0.0f, 200.0f });
+	TutorialMap->AddActorLocation(FVector{ 0.0f, 0.0f, 300.0f });
+	BackScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 400.0f });
 
 }
 
