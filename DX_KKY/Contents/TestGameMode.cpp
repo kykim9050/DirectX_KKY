@@ -11,8 +11,6 @@
 #include "TitleAnimation.h"
 #include "TitleLogo.h"
 
-std::shared_ptr<AOldFilmEffect> ATestGameMode::OldFilm = nullptr;
-
 ATestGameMode::ATestGameMode()
 {
 }
@@ -25,36 +23,35 @@ void ATestGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Camera = GetWorld()->GetMainCamera();
-	OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
-	std::shared_ptr<AWorldPlayer> WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
-	std::shared_ptr<AMapBase> MapLayer = GetWorld()->SpawnActor<AMapBase>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
-	std::shared_ptr<AMapBase> WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
-	std::shared_ptr<AMapBase> WorldCollisionMap = GetWorld()->SpawnActor<AMapBase>("WorldCollisionMap", static_cast<int>(EActorType::Map));
+	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
+	Camera->SetActorLocation(FVector(0.0f, 0.0f, UContentsValue::CameraInitZValue));
 
-	MapLayer->SetMapFile("WorldMap_Layer.png");
-	WorldMap->SetMapFile("WorldMap.png");
-	WorldCollisionMap->SetMapFile("WorldMap_PixelCheck.png");
-	MapLayer->SetAutoScale();
-	WorldMap->SetAutoScale();
-	WorldCollisionMap->SetAutoScale();
+	std::shared_ptr<AMapBase> FrontScreen = GetWorld()->SpawnActor<AMapBase>("FrontScreen", static_cast<int>(EActorType::BackGroundSubStaticObject));
+	std::shared_ptr<APlayer> Player = GetWorld()->SpawnActor<APlayer>("Player", static_cast<int>(EActorType::Player));
+	std::shared_ptr<AMapBase> BackScreen = GetWorld()->SpawnActor<AMapBase>("BackScreen", static_cast<int>(EActorType::BackGroundSubStaticObject));
+	std::shared_ptr<AMapBase> TutorialMap = GetWorld()->SpawnActor<AMapBase>("TutorialMap", static_cast<int>(EActorType::Map));
+	std::shared_ptr<AOldFilmEffect> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
 
-	// 콜리젼 맵을 가져와서 ContentsValue 클래스에 정보 저장
-	UContentsValue::ColMapTexture = UEngineTexture::FindRes(WorldCollisionMap->GetName());
-	float4 ColMapScale = UContentsValue::ColMapTexture->GetScale();
+	FVector WindowScale = GEngine->EngineWindow.GetWindowScale();
 
-	// OldFilm, WPlayer는 오더링 고정
-	MapLayer->SetOrdering(ERenderingOrder::FrontLayer);
-	WorldMap->SetOrdering(ERenderingOrder::BackLayer);
-	WorldCollisionMap->SetOrdering(ERenderingOrder::CollisionLayer);
+	FrontScreen->SetMapFile("tutorial_room_front_layer_0001.png");
+	BackScreen->SetMapFile("tutorial_room_back_layer_0001.png");
+	TutorialMap->SetMapFile("tutorial_object.png");
+	FrontScreen->SetMapScale(WindowScale);
+	BackScreen->SetMapScale(WindowScale);
+	TutorialMap->SetAutoScale();
 
-	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
-	OldFilm->AddActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 0.0f });
-	WPlayer->AddActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
-	MapLayer->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f });
-	WorldMap->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
-	WorldCollisionMap->AddActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
+	// OldFilmEffect, Player는 랜더러 오더링이 정해져 있음
+	FrontScreen->SetOrdering(ERenderingOrder::FrontLayer);
+	TutorialMap->SetOrdering(ERenderingOrder::StaticObject);
+	BackScreen->SetOrdering(ERenderingOrder::BackLayer);
 
+
+	OldFilm->AddActorLocation(FVector{ 0.0f, 0.0f, 0.0f });
+	FrontScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 100.0f });
+	Player->AddActorLocation(FVector{ 0.0f, 0.0f, 200.0f });
+	TutorialMap->AddActorLocation(FVector{ 0.0f, 0.0f, 300.0f });
+	BackScreen->AddActorLocation(FVector{ 0.0f, 0.0f, 400.0f });
 }
 
 void ATestGameMode::Tick(float _DeltaTime)
