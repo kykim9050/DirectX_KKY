@@ -31,6 +31,7 @@ protected:
 private:
 	USpriteRenderer* Renderer;
 	UStateManager State = UStateManager();
+	EActorDir Dir = EActorDir::Right;
 
 	float RunSpeed = 500.0f;
 
@@ -41,6 +42,8 @@ private:
 	void IdleRight(float _DeltaTime);
 	void RunLeft(float _DeltaTime);
 	void RunRight(float _DeltaTime);
+	void JumpLeft(float _DeltaTime);
+	void JumpRight(float _DeltaTime);
 		
 	inline float GetRunSpeed() const
 	{
