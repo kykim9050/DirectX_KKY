@@ -421,6 +421,20 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Down);
 	}
+
+
+	// MakeDust 함수 테스트 실행
+	{
+		static float _DelayTime = 0.5f;
+
+		_DelayTime -= _DeltaTime;
+
+		if (0.0f >= _DelayTime)
+		{
+			_DelayTime = 0.5f + _DelayTime;
+			MakeDust();
+		}
+	}
 }
 
 void AWorldPlayer::RightUpWalk(float _DeltaTime)
