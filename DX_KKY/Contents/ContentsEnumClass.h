@@ -14,6 +14,7 @@ enum class EActorType
 enum class ERenderingOrder
 {
 	None,
+	CollisionLayer,
 	BackLayer,
 	Animation,
 	StaticObject,
