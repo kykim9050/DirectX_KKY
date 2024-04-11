@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/Camera.h>
 
 #include "WorldPlayer.h"
 #include "WorldDust.h"
@@ -120,4 +121,21 @@ void AWorldPlayer::MakeDust(float _DeltaTime)
 void AWorldPlayer::ResetDustDelayTime()
 {
 	DustDelayTime = 1.0f;
+}
+
+void AWorldPlayer::CameraMove(float _DeltaTime)
+{
+	FVector PlayerPos = GetActorLocation();
+	PlayerPos.Z = 0.0f;
+	FVector CameraPos = GetWorld()->GetMainCamera()->GetActorLocation();
+	CameraPos.Z = 0.0f;
+
+	FVector ChasePlayerVector = PlayerPos - CameraPos;
+
+	if (1.0f >= ChasePlayerVector.Size3D())
+	{
+		return;
+	}
+
+	GetWorld()->GetMainCamera()->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
 }

@@ -11,6 +11,8 @@
 #include "TitleAnimation.h"
 #include "TitleLogo.h"
 
+std::shared_ptr<UCamera> ATestGameMode::Camera = nullptr;
+
 ATestGameMode::ATestGameMode()
 {
 }
@@ -23,7 +25,7 @@ void ATestGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
+	Camera = GetWorld()->GetMainCamera();
 	std::shared_ptr<AOldFilmEffect> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
 	std::shared_ptr<AWorldPlayer> WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
 	std::shared_ptr<AMapBase> MapLayer = GetWorld()->SpawnActor<AMapBase>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));

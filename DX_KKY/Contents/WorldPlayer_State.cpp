@@ -1,7 +1,10 @@
 #include "PreCompile.h"
 #include <EngineCore/SpriteRenderer.h>
 
+
 #include "WorldPlayer.h"
+#include "TestGameMode.h"
+
 
 void AWorldPlayer::StateInit()
 {
@@ -424,6 +427,7 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 	if (false == MapCollisionCheck())
 	{
 		AddActorLocation(FVector::Up * _DeltaTime * GetSpeed());
+		CameraMove(_DeltaTime);		
 	}
 	else
 	{
@@ -461,6 +465,7 @@ void AWorldPlayer::RightUpWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
 		AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
+		CameraMove(_DeltaTime);
 	}
 	else
 	{
@@ -509,6 +514,7 @@ void AWorldPlayer::RightWalk(float _DeltaTime)
 	if (false == MapCollisionCheck())
 	{
 		AddActorLocation(FVector::Right * _DeltaTime * GetSpeed());
+		CameraMove(_DeltaTime);
 	}
 	else
 	{
@@ -542,6 +548,7 @@ void AWorldPlayer::RightDownWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
 		AddActorLocation(FVector::Right * _DeltaTime * GetDiagonalSpeed());
+		CameraMove(_DeltaTime);
 	}
 	else
 	{
@@ -592,6 +599,7 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 	if (false == MapCollisionCheck())
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * GetSpeed());
+		CameraMove(_DeltaTime);
 	}
 	else
 	{
@@ -625,6 +633,7 @@ void AWorldPlayer::LeftDownWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * GetDiagonalSpeed());
 		AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
+		CameraMove(_DeltaTime);
 	}
 	else
 	{
@@ -673,6 +682,7 @@ void AWorldPlayer::LeftWalk(float _DeltaTime)
 	if (false == MapCollisionCheck())
 	{
 		AddActorLocation(FVector::Left * _DeltaTime * GetSpeed());
+		CameraMove(_DeltaTime);
 	}
 	else
 	{
@@ -706,6 +716,7 @@ void AWorldPlayer::LeftUpWalk(float _DeltaTime)
 	{
 		AddActorLocation(FVector::Up * _DeltaTime * GetDiagonalSpeed());
 		AddActorLocation(FVector::Left * _DeltaTime * GetDiagonalSpeed());
+		CameraMove(_DeltaTime);
 	}
 	else
 	{

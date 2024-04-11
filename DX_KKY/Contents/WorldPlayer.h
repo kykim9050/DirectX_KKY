@@ -53,6 +53,7 @@ private:
 	bool MapCollisionCheck();
 	void MakeDust(float _DeltaTime);
 	void ResetDustDelayTime();
+	void CameraMove(float _DeltaTime);
 
 	inline float GetSpeed() const
 	{
