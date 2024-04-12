@@ -5,6 +5,7 @@
 AEndingAnimation::AEndingAnimation()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	SetRoot(Renderer);
 }
 
 AEndingAnimation::~AEndingAnimation()

@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Camera.h>
+#include <EngineCore/DefaultSceneComponent.h>
 
 #include "WorldPlayer.h"
 #include "WorldDust.h"
@@ -12,7 +13,12 @@ std::shared_ptr<AWorldPlayer> AWorldPlayer:: MainPlayer = std::shared_ptr<AWorld
 AWorldPlayer::AWorldPlayer()
 	: Dir(EWorldPlayerDir::RightDown)
 {
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("PlayerRoot");
+	SetRoot(Root);
+
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("PlayerRenderer");
+	Renderer->SetupAttachment(Root);
+
 	InputOn();
 }
 

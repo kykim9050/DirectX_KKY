@@ -6,6 +6,7 @@
 AWorldDust::AWorldDust()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("WorldDustRenderer");
+	SetRoot(Renderer);
 }
 
 AWorldDust::~AWorldDust()

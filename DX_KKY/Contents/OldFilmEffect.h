@@ -18,12 +18,12 @@ public:
 	AOldFilmEffect& operator=(AOldFilmEffect&& _Other) noexcept = delete;
 
 	template<typename EnumType>
-	void SetOrder(EnumType _Order)
+	void SetOrdering(EnumType _Order)
 	{
-		SetOrder(static_cast<int>(_Order));
+		SetOrdering(static_cast<int>(_Order));
 	}
 
-	void SetOrder(int _Order);
+	void SetOrdering(int _Order);
 
 
 

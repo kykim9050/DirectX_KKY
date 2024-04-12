@@ -5,6 +5,7 @@
 ATitleAnimation::ATitleAnimation()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	SetRoot(Renderer);
 }
 
 ATitleAnimation::~ATitleAnimation()

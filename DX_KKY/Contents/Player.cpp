@@ -2,10 +2,16 @@
 #include "Player.h"
 #include <EngineCore/Renderer.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/DefaultSceneComponent.h>
 
 APlayer::APlayer() 
 {
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("PlayerRoot");
+	SetRoot(Root);
+
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("PlayerRenderer");
+	Renderer->SetupAttachment(Root);
+
 	InputOn();
 }
 

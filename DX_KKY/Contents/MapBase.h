@@ -3,7 +3,7 @@
 
 // Ό³Έν :
 class USpriteRenderer;
-class AMapBase : public AActor , public UNameObject
+class AMapBase : public AActor
 {
 	GENERATED_BODY(AActor)
 

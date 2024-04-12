@@ -4,6 +4,7 @@
 ATitleLogo::ATitleLogo() 
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	SetRoot(Renderer);
 }
 
 ATitleLogo::~ATitleLogo() 
