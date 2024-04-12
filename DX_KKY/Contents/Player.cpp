@@ -13,7 +13,7 @@ APlayer::APlayer()
 
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("PlayerRenderer");
 	Renderer->SetupAttachment(Root);
-	//Renderer->SetPivot(EPivot::BOT);
+	Renderer->SetPivot(EPivot::BOT);
 
 	InputOn();
 }
