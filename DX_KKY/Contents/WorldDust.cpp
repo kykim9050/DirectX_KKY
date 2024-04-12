@@ -28,8 +28,7 @@ void AWorldDust::BeginPlay()
 	
 	Renderer->SetFrameCallback("WorldDust_1", 19, [this]()
 		{
-			// 액터를 사라지도록 Destroy 함수로 변경 필요
-			Renderer->SetActive(false);
+			Destroy();
 		}
 	);
 
