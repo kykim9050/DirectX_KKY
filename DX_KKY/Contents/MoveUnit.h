@@ -21,7 +21,11 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-private:
+	void CalMovementVector(float _DeltaTime);
+	void ResultMovementUpdate(float _DeltaTime);
+	void ApplyMovement(float _DeltaTime);
 
+private:
+	float4 TotalMovementVec = float4::Zero;
 };
 
