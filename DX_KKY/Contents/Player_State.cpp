@@ -2,7 +2,7 @@
 
 #include "Player.h"
 #include <EngineCore/SpriteRenderer.h>
-
+#include "MoveUnit.h"
 
 void APlayer::StateInit()
 {
@@ -121,7 +121,9 @@ void APlayer::RunLeft(float _DeltaTime)
 		return;
 	}
 
-	AddActorLocation(float4::Left * _DeltaTime * GetRunSpeed());
+	
+	SetSpeedVec(float4::Left * GetRunSpeed());
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::RunRight(float _DeltaTime)
@@ -132,7 +134,8 @@ void APlayer::RunRight(float _DeltaTime)
 		return;
 	}
 
-	AddActorLocation(float4::Right * _DeltaTime * GetRunSpeed());
+	SetSpeedVec(float4::Right * GetRunSpeed());
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::JumpLeft(float _DeltaTime)

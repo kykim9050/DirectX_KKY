@@ -46,6 +46,6 @@ void UContentsCore::Initialize()
 	GEngine->CreateLevel<ATestGameMode>("TestLevel");
 	GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
 	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
-	GEngine->ChangeLevel("TitleLevel");
+	GEngine->ChangeLevel("TestLevel");
 }
 
