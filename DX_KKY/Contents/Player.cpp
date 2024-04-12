@@ -11,6 +11,7 @@ APlayer::APlayer()
 
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("PlayerRenderer");
 	Renderer->SetupAttachment(Root);
+	Renderer->SetPivot(EPivot::BOT);
 
 	InputOn();
 }
@@ -24,6 +25,7 @@ void APlayer::BeginPlay()
 	Super::BeginPlay();
 
 	CreatePlayerAnimation();
+	
 	
 	Renderer->ChangeAnimation("Player_Idle");
 	Renderer->SetAutoSize(1.0f, true);
