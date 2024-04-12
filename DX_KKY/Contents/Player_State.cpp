@@ -24,6 +24,7 @@ void APlayer::StateInit()
 
 		State.SetStartFunction("Idle_Left", [this]
 			{
+				SetSpeedVec(float4::Zero);
 				Dir = EActorDir::Left;
 				Renderer->ChangeAnimation("Player_Idle");
 				Renderer->SetDir(EEngineDir::Left);
@@ -31,6 +32,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Idle_Right", [this]
 			{
+				SetSpeedVec(float4::Zero);
 				Dir = EActorDir::Right;
 				Renderer->ChangeAnimation("Player_Idle");
 				Renderer->SetDir(EEngineDir::Right);
@@ -90,6 +92,8 @@ void APlayer::IdleLeft(float _DeltaTime)
 		State.ChangeState("Jump_Left");
 		return;
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::IdleRight(float _DeltaTime)
@@ -111,6 +115,8 @@ void APlayer::IdleRight(float _DeltaTime)
 		State.ChangeState("Jump_Right");
 		return;
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::RunLeft(float _DeltaTime)
