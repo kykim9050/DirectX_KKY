@@ -93,7 +93,7 @@ void APlayer::IdleLeft(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('Z'))
+	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump_Left");
 		return;
@@ -116,7 +116,7 @@ void APlayer::IdleRight(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('Z'))
+	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump_Right");
 		return;
@@ -133,7 +133,7 @@ void APlayer::RunLeft(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('Z'))
+	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump_Left");
 		return;
@@ -152,7 +152,7 @@ void APlayer::RunRight(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('Z'))
+	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump_Right");
 		return;
