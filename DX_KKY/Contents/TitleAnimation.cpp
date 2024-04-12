@@ -6,6 +6,8 @@ ATitleAnimation::ATitleAnimation()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	SetRoot(Renderer);
+
+	Renderer->SetPivot(EPivot::BOT);
 }
 
 ATitleAnimation::~ATitleAnimation()
@@ -16,12 +18,13 @@ void ATitleAnimation::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorScale3D(FVector(1090.0f, 620.0f, 0.0f));
-	SetActorLocation(FVector(0.0f, -(360.0f - 310.0f), 0.0f));
-
 	Renderer->SetSprite("Title_Animation");
 	Renderer->CreateAnimation("TitlePlay", "Title_Animation", 0.045f);
 	Renderer->SetSamplering(ETextureSampling::LINEAR);
+
+	Renderer->SetAutoSize(1.0f, true);
+
+	SetActorLocation(FVector(0.0f, -GEngine->EngineWindow.GetWindowScale().hY(), 0.0f));
 
 	Renderer->ChangeAnimation("TitlePlay");
 	Renderer->SetOrder(ERenderingOrder::Animation);
