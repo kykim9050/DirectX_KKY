@@ -57,6 +57,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Jump_Left", [this]
 			{
 				Dir = EActorDir::Left;
+				AddActorLocation(float4::Up * 4);
 				SetJumpVec(float4::Up * GetJumpVal());
 				Renderer->ChangeAnimation("Player_Jump");
 				Renderer->SetDir(EEngineDir::Left);
@@ -65,6 +66,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Jump_Right", [this]
 			{
 				Dir = EActorDir::Right;
+				AddActorLocation(float4::Up * 4);
 				SetJumpVec(float4::Up * GetJumpVal());
 				Renderer->ChangeAnimation("Player_Jump");
 				Renderer->SetDir(EEngineDir::Right);
@@ -131,6 +133,12 @@ void APlayer::RunLeft(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress('Z'))
+	{
+		State.ChangeState("Jump_Left");
+		return;
+	}
+
 	
 	SetSpeedVec(float4::Left * GetRunSpeed());
 	ResultMovementUpdate(_DeltaTime);
@@ -144,16 +152,40 @@ void APlayer::RunRight(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress('Z'))
+	{
+		State.ChangeState("Jump_Right");
+		return;
+	}
+
 	SetSpeedVec(float4::Right * GetRunSpeed());
 	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::JumpLeft(float _DeltaTime)
 {
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == BottomCheck(Pos, Color8Bit::Black))
+	{
+		State.ChangeState("Idle_Left");
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::JumpRight(float _DeltaTime)
 {
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == BottomCheck(Pos, Color8Bit::Black))
+	{
+		State.ChangeState("Idle_Right");
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
