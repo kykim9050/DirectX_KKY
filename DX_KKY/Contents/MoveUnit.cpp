@@ -26,7 +26,7 @@ void UMoveUnit::ResultMovementUpdate(float _DeltaTime)
 {
 	//CalHorizonVelocityVector(_DeltaTime);
 	CalGravityVec(_DeltaTime);
-	//CalJumpVec(_DeltaTime);
+	CalJumpVec(_DeltaTime);
 	CalMovementVector(_DeltaTime);
 	ApplyMovement(_DeltaTime);
 }
@@ -79,4 +79,12 @@ bool UMoveUnit::BottomCheck(float4 _Pos , Color8Bit _Color)
 	}
 
 	return false;
+}
+
+void UMoveUnit::CalJumpVec(float _DeltaTime)
+{
+	if (true == AvailableAddJumpVec)
+	{
+		JumpVec += JumpAccVec * _DeltaTime;
+	}
 }

@@ -26,6 +26,7 @@ protected:
 	void ApplyMovement(float _DeltaTime);
 	void CalGravityVec(float _DeltaTime);
 	bool BottomCheck(float4 _Pos, Color8Bit _Color);
+	void CalJumpVec(float _DeltaTime);
 
 	/// <summary>
 	/// **주의** Deltatime 곱한 값을 넣지 말 것
@@ -34,11 +35,19 @@ protected:
 	void SetSpeedVec(float4 _SpeedVec);
 	void SetJumpVec(float4 _SpeedVec);
 
+	inline void SetAvailableAddJumpVec(bool _Value)
+	{
+		AvailableAddJumpVec = _Value;
+	}
+
 private:
 	float4 TotalMovementVec = float4::Zero;
 	float4 SpeedVec = float4::Zero;
 	float4 GravityVec = float4::Zero;
 	float4 GravityAccVec = float4::Down * 3500.0f;
 	float4 JumpVec = float4::Zero;
+	float4 JumpAccVec = float4::Up * 3500.0f;
+
+	bool AvailableAddJumpVec = false;
 };
 

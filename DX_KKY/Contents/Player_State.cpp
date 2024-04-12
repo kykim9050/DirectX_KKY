@@ -173,6 +173,20 @@ void APlayer::JumpLeft(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		int a = 0;
+	}
+
+	if (true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
+	{
+		SetAvailableAddJumpVec(true);
+	}
+	else
+	{
+		SetAvailableAddJumpVec(false);
+	}
+
 	if (true == IsPress(VK_LEFT))
 	{
 		SetSpeedVec(float4::Left * GetRunSpeed());
@@ -195,6 +209,20 @@ void APlayer::JumpRight(float _DeltaTime)
 	{
 		State.ChangeState("Idle_Right");
 		return;
+	}
+	
+	if (true == IsDown('Z'))
+	{
+		int a = 0;
+	}
+
+	if (true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
+	{
+		SetAvailableAddJumpVec(true);
+	}
+	else
+	{
+		SetAvailableAddJumpVec(false);
 	}
 
 	if (true == IsPress(VK_LEFT))
