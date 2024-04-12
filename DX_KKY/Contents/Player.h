@@ -34,6 +34,7 @@ private:
 	EActorDir Dir = EActorDir::Right;
 
 	float RunSpeed = 500.0f;
+	float JumpVal = 1000.0f;
 
 	void StateInit();
 	void CreatePlayerAnimation();
@@ -49,6 +50,11 @@ private:
 	inline float GetRunSpeed() const
 	{
 		return RunSpeed;
+	}
+
+	inline float GetJumpVal() const
+	{
+		return JumpVal;
 	}
 };
 

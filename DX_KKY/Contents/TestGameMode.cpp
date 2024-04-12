@@ -64,8 +64,6 @@ void ATestGameMode::BeginPlay()
 	ColMap->SetActorLocation(FVector{ 3100.0f, -405.0f, 500.0f });
 
 
-
-
 	//Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
 	//OldFilm->AddActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 0.0f });
 	//WPlayer->AddActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
