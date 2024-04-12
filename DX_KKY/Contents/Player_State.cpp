@@ -173,6 +173,16 @@ void APlayer::JumpLeft(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_LEFT))
+	{
+		SetSpeedVec(float4::Left * GetRunSpeed());
+	}
+	if (true == IsPress(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Right * GetRunSpeed());
+	}
+
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -185,6 +195,15 @@ void APlayer::JumpRight(float _DeltaTime)
 	{
 		State.ChangeState("Idle_Right");
 		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		SetSpeedVec(float4::Left * GetRunSpeed());
+	}
+	if (true == IsPress(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Right * GetRunSpeed());
 	}
 
 	ResultMovementUpdate(_DeltaTime);
