@@ -1,8 +1,10 @@
 #include "PreCompile.h"
-#include "Player.h"
 #include <EngineCore/Renderer.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/EngineDebugMsgWindow.h>
+
+#include "Player.h"
 
 APlayer::APlayer() 
 {
@@ -11,7 +13,7 @@ APlayer::APlayer()
 
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("PlayerRenderer");
 	Renderer->SetupAttachment(Root);
-	Renderer->SetPivot(EPivot::BOT);
+	//Renderer->SetPivot(EPivot::BOT);
 
 	InputOn();
 }
@@ -40,6 +42,8 @@ void APlayer::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	State.Update(_DeltaTime);
+	
+	MakeDebugMSG();
 }
 
 void APlayer::CreatePlayerAnimation()
@@ -86,4 +90,17 @@ void APlayer::CreatePlayerAnimation()
 	Renderer->CreateAnimation("Player_Hit_Ground", "CupHead_Hit_Ground", 0.05f, false);
 
 	Renderer->CreateAnimation("Player_Scared", "CupHead_Scared", 0.034f, false);
+}
+
+void APlayer::MakeDebugMSG()
+{
+	{
+		std::string Msg = std::format("PlayerPos : {}\n", GetActorLocation().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
+
+	{
+		std::string Msg = std::format("MousePos(In Screen) : {}\n", GEngine->EngineWindow.GetScreenMousePos().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
 }

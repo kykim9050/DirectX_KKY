@@ -37,6 +37,7 @@ private:
 
 	void StateInit();
 	void CreatePlayerAnimation();
+	void MakeDebugMSG();
 
 	void IdleLeft(float _DeltaTime);
 	void IdleRight(float _DeltaTime);
