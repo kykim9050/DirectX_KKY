@@ -50,16 +50,13 @@ void UMoveUnit::SetSpeedVec(float4 _SpeedVec)
 
 void UMoveUnit::CalGravityVec(float _DeltaTime)
 {
+
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
 	GravityVec += GravityAccVec * _DeltaTime;
-
-	std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;
-
-	Color8Bit Color = CheckTexture->GetColor(Pos, Color8Bit::Black);
-
-	if (Color == Color8Bit::Black)
+	
+	if (true == BottomCheck(Pos, Color8Bit::Black))
 	{
 		GravityVec = float4::Zero;
 	}
@@ -68,4 +65,18 @@ void UMoveUnit::CalGravityVec(float _DeltaTime)
 void UMoveUnit::SetJumpVec(float4 _JumpVec)
 {
 	JumpVec = _JumpVec;
+}
+
+bool UMoveUnit::BottomCheck(float4 _Pos , Color8Bit _Color)
+{
+	std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;
+
+	Color8Bit Color = CheckTexture->GetColor(_Pos, _Color);
+
+	if (Color == _Color)
+	{
+		return true;
+	}
+
+	return false;
 }
