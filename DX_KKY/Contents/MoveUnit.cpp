@@ -26,7 +26,7 @@ void UMoveUnit::ResultMovementUpdate(float _DeltaTime)
 {
 	//CalHorizonVelocityVector(_DeltaTime);
 	CalGravityVec(_DeltaTime);
-	//CalJumpVelocityVector(_DeltaTime);
+	//CalJumpVec(_DeltaTime);
 	CalMovementVector(_DeltaTime);
 	ApplyMovement(_DeltaTime);
 }
@@ -34,7 +34,7 @@ void UMoveUnit::ResultMovementUpdate(float _DeltaTime)
 void UMoveUnit::CalMovementVector(float _DeltaTime)
 {
 	TotalMovementVec = FVector::Zero;
-	TotalMovementVec = TotalMovementVec + SpeedVec + GravityVec /*+ JumpVec */ ;
+	TotalMovementVec = TotalMovementVec + SpeedVec + GravityVec + JumpVec  ;
 }
 
 void UMoveUnit::ApplyMovement(float _DeltaTime)
@@ -42,9 +42,9 @@ void UMoveUnit::ApplyMovement(float _DeltaTime)
 	AddActorLocation(TotalMovementVec * _DeltaTime);
 }
 
-void UMoveUnit::SetSpeedVec(float4 _Speed)
+void UMoveUnit::SetSpeedVec(float4 _SpeedVec)
 {
-	SpeedVec = _Speed;
+	SpeedVec = _SpeedVec;
 }
 
 
@@ -63,4 +63,9 @@ void UMoveUnit::CalGravityVec(float _DeltaTime)
 	{
 		GravityVec = float4::Zero;
 	}
+}
+
+void UMoveUnit::SetJumpVec(float4 _JumpVec)
+{
+	JumpVec = _JumpVec;
 }

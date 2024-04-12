@@ -30,13 +30,14 @@ protected:
 	/// **주의** Deltatime 곱한 값을 넣지 말 것
 	/// 해당 함수는 속도(방향 x 속력)가 들어가야 함
 	/// </summary>
-	void SetSpeedVec(float4 _Speed);
-
+	void SetSpeedVec(float4 _SpeedVec);
+	void SetJumpVec(float4 _SpeedVec);
 
 private:
 	float4 TotalMovementVec = float4::Zero;
 	float4 SpeedVec = float4::Zero;
 	float4 GravityVec = float4::Zero;
 	float4 GravityAccVec = float4::Down * 2000.0f;
+	float4 JumpVec = float4::Zero;
 };
 
