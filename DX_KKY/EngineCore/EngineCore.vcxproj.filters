@@ -31,9 +31,6 @@
     <Filter Include="Object\Rendering">
       <UniqueIdentifier>{d9f3f86a-9f28-4ea1-8e2d-01df76c7a357}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Rendering\Component">
-      <UniqueIdentifier>{42d4b899-e121-4617-83d9-e300e9c5ab83}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\EngineContent">
       <UniqueIdentifier>{34ab674f-72a5-410c-a52b-a77926724a70}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,12 @@
     </Filter>
     <Filter Include="Editor\Imgui">
       <UniqueIdentifier>{799e10db-2ad9-43e2-90c2-d33a98278db8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Collision">
+      <UniqueIdentifier>{5fdfad90-ed5b-457a-a99f-530a8f31e3f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Rendering">
+      <UniqueIdentifier>{42d4b899-e121-4617-83d9-e300e9c5ab83}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,7 +124,7 @@
       <Filter>Object\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Object\Rendering\Component</Filter>
+      <Filter>Object\Component\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="DefaultSceneComponent.h">
       <Filter>Object\EngineContent</Filter>
@@ -181,7 +184,7 @@
       <Filter>Resources\Texture</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
-      <Filter>Object\Rendering\Component</Filter>
+      <Filter>Object\Component\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="EngineBlend.h">
       <Filter>Resources\RenderingSetting</Filter>
@@ -224,6 +227,9 @@
     </ClInclude>
     <ClInclude Include="imstb_truetype.h">
       <Filter>Editor\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Object\Component\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -270,7 +276,7 @@
       <Filter>Object\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Object\Rendering\Component</Filter>
+      <Filter>Object\Component\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="DefaultSceneComponent.cpp">
       <Filter>Object\EngineContent</Filter>
@@ -327,7 +333,7 @@
       <Filter>Resources\Texture</Filter>
     </ClCompile>
     <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>Object\Rendering\Component</Filter>
+      <Filter>Object\Component\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="EngineBlend.cpp">
       <Filter>Resources\RenderingSetting</Filter>
@@ -364,6 +370,9 @@
     </ClCompile>
     <ClCompile Include="imgui_widgets.cpp">
       <Filter>Editor\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Object\Component\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@
 AOldFilmEffect::AOldFilmEffect()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("OldFilmEFRenderer");
+	SetRoot(Renderer);
 }
 
 AOldFilmEffect::~AOldFilmEffect()
@@ -38,7 +39,7 @@ void AOldFilmEffect::CreateOFEFAnimation()
 	Renderer->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
 }
 
-void AOldFilmEffect::SetOrder(int _Order)
+void AOldFilmEffect::SetOrdering(int _Order)
 {
 	Renderer->SetOrder(_Order);
 }

@@ -5,6 +5,7 @@
 AMapBase::AMapBase()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("MapRenderer");
+	SetRoot(Renderer);
 }
 
 AMapBase::~AMapBase()
