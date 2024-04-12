@@ -62,7 +62,7 @@ bool AWorldPlayer::MapCollisionCheck()
 {
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
-	static std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;
+	std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;
 	
 	float CheckOffset = 10.0f;
 

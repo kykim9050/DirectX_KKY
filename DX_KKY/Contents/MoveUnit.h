@@ -24,6 +24,7 @@ protected:
 	void CalMovementVector(float _DeltaTime);
 	void ResultMovementUpdate(float _DeltaTime);
 	void ApplyMovement(float _DeltaTime);
+	void CalGravityVec(float _DeltaTime);
 
 	/// <summary>
 	/// **주의** Deltatime 곱한 값을 넣지 말 것
@@ -35,5 +36,7 @@ protected:
 private:
 	float4 TotalMovementVec = float4::Zero;
 	float4 SpeedVec = float4::Zero;
+	float4 GravityVec = float4::Zero;
+	float4 GravityAccVec = float4::Down * 2000.0f;
 };
 
