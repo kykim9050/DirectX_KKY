@@ -25,6 +25,7 @@ protected:
 	void ResultMovementUpdate(float _DeltaTime);
 	void ApplyMovement(float _DeltaTime);
 	void CalGravityVec(float _DeltaTime);
+	bool BottomCheck(float4 _Pos, Color8Bit _Color);
 
 	/// <summary>
 	/// **주의** Deltatime 곱한 값을 넣지 말 것
