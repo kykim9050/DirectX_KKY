@@ -110,8 +110,6 @@ void APlayer::StateInit()
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
-
-
 	}
 
 	State.ChangeState("Idle_Right");
@@ -231,6 +229,12 @@ void APlayer::JumpLeft(float _DeltaTime)
 
 	if (true == BottomCheck(Pos, Color8Bit::Black))
 	{
+		if (true == IsPress(VK_DOWN))
+		{
+			State.ChangeState("Duck_Left");
+			return;
+		}
+
 		State.ChangeState("Idle_Left");
 		return;
 	}
@@ -274,6 +278,12 @@ void APlayer::JumpRight(float _DeltaTime)
 
 	if (true == BottomCheck(Pos, Color8Bit::Black))
 	{
+		if (true == IsPress(VK_DOWN))
+		{
+			State.ChangeState("Duck_Right");
+			return;
+		}
+
 		State.ChangeState("Idle_Right");
 		return;
 	}
@@ -311,12 +321,32 @@ void APlayer::JumpRight(float _DeltaTime)
 
 void APlayer::DuckIdleLeft(float _DeltaTime)
 {
+	if (true == IsUp(VK_DOWN))
+	{
+		State.ChangeState("Idle_Left");
+		return;
+	}
 
+	if (true == IsDown(VK_RIGHT))
+	{
+		State.ChangeState("DuckIdle_Right");
+		return;
+	}
 }
 
 void APlayer::DuckIdleRight(float _DeltaTime)
 {
+	if (true == IsUp(VK_DOWN))
+	{
+		State.ChangeState("Idle_Right");
+		return;
+	}
 
+	if (true == IsDown(VK_LEFT))
+	{
+		State.ChangeState("DuckIdle_Left");
+		return;
+	}
 }
 
 void APlayer::DuckLeft(float _DeltaTime)
@@ -326,6 +356,12 @@ void APlayer::DuckLeft(float _DeltaTime)
 		State.ChangeState("Idle_Left");
 		return;
 	}
+
+	if (true == IsDown(VK_RIGHT))
+	{
+		State.ChangeState("DuckIdle_Right");
+		return;
+	}
 }
 
 void APlayer::DuckRight(float _DeltaTime)
@@ -333,6 +369,12 @@ void APlayer::DuckRight(float _DeltaTime)
 	if (true == IsUp(VK_DOWN))
 	{
 		State.ChangeState("Idle_Right");
+		return;
+	}
+
+	if (true == IsDown(VK_LEFT))
+	{
+		State.ChangeState("DuckIdle_Left");
 		return;
 	}
 }
