@@ -54,6 +54,7 @@ private:
 	void Parry(float _DeltaTime);
 		
 	std::string ChangeAnimationName(const std::string& _MainName);
+	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
 
 	inline float GetRunSpeed() const
 	{
