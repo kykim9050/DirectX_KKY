@@ -36,6 +36,8 @@ private:
 	float RunSpeed = 500.0f;
 	float JumpVal = 1000.0f;
 
+	bool AvailableParry = true;
+
 	void StateInit();
 	void CreatePlayerAnimation();
 	void MakeDebugMSG();
@@ -64,6 +66,16 @@ private:
 	inline float GetJumpVal() const
 	{
 		return JumpVal;
+	}
+	
+	inline bool GetAvailableParry() const
+	{
+		return AvailableParry;
+	}
+
+	inline void SetAvailableParry(bool _Value)
+	{
+		AvailableParry = _Value;
 	}
 };
 

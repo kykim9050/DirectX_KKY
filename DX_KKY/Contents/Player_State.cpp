@@ -37,6 +37,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Idle_Left", [this]
 			{
 				DirCheck();
+				SetAvailableParry(true);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Idle");
@@ -46,6 +47,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Idle_Right", [this]
 			{
 				DirCheck();
+				SetAvailableParry(true);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Idle");
@@ -55,6 +57,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Run_Left", [this]
 			{
 				DirCheck();
+				SetAvailableParry(true);
 				Renderer->ChangeAnimation("Player_Run");
 				Renderer->SetDir(EEngineDir::Left);
 			}
@@ -62,6 +65,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Run_Right", [this]
 			{
 				DirCheck();
+				SetAvailableParry(true);
 				Renderer->ChangeAnimation("Player_Run");
 				Renderer->SetDir(EEngineDir::Right);
 			}
@@ -87,6 +91,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Duck_Left", [this]
 			{
 				DirCheck();
+				SetAvailableParry(true);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck");
@@ -96,6 +101,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Duck_Right", [this]
 			{
 				DirCheck();
+				SetAvailableParry(true);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck");
@@ -105,6 +111,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("DuckIdle_Left", [this]
 			{
 				DirCheck();
+				SetAvailableParry(true);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_DuckIdle");
@@ -114,6 +121,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("DuckIdle_Right", [this]
 			{
 				DirCheck();
+				SetAvailableParry(true);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_DuckIdle");
@@ -123,6 +131,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Parry", [this]
 			{
 				DirCheck();
+				SetAvailableParry(false);
 				Renderer->ChangeAnimation("Player_Parry");
 				AnimationDirSet(Renderer, Dir);
 			}
@@ -269,6 +278,7 @@ void APlayer::JumpLeft(float _DeltaTime)
 
 	if (true == BottomCheck(Pos, Color8Bit::Black))
 	{
+
 		if (true == IsPress(VK_DOWN))
 		{
 			State.ChangeState("Duck_Left");
@@ -279,13 +289,12 @@ void APlayer::JumpLeft(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('Z'))
+	if (true == GetAvailableParry() && true == IsDown('Z'))
 	{
 		State.ChangeState("Parry");
 		return;
 	}
-
-	if (true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
+	else if(true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
 	{
 		SetAvailableAddJumpVec(true);
 	}
@@ -331,13 +340,12 @@ void APlayer::JumpRight(float _DeltaTime)
 		return;
 	}
 	
-	if (true == IsDown('Z'))
+	if (true == GetAvailableParry() && true == IsDown('Z'))
 	{
 		State.ChangeState("Parry");
 		return;
 	}
-
-	if (true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
+	else if(true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
 	{
 		SetAvailableAddJumpVec(true);
 	}
@@ -459,5 +467,38 @@ void APlayer::DuckRight(float _DeltaTime)
 
 void APlayer::Parry(float _DeltaTime)
 {
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
 
+	if (true == BottomCheck(Pos, Color8Bit::Black))
+	{
+		if (true == IsPress(VK_DOWN))
+		{
+			DirCheck();
+			State.ChangeState(ChangeAnimationName("Duck"));
+			return;
+		}
+
+		DirCheck();
+		State.ChangeState(ChangeAnimationName("Idle"));
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		SetSpeedVec(float4::Left * GetRunSpeed());
+		Renderer->SetDir(EEngineDir::Left);
+	}
+	if (true == IsPress(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Right * GetRunSpeed());
+		Renderer->SetDir(EEngineDir::Right);
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Zero);
+	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
