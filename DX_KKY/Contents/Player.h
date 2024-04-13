@@ -46,6 +46,10 @@ private:
 	void RunRight(float _DeltaTime);
 	void JumpLeft(float _DeltaTime);
 	void JumpRight(float _DeltaTime);
+	void DuckIdleLeft(float _DeltaTime);
+	void DuckIdleRight(float _DeltaTime);
+	void DuckLeft(float _DeltaTime);
+	void DuckRight(float _DeltaTime);
 		
 	inline float GetRunSpeed() const
 	{
