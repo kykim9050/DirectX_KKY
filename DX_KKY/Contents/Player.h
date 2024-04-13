@@ -39,7 +39,7 @@ private:
 	void StateInit();
 	void CreatePlayerAnimation();
 	void MakeDebugMSG();
-	void DirCheck(float _DeltaTime);
+	void DirCheck();
 
 	void IdleLeft(float _DeltaTime);
 	void IdleRight(float _DeltaTime);
@@ -52,6 +52,8 @@ private:
 	void DuckLeft(float _DeltaTime);
 	void DuckRight(float _DeltaTime);
 		
+	std::string ChangeAnimationName(const std::string& _MainName);
+
 	inline float GetRunSpeed() const
 	{
 		return RunSpeed;
