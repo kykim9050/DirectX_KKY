@@ -96,7 +96,10 @@ void APlayer::CreatePlayerAnimation()
 	{
 		Renderer->SetFrameCallback("Player_Duck", 7, [this]()
 			{
-				switch (Dir)
+				DirCheck();
+
+				State.ChangeState(ChangeAnimationName("DuckIdle"));
+				/*switch (Dir)
 				{
 				case EActorDir::Left:
 					State.ChangeState("DuckIdle_Left");
@@ -106,7 +109,7 @@ void APlayer::CreatePlayerAnimation()
 					break;
 				default:
 					break;
-				}
+				}*/
 			}
 		);
 	}
@@ -123,4 +126,24 @@ void APlayer::MakeDebugMSG()
 		std::string Msg = std::format("MousePos(In Screen) : {}\n", GEngine->EngineWindow.GetScreenMousePos().ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
+}
+
+std::string APlayer::ChangeAnimationName(const std::string& _MainName)
+{
+	std::string ActorDir = "";
+	std::string CurAnimationName = _MainName;
+
+	switch (Dir)
+	{
+	case EActorDir::Left:
+		ActorDir = "_Left";
+		break;
+	case EActorDir::Right:
+		ActorDir = "_Right";
+		break;
+	default:
+		break;
+	}
+
+	return CurAnimationName + ActorDir;
 }
