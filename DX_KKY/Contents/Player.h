@@ -51,6 +51,7 @@ private:
 	void DuckIdleRight(float _DeltaTime);
 	void DuckLeft(float _DeltaTime);
 	void DuckRight(float _DeltaTime);
+	void Parry(float _DeltaTime);
 		
 	std::string ChangeAnimationName(const std::string& _MainName);
 

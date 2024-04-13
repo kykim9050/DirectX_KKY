@@ -17,6 +17,7 @@ void APlayer::StateInit()
 		State.CreateState("DuckIdle_Right");
 		State.CreateState("Duck_Left");
 		State.CreateState("Duck_Right");
+		State.CreateState("Parry");
 
 
 		State.SetUpdateFunction("Idle_Left", std::bind(&APlayer::IdleLeft, this, std::placeholders::_1));
@@ -29,6 +30,7 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Duck_Right", std::bind(&APlayer::DuckRight, this, std::placeholders::_1));
 		State.SetUpdateFunction("DuckIdle_Left", std::bind(&APlayer::DuckIdleLeft, this, std::placeholders::_1));
 		State.SetUpdateFunction("DuckIdle_Right", std::bind(&APlayer::DuckIdleRight, this, std::placeholders::_1));
+		State.SetUpdateFunction("Parry", std::bind(&APlayer::Parry, this, std::placeholders::_1));
 
 
 
@@ -85,6 +87,8 @@ void APlayer::StateInit()
 		State.SetStartFunction("Duck_Left", [this]
 			{
 				DirCheck();
+				SetSpeedVec(float4::Zero);
+				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck");
 				Renderer->SetDir(EEngineDir::Left);
 			}
@@ -92,6 +96,8 @@ void APlayer::StateInit()
 		State.SetStartFunction("Duck_Right", [this]
 			{
 				DirCheck();
+				SetSpeedVec(float4::Zero);
+				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck");
 				Renderer->SetDir(EEngineDir::Right);
 			}
@@ -99,6 +105,8 @@ void APlayer::StateInit()
 		State.SetStartFunction("DuckIdle_Left", [this]
 			{
 				DirCheck();
+				SetSpeedVec(float4::Zero);
+				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_DuckIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
@@ -106,10 +114,22 @@ void APlayer::StateInit()
 		State.SetStartFunction("DuckIdle_Right", [this]
 			{
 				DirCheck();
+				SetSpeedVec(float4::Zero);
+				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_DuckIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
+		State.SetStartFunction("Parry", [this]
+			{
+				DirCheck();
+				//Renderer->ChangeAnimation("Player_DuckIdle");
+				//Renderer->SetDir(EEngineDir::Right);
+			}
+		);
+
+
+
 	}
 
 	State.ChangeState("Idle_Right");
@@ -362,6 +382,8 @@ void APlayer::DuckIdleLeft(float _DeltaTime)
 		State.ChangeState("Jump_Left");
 		return;
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::DuckIdleRight(float _DeltaTime)
@@ -383,6 +405,8 @@ void APlayer::DuckIdleRight(float _DeltaTime)
 		State.ChangeState("Jump_Right");
 		return;
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::DuckLeft(float _DeltaTime)
@@ -404,6 +428,7 @@ void APlayer::DuckLeft(float _DeltaTime)
 	//	State.ChangeState("Jump_Left");
 	//	return;
 	//}
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::DuckRight(float _DeltaTime)
@@ -419,4 +444,11 @@ void APlayer::DuckRight(float _DeltaTime)
 		State.ChangeState("DuckIdle_Left");
 		return;
 	}
+
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::Parry(float _DeltaTime)
+{
+
 }
