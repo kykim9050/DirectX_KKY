@@ -256,10 +256,12 @@ void APlayer::JumpLeft(float _DeltaTime)
 	if (true == IsPress(VK_LEFT))
 	{
 		SetSpeedVec(float4::Left * GetRunSpeed());
+		Renderer->SetDir(EEngineDir::Left);
 	}
 	if (true == IsPress(VK_RIGHT))
 	{
 		SetSpeedVec(float4::Right * GetRunSpeed());
+		Renderer->SetDir(EEngineDir::Right);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
@@ -305,10 +307,12 @@ void APlayer::JumpRight(float _DeltaTime)
 	if (true == IsPress(VK_LEFT))
 	{
 		SetSpeedVec(float4::Left * GetRunSpeed());
+		Renderer->SetDir(EEngineDir::Left);
 	}
 	if (true == IsPress(VK_RIGHT))
 	{
 		SetSpeedVec(float4::Right * GetRunSpeed());
+		Renderer->SetDir(EEngineDir::Right);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
