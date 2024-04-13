@@ -99,17 +99,13 @@ void APlayer::CreatePlayerAnimation()
 				DirCheck();
 
 				State.ChangeState(ChangeAnimationName("DuckIdle"));
-				/*switch (Dir)
-				{
-				case EActorDir::Left:
-					State.ChangeState("DuckIdle_Left");
-					break;
-				case EActorDir::Right:
-					State.ChangeState("DuckIdle_Right");
-					break;
-				default:
-					break;
-				}*/
+			}
+		);
+		Renderer->SetFrameCallback("Player_Parry", 8, [this]()
+			{
+				DirCheck();
+
+				State.ChangeState(ChangeAnimationName("Jump"));
 			}
 		);
 	}
@@ -146,4 +142,20 @@ std::string APlayer::ChangeAnimationName(const std::string& _MainName)
 	}
 
 	return CurAnimationName + ActorDir;
+}
+
+void APlayer::AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir)
+{
+	switch (_Dir)
+	{
+	case EActorDir::Left:
+		_Renderer->SetDir(EEngineDir::Left);
+		break;
+	case EActorDir::Right:
+		_Renderer->SetDir(EEngineDir::Right);
+		break;
+	default:
+		MsgBoxAssert("등록되지 않은 EEngineDir 형식 입니다.")
+		break;
+	}
 }

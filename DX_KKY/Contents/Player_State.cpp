@@ -123,8 +123,8 @@ void APlayer::StateInit()
 		State.SetStartFunction("Parry", [this]
 			{
 				DirCheck();
-				//Renderer->ChangeAnimation("Player_DuckIdle");
-				//Renderer->SetDir(EEngineDir::Right);
+				Renderer->ChangeAnimation("Player_Parry");
+				AnimationDirSet(Renderer, Dir);
 			}
 		);
 
@@ -281,7 +281,8 @@ void APlayer::JumpLeft(float _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
-		int a = 0;
+		State.ChangeState("Parry");
+		return;
 	}
 
 	if (true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
@@ -332,7 +333,8 @@ void APlayer::JumpRight(float _DeltaTime)
 	
 	if (true == IsDown('Z'))
 	{
-		int a = 0;
+		State.ChangeState("Parry");
+		return;
 	}
 
 	if (true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
@@ -423,11 +425,12 @@ void APlayer::DuckLeft(float _DeltaTime)
 		return;
 	}
 
-	//if (true == IsDown('Z'))
-	//{
-	//	State.ChangeState("Jump_Left");
-	//	return;
-	//}
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump_Left");
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -442,6 +445,12 @@ void APlayer::DuckRight(float _DeltaTime)
 	if (true == IsDown(VK_LEFT))
 	{
 		State.ChangeState("DuckIdle_Left");
+		return;
+	}
+
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump_Right");
 		return;
 	}
 
