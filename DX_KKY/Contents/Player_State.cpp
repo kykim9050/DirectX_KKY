@@ -189,6 +189,12 @@ void APlayer::RunLeft(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown(VK_DOWN))
+	{
+		State.ChangeState("Duck_Left");
+		return;
+	}
+
 	
 	SetSpeedVec(float4::Left * GetRunSpeed());
 	ResultMovementUpdate(_DeltaTime);
@@ -205,6 +211,12 @@ void APlayer::RunRight(float _DeltaTime)
 	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump_Right");
+		return;
+	}
+
+	if (true == IsDown(VK_DOWN))
+	{
+		State.ChangeState("Duck_Right");
 		return;
 	}
 
@@ -309,10 +321,18 @@ void APlayer::DuckIdleRight(float _DeltaTime)
 
 void APlayer::DuckLeft(float _DeltaTime)
 {
-
+	if (true == IsUp(VK_DOWN))
+	{
+		State.ChangeState("Idle_Left");
+		return;
+	}
 }
 
 void APlayer::DuckRight(float _DeltaTime)
 {
-
+	if (true == IsUp(VK_DOWN))
+	{
+		State.ChangeState("Idle_Right");
+		return;
+	}
 }
