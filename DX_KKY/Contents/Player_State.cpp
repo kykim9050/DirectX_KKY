@@ -13,6 +13,11 @@ void APlayer::StateInit()
 		State.CreateState("Run_Right");
 		State.CreateState("Jump_Left");
 		State.CreateState("Jump_Right");
+		State.CreateState("DuckIdle_Left");
+		State.CreateState("DuckIdle_Right");
+		State.CreateState("Duck_Left");
+		State.CreateState("Duck_Right");
+
 
 		State.SetUpdateFunction("Idle_Left", std::bind(&APlayer::IdleLeft, this, std::placeholders::_1));
 		State.SetUpdateFunction("Idle_Right", std::bind(&APlayer::IdleRight, this, std::placeholders::_1));
@@ -20,6 +25,11 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Run_Right", std::bind(&APlayer::RunRight, this, std::placeholders::_1));
 		State.SetUpdateFunction("Jump_Left", std::bind(&APlayer::JumpLeft, this, std::placeholders::_1));
 		State.SetUpdateFunction("Jump_Right", std::bind(&APlayer::JumpRight, this, std::placeholders::_1));
+		State.SetUpdateFunction("Duck_Left", std::bind(&APlayer::DuckLeft, this, std::placeholders::_1));
+		State.SetUpdateFunction("Duck_Right", std::bind(&APlayer::DuckRight, this, std::placeholders::_1));
+		State.SetUpdateFunction("DuckIdle_Left", std::bind(&APlayer::DuckIdleLeft, this, std::placeholders::_1));
+		State.SetUpdateFunction("DuckIdle_Right", std::bind(&APlayer::DuckIdleRight, this, std::placeholders::_1));
+
 
 
 		State.SetStartFunction("Idle_Left", [this]
@@ -72,6 +82,34 @@ void APlayer::StateInit()
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
+		State.SetStartFunction("Duck_Left", [this]
+			{
+				Dir = EActorDir::Left;
+				Renderer->ChangeAnimation("Player_Duck");
+				Renderer->SetDir(EEngineDir::Left);
+			}
+		);
+		State.SetStartFunction("Duck_Right", [this]
+			{
+				Dir = EActorDir::Right;
+				Renderer->ChangeAnimation("Player_Duck");
+				Renderer->SetDir(EEngineDir::Right);
+			}
+		);
+		State.SetStartFunction("DuckIdle_Left", [this]
+			{
+				Dir = EActorDir::Left;
+				Renderer->ChangeAnimation("Player_DuckIdle");
+				Renderer->SetDir(EEngineDir::Left);
+			}
+		);
+		State.SetStartFunction("DuckIdle_Right", [this]
+			{
+				Dir = EActorDir::Right;
+				Renderer->ChangeAnimation("Player_DuckIdle");
+				Renderer->SetDir(EEngineDir::Right);
+			}
+		);
 
 
 	}
@@ -99,6 +137,12 @@ void APlayer::IdleLeft(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown(VK_DOWN))
+	{
+		State.ChangeState("Duck_Left");
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -119,6 +163,12 @@ void APlayer::IdleRight(float _DeltaTime)
 	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump_Right");
+		return;
+	}
+
+	if (true == IsDown(VK_DOWN))
+	{
+		State.ChangeState("Duck_Right");
 		return;
 	}
 
@@ -245,4 +295,24 @@ void APlayer::JumpRight(float _DeltaTime)
 	}
 
 	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::DuckIdleLeft(float _DeltaTime)
+{
+
+}
+
+void APlayer::DuckIdleRight(float _DeltaTime)
+{
+
+}
+
+void APlayer::DuckLeft(float _DeltaTime)
+{
+
+}
+
+void APlayer::DuckRight(float _DeltaTime)
+{
+
 }
