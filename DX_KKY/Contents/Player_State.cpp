@@ -196,6 +196,11 @@ void APlayer::JumpLeft(float _DeltaTime)
 		SetSpeedVec(float4::Right * GetRunSpeed());
 	}
 
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Zero);
+	}
+
 
 	ResultMovementUpdate(_DeltaTime);
 }
@@ -232,6 +237,11 @@ void APlayer::JumpRight(float _DeltaTime)
 	if (true == IsPress(VK_RIGHT))
 	{
 		SetSpeedVec(float4::Right * GetRunSpeed());
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Zero);
 	}
 
 	ResultMovementUpdate(_DeltaTime);
