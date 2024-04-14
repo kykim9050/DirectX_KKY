@@ -16,7 +16,6 @@ void APlayer::StateInit()
 		State.CreateState("AfterParry");
 		State.CreateState("Dash");
 
-
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
 		State.SetUpdateFunction("Run", std::bind(&APlayer::Run, this, std::placeholders::_1));
 		State.SetUpdateFunction("Jump", std::bind(&APlayer::Jump, this, std::placeholders::_1));
@@ -148,6 +147,7 @@ void APlayer::Idle(float _DeltaTime)
 
 	if (true == IsDown(VK_SHIFT))
 	{
+		SetPrevState(State.GetCurStateName());
 		State.ChangeState("Dash");
 		return;
 	}
@@ -177,6 +177,7 @@ void APlayer::Run(float _DeltaTime)
 
 	if (true == IsDown(VK_SHIFT))
 	{
+		SetPrevState(State.GetCurStateName());
 		State.ChangeState("Dash");
 		return;
 	}
@@ -268,6 +269,7 @@ void APlayer::DuckIdle(float _DeltaTime)
 
 	if (true == IsDown(VK_SHIFT))
 	{
+		SetPrevState(State.GetCurStateName());
 		State.ChangeState("Dash");
 		return;
 	}
@@ -300,6 +302,7 @@ void APlayer::Duck(float _DeltaTime)
 
 	if (true == IsDown(VK_SHIFT))
 	{
+		SetPrevState(State.GetCurStateName());
 		State.ChangeState("Dash");
 		return;
 	}

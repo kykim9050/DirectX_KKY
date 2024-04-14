@@ -34,8 +34,9 @@ private:
 	EActorDir Dir = EActorDir::Right;
 
 	float RunSpeed = 500.0f;
-	float JumpVal = 1000.0f;
-	float DashSpeed = 1000.0f;
+	float JumpVal = 800.0f;
+	float DashSpeed = 800.0f;
+	std::string PrevState = "None";
 
 	bool AvailableParry = true;
 
@@ -81,6 +82,14 @@ private:
 	inline float GetDashSpeed() const
 	{
 		return DashSpeed;
+	}
+	inline void SetPrevState(std::string_view _PrevState)
+	{
+		PrevState = _PrevState;
+	}
+	inline std::string GetPrevState() const
+	{
+		return PrevState;
 	}
 };
 

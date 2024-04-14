@@ -51,8 +51,8 @@ void APlayer::CreatePlayerAnimation()
 	{
 		Renderer->CreateAnimation("Player_Idle", "Cuphead_Idle", 0.04f);
 		Renderer->CreateAnimation("Player_Run", "CupHead_Run", 0.033f);
-		Renderer->CreateAnimation("Player_Jump", "CupHead_Jump", 0.034f);
-		Renderer->CreateAnimation("Player_Parry", "CupHead_Parry", 0.033f, false);
+		Renderer->CreateAnimation("Player_Jump", "CupHead_Jump", 0.044f);
+		Renderer->CreateAnimation("Player_Parry", "CupHead_Parry", 0.044f, false);
 
 		Renderer->CreateAnimation("Player_Aim_Straight", "CupHead_Aim_Straight", 0.04f);
 		Renderer->CreateAnimation("Player_Aim_Up", "CupHead_Aim_Up", 0.04f);
@@ -63,8 +63,8 @@ void APlayer::CreatePlayerAnimation()
 		Renderer->CreateAnimation("Player_Duck", "CupHead_Duck", 0.033f, false);
 		Renderer->CreateAnimation("Player_DuckIdle", "CupHead_DuckIdle", 0.04f);
 
-		Renderer->CreateAnimation("Player_Dash", "CupHead_Dash", 0.034f, false);
-		Renderer->CreateAnimation("Player_Dash_Air", "CupHead_Dash_Air", 0.034f, false);
+		Renderer->CreateAnimation("Player_Dash", "CupHead_Dash", 0.044f, false);
+		Renderer->CreateAnimation("Player_Dash_Air", "CupHead_Dash_Air", 0.044f, false);
 
 		Renderer->CreateAnimation("Player_Run_Shoot_Straight", "CupHead_Run_Shoot_Straight", 0.033f);
 		Renderer->CreateAnimation("Player_Run_Shoot_DiagonalUp", "CupHead_Run_Shoot_DiagonalUp", 0.033f);
@@ -107,7 +107,7 @@ void APlayer::CreatePlayerAnimation()
 		);
 		Renderer->SetFrameCallback("Player_Dash", 8, [this]()
 			{
-				State.ChangeState("Idle");
+				State.ChangeState(GetPrevState());
 			}
 		);
 	}
