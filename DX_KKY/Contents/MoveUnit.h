@@ -85,9 +85,9 @@ private:
 	float4 TotalMovementVec = float4::Zero;
 	float4 SpeedVec = float4::Zero;
 	float4 GravityVec = float4::Zero;
-	float4 GravityAccVec = float4::Down * 3500.0f;
+	float4 GravityAccVec = float4::Down * 4000.0f;
 	float4 JumpVec = float4::Zero;
-	float4 JumpAccVec = float4::Up * 3500.0f;
+	float4 JumpAccVec = float4::Up * 4000.0f;
 	float4 PrevJumpVec = float4::Zero;
 
 	bool AvailableAddJumpVec = false;
