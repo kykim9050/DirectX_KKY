@@ -34,6 +34,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				SetAvailableParry(true);
+				SetAvailableAddJumpVec(false);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Idle");
@@ -44,6 +45,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				SetAvailableParry(true);
+				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Run");
 				AnimationDirSet(Renderer, Dir);
 			}
@@ -61,6 +63,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				SetAvailableParry(true);
+				SetAvailableAddJumpVec(false);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck");
@@ -71,6 +74,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				SetAvailableParry(true);
+				SetAvailableAddJumpVec(false);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_DuckIdle");
@@ -96,6 +100,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Dash", [this]
 			{
 				DirCheck();
+				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Dash");
 				AnimationDirSet(Renderer, Dir);
 			}
@@ -233,13 +238,11 @@ void APlayer::Jump(float _DeltaTime)
 		State.ChangeState("Parry");
 		return;
 	}
-	else if (true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
+
+	SetAvailableAddJumpVec(false);
+	if (true == IsPress('Z') && 0.2f >= GetPressTime('Z'))
 	{
 		SetAvailableAddJumpVec(true);
-	}
-	else
-	{
-		SetAvailableAddJumpVec(false);
 	}
 
 	if (true == IsDown(VK_SHIFT))
@@ -428,7 +431,7 @@ void APlayer::DashAir(float _DeltaTime)
 		return;
 	}
 
-	AddGravityVec(0.5, _DeltaTime);
+	AddGravityVec(0.4f, _DeltaTime);
 	AddActorLocation(MoveDir(Dir) * GetDashSpeed() * _DeltaTime);
 }
 
