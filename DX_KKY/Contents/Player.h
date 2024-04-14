@@ -46,21 +46,10 @@ private:
 	/// </summary>
 	bool DirCheck();
 
-	//void IdleLeft(float _DeltaTime);
-	//void IdleRight(float _DeltaTime);
 	void Idle(float _DeltaTime);
-
-	//void RunLeft(float _DeltaTime);
-	//void RunRight(float _DeltaTime);
 	void Run(float _DeltaTime);
-	//void JumpLeft(float _DeltaTime);
-	//void JumpRight(float _DeltaTime);
 	void Jump(float _DeltaTime);
-	//void DuckIdleLeft(float _DeltaTime);
-	//void DuckIdleRight(float _DeltaTime);
 	void DuckIdle(float _DeltaTime);
-	//void DuckLeft(float _DeltaTime);
-	//void DuckRight(float _DeltaTime);
 	void Duck(float _DeltaTime);
 	void Parry(float _DeltaTime);
 	void AfterParry(float _DeltaTime);
