@@ -54,8 +54,9 @@ private:
 	void DuckLeft(float _DeltaTime);
 	void DuckRight(float _DeltaTime);
 	void Parry(float _DeltaTime);
+	void AfterParry(float _DeltaTime);
 		
-	std::string ChangeAnimationName(const std::string& _MainName);
+	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
 
 	inline float GetRunSpeed() const
