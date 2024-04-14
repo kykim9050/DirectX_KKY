@@ -96,16 +96,12 @@ void APlayer::CreatePlayerAnimation()
 	{
 		Renderer->SetFrameCallback("Player_Duck", 7, [this]()
 			{
-				DirCheck();
-
-				State.ChangeState(ChangeStringName("DuckIdle"));
+				State.ChangeState("DuckIdle");
 			}
 		);
 		Renderer->SetFrameCallback("Player_Parry", 8, [this]()
 			{
-				DirCheck();
 				SetPrevJumpVec(GetJumpVec());
-				float4 Value = GetPrevJumpVec();
 				State.ChangeState("AfterParry");
 			}
 		);
