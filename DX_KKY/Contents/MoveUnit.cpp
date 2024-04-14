@@ -57,6 +57,11 @@ void UMoveUnit::CalGravityVec(float _DeltaTime)
 	}
 }
 
+void UMoveUnit::AddGravityVec(float _Ratio, float _DeltaTime)
+{
+	GravityVec += GravityAccVec * _Ratio * _DeltaTime;
+}
+
 bool UMoveUnit::BottomCheck(float4 _Pos , Color8Bit _Color)
 {
 	std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;

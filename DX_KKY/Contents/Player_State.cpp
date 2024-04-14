@@ -15,6 +15,8 @@ void APlayer::StateInit()
 		State.CreateState("Parry");
 		State.CreateState("AfterParry");
 		State.CreateState("Dash");
+		State.CreateState("DashAir");
+		State.CreateState("AfterDashAir");
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
 		State.SetUpdateFunction("Run", std::bind(&APlayer::Run, this, std::placeholders::_1));
@@ -24,6 +26,8 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Parry", std::bind(&APlayer::Parry, this, std::placeholders::_1));
 		State.SetUpdateFunction("AfterParry", std::bind(&APlayer::AfterParry, this, std::placeholders::_1));
 		State.SetUpdateFunction("Dash", std::bind(&APlayer::Dash, this, std::placeholders::_1));
+		State.SetUpdateFunction("DashAir", std::bind(&APlayer::DashAir, this, std::placeholders::_1));
+		State.SetUpdateFunction("AfterDashAir", std::bind(&APlayer::AfterDashAir, this, std::placeholders::_1));
 
 
 		State.SetStartFunction("Idle", [this]
@@ -96,7 +100,22 @@ void APlayer::StateInit()
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
-
+		State.SetStartFunction("DashAir", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Dash_Air");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+		State.SetStartFunction("AfterDashAir", [this]
+			{
+				DirCheck();
+				SetJumpVec(GetPrevJumpVec());
+				SetGravityVec(GetPrevGravityVec());
+				Renderer->ChangeAnimation("Player_Jump");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
 	}
 
 	State.ChangeState("Idle");
@@ -223,11 +242,11 @@ void APlayer::Jump(float _DeltaTime)
 		SetAvailableAddJumpVec(false);
 	}
 
-	//if (true == IsDown(VK_SHIFT))
-	//{
-	//	State.ChangeState("DashAir");
-	//	return;
-	//}
+	if (true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("DashAir");
+		return;
+	}
 
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
@@ -327,11 +346,11 @@ void APlayer::Parry(float _DeltaTime)
 		return;
 	}
 
-	//if (true == IsDown(VK_SHIFT))
-	//{
-	//	State.ChangeState("DashAir");
-	//	return;
-	//}
+	if (true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("DashAir");
+		return;
+	}
 
 	if (true == IsPress(VK_LEFT))
 	{
@@ -371,11 +390,11 @@ void APlayer::AfterParry(float _DeltaTime)
 		return;
 	}
 
-	//if (true == IsDown(VK_SHIFT))
-	//{
-	//	State.ChangeState("DashAir");
-	//	return;
-	//}
+	if (true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("DashAir");
+		return;
+	}
 
 	if (true == IsPress(VK_LEFT))
 	{
@@ -399,4 +418,55 @@ void APlayer::AfterParry(float _DeltaTime)
 void APlayer::Dash(float _DeltaTime)
 {
 	AddActorLocation(MoveDir(Dir) * GetDashSpeed() * _DeltaTime);
+}
+
+void APlayer::DashAir(float _DeltaTime)
+{
+	if (true == GetAvailableParry() && true == IsDown('Z'))
+	{
+		State.ChangeState("Parry");
+		return;
+	}
+
+	AddGravityVec(0.5, _DeltaTime);
+	AddActorLocation(MoveDir(Dir) * GetDashSpeed() * _DeltaTime);
+}
+
+void APlayer::AfterDashAir(float _DeltaTime)
+{
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == BottomCheck(Pos, Color8Bit::Black))
+	{
+
+		if (true == IsPress(VK_DOWN))
+		{
+			State.ChangeState("Duck");
+			return;
+		}
+
+		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == GetAvailableParry() && true == IsDown('Z'))
+	{
+		State.ChangeState("Parry");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
+	{
+		DirCheck();
+		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
+		AnimationDirSet(Renderer, Dir);
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Zero);
+	}
+
+	ResultMovementUpdate(_DeltaTime);
 }

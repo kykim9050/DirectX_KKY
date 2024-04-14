@@ -56,6 +56,8 @@ private:
 	void Parry(float _DeltaTime);
 	void AfterParry(float _DeltaTime);
 	void Dash(float _DeltaTime);
+	void DashAir(float _DeltaTime);
+	void AfterDashAir(float _DeltaTime);
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);

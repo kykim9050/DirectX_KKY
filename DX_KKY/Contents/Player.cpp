@@ -107,7 +107,16 @@ void APlayer::CreatePlayerAnimation()
 		);
 		Renderer->SetFrameCallback("Player_Dash", 8, [this]()
 			{
+				AddActorLocation(MoveDir(Dir) * 10.0f);
 				State.ChangeState(GetPrevState());
+			}
+		);
+		Renderer->SetFrameCallback("Player_Dash_Air", 8, [this]()
+			{
+				SetPrevJumpVec(GetJumpVec());
+				SetPrevGravityVec(GetGravityVec());
+				AddActorLocation(MoveDir(Dir) * 10.0f);
+				State.ChangeState("AfterDashAir");
 			}
 		);
 	}
@@ -127,6 +136,11 @@ void APlayer::MakeDebugMSG()
 
 	{
 		std::string Msg = std::format("JumpVal : {}\n", std::to_string(GetJumpVec().Y));
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
+
+	{
+		std::string Msg = std::format("GravityVal : {}\n", std::to_string(GetGravityVec().Y));
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
 }

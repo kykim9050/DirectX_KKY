@@ -27,6 +27,7 @@ protected:
 	void CalGravityVec(float _DeltaTime);
 	bool BottomCheck(float4 _Pos, Color8Bit _Color);
 	void CalJumpVec(float _DeltaTime);
+	void AddGravityVec(float _Ratio, float _DeltaTime);
 
 	/// <summary>
 	/// **주의** Deltatime 곱한 값을 넣지 말 것
@@ -40,6 +41,11 @@ protected:
 	{
 		JumpVec = _JumpVec;
 	}
+	inline void SetGravityVec(float4 _GravityVec)
+	{
+		GravityVec = _GravityVec;
+	}
+	
 
 	inline void SetAvailableAddJumpVec(bool _Value)
 	{
@@ -57,6 +63,20 @@ protected:
 	{
 		return PrevJumpVec;
 	}
+	inline float4 GetGravityVec() const
+	{
+		return GravityVec;
+	}
+	inline void SetPrevGravityVec(float4 _PrevGravityVec)
+	{
+		PrevGravityVec = _PrevGravityVec;
+	}
+	inline float4 GetPrevGravityVec() const
+	{
+		return PrevGravityVec;
+	}
+
+
 
 	inline float4 MoveDir(EActorDir _Dir)
 	{
@@ -89,6 +109,7 @@ private:
 	float4 JumpVec = float4::Zero;
 	float4 JumpAccVec = float4::Up * 4000.0f;
 	float4 PrevJumpVec = float4::Zero;
+	float4 PrevGravityVec = float4::Zero;
 
 	bool AvailableAddJumpVec = false;
 };
