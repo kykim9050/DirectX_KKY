@@ -14,6 +14,7 @@ void APlayer::StateInit()
 		State.CreateState("Duck");
 		State.CreateState("Parry");
 		State.CreateState("AfterParry");
+		State.CreateState("Dash");
 
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
@@ -23,6 +24,7 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Duck", std::bind(&APlayer::Duck, this, std::placeholders::_1));
 		State.SetUpdateFunction("Parry", std::bind(&APlayer::Parry, this, std::placeholders::_1));
 		State.SetUpdateFunction("AfterParry", std::bind(&APlayer::AfterParry, this, std::placeholders::_1));
+		State.SetUpdateFunction("Dash", std::bind(&APlayer::Dash, this, std::placeholders::_1));
 
 
 		State.SetStartFunction("Idle", [this]
@@ -88,7 +90,13 @@ void APlayer::StateInit()
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
-
+		State.SetStartFunction("Dash", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Dash");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
 
 	}
 
@@ -138,6 +146,12 @@ void APlayer::Idle(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("Dash");
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -158,6 +172,12 @@ void APlayer::Run(float _DeltaTime)
 	if (true == IsDown(VK_DOWN))
 	{
 		State.ChangeState("Duck");
+		return;
+	}
+
+	if (true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("Dash");
 		return;
 	}
 
@@ -202,6 +222,12 @@ void APlayer::Jump(float _DeltaTime)
 		SetAvailableAddJumpVec(false);
 	}
 
+	//if (true == IsDown(VK_SHIFT))
+	//{
+	//	State.ChangeState("DashAir");
+	//	return;
+	//}
+
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		DirCheck();
@@ -240,6 +266,12 @@ void APlayer::DuckIdle(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("Dash");
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -266,6 +298,12 @@ void APlayer::Duck(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("Dash");
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -285,6 +323,12 @@ void APlayer::Parry(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+
+	//if (true == IsDown(VK_SHIFT))
+	//{
+	//	State.ChangeState("DashAir");
+	//	return;
+	//}
 
 	if (true == IsPress(VK_LEFT))
 	{
@@ -324,6 +368,12 @@ void APlayer::AfterParry(float _DeltaTime)
 		return;
 	}
 
+	//if (true == IsDown(VK_SHIFT))
+	//{
+	//	State.ChangeState("DashAir");
+	//	return;
+	//}
+
 	if (true == IsPress(VK_LEFT))
 	{
 		SetSpeedVec(float4::Left * GetRunSpeed());
@@ -341,4 +391,9 @@ void APlayer::AfterParry(float _DeltaTime)
 	}
 
 	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::Dash(float _DeltaTime)
+{
+	AddActorLocation(MoveDir(Dir) * GetDashSpeed() * _DeltaTime);
 }

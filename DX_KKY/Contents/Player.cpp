@@ -105,6 +105,11 @@ void APlayer::CreatePlayerAnimation()
 				State.ChangeState("AfterParry");
 			}
 		);
+		Renderer->SetFrameCallback("Player_Dash", 8, [this]()
+			{
+				State.ChangeState("Idle");
+			}
+		);
 	}
 }
 

@@ -35,6 +35,7 @@ private:
 
 	float RunSpeed = 500.0f;
 	float JumpVal = 1000.0f;
+	float DashSpeed = 1000.0f;
 
 	bool AvailableParry = true;
 
@@ -53,7 +54,8 @@ private:
 	void Duck(float _DeltaTime);
 	void Parry(float _DeltaTime);
 	void AfterParry(float _DeltaTime);
-		
+	void Dash(float _DeltaTime);
+
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
 
@@ -75,6 +77,10 @@ private:
 	inline void SetAvailableParry(bool _Value)
 	{
 		AvailableParry = _Value;
+	}
+	inline float GetDashSpeed() const
+	{
+		return DashSpeed;
 	}
 };
 
