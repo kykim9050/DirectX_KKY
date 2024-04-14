@@ -18,6 +18,7 @@ void APlayer::StateInit()
 		State.CreateState("Duck_Left");
 		State.CreateState("Duck_Right");
 		State.CreateState("Parry");
+		State.CreateState("AfterParry");
 
 
 		State.SetUpdateFunction("Idle_Left", std::bind(&APlayer::IdleLeft, this, std::placeholders::_1));
@@ -31,7 +32,7 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("DuckIdle_Left", std::bind(&APlayer::DuckIdleLeft, this, std::placeholders::_1));
 		State.SetUpdateFunction("DuckIdle_Right", std::bind(&APlayer::DuckIdleRight, this, std::placeholders::_1));
 		State.SetUpdateFunction("Parry", std::bind(&APlayer::Parry, this, std::placeholders::_1));
-
+		State.SetUpdateFunction("AfterParry", std::bind(&APlayer::AfterParry, this, std::placeholders::_1));
 
 
 		State.SetStartFunction("Idle_Left", [this]
@@ -136,7 +137,14 @@ void APlayer::StateInit()
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
-
+		State.SetStartFunction("AfterParry", [this]
+			{
+				DirCheck();
+				SetJumpVec(GetPrevJumpVec());
+				Renderer->ChangeAnimation("Player_Jump");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
 
 
 	}
@@ -475,12 +483,50 @@ void APlayer::Parry(float _DeltaTime)
 		if (true == IsPress(VK_DOWN))
 		{
 			DirCheck();
-			State.ChangeState(ChangeAnimationName("Duck"));
+			State.ChangeState(ChangeStringName("Duck"));
 			return;
 		}
 
 		DirCheck();
-		State.ChangeState(ChangeAnimationName("Idle"));
+		State.ChangeState(ChangeStringName("Idle"));
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		SetSpeedVec(float4::Left * GetRunSpeed());
+		Renderer->SetDir(EEngineDir::Left);
+	}
+	if (true == IsPress(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Right * GetRunSpeed());
+		Renderer->SetDir(EEngineDir::Right);
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Zero);
+	}
+
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::AfterParry(float _DeltaTime)
+{
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == BottomCheck(Pos, Color8Bit::Black))
+	{
+		if (true == IsPress(VK_DOWN))
+		{
+			DirCheck();
+			State.ChangeState(ChangeStringName("Duck"));
+			return;
+		}
+
+		DirCheck();
+		State.ChangeState(ChangeStringName("Idle"));
 		return;
 	}
 

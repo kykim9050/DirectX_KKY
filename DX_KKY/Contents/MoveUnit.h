@@ -32,12 +32,31 @@ protected:
 	/// **주의** Deltatime 곱한 값을 넣지 말 것
 	/// 해당 함수는 속도(방향 x 속력)가 들어가야 함
 	/// </summary>
-	void SetSpeedVec(float4 _SpeedVec);
-	void SetJumpVec(float4 _SpeedVec);
+	inline void SetSpeedVec(float4 _SpeedVec)
+	{
+		SpeedVec = _SpeedVec;
+	}
+	inline void SetJumpVec(float4 _JumpVec)
+	{
+		JumpVec = _JumpVec;
+	}
+
 
 	inline void SetAvailableAddJumpVec(bool _Value)
 	{
 		AvailableAddJumpVec = _Value;
+	}
+	inline float4 GetJumpVec() const
+	{
+		return JumpVec;
+	}
+	inline void SetPrevJumpVec(float4 _PrevJumpVec)
+	{
+		PrevJumpVec = _PrevJumpVec;
+	}
+	inline float4 GetPrevJumpVec() const
+	{
+		return PrevJumpVec;
 	}
 
 private:
@@ -47,6 +66,7 @@ private:
 	float4 GravityAccVec = float4::Down * 3500.0f;
 	float4 JumpVec = float4::Zero;
 	float4 JumpAccVec = float4::Up * 3500.0f;
+	float4 PrevJumpVec = float4::Zero;
 
 	bool AvailableAddJumpVec = false;
 };

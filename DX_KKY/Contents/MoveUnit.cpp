@@ -42,11 +42,6 @@ void UMoveUnit::ApplyMovement(float _DeltaTime)
 	AddActorLocation(TotalMovementVec * _DeltaTime);
 }
 
-void UMoveUnit::SetSpeedVec(float4 _SpeedVec)
-{
-	SpeedVec = _SpeedVec;
-}
-
 
 void UMoveUnit::CalGravityVec(float _DeltaTime)
 {
@@ -60,11 +55,6 @@ void UMoveUnit::CalGravityVec(float _DeltaTime)
 	{
 		GravityVec = float4::Zero;
 	}
-}
-
-void UMoveUnit::SetJumpVec(float4 _JumpVec)
-{
-	JumpVec = _JumpVec;
 }
 
 bool UMoveUnit::BottomCheck(float4 _Pos , Color8Bit _Color)

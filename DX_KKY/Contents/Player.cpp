@@ -98,14 +98,15 @@ void APlayer::CreatePlayerAnimation()
 			{
 				DirCheck();
 
-				State.ChangeState(ChangeAnimationName("DuckIdle"));
+				State.ChangeState(ChangeStringName("DuckIdle"));
 			}
 		);
 		Renderer->SetFrameCallback("Player_Parry", 8, [this]()
 			{
 				DirCheck();
-
-				State.ChangeState(ChangeAnimationName("Jump"));
+				SetPrevJumpVec(GetJumpVec());
+				float4 Value = GetPrevJumpVec();
+				State.ChangeState("AfterParry");
 			}
 		);
 	}
@@ -122,9 +123,14 @@ void APlayer::MakeDebugMSG()
 		std::string Msg = std::format("MousePos(In Screen) : {}\n", GEngine->EngineWindow.GetScreenMousePos().ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
+
+	{
+		std::string Msg = std::format("JumpVal : {}\n", std::to_string(GetJumpVec().Y));
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
 }
 
-std::string APlayer::ChangeAnimationName(const std::string& _MainName)
+std::string APlayer::ChangeStringName(const std::string& _MainName)
 {
 	std::string ActorDir = "";
 	std::string CurAnimationName = _MainName;
