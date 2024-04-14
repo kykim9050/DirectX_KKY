@@ -41,7 +41,6 @@ protected:
 		JumpVec = _JumpVec;
 	}
 
-
 	inline void SetAvailableAddJumpVec(bool _Value)
 	{
 		AvailableAddJumpVec = _Value;
@@ -57,6 +56,29 @@ protected:
 	inline float4 GetPrevJumpVec() const
 	{
 		return PrevJumpVec;
+	}
+
+	inline float4 MoveDir(EActorDir _Dir)
+	{
+		float4 ResVal = float4::Zero;
+
+		switch (_Dir)
+		{
+		case EActorDir::Left:
+		{
+			ResVal = float4::Left;
+			break;
+		}
+		case EActorDir::Right:
+		{
+			ResVal = float4::Right;
+			break;
+		}
+		default:
+			break;
+		}
+
+		return ResVal;
 	}
 
 private:
