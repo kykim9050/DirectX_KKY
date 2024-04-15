@@ -828,7 +828,7 @@ void APlayer::Aim_Down(float _DeltaTime)
 	// Aim 끼리 상태 변화
 	if (true == IsPress('C'))
 	{
-		if (true == IsUp(VK_DOWN))
+		if (true == IsFree(VK_DOWN))
 		{
 			State.ChangeState("Aim_Straight");
 			return;
@@ -987,6 +987,13 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 			return;
 		}
 	}
+
+	if (true == IsFree('C'))
+	{
+		State.ChangeState("Shoot_Duck");
+		return;
+
+	}
 }
 
 void APlayer::IdleShoot_Duck(float _DeltaTime)
@@ -1009,6 +1016,12 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 		{
 			SetPrevState(State.GetCurStateName());
 			State.ChangeState("Dash");
+			return;
+		}
+
+		if (true == IsPress('C'))
+		{
+			State.ChangeState("Shoot_Down");
 			return;
 		}
 
