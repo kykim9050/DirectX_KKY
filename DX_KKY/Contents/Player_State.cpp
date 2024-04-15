@@ -648,6 +648,9 @@ void APlayer::Aim_DiagonalUp(float _DeltaTime)
 			State.ChangeState("Run");
 			return;
 		}
+
+		DirCheck();
+		AnimationDirSet(Renderer, Dir);
 	}
 }
 
@@ -688,6 +691,9 @@ void APlayer::Aim_Straight(float _DeltaTime)
 			State.ChangeState("Run");
 			return;
 		}
+
+		DirCheck();
+		AnimationDirSet(Renderer, Dir);
 	}
 
 	if (true == IsUp('C'))
@@ -700,18 +706,6 @@ void APlayer::Aim_Straight(float _DeltaTime)
 	//{
 	//	State.ChangeState("IdleShoot_Straight");
 	//	return;
-	//}
-
-	//if (true == IsPress('C') && true == IsDown(VK_UP))
-	//{
-	//	State.ChangeState("Aim_Up");
-	//	return;
-	//}
-
-	//if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
-	//{
-	//	DirCheck();
-	//	AnimationDirSet(Renderer, Dir);
 	//}
 }
 
@@ -731,6 +725,12 @@ void APlayer::Aim_DiagonalDown(float _DeltaTime)
 			State.ChangeState("Aim_Down");
 			return;
 		}
+	}
+
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	{
+		DirCheck();
+		AnimationDirSet(Renderer, Dir);
 	}
 }
 
