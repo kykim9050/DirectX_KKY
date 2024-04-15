@@ -64,8 +64,12 @@ private:
 	void Aim_DiagonalDown(float _DeltaTime);
 	void Aim_Down(float _DeltaTime);
 
-	void IdleShoot_Straight(float _DeltaTime);
 	void IdleShoot_Up(float _DeltaTime);
+	void IdleShoot_DiagonalUp(float _DeltaTime);
+	void IdleShoot_Straight(float _DeltaTime);
+	void IdleShoot_DiagonalDown(float _DeltaTime);
+	void IdleShoot_Down(float _DeltaTime);
+	void IdleShoot_Duck(float _DeltaTime);
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);

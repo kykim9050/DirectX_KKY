@@ -7,6 +7,7 @@
 void APlayer::StateInit()
 {
 	{
+
 		State.CreateState("Idle");
 		State.CreateState("Run");
 		State.CreateState("Jump");
@@ -17,14 +18,21 @@ void APlayer::StateInit()
 		State.CreateState("Dash");
 		State.CreateState("DashAir");
 		State.CreateState("AfterDashAir");
+
 		State.CreateState("Aim_Up");
 		State.CreateState("Aim_DiagonalUp");
 		State.CreateState("Aim_Straight");
 		State.CreateState("Aim_DiagonalDown");
 		State.CreateState("Aim_Down");
 
-		State.CreateState("IdleShoot_Straight");
-		State.CreateState("IdleShoot_Up");
+		State.CreateState("Shoot_Up");
+		State.CreateState("Shoot_DiagonalUp");
+		State.CreateState("Shoot_Straight");
+		State.CreateState("Shoot_DiagonalDown");
+		State.CreateState("Shoot_Down");
+		State.CreateState("Shoot_Duck");
+
+
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
 		State.SetUpdateFunction("Run", std::bind(&APlayer::Run, this, std::placeholders::_1));
@@ -36,13 +44,21 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Dash", std::bind(&APlayer::Dash, this, std::placeholders::_1));
 		State.SetUpdateFunction("DashAir", std::bind(&APlayer::DashAir, this, std::placeholders::_1));
 		State.SetUpdateFunction("AfterDashAir", std::bind(&APlayer::AfterDashAir, this, std::placeholders::_1));
+
 		State.SetUpdateFunction("Aim_Up", std::bind(&APlayer::Aim_Up, this, std::placeholders::_1));
 		State.SetUpdateFunction("Aim_DiagonalUp", std::bind(&APlayer::Aim_DiagonalUp, this, std::placeholders::_1));
 		State.SetUpdateFunction("Aim_Straight", std::bind(&APlayer::Aim_Straight, this, std::placeholders::_1));
 		State.SetUpdateFunction("Aim_DiagonalDown", std::bind(&APlayer::Aim_DiagonalDown, this, std::placeholders::_1));
 		State.SetUpdateFunction("Aim_Down", std::bind(&APlayer::Aim_Down, this, std::placeholders::_1));
-		State.SetUpdateFunction("IdleShoot_Straight", std::bind(&APlayer::IdleShoot_Straight, this, std::placeholders::_1));
-		State.SetUpdateFunction("IdleShoot_Up", std::bind(&APlayer::IdleShoot_Up, this, std::placeholders::_1));
+
+		State.SetUpdateFunction("Shoot_Up", std::bind(&APlayer::IdleShoot_Up, this, std::placeholders::_1));
+		State.SetUpdateFunction("Shoot_DiagonalUp", std::bind(&APlayer::IdleShoot_DiagonalUp, this, std::placeholders::_1));
+		State.SetUpdateFunction("Shoot_Straight", std::bind(&APlayer::IdleShoot_Straight, this, std::placeholders::_1));
+		State.SetUpdateFunction("Shoot_DiagonalDown", std::bind(&APlayer::IdleShoot_DiagonalDown, this, std::placeholders::_1));
+		State.SetUpdateFunction("Shoot_Down", std::bind(&APlayer::IdleShoot_Down, this, std::placeholders::_1));
+		State.SetUpdateFunction("Shoot_Duck", std::bind(&APlayer::IdleShoot_Duck, this, std::placeholders::_1));
+
+
 
 
 		State.SetStartFunction("Idle", [this]
@@ -171,20 +187,50 @@ void APlayer::StateInit()
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
-		State.SetStartFunction("IdleShoot_Straight", [this]
-			{
-				DirCheck();
-				Renderer->ChangeAnimation("Player_Shoot_Straight");
-				AnimationDirSet(Renderer, Dir);
-			}
-		);
-		State.SetStartFunction("IdleShoot_Up", [this]
+
+		State.SetStartFunction("Shoot_Up", [this]
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Up");
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
+		State.SetStartFunction("Shoot_DiagonalUp", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Shoot_DiagonalUp");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+		State.SetStartFunction("Shoot_Straight", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Shoot_Straight");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+		State.SetStartFunction("Shoot_DiagonalDown", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Shoot_DiagonalDown");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+		State.SetStartFunction("Shoot_Down", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Shoot_Down");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+		State.SetStartFunction("Shoot_Duck", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Duck_Shoot");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+
 
 	}
 
@@ -775,9 +821,33 @@ void APlayer::Aim_Down(float _DeltaTime)
 	}
 }
 
+
+
+
+
+void APlayer::IdleShoot_Up(float _DeltaTime)
+{
+	//if (true == IsUp('X'))
+	//{
+	//	State.ChangeState("Idle");
+	//	return;
+	//}
+
+	//if (true == IsUp(VK_UP))
+	//{
+	//	State.ChangeState("IdleShoot_Straight");
+	//	return;
+	//}
+}
+
+void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
+{
+
+}
+
 void APlayer::IdleShoot_Straight(float _DeltaTime)
 {
-	if (true == IsUp('X'))
+	/*if (true == IsUp('X'))
 	{
 		if (true == IsPress('C'))
 		{
@@ -799,20 +869,20 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 	{
 		DirCheck();
 		AnimationDirSet(Renderer, Dir);
-	}
+	}*/
 }
 
-void APlayer::IdleShoot_Up(float _DeltaTime)
+void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 {
-	if (true == IsUp('X'))
-	{
-		State.ChangeState("Idle");
-		return;
-	}
 
-	if (true == IsUp(VK_UP))
-	{
-		State.ChangeState("IdleShoot_Straight");
-		return;
-	}
+}
+
+void APlayer::IdleShoot_Down(float _DeltaTime)
+{
+
+}
+
+void APlayer::IdleShoot_Duck(float _DeltaTime)
+{
+
 }
