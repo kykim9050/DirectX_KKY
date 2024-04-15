@@ -231,6 +231,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Shoot_Duck", [this]
 			{
 				DirCheck();
+				SetSpeedVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck_Shoot");
 				AnimationDirSet(Renderer, Dir);
 			}
@@ -1110,6 +1111,12 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 
 	if (true == IsFree(VK_DOWN))
 	{
+		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+		{
+			State.ChangeState("Run_Shoot_Straight");
+			return;
+		}
+
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
@@ -1119,7 +1126,41 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 
 void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 {
+	if (true == IsFree('X'))
+	{
+		State.ChangeState("Run");
+		return;
+	}
 
+	if (true == IsPress('X'))
+	{
+		if (true == IsFree(VK_RIGHT) && true == IsFree(VK_LEFT))
+		{
+			State.ChangeState("Shoot_Up");
+			return;
+		}
+
+		if (true == IsFree(VK_UP))
+		{
+			State.ChangeState("Run_Shoot_Straight");
+			return;
+		}
+	}
+
+	if (true == IsDown(VK_SHIFT))
+	{
+		SetPrevState(State.GetCurStateName());
+		State.ChangeState("Dash");
+		return;
+	}
+
+	if (false == DirCheck())
+	{
+		AnimationDirSet(Renderer, Dir);
+	}
+
+	SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::Run_Shoot_Straight(float _DeltaTime)
