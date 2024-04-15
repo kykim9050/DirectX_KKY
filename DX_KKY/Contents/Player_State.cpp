@@ -857,11 +857,14 @@ void APlayer::IdleShoot_Up(float _DeltaTime)
 		return;
 	}
 
-	//if (true == IsUp(VK_UP))
-	//{
-	//	State.ChangeState("IdleShoot_Straight");
-	//	return;
-	//}
+	if (true == IsPress('C'))
+	{
+		if (true == IsDown(VK_RIGHT) || true == IsDown(VK_LEFT))
+		{
+			State.ChangeState("Shoot_DiagonalUp");
+			return;
+		}
+	}
 }
 
 void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
@@ -870,6 +873,21 @@ void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 	{
 		State.ChangeState("Aim_DiagonalUp");
 		return;
+	}
+
+	if (true == IsPress('C'))
+	{
+		if (true == IsUp(VK_RIGHT) || true == IsUp(VK_LEFT))
+		{
+			State.ChangeState("Shoot_Up");
+			return;
+		}
+
+		if (true == IsUp(VK_UP))
+		{
+			State.ChangeState("Shoot_Straight");
+			return;
+		}
 	}
 }
 
@@ -887,11 +905,21 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 		return;
 	}
 
-	//if (true == IsPress(VK_UP))
-	//{
-	//	State.ChangeState("IdleShoot_Up");
-	//	return;
-	//}
+
+	if (true == IsPress('C'))
+	{
+		if (true == IsDown(VK_UP))
+		{
+			State.ChangeState("Shoot_DiagonalUp");
+			return;
+		}
+
+		if (true == IsDown(VK_DOWN))
+		{
+			State.ChangeState("Shoot_DiagonalDown");
+			return;
+		}
+	}
 }
 
 void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
@@ -901,6 +929,21 @@ void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 		State.ChangeState("Aim_DiagonalDown");
 		return;
 	}
+
+	if (true == IsPress('C'))
+	{
+		if (true == IsUp(VK_DOWN))
+		{
+			State.ChangeState("Shoot_Straight");
+			return;
+		}
+
+		if (true == IsUp(VK_RIGHT) || true == IsUp(VK_LEFT))
+		{
+			State.ChangeState("Shoot_Down");
+			return;
+		}
+	}
 }
 
 void APlayer::IdleShoot_Down(float _DeltaTime)
@@ -909,6 +952,15 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 	{
 		State.ChangeState("Aim_Down");
 		return;
+	}
+
+	if (true == IsPress('C'))
+	{
+		if (true == IsDown(VK_RIGHT) || true == IsDown(VK_LEFT))
+		{
+			State.ChangeState("Shoot_DiagonalDown");
+			return;
+		}
 	}
 }
 
