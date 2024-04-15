@@ -427,47 +427,50 @@ void APlayer::DuckIdle(float _DeltaTime)
 	}
 	
 
-	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
+	if (true == IsPress(VK_DOWN))
 	{
-		if (true == IsPress(VK_DOWN) && true == IsDown('C'))
+		if (true == IsDown('Z'))
 		{
-			State.ChangeState("Aim_DiagonalDown");
+			State.ChangeState("Jump");
 			return;
 		}
 
-		DirCheck();
-		AnimationDirSet(Renderer, Dir);
-	}
-
-	if (true == IsDown('Z'))
-	{
-		State.ChangeState("Jump");
-		return;
-	}
-
-	if (true == IsPress('X'))
-	{
-		if (true == IsFree(VK_UP))
+		if (true == IsDown(VK_SHIFT))
 		{
-			State.ChangeState("Shoot_Straight");
+			SetPrevState(State.GetCurStateName());
+			State.ChangeState("Dash");
 			return;
 		}
 
-		State.ChangeState("Shoot_Duck");
-		return;
-	}
+		if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
+		{
+			if (true == IsDown('C'))
+			{
+				State.ChangeState("Aim_DiagonalDown");
+				return;
+			}
 
-	if (true == IsDown(VK_SHIFT))
-	{
-		SetPrevState(State.GetCurStateName());
-		State.ChangeState("Dash");
-		return;
-	}
+			DirCheck();
+			AnimationDirSet(Renderer, Dir);
+		}
 
-	if (true == IsPress(VK_DOWN) && true == IsDown('C'))
-	{
-		State.ChangeState("Aim_Down");
-		return;
+		if (true == IsPress('X'))
+		{
+			//if (true == IsFree(VK_UP))
+			//{
+			//	State.ChangeState("Shoot_Straight");
+			//	return;
+			//}
+
+			State.ChangeState("Shoot_Duck");
+			return;
+		}
+
+		if (true == IsPress('C'))
+		{
+			State.ChangeState("Aim_Down");
+			return;
+		}
 	}
 
 	ResultMovementUpdate(_DeltaTime);
@@ -988,21 +991,39 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 
 void APlayer::IdleShoot_Duck(float _DeltaTime)
 {
-	if (true == IsUp('X'))
+	if (true == IsPress(VK_DOWN))
 	{
-		State.ChangeState("DuckIdle");
-		return;
+		if (true == IsUp('X'))
+		{
+			State.ChangeState("DuckIdle");
+			return;
+		}
+
+		if (true == IsDown('Z'))
+		{
+			State.ChangeState("Jump");
+			return;
+		}
+
+		if (true == IsDown(VK_SHIFT))
+		{
+			SetPrevState(State.GetCurStateName());
+			State.ChangeState("Dash");
+			return;
+		}
+
+		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+		{
+			DirCheck();
+			AnimationDirSet(Renderer, Dir);
+		}
 	}
 
-	if (true == IsUp(VK_DOWN))
+	if (true == IsFree(VK_DOWN))
 	{
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
-
-	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
-	{
-		DirCheck();
-		AnimationDirSet(Renderer, Dir);
-	}
+	
+	ResultMovementUpdate(_DeltaTime);
 }
