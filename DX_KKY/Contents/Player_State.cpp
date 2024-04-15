@@ -37,7 +37,10 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("DashAir", std::bind(&APlayer::DashAir, this, std::placeholders::_1));
 		State.SetUpdateFunction("AfterDashAir", std::bind(&APlayer::AfterDashAir, this, std::placeholders::_1));
 		State.SetUpdateFunction("Aim_Up", std::bind(&APlayer::Aim_Up, this, std::placeholders::_1));
+		State.SetUpdateFunction("Aim_DiagonalUp", std::bind(&APlayer::Aim_DiagonalUp, this, std::placeholders::_1));
 		State.SetUpdateFunction("Aim_Straight", std::bind(&APlayer::Aim_Straight, this, std::placeholders::_1));
+		State.SetUpdateFunction("Aim_DiagonalDown", std::bind(&APlayer::Aim_DiagonalDown, this, std::placeholders::_1));
+		State.SetUpdateFunction("Aim_Down", std::bind(&APlayer::Aim_Down, this, std::placeholders::_1));
 		State.SetUpdateFunction("IdleShoot_Straight", std::bind(&APlayer::IdleShoot_Straight, this, std::placeholders::_1));
 		State.SetUpdateFunction("IdleShoot_Up", std::bind(&APlayer::IdleShoot_Up, this, std::placeholders::_1));
 
@@ -140,10 +143,31 @@ void APlayer::StateInit()
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
+		State.SetStartFunction("Aim_DiagonalUp", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Aim_DiagonalUp");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
 		State.SetStartFunction("Aim_Straight", [this]
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Straight");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+		State.SetStartFunction("Aim_DiagonalDown", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Aim_DiagonalDown");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+		State.SetStartFunction("Aim_Down", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Aim_Down");
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
@@ -547,56 +571,71 @@ void APlayer::AfterDashAir(float _DeltaTime)
 
 void APlayer::Aim_Up(float _DeltaTime)
 {
-	if (true == IsFree('C') && true == IsUp(VK_UP))
-	{
-		State.ChangeState("Idle");
-		return;
-	}
+	//if (true == IsFree('C') && true == IsUp(VK_UP))
+	//{
+	//	State.ChangeState("Idle");
+	//	return;
+	//}
 
-	if (true == IsPress('C') && true == IsUp(VK_UP))
-	{
-		State.ChangeState("Aim_Straight");
-		return;
-	}
+	//if (true == IsPress('C') && true == IsUp(VK_UP))
+	//{
+	//	State.ChangeState("Aim_Straight");
+	//	return;
+	//}
 
-	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
-	{
-		State.ChangeState("Run");
-		return;
-	}
+	//if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	//{
+	//	State.ChangeState("Run");
+	//	return;
+	//}
 
-	if (true == IsDown('X'))
-	{
-		State.ChangeState("IdleShoot_Up");
-		return;
-	}
+	//if (true == IsDown('X'))
+	//{
+	//	State.ChangeState("IdleShoot_Up");
+	//	return;
+	//}
+}
+
+void APlayer::Aim_DiagonalUp(float _DeltaTime)
+{
+
 }
 
 void APlayer::Aim_Straight(float _DeltaTime)
 {
-	if (true == IsUp('C'))
-	{
-		State.ChangeState("Idle");
-		return;
-	}
+	//if (true == IsUp('C'))
+	//{
+	//	State.ChangeState("Idle");
+	//	return;
+	//}
 
-	if (true == IsDown('X'))
-	{
-		State.ChangeState("IdleShoot_Straight");
-		return;
-	}
+	//if (true == IsDown('X'))
+	//{
+	//	State.ChangeState("IdleShoot_Straight");
+	//	return;
+	//}
 
-	if (true == IsPress('C') && true == IsDown(VK_UP))
-	{
-		State.ChangeState("Aim_Up");
-		return;
-	}
+	//if (true == IsPress('C') && true == IsDown(VK_UP))
+	//{
+	//	State.ChangeState("Aim_Up");
+	//	return;
+	//}
 
-	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
-	{
-		DirCheck();
-		AnimationDirSet(Renderer, Dir);
-	}
+	//if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
+	//{
+	//	DirCheck();
+	//	AnimationDirSet(Renderer, Dir);
+	//}
+}
+
+void APlayer::Aim_DiagonalDown(float _DeltaTime)
+{
+
+}
+
+void APlayer::Aim_Down(float _DeltaTime)
+{
+
 }
 
 void APlayer::IdleShoot_Straight(float _DeltaTime)
