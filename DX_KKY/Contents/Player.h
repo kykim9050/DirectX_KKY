@@ -58,6 +58,8 @@ private:
 	void Dash(float _DeltaTime);
 	void DashAir(float _DeltaTime);
 	void AfterDashAir(float _DeltaTime);
+	void IdleShoot_Straight(float _DeltaTime);
+	void IdleShoot_Up(float _DeltaTime);
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);

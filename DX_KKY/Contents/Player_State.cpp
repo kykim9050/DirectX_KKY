@@ -17,6 +17,8 @@ void APlayer::StateInit()
 		State.CreateState("Dash");
 		State.CreateState("DashAir");
 		State.CreateState("AfterDashAir");
+		State.CreateState("IdleShoot_Straight");
+		State.CreateState("IdleShoot_Up");
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
 		State.SetUpdateFunction("Run", std::bind(&APlayer::Run, this, std::placeholders::_1));
@@ -28,6 +30,8 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Dash", std::bind(&APlayer::Dash, this, std::placeholders::_1));
 		State.SetUpdateFunction("DashAir", std::bind(&APlayer::DashAir, this, std::placeholders::_1));
 		State.SetUpdateFunction("AfterDashAir", std::bind(&APlayer::AfterDashAir, this, std::placeholders::_1));
+		State.SetUpdateFunction("IdleShoot_Straight", std::bind(&APlayer::IdleShoot_Straight, this, std::placeholders::_1));
+		State.SetUpdateFunction("IdleShoot_Up", std::bind(&APlayer::IdleShoot_Up, this, std::placeholders::_1));
 
 
 		State.SetStartFunction("Idle", [this]
@@ -121,6 +125,21 @@ void APlayer::StateInit()
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
+		State.SetStartFunction("IdleShoot_Straight", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Shoot_Straight");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+		State.SetStartFunction("IdleShoot_Up", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_Shoot_Up");
+				AnimationDirSet(Renderer, Dir);
+			}
+		);
+
 	}
 
 	State.ChangeState("Idle");
@@ -173,6 +192,12 @@ void APlayer::Idle(float _DeltaTime)
 	{
 		SetPrevState(State.GetCurStateName());
 		State.ChangeState("Dash");
+		return;
+	}
+
+	if (true == IsPress('X'))
+	{
+		State.ChangeState("IdleShoot_Straight");
 		return;
 	}
 
@@ -472,4 +497,18 @@ void APlayer::AfterDashAir(float _DeltaTime)
 	}
 
 	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::IdleShoot_Straight(float _DeltaTime)
+{
+	if (true == IsUp('X'))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+}
+
+void APlayer::IdleShoot_Up(float _DeltaTime)
+{
+
 }
