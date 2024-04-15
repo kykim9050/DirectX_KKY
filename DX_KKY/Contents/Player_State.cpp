@@ -420,7 +420,7 @@ void APlayer::Jump(float _DeltaTime)
 
 void APlayer::DuckIdle(float _DeltaTime)
 {
-	if (true == IsUp(VK_DOWN))
+	if (true == IsFree(VK_DOWN))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -447,6 +447,12 @@ void APlayer::DuckIdle(float _DeltaTime)
 
 	if (true == IsPress('X'))
 	{
+		if (true == IsFree(VK_UP))
+		{
+			State.ChangeState("Shoot_Straight");
+			return;
+		}
+
 		State.ChangeState("Shoot_Duck");
 		return;
 	}
@@ -825,23 +831,27 @@ void APlayer::Aim_Down(float _DeltaTime)
 			return;
 		}
 
-		if (true == IsPress(VK_DOWN) && (true == IsDown(VK_RIGHT) || true == IsDown(VK_LEFT)))
+		if (true == IsPress(VK_DOWN) && (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
 		{
 			State.ChangeState("Aim_DiagonalDown");
 			return;
 		}
+
+		if (true == IsPress('X'))
+		{
+			State.ChangeState("Shoot_Down");
+			return;
+		}
 	}
 
-	if (true == IsPress('X'))
-	{
-		State.ChangeState("Shoot_Down");
-		return;
-	}
 
-	if (true == IsPress(VK_DOWN) && true == IsUp('C'))
+	if (true == IsFree('C'))
 	{
-		State.ChangeState("DuckIdle");
-		return;
+		if (true == IsPress(VK_DOWN))
+		{
+			State.ChangeState("DuckIdle");
+			return;
+		}
 	}
 }
 
@@ -916,9 +926,21 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 
 		if (true == IsDown(VK_DOWN))
 		{
-			State.ChangeState("Shoot_DiagonalDown");
+			State.ChangeState("Shoot_Down");
 			return;
 		}
+
+		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+		{
+			DirCheck();
+			AnimationDirSet(Renderer, Dir);
+		}
+	}
+
+	if (true == IsDown(VK_DOWN))
+	{
+		State.ChangeState("Shoot_Duck");
+		return;
 	}
 }
 
@@ -970,5 +992,17 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 	{
 		State.ChangeState("DuckIdle");
 		return;
+	}
+
+	if (true == IsUp(VK_DOWN))
+	{
+		State.ChangeState("Shoot_Straight");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	{
+		DirCheck();
+		AnimationDirSet(Renderer, Dir);
 	}
 }
