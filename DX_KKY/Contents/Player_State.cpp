@@ -967,6 +967,11 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 
 		if (true == IsPress(VK_DOWN))
 		{
+			if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+			{
+				State.ChangeState("Shoot_DiagonalDown");
+				return;
+			}
 			State.ChangeState("Shoot_Down");
 			return;
 		}
