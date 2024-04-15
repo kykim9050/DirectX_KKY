@@ -69,7 +69,7 @@ void APlayer::CreatePlayerAnimation()
 		Renderer->CreateAnimation("Player_Run_Shoot_Straight", "CupHead_Run_Shoot_Straight", 0.033f);
 		Renderer->CreateAnimation("Player_Run_Shoot_DiagonalUp", "CupHead_Run_Shoot_DiagonalUp", 0.033f);
 
-		Renderer->CreateAnimation("Player_Shoot_Straight", "CupHead_Shoot_Straight", 0.044f);
+		Renderer->CreateAnimation("Player_Shoot_Straight", "CupHead_Shoot_Straight", 0.033f);
 		Renderer->CreateAnimation("Player_Shoot_Up", "CupHead_Shoot_Up", 0.033f);
 		Renderer->CreateAnimation("Player_Shoot_Down", "CupHead_Shoot_Down", 0.033f, false);
 		Renderer->CreateAnimation("Player_Shoot_DiagonalUp", "CupHead_Shoot_DiagonalUp", 0.033f, false);
