@@ -388,11 +388,8 @@ void APlayer::DuckIdle(float _DeltaTime)
 
 	if (true == IsDown(VK_LEFT) || true == IsDown(VK_RIGHT))
 	{
-		if (false == DirCheck())
-		{
-			State.ChangeState("DuckIdle");
-			return;
-		}
+		DirCheck();
+		AnimationDirSet(Renderer, Dir);
 	}
 
 	if (true == IsDown('Z'))
