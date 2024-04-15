@@ -197,6 +197,12 @@ void APlayer::Idle(float _DeltaTime)
 
 	if (true == IsPress('X'))
 	{
+		if (true == IsPress(VK_UP))
+		{
+			State.ChangeState("IdleShoot_Up");
+			return;
+		}
+
 		State.ChangeState("IdleShoot_Straight");
 		return;
 	}
@@ -506,9 +512,25 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("IdleShoot_Up");
+		return;
+	}
 }
 
 void APlayer::IdleShoot_Up(float _DeltaTime)
 {
+	if (true == IsUp('X'))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
 
+	if (true == IsUp(VK_UP))
+	{
+		State.ChangeState("IdleShoot_Straight");
+		return;
+	}
 }
