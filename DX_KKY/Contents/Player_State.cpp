@@ -385,9 +385,16 @@ void APlayer::DuckIdle(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+	
 
-	if (true == IsDown(VK_LEFT) || true == IsDown(VK_RIGHT))
+	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
+		if (true == IsPress(VK_DOWN) && true == IsDown('C'))
+		{
+			State.ChangeState("Aim_DiagonalDown");
+			return;
+		}
+
 		DirCheck();
 		AnimationDirSet(Renderer, Dir);
 	}
@@ -402,6 +409,12 @@ void APlayer::DuckIdle(float _DeltaTime)
 	{
 		SetPrevState(State.GetCurStateName());
 		State.ChangeState("Dash");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN) && true == IsDown('C'))
+	{
+		State.ChangeState("Aim_Down");
 		return;
 	}
 
@@ -726,6 +739,12 @@ void APlayer::Aim_DiagonalDown(float _DeltaTime)
 
 	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
+		if (true == IsPress(VK_DOWN) && true == IsUp('C'))
+		{
+			State.ChangeState("DuckIdle");
+			return;
+		}
+
 		DirCheck();
 		AnimationDirSet(Renderer, Dir);
 	}
@@ -747,6 +766,12 @@ void APlayer::Aim_Down(float _DeltaTime)
 			State.ChangeState("Aim_DiagonalDown");
 			return;
 		}
+	}
+
+	if (true == IsPress(VK_DOWN) && true == IsUp('C'))
+	{
+		State.ChangeState("DuckIdle");
+		return;
 	}
 }
 
