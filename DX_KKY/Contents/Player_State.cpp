@@ -272,6 +272,12 @@ void APlayer::Run(float _DeltaTime)
 {
 	if (true == IsFree(VK_RIGHT) && true == IsFree(VK_LEFT))
 	{
+		if (true == IsPress(VK_UP))
+		{
+			State.ChangeState("Aim_Up");
+			return;
+		}
+
 		State.ChangeState("Idle");
 		return;
 	}
@@ -295,11 +301,22 @@ void APlayer::Run(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('C'))
+
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
-		State.ChangeState("Aim_Straight");
-		return;
+		if (true == IsPress(VK_UP) && true == IsDown('C'))
+		{
+			State.ChangeState("Aim_DiagonalUp");
+			return;
+		}
+
+		if (true == IsDown('C'))
+		{
+			State.ChangeState("Aim_Straight");
+			return;
+		}
 	}
+	
 
 	if (false == DirCheck())
 	{
@@ -587,23 +604,17 @@ void APlayer::Aim_Up(float _DeltaTime)
 		}
 	}
 
-	//if (true == IsFree('C') && true == IsUp(VK_UP))
-	//{
-	//	State.ChangeState("Idle");
-	//	return;
-	//}
+	if (true == IsUp(VK_UP))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
 
-	//if (true == IsPress('C') && true == IsUp(VK_UP))
-	//{
-	//	State.ChangeState("Aim_Straight");
-	//	return;
-	//}
-
-	//if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
-	//{
-	//	State.ChangeState("Run");
-	//	return;
-	//}
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("Run");
+		return;
+	}
 
 	//if (true == IsDown('X'))
 	//{
@@ -626,6 +637,15 @@ void APlayer::Aim_DiagonalUp(float _DeltaTime)
 		if (true == IsPress(VK_UP) && (true == IsUp(VK_RIGHT) || true == IsUp(VK_LEFT)))
 		{
 			State.ChangeState("Aim_Up");
+			return;
+		}
+	}
+
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	{
+		if (true == IsPress(VK_UP) && true == IsUp('C'))
+		{
+			State.ChangeState("Run");
 			return;
 		}
 	}
@@ -661,11 +681,20 @@ void APlayer::Aim_Straight(float _DeltaTime)
 		}
 	}
 
-	//if (true == IsUp('C'))
-	//{
-	//	State.ChangeState("Idle");
-	//	return;
-	//}
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	{
+		if (true == IsUp('C'))
+		{
+			State.ChangeState("Run");
+			return;
+		}
+	}
+
+	if (true == IsUp('C'))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
 
 	//if (true == IsDown('X'))
 	//{
