@@ -58,6 +58,7 @@ private:
 	void Dash(float _DeltaTime);
 	void DashAir(float _DeltaTime);
 	void AfterDashAir(float _DeltaTime);
+	void Aim_Up(float _DeltaTime);
 	void Aim_Straight(float _DeltaTime);
 	void IdleShoot_Straight(float _DeltaTime);
 	void IdleShoot_Up(float _DeltaTime);
