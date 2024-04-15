@@ -71,10 +71,10 @@ void APlayer::CreatePlayerAnimation()
 
 		Renderer->CreateAnimation("Player_Shoot_Straight", "CupHead_Shoot_Straight", 0.033f);
 		Renderer->CreateAnimation("Player_Shoot_Up", "CupHead_Shoot_Up", 0.033f);
-		Renderer->CreateAnimation("Player_Shoot_Down", "CupHead_Shoot_Down", 0.033f, false);
-		Renderer->CreateAnimation("Player_Shoot_DiagonalUp", "CupHead_Shoot_DiagonalUp", 0.033f, false);
-		Renderer->CreateAnimation("Player_Shoot_DiagonalDown", "CupHead_Shoot_DiagonalDown", 0.033f, false);
-		Renderer->CreateAnimation("Player_Duck_Shoot", "CupHead_Duck_Shoot", 0.033f, false);
+		Renderer->CreateAnimation("Player_Shoot_Down", "CupHead_Shoot_Down", 0.033f);
+		Renderer->CreateAnimation("Player_Shoot_DiagonalUp", "CupHead_Shoot_DiagonalUp", 0.033f);
+		Renderer->CreateAnimation("Player_Shoot_DiagonalDown", "CupHead_Shoot_DiagonalDown", 0.033f);
+		Renderer->CreateAnimation("Player_Duck_Shoot", "CupHead_Duck_Shoot", 0.033f);
 
 		Renderer->CreateAnimation("Player_SSAir_Straight", "CupHead_SSAir_Straight", 0.0416f, false);
 		Renderer->CreateAnimation("Player_SSAir_Up", "CupHead_SSAir_Up", 0.0416f, false);
