@@ -41,6 +41,12 @@ enum class EWorldPlayerDir
 	LeftUp,
 };
 
+enum class ECollisionOrder
+{
+	Player,
+	PlayerBullet,
+};
+
 enum class EActorDir
 {
 	None,

@@ -60,6 +60,7 @@ private:
 	/// </summary>
 	bool DirCheck();
 	void WallCheck(float _DeltaTime);
+	//float4 GetBulletInitPos();
 
 	void Idle(float _DeltaTime);
 	void Run(float _DeltaTime);

@@ -1333,6 +1333,9 @@ void APlayer::ShootBullet(float _DeltaTime)
 		ShootDelayTime += 0.5f + ShootDelayTime;
 
 		std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
+		
+		//float4 BulletPos = GetBulletInitPos();
+		//NewBullet->SetActorLocation(BulletPos);
 		NewBullet->SetActorLocation(GetActorLocation());
 	}
 }
