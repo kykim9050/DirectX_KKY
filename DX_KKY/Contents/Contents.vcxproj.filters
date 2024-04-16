@@ -108,6 +108,9 @@
     <ClInclude Include="MoveUnit.h">
       <Filter>Unit</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsCamera.h">
+      <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="MoveUnit.cpp">
       <Filter>Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsCamera.cpp">
+      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
