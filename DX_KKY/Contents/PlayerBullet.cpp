@@ -35,6 +35,20 @@ void APlayerBullet::CreateAnimation()
 	Renderer->CreateAnimation("BulletFlying", "Peashot_Loop", 0.034f);
 	Renderer->CreateAnimation("BulletSpawn1", "Peashot_Spawn", 0.034f, false);
 	Renderer->CreateAnimation("BulletSpawn2", "Peashot_Spawn2", 0.034f, false);
+
+	{
+		Renderer->SetFrameCallback("BulletSpawn1", 4, [this]()
+			{
+				State.ChangeState("Spawn2");
+			}
+		);
+
+		Renderer->SetFrameCallback("BulletSpawn2", 2, [this]()
+			{
+				State.ChangeState("Flying");
+			}
+		);
+	}
 }
 
 void APlayerBullet::StateInit()
@@ -49,9 +63,24 @@ void APlayerBullet::StateInit()
 	}
 
 	{
+		State.SetStartFunction("Spawn1", [this]()
+			{
+				Renderer->ChangeAnimation("BulletSpawn1");
+			}
+		);
+		State.SetStartFunction("Spawn2", [this]()
+			{
+				Renderer->ChangeAnimation("BulletSpawn2");
+			}
+		);
 		State.SetStartFunction("Flying", [this]()
 			{
 				Renderer->ChangeAnimation("BulletFlying");
+			}
+		);
+		State.SetStartFunction("Death", [this]()
+			{
+				Renderer->ChangeAnimation("BulletDeath");
 			}
 		);
 	}
@@ -60,7 +89,7 @@ void APlayerBullet::StateInit()
 		State.SetUpdateFunction("Flying", std::bind(&APlayerBullet::Flying, this, std::placeholders::_1));
 	}
 
-	State.ChangeState("Flying");
+	State.ChangeState("Spawn1");
 }
 
 void APlayerBullet::Flying(float _DeltaTime)
