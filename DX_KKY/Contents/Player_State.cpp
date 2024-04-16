@@ -729,6 +729,13 @@ void APlayer::Aim_Up(float _DeltaTime)
 		}
 	}
 
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
+
 	if (true == IsFree('C'))
 	{
 		if ((true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
@@ -777,6 +784,12 @@ void APlayer::Aim_DiagonalUp(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
 	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
 		if (true == IsPress(VK_UP) && true == IsUp('C'))
@@ -794,6 +807,7 @@ void APlayer::Aim_DiagonalUp(float _DeltaTime)
 
 void APlayer::Aim_Straight(float _DeltaTime)
 {
+	
 	// Aim 끼리 상태 변화
 	if (true == IsPress('C'))
 	{
@@ -846,11 +860,24 @@ void APlayer::Aim_Straight(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::Aim_DiagonalDown(float _DeltaTime)
 {
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
 	// Aim 끼리 상태 변화
 	if (true == IsPress('C'))
 	{
@@ -890,6 +917,12 @@ void APlayer::Aim_DiagonalDown(float _DeltaTime)
 
 void APlayer::Aim_Down(float _DeltaTime)
 {
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
 	// Aim 끼리 상태 변화
 	if (true == IsPress('C'))
 	{
@@ -910,6 +943,8 @@ void APlayer::Aim_Down(float _DeltaTime)
 			State.ChangeState("Shoot_Down");
 			return;
 		}
+
+
 	}
 
 
@@ -937,6 +972,11 @@ void APlayer::IdleShoot_Up(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
 
 	if (true == IsPress('C'))
 	{
@@ -958,16 +998,18 @@ void APlayer::IdleShoot_Up(float _DeltaTime)
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 {
-	//if (true == IsFree('C'))
-	//{
-	//	State.ChangeState("달리면서 대각선 위 발사");
-	//	return;
-	//}
-	
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
 	if (true == IsPress('C'))
 	{
 		if (true == IsUp('X'))
@@ -997,6 +1039,8 @@ void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 			return;
 		}
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::IdleShoot_Straight(float _DeltaTime)
@@ -1013,14 +1057,12 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('X'))
+	if (true == IsDown('Z'))
 	{
-		if (true == IsDown('Z'))
-		{
-			State.ChangeState("Jump");
-			return;
-		}
+		State.ChangeState("Jump");
+		return;
 	}
+
 
 	if (true == IsFree('C'))
 	{
@@ -1087,6 +1129,12 @@ void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
 	if (true == IsPress('C'))
 	{
 		if (true == IsUp(VK_DOWN))
@@ -1101,6 +1149,8 @@ void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 			return;
 		}
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::IdleShoot_Down(float _DeltaTime)
@@ -1108,6 +1158,12 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 	if (true == IsUp('X'))
 	{
 		State.ChangeState("Aim_Down");
+		return;
+	}
+
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
 		return;
 	}
 
@@ -1126,6 +1182,8 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 		return;
 
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::IdleShoot_Duck(float _DeltaTime)
@@ -1195,7 +1253,7 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 			return;
 		}
 
-		if (true == IsDown('C'))
+		if (true == IsPress('C'))
 		{
 			State.ChangeState("Shoot_DiagonalUp");
 			return;
@@ -1206,6 +1264,12 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 			State.ChangeState("Run_Shoot_Straight");
 			return;
 		}
+	}
+
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
 	}
 
 	if (true == IsDown(VK_SHIFT))
