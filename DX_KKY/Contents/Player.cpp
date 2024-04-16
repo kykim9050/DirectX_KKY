@@ -189,6 +189,7 @@ void APlayer::ResultMovementUpdate(float _DeltaTime)
 {
 	CalGravityVec(_DeltaTime);
 	CalJumpVec(_DeltaTime);
+	WallCheck(_DeltaTime);
 
 	Super::ResultMovementUpdate(_DeltaTime);
 }
@@ -201,4 +202,27 @@ void APlayer::CalGravityVec(float _DeltaTime)
 void APlayer::CalJumpVec(float _DeltaTime)
 {
 	Super::CalJumpVec(_DeltaTime);
+}
+
+void APlayer::WallCheck(float _DeltaTime)
+{
+	float4 CheckPos = GetActorLocation();
+	CheckPos.Y = -(CheckPos.Y + UContentsValue::PlayerCheckPosOffSet);
+
+	switch (Dir)
+	{
+	case EActorDir::Right:
+		CheckPos.X += UContentsValue::PlayerCheckPosOffSet;
+		break;
+	case EActorDir::Left:
+		CheckPos.X -= UContentsValue::PlayerCheckPosOffSet;
+		break;
+	default:
+		break;
+	}
+
+	if (true == PixelCheck(CheckPos, Color8Bit::Black))
+	{
+		SetSpeedVec(float4::Zero);
+	}
 }

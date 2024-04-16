@@ -428,7 +428,7 @@ void APlayer::Jump(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == BottomCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black))
 	{
 		if (true == IsPress(VK_DOWN))
 		{
@@ -581,7 +581,7 @@ void APlayer::Parry(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == BottomCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -607,7 +607,7 @@ void APlayer::AfterParry(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == BottomCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -650,7 +650,7 @@ void APlayer::AfterDashAir(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == BottomCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black))
 	{
 		State.ChangeState("Idle");
 		return;

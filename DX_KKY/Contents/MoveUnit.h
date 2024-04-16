@@ -26,7 +26,7 @@ protected:
 	virtual void CalJumpVec(float _DeltaTime);
 	void CalMovementVector(float _DeltaTime);
 	void ApplyMovement(float _DeltaTime);
-	bool BottomCheck(float4 _Pos, Color8Bit _Color);
+	bool PixelCheck(float4 _Pos, Color8Bit _Color);
 	void AddGravityVec(float _Ratio, float _DeltaTime);
 
 	/// <summary>

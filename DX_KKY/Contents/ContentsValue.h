@@ -16,6 +16,8 @@ public:
 	static const float ContentsCameraInitXPos;
 	static const float ContentsCameraInitYPos;
 
+	static const float PlayerCheckPosOffSet;
+
 	static std::shared_ptr<UEngineTexture> ColMapTexture;
 
 

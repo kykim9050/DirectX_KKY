@@ -58,6 +58,7 @@ private:
 	/// 방향이 다르면 false, 같으면 true
 	/// </summary>
 	bool DirCheck();
+	void WallCheck(float _DeltaTime);
 
 	void Idle(float _DeltaTime);
 	void Run(float _DeltaTime);
