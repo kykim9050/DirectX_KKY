@@ -21,6 +21,7 @@ enum class ERenderingOrder
 	StaticObject,
 	Object,
 	Dust,
+	PlayerBullet,
 	Player,
 	FrontLayer,
 	OldFilmEffect,
