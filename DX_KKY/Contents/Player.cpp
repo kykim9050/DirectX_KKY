@@ -46,6 +46,7 @@ void APlayer::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	State.Update(_DeltaTime);
+	ShootCheck(_DeltaTime);
 	
 	MakeDebugMSG();
 }

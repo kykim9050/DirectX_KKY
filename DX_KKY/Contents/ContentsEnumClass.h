@@ -10,6 +10,7 @@ enum class EActorType
 	Map,
 	Player,
 	Dust,
+	Bullet,
 };
 
 enum class ERenderingOrder
