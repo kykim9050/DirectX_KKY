@@ -2,6 +2,8 @@
 #include "MoveUnit.h"
 
 // Ό³Έν :
+class UCollision;
+class USpriteRenderer;
 class ABulletUnit : public UMoveUnit
 {
 	GENERATED_BODY(UMoveUnit)
@@ -20,9 +22,13 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	
+	virtual void StateInit();
+
+	USpriteRenderer* Renderer;
+	UCollision* Collision;
 
 private:
-
-
+	UStateManager State = UStateManager();
 };
 
