@@ -6,6 +6,8 @@
 
 #include "Player.h"
 
+std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
+
 APlayer::APlayer() 
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("PlayerRoot");
@@ -26,6 +28,8 @@ APlayer::~APlayer()
 void APlayer::BeginPlay()
 {
 	Super::BeginPlay();
+
+	SetMainPlayer(shared_from_this());
 
 	CreatePlayerAnimation();
 	

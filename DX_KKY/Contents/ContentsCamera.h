@@ -20,6 +20,15 @@ public:
 	UContentsCamera& operator=(const UContentsCamera& _Other) = delete;
 	UContentsCamera& operator=(UContentsCamera&& _Other) noexcept = delete;
 
+	inline void SetIsCameraMove(bool _Value)
+	{
+		IsCameraMove = _Value;
+	}
+	inline bool GetisCameraMove() const
+	{
+		return IsCameraMove;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -32,5 +41,8 @@ protected:
 private:
 	std::shared_ptr<UCamera> Camera = std::shared_ptr<UCamera>();
 	std::shared_ptr<AOldFilmEffect> OldFilm = std::shared_ptr<AOldFilmEffect>();
+	bool IsCameraMove = false;
+
+	void CameraMove(float _DeltaTime);
 };
 
