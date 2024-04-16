@@ -184,3 +184,21 @@ void APlayer::AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir)
 		break;
 	}
 }
+
+void APlayer::ResultMovementUpdate(float _DeltaTime)
+{
+	CalGravityVec(_DeltaTime);
+	CalJumpVec(_DeltaTime);
+
+	Super::ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::CalGravityVec(float _DeltaTime)
+{
+	Super::CalGravityVec(_DeltaTime);
+}
+
+void APlayer::CalJumpVec(float _DeltaTime)
+{
+	Super::CalJumpVec(_DeltaTime);
+}

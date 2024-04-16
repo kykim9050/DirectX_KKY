@@ -33,6 +33,10 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	void ResultMovementUpdate(float _DeltaTime) override;
+	void CalGravityVec(float _DeltaTime) override;
+	void CalJumpVec(float _DeltaTime) override;
+
 private:
 	static std::shared_ptr<APlayer> MainPlayer;
 
