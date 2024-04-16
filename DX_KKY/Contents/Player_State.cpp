@@ -251,7 +251,27 @@ void APlayer::StateInit()
 				AnimationDirSet(Renderer, Dir);
 			}
 		);
+
 	}
+
+	{
+		State.SetEndFunction("Run", [this]()
+			{
+				SetSpeedVec(float4::Zero);
+			}
+		);
+		State.SetEndFunction("Run_Shoot_DiagonalUp", [this]()
+			{
+				SetSpeedVec(float4::Zero);
+			}
+		);
+		State.SetEndFunction("Run_Shoot_Straight", [this]()
+			{
+				SetSpeedVec(float4::Zero);
+			}
+		);
+	}
+
 
 	State.ChangeState("Idle");
 }
@@ -1010,6 +1030,7 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 
 	if (true == IsPress('C'))
 	{
+
 		if (true == IsPress(VK_UP))
 		{
 			if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
@@ -1044,6 +1065,8 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 		State.ChangeState("Shoot_Duck");
 		return;
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
