@@ -24,16 +24,15 @@ void UContentsCamera::BeginPlay()
 
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
 	OldFilm->SetActorLocation(FVector{ UContentsValue::ContentsCameraInitXPos, UContentsValue::ContentsCameraInitYPos, 0.0f });
+
+	StateInit();
 }
 
 void UContentsCamera::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (true == GetisCameraMove())
-	{
-		CameraMove(_DeltaTime);
-	}
+	State.Update(_DeltaTime);
 }
 
 void UContentsCamera::End()
@@ -60,7 +59,6 @@ void UContentsCamera::CameraMove(float _DeltaTime)
 	CameraPos.Y = 0.0f;
 	CameraPos.Z = 0.0f;
 
-
 	float4 ChasePlayerVector = PlayerPos - CameraPos;
 
 	if (1.0f >= ChasePlayerVector.Size3D())
@@ -70,4 +68,40 @@ void UContentsCamera::CameraMove(float _DeltaTime)
 
 	Camera->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
 	OldFilm->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
+}
+
+void UContentsCamera::StateInit()
+{
+	{
+		State.CreateState("Idle");
+		State.CreateState("Move");
+	}
+
+	{
+		State.SetUpdateFunction("Idle", std::bind(&UContentsCamera::Idle, this, std::placeholders::_1));
+		State.SetUpdateFunction("Move", std::bind(&UContentsCamera::Move, this, std::placeholders::_1));
+	}
+
+	State.ChangeState("Idle");
+}
+
+void UContentsCamera::Idle(float _DeltaTime)
+{
+	if (true == GetIsCameraMove())
+	{
+		State.ChangeState("Move");
+		return;
+	}
+}
+
+void UContentsCamera::Move(float _DeltaTime)
+{
+	if (false == GetIsCameraMove())
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
+	CameraMove(_DeltaTime);
+
 }
