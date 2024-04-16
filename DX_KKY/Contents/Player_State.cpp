@@ -749,6 +749,8 @@ void APlayer::Aim_Up(float _DeltaTime)
 			return;
 		}
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::Aim_DiagonalUp(float _DeltaTime)
@@ -786,6 +788,8 @@ void APlayer::Aim_DiagonalUp(float _DeltaTime)
 		DirCheck();
 		AnimationDirSet(Renderer, Dir);
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::Aim_Straight(float _DeltaTime)
@@ -841,6 +845,8 @@ void APlayer::Aim_Straight(float _DeltaTime)
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::Aim_DiagonalDown(float _DeltaTime)
@@ -878,6 +884,8 @@ void APlayer::Aim_DiagonalDown(float _DeltaTime)
 		DirCheck();
 		AnimationDirSet(Renderer, Dir);
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayer::Aim_Down(float _DeltaTime)
@@ -913,6 +921,8 @@ void APlayer::Aim_Down(float _DeltaTime)
 			return;
 		}
 	}
+
+	ResultMovementUpdate(_DeltaTime);
 }
 
 
