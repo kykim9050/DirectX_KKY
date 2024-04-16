@@ -3,6 +3,7 @@
 enum class EActorType
 {
 	None,
+	ContentsCamera,
 	FilmEffect,
 	BackGroundAnimation,
 	BackGroundSubStaticObject,

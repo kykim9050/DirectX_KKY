@@ -3,6 +3,8 @@
 
 
 // Ό³Έν :
+class UCamera;
+class AOldFilmEffect;
 class UContentsCamera : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -28,6 +30,7 @@ protected:
 
 
 private:
-
+	std::shared_ptr<UCamera> Camera = std::shared_ptr<UCamera>();
+	std::shared_ptr<AOldFilmEffect> OldFilm = std::shared_ptr<AOldFilmEffect>();
 };
 
