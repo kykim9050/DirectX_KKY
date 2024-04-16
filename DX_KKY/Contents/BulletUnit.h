@@ -23,7 +23,7 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	
+
 	virtual void StateInit() {};
 
 	USpriteRenderer* Renderer;
