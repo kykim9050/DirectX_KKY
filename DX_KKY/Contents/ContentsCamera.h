@@ -3,6 +3,7 @@
 
 
 // Ό³Έν :
+class UStateManager;
 class UCamera;
 class AOldFilmEffect;
 class UContentsCamera : public AActor
@@ -24,7 +25,7 @@ public:
 	{
 		IsCameraMove = _Value;
 	}
-	inline bool GetisCameraMove() const
+	inline bool GetIsCameraMove() const
 	{
 		return IsCameraMove;
 	}
@@ -39,10 +40,15 @@ protected:
 
 
 private:
+	UStateManager State = UStateManager();
 	std::shared_ptr<UCamera> Camera = std::shared_ptr<UCamera>();
 	std::shared_ptr<AOldFilmEffect> OldFilm = std::shared_ptr<AOldFilmEffect>();
 	bool IsCameraMove = false;
 
 	void CameraMove(float _DeltaTime);
+
+	void StateInit();
+	void Idle(float _DeltaTime);
+	void Move(float _DeltaTime);
 };
 
