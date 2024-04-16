@@ -122,6 +122,7 @@ void APlayer::StateInit()
 				DirCheck();
 				SetJumpVec(GetPrevJumpVec());
 				SetAvailableParry(false);
+				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Parry");
 				AnimationDirSet(Renderer, Dir);
 			}
@@ -130,6 +131,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				SetJumpVec(GetPrevJumpVec());
+				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
 				AnimationDirSet(Renderer, Dir);
 			}
@@ -153,6 +155,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("AfterDashAir", [this]
 			{
 				DirCheck();
+				SetAvailableAddJumpVec(false);
 				SetJumpVec(GetPrevJumpVec());
 				SetGravityVec(GetPrevGravityVec());
 				Renderer->ChangeAnimation("Player_Jump");
@@ -584,15 +587,11 @@ void APlayer::Parry(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress(VK_LEFT))
+	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
-		SetSpeedVec(float4::Left * GetRunSpeed());
-		Renderer->SetDir(EEngineDir::Left);
-	}
-	if (true == IsPress(VK_RIGHT))
-	{
-		SetSpeedVec(float4::Right * GetRunSpeed());
-		Renderer->SetDir(EEngineDir::Right);
+		DirCheck();
+		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
+		AnimationDirSet(Renderer, Dir);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
@@ -620,15 +619,11 @@ void APlayer::AfterParry(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress(VK_LEFT))
+	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
-		SetSpeedVec(float4::Left * GetRunSpeed());
-		Renderer->SetDir(EEngineDir::Left);
-	}
-	if (true == IsPress(VK_RIGHT))
-	{
-		SetSpeedVec(float4::Right * GetRunSpeed());
-		Renderer->SetDir(EEngineDir::Right);
+		DirCheck();
+		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
+		AnimationDirSet(Renderer, Dir);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
