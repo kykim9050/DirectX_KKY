@@ -51,8 +51,8 @@ void APlayer::CreatePlayerAnimation()
 	{
 		Renderer->CreateAnimation("Player_Idle", "Cuphead_Idle", 0.04f);
 		Renderer->CreateAnimation("Player_Run", "CupHead_Run", 0.033f);
-		Renderer->CreateAnimation("Player_Jump", "CupHead_Jump", 0.044f);
-		Renderer->CreateAnimation("Player_Parry", "CupHead_Parry", 0.044f, false);
+		Renderer->CreateAnimation("Player_Jump", "CupHead_Jump", 0.033f);
+		Renderer->CreateAnimation("Player_Parry", "CupHead_Parry", 0.033f, false);
 
 		Renderer->CreateAnimation("Player_Aim_Straight", "CupHead_Aim_Straight", 0.04f);
 		Renderer->CreateAnimation("Player_Aim_Up", "CupHead_Aim_Up", 0.04f);

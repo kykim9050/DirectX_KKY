@@ -120,6 +120,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Parry", [this]
 			{
 				DirCheck();
+				SetJumpVec(GetPrevJumpVec());
 				SetAvailableParry(false);
 				Renderer->ChangeAnimation("Player_Parry");
 				AnimationDirSet(Renderer, Dir);
@@ -144,6 +145,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("DashAir", [this]
 			{
 				DirCheck();
+				SetJumpVec(GetPrevJumpVec());
 				Renderer->ChangeAnimation("Player_Dash_Air");
 				AnimationDirSet(Renderer, Dir);
 			}
@@ -270,6 +272,12 @@ void APlayer::StateInit()
 				SetSpeedVec(float4::Zero);
 			}
 		);
+		State.SetEndFunction("Jump", [this]()
+			{
+				SetPrevJumpVec(GetJumpVec());
+				SetJumpVec(float4::Zero);
+			}
+		);
 	}
 
 
@@ -313,7 +321,7 @@ void APlayer::Idle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown(VK_DOWN))
+	if (true == IsPress(VK_DOWN))
 	{
 		State.ChangeState("Duck");
 		return;
@@ -395,7 +403,7 @@ void APlayer::Run(float _DeltaTime)
 			return;
 		}
 
-		if (true == IsDown('C'))
+		if (true == IsPress('C'))
 		{
 			State.ChangeState("Aim_Straight");
 			return;
@@ -419,9 +427,14 @@ void APlayer::Jump(float _DeltaTime)
 
 	if (true == BottomCheck(Pos, Color8Bit::Black))
 	{
-
 		if (true == IsPress(VK_DOWN))
 		{
+			if (true == IsPress('C'))
+			{
+				State.ChangeState("Aim_Straight");
+				return;
+			}
+
 			State.ChangeState("Duck");
 			return;
 		}
@@ -567,19 +580,7 @@ void APlayer::Parry(float _DeltaTime)
 
 	if (true == BottomCheck(Pos, Color8Bit::Black))
 	{
-		if (true == IsPress(VK_DOWN))
-		{
-			State.ChangeState("Duck");
-			return;
-		}
-
 		State.ChangeState("Idle");
-		return;
-	}
-
-	if (true == IsDown(VK_SHIFT))
-	{
-		State.ChangeState("DashAir");
 		return;
 	}
 
@@ -609,14 +610,6 @@ void APlayer::AfterParry(float _DeltaTime)
 
 	if (true == BottomCheck(Pos, Color8Bit::Black))
 	{
-		if (true == IsPress(VK_DOWN))
-		{
-			DirCheck();
-			State.ChangeState("Duck");
-			return;
-		}
-
-		DirCheck();
 		State.ChangeState("Idle");
 		return;
 	}
@@ -653,12 +646,6 @@ void APlayer::Dash(float _DeltaTime)
 
 void APlayer::DashAir(float _DeltaTime)
 {
-	if (true == GetAvailableParry() && true == IsDown('Z'))
-	{
-		State.ChangeState("Parry");
-		return;
-	}
-
 	AddGravityVec(0.4f, _DeltaTime);
 	AddActorLocation(MoveDir(Dir) * GetDashSpeed() * _DeltaTime);
 }
@@ -670,13 +657,6 @@ void APlayer::AfterDashAir(float _DeltaTime)
 
 	if (true == BottomCheck(Pos, Color8Bit::Black))
 	{
-
-		if (true == IsPress(VK_DOWN))
-		{
-			State.ChangeState("Duck");
-			return;
-		}
-
 		State.ChangeState("Idle");
 		return;
 	}
@@ -811,25 +791,25 @@ void APlayer::Aim_Straight(float _DeltaTime)
 	// Aim 끼리 상태 변화
 	if (true == IsPress('C'))
 	{
-		if (true == IsDown(VK_DOWN) && (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
+		if (true == IsPress(VK_DOWN) && (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
 		{
 			State.ChangeState("Aim_DiagonalDown");
 			return;
 		}
 
-		if (true == IsDown(VK_UP) && (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
+		if (true == IsPress(VK_UP) && (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
 		{
 			State.ChangeState("Aim_DiagonalUp");
 			return;
 		}
 
-		if (true == IsDown(VK_DOWN))
+		if (true == IsPress(VK_DOWN))
 		{
 			State.ChangeState("Aim_Down");
 			return;
 		}
 
-		if (true == IsDown(VK_UP))
+		if (true == IsPress(VK_UP))
 		{
 			State.ChangeState("Aim_Up");
 			return;
@@ -1150,6 +1130,12 @@ void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 		}
 	}
 
+	if (true == IsFree('C'))
+	{
+		State.ChangeState("Shoot_Duck");
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -1169,7 +1155,7 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 
 	if (true == IsPress('C'))
 	{
-		if (true == IsDown(VK_RIGHT) || true == IsDown(VK_LEFT))
+		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 		{
 			State.ChangeState("Shoot_DiagonalDown");
 			return;
