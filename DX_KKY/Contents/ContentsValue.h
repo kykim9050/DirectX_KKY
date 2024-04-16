@@ -12,6 +12,9 @@ public:
 	static const float CameraInitZValue;
 	static const FVector WorldMapCameraInitValue;
 
+	static const float4 ContentsCameraInitPos;
+	static const float ContentsCameraInitXPos;
+	static const float ContentsCameraInitYPos;
 
 	static std::shared_ptr<UEngineTexture> ColMapTexture;
 

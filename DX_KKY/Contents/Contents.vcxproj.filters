@@ -84,9 +84,6 @@
     <ClInclude Include="OldFilmEffect.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
-    <ClInclude Include="MapSubObject.h">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
-    </ClInclude>
     <ClInclude Include="WorldGameMode.h">
       <Filter>Level\PlayLevel\WorldLevel</Filter>
     </ClInclude>
@@ -147,9 +144,6 @@
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
     <ClCompile Include="OldFilmEffect.cpp">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
-    </ClCompile>
-    <ClCompile Include="MapSubObject.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
     <ClCompile Include="WorldGameMode.cpp">
