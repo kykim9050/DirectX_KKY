@@ -29,6 +29,11 @@ void UContentsCamera::BeginPlay()
 void UContentsCamera::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == GetisCameraMove())
+	{
+		CameraMove(_DeltaTime);
+	}
 }
 
 void UContentsCamera::End()
@@ -44,4 +49,25 @@ void UContentsCamera::LevelStart(ULevel* _PrevLevel)
 void UContentsCamera::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+}
+
+void UContentsCamera::CameraMove(float _DeltaTime)
+{
+	float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
+	float4 CameraPos = Camera->GetActorLocation();
+	PlayerPos.Y = 0.0f;
+	PlayerPos.Z = 0.0f;
+	CameraPos.Y = 0.0f;
+	CameraPos.Z = 0.0f;
+
+
+	float4 ChasePlayerVector = PlayerPos - CameraPos;
+
+	if (1.0f >= ChasePlayerVector.Size3D())
+	{
+		return;
+	}
+
+	Camera->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
+	OldFilm->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
 }

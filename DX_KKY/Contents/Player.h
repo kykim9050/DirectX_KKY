@@ -4,7 +4,7 @@
 // Ό³Έν :
 class UStateManager;
 class USpriteRenderer;
-class APlayer : public UMoveUnit
+class APlayer : public UMoveUnit , public std::enable_shared_from_this<APlayer>
 {
 	GENERATED_BODY(UMoveUnit)
 
@@ -19,6 +19,11 @@ public:
 	APlayer& operator=(const APlayer& _Other) = delete;
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
 
+	inline static std::shared_ptr<APlayer> GetMainPlayer()
+	{
+		return MainPlayer;
+	}
+
 	inline USpriteRenderer* GetRenderer() const
 	{
 		return Renderer;
@@ -29,6 +34,8 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
+	static std::shared_ptr<APlayer> MainPlayer;
+
 	USpriteRenderer* Renderer;
 	UStateManager State = UStateManager();
 	EActorDir Dir = EActorDir::Right;
@@ -77,6 +84,11 @@ private:
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
 
+
+	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)
+	{
+		MainPlayer = _Player;
+	}
 	inline float GetRunSpeed() const
 	{
 		return RunSpeed;
