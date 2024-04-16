@@ -25,8 +25,8 @@ void UMoveUnit::Tick(float _DeltaTime)
 void UMoveUnit::ResultMovementUpdate(float _DeltaTime)
 {
 	//CalHorizonVelocityVector(_DeltaTime);
-	CalGravityVec(_DeltaTime);
-	CalJumpVec(_DeltaTime);
+	//CalGravityVec(_DeltaTime);
+	//CalJumpVec(_DeltaTime);
 	CalMovementVector(_DeltaTime);
 	ApplyMovement(_DeltaTime);
 }
@@ -45,7 +45,6 @@ void UMoveUnit::ApplyMovement(float _DeltaTime)
 
 void UMoveUnit::CalGravityVec(float _DeltaTime)
 {
-
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 

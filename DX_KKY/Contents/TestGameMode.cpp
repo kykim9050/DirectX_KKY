@@ -48,7 +48,7 @@ void ATestGameMode::BeginPlay()
 	Player->SetActorLocation(FVector{ 640.0f, -360.0f, 200.0f });
 	ColMap->SetActorLocation(FVector{ 3100.0f, -405.0f, 500.0f });
 
-	Camera->SetIsCameraMove(true);
+	//Camera->SetIsCameraMove(true);
 }
 
 void ATestGameMode::Tick(float _DeltaTime)

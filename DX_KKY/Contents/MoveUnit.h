@@ -21,12 +21,12 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	virtual void ResultMovementUpdate(float _DeltaTime);
+	virtual void CalGravityVec(float _DeltaTime);
+	virtual void CalJumpVec(float _DeltaTime);
 	void CalMovementVector(float _DeltaTime);
-	void ResultMovementUpdate(float _DeltaTime);
 	void ApplyMovement(float _DeltaTime);
-	void CalGravityVec(float _DeltaTime);
 	bool BottomCheck(float4 _Pos, Color8Bit _Color);
-	void CalJumpVec(float _DeltaTime);
 	void AddGravityVec(float _Ratio, float _DeltaTime);
 
 	/// <summary>
