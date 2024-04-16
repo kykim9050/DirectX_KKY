@@ -43,7 +43,7 @@
     <Filter Include="Level\PlayLevel\WorldLevel\Object">
       <UniqueIdentifier>{590efd6d-e592-4294-8155-ea6e72a19e8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Unit">
+    <Filter Include="Level\PlayLevel\CommonObject\Unit">
       <UniqueIdentifier>{85f58d77-7896-4f58-ab83-925dc8e620f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -103,10 +103,13 @@
       <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
     </ClInclude>
     <ClInclude Include="MoveUnit.h">
-      <Filter>Unit</Filter>
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
     <ClInclude Include="ContentsCamera.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletUnit.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -168,10 +171,13 @@
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
     <ClCompile Include="MoveUnit.cpp">
-      <Filter>Unit</Filter>
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
     <ClCompile Include="ContentsCamera.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletUnit.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
