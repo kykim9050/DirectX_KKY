@@ -1,8 +1,9 @@
 #include "PreCompile.h"
+#include <EngineCore/SpriteRenderer.h>
 
 #include "Player.h"
-#include <EngineCore/SpriteRenderer.h>
 #include "MoveUnit.h"
+#include "PlayerBullet.h"
 
 void APlayer::StateInit()
 {
@@ -1321,4 +1322,25 @@ void APlayer::Run_Shoot_Straight(float _DeltaTime)
 
 	SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
 	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::ShootBullet(float _DeltaTime)
+{
+	ShootDelayTime -= _DeltaTime;
+
+	if (0.0f >= ShootDelayTime)
+	{
+		ShootDelayTime += 0.5f + ShootDelayTime;
+
+		std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
+		NewBullet->SetActorLocation(GetActorLocation());
+	}
+}
+
+void APlayer::ShootCheck(float _DeltaTime)
+{
+	if (true == IsPress('X'))
+	{
+		ShootBullet(_DeltaTime);
+	}
 }

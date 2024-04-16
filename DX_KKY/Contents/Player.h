@@ -47,6 +47,7 @@ private:
 	float RunSpeed = 500.0f;
 	float JumpVal = 900.0f;
 	float DashSpeed = 800.0f;
+	float ShootDelayTime = 0.5f;
 	std::string PrevState = "None";
 
 	bool AvailableParry = true;
@@ -85,6 +86,9 @@ private:
 
 	void Run_Shoot_DiagonalUp(float _DeltaTime);
 	void Run_Shoot_Straight(float _DeltaTime);
+
+	void ShootBullet(float _DeltaTime);
+	void ShootCheck(float _DeltaTime);
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
