@@ -1,5 +1,6 @@
 #pragma once
 #include "MoveUnit.h"
+#include <EngineCore/StateManager.h>
 
 // Ό³Έν :
 class UCollision;
@@ -23,12 +24,12 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	
-	virtual void StateInit();
+	virtual void StateInit() {};
 
 	USpriteRenderer* Renderer;
 	UCollision* Collision;
+	UStateManager State = UStateManager();
 
 private:
-	UStateManager State = UStateManager();
 };
 

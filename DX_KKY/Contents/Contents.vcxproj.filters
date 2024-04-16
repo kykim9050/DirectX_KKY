@@ -111,6 +111,9 @@
     <ClInclude Include="BulletUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -178,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="BulletUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

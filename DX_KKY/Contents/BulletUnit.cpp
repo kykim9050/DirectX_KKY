@@ -28,7 +28,3 @@ void ABulletUnit::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
-
-void ABulletUnit::StateInit()
-{
-}
