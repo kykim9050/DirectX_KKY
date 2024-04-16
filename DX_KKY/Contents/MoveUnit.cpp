@@ -50,7 +50,7 @@ void UMoveUnit::CalGravityVec(float _DeltaTime)
 
 	GravityVec += GravityAccVec * _DeltaTime;
 	
-	if (true == BottomCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black))
 	{
 		GravityVec = float4::Zero;
 	}
@@ -61,7 +61,7 @@ void UMoveUnit::AddGravityVec(float _Ratio, float _DeltaTime)
 	GravityVec += GravityAccVec * _Ratio * _DeltaTime;
 }
 
-bool UMoveUnit::BottomCheck(float4 _Pos , Color8Bit _Color)
+bool UMoveUnit::PixelCheck(float4 _Pos , Color8Bit _Color)
 {
 	std::shared_ptr<UEngineTexture> CheckTexture = UContentsValue::ColMapTexture;
 
