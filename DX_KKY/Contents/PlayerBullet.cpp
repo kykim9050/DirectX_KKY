@@ -19,6 +19,10 @@ void APlayerBullet::BeginPlay()
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::PlayerBullet);
 
+	Collision->SetScale(FVector(100.0f, 100.0f));
+	Collision->SetCollisionGroup(ECollisionOrder::PlayerBullet);
+	Collision->SetCollisionType(ECollisionType::Rect);
+
 	CreateAnimation();
 
 	StateInit();
