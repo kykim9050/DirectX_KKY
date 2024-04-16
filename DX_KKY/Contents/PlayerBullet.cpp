@@ -27,6 +27,8 @@ void APlayerBullet::BeginPlay()
 void APlayerBullet::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	State.Update(_DeltaTime);
 }
 
 void APlayerBullet::CreateAnimation()
@@ -39,7 +41,7 @@ void APlayerBullet::CreateAnimation()
 	{
 		Renderer->SetFrameCallback("BulletSpawn1", 4, [this]()
 			{
-				State.ChangeState("Spawn2");
+				Renderer->ChangeAnimation("BulletSpawn2");
 			}
 		);
 
@@ -56,21 +58,15 @@ void APlayerBullet::StateInit()
 	Super::StateInit();
 
 	{
-		State.CreateState("Spawn1");
-		State.CreateState("Spawn2");
+		State.CreateState("Spawn");
 		State.CreateState("Flying");
 		State.CreateState("Death");
 	}
 
 	{
-		State.SetStartFunction("Spawn1", [this]()
+		State.SetStartFunction("Spawn", [this]()
 			{
 				Renderer->ChangeAnimation("BulletSpawn1");
-			}
-		);
-		State.SetStartFunction("Spawn2", [this]()
-			{
-				Renderer->ChangeAnimation("BulletSpawn2");
 			}
 		);
 		State.SetStartFunction("Flying", [this]()
@@ -86,13 +82,26 @@ void APlayerBullet::StateInit()
 	}
 
 	{
+		State.SetUpdateFunction("Spawn", std::bind(&APlayerBullet::Spawn, this, std::placeholders::_1));
 		State.SetUpdateFunction("Flying", std::bind(&APlayerBullet::Flying, this, std::placeholders::_1));
+		State.SetUpdateFunction("Death", std::bind(&APlayerBullet::Death, this, std::placeholders::_1));
 	}
 
-	State.ChangeState("Spawn1");
+	State.ChangeState("Spawn");
 }
 
 void APlayerBullet::Flying(float _DeltaTime)
 {
+	SetSpeedVec(float4::Right * 1000.0f);
+	ResultMovementUpdate(_DeltaTime);
+}
 
+void APlayerBullet::Death(float _DeltaTime)
+{
+
+}
+
+void APlayerBullet::ResultMovementUpdate(float _DeltaTime)
+{
+	Super::ResultMovementUpdate(_DeltaTime);
 }
