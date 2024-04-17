@@ -114,6 +114,9 @@
     <ClInclude Include="PlayerBullet.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
+    <ClInclude Include="BulletFX.h">
+      <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -183,6 +186,9 @@
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Level\PlayLevel\CommonObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletFX.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
   </ItemGroup>

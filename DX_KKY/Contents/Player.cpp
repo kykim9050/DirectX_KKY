@@ -6,6 +6,7 @@
 
 #include "Player.h"
 #include "PlayerBullet.h"
+#include "BulletFX.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -237,6 +238,7 @@ void APlayer::ShootBullet(float _DeltaTime)
 		ShootDelayTime += ShootDelayInitTime + ShootDelayTime;
 
 		std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
+		std::shared_ptr<ABulletFX> BulletFX = GetWorld()->SpawnActor<ABulletFX>("BulletFX", EActorType::FX);
 
 		FVector InitPos = FVector::Zero;
 		FVector InitRot = FVector::Zero;
@@ -244,6 +246,7 @@ void APlayer::ShootBullet(float _DeltaTime)
 		GetBulletInitPosAndRot(InitPos, InitRot, NewBullet);
 		NewBullet->SetActorLocation(InitPos);
 		NewBullet->SetActorRotation(InitRot);
+		BulletFX->SetActorLocation(InitPos);
 	}
 
 }

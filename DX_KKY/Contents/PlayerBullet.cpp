@@ -18,6 +18,8 @@ void APlayerBullet::BeginPlay()
 {
 	Super::BeginPlay();
 
+	CreateAnimation();
+
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::PlayerBullet);
 
@@ -25,8 +27,6 @@ void APlayerBullet::BeginPlay()
 	Collision->SetCollisionGroup(ECollisionOrder::PlayerBullet);
 	Collision->SetCollisionType(ECollisionType::Rect);
 	Collision->SetActive(false);
-
-	CreateAnimation();
 
 	StateInit();
 }
@@ -74,7 +74,7 @@ void APlayerBullet::StateInit()
 	{
 		State.SetStartFunction("Spawn", [this]()
 			{
-				Renderer->ChangeAnimation("BulletSpawn1");
+				Renderer->ChangeAnimation("BulletSpawn2");
 			}
 		);
 		State.SetStartFunction("Flying", [this]()
