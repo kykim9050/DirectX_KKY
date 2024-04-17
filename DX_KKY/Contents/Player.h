@@ -49,8 +49,8 @@ private:
 	float RunSpeed = 500.0f;
 	float JumpVal = 900.0f;
 	float DashSpeed = 800.0f;
-	float ShootDelayTime = 0.1f;
-	float ShootDelayInitTime = 0.1f;
+	float ShootDelayTime = 0.25f;
+	float ShootDelayInitTime = 0.25f;
 	std::string PrevState = "None";
 
 	bool AvailableParry = true;
