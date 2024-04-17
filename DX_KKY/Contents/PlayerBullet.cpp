@@ -6,6 +6,8 @@
 
 APlayerBullet::APlayerBullet()
 {
+	SetHorizontalSpeed(1000.0f);
+	SetVerticalSpeed(1000.0f);
 }
 
 APlayerBullet::~APlayerBullet()
@@ -98,12 +100,8 @@ void APlayerBullet::StateInit()
 
 void APlayerBullet::Flying(float _DeltaTime)
 {
-	//if ()
-	//{
-
-	//}
-
-	SetSpeedVec(float4::Right * BulletSpeed);
+	SetSpeedVec(GetHorizontalDir() * BulletSpeed);
+	SetJumpVec(GetVerticalDir() * BulletSpeed);
 	ResultMovementUpdate(_DeltaTime);
 }
 

@@ -241,8 +241,7 @@ void APlayer::ShootBullet(float _DeltaTime)
 		FVector InitPos = FVector::Zero;
 		FVector InitRot = FVector::Zero;
 
-		GetBulletInitPosAndRot(InitPos, InitRot);
-
+		GetBulletInitPosAndRot(InitPos, InitRot, NewBullet);
 		NewBullet->SetActorLocation(InitPos);
 		NewBullet->SetActorRotation(InitRot);
 	}
@@ -257,7 +256,7 @@ void APlayer::ShootCheck(float _DeltaTime)
 	}
 }
 
-void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
+void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet)
 {
 	DirCheck();
 
@@ -265,6 +264,7 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
 	FVector& ResultPos = _Pos;
 	FVector& ResultRot = _Rot;
 	FVector PlusPos = FVector::Zero;
+	std::shared_ptr<APlayerBullet>& Bullet = _Bullet;
 
 	switch (ShootType)
 	{
@@ -273,21 +273,29 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
 		break;
 	case EBulletShootType::UpShoot:
 		PlusPos = UContentsValue::RightUp_BulletInitPos;
+		Bullet->SetVerticalDir(float4::Up);
 		break;
 	case EBulletShootType::DiagonalUpShoot:
 		PlusPos = UContentsValue::DiagUp_BulletInitPos;
+		Bullet->SetVerticalDir(float4::Up);
+		Bullet->SetHorizontalDir(float4::Right);
 		break;
 	case EBulletShootType::StraightShoot:
 		PlusPos = UContentsValue::Straight_BulletInitPos;
+		Bullet->SetHorizontalDir(float4::Right);
 		break;
 	case EBulletShootType::DiagonalDownShoot:
 		PlusPos = UContentsValue::DiagDown_BulletInitPos;
+		Bullet->SetVerticalDir(float4::Down);
+		Bullet->SetHorizontalDir(float4::Right);
 		break;
 	case EBulletShootType::DownShoot:
 		PlusPos = UContentsValue::RightDown_BulletInitPos;
+		Bullet->SetVerticalDir(float4::Down);
 		break;
 	case EBulletShootType::DuckShoot:
 		PlusPos = UContentsValue::Duck_BulletInitPos;
+		Bullet->SetHorizontalDir(float4::Right);
 		break;
 	default:
 		break;
@@ -296,8 +304,21 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
 	switch (Dir)
 	{
 	case EActorDir::Left:
+	{
 		PlusPos.X = -PlusPos.X;
+		
+		switch (ShootType)
+		{
+		case EBulletShootType::UpShoot:
+		case EBulletShootType::DownShoot:
+			break;
+		default:
+			Bullet->SetHorizontalDir(float4::Left);
+			break;
+		}
+		
 		break;
+	}
 	case EActorDir::Right:
 	default:
 		break;
