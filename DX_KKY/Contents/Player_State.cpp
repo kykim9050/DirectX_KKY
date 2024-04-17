@@ -19,6 +19,7 @@ void APlayer::StateInit()
 		State.CreateState("Dash");
 		State.CreateState("DashAir");
 		State.CreateState("AfterDashAir");
+		State.CreateState("DownJump");
 
 		State.CreateState("Aim_Up");
 		State.CreateState("Aim_DiagonalUp");
@@ -37,6 +38,8 @@ void APlayer::StateInit()
 		State.CreateState("Run_Shoot_DiagonalUp");
 
 
+
+
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
 		State.SetUpdateFunction("Run", std::bind(&APlayer::Run, this, std::placeholders::_1));
 		State.SetUpdateFunction("Jump", std::bind(&APlayer::Jump, this, std::placeholders::_1));
@@ -47,6 +50,7 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Dash", std::bind(&APlayer::Dash, this, std::placeholders::_1));
 		State.SetUpdateFunction("DashAir", std::bind(&APlayer::DashAir, this, std::placeholders::_1));
 		State.SetUpdateFunction("AfterDashAir", std::bind(&APlayer::AfterDashAir, this, std::placeholders::_1));
+		State.SetUpdateFunction("DownJump", std::bind(&APlayer::DownJump, this, std::placeholders::_1));
 
 		State.SetUpdateFunction("Aim_Up", std::bind(&APlayer::Aim_Up, this, std::placeholders::_1));
 		State.SetUpdateFunction("Aim_DiagonalUp", std::bind(&APlayer::Aim_DiagonalUp, this, std::placeholders::_1));
@@ -168,6 +172,17 @@ void APlayer::StateInit()
 				SetAvailableAddJumpVec(false);
 				SetJumpVec(GetPrevJumpVec());
 				SetGravityVec(GetPrevGravityVec());
+				Renderer->ChangeAnimation("Player_Jump");
+				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::JumpShoot);
+			}
+		);
+		State.SetStartFunction("DownJump", [this]
+			{
+				DirCheck();
+				AddActorLocation(float4::Down * 30.0f);
+				SetAvailableAddJumpVec(false);
+				//SetGravityVec(GetPrevGravityVec());
 				Renderer->ChangeAnimation("Player_Jump");
 				AnimationDirSet(Renderer, Dir);
 				SetShootType(EBulletShootType::JumpShoot);
@@ -303,6 +318,11 @@ void APlayer::StateInit()
 			{
 				SetPrevJumpVec(GetJumpVec());
 				SetJumpVec(float4::Zero);
+			}
+		);
+		State.SetEndFunction("DownJump", [this]()
+			{
+
 			}
 		);
 	}
@@ -454,7 +474,7 @@ void APlayer::Jump(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == PixelCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
 	{
 		if (true == IsPress(VK_DOWN))
 		{
@@ -518,6 +538,11 @@ void APlayer::DuckIdle(float _DeltaTime)
 	{
 		if (true == IsDown('Z'))
 		{
+			if (true == DownJumpCheck())
+			{
+				State.ChangeState("DownJump");
+				return;
+			}
 			State.ChangeState("Jump");
 			return;
 		}
@@ -582,6 +607,12 @@ void APlayer::Duck(float _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
+		if (true == IsPress(VK_DOWN) && true == DownJumpCheck())
+		{
+			State.ChangeState("DownJump");
+			return;
+		}
+
 		State.ChangeState("Jump");
 		return;
 	}
@@ -609,7 +640,7 @@ void APlayer::Parry(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == PixelCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -637,7 +668,7 @@ void APlayer::AfterParry(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == PixelCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -682,7 +713,7 @@ void APlayer::AfterDashAir(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == PixelCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -1371,3 +1402,18 @@ void APlayer::Run_Shoot_Straight(float _DeltaTime)
 	ResultMovementUpdate(_DeltaTime);
 }
 
+void APlayer::DownJump(float _DeltaTime)
+{
+	ShootCheck(_DeltaTime);
+
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == PixelCheck(Pos, Color8Bit::Black))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
+	ResultMovementUpdate(_DeltaTime);
+}

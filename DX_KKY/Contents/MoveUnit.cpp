@@ -50,7 +50,7 @@ void UMoveUnit::CalGravityVec(float _DeltaTime)
 
 	GravityVec += GravityAccVec * _DeltaTime;
 	
-	if (true == PixelCheck(Pos, Color8Bit::Black))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
 	{
 		GravityVec = float4::Zero;
 	}

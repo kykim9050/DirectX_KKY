@@ -226,6 +226,7 @@ void APlayer::WallCheck(float _DeltaTime)
 	if (true == PixelCheck(CheckPos, Color8Bit::Black))
 	{
 		SetSpeedVec(float4::Zero);
+		return;
 	}
 }
 
@@ -435,4 +436,14 @@ void APlayer::JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlaye
 	}
 
 	return;
+}
+
+bool APlayer::DownJumpCheck()
+{
+	if (true == PixelCheck(GetActorLocation(), Color8Bit::Blue))
+	{
+		return true;
+	}
+
+	return false;
 }
