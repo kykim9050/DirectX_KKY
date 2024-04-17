@@ -23,10 +23,9 @@ void APlayerBullet::BeginPlay()
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::PlayerBullet);
 
-	Collision->SetScale(FVector(100.0f, 100.0f));
+	Collision->SetScale(UContentsValue::PlayerBulletColSize);
 	Collision->SetCollisionGroup(ECollisionOrder::PlayerBullet);
 	Collision->SetCollisionType(ECollisionType::Rect);
-	Collision->SetActive(false);
 
 	StateInit();
 }
@@ -42,19 +41,11 @@ void APlayerBullet::CreateAnimation()
 {
 	Renderer->CreateAnimation("BulletDeath", "Peashot_Death", 0.034f, false);
 	Renderer->CreateAnimation("BulletFlying", "Peashot_Loop", 0.034f);
-	Renderer->CreateAnimation("BulletSpawn1", "Peashot_Spawn", 0.034f, false);
-	Renderer->CreateAnimation("BulletSpawn2", "Peashot_Spawn2", 0.034f, false);
+	Renderer->CreateAnimation("BulletSpawn", "Peashot_Spawn2", 0.034f, false);
 
 	{
-		Renderer->SetFrameCallback("BulletSpawn1", 4, [this]()
+		Renderer->SetFrameCallback("BulletSpawn", 2, [this]()
 			{
-				Renderer->ChangeAnimation("BulletSpawn2");
-			}
-		);
-
-		Renderer->SetFrameCallback("BulletSpawn2", 2, [this]()
-			{
-				Collision->SetActive(true);
 				State.ChangeState("Flying");
 			}
 		);
@@ -74,7 +65,7 @@ void APlayerBullet::StateInit()
 	{
 		State.SetStartFunction("Spawn", [this]()
 			{
-				Renderer->ChangeAnimation("BulletSpawn2");
+				Renderer->ChangeAnimation("BulletSpawn");
 			}
 		);
 		State.SetStartFunction("Flying", [this]()
@@ -99,6 +90,13 @@ void APlayerBullet::StateInit()
 }
 
 void APlayerBullet::Flying(float _DeltaTime)
+{
+	SetSpeedVec(GetHorizontalDir() * BulletSpeed);
+	SetJumpVec(GetVerticalDir() * BulletSpeed);
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayerBullet::Spawn(float _DeltaTime)
 {
 	SetSpeedVec(GetHorizontalDir() * BulletSpeed);
 	SetJumpVec(GetVerticalDir() * BulletSpeed);
