@@ -114,7 +114,8 @@ void APlayer::CreatePlayerAnimation()
 		Renderer->SetFrameCallback("Player_Dash", 8, [this]()
 			{
 				AddActorLocation(MoveDir(Dir) * 10.0f);
-				State.ChangeState(GetPrevState());
+				//State.ChangeState(GetPrevState());
+				State.ChangeState("FallDown");
 			}
 		);
 		Renderer->SetFrameCallback("Player_Dash_Air", 8, [this]()

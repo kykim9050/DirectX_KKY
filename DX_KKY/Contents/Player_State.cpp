@@ -20,6 +20,7 @@ void APlayer::StateInit()
 		State.CreateState("DashAir");
 		State.CreateState("AfterDashAir");
 		State.CreateState("DownJump");
+		State.CreateState("FallDown");
 
 		State.CreateState("Aim_Up");
 		State.CreateState("Aim_DiagonalUp");
@@ -51,6 +52,7 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("DashAir", std::bind(&APlayer::DashAir, this, std::placeholders::_1));
 		State.SetUpdateFunction("AfterDashAir", std::bind(&APlayer::AfterDashAir, this, std::placeholders::_1));
 		State.SetUpdateFunction("DownJump", std::bind(&APlayer::DownJump, this, std::placeholders::_1));
+		State.SetUpdateFunction("FallDown", std::bind(&APlayer::FallDown, this, std::placeholders::_1));
 
 		State.SetUpdateFunction("Aim_Up", std::bind(&APlayer::Aim_Up, this, std::placeholders::_1));
 		State.SetUpdateFunction("Aim_DiagonalUp", std::bind(&APlayer::Aim_DiagonalUp, this, std::placeholders::_1));
@@ -182,7 +184,15 @@ void APlayer::StateInit()
 				DirCheck();
 				AddActorLocation(float4::Down * 30.0f);
 				SetAvailableAddJumpVec(false);
-				//SetGravityVec(GetPrevGravityVec());
+				Renderer->ChangeAnimation("Player_Jump");
+				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::JumpShoot);
+			}
+		);
+		State.SetStartFunction("FallDown", [this]
+			{
+				DirCheck();
+				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
 				AnimationDirSet(Renderer, Dir);
 				SetShootType(EBulletShootType::JumpShoot);
@@ -320,11 +330,6 @@ void APlayer::StateInit()
 				SetJumpVec(float4::Zero);
 			}
 		);
-		State.SetEndFunction("DownJump", [this]()
-			{
-
-			}
-		);
 	}
 
 
@@ -404,6 +409,15 @@ void APlayer::Idle(float _DeltaTime)
 
 void APlayer::Run(float _DeltaTime)
 {
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (false == PixelCheck(Pos, Color8Bit::Black) && false == PixelCheck(Pos, Color8Bit::Blue))
+	{
+		State.ChangeState("FallDown");
+		return;
+	}
+
 	if (true == IsFree(VK_RIGHT) && true == IsFree(VK_LEFT))
 	{
 		if (true == IsPress(VK_UP))
@@ -474,7 +488,7 @@ void APlayer::Jump(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
 	{
 		if (true == IsPress(VK_DOWN))
 		{
@@ -640,7 +654,7 @@ void APlayer::Parry(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -668,7 +682,7 @@ void APlayer::AfterParry(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -713,7 +727,7 @@ void APlayer::AfterDashAir(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
-	if (true == PixelCheck(Pos, Color8Bit::Black) || PixelCheck(Pos, Color8Bit::Blue))
+	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
 	{
 		State.ChangeState("Idle");
 		return;
@@ -1297,6 +1311,15 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 {
 	ShootCheck(_DeltaTime);
 
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (false == PixelCheck(Pos, Color8Bit::Black) && false == PixelCheck(Pos, Color8Bit::Blue))
+	{
+		State.ChangeState("FallDown");
+		return;
+	}
+
 	if (true == IsFree('X'))
 	{
 		State.ChangeState("Run");
@@ -1349,6 +1372,15 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 void APlayer::Run_Shoot_Straight(float _DeltaTime)
 {
 	ShootCheck(_DeltaTime);
+
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+	
+	if (false == PixelCheck(Pos, Color8Bit::Black) && false == PixelCheck(Pos, Color8Bit::Blue))
+	{
+		State.ChangeState("FallDown");
+		return;
+	}
 
 	if (true == IsFree('X'))
 	{
@@ -1413,6 +1445,40 @@ void APlayer::DownJump(float _DeltaTime)
 	{
 		State.ChangeState("Idle");
 		return;
+	}
+
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::FallDown(float _DeltaTime)
+{
+	ShootCheck(_DeltaTime);
+
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == GetAvailableParry() && true == IsDown('Z'))
+	{
+		State.ChangeState("Parry");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
+	{
+		DirCheck();
+		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
+		AnimationDirSet(Renderer, Dir);
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Zero);
 	}
 
 	ResultMovementUpdate(_DeltaTime);
