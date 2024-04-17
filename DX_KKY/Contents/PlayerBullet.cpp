@@ -22,6 +22,7 @@ void APlayerBullet::BeginPlay()
 	Collision->SetScale(FVector(100.0f, 100.0f));
 	Collision->SetCollisionGroup(ECollisionOrder::PlayerBullet);
 	Collision->SetCollisionType(ECollisionType::Rect);
+	Collision->SetActive(false);
 
 	CreateAnimation();
 
@@ -51,6 +52,7 @@ void APlayerBullet::CreateAnimation()
 
 		Renderer->SetFrameCallback("BulletSpawn2", 2, [this]()
 			{
+				Collision->SetActive(true);
 				State.ChangeState("Flying");
 			}
 		);
@@ -96,7 +98,12 @@ void APlayerBullet::StateInit()
 
 void APlayerBullet::Flying(float _DeltaTime)
 {
-	SetSpeedVec(float4::Right * 1000.0f);
+	//if ()
+	//{
+
+	//}
+
+	SetSpeedVec(float4::Right * BulletSpeed);
 	ResultMovementUpdate(_DeltaTime);
 }
 

@@ -20,6 +20,8 @@ public:
 protected:
 
 private:
+	float BulletSpeed = 1200.0f;
+
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	void StateInit() override;

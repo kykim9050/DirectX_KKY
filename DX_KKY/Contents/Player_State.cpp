@@ -1330,7 +1330,7 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 	if (0.0f >= ShootDelayTime)
 	{
-		ShootDelayTime += 0.5f + ShootDelayTime;
+		ShootDelayTime += ShootDelayInitTime + ShootDelayTime;
 
 		std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
 		
