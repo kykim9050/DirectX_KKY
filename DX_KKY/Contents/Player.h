@@ -93,6 +93,7 @@ private:
 	void ShootBullet(float _DeltaTime);
 	void ShootCheck(float _DeltaTime);
 	void GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot);
+	FVector JumpShootPosInit();
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
