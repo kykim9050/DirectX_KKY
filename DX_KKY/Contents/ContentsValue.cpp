@@ -26,3 +26,5 @@ const float4 UContentsValue::Duck_BulletInitPos = float4(80.0f, 40.0f, 0.0f);
 
 
 std::shared_ptr<UEngineTexture> UContentsValue::ColMapTexture = std::shared_ptr<UEngineTexture>();
+
+const float4 UContentsValue::PlayerBulletColSize = float4(16.0f, 16.0f, 0.0f);

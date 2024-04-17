@@ -29,6 +29,8 @@ public:
 	static const float4 RightDown_BulletInitPos;
 	static const float4 Duck_BulletInitPos;
 
+	static const float4 PlayerBulletColSize;
+
 protected:
 
 private:
