@@ -271,17 +271,22 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
 	case EBulletShootType::JumpShoot:
 		break;
 	case EBulletShootType::UpShoot:
+		PlusPos = UContentsValue::Up_BulletInitPos;
 		break;
 	case EBulletShootType::DiagonalUpShoot:
+		PlusPos = UContentsValue::DiagUp_BulletInitPos;
 		break;
 	case EBulletShootType::StraightShoot:
 		PlusPos = UContentsValue::Straight_BulletInitPos;
 		break;
 	case EBulletShootType::DiagonalDownShoot:
+		PlusPos = UContentsValue::DiagDown_BulletInitPos;
 		break;
 	case EBulletShootType::DownShoot:
+		PlusPos = UContentsValue::Down_BulletInitPos;
 		break;
 	case EBulletShootType::DuckShoot:
+		PlusPos = UContentsValue::Duck_BulletInitPos;
 		break;
 	default:
 		break;
