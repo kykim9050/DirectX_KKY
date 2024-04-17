@@ -53,3 +53,15 @@ enum class EActorDir
 	Left,
 	Right,
 };
+
+enum class EBulletShootType
+{
+	None,
+	JumpShoot,
+	UpShoot,
+	DiagonalUpShoot,
+	StraightShoot,
+	DiagonalDownShoot,
+	DownShoot,
+	DuckShoot,
+};

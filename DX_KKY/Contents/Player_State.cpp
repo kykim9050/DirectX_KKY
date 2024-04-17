@@ -76,6 +76,7 @@ void APlayer::StateInit()
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Idle");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("Run", [this]
@@ -85,6 +86,7 @@ void APlayer::StateInit()
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Run");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("Jump", [this]
@@ -94,6 +96,7 @@ void APlayer::StateInit()
 				SetJumpVec(float4::Up * GetJumpVal());
 				Renderer->ChangeAnimation("Player_Jump");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
 		State.SetStartFunction("Duck", [this]
@@ -105,6 +108,7 @@ void APlayer::StateInit()
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("DuckIdle", [this]
@@ -116,6 +120,7 @@ void APlayer::StateInit()
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_DuckIdle");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("Parry", [this]
@@ -126,6 +131,7 @@ void APlayer::StateInit()
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Parry");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
 		State.SetStartFunction("AfterParry", [this]
@@ -135,6 +141,7 @@ void APlayer::StateInit()
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
 		State.SetStartFunction("Dash", [this]
@@ -143,6 +150,7 @@ void APlayer::StateInit()
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Dash");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("DashAir", [this]
@@ -151,6 +159,7 @@ void APlayer::StateInit()
 				SetJumpVec(GetPrevJumpVec());
 				Renderer->ChangeAnimation("Player_Dash_Air");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("AfterDashAir", [this]
@@ -161,6 +170,7 @@ void APlayer::StateInit()
 				SetGravityVec(GetPrevGravityVec());
 				Renderer->ChangeAnimation("Player_Jump");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
 		State.SetStartFunction("Aim_Up", [this]
@@ -168,6 +178,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Up");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("Aim_DiagonalUp", [this]
@@ -175,6 +186,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_DiagonalUp");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("Aim_Straight", [this]
@@ -182,6 +194,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Straight");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("Aim_DiagonalDown", [this]
@@ -189,6 +202,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_DiagonalDown");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 		State.SetStartFunction("Aim_Down", [this]
@@ -196,6 +210,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Down");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::None);
 			}
 		);
 
@@ -204,6 +219,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Up");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::UpShoot);
 			}
 		);
 		State.SetStartFunction("Shoot_DiagonalUp", [this]
@@ -211,6 +227,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_DiagonalUp");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::DiagonalUpShoot);
 			}
 		);
 		State.SetStartFunction("Shoot_Straight", [this]
@@ -218,6 +235,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Straight");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::StraightShoot);
 			}
 		);
 		State.SetStartFunction("Shoot_DiagonalDown", [this]
@@ -225,6 +243,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_DiagonalDown");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::DiagonalDownShoot);
 			}
 		);
 		State.SetStartFunction("Shoot_Down", [this]
@@ -232,6 +251,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Down");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::DownShoot);
 			}
 		);
 		State.SetStartFunction("Shoot_Duck", [this]
@@ -240,6 +260,7 @@ void APlayer::StateInit()
 				SetSpeedVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck_Shoot");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::DuckShoot);
 			}
 		);
 
@@ -248,6 +269,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Run_Shoot_Straight");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::StraightShoot);
 			}
 		);
 		State.SetStartFunction("Run_Shoot_DiagonalUp", [this]
@@ -255,6 +277,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Run_Shoot_DiagonalUp");
 				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::DiagonalUpShoot);
 			}
 		);
 

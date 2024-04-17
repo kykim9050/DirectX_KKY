@@ -239,8 +239,6 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 		std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
 
-		//float4 BulletPos = GetBulletInitPos();
-		//NewBullet->SetActorLocation(BulletPos);
 		NewBullet->SetActorLocation(GetActorLocation());
 	}
 }
@@ -253,41 +251,3 @@ void APlayer::ShootCheck(float _DeltaTime)
 	}
 }
 
-//float4 APlayer::GetBulletInitPos()
-//{
-//	std::string StateName = State.GetCurStateName();
-//
-//	//State.CreateState("Idle");
-//	//State.CreateState("Run");
-//	//State.CreateState("Jump");
-//	//State.CreateState("DuckIdle");
-//	//State.CreateState("Duck");
-//	//State.CreateState("Parry");
-//	//State.CreateState("AfterParry");
-//	//State.CreateState("Dash");
-//	//State.CreateState("DashAir");
-//	//State.CreateState("AfterDashAir");
-//
-//	//State.CreateState("Aim_Up");
-//	//State.CreateState("Aim_DiagonalUp");
-//	//State.CreateState("Aim_Straight");
-//	//State.CreateState("Aim_DiagonalDown");
-//	//State.CreateState("Aim_Down");
-//
-//	//State.CreateState("Shoot_Up");
-//	//State.CreateState("Shoot_DiagonalUp");
-//	//State.CreateState("Shoot_Straight");
-//	//State.CreateState("Shoot_DiagonalDown");
-//	//State.CreateState("Shoot_Down");
-//	//State.CreateState("Shoot_Duck");
-//
-//	//State.CreateState("Run_Shoot_Straight");
-//	//State.CreateState("Run_Shoot_DiagonalUp");
-//
-//	//if ("" == StateName)
-//	//{
-//
-//	//}
-//
-//
-//}

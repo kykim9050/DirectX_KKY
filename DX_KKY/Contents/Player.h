@@ -43,6 +43,7 @@ private:
 	USpriteRenderer* Renderer;
 	UStateManager State = UStateManager();
 	EActorDir Dir = EActorDir::Right;
+	EBulletShootType ShootType = EBulletShootType::None;
 
 	float RunSpeed = 500.0f;
 	float JumpVal = 900.0f;
@@ -130,5 +131,9 @@ private:
 	inline std::string GetPrevState() const
 	{
 		return PrevState;
+	}
+	inline void SetShootType(EBulletShootType _ShootType)
+	{
+		ShootType = _ShootType;
 	}
 };
