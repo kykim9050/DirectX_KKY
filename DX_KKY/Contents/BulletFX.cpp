@@ -6,11 +6,7 @@
 
 ABulletFX::ABulletFX()
 {
-	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("FXRoot");
-	SetRoot(Root);
 
-	Renderer = CreateDefaultSubObject<USpriteRenderer>("FXRenderer");
-	Renderer->SetupAttachment(Root);
 }
 
 ABulletFX::~ABulletFX()
@@ -36,12 +32,12 @@ void ABulletFX::BeginPlay()
 void ABulletFX::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
-	State.Update(_DeltaTime);
 }
 
 void ABulletFX::StateInit()
 {
+	Super::StateInit();
+
 	State.CreateState("Spawn");
 
 	State.SetStartFunction("Spawn", [this]()

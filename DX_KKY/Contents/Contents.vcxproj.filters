@@ -46,6 +46,9 @@
     <Filter Include="Level\PlayLevel\CommonObject\Unit">
       <UniqueIdentifier>{85f58d77-7896-4f58-ab83-925dc8e620f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\CommonObject\FX">
+      <UniqueIdentifier>{1b1929d6-9a4b-450b-a554-2e1f8680b86e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -114,8 +117,11 @@
     <ClInclude Include="PlayerBullet.h">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
+    <ClInclude Include="FXUnit.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
     <ClInclude Include="BulletFX.h">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
+      <Filter>Level\PlayLevel\CommonObject\FX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -188,8 +194,11 @@
     <ClCompile Include="PlayerBullet.cpp">
       <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
+    <ClCompile Include="FXUnit.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClCompile>
     <ClCompile Include="BulletFX.cpp">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
+      <Filter>Level\PlayLevel\CommonObject\FX</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
