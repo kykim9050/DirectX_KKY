@@ -54,6 +54,7 @@ private:
 	std::string PrevState = "None";
 
 	bool AvailableParry = true;
+	bool AvailableDownJump = false;
 
 	void StateInit();
 	void CreatePlayerAnimation();
@@ -63,7 +64,7 @@ private:
 	/// </summary>
 	bool DirCheck();
 	void WallCheck(float _DeltaTime);
-	//float4 GetBulletInitPos();
+	bool DownJumpCheck();
 
 	void Idle(float _DeltaTime);
 	void Run(float _DeltaTime);
@@ -75,6 +76,7 @@ private:
 	void Dash(float _DeltaTime);
 	void DashAir(float _DeltaTime);
 	void AfterDashAir(float _DeltaTime);
+	void DownJump(float _DeltaTime);
 	void Aim_Up(float _DeltaTime);
 	void Aim_DiagonalUp(float _DeltaTime);
 	void Aim_Straight(float _DeltaTime);
@@ -138,5 +140,13 @@ private:
 	inline void SetShootType(EBulletShootType _ShootType)
 	{
 		ShootType = _ShootType;
+	}
+	inline void SetAvailableDownJump(bool _Value)
+	{
+		AvailableDownJump = _Value;
+	}
+	inline bool GetAvailableDownJump() const
+	{
+		return AvailableDownJump;
 	}
 };
