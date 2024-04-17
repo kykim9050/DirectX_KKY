@@ -3,6 +3,7 @@
 
 // Ό³Έν :
 class UStateManager;
+class APlayerBullet;
 class USpriteRenderer;
 class APlayer : public UMoveUnit , public std::enable_shared_from_this<APlayer>
 {
@@ -92,7 +93,7 @@ private:
 
 	void ShootBullet(float _DeltaTime);
 	void ShootCheck(float _DeltaTime);
-	void GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot);
+	void GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 	FVector JumpShootPosInit();
 
 	std::string ChangeStringName(const std::string& _MainName);
