@@ -114,7 +114,6 @@ void APlayer::CreatePlayerAnimation()
 		Renderer->SetFrameCallback("Player_Dash", 8, [this]()
 			{
 				AddActorLocation(MoveDir(Dir) * 10.0f);
-				//State.ChangeState(GetPrevState());
 				State.ChangeState("FallDown");
 			}
 		);
@@ -124,6 +123,11 @@ void APlayer::CreatePlayerAnimation()
 				SetPrevGravityVec(GetGravityVec());
 				AddActorLocation(MoveDir(Dir) * 10.0f);
 				State.ChangeState("AfterDashAir");
+			}
+		);
+		Renderer->SetFrameCallback("Player_SSGround_Straight", 15, [this]()
+			{
+				State.ChangeState("Idle");
 			}
 		);
 	}
