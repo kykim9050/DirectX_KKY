@@ -95,6 +95,8 @@ private:
 	void Run_Shoot_DiagonalUp(float _DeltaTime);
 	void Run_Shoot_Straight(float _DeltaTime);
 
+	void Ground_SS_Straight(float _DeltaTime);
+
 	void ShootBullet(float _DeltaTime);
 	void ShootCheck(float _DeltaTime);
 	void GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);

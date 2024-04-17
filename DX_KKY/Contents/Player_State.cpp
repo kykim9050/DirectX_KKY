@@ -38,6 +38,8 @@ void APlayer::StateInit()
 		State.CreateState("Run_Shoot_Straight");
 		State.CreateState("Run_Shoot_DiagonalUp");
 
+		State.CreateState("Ground_SS_Straight");
+
 
 
 
@@ -70,7 +72,7 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Run_Shoot_Straight", std::bind(&APlayer::Run_Shoot_Straight, this, std::placeholders::_1));
 		State.SetUpdateFunction("Run_Shoot_DiagonalUp", std::bind(&APlayer::Run_Shoot_DiagonalUp, this, std::placeholders::_1));
 
-
+		State.SetUpdateFunction("Ground_SS_Straight", std::bind(&APlayer::Ground_SS_Straight, this, std::placeholders::_1));
 
 
 		State.SetStartFunction("Idle", [this]
@@ -306,6 +308,15 @@ void APlayer::StateInit()
 			}
 		);
 
+		State.SetStartFunction("Ground_SS_Straight", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_SSGround_Straight");
+				AnimationDirSet(Renderer, Dir);
+				SetShootType(EBulletShootType::StraightShoot);
+			}
+		);
+
 	}
 
 	{
@@ -401,6 +412,12 @@ void APlayer::Idle(float _DeltaTime)
 	if (true == IsPress(VK_UP))
 	{
 		State.ChangeState("Aim_Up");
+		return;
+	}
+
+	if (true == IsDown('V'))
+	{
+		State.ChangeState("Ground_SS_Straight");
 		return;
 	}
 
@@ -1482,4 +1499,9 @@ void APlayer::FallDown(float _DeltaTime)
 	}
 
 	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::Ground_SS_Straight(float _DeltaTime)
+{
+
 }
