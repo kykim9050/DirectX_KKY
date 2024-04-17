@@ -5,6 +5,7 @@
 #include <EngineCore/EngineDebugMsgWindow.h>
 
 #include "Player.h"
+#include "PlayerBullet.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -46,7 +47,6 @@ void APlayer::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	State.Update(_DeltaTime);
-	ShootCheck(_DeltaTime);
 	
 	MakeDebugMSG();
 }
@@ -225,6 +225,31 @@ void APlayer::WallCheck(float _DeltaTime)
 	if (true == PixelCheck(CheckPos, Color8Bit::Black))
 	{
 		SetSpeedVec(float4::Zero);
+	}
+}
+
+void APlayer::ShootBullet(float _DeltaTime)
+{
+
+	ShootDelayTime -= _DeltaTime;
+
+	if (0.0f >= ShootDelayTime)
+	{
+		ShootDelayTime += ShootDelayInitTime + ShootDelayTime;
+
+		std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
+
+		//float4 BulletPos = GetBulletInitPos();
+		//NewBullet->SetActorLocation(BulletPos);
+		NewBullet->SetActorLocation(GetActorLocation());
+	}
+}
+
+void APlayer::ShootCheck(float _DeltaTime)
+{
+	if (true == IsPress('X'))
+	{
+		ShootBullet(_DeltaTime);
 	}
 }
 
