@@ -51,6 +51,7 @@ private:
 	float DashSpeed = 800.0f;
 	float ShootDelayTime = 0.25f;
 	float ShootDelayInitTime = 0.25f;
+	float SSReboundSpeed = 85.0f;
 	std::string PrevState = "None";
 
 	bool AvailableParry = true;
