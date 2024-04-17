@@ -269,7 +269,7 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_p
 	switch (ShootType)
 	{
 	case EBulletShootType::JumpShoot:
-		PlusPos = JumpShootPosInit();
+		PlusPos = JumpShootInit(_Bullet);
 		break;
 	case EBulletShootType::UpShoot:
 		PlusPos = UContentsValue::RightUp_BulletInitPos;
@@ -309,6 +309,7 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_p
 		
 		switch (ShootType)
 		{
+		case EBulletShootType::JumpShoot:
 		case EBulletShootType::UpShoot:
 		case EBulletShootType::DownShoot:
 			break;
@@ -327,32 +328,57 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_p
 	ResultPos = PlayerPos + PlusPos;
 }
 
-FVector APlayer::JumpShootPosInit()
+FVector APlayer::JumpShootInit(std::shared_ptr<APlayerBullet>& _Bullet)
 {
+	std::shared_ptr<APlayerBullet>& Bullet = _Bullet;
+
 	if (true == IsPress(VK_UP))
 	{
-		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+		if (true == IsPress(VK_RIGHT))
 		{
+			Bullet->SetHorizontalDir(float4::Right);
+			Bullet->SetVerticalDir(float4::Up);
 			return UContentsValue::DiagUp_BulletInitPos;
 		}
 
+		if (true == IsPress(VK_LEFT))
+		{
+			Bullet->SetHorizontalDir(float4::Left);
+			Bullet->SetVerticalDir(float4::Up);
+			return UContentsValue::DiagUp_BulletInitPos;
+		}
+
+		Bullet->SetVerticalDir(float4::Up);
 		return UContentsValue::Up_BulletInitPos;
 	}
 
 	if (true == IsPress(VK_DOWN))
 	{
-		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+		if (true == IsPress(VK_RIGHT))
 		{
+			Bullet->SetHorizontalDir(float4::Right);
+			Bullet->SetVerticalDir(float4::Down);
 			return UContentsValue::DiagDown_BulletInitPos;
 		}
 
+		if (true == IsPress(VK_LEFT))
+		{
+			Bullet->SetHorizontalDir(float4::Left);
+			Bullet->SetVerticalDir(float4::Down);
+			return UContentsValue::DiagDown_BulletInitPos;
+		}
+
+		Bullet->SetVerticalDir(float4::Down);
 		return UContentsValue::Down_BulletInitPos;
 	}
 
-	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	if (true == IsPress(VK_RIGHT))
 	{
+		Bullet->SetHorizontalDir(float4::Right);
 		return UContentsValue::Straight_BulletInitPos;
 	}
 
+	Bullet->SetHorizontalDir(float4::Left);
 	return UContentsValue::Straight_BulletInitPos;
+
 }
