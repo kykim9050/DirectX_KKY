@@ -10,7 +10,7 @@ public:
 	static const float WorldMapPlayerYInitValue;
 
 	static const float CameraInitZValue;
-	static const FVector WorldMapCameraInitValue;
+	static const float4 WorldMapCameraInitValue;
 
 	static const float4 ContentsCameraInitPos;
 	static const float ContentsCameraInitXPos;
@@ -20,7 +20,12 @@ public:
 
 	static std::shared_ptr<UEngineTexture> ColMapTexture;
 
-
+	static const float4 Up_BulletInitPos;
+	static const float4 DiagUp_BulletInitPos;
+	static const float4 Straight_BulletInitPos;
+	static const float4 DiagDown_BulletInitPos;
+	static const float4 Down_BulletInitPos;
+	static const float4 Duck_BulletInitPos;
 
 protected:
 
