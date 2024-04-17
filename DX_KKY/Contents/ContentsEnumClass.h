@@ -11,6 +11,7 @@ enum class EActorType
 	Player,
 	Dust,
 	Bullet,
+	FX,
 };
 
 enum class ERenderingOrder
@@ -23,6 +24,7 @@ enum class ERenderingOrder
 	Object,
 	Dust,
 	PlayerBullet,
+	PlayerBulletFx,
 	Player,
 	FrontLayer,
 	OldFilmEffect,
