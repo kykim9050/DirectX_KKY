@@ -230,7 +230,6 @@ void APlayer::WallCheck(float _DeltaTime)
 
 void APlayer::ShootBullet(float _DeltaTime)
 {
-
 	ShootDelayTime -= _DeltaTime;
 
 	if (0.0f >= ShootDelayTime)
@@ -239,8 +238,15 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 		std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
 
-		NewBullet->SetActorLocation(GetActorLocation());
+		FVector InitPos = FVector::Zero;
+		FVector InitRot = FVector::Zero;
+
+		GetBulletInitPosAndRot(InitPos, InitRot);
+
+		NewBullet->SetActorLocation(InitPos);
+		NewBullet->SetActorRotation(InitRot);
 	}
+
 }
 
 void APlayer::ShootCheck(float _DeltaTime)
@@ -251,3 +257,45 @@ void APlayer::ShootCheck(float _DeltaTime)
 	}
 }
 
+void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
+{
+	DirCheck();
+
+	FVector PlayerPos = GetActorLocation();
+	FVector& ResultPos = _Pos;
+	FVector& ResultRot = _Rot;
+	FVector PlusPos = FVector::Zero;
+
+	switch (ShootType)
+	{
+	case EBulletShootType::JumpShoot:
+		break;
+	case EBulletShootType::UpShoot:
+		break;
+	case EBulletShootType::DiagonalUpShoot:
+		break;
+	case EBulletShootType::StraightShoot:
+		PlusPos = UContentsValue::Straight_BulletInitPos;
+		break;
+	case EBulletShootType::DiagonalDownShoot:
+		break;
+	case EBulletShootType::DownShoot:
+		break;
+	case EBulletShootType::DuckShoot:
+		break;
+	default:
+		break;
+	}
+
+	switch (Dir)
+	{
+	case EActorDir::Left:
+		PlusPos.X = -PlusPos.X;
+		break;
+	case EActorDir::Right:
+	default:
+		break;
+	}
+
+	ResultPos = PlayerPos + PlusPos;
+}
