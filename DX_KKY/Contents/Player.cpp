@@ -316,6 +316,7 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_p
 		switch (ShootType)
 		{
 		case EBulletShootType::JumpShoot:
+			PlusPos.X = -PlusPos.X;
 			break;
 		case EBulletShootType::UpShoot:
 			PlusPos.X = -PlusPos.X;
@@ -399,13 +400,17 @@ FVector APlayer::JumpShootInit(std::shared_ptr<APlayerBullet>& _Bullet)
 		return UContentsValue::Down_BulletInitPos;
 	}
 
-	if (true == IsPress(VK_RIGHT))
+	if (true == IsPress(VK_RIGHT) || Dir == EActorDir::Right)
 	{
 		Bullet->SetHorizontalDir(float4::Right);
 		return UContentsValue::Straight_BulletInitPos;
 	}
 
-	Bullet->SetHorizontalDir(float4::Left);
-	return UContentsValue::Straight_BulletInitPos;
+	if (true == IsPress(VK_LEFT) || Dir == EActorDir::Left)
+	{
+		Bullet->SetHorizontalDir(float4::Left);
+		return UContentsValue::Straight_BulletInitPos;
+	}
 
+	return float4::Zero;
 }
