@@ -269,9 +269,10 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
 	switch (ShootType)
 	{
 	case EBulletShootType::JumpShoot:
+		PlusPos = JumpShootPosInit();
 		break;
 	case EBulletShootType::UpShoot:
-		PlusPos = UContentsValue::Up_BulletInitPos;
+		PlusPos = UContentsValue::RightUp_BulletInitPos;
 		break;
 	case EBulletShootType::DiagonalUpShoot:
 		PlusPos = UContentsValue::DiagUp_BulletInitPos;
@@ -283,7 +284,7 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
 		PlusPos = UContentsValue::DiagDown_BulletInitPos;
 		break;
 	case EBulletShootType::DownShoot:
-		PlusPos = UContentsValue::Down_BulletInitPos;
+		PlusPos = UContentsValue::RightDown_BulletInitPos;
 		break;
 	case EBulletShootType::DuckShoot:
 		PlusPos = UContentsValue::Duck_BulletInitPos;
@@ -303,4 +304,34 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot)
 	}
 
 	ResultPos = PlayerPos + PlusPos;
+}
+
+FVector APlayer::JumpShootPosInit()
+{
+	if (true == IsPress(VK_UP))
+	{
+		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+		{
+			return UContentsValue::DiagUp_BulletInitPos;
+		}
+
+		return UContentsValue::Up_BulletInitPos;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+		{
+			return UContentsValue::DiagDown_BulletInitPos;
+		}
+
+		return UContentsValue::Down_BulletInitPos;
+	}
+
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	{
+		return UContentsValue::Straight_BulletInitPos;
+	}
+
+	return UContentsValue::Straight_BulletInitPos;
 }
