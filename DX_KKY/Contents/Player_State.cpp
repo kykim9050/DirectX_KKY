@@ -1503,5 +1503,6 @@ void APlayer::FallDown(float _DeltaTime)
 
 void APlayer::Ground_SS_Straight(float _DeltaTime)
 {
-
+	DirCheck();
+	AddActorLocation(-MoveDir(Dir) * _DeltaTime * SSReboundSpeed);
 }
