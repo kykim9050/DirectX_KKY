@@ -3,7 +3,7 @@
 
 #include "Player.h"
 #include "MoveUnit.h"
-#include "PlayerBullet.h"
+
 
 void APlayer::StateInit()
 {
@@ -426,6 +426,8 @@ void APlayer::Run(float _DeltaTime)
 
 void APlayer::Jump(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
@@ -579,6 +581,8 @@ void APlayer::Duck(float _DeltaTime)
 
 void APlayer::Parry(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
@@ -605,6 +609,8 @@ void APlayer::Parry(float _DeltaTime)
 
 void APlayer::AfterParry(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
@@ -648,6 +654,8 @@ void APlayer::DashAir(float _DeltaTime)
 
 void APlayer::AfterDashAir(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
@@ -942,6 +950,8 @@ void APlayer::Aim_Down(float _DeltaTime)
 
 void APlayer::IdleShoot_Up(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	if (true == IsUp('X'))
 	{
 		State.ChangeState("Idle");
@@ -980,6 +990,8 @@ void APlayer::IdleShoot_Up(float _DeltaTime)
 
 void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump");
@@ -1021,6 +1033,8 @@ void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 
 void APlayer::IdleShoot_Straight(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	if (true == IsUp('X'))
 	{
 		if (true == IsPress('C'))
@@ -1099,6 +1113,8 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 
 void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	if (true == IsFree('X'))
 	{
 		State.ChangeState("Aim_DiagonalDown");
@@ -1137,6 +1153,8 @@ void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 
 void APlayer::IdleShoot_Down(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	if (true == IsUp('X'))
 	{
 		State.ChangeState("Aim_Down");
@@ -1170,6 +1188,8 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 
 void APlayer::IdleShoot_Duck(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	if (true == IsPress(VK_DOWN))
 	{
 		if (true == IsUp('X'))
@@ -1221,6 +1241,8 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 
 void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	if (true == IsFree('X'))
 	{
 		State.ChangeState("Run");
@@ -1272,6 +1294,8 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 void APlayer::Run_Shoot_Straight(float _DeltaTime)
 {
+	ShootCheck(_DeltaTime);
+
 	if (true == IsFree('X'))
 	{
 		State.ChangeState("Run");
@@ -1324,26 +1348,3 @@ void APlayer::Run_Shoot_Straight(float _DeltaTime)
 	ResultMovementUpdate(_DeltaTime);
 }
 
-void APlayer::ShootBullet(float _DeltaTime)
-{
-	ShootDelayTime -= _DeltaTime;
-
-	if (0.0f >= ShootDelayTime)
-	{
-		ShootDelayTime += ShootDelayInitTime + ShootDelayTime;
-
-		std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
-		
-		//float4 BulletPos = GetBulletInitPos();
-		//NewBullet->SetActorLocation(BulletPos);
-		NewBullet->SetActorLocation(GetActorLocation());
-	}
-}
-
-void APlayer::ShootCheck(float _DeltaTime)
-{
-	if (true == IsPress('X'))
-	{
-		ShootBullet(_DeltaTime);
-	}
-}
