@@ -38,8 +38,11 @@ void APlayer::StateInit()
 		State.CreateState("Run_Shoot_Straight");
 		State.CreateState("Run_Shoot_DiagonalUp");
 
+		State.CreateState("Ground_SS_Up");
+		State.CreateState("Ground_SS_DiagonalUp");
 		State.CreateState("Ground_SS_Straight");
-
+		State.CreateState("Ground_SS_DiagonalDown");
+		State.CreateState("Ground_SS_Down");
 
 
 
@@ -72,8 +75,11 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Run_Shoot_Straight", std::bind(&APlayer::Run_Shoot_Straight, this, std::placeholders::_1));
 		State.SetUpdateFunction("Run_Shoot_DiagonalUp", std::bind(&APlayer::Run_Shoot_DiagonalUp, this, std::placeholders::_1));
 
+		State.SetUpdateFunction("Ground_SS_Up", std::bind(&APlayer::Ground_SS_Up, this, std::placeholders::_1));
+		State.SetUpdateFunction("Ground_SS_DiagonalUp", std::bind(&APlayer::Ground_SS_DiagonalUp, this, std::placeholders::_1));
 		State.SetUpdateFunction("Ground_SS_Straight", std::bind(&APlayer::Ground_SS_Straight, this, std::placeholders::_1));
-
+		State.SetUpdateFunction("Ground_SS_DiagonalDown", std::bind(&APlayer::Ground_SS_DiagonalDown, this, std::placeholders::_1));
+		State.SetUpdateFunction("Ground_SS_Down", std::bind(&APlayer::Ground_SS_Down, this, std::placeholders::_1));
 
 		State.SetStartFunction("Idle", [this]
 			{
@@ -308,12 +314,45 @@ void APlayer::StateInit()
 			}
 		);
 
+		
+		State.SetStartFunction("Ground_SS_Up", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_SSGround_Up");
+				AnimationDirSet(Renderer, Dir);
+				//SetShootType(EBulletShootType::);
+			}
+		);
+		State.SetStartFunction("Ground_SS_DiagonalUp", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_SSGround_DiagonalUp");
+				AnimationDirSet(Renderer, Dir);
+				//SetShootType(EBulletShootType::);
+			}
+		);
 		State.SetStartFunction("Ground_SS_Straight", [this]
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Straight");
 				AnimationDirSet(Renderer, Dir);
-				SetShootType(EBulletShootType::StraightShoot);
+				//SetShootType(EBulletShootType::StraightShoot);
+			}
+		);
+		State.SetStartFunction("Ground_SS_DiagonalDown", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_SSGround_DiagonalDown");
+				AnimationDirSet(Renderer, Dir);
+				//SetShootType(EBulletShootType::);
+			}
+		);
+		State.SetStartFunction("Ground_SS_Down", [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation("Player_SSGround_Down");
+				AnimationDirSet(Renderer, Dir);
+				//SetShootType(EBulletShootType::);
 			}
 		);
 
@@ -1501,8 +1540,30 @@ void APlayer::FallDown(float _DeltaTime)
 	ResultMovementUpdate(_DeltaTime);
 }
 
+void APlayer::Ground_SS_Up(float _DeltaTime)
+{
+
+}
+
+void APlayer::Ground_SS_DiagonalUp(float _DeltaTime)
+{
+	DirCheck();
+	AddActorLocation(-MoveDir(Dir) * _DeltaTime * SSReboundSpeed);
+}
+
 void APlayer::Ground_SS_Straight(float _DeltaTime)
 {
 	DirCheck();
 	AddActorLocation(-MoveDir(Dir) * _DeltaTime * SSReboundSpeed);
+}
+
+void APlayer::Ground_SS_DiagonalDown(float _DeltaTime)
+{
+	DirCheck();
+	AddActorLocation(-MoveDir(Dir) * _DeltaTime * SSReboundSpeed);
+}
+
+void APlayer::Ground_SS_Down(float _DeltaTime)
+{
+
 }

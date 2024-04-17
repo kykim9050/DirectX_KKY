@@ -125,7 +125,27 @@ void APlayer::CreatePlayerAnimation()
 				State.ChangeState("AfterDashAir");
 			}
 		);
+		Renderer->SetFrameCallback("Player_SSGround_Up", 15, [this]()
+			{
+				State.ChangeState("Idle");
+			}
+		);
+		Renderer->SetFrameCallback("Player_SSGround_DiagonalUp", 15, [this]()
+			{
+				State.ChangeState("Idle");
+			}
+		);
 		Renderer->SetFrameCallback("Player_SSGround_Straight", 15, [this]()
+			{
+				State.ChangeState("Idle");
+			}
+		);
+		Renderer->SetFrameCallback("Player_SSGround_DiagonalDown", 15, [this]()
+			{
+				State.ChangeState("Idle");
+			}
+		);
+		Renderer->SetFrameCallback("Player_SSGround_Down", 15, [this]()
 			{
 				State.ChangeState("Idle");
 			}

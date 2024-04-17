@@ -96,7 +96,11 @@ private:
 	void Run_Shoot_DiagonalUp(float _DeltaTime);
 	void Run_Shoot_Straight(float _DeltaTime);
 
+	void Ground_SS_Up(float _DeltaTime);
+	void Ground_SS_DiagonalUp(float _DeltaTime);
 	void Ground_SS_Straight(float _DeltaTime);
+	void Ground_SS_DiagonalDown(float _DeltaTime);
+	void Ground_SS_Down(float _DeltaTime);
 
 	void ShootBullet(float _DeltaTime);
 	void ShootCheck(float _DeltaTime);
