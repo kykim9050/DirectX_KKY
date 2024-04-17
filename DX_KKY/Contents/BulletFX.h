@@ -1,12 +1,10 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include "FXUnit.h"
 
 // Ό³Έν :
-class USpriteRenderer;
-class UStateManager;
-class ABulletFX : public AActor
+class ABulletFX : public AFXUnit
 {
-	GENERATED_BODY(AActor)
+	GENERATED_BODY(AFXUnit)
 
 public:
 	// constrcuter destructer
@@ -24,10 +22,8 @@ protected:
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	void StateInit();
-	void Spawn() {};
+	void StateInit() override;
 
-	USpriteRenderer* Renderer;
-	UStateManager State = UStateManager();
+	void Spawn() {};
 };
 
