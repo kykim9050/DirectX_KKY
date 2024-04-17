@@ -31,5 +31,6 @@ protected:
 	UStateManager State = UStateManager();
 
 private:
+	
 };
 
