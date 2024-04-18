@@ -129,6 +129,9 @@
     <ClInclude Include="PlayerSSBullet.h">
       <Filter>Level\PlayLevel\CommonObject\Player</Filter>
     </ClInclude>
+    <ClInclude Include="SSBulletFX.h">
+      <Filter>Level\PlayLevel\CommonObject\FX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -208,6 +211,9 @@
     </ClCompile>
     <ClCompile Include="PlayerSSBullet.cpp">
       <Filter>Level\PlayLevel\CommonObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SSBulletFX.cpp">
+      <Filter>Level\PlayLevel\CommonObject\FX</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
