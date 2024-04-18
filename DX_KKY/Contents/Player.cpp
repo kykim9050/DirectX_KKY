@@ -294,41 +294,55 @@ void APlayer::SuperShoot(float _DeltaTime)
 	case EPlayerKeyDir::Up:
 		InitPos = UContentsValue::Up_BulletInitPos;
 		InitRot = UContentsValue::Up_BulletInitRot;
+		NewBullet->SetVerticalDir(float4::Up);
 		break;
 	case EPlayerKeyDir::RightUp:
 		InitPos = UContentsValue::RightUp_BulletInitPos;
 		InitRot = UContentsValue::RightUp_BulletInitRot;
+		NewBullet->SetVerticalDir(float4::Up);
+		NewBullet->SetHorizontalDir(float4::Right);
 		break;
 	case EPlayerKeyDir::Right:
 		InitPos = UContentsValue::Straight_BulletInitPos;
 		InitRot = UContentsValue::Right_BulletInitRot;
+		NewBullet->SetHorizontalDir(float4::Right);
 		break;
 	case EPlayerKeyDir::RightDown:
 		InitPos = UContentsValue::RightDown_BulletInitPos;
 		InitRot = UContentsValue::RightDown_BulletInitRot;
+		NewBullet->SetVerticalDir(float4::Down);
+		NewBullet->SetHorizontalDir(float4::Right);
 		break;
 	case EPlayerKeyDir::Down:
 		InitPos = UContentsValue::Down_BulletInitPos;
 		InitRot = UContentsValue::Down_BulletInitRot;
+		NewBullet->SetVerticalDir(float4::Down);
 		break;
 	case EPlayerKeyDir::LeftDown:
 		InitPos = UContentsValue::RightDown_BulletInitPos;
 		InitPos.X = -InitPos.X;
 		InitRot = UContentsValue::LeftDown_BulletInitRot;
+		NewBullet->SetVerticalDir(float4::Down);
+		NewBullet->SetHorizontalDir(float4::Left);
 		break;
 	case EPlayerKeyDir::Left:
 		InitPos = UContentsValue::Straight_BulletInitPos;
 		InitPos.X = -InitPos.X;
 		InitRot = UContentsValue::Left_BulletInitRot;
+		NewBullet->SetHorizontalDir(float4::Left);
 		break;
 	case EPlayerKeyDir::LeftUp:
 		InitPos = UContentsValue::Up_BulletInitPos;
 		InitPos.X = -InitPos.X;
 		InitRot = UContentsValue::LeftUp_BulletInitRot;
+		NewBullet->SetVerticalDir(float4::Up);
+		NewBullet->SetHorizontalDir(float4::Left);
 		break;
 	default:
 		break;
 	}
+
+
 
 	NewBullet->SetActorLocation(GetActorLocation() + InitPos);
 	NewBullet->SetActorRotation(InitRot);

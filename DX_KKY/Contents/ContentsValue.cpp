@@ -30,9 +30,9 @@ const float4 UContentsValue::RightUp_BulletInitRot = float4(0.0f, 0.0f, 45.0f);
 const float4 UContentsValue::Right_BulletInitRot = float4(0.0f, 0.0f, 0.0f);
 const float4 UContentsValue::RightDown_BulletInitRot = float4(0.0f, 0.0f, -45.0f);
 const float4 UContentsValue::Down_BulletInitRot = float4(0.0f, 0.0f, -90.0f);
-const float4 UContentsValue::LeftDown_BulletInitRot = float4(0.0f, 0.0f, -135.0f);
-const float4 UContentsValue::Left_BulletInitRot = float4(0.0f, 0.0f, 180.0f);
-const float4 UContentsValue::LeftUp_BulletInitRot = float4(0.0f, 0.0f, 135.0f);
+const float4 UContentsValue::LeftDown_BulletInitRot = float4(0.0f, -180.0f, 45.0f);
+const float4 UContentsValue::Left_BulletInitRot = float4(0.0f, -180.0f, 0.0f);
+const float4 UContentsValue::LeftUp_BulletInitRot = float4(0.0f, 180.0f, -45.0f);
 
 
 std::shared_ptr<UEngineTexture> UContentsValue::ColMapTexture = std::shared_ptr<UEngineTexture>();

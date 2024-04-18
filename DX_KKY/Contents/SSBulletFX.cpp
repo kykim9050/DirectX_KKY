@@ -19,7 +19,7 @@ void ASSBulletFX::BeginPlay()
 	Renderer->CreateAnimation("SpawnFX", "SSDust", 0.0416f, false);
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::PlayerBulletFx);
-	Renderer->AddPosition(FVector(-100.0f, 0.0f));
+	Renderer->AddPosition(FVector(-150.0f, 0.0f));
 
 	Renderer->SetFrameCallback("SpawnFX", 19, [this]()
 		{
