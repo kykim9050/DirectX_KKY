@@ -519,6 +519,8 @@ void APlayer::Idle(float _DeltaTime)
 
 void APlayer::Run(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
+
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
 
@@ -651,6 +653,8 @@ void APlayer::Jump(float _DeltaTime)
 
 void APlayer::DuckIdle(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
+
 	if (true == IsFree(VK_DOWN))
 	{
 		State.ChangeState("Idle");
@@ -714,6 +718,8 @@ void APlayer::DuckIdle(float _DeltaTime)
 
 void APlayer::Duck(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
+
 	if (true == IsUp(VK_DOWN))
 	{
 		State.ChangeState("Idle");
@@ -866,6 +872,8 @@ void APlayer::AfterDashAir(float _DeltaTime)
 
 void APlayer::Aim_Up(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
+
 	// Aim 끼리 상태 변화
 	if (true == IsPress('C'))
 	{
@@ -924,6 +932,8 @@ void APlayer::Aim_Up(float _DeltaTime)
 
 void APlayer::Aim_DiagonalUp(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
+
 	// Aim 끼리 상태 변화
 	if (true == IsPress('C'))
 	{
@@ -969,6 +979,7 @@ void APlayer::Aim_DiagonalUp(float _DeltaTime)
 
 void APlayer::Aim_Straight(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	
 	// Aim 끼리 상태 변화
 	if (true == IsPress('C'))
@@ -1034,6 +1045,8 @@ void APlayer::Aim_Straight(float _DeltaTime)
 
 void APlayer::Aim_DiagonalDown(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
+
 	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump");
@@ -1079,6 +1092,8 @@ void APlayer::Aim_DiagonalDown(float _DeltaTime)
 
 void APlayer::Aim_Down(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
+
 	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump");
@@ -1128,6 +1143,7 @@ void APlayer::Aim_Down(float _DeltaTime)
 
 void APlayer::IdleShoot_Up(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
 	if (true == IsUp('X'))
@@ -1168,6 +1184,7 @@ void APlayer::IdleShoot_Up(float _DeltaTime)
 
 void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
 	if (true == IsDown('Z'))
@@ -1211,6 +1228,7 @@ void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 
 void APlayer::IdleShoot_Straight(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
 	if (true == IsUp('X'))
@@ -1291,6 +1309,7 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 
 void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
 	if (true == IsFree('X'))
@@ -1331,6 +1350,7 @@ void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 
 void APlayer::IdleShoot_Down(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
 	if (true == IsUp('X'))
@@ -1366,6 +1386,7 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 
 void APlayer::IdleShoot_Duck(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
 	if (true == IsPress(VK_DOWN))
@@ -1419,6 +1440,7 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 
 void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
 	float4 Pos = GetActorLocation();
@@ -1481,6 +1503,7 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 void APlayer::Run_Shoot_Straight(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
 	float4 Pos = GetActorLocation();

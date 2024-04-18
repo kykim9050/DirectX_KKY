@@ -279,7 +279,57 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 void APlayer::SuperShoot(float _DeltaTime)
 {
-	
+	GetPlayerKeyDir();
+
+	switch (ActorKeyDir)
+	{
+	case EPlayerKeyDir::Up:
+		break;
+	case EPlayerKeyDir::RightUp:
+		break;
+	case EPlayerKeyDir::Right:
+		break;
+	case EPlayerKeyDir::RightDown:
+		break;
+	case EPlayerKeyDir::Down:
+		break;
+	case EPlayerKeyDir::LeftDown:
+		break;
+	case EPlayerKeyDir::Left:
+		break;
+	case EPlayerKeyDir::LeftUp:
+		break;
+	default:
+		break;
+	}
+}
+
+void APlayer::ChangeSuperShootState()
+{
+	GetPlayerKeyDir();
+
+	switch (ActorKeyDir)
+	{
+	case EPlayerKeyDir::Up:
+		State.ChangeState("Ground_SS_Up");
+		break;
+	case EPlayerKeyDir::RightUp:
+	case EPlayerKeyDir::LeftUp:
+		State.ChangeState("Ground_SS_DiagonalUp");
+		break;
+	case EPlayerKeyDir::Right:
+	case EPlayerKeyDir::Left:
+		State.ChangeState("Ground_SS_Straight");
+		break;
+	case EPlayerKeyDir::RightDown:
+	case EPlayerKeyDir::LeftDown:
+		State.ChangeState("Ground_SS_DiagonalDown");
+		break;
+	case EPlayerKeyDir::Down:
+		State.ChangeState("Ground_SS_Down");
+	default:
+		break;
+	}
 }
 
 void APlayer::ShootCheck(float _DeltaTime)
@@ -294,6 +344,7 @@ void APlayer::SuperShootCheck(float _DeltaTime)
 {
 	if (true == IsDown('V'))
 	{
+		ChangeSuperShootState();
 		SuperShoot(_DeltaTime);
 	}
 }
