@@ -89,7 +89,7 @@ void APlayer::StateInit()
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Idle");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -99,7 +99,7 @@ void APlayer::StateInit()
 				SetAvailableParry(true);
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Run");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -109,7 +109,7 @@ void APlayer::StateInit()
 				AddActorLocation(float4::Up * 10);
 				SetJumpVec(float4::Up * GetJumpVal());
 				Renderer->ChangeAnimation("Player_Jump");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
@@ -121,7 +121,7 @@ void APlayer::StateInit()
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -133,7 +133,7 @@ void APlayer::StateInit()
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_DuckIdle");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -144,7 +144,7 @@ void APlayer::StateInit()
 				SetAvailableParry(false);
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Parry");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
@@ -154,7 +154,7 @@ void APlayer::StateInit()
 				SetJumpVec(GetPrevJumpVec());
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
@@ -163,7 +163,7 @@ void APlayer::StateInit()
 				DirCheck();
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Dash");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -172,7 +172,7 @@ void APlayer::StateInit()
 				DirCheck();
 				SetJumpVec(GetPrevJumpVec());
 				Renderer->ChangeAnimation("Player_Dash_Air");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -183,7 +183,7 @@ void APlayer::StateInit()
 				SetJumpVec(GetPrevJumpVec());
 				SetGravityVec(GetPrevGravityVec());
 				Renderer->ChangeAnimation("Player_Jump");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
@@ -193,7 +193,7 @@ void APlayer::StateInit()
 				AddActorLocation(float4::Down * 30.0f);
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
@@ -202,7 +202,7 @@ void APlayer::StateInit()
 				DirCheck();
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
 			}
 		);
@@ -210,7 +210,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Up");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -218,7 +218,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_DiagonalUp");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -226,7 +226,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Straight");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -234,7 +234,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_DiagonalDown");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -242,7 +242,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Down");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
 			}
 		);
@@ -251,7 +251,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Up");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::UpShoot);
 			}
 		);
@@ -259,7 +259,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_DiagonalUp");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::DiagonalUpShoot);
 			}
 		);
@@ -267,7 +267,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Straight");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::StraightShoot);
 			}
 		);
@@ -275,7 +275,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_DiagonalDown");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::DiagonalDownShoot);
 			}
 		);
@@ -283,7 +283,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Down");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::DownShoot);
 			}
 		);
@@ -292,7 +292,7 @@ void APlayer::StateInit()
 				DirCheck();
 				SetSpeedVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck_Shoot");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::DuckShoot);
 			}
 		);
@@ -301,7 +301,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Run_Shoot_Straight");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::StraightShoot);
 			}
 		);
@@ -309,7 +309,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Run_Shoot_DiagonalUp");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::DiagonalUpShoot);
 			}
 		);
@@ -319,7 +319,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Up");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::UpGSS);
 			}
 		);
@@ -327,7 +327,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_DiagonalUp");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::DiagonalUpGSS);
 			}
 		);
@@ -335,7 +335,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Straight");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::StraightGSS);
 			}
 		);
@@ -343,7 +343,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_DiagonalDown");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::DiagonalDownGSS);
 			}
 		);
@@ -351,7 +351,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Down");
-				AnimationDirSet(Renderer, Dir);
+				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::DownGSS);
 			}
 		);
@@ -388,7 +388,7 @@ void APlayer::StateInit()
 
 bool APlayer::DirCheck()
 {
-	EActorDir ActorDir = Dir;
+	EActorDir ActorDir = PlayerDir;
 
 	if (true == IsPress(VK_LEFT) && UEngineInput::IsFree(VK_RIGHT))
 	{
@@ -400,13 +400,69 @@ bool APlayer::DirCheck()
 		ActorDir = EActorDir::Right;
 	}
 
-	if (ActorDir != Dir)
+	if (ActorDir != PlayerDir)
 	{
-		Dir = ActorDir;
+		PlayerDir = ActorDir;
 		return false;
 	}
 
 	return true;
+}
+
+void APlayer::GetPlayerKeyDir()
+{
+	EPlayerKeyDir KeyDir = KeyDirCheck();
+
+	if (ActorKeyDir != KeyDir)
+	{
+		ActorKeyDir = KeyDir;
+		return;
+	}
+}
+
+EPlayerKeyDir APlayer::KeyDirCheck()
+{
+	if (true == IsPress(VK_UP))
+	{
+		if (true == IsPress(VK_RIGHT))
+		{
+			return EPlayerKeyDir::RightUp;
+		}
+
+		if (true == IsPress(VK_LEFT))
+		{
+			return EPlayerKeyDir::LeftUp;
+		}
+
+		return EPlayerKeyDir::Up;;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		if (true == IsPress(VK_RIGHT))
+		{
+			return EPlayerKeyDir::RightDown;
+		}
+
+		if (true == IsPress(VK_LEFT))
+		{
+			return EPlayerKeyDir::LeftDown;
+		}
+
+		return EPlayerKeyDir::Down;
+	}
+
+	if (true == IsPress(VK_RIGHT) || PlayerDir == EActorDir::Right)
+	{
+		return EPlayerKeyDir::Right;
+	}
+
+	if (true == IsPress(VK_LEFT) || PlayerDir == EActorDir::Left)
+	{
+		return EPlayerKeyDir::Left;
+	}
+
+	return EPlayerKeyDir::None;
 }
 
 void APlayer::Idle(float _DeltaTime)
@@ -528,10 +584,10 @@ void APlayer::Run(float _DeltaTime)
 
 	if (false == DirCheck())
 	{
-		AnimationDirSet(Renderer, Dir);
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
-	SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
+	SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -581,8 +637,8 @@ void APlayer::Jump(float _DeltaTime)
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		DirCheck();
-		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
-		AnimationDirSet(Renderer, Dir);
+		SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
@@ -631,7 +687,7 @@ void APlayer::DuckIdle(float _DeltaTime)
 			}
 
 			DirCheck();
-			AnimationDirSet(Renderer, Dir);
+			AnimationDirSet(Renderer, PlayerDir);
 		}
 
 		if (true == IsPress('X'))
@@ -717,8 +773,8 @@ void APlayer::Parry(float _DeltaTime)
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		DirCheck();
-		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
-		AnimationDirSet(Renderer, Dir);
+		SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
@@ -751,8 +807,8 @@ void APlayer::AfterParry(float _DeltaTime)
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		DirCheck();
-		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
-		AnimationDirSet(Renderer, Dir);
+		SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
@@ -765,13 +821,13 @@ void APlayer::AfterParry(float _DeltaTime)
 
 void APlayer::Dash(float _DeltaTime)
 {
-	AddActorLocation(MoveDir(Dir) * GetDashSpeed() * _DeltaTime);
+	AddActorLocation(MoveDir(PlayerDir) * GetDashSpeed() * _DeltaTime);
 }
 
 void APlayer::DashAir(float _DeltaTime)
 {
 	AddGravityVec(0.4f, _DeltaTime);
-	AddActorLocation(MoveDir(Dir) * GetDashSpeed() * _DeltaTime);
+	AddActorLocation(MoveDir(PlayerDir) * GetDashSpeed() * _DeltaTime);
 }
 
 void APlayer::AfterDashAir(float _DeltaTime)
@@ -796,8 +852,8 @@ void APlayer::AfterDashAir(float _DeltaTime)
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		DirCheck();
-		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
-		AnimationDirSet(Renderer, Dir);
+		SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
@@ -905,7 +961,7 @@ void APlayer::Aim_DiagonalUp(float _DeltaTime)
 		}
 
 		DirCheck();
-		AnimationDirSet(Renderer, Dir);
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
 	ResultMovementUpdate(_DeltaTime);
@@ -951,7 +1007,7 @@ void APlayer::Aim_Straight(float _DeltaTime)
 		}
 
 		DirCheck();
-		AnimationDirSet(Renderer, Dir);
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
 	if (true == IsUp('C'))
@@ -1015,7 +1071,7 @@ void APlayer::Aim_DiagonalDown(float _DeltaTime)
 		}
 
 		DirCheck();
-		AnimationDirSet(Renderer, Dir);
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
 	ResultMovementUpdate(_DeltaTime);
@@ -1220,7 +1276,7 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 		{
 			DirCheck();
-			AnimationDirSet(Renderer, Dir);
+			AnimationDirSet(Renderer, PlayerDir);
 		}
 	}
 
@@ -1342,7 +1398,7 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 		if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 		{
 			DirCheck();
-			AnimationDirSet(Renderer, Dir);
+			AnimationDirSet(Renderer, PlayerDir);
 		}
 	}
 
@@ -1416,10 +1472,10 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (false == DirCheck())
 	{
-		AnimationDirSet(Renderer, Dir);
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
-	SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
+	SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -1481,10 +1537,10 @@ void APlayer::Run_Shoot_Straight(float _DeltaTime)
 
 	if (false == DirCheck())
 	{
-		AnimationDirSet(Renderer, Dir);
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
-	SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
+	SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
 	ResultMovementUpdate(_DeltaTime);
 }
 
@@ -1526,8 +1582,8 @@ void APlayer::FallDown(float _DeltaTime)
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		DirCheck();
-		SetSpeedVec(MoveDir(Dir) * GetRunSpeed());
-		AnimationDirSet(Renderer, Dir);
+		SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
+		AnimationDirSet(Renderer, PlayerDir);
 	}
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
@@ -1546,19 +1602,19 @@ void APlayer::Ground_SS_Up(float _DeltaTime)
 void APlayer::Ground_SS_DiagonalUp(float _DeltaTime)
 {
 	DirCheck();
-	AddActorLocation(-MoveDir(Dir) * _DeltaTime * SSReboundSpeed);
+	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::Ground_SS_Straight(float _DeltaTime)
 {
 	DirCheck();
-	AddActorLocation(-MoveDir(Dir) * _DeltaTime * SSReboundSpeed);
+	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::Ground_SS_DiagonalDown(float _DeltaTime)
 {
 	DirCheck();
-	AddActorLocation(-MoveDir(Dir) * _DeltaTime * SSReboundSpeed);
+	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::Ground_SS_Down(float _DeltaTime)

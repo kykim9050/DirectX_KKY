@@ -43,8 +43,9 @@ private:
 
 	USpriteRenderer* Renderer;
 	UStateManager State = UStateManager();
-	EActorDir Dir = EActorDir::Right;
+	EActorDir PlayerDir = EActorDir::Right;
 	EBulletShootType ShootType = EBulletShootType::None;
+	EPlayerKeyDir ActorKeyDir = EPlayerKeyDir::None;
 
 	float RunSpeed = 500.0f;
 	float JumpVal = 900.0f;
@@ -64,6 +65,8 @@ private:
 	/// 방향이 다르면 false, 같으면 true
 	/// </summary>
 	bool DirCheck();
+	EPlayerKeyDir KeyDirCheck();
+	void GetPlayerKeyDir();
 	void WallCheck(float _DeltaTime);
 	bool DownJumpCheck();
 
