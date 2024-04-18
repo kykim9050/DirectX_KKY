@@ -49,6 +49,9 @@
     <Filter Include="Level\PlayLevel\CommonObject\FX">
       <UniqueIdentifier>{1b1929d6-9a4b-450b-a554-2e1f8680b86e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\CommonObject\Player">
+      <UniqueIdentifier>{13250a61-df5c-4d3e-9eeb-59f41340790b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -56,9 +59,6 @@
     </ClInclude>
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
       <Filter>Level\TitleLevel\Object</Filter>
@@ -114,14 +114,20 @@
     <ClInclude Include="BulletUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerBullet.h">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
-    </ClInclude>
     <ClInclude Include="FXUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
     <ClInclude Include="BulletFX.h">
       <Filter>Level\PlayLevel\CommonObject\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSSBullet.h">
+      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,9 +136,6 @@
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>Level\TitleLevel\Object</Filter>
@@ -179,9 +182,6 @@
     <ClCompile Include="WorldDust.cpp">
       <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Player_State.cpp">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
-    </ClCompile>
     <ClCompile Include="MoveUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
@@ -191,14 +191,23 @@
     <ClCompile Include="BulletUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerBullet.cpp">
-      <Filter>Level\PlayLevel\CommonObject</Filter>
-    </ClCompile>
     <ClCompile Include="FXUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
     <ClCompile Include="BulletFX.cpp">
       <Filter>Level\PlayLevel\CommonObject\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_State.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSSBullet.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

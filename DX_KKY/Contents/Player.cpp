@@ -281,27 +281,18 @@ void APlayer::SuperShoot(float _DeltaTime)
 {
 	GetPlayerKeyDir();
 
-	switch (ActorKeyDir)
-	{
-	case EPlayerKeyDir::Up:
-		break;
-	case EPlayerKeyDir::RightUp:
-		break;
-	case EPlayerKeyDir::Right:
-		break;
-	case EPlayerKeyDir::RightDown:
-		break;
-	case EPlayerKeyDir::Down:
-		break;
-	case EPlayerKeyDir::LeftDown:
-		break;
-	case EPlayerKeyDir::Left:
-		break;
-	case EPlayerKeyDir::LeftUp:
-		break;
-	default:
-		break;
-	}
+
+	//std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
+	//std::shared_ptr<ABulletFX> BulletFX = GetWorld()->SpawnActor<ABulletFX>("BulletFX", EActorType::FX);
+
+	//FVector InitPos = FVector::Zero;
+	//FVector InitRot = FVector::Zero;
+
+	//GetBulletInitPosAndRot(InitPos, InitRot, NewBullet);
+	//NewBullet->SetActorLocation(InitPos);
+	//NewBullet->SetActorRotation(InitRot);
+	//BulletFX->SetActorLocation(InitPos);
+	
 }
 
 void APlayer::ChangeSuperShootState()

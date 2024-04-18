@@ -33,8 +33,6 @@ void APlayerBullet::BeginPlay()
 void APlayerBullet::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
-	State.Update(_DeltaTime);
 }
 
 void APlayerBullet::CreateAnimation()
