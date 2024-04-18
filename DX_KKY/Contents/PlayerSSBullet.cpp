@@ -24,6 +24,7 @@ void APlayerSSBullet::BeginPlay()
 	Collision->SetScale(UContentsValue::PlayerSSBulletColSize);
 	Collision->SetCollisionGroup(ECollisionOrder::PlayerBullet);
 	Collision->SetCollisionType(ECollisionType::RotRect);
+	Collision->AddPosition(FVector(150.0f, 0.0f));
 
 	StateInit();
 }
