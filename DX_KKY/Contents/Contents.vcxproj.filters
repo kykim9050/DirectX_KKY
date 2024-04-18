@@ -52,7 +52,7 @@
     <Filter Include="Level\PlayLevel\CommonObject\Player">
       <UniqueIdentifier>{13250a61-df5c-4d3e-9eeb-59f41340790b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\PlayLevel\FlowerStage">
+    <Filter Include="Level\PlayLevel\CagneyCarnation">
       <UniqueIdentifier>{f08a05e5-0193-4504-969b-e7ae2220a819}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
