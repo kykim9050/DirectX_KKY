@@ -290,6 +290,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="CagneyCarnation_State.cpp" />
     <ClCompile Include="ContentsCamera.cpp">
       <SubType>
       </SubType>

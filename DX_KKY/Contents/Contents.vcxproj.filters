@@ -239,5 +239,8 @@
     <ClCompile Include="CagneyCarnation.cpp">
       <Filter>Level\PlayLevel\CagneyCarnation\Object</Filter>
     </ClCompile>
+    <ClCompile Include="CagneyCarnation_State.cpp">
+      <Filter>Level\PlayLevel\CagneyCarnation\Object</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

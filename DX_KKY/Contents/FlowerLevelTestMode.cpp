@@ -31,7 +31,7 @@ void AFlowerLevelTestMode::BeginPlay()
 	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
 
 	std::shared_ptr<ACagneyCarnation> BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
-	BossMonster->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
+	BossMonster->SetActorLocation(FVector{ 1000.0f, -370.0f, 100.0f });
 
 	std::shared_ptr<AMapBase> MapFrontObject = GetWorld()->SpawnActor<AMapBase>("MapFrontObject", EActorType::Map);
 	MapFrontObject->SetMapFile("Flower_Background_Front.png");
