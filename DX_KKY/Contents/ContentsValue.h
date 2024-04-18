@@ -30,6 +30,7 @@ public:
 	static const float4 Duck_BulletInitPos;
 
 	static const float4 PlayerBulletColSize;
+	static const float4 PlayerSSBulletColSize;
 
 protected:
 

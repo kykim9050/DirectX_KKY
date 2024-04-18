@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "PlayerBullet.h"
 #include "BulletFX.h"
+#include "PlayerSSBullet.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -281,15 +282,14 @@ void APlayer::SuperShoot(float _DeltaTime)
 {
 	GetPlayerKeyDir();
 
-
-	//std::shared_ptr<APlayerBullet> NewBullet = GetWorld()->SpawnActor<APlayerBullet>("Bullet", EActorType::Bullet);
+	std::shared_ptr<APlayerSSBullet> NewBullet = GetWorld()->SpawnActor<APlayerSSBullet>("Bullet", EActorType::Bullet);
 	//std::shared_ptr<ABulletFX> BulletFX = GetWorld()->SpawnActor<ABulletFX>("BulletFX", EActorType::FX);
 
 	//FVector InitPos = FVector::Zero;
 	//FVector InitRot = FVector::Zero;
 
 	//GetBulletInitPosAndRot(InitPos, InitRot, NewBullet);
-	//NewBullet->SetActorLocation(InitPos);
+	NewBullet->SetActorLocation(GetActorLocation());
 	//NewBullet->SetActorRotation(InitRot);
 	//BulletFX->SetActorLocation(InitPos);
 	
