@@ -2,7 +2,6 @@
 #include <EngineCore/GameMode.h>
 
 // Ό³Έν :
-class AOldFilmEffect;
 class ATestGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)

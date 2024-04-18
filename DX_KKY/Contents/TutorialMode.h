@@ -21,6 +21,9 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	void LevelEnd(ULevel* _NextLevel);
+	void LevelStart(ULevel* _PrevLevel);
+
 private:
 
 };

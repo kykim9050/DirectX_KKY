@@ -1,11 +1,14 @@
 ﻿#include "PreCompile.h"
+#include <EngineCore/EngineSprite.h>
+
 #include "ContentsCore.h"
 #include "TitleMode.h"
 #include "EndingMode.h"
-#include "TestGameMode.h"
 #include "TutorialMode.h"
-#include <EngineCore/EngineSprite.h>
 #include "WorldGameMode.h"
+
+#include "TestGameMode.h"
+#include "FlowerLevelTestMode.h"
 
 
 UContentsCore::UContentsCore()
@@ -45,7 +48,8 @@ void UContentsCore::Initialize()
 	//GEngine->CreateLevel<AEndingMode>("EndingLevel");
 	//GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
 	//GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
-	GEngine->CreateLevel<ATestGameMode>("TestLevel");
+	//GEngine->CreateLevel<ATestGameMode>("TestLevel");
+	GEngine->CreateLevel<AFlowerLevelTestMode>("TestLevel");
 	GEngine->ChangeLevel("TestLevel");
 }
 
