@@ -286,14 +286,54 @@ void APlayer::SuperShoot(float _DeltaTime)
 	std::shared_ptr<APlayerSSBullet> NewBullet = GetWorld()->SpawnActor<APlayerSSBullet>("Bullet", EActorType::Bullet);
 	std::shared_ptr<ASSBulletFX> BulletFX = GetWorld()->SpawnActor<ASSBulletFX>("BulletFX", EActorType::FX);
 
-	//FVector InitPos = FVector::Zero;
-	//FVector InitRot = FVector::Zero;
+	FVector InitPos = FVector::Zero;
+	FVector InitRot = FVector::Zero;
 
-	//GetBulletInitPosAndRot(InitPos, InitRot, NewBullet);
-	NewBullet->SetActorLocation(GetActorLocation());
-	//NewBullet->SetActorRotation(InitRot);
-	BulletFX->SetActorLocation(GetActorLocation());
-	
+	switch (ActorKeyDir)
+	{
+	case EPlayerKeyDir::Up:
+		InitPos = UContentsValue::Up_BulletInitPos;
+		InitRot = UContentsValue::Up_BulletInitRot;
+		break;
+	case EPlayerKeyDir::RightUp:
+		InitPos = UContentsValue::RightUp_BulletInitPos;
+		InitRot = UContentsValue::RightUp_BulletInitRot;
+		break;
+	case EPlayerKeyDir::Right:
+		InitPos = UContentsValue::Straight_BulletInitPos;
+		InitRot = UContentsValue::Right_BulletInitRot;
+		break;
+	case EPlayerKeyDir::RightDown:
+		InitPos = UContentsValue::RightDown_BulletInitPos;
+		InitRot = UContentsValue::RightDown_BulletInitRot;
+		break;
+	case EPlayerKeyDir::Down:
+		InitPos = UContentsValue::Down_BulletInitPos;
+		InitRot = UContentsValue::Down_BulletInitRot;
+		break;
+	case EPlayerKeyDir::LeftDown:
+		InitPos = UContentsValue::RightDown_BulletInitPos;
+		InitPos.X = -InitPos.X;
+		InitRot = UContentsValue::LeftDown_BulletInitRot;
+		break;
+	case EPlayerKeyDir::Left:
+		InitPos = UContentsValue::Straight_BulletInitPos;
+		InitPos.X = -InitPos.X;
+		InitRot = UContentsValue::Left_BulletInitRot;
+		break;
+	case EPlayerKeyDir::LeftUp:
+		InitPos = UContentsValue::Up_BulletInitPos;
+		InitPos.X = -InitPos.X;
+		InitRot = UContentsValue::LeftUp_BulletInitRot;
+		break;
+	default:
+		break;
+	}
+
+	NewBullet->SetActorLocation(GetActorLocation() + InitPos);
+	NewBullet->SetActorRotation(InitRot);
+	BulletFX->SetActorLocation(GetActorLocation() + InitPos);
+	BulletFX->SetActorRotation(InitRot);
 }
 
 void APlayer::ChangeSuperShootState()
@@ -319,6 +359,7 @@ void APlayer::ChangeSuperShootState()
 		break;
 	case EPlayerKeyDir::Down:
 		State.ChangeState("Ground_SS_Down");
+		break;
 	default:
 		break;
 	}

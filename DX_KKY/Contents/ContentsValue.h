@@ -29,6 +29,16 @@ public:
 	static const float4 RightDown_BulletInitPos;
 	static const float4 Duck_BulletInitPos;
 
+	static const float4 Up_BulletInitRot;
+	static const float4 RightUp_BulletInitRot;
+	static const float4 Right_BulletInitRot;
+	static const float4 RightDown_BulletInitRot;
+	static const float4 Down_BulletInitRot;
+	static const float4 LeftDown_BulletInitRot;
+	static const float4 Left_BulletInitRot;
+	static const float4 LeftUp_BulletInitRot;
+
+
 	static const float4 PlayerBulletColSize;
 	static const float4 PlayerSSBulletColSize;
 
