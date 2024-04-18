@@ -103,7 +103,9 @@ private:
 	void Ground_SS_Down(float _DeltaTime);
 
 	void ShootBullet(float _DeltaTime);
+	void SuperShoot(float _DeltaTime);
 	void ShootCheck(float _DeltaTime);
+	void SuperShootCheck(float _DeltaTime);
 	void GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 	void JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 

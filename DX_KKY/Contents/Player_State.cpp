@@ -411,6 +411,8 @@ bool APlayer::DirCheck()
 
 void APlayer::Idle(float _DeltaTime)
 {
+	SuperShootCheck(_DeltaTime);
+
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		State.ChangeState("Run");
@@ -454,11 +456,7 @@ void APlayer::Idle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V'))
-	{
-		State.ChangeState("Ground_SS_Straight");
-		return;
-	}
+	
 
 	ResultMovementUpdate(_DeltaTime);
 }

@@ -277,11 +277,24 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 }
 
+void APlayer::SuperShoot(float _DeltaTime)
+{
+	int a = 0;
+}
+
 void APlayer::ShootCheck(float _DeltaTime)
 {
 	if (true == IsPress('X'))
 	{
 		ShootBullet(_DeltaTime);
+	}
+}
+
+void APlayer::SuperShootCheck(float _DeltaTime)
+{
+	if (true == IsDown('V'))
+	{
+		SuperShoot(_DeltaTime);
 	}
 }
 
