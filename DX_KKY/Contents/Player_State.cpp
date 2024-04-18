@@ -320,7 +320,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Up");
 				AnimationDirSet(Renderer, Dir);
-				//SetShootType(EBulletShootType::);
+				SetShootType(EBulletShootType::UpGSS);
 			}
 		);
 		State.SetStartFunction("Ground_SS_DiagonalUp", [this]
@@ -328,7 +328,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_DiagonalUp");
 				AnimationDirSet(Renderer, Dir);
-				//SetShootType(EBulletShootType::);
+				SetShootType(EBulletShootType::DiagonalUpGSS);
 			}
 		);
 		State.SetStartFunction("Ground_SS_Straight", [this]
@@ -336,7 +336,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Straight");
 				AnimationDirSet(Renderer, Dir);
-				//SetShootType(EBulletShootType::StraightShoot);
+				SetShootType(EBulletShootType::StraightGSS);
 			}
 		);
 		State.SetStartFunction("Ground_SS_DiagonalDown", [this]
@@ -344,7 +344,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_DiagonalDown");
 				AnimationDirSet(Renderer, Dir);
-				//SetShootType(EBulletShootType::);
+				SetShootType(EBulletShootType::DiagonalDownGSS);
 			}
 		);
 		State.SetStartFunction("Ground_SS_Down", [this]
@@ -352,7 +352,7 @@ void APlayer::StateInit()
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Down");
 				AnimationDirSet(Renderer, Dir);
-				//SetShootType(EBulletShootType::);
+				SetShootType(EBulletShootType::DownGSS);
 			}
 		);
 

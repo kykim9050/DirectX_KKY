@@ -30,7 +30,7 @@ enum class ERenderingOrder
 	OldFilmEffect,
 };
 
-enum class EWorldPlayerDir
+enum class EPlayerKeyDir
 {
 	None,
 	Up,
@@ -66,4 +66,11 @@ enum class EBulletShootType
 	DiagonalDownShoot,
 	DownShoot,
 	DuckShoot,
+	UpGSS,
+	DiagonalUpGSS,
+	StraightGSS,
+	DiagonalDownGSS,
+	DownGSS,
+	AirSuperShoot
 };
+

@@ -50,14 +50,14 @@ void AWorldPlayer::StateInit()
 		State.SetStartFunction("UpIdle", [=]
 			{
 				ResetDustDelayTime();
-				Dir = EWorldPlayerDir::Up;
+				Dir = EPlayerKeyDir::Up;
 				Renderer->ChangeAnimation("WPlayer_UpIdle");
 			}
 		);
 		State.SetStartFunction("RightUpIdle", [=]
 			{
 				ResetDustDelayTime();
-				Dir = EWorldPlayerDir::RightUp;
+				Dir = EPlayerKeyDir::RightUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
@@ -65,7 +65,7 @@ void AWorldPlayer::StateInit()
 		State.SetStartFunction("RightIdle", [=]
 			{
 				ResetDustDelayTime();
-				Dir = EWorldPlayerDir::Right;
+				Dir = EPlayerKeyDir::Right;
 				Renderer->ChangeAnimation("WPlayer_StraightIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
@@ -73,7 +73,7 @@ void AWorldPlayer::StateInit()
 		State.SetStartFunction("RightDownIdle", [=]
 			{
 				ResetDustDelayTime();
-				Dir = EWorldPlayerDir::RightDown;
+				Dir = EPlayerKeyDir::RightDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 				Renderer->SetDir(EEngineDir::Right);
 			}
@@ -81,14 +81,14 @@ void AWorldPlayer::StateInit()
 		State.SetStartFunction("DownIdle", [=]
 			{
 				ResetDustDelayTime();
-				Dir = EWorldPlayerDir::Down;
+				Dir = EPlayerKeyDir::Down;
 				Renderer->ChangeAnimation("WPlayer_DownIdle");
 			}
 		);
 		State.SetStartFunction("LeftDownIdle", [=]
 			{
 				ResetDustDelayTime();
-				Dir = EWorldPlayerDir::LeftDown;
+				Dir = EPlayerKeyDir::LeftDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
@@ -96,7 +96,7 @@ void AWorldPlayer::StateInit()
 		State.SetStartFunction("LeftIdle", [=]
 			{
 				ResetDustDelayTime();
-				Dir = EWorldPlayerDir::Left;
+				Dir = EPlayerKeyDir::Left;
 				Renderer->ChangeAnimation("WPlayer_StraightIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
@@ -104,7 +104,7 @@ void AWorldPlayer::StateInit()
 		State.SetStartFunction("LeftUpIdle", [=]
 			{
 				ResetDustDelayTime();
-				Dir = EWorldPlayerDir::LeftUp;
+				Dir = EPlayerKeyDir::LeftUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpIdle");
 				Renderer->SetDir(EEngineDir::Left);
 			}
@@ -112,54 +112,54 @@ void AWorldPlayer::StateInit()
 	
 		State.SetStartFunction("UpWalk", [=]
 			{
-				Dir = EWorldPlayerDir::Up;
+				Dir = EPlayerKeyDir::Up;
 				Renderer->ChangeAnimation("WPlayer_UpWalk");
 			}
 		);
 		State.SetStartFunction("RightUpWalk", [=]
 			{
-				Dir = EWorldPlayerDir::RightUp;
+				Dir = EPlayerKeyDir::RightUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpWalk");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("RightWalk", [=]
 			{
-				Dir = EWorldPlayerDir::Right;
+				Dir = EPlayerKeyDir::Right;
 				Renderer->ChangeAnimation("WPlayer_StraightWalk");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("RightDownWalk", [=]
 			{
-				Dir = EWorldPlayerDir::RightDown;
+				Dir = EPlayerKeyDir::RightDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownWalk");
 				Renderer->SetDir(EEngineDir::Right);
 			}
 		);
 		State.SetStartFunction("DownWalk", [=]
 			{
-				Dir = EWorldPlayerDir::Down;
+				Dir = EPlayerKeyDir::Down;
 				Renderer->ChangeAnimation("WPlayer_DownWalk");
 			}
 		);
 		State.SetStartFunction("LeftDownWalk", [=]
 			{
-				Dir = EWorldPlayerDir::LeftDown;
+				Dir = EPlayerKeyDir::LeftDown;
 				Renderer->ChangeAnimation("WPlayer_DiagonalDownWalk");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
 		State.SetStartFunction("LeftWalk", [=]
 			{
-				Dir = EWorldPlayerDir::Left;
+				Dir = EPlayerKeyDir::Left;
 				Renderer->ChangeAnimation("WPlayer_StraightWalk");
 				Renderer->SetDir(EEngineDir::Left);
 			}
 		);
 		State.SetStartFunction("LeftUpWalk", [=]
 			{
-				Dir = EWorldPlayerDir::LeftUp;
+				Dir = EPlayerKeyDir::LeftUp;
 				Renderer->ChangeAnimation("WPlayer_DiagonalUpWalk");
 				Renderer->SetDir(EEngineDir::Left);
 			}
