@@ -75,7 +75,7 @@ private:
 	float Speed = 230.0f;
 	float DiagonalSpeed = 170.0f;
 
-	EWorldPlayerDir Dir = EWorldPlayerDir::None;
+	EPlayerKeyDir Dir = EPlayerKeyDir::None;
 
 	float DustInitXOffset = -15.0f;
 	float DustDelayTime = 1.0f;

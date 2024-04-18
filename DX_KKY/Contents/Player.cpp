@@ -279,7 +279,7 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 void APlayer::SuperShoot(float _DeltaTime)
 {
-	int a = 0;
+	
 }
 
 void APlayer::ShootCheck(float _DeltaTime)

@@ -11,7 +11,7 @@
 std::shared_ptr<AWorldPlayer> AWorldPlayer:: MainPlayer = std::shared_ptr<AWorldPlayer>();
 
 AWorldPlayer::AWorldPlayer()
-	: Dir(EWorldPlayerDir::RightDown)
+	: Dir(EPlayerKeyDir::RightDown)
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("PlayerRoot");
 	SetRoot(Root);
@@ -68,31 +68,31 @@ bool AWorldPlayer::MapCollisionCheck()
 
 	switch (Dir)
 	{
-	case EWorldPlayerDir::Up:
+	case EPlayerKeyDir::Up:
 		Pos.Y = Pos.Y - CheckOffset;
 		break;
-	case EWorldPlayerDir::RightUp:
+	case EPlayerKeyDir::RightUp:
 		Pos.X = Pos.X + CheckOffset;
 		Pos.Y = Pos.Y - CheckOffset;
 		break;
-	case EWorldPlayerDir::Right:
+	case EPlayerKeyDir::Right:
 		Pos.X = Pos.X + CheckOffset;
 		break;
-	case EWorldPlayerDir::RightDown:
+	case EPlayerKeyDir::RightDown:
 		Pos.X = Pos.X + CheckOffset;
 		Pos.Y = Pos.Y + CheckOffset;
 		break;
-	case EWorldPlayerDir::Down:
+	case EPlayerKeyDir::Down:
 		Pos.Y = Pos.Y + CheckOffset;
 		break;
-	case EWorldPlayerDir::LeftDown:
+	case EPlayerKeyDir::LeftDown:
 		Pos.X = Pos.X - CheckOffset;
 		Pos.Y = Pos.Y + CheckOffset;
 		break;
-	case EWorldPlayerDir::Left:
+	case EPlayerKeyDir::Left:
 		Pos.X = Pos.X - CheckOffset;
 		break;
-	case EWorldPlayerDir::LeftUp:
+	case EPlayerKeyDir::LeftUp:
 		Pos.X = Pos.X - CheckOffset;
 		Pos.Y = Pos.Y - CheckOffset;
 		break;
