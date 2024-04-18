@@ -138,6 +138,9 @@
     <ClInclude Include="FlowerLevelTestMode.h">
       <Filter>Level\TestLevel</Filter>
     </ClInclude>
+    <ClInclude Include="BossUnit.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -223,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="FlowerLevelTestMode.cpp">
       <Filter>Level\TestLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="BossUnit.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -26,8 +26,6 @@ void AFlowerLevelTestMode::BeginPlay()
 	std::shared_ptr<AOldFilmEffect> OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
 	OldFilm->SetActorLocation(FVector{ UContentsValue::ContentsCameraInitXPos, UContentsValue::ContentsCameraInitYPos, 0.0f });
 
-	FVector WindowScale = GEngine->EngineWindow.GetWindowScale();
-
 	std::shared_ptr<APlayer> Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
 	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
 

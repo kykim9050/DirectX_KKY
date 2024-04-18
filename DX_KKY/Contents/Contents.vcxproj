@@ -171,6 +171,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BossUnit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BulletFX.h">
       <SubType>
       </SubType>
@@ -266,6 +270,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BossUnit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BulletFX.cpp">
       <SubType>
       </SubType>
