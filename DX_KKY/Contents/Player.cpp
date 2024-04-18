@@ -113,7 +113,7 @@ void APlayer::CreatePlayerAnimation()
 		);
 		Renderer->SetFrameCallback("Player_Dash", 8, [this]()
 			{
-				AddActorLocation(MoveDir(Dir) * 10.0f);
+				AddActorLocation(MoveDir(PlayerDir) * 10.0f);
 				State.ChangeState("FallDown");
 			}
 		);
@@ -121,7 +121,7 @@ void APlayer::CreatePlayerAnimation()
 			{
 				SetPrevJumpVec(GetJumpVec());
 				SetPrevGravityVec(GetGravityVec());
-				AddActorLocation(MoveDir(Dir) * 10.0f);
+				AddActorLocation(MoveDir(PlayerDir) * 10.0f);
 				State.ChangeState("AfterDashAir");
 			}
 		);
@@ -181,7 +181,7 @@ std::string APlayer::ChangeStringName(const std::string& _MainName)
 	std::string ActorDir = "";
 	std::string CurAnimationName = _MainName;
 
-	switch (Dir)
+	switch (PlayerDir)
 	{
 	case EActorDir::Left:
 		ActorDir = "_Left";
@@ -236,7 +236,7 @@ void APlayer::WallCheck(float _DeltaTime)
 	float4 CheckPos = GetActorLocation();
 	CheckPos.Y = -(CheckPos.Y + UContentsValue::PlayerCheckPosOffSet);
 
-	switch (Dir)
+	switch (PlayerDir)
 	{
 	case EActorDir::Right:
 		CheckPos.X += UContentsValue::PlayerCheckPosOffSet;
@@ -351,7 +351,7 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_p
 
 
 
-	switch (Dir)
+	switch (PlayerDir)
 	{
 	case EActorDir::Left:
 	{
@@ -457,7 +457,7 @@ void APlayer::JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlaye
 		return;
 	}
 
-	if (true == IsPress(VK_RIGHT) || Dir == EActorDir::Right)
+	if (true == IsPress(VK_RIGHT) || PlayerDir == EActorDir::Right)
 	{
 		Bullet->SetHorizontalDir(float4::Right);
 		Pos = UContentsValue::Straight_BulletInitPos;
@@ -465,7 +465,7 @@ void APlayer::JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlaye
 		return;
 	}
 
-	if (true == IsPress(VK_LEFT) || Dir == EActorDir::Left)
+	if (true == IsPress(VK_LEFT) || PlayerDir == EActorDir::Left)
 	{
 		Bullet->SetHorizontalDir(float4::Left);
 		Pos = UContentsValue::Straight_BulletInitPos;
