@@ -52,6 +52,9 @@
     <Filter Include="Level\PlayLevel\CommonObject\Player">
       <UniqueIdentifier>{13250a61-df5c-4d3e-9eeb-59f41340790b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\FlowerStage">
+      <UniqueIdentifier>{f08a05e5-0193-4504-969b-e7ae2220a819}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -131,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="SSBulletFX.h">
       <Filter>Level\PlayLevel\CommonObject\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowerLevelTestMode.h">
+      <Filter>Level\TestLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="SSBulletFX.cpp">
       <Filter>Level\PlayLevel\CommonObject\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowerLevelTestMode.cpp">
+      <Filter>Level\TestLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
