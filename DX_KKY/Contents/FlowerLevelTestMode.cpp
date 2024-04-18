@@ -7,6 +7,7 @@
 #include "OldFilmEffect.h"
 #include "Player.h"
 #include "MapBase.h"
+#include "CagneyCarnation.h"
 
 AFlowerLevelTestMode::AFlowerLevelTestMode()
 {
@@ -28,6 +29,9 @@ void AFlowerLevelTestMode::BeginPlay()
 
 	std::shared_ptr<APlayer> Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
 	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
+
+	std::shared_ptr<ACagneyCarnation> BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
+	BossMonster->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
 
 	std::shared_ptr<AMapBase> MapFrontObject = GetWorld()->SpawnActor<AMapBase>("MapFrontObject", EActorType::Map);
 	MapFrontObject->SetMapFile("Flower_Background_Front.png");

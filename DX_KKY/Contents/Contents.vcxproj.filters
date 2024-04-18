@@ -55,6 +55,9 @@
     <Filter Include="Level\PlayLevel\CagneyCarnation">
       <UniqueIdentifier>{f08a05e5-0193-4504-969b-e7ae2220a819}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\CagneyCarnation\Object">
+      <UniqueIdentifier>{b5f2ec1e-4bd1-43e6-b6bb-6363807c4bba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="BossUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="CagneyCarnation.h">
+      <Filter>Level\PlayLevel\CagneyCarnation\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="BossUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="CagneyCarnation.cpp">
+      <Filter>Level\PlayLevel\CagneyCarnation\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

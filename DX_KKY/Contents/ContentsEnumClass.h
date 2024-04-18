@@ -12,6 +12,7 @@ enum class EActorType
 	Dust,
 	Bullet,
 	FX,
+	BossMonster,
 };
 
 enum class ERenderingOrder
@@ -24,6 +25,7 @@ enum class ERenderingOrder
 	Animation,
 	StaticObject,
 	Object,
+	BossMonster,
 	Dust,
 	PlayerBullet,
 	PlayerBulletFx,
