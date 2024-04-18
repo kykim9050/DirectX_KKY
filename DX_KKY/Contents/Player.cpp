@@ -521,7 +521,10 @@ void APlayer::JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlaye
 
 bool APlayer::DownJumpCheck()
 {
-	if (true == PixelCheck(GetActorLocation(), Color8Bit::Blue))
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == PixelCheck(Pos, Color8Bit::Blue))
 	{
 		return true;
 	}

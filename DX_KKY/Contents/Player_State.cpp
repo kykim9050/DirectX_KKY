@@ -1399,6 +1399,11 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 
 		if (true == IsDown('Z'))
 		{
+			if (true == DownJumpCheck())
+			{
+				State.ChangeState("DownJump");
+				return;
+			}
 			State.ChangeState("Jump");
 			return;
 		}
