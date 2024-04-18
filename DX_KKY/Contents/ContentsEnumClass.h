@@ -18,6 +18,8 @@ enum class ERenderingOrder
 {
 	None,
 	CollisionLayer,
+	BackLayer3,
+	BackLayer2,
 	BackLayer,
 	Animation,
 	StaticObject,
