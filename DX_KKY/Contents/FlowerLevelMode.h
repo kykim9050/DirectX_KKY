@@ -2,6 +2,8 @@
 #include <EngineCore/GameMode.h>
 
 // Ό³Έν :
+class UEngineRandom;
+
 class UCamera;
 class AOldFilmEffect;
 class APlayer;
@@ -38,5 +40,7 @@ private:
 	std::shared_ptr<AMapBase> Map;
 	std::shared_ptr<AMapBase> BackGroundObject;
 	std::shared_ptr<AMapBase> ColMap;
+
+	std::shared_ptr<UEngineRandom> Random;
 };
 

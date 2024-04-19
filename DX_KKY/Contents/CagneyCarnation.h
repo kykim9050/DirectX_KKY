@@ -44,8 +44,11 @@ private:
 	std::map<int, std::string> AttackPattern;
 
 	// 페이즈1에서 상태 변화전 delay 시간
-	float P1_ChangeDelay = 5.0f;
-	float P1_ChangeDelayValue = 5.0f;
+	//float P1_ChangeDelay = 5.0f;
+	//float P1_ChangeDelayValue = 5.0f;
+	float P1_ChangeDelay = 2.0f;
+	float P1_ChangeDelayValue = 2.0f;
+
 
 	// FaceAttack 지속 시간
 	float FaceAttackDelay = 1.0f;
