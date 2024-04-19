@@ -1,20 +1,20 @@
 #pragma once
 
 // Ό³Έν :
-class URandomValue
+class UMath
 {
 public:
 
 
 	// delete Function
-	URandomValue(const URandomValue& _Other) = delete;
-	URandomValue(URandomValue&& _Other) noexcept = delete;
-	URandomValue& operator=(const URandomValue& _Other) = delete;
-	URandomValue& operator=(URandomValue&& _Other) noexcept = delete;
+	UMath(const UMath& _Other) = delete;
+	UMath(UMath&& _Other) noexcept = delete;
+	UMath& operator=(const UMath& _Other) = delete;
+	UMath& operator=(UMath&& _Other) noexcept = delete;
 
-	static URandomValue& GetInst()
+	static UMath& GetInst()
 	{
-		static URandomValue Inst = URandomValue();
+		static UMath Inst = UMath();
 		return Inst;
 	}
 
@@ -36,7 +36,7 @@ protected:
 
 private:
 	// constrcuter destructer
-	URandomValue();
-	~URandomValue();
+	UMath();
+	~UMath();
 };
 
