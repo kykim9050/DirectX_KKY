@@ -58,6 +58,9 @@
     <Filter Include="Level\PlayLevel\FlowerLevel\Object">
       <UniqueIdentifier>{b5f2ec1e-4bd1-43e6-b6bb-6363807c4bba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ContentsHelper\Debug">
+      <UniqueIdentifier>{af04ef55-fdff-46bb-8f62-f8dbfa557c8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -146,6 +149,9 @@
     </ClInclude>
     <ClInclude Include="FlowerLevelMode.h">
       <Filter>Level\PlayLevel\FlowerLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsDebugWindow.h">
+      <Filter>ContentsHelper\Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="FlowerLevelMode.cpp">
       <Filter>Level\PlayLevel\FlowerLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsDebugWindow.cpp">
+      <Filter>ContentsHelper\Debug</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
