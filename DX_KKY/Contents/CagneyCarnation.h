@@ -52,5 +52,6 @@ private:
 
 	void Idle(float _DeltaTime);
 	void FaceAttackHigh_Idle(float _DeltaTime);
+	void FaceAttackLow_Idle(float _DeltaTime);
 };
 

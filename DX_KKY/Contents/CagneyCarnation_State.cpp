@@ -25,6 +25,11 @@ void ACagneyCarnation::StateCreate()
 	State.CreateState(FlowerBossState::FaceAttackHigh_Begin);
 	State.CreateState(FlowerBossState::FaceAttackHigh_Idle);
 	State.CreateState(FlowerBossState::FaceAttackHigh_End);
+	State.CreateState(FlowerBossState::FaceAttackLow_Begin);
+	State.CreateState(FlowerBossState::FaceAttackLow_Idle);
+	State.CreateState(FlowerBossState::FaceAttackLow_End);
+
+
 }
 
 void ACagneyCarnation::StartFunctionSet()
@@ -55,6 +60,20 @@ void ACagneyCarnation::StartFunctionSet()
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackHigh_End);
 		});
 
+	State.SetStartFunction(FlowerBossState::FaceAttackLow_Begin, [this]()
+		{
+			AddActorLocation(FVector(0.0f, -110.f, 0.0f));
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackLow_Begin);
+		});
+	State.SetStartFunction(FlowerBossState::FaceAttackLow_Idle, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackLow_Idle);
+		});
+	State.SetStartFunction(FlowerBossState::FaceAttackLow_End, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackLow_End);
+		});
+
 }
 
 void ACagneyCarnation::UpdateFunctionSet()
@@ -69,6 +88,11 @@ void ACagneyCarnation::UpdateFunctionSet()
 	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Begin, [this](float){});
 	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Idle, std::bind(&ACagneyCarnation::FaceAttackHigh_Idle, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_End, [this](float){});
+
+	State.SetUpdateFunction(FlowerBossState::FaceAttackLow_Begin, [this](float){});
+	State.SetUpdateFunction(FlowerBossState::FaceAttackLow_Idle, std::bind(&ACagneyCarnation::FaceAttackLow_Idle, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::FaceAttackLow_End, [this](float) {});
+
 }
 
 void ACagneyCarnation::EndFunctionSet()
@@ -83,7 +107,7 @@ void ACagneyCarnation::Idle(float _DeltaTime)
 	if (0.0f >= P1_ChangeDelay)
 	{
 		P1_ChangeDelay = P1_ChangeDelayValue + P1_ChangeDelay;
-		State.ChangeState(FlowerBossState::FaceAttackHigh_Begin);
+		State.ChangeState(FlowerBossState::FaceAttackLow_Begin);
 		return;
 	}
 }
@@ -96,6 +120,18 @@ void ACagneyCarnation::FaceAttackHigh_Idle(float _DeltaTime)
 	{
 		FaceAttackDelay = FaceAttackDelayValue + FaceAttackDelay;
 		State.ChangeState(FlowerBossState::FaceAttackHigh_End);
+		return;
+	}
+}
+
+void ACagneyCarnation::FaceAttackLow_Idle(float _DeltaTime)
+{
+	FaceAttackDelay -= _DeltaTime;
+
+	if (0.0f >= FaceAttackDelay)
+	{
+		FaceAttackDelay = FaceAttackDelayValue + FaceAttackDelay;
+		State.ChangeState(FlowerBossState::FaceAttackLow_End);
 		return;
 	}
 }
