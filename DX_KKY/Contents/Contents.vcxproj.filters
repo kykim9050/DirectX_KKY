@@ -251,5 +251,8 @@
     <ClCompile Include="ContentsDebugWindow.cpp">
       <Filter>ContentsHelper\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="CagneyCarnation_Animation.cpp">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
