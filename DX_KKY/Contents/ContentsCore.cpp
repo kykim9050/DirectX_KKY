@@ -50,9 +50,9 @@ void UContentsCore::Initialize()
 
 	GEngine->CreateLevel<ATitleMode>("TitleLevel");
 	GEngine->CreateLevel<AEndingMode>("EndingLevel");
-	GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
+	//GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
 	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
-	GEngine->CreateLevel<ATestGameMode>("TestLevel");
+	//GEngine->CreateLevel<ATestGameMode>("TestLevel");
 	GEngine->CreateLevel<AFlowerLevelMode>("FlowerLevel");
 	GEngine->ChangeLevel("FlowerLevel");
 }

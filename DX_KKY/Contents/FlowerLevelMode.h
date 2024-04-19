@@ -2,6 +2,11 @@
 #include <EngineCore/GameMode.h>
 
 // Ό³Έν :
+class UCamera;
+class AOldFilmEffect;
+class APlayer;
+class ACagneyCarnation;
+class AMapBase;
 class AFlowerLevelMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -25,6 +30,13 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 
 private:
-
+	std::shared_ptr<UCamera> Camera;
+	std::shared_ptr<AOldFilmEffect> OldFilm;
+	std::shared_ptr<APlayer> Player;
+	std::shared_ptr<ACagneyCarnation> BossMonster;
+	std::shared_ptr<AMapBase> MapFrontObject;
+	std::shared_ptr<AMapBase> Map;
+	std::shared_ptr<AMapBase> BackGroundObject;
+	std::shared_ptr<AMapBase> ColMap;
 };
 
