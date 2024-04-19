@@ -8,7 +8,7 @@ void ACagneyCarnation::AnimationInit()
 	SetAnimationCallback();
 
 	Renderer->SetAutoSize(1.0f, true);
-	Renderer->SetPivot(EPivot::RIGHT);
+	Renderer->SetPivot(EPivot::RIGHTBOTTOM);
 	Renderer->SetOrder(ERenderingOrder::BossMonster);
 }
 
