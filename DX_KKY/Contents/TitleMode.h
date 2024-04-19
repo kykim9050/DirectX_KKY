@@ -2,6 +2,10 @@
 #include <EngineCore/GameMode.h>
 
 // Ό³Έν :
+class UCamera;
+class ATitleAnimation;
+class AOldFilmEffect;
+class ATitleLogo;
 class ATitleMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -25,6 +29,9 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 
 private:
-
+	std::shared_ptr<UCamera> Camera;
+	std::shared_ptr<AOldFilmEffect> OldFilm;
+	std::shared_ptr<ATitleAnimation> TitleAni;
+	std::shared_ptr<ATitleLogo> TitleLogo;
 };
 
