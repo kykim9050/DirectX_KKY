@@ -25,12 +25,19 @@ void ACagneyCarnation::CreateAnimation()
 
 void ACagneyCarnation::SetAnimationCallback()
 {
+	// Intro
 	Renderer->SetFrameCallback(FlowerBossAniName::Flower_Intro, 38, [this]()
 		{
 			State.ChangeState(FlowerBossState::Idle);
 		});
+
+	// Face Attack High
 	Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackHigh_Begin, 28, [this]()
 		{
 			State.ChangeState(FlowerBossState::FaceAttackHigh_Idle);
+		});
+	Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackHigh_End, 5, [this]()
+		{
+			State.ChangeState(FlowerBossState::Idle);
 		});
 }

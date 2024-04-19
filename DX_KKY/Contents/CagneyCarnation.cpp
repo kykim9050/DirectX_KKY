@@ -16,7 +16,6 @@ void ACagneyCarnation::BeginPlay()
 	Super::BeginPlay();
 
 	AnimationInit();
-
 	StateInit();
 }
 

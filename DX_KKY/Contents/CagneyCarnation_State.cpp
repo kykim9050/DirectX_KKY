@@ -60,33 +60,42 @@ void ACagneyCarnation::StartFunctionSet()
 void ACagneyCarnation::UpdateFunctionSet()
 {
 	// Idle
-	State.SetUpdateFunction(FlowerBossState::Idle, [this](float)
-		{
-
-		});
+	State.SetUpdateFunction(FlowerBossState::Idle, std::bind(&ACagneyCarnation::Idle, this, std::placeholders::_1));
 
 	//Intro
-	State.SetUpdateFunction(FlowerBossState::Intro, [this](float)
-		{
-
-		});
+	State.SetUpdateFunction(FlowerBossState::Intro, [this](float){});
 
 	// FaceAttack
-	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Begin, [this](float)
-		{
-
-		});
-	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Idle, [this](float)
-		{
-
-		});
-	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_End, [this](float)
-		{
-
-		});
+	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Begin, [this](float){});
+	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Idle, std::bind(&ACagneyCarnation::FaceAttackHigh_Idle, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_End, [this](float){});
 }
 
 void ACagneyCarnation::EndFunctionSet()
 {
 
+}
+
+void ACagneyCarnation::Idle(float _DeltaTime)
+{
+	P1_ChangeDelay -= _DeltaTime;
+
+	if (0.0f >= P1_ChangeDelay)
+	{
+		P1_ChangeDelay = P1_ChangeDelayValue + P1_ChangeDelay;
+		State.ChangeState(FlowerBossState::FaceAttackHigh_Begin);
+		return;
+	}
+}
+
+void ACagneyCarnation::FaceAttackHigh_Idle(float _DeltaTime)
+{
+	FaceAttackDelay -= _DeltaTime;
+
+	if (0.0f >= FaceAttackDelay)
+	{
+		FaceAttackDelay = FaceAttackDelayValue + FaceAttackDelay;
+		State.ChangeState(FlowerBossState::FaceAttackHigh_End);
+		return;
+	}
 }

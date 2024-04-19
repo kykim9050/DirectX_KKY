@@ -1,6 +1,12 @@
 #pragma once
 #include "BossUnit.h"
 
+enum class Phase1_AttackPattern
+{
+	FaceAttack_High,
+	Max,
+};
+
 // 설명 :
 class ACagneyCarnation : public ABossUnit
 {
@@ -20,6 +26,15 @@ public:
 protected:
 
 private:
+	// 페이즈1에서 상태 변화전 delay 시간
+	float P1_ChangeDelay = 5.0f;
+	float P1_ChangeDelayValue = 5.0f;
+
+	// FaceAttack 지속 시간
+	float FaceAttackDelay = 1.0f;
+	float FaceAttackDelayValue = 1.0f;
+
+private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
@@ -34,5 +49,8 @@ private:
 	void StartFunctionSet();
 	void UpdateFunctionSet();
 	void EndFunctionSet();
+
+	void Idle(float _DeltaTime);
+	void FaceAttackHigh_Idle(float _DeltaTime);
 };
 
