@@ -22,6 +22,7 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	virtual void StateInit() {};
+	void Init();
 
 	USpriteRenderer* Renderer;
 	UStateManager State = UStateManager();

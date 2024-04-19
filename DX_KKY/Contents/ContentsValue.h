@@ -1,5 +1,17 @@
 #pragma once
 
+namespace FlowerBossAniName
+{
+	const std::string Flower_Idle = "Flower_Idle";
+	const std::string Flower_Intro = "FlowerIntro";
+}
+
+namespace FlowerBossState
+{
+	const std::string Intro = "Intro";
+	const std::string Idle = "Idle";
+
+}
 
 // Ό³Έν :
 class UContentsValue

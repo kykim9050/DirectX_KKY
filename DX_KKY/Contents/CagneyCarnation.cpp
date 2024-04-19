@@ -15,10 +15,7 @@ void ACagneyCarnation::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CreateAnimation();
-
-	Renderer->SetAutoSize(1.0f, true);
-	Renderer->SetOrder(ERenderingOrder::BossMonster);
+	AnimationInit();
 
 	StateInit();
 }
@@ -26,9 +23,4 @@ void ACagneyCarnation::BeginPlay()
 void ACagneyCarnation::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-}
-
-void ACagneyCarnation::CreateAnimation()
-{
-	Renderer->CreateAnimation("Flower_Idle", "FlowerIdle", 0.0416f);
 }

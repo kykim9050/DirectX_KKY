@@ -294,6 +294,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="CagneyCarnation_Animation.cpp" />
     <ClCompile Include="CagneyCarnation_State.cpp" />
     <ClCompile Include="ContentsCamera.cpp">
       <SubType>

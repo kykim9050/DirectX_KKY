@@ -24,6 +24,9 @@ private:
 	void Tick(float _DeltaTime) override;
 	void StateInit() override;
 
+	// 애니메이션 관련
+	void AnimationInit();
 	void CreateAnimation();
+	void SetAnimationCallback();
 };
 

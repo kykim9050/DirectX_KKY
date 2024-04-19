@@ -3,17 +3,31 @@
 
 void ACagneyCarnation::StateInit()
 {
-	State.CreateState("Idle");
+	State.CreateState(FlowerBossState::Intro);
+	State.CreateState(FlowerBossState::Idle);
 
-	State.SetStartFunction("Idle", [this]()
+
+
+	State.SetStartFunction(FlowerBossState::Intro, [this]()
 		{
-			Renderer->ChangeAnimation("Flower_Idle");
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Intro);
+		});
+	State.SetStartFunction(FlowerBossState::Idle, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Idle);
 		});
 
-	State.SetUpdateFunction("Idle", [this](float)
+
+
+	State.SetUpdateFunction(FlowerBossState::Idle, [this](float)
+		{
+
+		});
+	State.SetUpdateFunction(FlowerBossState::Intro, [this](float)
 		{
 
 		});
 
-	State.ChangeState("Idle");
+
+	State.ChangeState(FlowerBossState::Intro);
 }
