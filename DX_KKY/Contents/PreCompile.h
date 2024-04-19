@@ -15,6 +15,7 @@
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/EngineDebug3D.h>
 #include <EngineCore/BlurEffect.h>
+#include <EngineBase/EngineRandom.h>
 
 
 #include "ContentsEnumClass.h"

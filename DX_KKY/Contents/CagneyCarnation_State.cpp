@@ -107,8 +107,10 @@ void ACagneyCarnation::Idle(float _DeltaTime)
 
 	if (0.0f >= P1_ChangeDelay)
 	{
+		int randomValue = UEngineRandom::MainRandom.RandomInt(0, static_cast<int>(EAttackPattern::Max) - 1);
+
 		P1_ChangeDelay = P1_ChangeDelayValue;
-		State.ChangeState(FlowerBossState::FaceAttackLow_Begin);
+		State.ChangeState(AttackPattern[randomValue]);
 		return;
 	}
 }
