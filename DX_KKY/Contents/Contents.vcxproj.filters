@@ -52,10 +52,10 @@
     <Filter Include="Level\PlayLevel\CommonObject\Player">
       <UniqueIdentifier>{13250a61-df5c-4d3e-9eeb-59f41340790b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\PlayLevel\CagneyCarnation">
+    <Filter Include="Level\PlayLevel\FlowerLevel">
       <UniqueIdentifier>{f08a05e5-0193-4504-969b-e7ae2220a819}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\PlayLevel\CagneyCarnation\Object">
+    <Filter Include="Level\PlayLevel\FlowerLevel\Object">
       <UniqueIdentifier>{b5f2ec1e-4bd1-43e6-b6bb-6363807c4bba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -138,14 +138,14 @@
     <ClInclude Include="SSBulletFX.h">
       <Filter>Level\PlayLevel\CommonObject\FX</Filter>
     </ClInclude>
-    <ClInclude Include="FlowerLevelTestMode.h">
-      <Filter>Level\TestLevel</Filter>
-    </ClInclude>
     <ClInclude Include="BossUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
     <ClInclude Include="CagneyCarnation.h">
-      <Filter>Level\PlayLevel\CagneyCarnation\Object</Filter>
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowerLevelMode.h">
+      <Filter>Level\PlayLevel\FlowerLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -230,17 +230,17 @@
     <ClCompile Include="SSBulletFX.cpp">
       <Filter>Level\PlayLevel\CommonObject\FX</Filter>
     </ClCompile>
-    <ClCompile Include="FlowerLevelTestMode.cpp">
-      <Filter>Level\TestLevel</Filter>
-    </ClCompile>
     <ClCompile Include="BossUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
     <ClCompile Include="CagneyCarnation.cpp">
-      <Filter>Level\PlayLevel\CagneyCarnation\Object</Filter>
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="CagneyCarnation_State.cpp">
-      <Filter>Level\PlayLevel\CagneyCarnation\Object</Filter>
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowerLevelMode.cpp">
+      <Filter>Level\PlayLevel\FlowerLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

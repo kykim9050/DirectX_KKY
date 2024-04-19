@@ -212,7 +212,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="FlowerLevelTestMode.h">
+    <ClInclude Include="FlowerLevelMode.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -315,7 +315,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="FlowerLevelTestMode.cpp">
+    <ClCompile Include="FlowerLevelMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -1,7 +1,7 @@
 ﻿#include "PreCompile.h"
 #include <EngineCore/Camera.h>
 
-#include "FlowerLevelTestMode.h"
+#include "FlowerLevelMode.h"
 
 
 #include "OldFilmEffect.h"
@@ -9,15 +9,15 @@
 #include "MapBase.h"
 #include "CagneyCarnation.h"
 
-AFlowerLevelTestMode::AFlowerLevelTestMode()
+AFlowerLevelMode::AFlowerLevelMode()
 {
 }
 
-AFlowerLevelTestMode::~AFlowerLevelTestMode()
+AFlowerLevelMode::~AFlowerLevelMode()
 {
 }
 
-void AFlowerLevelTestMode::BeginPlay()
+void AFlowerLevelMode::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -61,17 +61,17 @@ void AFlowerLevelTestMode::BeginPlay()
 
 }
 
-void AFlowerLevelTestMode::Tick(float _DeltaTime)
+void AFlowerLevelMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
 
-void AFlowerLevelTestMode::LevelEnd(ULevel* _NextLevel)
+void AFlowerLevelMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 }
 
-void AFlowerLevelTestMode::LevelStart(ULevel* _PrevLevel)
+void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 }

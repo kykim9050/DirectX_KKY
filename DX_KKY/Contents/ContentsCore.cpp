@@ -8,7 +8,7 @@
 #include "WorldGameMode.h"
 
 #include "TestGameMode.h"
-#include "FlowerLevelTestMode.h"
+#include "FlowerLevelMode.h"
 
 
 UContentsCore::UContentsCore()
@@ -44,12 +44,12 @@ void UContentsCore::Initialize()
 		}
 	}
 
-	//GEngine->CreateLevel<ATitleMode>("TitleLevel");
-	//GEngine->CreateLevel<AEndingMode>("EndingLevel");
-	//GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
-	//GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
-	//GEngine->CreateLevel<ATestGameMode>("TestLevel");
-	GEngine->CreateLevel<AFlowerLevelTestMode>("TestLevel");
-	GEngine->ChangeLevel("TestLevel");
+	GEngine->CreateLevel<ATitleMode>("TitleLevel");
+	GEngine->CreateLevel<AEndingMode>("EndingLevel");
+	GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
+	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
+	GEngine->CreateLevel<ATestGameMode>("TestLevel");
+	GEngine->CreateLevel<AFlowerLevelMode>("FlowerLevel");
+	GEngine->ChangeLevel("FlowerLevel");
 }
 
