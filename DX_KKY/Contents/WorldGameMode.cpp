@@ -7,6 +7,7 @@
 #include "OldFilmEffect.h"
 
 
+
 std::shared_ptr<AOldFilmEffect> AWorldGameMode::OldFilm = nullptr;
 
 AWorldGameMode::AWorldGameMode()
@@ -23,6 +24,8 @@ void AWorldGameMode::BeginPlay()
 
 	Camera = GetWorld()->GetMainCamera();
 	OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
+	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
+	
 	WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
 	MapLayer = GetWorld()->SpawnActor<AMapBase>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
 	WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
