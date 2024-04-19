@@ -22,11 +22,17 @@ protected:
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	void StateInit() override;
 
 	// 애니메이션 관련
 	void AnimationInit();
 	void CreateAnimation();
 	void SetAnimationCallback();
+
+	// 상태 관련
+	void StateInit() override;
+	void StateCreate();
+	void StartFunctionSet();
+	void UpdateFunctionSet();
+	void EndFunctionSet();
 };
 
