@@ -2,6 +2,7 @@
 #include <EngineCore/EngineCore.h>
 
 // Ό³Έν :
+class UContentsDebugWindow;
 class UContentsCore : public UserCore
 {
 public:
@@ -19,6 +20,6 @@ protected:
 	void Initialize() override;
 
 private:
-
+	std::shared_ptr<UContentsDebugWindow> DebugWindow;
 };
 
