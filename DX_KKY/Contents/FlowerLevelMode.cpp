@@ -23,12 +23,15 @@ void AFlowerLevelMode::BeginPlay()
 
 	Camera = GetWorld()->GetMainCamera();
 	OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
+	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
+	
 	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
 	BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
 	MapFrontObject = GetWorld()->SpawnActor<AMapBase>("MapFrontObject", EActorType::Map);
 	Map = GetWorld()->SpawnActor<AMapBase>("Map", EActorType::Map);
 	BackGroundObject = GetWorld()->SpawnActor<AMapBase>("BackGroundObject", EActorType::Map);
 	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
+
 }
 
 void AFlowerLevelMode::Tick(float _DeltaTime)
