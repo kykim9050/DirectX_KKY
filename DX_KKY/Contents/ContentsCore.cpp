@@ -1,14 +1,16 @@
 ﻿#include "PreCompile.h"
 #include <EngineCore/EngineSprite.h>
+#include <EngineCore/EngineEditorGUI.h>
 
 #include "ContentsCore.h"
 #include "TitleMode.h"
 #include "EndingMode.h"
 #include "TutorialMode.h"
 #include "WorldGameMode.h"
+#include "FlowerLevelMode.h"
+#include "ContentsDebugWindow.h"
 
 #include "TestGameMode.h"
-#include "FlowerLevelMode.h"
 
 
 UContentsCore::UContentsCore()
@@ -43,6 +45,8 @@ void UContentsCore::Initialize()
 			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
 		}
 	}
+
+	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("ContentsDebugWindow");
 
 	GEngine->CreateLevel<ATitleMode>("TitleLevel");
 	GEngine->CreateLevel<AEndingMode>("EndingLevel");

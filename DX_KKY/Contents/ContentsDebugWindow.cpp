@@ -22,5 +22,5 @@ void UContentsDebugWindow::Tick(ULevel* Level, float _Delta)
 
 void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 {
-	OnGui(Level, _Delta);
+	ImGui::Button("TitleLevel", ImVec2(20, 20));
 }
