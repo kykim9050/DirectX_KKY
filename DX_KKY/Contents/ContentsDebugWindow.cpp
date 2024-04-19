@@ -22,5 +22,35 @@ void UContentsDebugWindow::Tick(ULevel* Level, float _Delta)
 
 void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 {
-	ImGui::Button("TitleLevel", ImVec2(20, 20));
+	if (true == ImGui::Button("TitleLevel"))
+	{
+		GEngine->ChangeLevel("TitleLevel");
+		return;
+	}
+
+	if (true == ImGui::Button("EndingLevel"))
+	{
+		GEngine->ChangeLevel("EndingLevel");
+	}
+
+	//if (true == ImGui::Button("TutorialLevel"))
+	//{
+	//	GEngine->ChangeLevel("TutorialLevel");
+	//}
+
+	if (true == ImGui::Button("WorldLevel"))
+	{
+		GEngine->ChangeLevel("WorldLevel");
+	}
+
+	//if (true == ImGui::Button("TestLevel"))
+	//{
+	//	GEngine->ChangeLevel("TestLevel");
+	//}
+
+	if (true == ImGui::Button("FlowerLevel"))
+	{
+		GEngine->ChangeLevel("FlowerLevel");
+	}
+
 }
