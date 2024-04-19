@@ -91,6 +91,9 @@
     <Filter Include="Object\UI\Contents">
       <UniqueIdentifier>{99ba99c7-52a8-45be-bc54-40d79809ecc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Rendering\Contents">
+      <UniqueIdentifier>{da1d776c-c749-4e2f-978f-38fa20acc619}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -261,6 +264,9 @@
     <ClInclude Include="Widget.h">
       <Filter>Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="BlurEffect.h">
+      <Filter>Object\Rendering\Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -421,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="Widget.cpp">
       <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BlurEffect.cpp">
+      <Filter>Object\Rendering\Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
