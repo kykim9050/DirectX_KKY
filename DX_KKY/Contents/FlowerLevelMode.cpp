@@ -53,7 +53,7 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
 	OldFilm->SetActorLocation(FVector{ UContentsValue::ContentsCameraInitXPos, UContentsValue::ContentsCameraInitYPos, 0.0f });
 	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
-	BossMonster->SetActorLocation(FVector{ 1000.0f, -370.0f, 100.0f });
+	BossMonster->SetActorLocation(FVector{ 1380.0f, -680.0f, 100.0f });
 	
 	MapFrontObject->SetMapFile("Flower_Background_Front.png");
 	MapFrontObject->SetAutoScale();
