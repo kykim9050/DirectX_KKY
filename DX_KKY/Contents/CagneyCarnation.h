@@ -1,9 +1,10 @@
 #pragma once
 #include "BossUnit.h"
 
-enum class Phase1_AttackPattern
+enum class EAttackPattern
 {
 	FaceAttack_High,
+	FaceAttack_Low,
 	Max,
 };
 
@@ -24,8 +25,24 @@ public:
 	ACagneyCarnation& operator=(ACagneyCarnation&& _Other) noexcept = delete;
 
 protected:
+	// 공격 패턴을 자료구조에 넣어서 관리
+	// 넣어주는 패턴 이름은 각 패턴별 StateBegin이름
+	template <typename EnumType>
+	void InsertAttackPattern(EnumType _PatternType, std::string_view _PatternBeginName)
+	{
+		InsertAttackPattern(static_cast<int>(_PatternType), _PatternBeginName);
+	}
+
+	void InsertAttackPattern(int _PatternType, std::string_view _PatternBeginName)
+	{
+		AttackPattern.insert(std::pair(_PatternType, _PatternBeginName));
+	}
+
 
 private:
+	// 페이즈가 나누어지면 map안에 key를 추가로 int 하나 더 넣어줄 수가 있음
+	std::map<int, std::string> AttackPattern;
+
 	// 페이즈1에서 상태 변화전 delay 시간
 	float P1_ChangeDelay = 5.0f;
 	float P1_ChangeDelayValue = 5.0f;

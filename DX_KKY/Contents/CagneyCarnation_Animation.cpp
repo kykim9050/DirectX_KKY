@@ -54,5 +54,4 @@ void ACagneyCarnation::SetAnimationCallback()
 			State.ChangeState(FlowerBossState::Idle);
 		});
 
-
 }
