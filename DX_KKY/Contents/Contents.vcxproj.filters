@@ -156,7 +156,7 @@
     <ClInclude Include="ContentsDebugWindow.h">
       <Filter>ContentsHelper\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="RandomValue.h">
+    <ClInclude Include="Math.h">
       <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
@@ -260,7 +260,7 @@
     <ClCompile Include="CagneyCarnation_Animation.cpp">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
-    <ClCompile Include="RandomValue.cpp">
+    <ClCompile Include="Math.cpp">
       <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>

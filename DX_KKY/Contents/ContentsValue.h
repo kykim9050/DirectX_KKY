@@ -8,10 +8,13 @@ namespace FlowerBossAniName
 	const std::string Flower_FaceAttackHigh_Begin = "Flower_FaceAttackHigh_Begin";
 	const std::string Flower_FaceAttackHigh_Idle= "Flower_FaceAttackHigh_Idle";
 	const std::string Flower_FaceAttackHigh_End = "Flower_FaceAttackHigh_End";
-
 	const std::string Flower_FaceAttackLow_Begin = "Flower_FaceAttackLow_Begin";
 	const std::string Flower_FaceAttackLow_Idle = "Flower_FaceAttackLow_Idle";
 	const std::string Flower_FaceAttackLow_End = "Flower_FaceAttackLow_End";
+
+	const std::string Flower_Gatling_Begin = "Flower_Gatling_Begin";
+	const std::string Flower_Gatling_Idle = "Flower_Gatling_Idle";
+	const std::string Flower_Gatling_End = "Flower_Gatling_End";
 
 }
 
@@ -27,6 +30,10 @@ namespace FlowerBossState
 	const std::string FaceAttackLow_Begin = "FaceAttackLow_Begin";
 	const std::string FaceAttackLow_Idle = "FaceAttackLow_Idle";
 	const std::string FaceAttackLow_End = "FaceAttackLow_End";
+
+	const std::string Gatling_Begin = "Gatling_Begin";
+	const std::string Gatling_Idle = "Gatling_Idle";
+	const std::string Gatling_End = "Gatling_End";
 }
 
 // Ό³Έν :

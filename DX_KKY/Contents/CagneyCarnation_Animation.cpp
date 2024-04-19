@@ -25,6 +25,12 @@ void ACagneyCarnation::CreateAnimation()
 	Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackLow_Idle, "FaceAttackLowIdle", 0.067f);
 	Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackLow_End, "FaceAttackLowEnd", 0.067f, false);
 
+	// Gatling
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_Begin, "GatlingBegin", 0.0416f, false);
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_Idle, "GatlingIdle", 0.0416f);
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_End, "GatlingEnd", 0.0416f, false);
+	
+
 }
 
 void ACagneyCarnation::SetAnimationCallback()
@@ -54,4 +60,13 @@ void ACagneyCarnation::SetAnimationCallback()
 			State.ChangeState(FlowerBossState::Idle);
 		});
 
+	// Gatling
+	Renderer->SetFrameCallback(FlowerBossAniName::Flower_Gatling_Begin, 7, [this]()
+		{
+			State.ChangeState(FlowerBossState::Gatling_Idle);
+		});
+	Renderer->SetFrameCallback(FlowerBossAniName::Flower_Gatling_End, 7, [this]()
+		{
+			State.ChangeState(FlowerBossState::Idle);
+		});
 }

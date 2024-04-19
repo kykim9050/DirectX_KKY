@@ -5,6 +5,7 @@ enum class EAttackPattern
 {
 	FaceAttack_High,
 	FaceAttack_Low,
+	Gatling,
 	Max,
 };
 
@@ -49,10 +50,13 @@ private:
 	float P1_ChangeDelay = 2.0f;
 	float P1_ChangeDelayValue = 2.0f;
 
-
 	// FaceAttack 지속 시간
 	float FaceAttackDelay = 1.0f;
 	float FaceAttackDelayValue = 1.0f;
+
+	// Gatling 지속 시간
+	float GatlingTime = 5.0f;
+	float GatlingTimeValue = 5.0f;
 
 private:
 	void BeginPlay() override;
@@ -73,5 +77,6 @@ private:
 	void Idle(float _DeltaTime);
 	void FaceAttackHigh_Idle(float _DeltaTime);
 	void FaceAttackLow_Idle(float _DeltaTime);
+	void Gatling_Idle(float _DeltaTime);
 };
 
