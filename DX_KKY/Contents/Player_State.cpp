@@ -171,6 +171,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("DashAir", [this]
 			{
 				DirCheck();
+				CreateDashFX(GetActorLocation());
 				SetJumpVec(GetPrevJumpVec());
 				Renderer->ChangeAnimation("Player_Dash_Air");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -615,6 +616,7 @@ void APlayer::Jump(float _DeltaTime)
 			return;
 		}
 
+		CreateLandFX(GetActorLocation());
 		State.ChangeState("Idle");
 		return;
 	}

@@ -594,3 +594,10 @@ void APlayer::CreateDashFX(float4 _Pos)
 	DashFX->FXInit(ERenderingOrder::FrontFX, FFXAniInfo(GAniName::DashDust, "DashDust",  0.0416f));
 	DashFX->SetActorLocation(_Pos);
 }
+
+void APlayer::CreateLandFX(float4 _Pos)
+{
+	std::shared_ptr<AFXBase> LandingFX= GetWorld()->SpawnActor<AFXBase>("DashFX");
+	LandingFX->FXInit(ERenderingOrder::BackFX, FFXAniInfo(GAniName::LandDust, "LandDust", 0.0416f));
+	LandingFX->SetActorLocation(_Pos);
+}

@@ -114,6 +114,7 @@ private:
 	void JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 	
 	void CreateDashFX(float4 _Pos);
+	void CreateLandFX(float4 _Pos);
 
 
 	std::string ChangeStringName(const std::string& _MainName);

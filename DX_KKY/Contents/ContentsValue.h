@@ -4,6 +4,7 @@ namespace GAniName
 {
 	// CUphead
 	const std::string DashDust = "DashDust";
+	const std::string LandDust = "LandDust";
 }
 
 namespace FlowerBossAniName
