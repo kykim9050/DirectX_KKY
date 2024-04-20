@@ -71,6 +71,15 @@ void ACagneyCarnation::CollisionCheck()
 				return;
 			}
 			
-			int a = 0;
+			// 본인의 체력 감소
+			
+			// PlayerBullet이 맞으면 Bullet Destroy
+			PBullet->SetIsMonsterHit(true);
+
+			// PlayerSSBullet에 맞으면 3번 체력 감소
+
 		});
 }
+
+// 충돌 체크의 종류 (Head, FaceAttLow, FaceAttHigh - PlayerBullet, PlayerSSBullet 충돌 구분)
+
