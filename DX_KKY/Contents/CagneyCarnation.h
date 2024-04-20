@@ -96,6 +96,7 @@ private:
 
 	void ColliderInit();
 	void CollisionCheck();
+	void HeadCollisionCheck();
 
 private:
 	inline void GetHit(int _DmgVal)

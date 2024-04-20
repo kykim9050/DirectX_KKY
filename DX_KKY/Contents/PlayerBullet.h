@@ -17,15 +17,10 @@ public:
 	APlayerBullet& operator=(const APlayerBullet& _Other) = delete;
 	APlayerBullet& operator=(APlayerBullet&& _Other) noexcept = delete;
 
-	inline void SetIsMonsterHit(bool _Value)
-	{
-		IsMonsterHit = _Value;
-	}
-
 protected:
 
 private:
-	float BulletSpeed = 1400.0f;
+	float BulletSpeed = 1600.0f;
 	bool IsMonsterHit = false;
 
 	void BeginPlay() override;
@@ -44,6 +39,12 @@ private:
 	{
 		return IsMonsterHit;
 	}
+	inline void SetIsMonsterHit(bool _Value)
+	{
+		IsMonsterHit = _Value;
+	}
+
+	void CollisionCheck();
 
 };
 

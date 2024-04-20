@@ -2,7 +2,7 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "PlayerBullet.h"
-
+#include "MonsterUnit.h"
 
 APlayerBullet::APlayerBullet()
 {
@@ -95,6 +95,8 @@ void APlayerBullet::StateInit()
 
 void APlayerBullet::Flying(float _DeltaTime)
 {
+	CollisionCheck();
+
 	if (true == GetIsMonsterHit())
 	{
 		State.ChangeState("Death");
@@ -121,4 +123,25 @@ void APlayerBullet::Death(float _DeltaTime)
 void APlayerBullet::ResultMovementUpdate(float _DeltaTime)
 {
 	Super::ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayerBullet::CollisionCheck()
+{
+	Collision->CollisionEnter(ECollisionGroup::Monster, [=](std::shared_ptr<UCollision> _Collision)
+		{
+			AMonsterUnit* Monster = dynamic_cast<AMonsterUnit*>(_Collision->GetActor());
+
+			if (nullptr == Monster)
+			{
+				MsgBoxAssert("충돌 대상이 Monster가 아닙니다.");
+				return;
+			}
+
+			SetIsMonsterHit(true);
+
+			Monster->GetHit(GetDamage());
+
+			// Player의 SuperMeter 충전해주기
+
+		});
 }
