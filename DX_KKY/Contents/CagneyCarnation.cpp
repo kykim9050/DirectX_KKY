@@ -8,6 +8,7 @@
 
 ACagneyCarnation::ACagneyCarnation()
 {
+	SetHp(500);
 	ColliderInit();
 }
 
@@ -72,7 +73,9 @@ void ACagneyCarnation::CollisionCheck()
 			}
 			
 			// 본인의 체력 감소
-			
+			GetHit(PBullet->GetDamage());
+
+			Hp;
 			// PlayerBullet이 맞으면 Bullet Destroy
 			PBullet->SetIsMonsterHit(true);
 		});

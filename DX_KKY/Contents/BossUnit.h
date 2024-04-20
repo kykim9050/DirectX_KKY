@@ -1,13 +1,13 @@
 #pragma once
-#include "MoveUnit.h"
 #include <EngineCore/StateManager.h>
+#include "MonsterUnit.h"
 
 // Ό³Έν :
 class UDefaultSceneComponent;
 class USpriteRenderer;
-class ABossUnit : public UMoveUnit
+class ABossUnit : public AMonsterUnit
 {
-	GENERATED_BODY(UMoveUnit)
+	GENERATED_BODY(AMonsterUnit)
 
 public:
 	// constrcuter destructer
@@ -20,15 +20,19 @@ public:
 	ABossUnit& operator=(const ABossUnit& _Other) = delete;
 	ABossUnit& operator=(ABossUnit&& _Other) noexcept = delete;
 
-protected:
-	void BeginPlay() override;
-	void Tick(float _DeltaTime) override;
-	virtual void StateInit() {};
 
+
+protected:
 	UDefaultSceneComponent* Root;
 	USpriteRenderer* Renderer;
 	UStateManager State = UStateManager();
 
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+	virtual void StateInit() = 0;
+
 private:
+	
+
 };
 

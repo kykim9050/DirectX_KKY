@@ -17,7 +17,7 @@ public:
 	AMonsterUnit& operator=(const AMonsterUnit& _Other) = delete;
 	AMonsterUnit& operator=(AMonsterUnit&& _Other) noexcept = delete;
 
-	virtual void Damage(int _DmgVal) {};
+	virtual void GetHit(int _DmgVal) = 0;
 
 protected:
 	int Hp = 0;

@@ -36,6 +36,10 @@ public:
 	{
 		VerticalDir = _Dir;
 	}
+	inline int GetDamage() const
+	{
+		return Damage;
+	}
 
 protected:
 	void BeginPlay() override;
@@ -60,12 +64,17 @@ protected:
 		VerticalSpeed = _Speed;
 	}
 
+	inline void SetDamage(int _DmgVal)
+	{
+		Damage = _DmgVal;
+	}
+
 	USpriteRenderer* Renderer;
 	UCollision* Collision;
 	UStateManager State = UStateManager();
 
 private:
-
+	int Damage = 0;
 	float4 HorizontalDir = float4::Zero;
 	float4 VerticalDir = float4::Zero;
 	float HorizontalSpeed = 0.0f;

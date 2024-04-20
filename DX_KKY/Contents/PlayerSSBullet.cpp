@@ -4,6 +4,7 @@
 
 APlayerSSBullet::APlayerSSBullet()
 {
+	SetDamage(5);
 	SetHorizontalSpeed(1000.0f);
 	SetVerticalSpeed(1000.0f);
 }
