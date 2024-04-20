@@ -3,6 +3,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 #include "CagneyCarnation.h"
+#include "PlayerBullet.h"
 
 
 ACagneyCarnation::ACagneyCarnation()
@@ -25,6 +26,9 @@ void ACagneyCarnation::BeginPlay()
 void ACagneyCarnation::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	// 충돌 체크는 상태별로 업데이트 할 것
+	CollisionCheck();
 }
 
 void ACagneyCarnation::ColliderInit()
@@ -33,14 +37,14 @@ void ACagneyCarnation::ColliderInit()
 	HeadCollider->SetupAttachment(Root);
 	HeadCollider->SetScale(ColliderScale::FlowerBoss_HeadColScale);
 	HeadCollider->AddPosition(ColliderPosInfo::FlowerBoss_HeadColRelPos);
-	HeadCollider->SetCollisionGroup(ECollisionOrder::Monster);
+	HeadCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	HeadCollider->SetCollisionType(ECollisionType::Rect);
 
 	FaceAttHighCollider = CreateDefaultSubObject<UCollision>("FaceAttHighCollider");
 	FaceAttHighCollider->SetupAttachment(Root);
 	FaceAttHighCollider->SetScale(ColliderScale::FlowerBoss_FaceAttScale);
 	FaceAttHighCollider->AddPosition(ColliderPosInfo::FlowerBoss_FaceAttHighPos);
-	FaceAttHighCollider->SetCollisionGroup(ECollisionOrder::Monster);
+	FaceAttHighCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	FaceAttHighCollider->SetCollisionType(ECollisionType::Rect);
 	FaceAttHighCollider->SetActive(false);
 
@@ -48,8 +52,25 @@ void ACagneyCarnation::ColliderInit()
 	FaceAttLowCollider->SetupAttachment(Root);
 	FaceAttLowCollider->SetScale(ColliderScale::FlowerBoss_FaceAttScale);
 	FaceAttLowCollider->AddPosition(ColliderPosInfo::FlowerBoss_FaceAttLowPos);
-	FaceAttLowCollider->SetCollisionGroup(ECollisionOrder::Monster);
+	FaceAttLowCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	FaceAttLowCollider->SetCollisionType(ECollisionType::Rect);
 	FaceAttLowCollider->SetActive(false);
 
+}
+
+void ACagneyCarnation::CollisionCheck()
+{
+	// HeadCollider 충돌 확인
+	HeadCollider->CollisionEnter(ECollisionGroup::PlayerBullet, [=](std::shared_ptr<UCollision> _Collision)
+		{
+			APlayerBullet* PBullet = dynamic_cast<APlayerBullet*>(_Collision->GetActor());
+		
+			if (nullptr == PBullet)
+			{
+				MsgBoxAssert("PlayerBullet으로 dynamic_cast가 불가합니다.");
+				return;
+			}
+			
+			int a = 0;
+		});
 }

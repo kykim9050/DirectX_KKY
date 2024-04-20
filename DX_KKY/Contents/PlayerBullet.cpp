@@ -24,8 +24,8 @@ void APlayerBullet::BeginPlay()
 	Renderer->SetOrder(ERenderingOrder::PlayerBullet);
 
 	Collision->SetScale(UContentsValue::PlayerBulletColSize);
-	Collision->SetCollisionGroup(ECollisionOrder::PlayerBullet);
-	Collision->SetCollisionType(ECollisionType::RotRect);
+	Collision->SetCollisionGroup(ECollisionGroup::PlayerBullet);
+	Collision->SetCollisionType(ECollisionType::Rect);
 
 	StateInit();
 }
