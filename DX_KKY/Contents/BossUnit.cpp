@@ -5,14 +5,11 @@
 
 ABossUnit::ABossUnit()
 {
-	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("BulletRoot");
+	Root = CreateDefaultSubObject<UDefaultSceneComponent>("BulletRoot");
 	SetRoot(Root);
 
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
-
-	Collision = CreateDefaultSubObject<UCollision>("Collision");
-	Collision->SetupAttachment(Root);
 }
 
 ABossUnit::~ABossUnit()
