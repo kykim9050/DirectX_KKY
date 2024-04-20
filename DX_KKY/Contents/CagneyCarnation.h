@@ -75,6 +75,7 @@ private:
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	void DebugUpdate();
 
 	// 애니메이션 관련
 	void AnimationInit();
