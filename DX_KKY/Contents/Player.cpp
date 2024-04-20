@@ -9,6 +9,7 @@
 #include "BulletFX.h"
 #include "PlayerSSBullet.h"
 #include "SSBulletFX.h"
+#include "FXBase.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -585,4 +586,11 @@ bool APlayer::DownJumpCheck()
 	}
 
 	return false;
+}
+
+void APlayer::CreateDashFX(float4 _Pos)
+{
+	std::shared_ptr<AFXBase> DashFX = GetWorld()->SpawnActor<AFXBase>("DashFX");
+	DashFX->FXInit(ERenderingOrder::FrontFX, FFXAniInfo(GAniName::DashDust, "DashDust",  0.0416f));
+	DashFX->SetActorLocation(_Pos);
 }

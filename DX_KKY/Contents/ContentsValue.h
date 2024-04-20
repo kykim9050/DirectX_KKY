@@ -1,5 +1,11 @@
 #pragma once
 
+namespace GAniName
+{
+	// CUphead
+	const std::string DashDust = "DashDust";
+}
+
 namespace FlowerBossAniName
 {
 	const std::string Flower_Idle = "Flower_Idle";

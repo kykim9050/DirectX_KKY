@@ -180,6 +180,7 @@ void ACagneyCarnation::Idle(float _DeltaTime)
 
 		int PatternNum = UMath::GetInst().RandomReturnIntEnum(0, EAttackPattern::Max);
 
+
 		State.ChangeState(AttackPattern[PatternNum]);
 		return;
 	}
