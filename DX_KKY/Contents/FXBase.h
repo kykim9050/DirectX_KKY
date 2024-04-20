@@ -35,6 +35,8 @@ public:
 	AFXBase& operator=(AFXBase&& _Other) noexcept = delete;
 
 	void FXInit(ERenderingOrder _Order, FFXAniInfo _Info);
+	void SetImgDir(EEngineDir _ImgDir);
+
 
 protected:
 	void BeginPlay() override;

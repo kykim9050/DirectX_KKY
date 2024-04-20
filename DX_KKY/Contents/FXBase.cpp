@@ -44,3 +44,19 @@ void AFXBase::FXDestroyCheck()
 		Destroy();
 	}
 }
+
+void AFXBase::SetImgDir(EEngineDir _ImgDir)
+{
+	switch (_ImgDir)
+	{
+	case EEngineDir::Left:
+		Renderer->SetDir(EEngineDir::Left);
+		break;
+	case EEngineDir::Right:
+		Renderer->SetDir(EEngineDir::Right);
+		break;
+	default:
+		MsgBoxAssert("유효하지 않은 방향 값 입니다.");
+		break;
+	}
+}
