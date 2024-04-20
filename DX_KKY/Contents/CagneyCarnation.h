@@ -6,6 +6,7 @@ enum class EAttackPattern
 	FaceAttack_High,
 	FaceAttack_Low,
 	Gatling,
+	CreateObject,
 	Max,
 };
 

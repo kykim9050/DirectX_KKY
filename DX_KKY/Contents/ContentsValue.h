@@ -16,6 +16,12 @@ namespace FlowerBossAniName
 	const std::string Flower_Gatling_Idle = "Flower_Gatling_Idle";
 	const std::string Flower_Gatling_End = "Flower_Gatling_End";
 
+	const std::string Flower_CreateObject_Begin = "Flower_CreateObject_Begin";
+	const std::string Flower_CreateObject_Idle = "Flower_CreateObject_Idle";
+	const std::string Flower_CreateObject_Release = "Flower_CreateObject_Release";
+	const std::string Flower_CreateObject_ReleaseIdle = "Flower_CreateObject_ReleaseIdle";
+	const std::string Flower_CreateObject_ReleaseRev = "Flower_CreateObject_ReleaseRev";
+	const std::string Flower_CreateObject_End = "Flower_CreateObject_End";
 }
 
 namespace FlowerBossState
@@ -34,6 +40,13 @@ namespace FlowerBossState
 	const std::string Gatling_Begin = "Gatling_Begin";
 	const std::string Gatling_Idle = "Gatling_Idle";
 	const std::string Gatling_End = "Gatling_End";
+
+	const std::string CreateObject_Begin = "CreateObject_Begin";
+	const std::string CreateObject_Idle = "CreateObject_Idle";
+	const std::string CreateObject_Release = "CreateObject_Release";
+	const std::string CreateObject_ReleaseIdle = "CreateObject_ReleaseIdle";
+	const std::string CreateObject_ReleaseRev = "CreateObject_ReleaseRev";
+	const std::string CreateObject_End = "CreateObject_End";
 }
 
 // Ό³Έν :
