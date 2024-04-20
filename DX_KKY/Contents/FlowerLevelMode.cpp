@@ -37,17 +37,6 @@ void AFlowerLevelMode::BeginPlay()
 	Map = GetWorld()->SpawnActor<AMapBase>("Map", EActorType::Map);
 	BackGroundObject = GetWorld()->SpawnActor<AMapBase>("BackGroundObject", EActorType::Map);
 	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
-
-
-	{
-		std::shared_ptr<AFXBase> BlueMissile = GetWorld()->SpawnActor<AFXBase>("BlueMissile");
-		BlueMissile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissileBlue", "GatlingMissileBlue", 0.0414f), true);
-		BlueMissile->SetActorLocation(FVector(640.0f, -360.0f, 0.0f));
-
-		std::shared_ptr<AFXBase> PurpleMissile = GetWorld()->SpawnActor<AFXBase>("PurpleMissile ");
-		PurpleMissile->FXInit(ERenderingOrder::BossMonsterBackFX1, FFXAniInfo("GatlingMissilePurple", "GatlingMissilePurple", 0.0414f), true);
-		PurpleMissile->SetActorLocation(FVector(640.0f, -360.0f, 0.0f));
-	}
 }
 
 void AFlowerLevelMode::Tick(float _DeltaTime)

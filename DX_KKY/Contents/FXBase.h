@@ -37,6 +37,7 @@ public:
 	void FXInit(ERenderingOrder _Order, FFXAniInfo _Info, bool _Loop = false);
 	void SetImgDir(EEngineDir _ImgDir);
 	void FXDestroy();
+	void SetImgPivot(EPivot _Pivot);
 
 protected:
 	void BeginPlay() override;
