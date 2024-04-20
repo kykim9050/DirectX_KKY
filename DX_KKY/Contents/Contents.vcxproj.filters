@@ -159,6 +159,9 @@
     <ClInclude Include="Math.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterUnit.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -262,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="Math.cpp">
       <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterUnit.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
