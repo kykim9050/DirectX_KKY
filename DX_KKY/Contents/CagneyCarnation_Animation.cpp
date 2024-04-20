@@ -30,6 +30,15 @@ void ACagneyCarnation::CreateAnimation()
 	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_Idle, "GatlingIdle", 0.0416f);
 	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_End, "GatlingEnd", 0.0416f, false);
 	
+	// Create Object
+	//Renderer->CreateAnimation(FlowerBossAniName::, "", 0.0416f, false);
+
+	//renderer_->CreateAnimationFolder("CreateObjectBegin", 0.0416f, false);
+	//renderer_->CreateAnimationFolder("CreateObjectIdle", 0.0416f);
+	//renderer_->CreateAnimationFolder("CreateObjectRelease", 0.0416f, false);
+	//renderer_->CreateAnimationFolder("CreateObjectReleaseIdle", 0.0678f);
+	//renderer_->CreateAnimationFolderReverse("CreateObjectReleaseReverse", "CreateObjectRelease", 0.0416f, false);
+	//renderer_->CreateAnimationFolder("CreateObjectEnd", 0.0416f, false);
 
 }
 
