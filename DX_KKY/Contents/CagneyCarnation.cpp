@@ -1,10 +1,23 @@
 ﻿#include "PreCompile.h"
+#include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/DefaultSceneComponent.h>
 
 #include "CagneyCarnation.h"
-#include <EngineCore/SpriteRenderer.h>
+
 
 ACagneyCarnation::ACagneyCarnation()
 {
+	HeadCollider = CreateDefaultSubObject<UCollision>("HeadCollider");
+	HeadCollider->SetupAttachment(Root);
+	HeadCollider->SetCollisionType(ECollisionType::Rect);
+
+	FaceAttHighCollider = CreateDefaultSubObject<UCollision>("FaceAttHighCollider");
+	FaceAttHighCollider->SetupAttachment(Root);
+	FaceAttHighCollider->SetCollisionType(ECollisionType::Rect);
+
+	FaceAttLowCollider = CreateDefaultSubObject<UCollision>("FaceAttLowCollider");
+	FaceAttLowCollider->SetupAttachment(Root);
+	FaceAttLowCollider->SetCollisionType(ECollisionType::Rect);
 }
 
 ACagneyCarnation::~ACagneyCarnation()

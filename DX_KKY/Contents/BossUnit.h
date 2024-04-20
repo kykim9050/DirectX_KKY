@@ -3,8 +3,8 @@
 #include <EngineCore/StateManager.h>
 
 // Ό³Έν :
+class UDefaultSceneComponent;
 class USpriteRenderer;
-class UCollision;
 class ABossUnit : public UMoveUnit
 {
 	GENERATED_BODY(UMoveUnit)
@@ -25,8 +25,8 @@ protected:
 	void Tick(float _DeltaTime) override;
 	virtual void StateInit() {};
 
+	UDefaultSceneComponent* Root;
 	USpriteRenderer* Renderer;
-	UCollision* Collision;
 	UStateManager State = UStateManager();
 
 private:
