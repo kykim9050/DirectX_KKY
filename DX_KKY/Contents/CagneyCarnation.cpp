@@ -75,9 +75,6 @@ void ACagneyCarnation::CollisionCheck()
 			
 			// PlayerBullet이 맞으면 Bullet Destroy
 			PBullet->SetIsMonsterHit(true);
-
-			// PlayerSSBullet에 맞으면 3번 체력 감소
-
 		});
 }
 
