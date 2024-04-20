@@ -19,15 +19,23 @@ public:
 	}
 
 
+	/// <summary>
+	/// 인자의 Max값은 Enum의 Max 값에 해당.
+	/// 내부에서 자동적으로 Max-1까지의 값만을 출력함
+	/// </summary>
+	/// <typeparam name="ENumType"></typeparam>
+	/// <param name="_Min"></param>
+	/// <param name="_Max"></param>
+	/// <returns></returns>
 	template <typename ENumType>
-	int RandomReturnInt(int _Min, ENumType _Max)
+	int RandomReturnIntEnum(int _Min, ENumType _Max)
 	{
-		return RandomReturnInt(_Min, static_cast<int>(_Max));
+		return RandomReturnInt(_Min, static_cast<int>(_Max) - 1);
 	}
 
 	int RandomReturnInt(int _Min, int _Max)
 	{
-		int RandomValue = UEngineRandom::MainRandom.RandomInt(_Min, _Max - 1);
+		int RandomValue = UEngineRandom::MainRandom.RandomInt(_Min, _Max);
 
 		return RandomValue;
 	}

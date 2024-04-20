@@ -59,6 +59,12 @@ private:
 	float GatlingTime = 5.0f;
 	float GatlingTimeValue = 5.0f;
 
+	// CreateObject Idle 지속 시간
+	float CreateObjectTime = 1.0f;
+
+	// CreateObject Release 지속 시간
+	float CreateObjectReleaseTime = 1.0f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -79,5 +85,7 @@ private:
 	void FaceAttackHigh_Idle(float _DeltaTime);
 	void FaceAttackLow_Idle(float _DeltaTime);
 	void Gatling_Idle(float _DeltaTime);
+	void CreateObject_Idle(float _DeltaTime);
+	void CreateObject_ReleaseIdle(float _DeltaTime);
 };
 
