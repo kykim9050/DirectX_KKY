@@ -30,6 +30,15 @@ void ACagneyCarnation::Tick(float _DeltaTime)
 
 	// 충돌 체크는 상태별로 업데이트 할 것
 	CollisionCheck();
+	DebugUpdate();
+}
+
+void ACagneyCarnation::DebugUpdate()
+{
+	{
+		std::string Msg = std::format("FlowerBoss Hp : {}\n", std::to_string(Hp));
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
 }
 
 void ACagneyCarnation::ColliderInit()
