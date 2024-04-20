@@ -29,9 +29,19 @@ void AFXBase::Tick(float _DeltaTime)
 	FXDestroyCheck();
 }
 
-void AFXBase::FXInit(ERenderingOrder _Order, FFXAniInfo _Info)
+void AFXBase::FXInit(ERenderingOrder _Order, FFXAniInfo _Info, bool _Loop)
 {
-	Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime, false);
+	Loop = _Loop;
+
+	if (false == Loop)
+	{
+		Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime, false);
+	}
+	else if (true == Loop)
+	{
+		Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime);
+	}
+
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(_Order);
 	Renderer->ChangeAnimation(_Info.AnimationName);
@@ -39,7 +49,7 @@ void AFXBase::FXInit(ERenderingOrder _Order, FFXAniInfo _Info)
 
 void AFXBase::FXDestroyCheck()
 {
-	if (Renderer->IsCurAnimationEnd())
+	if (Renderer->IsCurAnimationEnd() && false == Loop)
 	{
 		Destroy();
 	}
@@ -59,4 +69,9 @@ void AFXBase::SetImgDir(EEngineDir _ImgDir)
 		MsgBoxAssert("유효하지 않은 방향 값 입니다.");
 		break;
 	}
+}
+
+void AFXBase::FXDestroy()
+{
+	Destroy();
 }

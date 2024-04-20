@@ -34,9 +34,9 @@ public:
 	AFXBase& operator=(const AFXBase& _Other) = delete;
 	AFXBase& operator=(AFXBase&& _Other) noexcept = delete;
 
-	void FXInit(ERenderingOrder _Order, FFXAniInfo _Info);
+	void FXInit(ERenderingOrder _Order, FFXAniInfo _Info, bool _Loop = false);
 	void SetImgDir(EEngineDir _ImgDir);
-
+	void FXDestroy();
 
 protected:
 	void BeginPlay() override;
@@ -48,6 +48,7 @@ protected:
 	USpriteRenderer* Renderer;
 
 private:
+	bool Loop = false;
 
 };
 
