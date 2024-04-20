@@ -66,6 +66,7 @@ void ACagneyCarnation::SetAnimationCallback()
 	Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackLow_End, 6, [this]()
 		{
 			AddActorLocation(FVector(0.0f, 110.f, 0.0f));
+			FaceAttLowCollider->AddPosition(FVector(0.0f, -110.f, 0.0f));
 			State.ChangeState(FlowerBossState::Idle);
 		});
 
