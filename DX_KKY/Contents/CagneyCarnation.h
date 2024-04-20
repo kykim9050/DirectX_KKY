@@ -97,5 +97,11 @@ private:
 	void ColliderInit();
 	void CollisionCheck();
 
+private:
+	inline void GetHit(int _DmgVal)
+	{
+		Hp -= _DmgVal;
+	}
+
 };
 
