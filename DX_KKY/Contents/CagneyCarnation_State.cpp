@@ -9,7 +9,7 @@ void ACagneyCarnation::StateInit()
 	EndFunctionSet();
 
 	//State.ChangeState(FlowerBossState::Intro);
-	State.ChangeState(FlowerBossState::Gatling_Begin);
+	State.ChangeState(FlowerBossState::CreateObject_Begin);
 }
 
 
@@ -35,6 +35,15 @@ void ACagneyCarnation::StateCreate()
 	State.CreateState(FlowerBossState::Gatling_Idle);
 	State.CreateState(FlowerBossState::Gatling_End);
 	InsertAttackPattern(EAttackPattern::Gatling, FlowerBossState::Gatling_Begin);
+
+	// Create Object
+	State.CreateState(FlowerBossState::CreateObject_Begin);
+	State.CreateState(FlowerBossState::CreateObject_Idle);
+	State.CreateState(FlowerBossState::CreateObject_End);
+	State.CreateState(FlowerBossState::CreateObject_Release);
+	State.CreateState(FlowerBossState::CreateObject_ReleaseIdle);
+	State.CreateState(FlowerBossState::CreateObject_ReleaseRev);
+	InsertAttackPattern(EAttackPattern::CreateObject, FlowerBossState::CreateObject_Begin);
 }
 
 void ACagneyCarnation::StartFunctionSet()
@@ -92,6 +101,34 @@ void ACagneyCarnation::StartFunctionSet()
 		{
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Gatling_End);
 		});
+
+	// Create Object
+	State.SetStartFunction(FlowerBossState::CreateObject_Begin, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_Begin);
+		});
+	State.SetStartFunction(FlowerBossState::CreateObject_Idle, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_Idle);
+		});
+	State.SetStartFunction(FlowerBossState::CreateObject_End, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_End);
+		});
+	State.SetStartFunction(FlowerBossState::CreateObject_Release, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_Release);
+		});
+	State.SetStartFunction(FlowerBossState::CreateObject_ReleaseIdle, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseIdle);
+		});
+	State.SetStartFunction(FlowerBossState::CreateObject_ReleaseRev, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseRev);
+		});
+
+
 }
 
 void ACagneyCarnation::UpdateFunctionSet()
@@ -114,6 +151,14 @@ void ACagneyCarnation::UpdateFunctionSet()
 	State.SetUpdateFunction(FlowerBossState::Gatling_Begin, [this](float) {});
 	State.SetUpdateFunction(FlowerBossState::Gatling_Idle, std::bind(&ACagneyCarnation::Gatling_Idle, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::Gatling_End, [this](float) {});
+
+	// Create Obeject
+	State.SetUpdateFunction(FlowerBossState::CreateObject_Begin, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::CreateObject_Idle, std::bind(&ACagneyCarnation::CreateObject_Idle, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::CreateObject_Release, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::CreateObject_ReleaseIdle, std::bind(&ACagneyCarnation::CreateObject_ReleaseIdle, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::CreateObject_ReleaseRev, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::CreateObject_End, [this](float) {});
 }
 
 void ACagneyCarnation::EndFunctionSet()
@@ -127,10 +172,12 @@ void ACagneyCarnation::Idle(float _DeltaTime)
 
 	if (0.0f >= P1_ChangeDelay)
 	{
-		int PatternNum = UMath::GetInst().RandomReturnInt(0, EAttackPattern::Max);
-
 		P1_ChangeDelay = P1_ChangeDelayValue;
-		State.ChangeState(AttackPattern[PatternNum]);
+
+		//int PatternNum = UMath::GetInst().RandomReturnIntEnum(0, EAttackPattern::Max);
+
+		//State.ChangeState(AttackPattern[PatternNum]);
+		State.ChangeState(FlowerBossState::CreateObject_Begin);
 		return;
 	}
 }
@@ -167,6 +214,47 @@ void ACagneyCarnation::Gatling_Idle(float _DeltaTime)
 	{
 		GatlingTime = GatlingTimeValue;
 		State.ChangeState(FlowerBossState::Gatling_End);
+		return;
+	}
+}
+
+void ACagneyCarnation::CreateObject_Idle(float _DeltaTime)
+{
+	CreateObjectTime -= _DeltaTime;
+
+	if (0.0f >= CreateObjectTime)
+	{
+		CreateObjectTime = 1.0f;
+
+		State.ChangeState(FlowerBossState::CreateObject_Release);
+		return;
+	}
+}
+
+void ACagneyCarnation::CreateObject_ReleaseIdle(float _DeltaTime)
+{
+	// Idle 시간은 추후에 도토리 , 부메랑에 따라서 다르게 적용하기
+	CreateObjectReleaseTime -= _DeltaTime;
+
+	if (0.0f >= CreateObjectReleaseTime)
+	{
+		CreateObjectReleaseTime = 1.0f;
+
+		// 난수 받아서 다시 어떤걸 실행시킬지 결정
+		int RandomValue = UMath::GetInst().RandomReturnInt(0, 1);
+
+		switch (RandomValue)
+		{
+		case 0:
+			State.ChangeState(FlowerBossState::CreateObject_ReleaseRev);
+			break;
+		case 1:
+			State.ChangeState(FlowerBossState::CreateObject_End);
+			break;
+		default:
+			MsgBoxAssert("리턴될 수 없는 Random Int 값입니다.");
+			break;
+		}
 		return;
 	}
 }

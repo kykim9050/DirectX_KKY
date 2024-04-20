@@ -31,14 +31,14 @@ void ACagneyCarnation::CreateAnimation()
 	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_End, "GatlingEnd", 0.0416f, false);
 	
 	// Create Object
-	//Renderer->CreateAnimation(FlowerBossAniName::, "", 0.0416f, false);
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Begin, "CreateObjectBegin", 0.0416f, false);
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Idle, "CreateObjectIdle", 0.0416f);
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Release, "CreateObjectRelease", 0.0416f, false);
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseIdle, "CreateObjectReleaseIdle", 0.0678f);
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseRev, "CreateObjectRelease", 0.0416f, false, 6, 0);
+	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_End, "CreateObjectEnd", 0.0416f, false);
 
-	//renderer_->CreateAnimationFolder("CreateObjectBegin", 0.0416f, false);
-	//renderer_->CreateAnimationFolder("CreateObjectIdle", 0.0416f);
-	//renderer_->CreateAnimationFolder("CreateObjectRelease", 0.0416f, false);
-	//renderer_->CreateAnimationFolder("CreateObjectReleaseIdle", 0.0678f);
-	//renderer_->CreateAnimationFolderReverse("CreateObjectReleaseReverse", "CreateObjectRelease", 0.0416f, false);
-	//renderer_->CreateAnimationFolder("CreateObjectEnd", 0.0416f, false);
+
 
 }
 
@@ -75,6 +75,24 @@ void ACagneyCarnation::SetAnimationCallback()
 			State.ChangeState(FlowerBossState::Gatling_Idle);
 		});
 	Renderer->SetFrameCallback(FlowerBossAniName::Flower_Gatling_End, 7, [this]()
+		{
+			State.ChangeState(FlowerBossState::Idle);
+		});
+
+	// Create Obecjt
+	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Begin, 10, [this]()
+		{
+			State.ChangeState(FlowerBossState::CreateObject_Idle);
+		});
+	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 7, [this]()
+		{
+			State.ChangeState(FlowerBossState::CreateObject_ReleaseIdle);
+		});
+	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_ReleaseRev, 7, [this]()
+		{
+			State.ChangeState(FlowerBossState::CreateObject_Idle);
+		});
+	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_End, 5, [this]()
 		{
 			State.ChangeState(FlowerBossState::Idle);
 		});
