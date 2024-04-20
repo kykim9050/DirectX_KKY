@@ -162,6 +162,9 @@
     <ClInclude Include="MonsterUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="FXBase.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -267,6 +270,9 @@
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="MonsterUnit.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="FXBase.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>

@@ -161,6 +161,7 @@ void APlayer::StateInit()
 		State.SetStartFunction("Dash", [this]
 			{
 				DirCheck();
+				CreateDashFX(GetActorLocation());
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Dash");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -412,7 +413,7 @@ bool APlayer::DirCheck()
 void APlayer::GetPlayerKeyDir()
 {
 	EPlayerKeyDir KeyDir = KeyDirCheck();
-
+	
 	if (ActorKeyDir != KeyDir)
 	{
 		ActorKeyDir = KeyDir;

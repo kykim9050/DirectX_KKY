@@ -29,7 +29,9 @@ enum class ERenderingOrder
 	Dust,
 	PlayerBullet,
 	PlayerBulletFx,
+	BackFX,
 	Player,
+	FrontFX,
 	FrontLayer,
 	OldFilmEffect,
 };

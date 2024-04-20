@@ -112,6 +112,9 @@ private:
 	void SuperShootCheck(float _DeltaTime);
 	void GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 	void JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
+	
+	void CreateDashFX(float4 _Pos);
+
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
