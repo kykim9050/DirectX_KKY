@@ -70,6 +70,10 @@ void APlayerBullet::StateInit()
 		State.SetStartFunction("Spawn", [this]()
 			{
 				Renderer->ChangeAnimation("BulletSpawn");
+				DelayCallBack(2.0f, [this]()
+					{
+						Destroy();
+					});
 			}
 		);
 		State.SetStartFunction("Flying", [this]()

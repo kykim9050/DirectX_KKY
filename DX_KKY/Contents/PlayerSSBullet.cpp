@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 
 #include "PlayerSSBullet.h"
+#include "MonsterUnit.h"
 
 APlayerSSBullet::APlayerSSBullet()
 {
@@ -49,6 +50,10 @@ void APlayerSSBullet::StateInit()
 		State.SetStartFunction("Spawn", [this]()
 			{
 				Renderer->ChangeAnimation("BulletSpawn");
+				DelayCallBack(2.0f, [this]()
+					{
+						Destroy();
+					});
 			}
 		);
 		State.SetStartFunction("Flying", [this]()
@@ -85,11 +90,24 @@ void APlayerSSBullet::CreateAnimation()
 				State.ChangeState("Flying");
 			}
 		);
+		Renderer->SetFrameCallback("BulletDeath", 10, [this]()
+			{
+				Destroy();
+			}
+		);
 	}
 }
 
 void APlayerSSBullet::Flying(float _DeltaTime)
 {
+	CollisionCheck();
+
+	if (true == GetIsMonsterHit())
+	{
+		State.ChangeState("Death");
+		return;
+	}
+
 	SetSpeedVec(GetHorizontalDir() * BulletSpeed);
 	SetJumpVec(GetVerticalDir() * BulletSpeed);
 	ResultMovementUpdate(_DeltaTime);
@@ -110,4 +128,25 @@ void APlayerSSBullet::Death(float _DeltaTime)
 void APlayerSSBullet::ResultMovementUpdate(float _DeltaTime)
 {
 	Super::ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayerSSBullet::CollisionCheck()
+{
+	Collision->CollisionEnter(ECollisionGroup::Monster, [=](std::shared_ptr<UCollision> _Collision)
+		{
+			AMonsterUnit* Monster = dynamic_cast<AMonsterUnit*>(_Collision->GetActor());
+
+			if (nullptr == Monster)
+			{
+				MsgBoxAssert("충돌 대상이 Monster가 아닙니다.");
+				return;
+			}
+
+			SetIsMonsterHit(true);
+
+			Monster->GetHit(GetDamage());
+
+			// Player의 SuperMeter 충전해주기
+
+		});
 }
