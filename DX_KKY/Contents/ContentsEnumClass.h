@@ -51,6 +51,8 @@ enum class ECollisionOrder
 {
 	Player,
 	PlayerBullet,
+	Monster,
+	MonsterBullet,
 };
 
 enum class EActorDir

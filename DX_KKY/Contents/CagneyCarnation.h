@@ -87,12 +87,14 @@ private:
 	void StartFunctionSet();
 	void UpdateFunctionSet();
 	void EndFunctionSet();
-
 	void Idle(float _DeltaTime);
 	void FaceAttackHigh_Idle(float _DeltaTime);
 	void FaceAttackLow_Idle(float _DeltaTime);
 	void Gatling_Idle(float _DeltaTime);
 	void CreateObject_Idle(float _DeltaTime);
 	void CreateObject_ReleaseIdle(float _DeltaTime);
+
+	void ColliderInit();
+
 };
 
