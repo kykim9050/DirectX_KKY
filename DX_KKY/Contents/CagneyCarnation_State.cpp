@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "CagneyCarnation.h"
 
+#include "FXBase.h"
+
 void ACagneyCarnation::StateInit()
 {
 	StateCreate();
@@ -8,7 +10,8 @@ void ACagneyCarnation::StateInit()
 	UpdateFunctionSet();
 	EndFunctionSet();
 
-	State.ChangeState(FlowerBossState::Intro);
+	//State.ChangeState(FlowerBossState::Intro);
+	State.ChangeState(FlowerBossState::Gatling_Begin);
 }
 
 
@@ -213,12 +216,38 @@ void ACagneyCarnation::FaceAttackLow_Idle(float _DeltaTime)
 void ACagneyCarnation::Gatling_Idle(float _DeltaTime)
 {
 	GatlingTime -= _DeltaTime;
+	MissileLaunchTIme -= _DeltaTime;
 
-	if (0.0f >= GatlingTime)
+	if (0.0f >= MissileLaunchTIme)
 	{
-		GatlingTime = GatlingTimeValue;
-		State.ChangeState(FlowerBossState::Gatling_End);
-		return;
+		MissileLaunchTIme = MissileLaunchTImeValue;
+
+		std::shared_ptr<AFXBase> Missile = GetWorld()->SpawnActor<AFXBase>("Missile");
+
+		int RandomVal = UMath::GetInst().RandomReturnInt(0, 1);
+
+		switch (RandomVal)
+		{
+		case 0:
+			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissileBlue", "GatlingMissileBlue", 0.05f));
+			Missile->SetActorLocation(FVector(1070.f, -100.f, -0.2f));
+			Missile->SetImgPivot(EPivot::BOT);
+			break;
+		case 1:
+			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissilePurple", "GatlingMissilePurple", 0.05f));
+			Missile->SetActorLocation(FVector(1070.f, -100.f, -0.2f));
+			Missile->SetImgPivot(EPivot::BOT);
+			break;
+		default:
+			break;
+		}
+
+		if (0.0f >= GatlingTime)
+		{
+			GatlingTime = GatlingTimeValue;
+			State.ChangeState(FlowerBossState::Gatling_End);
+			return;
+		}
 	}
 }
 

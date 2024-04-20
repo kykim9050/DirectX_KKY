@@ -75,3 +75,20 @@ void AFXBase::FXDestroy()
 {
 	Destroy();
 }
+
+void AFXBase::SetImgPivot(EPivot _Pivot)
+{
+	switch (_Pivot)
+	{
+	case EPivot::RIGHT:
+	case EPivot::BOT:
+	case EPivot::LEFTTOP:
+	case EPivot::RIGHTBOTTOM:
+		break;
+	default:
+		MsgBoxAssert("이미지에 유효하지 않은 Pivot 정보를 적용하려 했습니다.");
+		break;
+	}
+
+	Renderer->SetPivot(_Pivot);
+}

@@ -72,6 +72,10 @@ private:
 	// CreateObject Release 지속 시간
 	float CreateObjectReleaseTime = 1.0f;
 
+	// MissileLaunchTIme
+	float MissileLaunchTIme = 0.0f;
+	float MissileLaunchTImeValue = 0.3f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
