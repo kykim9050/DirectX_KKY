@@ -8,8 +8,7 @@ void ACagneyCarnation::StateInit()
 	UpdateFunctionSet();
 	EndFunctionSet();
 
-	//State.ChangeState(FlowerBossState::Intro);
-	State.ChangeState(FlowerBossState::CreateObject_Begin);
+	State.ChangeState(FlowerBossState::Intro);
 }
 
 
@@ -174,10 +173,9 @@ void ACagneyCarnation::Idle(float _DeltaTime)
 	{
 		P1_ChangeDelay = P1_ChangeDelayValue;
 
-		//int PatternNum = UMath::GetInst().RandomReturnIntEnum(0, EAttackPattern::Max);
+		int PatternNum = UMath::GetInst().RandomReturnIntEnum(0, EAttackPattern::Max);
 
-		//State.ChangeState(AttackPattern[PatternNum]);
-		State.ChangeState(FlowerBossState::CreateObject_Begin);
+		State.ChangeState(AttackPattern[PatternNum]);
 		return;
 	}
 }
