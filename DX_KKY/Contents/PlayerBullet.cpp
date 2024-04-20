@@ -47,6 +47,11 @@ void APlayerBullet::CreateAnimation()
 				State.ChangeState("Flying");
 			}
 		);
+		Renderer->SetFrameCallback("BulletDeath", 6, [this]()
+			{
+				Destroy();
+			}
+		);
 	}
 }
 
@@ -89,6 +94,12 @@ void APlayerBullet::StateInit()
 
 void APlayerBullet::Flying(float _DeltaTime)
 {
+	if (true == GetIsMonsterHit())
+	{
+		State.ChangeState("Death");
+		return;
+	}
+
 	SetSpeedVec(GetHorizontalDir() * BulletSpeed);
 	SetJumpVec(GetVerticalDir() * BulletSpeed);
 	ResultMovementUpdate(_DeltaTime);
