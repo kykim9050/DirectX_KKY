@@ -95,6 +95,7 @@ private:
 	void CreateObject_ReleaseIdle(float _DeltaTime);
 
 	void ColliderInit();
+	void CollisionCheck();
 
 };
 

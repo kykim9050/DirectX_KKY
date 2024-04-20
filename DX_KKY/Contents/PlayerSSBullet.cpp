@@ -22,7 +22,7 @@ void APlayerSSBullet::BeginPlay()
 	Renderer->SetOrder(ERenderingOrder::PlayerBullet);
 
 	Collision->SetScale(UContentsValue::PlayerSSBulletColSize);
-	Collision->SetCollisionGroup(ECollisionOrder::PlayerBullet);
+	Collision->SetCollisionGroup(ECollisionGroup::PlayerBullet);
 	Collision->SetCollisionType(ECollisionType::RotRect);
 	Collision->AddPosition(FVector(150.0f, 0.0f));
 

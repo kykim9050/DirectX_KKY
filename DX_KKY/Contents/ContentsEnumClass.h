@@ -47,7 +47,7 @@ enum class EPlayerKeyDir
 	LeftUp,
 };
 
-enum class ECollisionOrder
+enum class ECollisionGroup
 {
 	Player,
 	PlayerBullet,
