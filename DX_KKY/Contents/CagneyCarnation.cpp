@@ -3,7 +3,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 #include "CagneyCarnation.h"
-#include "PlayerBullet.h"
+//#include "PlayerBullet.h"
 
 
 ACagneyCarnation::ACagneyCarnation()
@@ -61,25 +61,6 @@ void ACagneyCarnation::ColliderInit()
 
 void ACagneyCarnation::CollisionCheck()
 {
-	// HeadCollider 충돌 확인
-	HeadCollider->CollisionEnter(ECollisionGroup::PlayerBullet, [=](std::shared_ptr<UCollision> _Collision)
-		{
-			APlayerBullet* PBullet = dynamic_cast<APlayerBullet*>(_Collision->GetActor());
-		
-			if (nullptr == PBullet)
-			{
-				MsgBoxAssert("PlayerBullet으로 dynamic_cast가 불가합니다.");
-				return;
-			}
-			
-			// 본인의 체력 감소
-			GetHit(PBullet->GetDamage());
+	//HeadCollisionCheck();
 
-			Hp;
-			// PlayerBullet이 맞으면 Bullet Destroy
-			PBullet->SetIsMonsterHit(true);
-		});
 }
-
-// 충돌 체크의 종류 (Head, FaceAttLow, FaceAttHigh - PlayerBullet, PlayerSSBullet 충돌 구분)
-
