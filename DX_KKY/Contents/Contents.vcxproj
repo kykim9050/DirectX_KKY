@@ -171,6 +171,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BossAttackUnit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BossUnit.h">
       <SubType>
       </SubType>
@@ -290,6 +294,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BossAttackUnit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BossUnit.cpp">
       <SubType>
       </SubType>

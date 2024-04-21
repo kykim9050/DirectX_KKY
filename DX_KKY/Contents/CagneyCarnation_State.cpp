@@ -98,6 +98,8 @@ void ACagneyCarnation::StartFunctionSet()
 	// Gatling
 	State.SetStartFunction(FlowerBossState::Gatling_Begin, [this]()
 		{
+			// ÆÄ¶û 2°³, º¸¶ó 2°³, ºÐÈ« 1°³ ¾¾¾Ñ ¶³±¸±â
+
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Gatling_Begin);
 		});
 	State.SetStartFunction(FlowerBossState::Gatling_Idle, [this]()
