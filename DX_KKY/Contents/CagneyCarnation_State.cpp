@@ -103,29 +103,29 @@ void ACagneyCarnation::StartFunctionSet()
 		});
 	State.SetStartFunction(FlowerBossState::Gatling_Idle, [this]()
 		{
-			// ÆÄ¶û 2°³, º¸¶ó 2°³, ºÐÈ« 1°³ ¾¾¾Ñ ¶³±¸±â
-			ASeed* Seed1 = GetWorld()->SpawnActor<ASeed>("Seed1").get();
-			ASeed* Seed2 = GetWorld()->SpawnActor<ASeed>("Seed2").get();
-			ASeed* Seed3 = GetWorld()->SpawnActor<ASeed>("Seed3").get();
-			ASeed* Seed4 = GetWorld()->SpawnActor<ASeed>("Seed4").get();
-			ASeed* Seed5 = GetWorld()->SpawnActor<ASeed>("Seed5").get();
-			Seed1->SetActorLocation(float4(940.0f, +100.0f, 0.0f));
-			Seed2->SetActorLocation(float4(140.0f, +400.0f, 0.0f));
-			Seed3->SetActorLocation(float4(540.0f, +700.0f, 0.0f));
-			Seed4->SetActorLocation(float4(240.0f, +1000.0f, 0.0f));
-			Seed5->SetActorLocation(float4(680.0f, +1300.0f, 0.0f));
-			Seed1->SetColor(ESeedColor::Blue);
-			Seed2->SetColor(ESeedColor::Purple);
-			Seed3->SetColor(ESeedColor::Pink);
-			Seed4->SetColor(ESeedColor::Blue);
-			Seed5->SetColor(ESeedColor::Purple);
+			std::vector<ASeed*> Seeds = std::vector<ASeed*>();
+
+			float SeedRandXPos = 0.0f;
+
+			for (int i = 0; i < SeedNum; i++)
+			{
+				ASeed* NewSeed = GetWorld()->SpawnActor<ASeed>("NewSeed").get();
+				Seeds.push_back(NewSeed);
+
+				SeedRandXPos = UMath::GetInst().RandomReturnFloat(140.0f, 840.0f);
+
+				Seeds[i]->SetActorLocation(float4(SeedRandXPos, 100.0f + 300.0f * i, 0.0f));
+			}
+			// ÆÄ¶û 2°³, º¸¶ó 2°³, ºÐÈ« 1°³ ¾¾¾Ñ »ý¼º
+			Seeds[0]->SetColor(ESeedColor::Blue);
+			Seeds[1]->SetColor(ESeedColor::Purple);
+			Seeds[2]->SetColor(ESeedColor::Pink);
+			Seeds[3]->SetColor(ESeedColor::Blue);
+			Seeds[4]->SetColor(ESeedColor::Purple);
 			
 			// »ö±òº°·Î ¶³¾îÁö´Â °Í ·£´õ¸µ ÇØ¾ß ÇÏ°í
 			// 5°³¸¸ µü ¸¸µé¾î¾ß ÇÏ°í
 			// ¶³¾îÁö´Â »óÅÂ (°¡¿îµ¥ ÇÇº¿), ¶³¾îÁ®¼­ ¹Ù´Ú¿¡ ´ê¾Æ¼­ ½É¾îÁú ¶§ (¹ÙÅÒ ÇÇº¿) 
-			//Seed->CreateAnimation();
-			//Seed->
-			//Seed->
 
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Gatling_Idle);
 		});

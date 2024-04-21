@@ -49,6 +49,9 @@ private:
 	UCollision* FaceAttHighCollider = nullptr;
 	UCollision* FaceAttLowCollider = nullptr;
 
+	// 게틀링 패턴에서 생성하는 Seed의 수
+	const int SeedNum = 5;
+
 	// 페이즈가 나누어지면 map안에 key를 추가로 int 하나 더 넣어줄 수가 있음
 	std::map<int, std::string> AttackPattern;
 
