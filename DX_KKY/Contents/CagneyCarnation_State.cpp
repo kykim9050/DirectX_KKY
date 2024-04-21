@@ -2,6 +2,7 @@
 #include "CagneyCarnation.h"
 
 #include "FXBase.h"
+#include "BossAttackUnit.h"
 
 void ACagneyCarnation::StateInit()
 {
@@ -98,12 +99,19 @@ void ACagneyCarnation::StartFunctionSet()
 	// Gatling
 	State.SetStartFunction(FlowerBossState::Gatling_Begin, [this]()
 		{
-			// ÆÄ¶û 2°³, º¸¶ó 2°³, ºÐÈ« 1°³ ¾¾¾Ñ ¶³±¸±â
-
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Gatling_Begin);
 		});
 	State.SetStartFunction(FlowerBossState::Gatling_Idle, [this]()
 		{
+			// ÆÄ¶û 2°³, º¸¶ó 2°³, ºÐÈ« 1°³ ¾¾¾Ñ ¶³±¸±â
+			ABossAttackUnit* Seed = GetWorld()->SpawnActor<ABossAttackUnit>("Seed").get();
+			// »ö±òº°·Î ¶³¾îÁö´Â °Í ·£´õ¸µ ÇØ¾ß ÇÏ°í
+			// 5°³¸¸ µü ¸¸µé¾î¾ß ÇÏ°í
+			// ¶³¾îÁö´Â »óÅÂ (°¡¿îµ¥ ÇÇº¿), ¶³¾îÁ®¼­ ¹Ù´Ú¿¡ ´ê¾Æ¼­ ½É¾îÁú ¶§ (¹ÙÅÒ ÇÇº¿) 
+			//Seed->CreateAnimation();
+			//Seed->
+			//Seed->
+
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Gatling_Idle);
 		});
 	State.SetStartFunction(FlowerBossState::Gatling_End, [this]()
@@ -235,13 +243,13 @@ void ACagneyCarnation::Gatling_Idle(float _DeltaTime)
 		switch (RandomCase)
 		{
 		case 0:
-			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissileBlue", "GatlingMissileBlue", 0.05f));
+			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FAniInfo("GatlingMissileBlue", "GatlingMissileBlue", 0.05f));
 			Missile->SetActorLocation(GRendererPos::FlowerBoss_MissileInitPos);
 			Missile->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
 			Missile->SetImgPivot(EPivot::BOT);
 			break;
 		case 1:
-			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissilePurple", "GatlingMissilePurple", 0.05f));
+			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FAniInfo("GatlingMissilePurple", "GatlingMissilePurple", 0.05f));
 			Missile->SetActorLocation(GRendererPos::FlowerBoss_MissileInitPos);
 			Missile->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
 			Missile->SetImgPivot(EPivot::BOT);

@@ -1,22 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
-struct FFXAniInfo
-{
-public:
-	FFXAniInfo(std::string_view _AnimationName, std::string_view _SpriteName, float _InterTime)
-		: AnimationName(_AnimationName)
-		, SpriteName(_SpriteName)
-		, InterTime(_InterTime)
-	{
-
-	}
-
-	std::string AnimationName;
-	std::string SpriteName;
-	float InterTime;
-};
-
 // Ό³Έν :
 class USpriteRenderer;
 class UDefaultSceneComponent;
@@ -34,7 +18,7 @@ public:
 	AFXBase& operator=(const AFXBase& _Other) = delete;
 	AFXBase& operator=(AFXBase&& _Other) noexcept = delete;
 
-	void FXInit(ERenderingOrder _Order, FFXAniInfo _Info, bool _Loop = false);
+	void FXInit(ERenderingOrder _Order, FAniInfo _Info, bool _Loop = false);
 	void SetImgDir(EEngineDir _ImgDir);
 	void FXDestroy();
 	void SetImgPivot(EPivot _Pivot);

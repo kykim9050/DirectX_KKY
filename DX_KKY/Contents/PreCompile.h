@@ -22,3 +22,4 @@
 #include "ContentsValue.h"
 #include "ContentsFunction.h"
 #include "Math.h"
+#include "ContentsStruct.h"

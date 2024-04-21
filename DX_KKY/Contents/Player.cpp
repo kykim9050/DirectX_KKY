@@ -594,7 +594,7 @@ void APlayer::CreateDashFX(float4 _Pos)
 	EEngineDir ImgDir = EEngineDir::MAX;
 	
 	std::shared_ptr<AFXBase> DashFX = GetWorld()->SpawnActor<AFXBase>("DashFX");
-	DashFX->FXInit(ERenderingOrder::FrontFX, FFXAniInfo(GAniName::DashDust, "DashDust",  0.0416f));
+	DashFX->FXInit(ERenderingOrder::FrontFX, FAniInfo(GAniName::DashDust, "DashDust",  0.0416f));
 	DashFX->SetActorLocation(_Pos);
 
 	switch (PlayerDir)
@@ -616,7 +616,7 @@ void APlayer::CreateLandFX(float4 _Pos)
 {
 	DirCheck();
 	std::shared_ptr<AFXBase> LandingFX= GetWorld()->SpawnActor<AFXBase>("DashFX");
-	LandingFX->FXInit(ERenderingOrder::BackFX, FFXAniInfo(GAniName::LandDust, "LandDust", 0.0416f));
+	LandingFX->FXInit(ERenderingOrder::BackFX, FAniInfo(GAniName::LandDust, "LandDust", 0.0416f));
 	LandingFX->SetActorLocation(_Pos);
 
 }

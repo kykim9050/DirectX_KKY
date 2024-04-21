@@ -25,6 +25,7 @@ enum class ERenderingOrder
 	Animation,
 	StaticObject,
 	Object,
+	Monster,
 	BossMonsterBackFX1,
 	BossMonsterBackFX2,
 	BossMonster,
