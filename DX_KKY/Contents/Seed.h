@@ -28,6 +28,8 @@ private:
 	UStateManager State = UStateManager();
 	USpriteRenderer* VineRenderer = nullptr;
 
+
+	ESeedColor Color = ESeedColor::None;
 	const float SeedFallEndValue = -620.0f;
 	const float SeedFallSpeed = 250.0f;
 	const float ColliderYOffset = 20.0f;

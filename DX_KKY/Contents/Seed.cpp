@@ -20,10 +20,6 @@ void ASeed::BeginPlay()
 {
 	Super::BeginPlay();
 
-	AnimationInit();
-	RendererInit();
-	ColliderInit();
-
 	StateInit();
 }
 
@@ -35,6 +31,7 @@ void ASeed::Tick(float _DeltaTime)
 
 void ASeed::StateInit()
 {
+	State.CreateState("Init");
 	State.CreateState("Fall");
 	State.CreateState("Plant");
 
@@ -46,10 +43,22 @@ void ASeed::StateInit()
 		Renderer->ChangeAnimation("Plant");
 		});
 
+	State.SetUpdateFunction("Init", [this](float)
+		{
+			State.ChangeState("Fall");
+			return;
+		});
 	State.SetUpdateFunction("Fall", std::bind(&ASeed::Fall, this, std::placeholders::_1));
 	State.SetUpdateFunction("Plant", std::bind(&ASeed::Plant, this, std::placeholders::_1));
 
-	State.ChangeState("Fall");
+	State.SetEndFunction("Init", [this]()
+		{
+			AnimationInit();
+			RendererInit();
+			ColliderInit();
+		});
+
+	State.ChangeState("Init");
 }
 
 void ASeed::Fall(float _DeltaTime)
@@ -68,8 +77,31 @@ void ASeed::AnimationInit()
 	VineRenderer->CreateAnimation(FlowerBossAniName::VineGrowUp, "Vine", 0.1f, false);
 	VineRenderer->CreateAnimation(FlowerBossAniName::VineDisappear, "VineGrowBurst", 0.1f, false, 3, 6);
 
-	Renderer->CreateAnimation(FlowerBossAniName::SeedFall, "Seed_Blue", 0.1f);
-	Renderer->CreateAnimation(FlowerBossAniName::SeedPlant, "SeedPlant_Blue", 0.1f, false);
+	std::string SeedColor = "";
+	std::string FallAniName = "SeedFall";
+	std::string PlantAniName = "SeedPlant";
+
+	switch (Color)
+	{
+	case ESeedColor::Blue:
+		SeedColor = "_Blue";
+		break;
+	case ESeedColor::Purple:
+		SeedColor = "_Purple";
+		break;
+	case ESeedColor::Pink:
+		SeedColor = "_Pink";
+		break;
+	default:
+		MsgBoxAssert("씨앗의 색을 지정해주십시오.. 제발...");
+		return;
+	}
+
+	FallAniName = FallAniName + SeedColor;
+	PlantAniName = PlantAniName + SeedColor;
+
+	Renderer->CreateAnimation(FlowerBossAniName::SeedFall, FallAniName, 0.1f);
+	Renderer->CreateAnimation(FlowerBossAniName::SeedPlant, PlantAniName, 0.1f, false);
 	Renderer->CreateAnimation(FlowerBossAniName::SeedGrowUpBegin, "VineGrowBurst", { 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f , 0.1f }, { 0, 1, 2, 1, 0, 1, 2, 3, 4, 5, 6 }, false);
 
 	{
@@ -84,6 +116,28 @@ void ASeed::AnimationInit()
 		Renderer->SetFrameCallback(FlowerBossAniName::SeedGrowUpBegin, 11, [this]()
 			{
 				Renderer->SetActive(false);
+
+				switch (Color)
+				{
+				case ESeedColor::Blue:
+				{
+					int a = 0;
+					break;
+				}
+				case ESeedColor::Purple:
+				{
+					int a = 0;
+					break;
+				}
+				case ESeedColor::Pink:
+				{
+					int a = 0;
+					break;
+				}
+				default:
+					MsgBoxAssert("아직 색이 지정되지 않은 씨앗입니다.");
+					return;
+				}
 			});
 
 		VineRenderer->SetFrameCallback(FlowerBossAniName::VineGrowUp, 36, [this]()
@@ -134,13 +188,13 @@ void ASeed::SetColor(ESeedColor _Color)
 	switch (_Color)
 	{
 	case ESeedColor::Blue:
-		break;
 	case ESeedColor::Purple:
-		break;
 	case ESeedColor::Pink:
 		break;
 	default:
 		MsgBoxAssert("지정되지 않은 씨앗 색입니다.");
 		return;
 	}
+
+	Color = _Color;
 }
