@@ -43,11 +43,11 @@ protected:
 
 
 private:
+
 	// FlowerBoss의 콜리젼
 	UCollision* HeadCollider = nullptr;
 	UCollision* FaceAttHighCollider = nullptr;
 	UCollision* FaceAttLowCollider = nullptr;
-
 
 	// 페이즈가 나누어지면 map안에 key를 추가로 int 하나 더 넣어줄 수가 있음
 	std::map<int, std::string> AttackPattern;

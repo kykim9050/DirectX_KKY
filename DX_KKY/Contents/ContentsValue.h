@@ -32,6 +32,13 @@ namespace FlowerBossAniName
 
 	const std::string PurleMissile = "GatlingMissilePurple";
 	const std::string BlueMissile = "GatlingMissilePurple";
+
+	const std::string SeedFall = "Fall";
+	const std::string SeedPlant = "Plant";
+	const std::string SeedGrowUpBegin = "GrowUpBegin";
+
+	const std::string VineGrowUp = "VineGrowUp";
+	const std::string VineDisappear = "VineDisappear";
 }
 
 namespace FlowerBossState
@@ -57,6 +64,12 @@ namespace FlowerBossState
 	const std::string CreateObject_ReleaseIdle = "CreateObject_ReleaseIdle";
 	const std::string CreateObject_ReleaseRev = "CreateObject_ReleaseRev";
 	const std::string CreateObject_End = "CreateObject_End";
+
+}
+
+namespace FlowerBossStageValue
+{
+	const float4 SeedColliderScale = float4(20.0f, 40.0f, 1.0f);
 }
 
 namespace GColliderScale
@@ -114,7 +127,6 @@ public:
 	static const float4 LeftDown_BulletInitRot;
 	static const float4 Left_BulletInitRot;
 	static const float4 LeftUp_BulletInitRot;
-
 
 	static const float4 PlayerBulletColSize;
 	static const float4 PlayerSSBulletColSize;

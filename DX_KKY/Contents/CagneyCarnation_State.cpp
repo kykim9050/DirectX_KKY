@@ -2,7 +2,7 @@
 #include "CagneyCarnation.h"
 
 #include "FXBase.h"
-#include "BossAttackUnit.h"
+#include "Seed.h"
 
 void ACagneyCarnation::StateInit()
 {
@@ -104,7 +104,22 @@ void ACagneyCarnation::StartFunctionSet()
 	State.SetStartFunction(FlowerBossState::Gatling_Idle, [this]()
 		{
 			// 파랑 2개, 보라 2개, 분홍 1개 씨앗 떨구기
-			ABossAttackUnit* Seed = GetWorld()->SpawnActor<ABossAttackUnit>("Seed").get();
+			ASeed* Seed1 = GetWorld()->SpawnActor<ASeed>("Seed1").get();
+			ASeed* Seed2 = GetWorld()->SpawnActor<ASeed>("Seed2").get();
+			ASeed* Seed3 = GetWorld()->SpawnActor<ASeed>("Seed3").get();
+			ASeed* Seed4 = GetWorld()->SpawnActor<ASeed>("Seed4").get();
+			ASeed* Seed5 = GetWorld()->SpawnActor<ASeed>("Seed5").get();
+			Seed1->SetActorLocation(float4(940.0f, +100.0f, 0.0f));
+			Seed2->SetActorLocation(float4(140.0f, +400.0f, 0.0f));
+			Seed3->SetActorLocation(float4(540.0f, +700.0f, 0.0f));
+			Seed4->SetActorLocation(float4(240.0f, +1000.0f, 0.0f));
+			Seed5->SetActorLocation(float4(680.0f, +1300.0f, 0.0f));
+			Seed1->SetColor(ESeedColor::Blue);
+			Seed2->SetColor(ESeedColor::Purple);
+			Seed3->SetColor(ESeedColor::Pink);
+			Seed4->SetColor(ESeedColor::Blue);
+			Seed5->SetColor(ESeedColor::Purple);
+			
 			// 색깔별로 떨어지는 것 랜더링 해야 하고
 			// 5개만 딱 만들어야 하고
 			// 떨어지는 상태 (가운데 피봇), 떨어져서 바닥에 닿아서 심어질 때 (바텀 피봇) 

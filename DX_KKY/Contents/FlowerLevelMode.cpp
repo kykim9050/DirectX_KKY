@@ -10,7 +10,7 @@
 #include "CagneyCarnation.h"
 
 //
-#include "Seed.h"
+
 //
 
 
@@ -38,10 +38,6 @@ void AFlowerLevelMode::BeginPlay()
 	BackGroundObject = GetWorld()->SpawnActor<AMapBase>("BackGroundObject", EActorType::Map);
 	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
 
-	{
-		ASeed* Test = GetWorld()->SpawnActor<ASeed>("Test").get();
-		Test->SetActorLocation(float4(640.0f, +100.0f, 0.0f));
-	}
 }
 
 void AFlowerLevelMode::Tick(float _DeltaTime)
