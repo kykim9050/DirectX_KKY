@@ -590,12 +590,15 @@ bool APlayer::DownJumpCheck()
 
 void APlayer::CreateDashFX(float4 _Pos)
 {
+	float4 Pos = _Pos;
+	Pos.Y += DashFXOffset;
+
 	DirCheck();
 	EEngineDir ImgDir = EEngineDir::MAX;
 	
 	std::shared_ptr<AFXBase> DashFX = GetWorld()->SpawnActor<AFXBase>("DashFX");
 	DashFX->FXInit(ERenderingOrder::FrontFX, FAniInfo(GAniName::DashDust, "DashDust",  0.0416f));
-	DashFX->SetActorLocation(_Pos);
+	DashFX->SetActorLocation(Pos);
 
 	switch (PlayerDir)
 	{
