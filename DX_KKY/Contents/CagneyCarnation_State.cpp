@@ -231,13 +231,13 @@ void ACagneyCarnation::Gatling_Idle(float _DeltaTime)
 		{
 		case 0:
 			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissileBlue", "GatlingMissileBlue", 0.05f));
-			Missile->SetActorLocation(float4(1070.f, -100.f, -0.2f));
+			Missile->SetActorLocation(GRendererPos::FlowerBoss_MissileInitPos);
 			Missile->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
 			Missile->SetImgPivot(EPivot::BOT);
 			break;
 		case 1:
 			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissilePurple", "GatlingMissilePurple", 0.05f));
-			Missile->SetActorLocation(FVector(1070.f, -100.f, -0.2f));
+			Missile->SetActorLocation(GRendererPos::FlowerBoss_MissileInitPos);
 			Missile->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
 			Missile->SetImgPivot(EPivot::BOT);
 			break;
