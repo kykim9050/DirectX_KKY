@@ -18,6 +18,8 @@ public:
 	ASeed& operator=(const ASeed& _Other) = delete;
 	ASeed& operator=(ASeed&& _Other) noexcept = delete;
 
+	void SetColor(ESeedColor _Color);
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -26,8 +28,13 @@ private:
 	UStateManager State = UStateManager();
 	USpriteRenderer* VineRenderer = nullptr;
 
+	const float SeedFallEndValue = -620.0f;
+	const float SeedFallSpeed = 250.0f;
+	const float ColliderYOffset = 20.0f;
+
+	void RendererInit();
 	void ColliderInit();
-	void CreateSeedAnimation();
+	void AnimationInit();
 	
 	void StateInit();
 	void Fall(float _DeltaTime);
