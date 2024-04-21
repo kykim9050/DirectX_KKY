@@ -85,3 +85,10 @@ enum class EBulletShootType
 	AirSuperShoot
 };
 
+enum class ESeedColor
+{
+	None,
+	Blue,
+	Purple,
+	Pink,
+};
