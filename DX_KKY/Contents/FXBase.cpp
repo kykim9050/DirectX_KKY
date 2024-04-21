@@ -29,7 +29,7 @@ void AFXBase::Tick(float _DeltaTime)
 	FXDestroyCheck();
 }
 
-void AFXBase::FXInit(ERenderingOrder _Order, FFXAniInfo _Info, bool _Loop)
+void AFXBase::FXInit(ERenderingOrder _Order, FAniInfo _Info, bool _Loop)
 {
 	Loop = _Loop;
 

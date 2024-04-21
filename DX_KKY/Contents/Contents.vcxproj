@@ -208,6 +208,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ContentsStruct.h" />
     <ClInclude Include="ContentsValue.h">
       <SubType>
       </SubType>
