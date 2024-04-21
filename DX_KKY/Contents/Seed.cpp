@@ -3,8 +3,6 @@
 
 #include "Seed.h"
 
-
-
 ASeed::ASeed()
 {
 }
@@ -17,10 +15,8 @@ void ASeed::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Renderer->CreateAnimation("FallDown", "Seed_Blue", 0.1f);
-	Renderer->CreateAnimation("Plant", "SeedPlant_Blue", 0.1f);
-	Renderer->SetAutoSize(1.0f, true);
-	Renderer->SetOrder(ERenderingOrder::Monster);
+	CreateSeedAnimation();
+	ColliderInit();
 
 	StateInit();
 }
@@ -32,54 +28,80 @@ void ASeed::Tick(float _DeltaTime)
 	State.Update(_DeltaTime);
 }
 
-void ASeed::CreateSeed(ESeedColor _Color)
-{
-	//std::string SeedColor = "None";
-
-	//switch (_Color)
-	//{
-	//case ESeedColor::Blue:
-	//	SeedColor = "_Blue";
-	//	break;
-	//case ESeedColor::Purple:
-	//	SeedColor = "_Purple";
-	//	break;
-	//case ESeedColor::Pink:
-	//	SeedColor = "_Pink";
-	//	break;
-	//default:
-	//	MsgBoxAssert("유효하지 않은 Seed 색입니다.");
-	//	break;
-	//}
-
-	//CreateAnimation(SeedColor);
-}
-
-void ASeed::CreateAnimation(const std::string& _Color)
-{
-	std::string SeedFallName = "Seed" + _Color;
-	std::string SeedPlantName = "SeedGrow" + _Color;
-
-
-	Renderer->CreateAnimation(SeedFallName, SeedFallName, 0.1f);
-	Renderer->CreateAnimation(SeedPlantName, SeedPlantName, 0.1f, false);
-	Renderer->SetAutoSize(1.0f, true);
-}
-
 void ASeed::StateInit()
 {
-	State.CreateState("FallDown");
+	State.CreateState("Fall");
+	State.CreateState("Plant");
+	State.CreateState("GrowUp");
 
-	State.SetStartFunction("FallDown", [this]() {
-		Renderer->ChangeAnimation("FallDown");
+	State.SetStartFunction("Fall", [this]() {
+		Renderer->ChangeAnimation("Fall");
 		});
-	
-	State.SetUpdateFunction("FallDown", std::bind(&ASeed::FallDown, this, std::placeholders::_1));
+	State.SetStartFunction("Plant", [this]() {
+		Collider->SetActive(false);
+		Renderer->ChangeAnimation("Plant");
+		});
+	State.SetStartFunction("GrowUp", [this]() {
+		Renderer->ChangeAnimation("GrowUp");
+		});
 
-	State.ChangeState("FallDown");
+
+	
+	State.SetUpdateFunction("Fall", std::bind(&ASeed::Fall, this, std::placeholders::_1));
+	State.SetUpdateFunction("Plant", std::bind(&ASeed::Plant, this, std::placeholders::_1));
+	State.SetUpdateFunction("GrowUp", std::bind(&ASeed::GrowUp, this, std::placeholders::_1));
+
+
+	State.ChangeState("Fall");
 }
 
-void ASeed::FallDown(float _DeltaTime)
+void ASeed::Fall(float _DeltaTime)
 {
+	if (-620.0f >= GetActorLocation().Y)
+	{
+		State.ChangeState("Plant");
+		return;
+	}
+
 	AddActorLocation(float4::Down * 250.0f * _DeltaTime);
+}
+
+void ASeed::CreateSeedAnimation()
+{
+	Renderer->CreateAnimation("Fall", "Seed_Blue", 0.1f);
+	Renderer->CreateAnimation("Plant", "SeedPlant_Blue", 0.1f, false);
+	Renderer->CreateAnimation("GrowUp", "Vine", 0.1f, false);
+
+	Renderer->SetAutoSize(1.0f, true);
+	Renderer->SetOrder(ERenderingOrder::Monster);
+	Renderer->SetPivot(EPivot::BOT);
+
+	{
+		Renderer->SetFrameCallback("Plant", 10, [this]()
+			{
+				State.ChangeState("GrowUp");
+				return;
+			});
+	}
+}
+
+void ASeed::ColliderInit()
+{
+	float4 ColliderPos = GetActorLocation();
+	ColliderPos.Y += 20.0f;
+
+	Collider->SetScale(float4(20.0f, 40.0f, 1.0f));
+	Collider->SetPosition(ColliderPos);
+	Collider->SetCollisionGroup(ECollisionGroup::Monster);
+	Collider->SetCollisionType(ECollisionType::Rect);
+}
+
+void ASeed::Plant(float _DeltaTime)
+{
+
+}
+
+void ASeed::GrowUp(float _DeltaTime)
+{
+
 }
