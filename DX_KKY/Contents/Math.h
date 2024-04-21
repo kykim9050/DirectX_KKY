@@ -40,6 +40,12 @@ public:
 		return RandomValue;
 	}
 
+	float RandomReturnFloat(float _Min, float _Max)
+	{
+		float RandomValue = UEngineRandom::MainRandom.RandomFloat(_Min, _Max);
+		return RandomValue;
+	}
+
 protected:
 
 private:

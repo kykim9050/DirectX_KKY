@@ -224,18 +224,21 @@ void ACagneyCarnation::Gatling_Idle(float _DeltaTime)
 
 		std::shared_ptr<AFXBase> Missile = GetWorld()->SpawnActor<AFXBase>("Missile");
 
-		int RandomVal = UMath::GetInst().RandomReturnInt(0, 1);
+		int RandomCase = UMath::GetInst().RandomReturnInt(0, 1);
+		float RandomDegree = UMath::GetInst().RandomReturnFloat(-10.0f, 10.0f);
 
-		switch (RandomVal)
+		switch (RandomCase)
 		{
 		case 0:
 			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissileBlue", "GatlingMissileBlue", 0.05f));
-			Missile->SetActorLocation(FVector(1070.f, -100.f, -0.2f));
+			Missile->SetActorLocation(float4(1070.f, -100.f, -0.2f));
+			Missile->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
 			Missile->SetImgPivot(EPivot::BOT);
 			break;
 		case 1:
 			Missile->FXInit(ERenderingOrder::BossMonsterBackFX2, FFXAniInfo("GatlingMissilePurple", "GatlingMissilePurple", 0.05f));
 			Missile->SetActorLocation(FVector(1070.f, -100.f, -0.2f));
+			Missile->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
 			Missile->SetImgPivot(EPivot::BOT);
 			break;
 		default:
