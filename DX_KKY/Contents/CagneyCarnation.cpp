@@ -45,23 +45,23 @@ void ACagneyCarnation::ColliderInit()
 {
 	HeadCollider = CreateDefaultSubObject<UCollision>("HeadCollider");
 	HeadCollider->SetupAttachment(Root);
-	HeadCollider->SetScale(ColliderScale::FlowerBoss_HeadColScale);
-	HeadCollider->AddPosition(ColliderPosInfo::FlowerBoss_HeadColRelPos);
+	HeadCollider->SetScale(GColliderScale::FlowerBoss_HeadColScale);
+	HeadCollider->AddPosition(GColliderPosInfo::FlowerBoss_HeadColRelPos);
 	HeadCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	HeadCollider->SetCollisionType(ECollisionType::Rect);
 
 	FaceAttHighCollider = CreateDefaultSubObject<UCollision>("FaceAttHighCollider");
 	FaceAttHighCollider->SetupAttachment(Root);
-	FaceAttHighCollider->SetScale(ColliderScale::FlowerBoss_FaceAttScale);
-	FaceAttHighCollider->AddPosition(ColliderPosInfo::FlowerBoss_FaceAttHighPos);
+	FaceAttHighCollider->SetScale(GColliderScale::FlowerBoss_FaceAttScale);
+	FaceAttHighCollider->AddPosition(GColliderPosInfo::FlowerBoss_FaceAttHighPos);
 	FaceAttHighCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	FaceAttHighCollider->SetCollisionType(ECollisionType::Rect);
 	FaceAttHighCollider->SetActive(false);
 
 	FaceAttLowCollider = CreateDefaultSubObject<UCollision>("FaceAttLowCollider");
 	FaceAttLowCollider->SetupAttachment(Root);
-	FaceAttLowCollider->SetScale(ColliderScale::FlowerBoss_FaceAttScale);
-	FaceAttLowCollider->AddPosition(ColliderPosInfo::FlowerBoss_FaceAttLowPos);
+	FaceAttLowCollider->SetScale(GColliderScale::FlowerBoss_FaceAttScale);
+	FaceAttLowCollider->AddPosition(GColliderPosInfo::FlowerBoss_FaceAttLowPos);
 	FaceAttLowCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	FaceAttLowCollider->SetCollisionType(ECollisionType::Rect);
 	FaceAttLowCollider->SetActive(false);

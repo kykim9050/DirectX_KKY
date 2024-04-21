@@ -56,17 +56,22 @@ namespace FlowerBossState
 	const std::string CreateObject_End = "CreateObject_End";
 }
 
-namespace ColliderScale
+namespace GColliderScale
 {
 	const float4 FlowerBoss_HeadColScale = float4(250.0f, 250.0f, 1.0f);
 	const float4 FlowerBoss_FaceAttScale = float4(950.f, 280.f, 1.0f);
 }
 
-namespace ColliderPosInfo
+namespace GColliderPosInfo
 {
 	const float4 FlowerBoss_HeadColRelPos = float4(-300.f, 470.f, 1.0f);
 	const float4 FlowerBoss_FaceAttHighPos = float4(-825.f, 430.f, 1.0f);
 	const float4 FlowerBoss_FaceAttLowPos = float4(-825.f, 130.f, 1.0f);
+}
+
+namespace GRendererPos
+{
+	const float4 FlowerBoss_MissileInitPos = float4(1070.f, -100.f, 0.0f);
 }
 
 
