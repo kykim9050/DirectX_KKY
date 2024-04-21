@@ -172,7 +172,10 @@ void ACagneyCarnation::UpdateFunctionSet()
 
 void ACagneyCarnation::EndFunctionSet()
 {
-
+	State.SetEndFunction(FlowerBossState::Gatling_Idle, [this]()
+		{
+			MissileLaunchTIme = 0.0f;
+		});
 }
 
 void ACagneyCarnation::Idle(float _DeltaTime)
