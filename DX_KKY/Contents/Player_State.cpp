@@ -473,6 +473,12 @@ void APlayer::Idle(float _DeltaTime)
 
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
+		if (true == IsPress(VK_DOWN))
+		{
+			State.ChangeState("Duck");
+			return;
+		}
+
 		State.ChangeState("Run");
 		return;
 	}
@@ -611,9 +617,6 @@ void APlayer::Jump(float _DeltaTime)
 				State.ChangeState("Aim_Straight");
 				return;
 			}
-
-			State.ChangeState("Duck");
-			return;
 		}
 
 		CreateLandFX(GetActorLocation());
@@ -775,6 +778,7 @@ void APlayer::Parry(float _DeltaTime)
 
 	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
 	{
+		CreateLandFX(GetActorLocation());
 		State.ChangeState("Idle");
 		return;
 	}
@@ -803,6 +807,7 @@ void APlayer::AfterParry(float _DeltaTime)
 
 	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
 	{
+		CreateLandFX(GetActorLocation());
 		State.ChangeState("Idle");
 		return;
 	}
@@ -848,6 +853,7 @@ void APlayer::AfterDashAir(float _DeltaTime)
 
 	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
 	{
+		CreateLandFX(GetActorLocation());
 		State.ChangeState("Idle");
 		return;
 	}
@@ -1584,6 +1590,7 @@ void APlayer::DownJump(float _DeltaTime)
 
 	if (true == PixelCheck(Pos, Color8Bit::Black))
 	{
+		CreateLandFX(GetActorLocation());
 		State.ChangeState("Idle");
 		return;
 	}
@@ -1600,6 +1607,7 @@ void APlayer::FallDown(float _DeltaTime)
 
 	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
 	{
+		CreateLandFX(GetActorLocation());
 		State.ChangeState("Idle");
 		return;
 	}

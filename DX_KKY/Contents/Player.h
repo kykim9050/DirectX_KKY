@@ -53,6 +53,7 @@ private:
 	float ShootDelayTime = 0.25f;
 	float ShootDelayInitTime = 0.25f;
 	float SSReboundSpeed = 85.0f;
+	float LandFXOffset = 35.0f;
 	std::string PrevState = "None";
 
 	bool AvailableParry = true;
