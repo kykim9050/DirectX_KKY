@@ -165,6 +165,9 @@
     <ClInclude Include="FXBase.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="BossAttackUnit.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -273,6 +276,9 @@
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
     <ClCompile Include="FXBase.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="BossAttackUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
