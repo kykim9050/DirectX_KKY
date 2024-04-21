@@ -17,8 +17,6 @@ public:
 	ASeed& operator=(const ASeed& _Other) = delete;
 	ASeed& operator=(ASeed&& _Other) noexcept = delete;
 
-	void CreateSeed(ESeedColor _Color);
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -26,10 +24,13 @@ protected:
 private:
 	UStateManager State = UStateManager();
 
+	void ColliderInit();
+	void CreateSeedAnimation();
+	
 	void StateInit();
-	void CreateAnimation(const std::string& _Color);
-	void FallDown(float _DeltaTime);
-
+	void Fall(float _DeltaTime);
+	void Plant(float _DeltaTime);
+	void GrowUp(float _DeltaTime);
 
 };
 
