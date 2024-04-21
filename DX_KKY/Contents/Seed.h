@@ -3,6 +3,7 @@
 
 // Ό³Έν :
 class UStateManager;
+class USpriteRenderer;
 class ASeed : public ABossAttackUnit
 {
 	GENERATED_BODY(ABossAttackUnit)
@@ -23,6 +24,7 @@ protected:
 
 private:
 	UStateManager State = UStateManager();
+	USpriteRenderer* VineRenderer = nullptr;
 
 	void ColliderInit();
 	void CreateSeedAnimation();
