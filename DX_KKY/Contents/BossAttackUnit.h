@@ -2,6 +2,9 @@
 #include <EngineCore/Actor.h>
 
 // Ό³Έν :
+class UCollision;
+class USpriteRenderer;
+class UDefaultSceneComponent;
 class ABossAttackUnit : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -23,5 +26,8 @@ protected:
 
 private:
 
+	UCollision* Collider = nullptr;
+	USpriteRenderer* Renderer = nullptr;
+	UDefaultSceneComponent* Root = nullptr;
 };
 
