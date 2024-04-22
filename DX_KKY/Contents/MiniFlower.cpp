@@ -1,7 +1,7 @@
 ﻿#include "PreCompile.h"
 
 #include "MiniFlower.h"
-#include "BossAttackUnit.h"
+#include "MiniFlowerBullet.h"
 
 AMiniFlower::AMiniFlower()
 {
@@ -163,14 +163,12 @@ void AMiniFlower::ResultMovementUpdate(float _DeltaTime)
 
 void AMiniFlower::CreateBullet()
 {
+	AMiniFlowerBullet* Bullet = GetWorld()->SpawnActor<AMiniFlowerBullet>("MiniFlowerBullet").get();
+	Bullet->SetActorLocation(GetActorLocation());
+
+
 	//ABossAttackUnit* Bullet = GetWorld()->SpawnActor<ABossAttackUnit>("MiniFlowerBullet").get();
 
-	//Bullet->CreateAnimation(FAniInfo(FlowerBossAniName::MiniFlower_Bullet, "MiniFlowerBullet", 0.0416f));
-	//Bullet->CreateAnimation(FAniInfo(FlowerBossAniName::MiniFlower_BulletDeath, "MiniFlowerBulletDeath", 0.0416f), false);
-	//Bullet->ChangeAnimation(FlowerBossAniName::MiniFlower_Bullet);
-	//Bullet->SetActorLocation(GetActorLocation());
-	//Bullet->SetRendererAutoSize();
-	//Bullet->SetRendererOrder(ERenderingOrder::MonsterBullet);
 	//Bullet->SetChaseType(EChaseType::Temporal, UContentsFunction::GetStagePlayer().get());
 	//
 	//std::function<float4()> VelocityGenerator = [this, Bullet]()->float4

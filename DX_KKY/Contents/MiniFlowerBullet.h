@@ -27,5 +27,7 @@ private:
 	void RendererInit();
 	void ColliderInit();
 	void AnimationInit();
+
+	void Fire(float _DeltaTile);
 };
 
