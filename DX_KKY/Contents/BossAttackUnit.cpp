@@ -30,6 +30,34 @@ void ABossAttackUnit::BeginPlay()
 void ABossAttackUnit::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == Chase)
+	{
+		if (nullptr != VelocityGenerator)
+		{
+			Velocity = VelocityGenerator();
+		}
+
+		switch (ChaseType)
+		{
+		case EChaseType::None:
+		{
+			break;
+		}
+		case EChaseType::Temporal:
+		{
+			break;
+		}
+		case EChaseType::Permanent:
+			break;
+		default:
+			MsgBoxAssert("유효하지 않은 ChaseType입니다.");
+			return;
+		}
+
+		AddActorLocation(Velocity * _DeltaTime);
+	}
+	
 }
 
 

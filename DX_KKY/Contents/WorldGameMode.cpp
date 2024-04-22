@@ -62,7 +62,7 @@ void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 
 	// OldFilm, WPlayer는 오더링 고정
 	MapLayer->SetOrdering(ERenderingOrder::FrontLayer);
-	WorldMap->SetOrdering(ERenderingOrder::BackLayer);
+	WorldMap->SetOrdering(ERenderingOrder::BackLayer1);
 	WorldCollisionMap->SetOrdering(ERenderingOrder::CollisionLayer);
 
 	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);

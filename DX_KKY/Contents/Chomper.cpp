@@ -52,7 +52,7 @@ void AChomper::StateInit()
 void AChomper::RendererInit()
 {
 	SetRendererAutoSize();
-	SetRendererOrder(ERenderingOrder::Monster);
+	SetRendererOrder(ERenderingOrder::Monster1);
 	SetRendererPivot(EPivot::BOT);
 }
 

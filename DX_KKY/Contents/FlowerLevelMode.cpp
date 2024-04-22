@@ -69,7 +69,7 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	Map->SetMapFile("Flower_Background.png");
 	Map->SetAutoScale();
 	Map->SetActorLocation(FVector(689.0f, -404.0f, 200.0f));
-	Map->SetOrdering(ERenderingOrder::BackLayer);
+	Map->SetOrdering(ERenderingOrder::BackLayer1);
 
 	BackGroundObject->SetMapFile("Flower_Background_Cloud02.png");
 	BackGroundObject->SetAutoScale();

@@ -19,7 +19,7 @@ void ATitleLogo::BeginPlay()
 
 	Renderer->SetSprite("title_screen_background.png");
 	Renderer->SetSamplering(ETextureSampling::LINEAR);
-	Renderer->SetOrder(ERenderingOrder::BackLayer);
+	Renderer->SetOrder(ERenderingOrder::BackLayer1);
 }
 
 void ATitleLogo::Tick(float _DeltaTime)

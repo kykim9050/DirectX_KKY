@@ -39,7 +39,7 @@ void ATutorialMode::BeginPlay()
 	// OldFilmEffect, Player는 랜더러 오더링이 정해져 있음
 	FrontScreen->SetOrdering(ERenderingOrder::FrontLayer);
 	TutorialMap->SetOrdering(ERenderingOrder::StaticObject);
-	BackScreen->SetOrdering(ERenderingOrder::BackLayer);
+	BackScreen->SetOrdering(ERenderingOrder::BackLayer1);
 
 
 	OldFilm->AddActorLocation(FVector{ 0.0f, 0.0f, 0.0f });
