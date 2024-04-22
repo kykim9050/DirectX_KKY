@@ -107,22 +107,22 @@ bool AVenus::BoundaryCheck()
 	float4 MyPos = GetActorLocation();
 	MyPos.Y *= -1;
 
-	if (MyPos.X < 0)
+	if (MyPos.X < 50.0f)
 	{
 		return true;
 	}
 
-	if (MyPos.Y < 0)
+	if (MyPos.Y < 0.0f)
 	{
 		return true;
 	}
 
-	if (MyPos.X > BoundaryValue.X)
+	if (MyPos.X > BoundaryValue.X - 50.0f)
 	{
 		return true;
 	}
 
-	if (MyPos.Y > BoundaryValue.Y)
+	if (MyPos.Y > BoundaryValue.Y - 100.0f)
 	{
 		return true;
 	}
