@@ -31,6 +31,7 @@ public:
 	{
 		ChaseType = _ChaseType;
 		Target = _Target;
+		Chase = true;
 	}
 	inline void SetRendererAutoSize()
 	{
@@ -71,6 +72,10 @@ public:
 	{
 		Renderer->SetFrameCallback(_AnimationName, _Index, _Function);
 	}
+	inline void SetVelocityGenerator(std::function<float4()> _VelocityGenerator)
+	{
+		VelocityGenerator = _VelocityGenerator;
+	}
 
 	void SetRendererPivot(EPivot _Pivot);
 	void CreateAnimation(FAniInfo _Info, bool _Loop = true);
@@ -81,6 +86,7 @@ public:
 	virtual void ColliderInit() {};
 	virtual void AnimationInit() {};
 
+	
 
 protected:
 	UCollision* Collider = nullptr;
@@ -91,10 +97,12 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-
 	EChaseType ChaseType = EChaseType::None;
 	AActor* Target = nullptr;
 
+	float4 Velocity = FVector::Zero;
+	std::function<float4()> VelocityGenerator;
 	bool Loop = false;
+	bool Chase = false;
 };
 

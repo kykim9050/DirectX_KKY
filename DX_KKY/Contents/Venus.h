@@ -23,6 +23,7 @@ protected:
 
 private:
 	UStateManager State;
+	float4 DirVec = float4::Zero;
 
 	void StateInit() override;
 	void RendererInit() override;

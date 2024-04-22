@@ -39,6 +39,13 @@ void AVenus::StateInit()
 		});
 	State.SetStartFunction(FlowerBossState::Venus_Flying, [this]()
 		{
+			float4 PlayerPos = APlayer::GetMainPlayer()->GetActorLocation();
+			float4 MyPos = GetActorLocation();
+
+			float4 ChaseVector = PlayerPos - MyPos;
+
+			DirVec = ChaseVector.Normalize2DReturn();
+
 			ChangeAnimation(FlowerBossAniName::Venus_Loop);
 		});
 	State.SetStartFunction(FlowerBossState::Venus_Death, [this]()
@@ -57,15 +64,15 @@ void AVenus::StateInit()
 void AVenus::RendererInit()
 {
 	SetRendererAutoSize();
-	SetRendererOrder(ERenderingOrder::Monster);
+	SetRendererOrder(ERenderingOrder::Monster2);
 	SetRendererPivot(EPivot::BOT);
 }
 
 void AVenus::ColliderInit()
 {
-	SetColScale(float4(100.0f, 100.0f, 1.0f));
+	SetColScale(GColliderScale::Venus_ColScale);
 	SetColGroup(ECollisionGroup::Monster);
-	SetColType(ECollisionType::Rect);
+	SetColType(ECollisionType::RotRect);
 }
 
 void AVenus::AnimationInit()
@@ -91,4 +98,6 @@ void AVenus::Flying(float _DeltaTime)
 		State.ChangeState(FlowerBossState::Venus_Death);
 		return;
 	}
+
+	AddActorLocation(DirVec * _DeltaTime * 100.0f);
 }

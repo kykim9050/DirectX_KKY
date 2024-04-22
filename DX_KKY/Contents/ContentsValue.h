@@ -104,6 +104,7 @@ namespace GColliderScale
 	const float4 FlowerBoss_FaceAttScale = float4(950.f, 280.f, 1.0f);
 
 	const float4 Chomper_ColScale = float4(48.0f, 64.0f, 1.0f);
+	const float4 Venus_ColScale = float4(48.0f, 48.0f, 1.0f);
 }
 
 namespace GColliderPosInfo

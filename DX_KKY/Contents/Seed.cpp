@@ -158,7 +158,7 @@ void ASeed::AnimationInit()
 
 			});
 
-		VineRenderer->SetFrameCallback(FlowerBossAniName::VineGrowUp, 16, [this]()
+		VineRenderer->SetFrameCallback(FlowerBossAniName::VineGrowUp, 13, [this]()
 			{
 				CreateVenus();
 			});
@@ -176,11 +176,11 @@ void ASeed::AnimationInit()
 void ASeed::RendererInit()
 {
 	VineRenderer->SetAutoSize(1.0f, true);
-	VineRenderer->SetOrder(ERenderingOrder::Monster);
+	VineRenderer->SetOrder(ERenderingOrder::Monster1);
 	VineRenderer->SetPivot(EPivot::BOT);
 
 	Renderer->SetAutoSize(1.0f, true);
-	Renderer->SetOrder(ERenderingOrder::Monster);
+	Renderer->SetOrder(ERenderingOrder::Monster1);
 	Renderer->SetPivot(EPivot::BOT);
 }
 
@@ -231,9 +231,16 @@ void ASeed::CreateChomper()
 
 void ASeed::CreateVenus()
 {
-	std::shared_ptr<AVenus> Venus = GetWorld()->SpawnActor<AVenus>("Venus");
-	Venus->SetActorLocation(GetActorLocation());
-	Venus->SetColPosition(float4(0.0f, 50.0f, 0.0f));
-	Venus->SetHp(2);
+	float4 InitPos = GetActorLocation();
+	InitPos.Y += 235.0f;
+	InitPos.X -= 5.0f;
 
+	float RandomDegree = UMath::GetInst().RandomReturnFloat(-45.0f, 0.0f);
+
+	std::shared_ptr<AVenus> Venus = GetWorld()->SpawnActor<AVenus>("Venus");
+	Venus->SetActorLocation(InitPos);
+	Venus->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
+	Venus->SetColPosition(float4(0.0f, GColliderScale::Venus_ColScale.hY(), 0.0f));
+	Venus->SetHp(2);
+	Venus->SetChaseType(EChaseType::Temporal, APlayer::GetMainPlayer().get());
 }
