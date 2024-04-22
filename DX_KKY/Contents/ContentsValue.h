@@ -99,6 +99,7 @@ namespace FlowerBossState
 	
 	const std::string MiniFlower_Spawn = "MiniFlower_Spawn";
 	const std::string MiniFlower_Fly = "MiniFlower_Fly";
+	const std::string MiniFlower_Rise = "MiniFlower_Rise";
 	const std::string MiniFlower_Death = "MiniFlower_Death";
 	const std::string MiniFlower_Spit = "MiniFlower_Spit";
 	const std::string MiniFlower_RevSpit = "MiniFlower_RevSpit";
