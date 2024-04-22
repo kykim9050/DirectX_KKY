@@ -177,6 +177,9 @@
     <ClInclude Include="Chomper.h">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Venus.h">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -294,6 +297,9 @@
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="Chomper.cpp">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Venus.cpp">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
