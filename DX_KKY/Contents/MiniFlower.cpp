@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 
 #include "MiniFlower.h"
+#include "BossAttackUnit.h"
 
 AMiniFlower::AMiniFlower()
 {
@@ -100,7 +101,7 @@ void AMiniFlower::AnimationInit()
 	SetRendererFrameCallback(FlowerBossAniName::MiniFlower_Spit, 10, [this]()
 		{
 			// 패링 가능한 총알 발사
-
+			CreateBullet();
 		});
 	SetRendererFrameCallback(FlowerBossAniName::MiniFlower_Spit, 17, [this]()
 		{
@@ -158,4 +159,32 @@ void AMiniFlower::Flying(float _DeltaTime)
 void AMiniFlower::ResultMovementUpdate(float _DeltaTime)
 {
 	Super::ResultMovementUpdate(_DeltaTime);
+}
+
+void AMiniFlower::CreateBullet()
+{
+	ABossAttackUnit* Bullet = GetWorld()->SpawnActor<ABossAttackUnit>("MiniFlowerBullet").get();
+
+	Bullet->CreateAnimation(FAniInfo(FlowerBossAniName::MiniFlower_Bullet, "MiniFlowerBullet", 0.0416f));
+	Bullet->CreateAnimation(FAniInfo(FlowerBossAniName::MiniFlower_BulletDeath, "MiniFlowerBulletDeath", 0.0416f), false);
+	Bullet->ChangeAnimation(FlowerBossAniName::MiniFlower_Bullet);
+	Bullet->SetActorLocation(GetActorLocation());
+	Bullet->SetRendererAutoSize();
+	Bullet->SetRendererOrder(ERenderingOrder::MonsterBullet);
+	Bullet->SetChaseType(EChaseType::Temporal, UContentsFunction::GetStagePlayer().get());
+	
+	std::function<float4()> VelocityGenerator = [this, Bullet]()->float4
+		{
+			float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
+			float4 BulletPos = GetActorLocation();
+
+			float4 TargetDir = (PlayerPos - BulletPos).Normalize2DReturn();
+
+			float4 ResVelocity = TargetDir * BulletSpeed;
+
+			return ResVelocity;
+		};
+
+	Bullet->SetVelocityGenerator(VelocityGenerator);
+	//Bullet->SetDestroyCondition();
 }
