@@ -163,28 +163,28 @@ void AMiniFlower::ResultMovementUpdate(float _DeltaTime)
 
 void AMiniFlower::CreateBullet()
 {
-	ABossAttackUnit* Bullet = GetWorld()->SpawnActor<ABossAttackUnit>("MiniFlowerBullet").get();
+	//ABossAttackUnit* Bullet = GetWorld()->SpawnActor<ABossAttackUnit>("MiniFlowerBullet").get();
 
-	Bullet->CreateAnimation(FAniInfo(FlowerBossAniName::MiniFlower_Bullet, "MiniFlowerBullet", 0.0416f));
-	Bullet->CreateAnimation(FAniInfo(FlowerBossAniName::MiniFlower_BulletDeath, "MiniFlowerBulletDeath", 0.0416f), false);
-	Bullet->ChangeAnimation(FlowerBossAniName::MiniFlower_Bullet);
-	Bullet->SetActorLocation(GetActorLocation());
-	Bullet->SetRendererAutoSize();
-	Bullet->SetRendererOrder(ERenderingOrder::MonsterBullet);
-	Bullet->SetChaseType(EChaseType::Temporal, UContentsFunction::GetStagePlayer().get());
-	
-	std::function<float4()> VelocityGenerator = [this, Bullet]()->float4
-		{
-			float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
-			float4 BulletPos = GetActorLocation();
+	//Bullet->CreateAnimation(FAniInfo(FlowerBossAniName::MiniFlower_Bullet, "MiniFlowerBullet", 0.0416f));
+	//Bullet->CreateAnimation(FAniInfo(FlowerBossAniName::MiniFlower_BulletDeath, "MiniFlowerBulletDeath", 0.0416f), false);
+	//Bullet->ChangeAnimation(FlowerBossAniName::MiniFlower_Bullet);
+	//Bullet->SetActorLocation(GetActorLocation());
+	//Bullet->SetRendererAutoSize();
+	//Bullet->SetRendererOrder(ERenderingOrder::MonsterBullet);
+	//Bullet->SetChaseType(EChaseType::Temporal, UContentsFunction::GetStagePlayer().get());
+	//
+	//std::function<float4()> VelocityGenerator = [this, Bullet]()->float4
+	//	{
+	//		float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
+	//		float4 BulletPos = GetActorLocation();
 
-			float4 TargetDir = (PlayerPos - BulletPos).Normalize2DReturn();
+	//		float4 TargetDir = (PlayerPos - BulletPos).Normalize2DReturn();
 
-			float4 ResVelocity = TargetDir * BulletSpeed;
+	//		float4 ResVelocity = TargetDir * BulletSpeed;
 
-			return ResVelocity;
-		};
+	//		return ResVelocity;
+	//	};
 
-	Bullet->SetVelocityGenerator(VelocityGenerator);
+	//Bullet->SetVelocityGenerator(VelocityGenerator);
 	//Bullet->SetDestroyCondition();
 }
