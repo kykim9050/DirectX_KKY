@@ -2,20 +2,10 @@
 
 #include "MonsterUnit.h"
 
-AMonsterUnit::AMonsterUnit()
+UMonsterUnit::UMonsterUnit()
 {
 }
 
-AMonsterUnit::~AMonsterUnit()
+UMonsterUnit::~UMonsterUnit()
 {
-}
-
-void AMonsterUnit::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void AMonsterUnit::Tick(float _DeltaTime)
-{
-	Super::Tick(_DeltaTime);
 }

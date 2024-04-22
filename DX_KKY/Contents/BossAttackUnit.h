@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
-
+#include "MonsterUnit.h"
 
 enum class EChaseType
 {
@@ -13,7 +13,7 @@ enum class EChaseType
 class UCollision;
 class USpriteRenderer;
 class UDefaultSceneComponent;
-class ABossAttackUnit : public AActor
+class ABossAttackUnit : public AActor , public UMonsterUnit
 {
 	GENERATED_BODY(AActor)
 
