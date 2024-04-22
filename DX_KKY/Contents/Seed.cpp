@@ -226,6 +226,10 @@ void ASeed::CreateChomper()
 	Chomper->SetRendererAutoSize();
 	Chomper->SetRendererOrder(ERenderingOrder::Monster);
 	Chomper->SetRendererPivot(EPivot::BOT);
+	Chomper->SetRendererFrameCallback("ChomperDeath", 15, [Chomper]()
+		{
+			Chomper->Destroy();
+		});
 
 	float ChomperColYOffset = 50.0f;
 
@@ -237,13 +241,9 @@ void ASeed::CreateChomper()
 	Chomper->SetHp(3);
 	Chomper->SetGetHitFunction([Chomper]()
 		{
-			
 			if (0 >= Chomper->GetHp())
 			{
-				//Chomper->
-
 				Chomper->ChangeAnimation("ChomperDeath");
 			}
-
 		});
 }

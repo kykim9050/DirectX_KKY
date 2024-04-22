@@ -143,7 +143,7 @@ void APlayerBullet::CollisionCheck()
 
 			SetIsMonsterHit(true);
 
-			Monster->GetHit(GetDamage());
+			Monster->SubHp(GetDamage());
 
 			// Player의 SuperMeter 충전해주기
 
