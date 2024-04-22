@@ -23,11 +23,16 @@ protected:
 
 private:
 	UStateManager State = UStateManager();
+	float4 FlyingDir = float4::Left;
+	float UpSpeed = 250.0f;
+	float FlyingSpeed = 200.0f;
+
 
 	void StateInit() override;
 	void RendererInit() override;
 	void ColliderInit() override;
 	void AnimationInit() override;
+	void ResultMovementUpdate(float _DeltaTime) override;
 
 	void Flying(float _DeltaTime);
 	void Rising(float _DeltaTime);

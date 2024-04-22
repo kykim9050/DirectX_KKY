@@ -108,6 +108,16 @@ namespace FlowerBossState
 namespace FlowerBossStageValue
 {
 	const float4 SeedColliderScale = float4(20.0f, 40.0f, 1.0f);
+
+	const float MiniFlower_RisingEnd_Height = 100.0f;
+	const float MiniFlower_Flying_XBound_Min = 140.0f;
+	const float MiniFlower_Flying_XBound_Max = 740.0f;
+
+	const float SeedInitMinXPos = 140.0f;
+	const float SeedInitMaxXPos = 740.0f;
+	const float SeedInitYPos = 100.0f;
+	const float SeedFallInter = 300.0f;
+
 }
 
 namespace GColliderScale

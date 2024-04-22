@@ -1,10 +1,11 @@
 #pragma once
-#include <EngineCore/Actor.h>
+//#include <EngineCore/Actor.h>
+#include "MoveUnit.h"
 
 // Ό³Έν :
-class AMonsterUnit : public AActor
+class AMonsterUnit : public UMoveUnit
 {
-	GENERATED_BODY(AActor)
+	GENERATED_BODY(UMoveUnit)
 
 public:
 	// constrcuter destructer
