@@ -233,5 +233,7 @@ void ASeed::CreateVenus()
 {
 	std::shared_ptr<AVenus> Venus = GetWorld()->SpawnActor<AVenus>("Venus");
 	Venus->SetActorLocation(GetActorLocation());
+	Venus->SetColPosition(float4(0.0f, 50.0f, 0.0f));
 	Venus->SetHp(2);
+
 }

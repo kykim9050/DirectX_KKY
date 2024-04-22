@@ -31,18 +31,25 @@ void AVenus::StateInit()
 {
 	State.CreateState(FlowerBossState::Venus_Spawn);
 	State.CreateState(FlowerBossState::Venus_Flying);
+	State.CreateState(FlowerBossState::Venus_Death);
 
 	State.SetStartFunction(FlowerBossState::Venus_Spawn, [this]()
 		{
 			ChangeAnimation(FlowerBossAniName::Venus_Spawn);
 		});
-	State.SetStartFunction(FlowerBossState::Venus_Spawn, [this]()
+	State.SetStartFunction(FlowerBossState::Venus_Flying, [this]()
 		{
 			ChangeAnimation(FlowerBossAniName::Venus_Loop);
+		});
+	State.SetStartFunction(FlowerBossState::Venus_Death, [this]()
+		{
+			GetCollider()->SetActive(false);
+			ChangeAnimation(FlowerBossAniName::Venus_Death);
 		});
 
 	State.SetUpdateFunction(FlowerBossState::Venus_Spawn, [this](float) {});
 	State.SetUpdateFunction(FlowerBossState::Venus_Flying, std::bind(&AVenus::Flying, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::Venus_Death, [this](float) {});
 
 	State.ChangeState(FlowerBossState::Venus_Spawn);
 }
@@ -56,7 +63,9 @@ void AVenus::RendererInit()
 
 void AVenus::ColliderInit()
 {
-
+	SetColScale(float4(100.0f, 100.0f, 1.0f));
+	SetColGroup(ECollisionGroup::Monster);
+	SetColType(ECollisionType::Rect);
 }
 
 void AVenus::AnimationInit()
@@ -77,5 +86,9 @@ void AVenus::AnimationInit()
 
 void AVenus::Flying(float _DeltaTime)
 {
-
+	if (0 >= GetHp())
+	{
+		State.ChangeState(FlowerBossState::Venus_Death);
+		return;
+	}
 }
