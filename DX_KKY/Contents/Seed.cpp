@@ -4,6 +4,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 #include "Seed.h"
+#include "Chomper.h"
 
 
 ASeed::ASeed()
@@ -218,32 +219,11 @@ void ASeed::SetColor(ESeedColor _Color)
 
 void ASeed::CreateChomper()
 {
-	std::shared_ptr<ABossAttackUnit> Chomper = GetWorld()->SpawnActor<ABossAttackUnit>("Chomper ");
-	Chomper->CreateAnimation(FAniInfo("Chomper", "Chomper", 0.0416f));
-	Chomper->CreateAnimation(FAniInfo("ChomperDeath", "ChomperDeath", 0.0416f), false);
-	Chomper->ChangeAnimation("Chomper");
-	Chomper->SetActorLocation(GetActorLocation());
-	Chomper->SetRendererAutoSize();
-	Chomper->SetRendererOrder(ERenderingOrder::Monster);
-	Chomper->SetRendererPivot(EPivot::BOT);
-	Chomper->SetRendererFrameCallback("ChomperDeath", 15, [Chomper]()
-		{
-			Chomper->Destroy();
-		});
-
 	float ChomperColYOffset = 50.0f;
 
-	Chomper->SetColScale(float4(100.0f, 100.0f, 1.0f));
+	std::shared_ptr<AChomper> Chomper = GetWorld()->SpawnActor<AChomper>("Chomper");
+	Chomper->SetActorLocation(GetActorLocation());
 	Chomper->SetColPosition(float4(0.0f, ChomperColYOffset, 0.0f));
-	Chomper->SetColGroup(ECollisionGroup::Monster);
-	Chomper->SetColType(ECollisionType::Rect);
-
 	Chomper->SetHp(3);
-	Chomper->SetGetHitFunction([Chomper]()
-		{
-			if (0 >= Chomper->GetHp())
-			{
-				Chomper->ChangeAnimation("ChomperDeath");
-			}
-		});
+
 }

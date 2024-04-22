@@ -34,16 +34,15 @@ private:
 	const float SeedFallSpeed = 250.0f;
 	const float ColliderYOffset = 20.0f;
 
-	void RendererInit();
-	void ColliderInit();
-	void AnimationInit();
-	
-	void StateInit();
 	void Fall(float _DeltaTime);
 	void Plant(float _DeltaTime);
 	void GrowUp(float _DeltaTime);
 
 	void CreateChomper();
 
+	void StateInit() override;
+	void RendererInit() override;
+	void ColliderInit() override;
+	void AnimationInit() override;
 };
 
