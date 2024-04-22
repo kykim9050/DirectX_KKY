@@ -233,4 +233,17 @@ void ASeed::CreateChomper()
 	Chomper->SetColPosition(float4(0.0f, ChomperColYOffset, 0.0f));
 	Chomper->SetColGroup(ECollisionGroup::Monster);
 	Chomper->SetColType(ECollisionType::Rect);
+
+	Chomper->SetHp(3);
+	Chomper->SetGetHitFunction([Chomper]()
+		{
+			
+			if (0 >= Chomper->GetHp())
+			{
+				//Chomper->
+
+				Chomper->ChangeAnimation("ChomperDeath");
+			}
+
+		});
 }

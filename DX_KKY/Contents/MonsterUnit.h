@@ -2,29 +2,48 @@
 #include <EngineCore/Actor.h>
 
 // Ό³Έν :
-class UMonsterUnit
+class AMonsterUnit : public AActor
 {
+	GENERATED_BODY(AActor)
+
 public:
 	// constrcuter destructer
-	UMonsterUnit();
-	~UMonsterUnit();
+	AMonsterUnit();
+	~AMonsterUnit();
 
 	// delete Function
-	UMonsterUnit(const UMonsterUnit& _Other) = delete;
-	UMonsterUnit(UMonsterUnit&& _Other) noexcept = delete;
-	UMonsterUnit& operator=(const UMonsterUnit& _Other) = delete;
-	UMonsterUnit& operator=(UMonsterUnit&& _Other) noexcept = delete;
+	AMonsterUnit(const AMonsterUnit& _Other) = delete;
+	AMonsterUnit(AMonsterUnit&& _Other) noexcept = delete;
+	AMonsterUnit& operator=(const AMonsterUnit& _Other) = delete;
+	AMonsterUnit& operator=(AMonsterUnit&& _Other) noexcept = delete;
 
 	virtual void GetHit(int _DmgVal) {};
 
-protected:
+	inline void SetGetHitFunction(std::function<void()> _Function)
+	{
+		GetHitFunction = _Function;
+	}
 
-	int Hp = 0;
 	inline void SetHp(int _Hp)
 	{
 		Hp = _Hp;
 	}
+	inline int GetHp() const
+	{
+		return Hp;
+	}
+	inline void AddHp(int _Value)
+	{
+		Hp += _Value;
+	}
+
+protected:
+
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 
 private:
+	int Hp = 0;
+	std::function<void()> GetHitFunction = nullptr;
 };
 

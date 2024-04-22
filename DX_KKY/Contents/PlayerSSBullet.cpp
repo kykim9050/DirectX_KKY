@@ -134,7 +134,7 @@ void APlayerSSBullet::CollisionCheck()
 {
 	Collision->CollisionEnter(ECollisionGroup::Monster, [=](std::shared_ptr<UCollision> _Collision)
 		{
-			UMonsterUnit* Monster = dynamic_cast<UMonsterUnit*>(_Collision->GetActor());
+			AMonsterUnit* Monster = dynamic_cast<AMonsterUnit*>(_Collision->GetActor());
 
 			if (nullptr == Monster)
 			{

@@ -36,7 +36,7 @@ void ACagneyCarnation::Tick(float _DeltaTime)
 void ACagneyCarnation::DebugUpdate()
 {
 	{
-		std::string Msg = std::format("FlowerBoss Hp : {}\n", std::to_string(Hp));
+		std::string Msg = std::format("FlowerBoss Hp : {}\n", std::to_string(GetHp()));
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
 }
