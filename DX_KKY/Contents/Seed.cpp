@@ -5,7 +5,7 @@
 
 #include "Seed.h"
 #include "Chomper.h"
-
+#include "Venus.h"
 
 ASeed::ASeed()
 {
@@ -158,6 +158,10 @@ void ASeed::AnimationInit()
 
 			});
 
+		VineRenderer->SetFrameCallback(FlowerBossAniName::VineGrowUp, 16, [this]()
+			{
+				CreateVenus();
+			});
 		VineRenderer->SetFrameCallback(FlowerBossAniName::VineGrowUp, 36, [this]()
 			{
 				VineRenderer->ChangeAnimation(FlowerBossAniName::VineDisappear);
@@ -222,5 +226,12 @@ void ASeed::CreateChomper()
 	std::shared_ptr<AChomper> Chomper = GetWorld()->SpawnActor<AChomper>("Chomper");
 	Chomper->SetActorLocation(GetActorLocation());
 	Chomper->SetColPosition(float4(0.0f, GColliderScale::Chomper_ColScale.hY(), 0.0f));
-	Chomper->SetHp(3);
+	Chomper->SetHp(2);
+}
+
+void ASeed::CreateVenus()
+{
+	std::shared_ptr<AVenus> Venus = GetWorld()->SpawnActor<AVenus>("Venus");
+	Venus->SetActorLocation(GetActorLocation());
+	Venus->SetHp(2);
 }

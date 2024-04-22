@@ -29,12 +29,29 @@ void AVenus::Tick(float _DeltaTime)
 
 void AVenus::StateInit()
 {
+	State.CreateState(FlowerBossState::Venus_Spawn);
+	State.CreateState(FlowerBossState::Venus_Flying);
 
+	State.SetStartFunction(FlowerBossState::Venus_Spawn, [this]()
+		{
+			ChangeAnimation(FlowerBossAniName::Venus_Spawn);
+		});
+	State.SetStartFunction(FlowerBossState::Venus_Spawn, [this]()
+		{
+			ChangeAnimation(FlowerBossAniName::Venus_Loop);
+		});
+
+	State.SetUpdateFunction(FlowerBossState::Venus_Spawn, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::Venus_Flying, std::bind(&AVenus::Flying, this, std::placeholders::_1));
+
+	State.ChangeState(FlowerBossState::Venus_Spawn);
 }
 
 void AVenus::RendererInit()
 {
-
+	SetRendererAutoSize();
+	SetRendererOrder(ERenderingOrder::Monster);
+	SetRendererPivot(EPivot::BOT);
 }
 
 void AVenus::ColliderInit()
@@ -43,6 +60,22 @@ void AVenus::ColliderInit()
 }
 
 void AVenus::AnimationInit()
+{
+	CreateAnimation(FAniInfo(FlowerBossAniName::Venus_Spawn, GSpriteName::Venus_Spawn, 0.0416f), false);
+	CreateAnimation(FAniInfo(FlowerBossAniName::Venus_Loop, GSpriteName::Venus_Loop, 0.067f));
+	CreateAnimation(FAniInfo(FlowerBossAniName::Venus_Death, GSpriteName::Venus_Death, 0.0416f), false);
+
+	SetRendererFrameCallback(FlowerBossAniName::Venus_Spawn, 6, [this]()
+		{
+			State.ChangeState(FlowerBossState::Venus_Flying);
+		});
+	SetRendererFrameCallback(FlowerBossAniName::Venus_Death, 10, [this]()
+		{
+			Destroy();
+		});
+}
+
+void AVenus::Flying(float _DeltaTime)
 {
 
 }

@@ -1,14 +1,21 @@
 #pragma once
 
+namespace GSpriteName
+{
+	// flower boss
+	const std::string Chomper_Chomp = "Chomper";
+	const std::string Chomper_Death = "ChomperDeath";
+
+	const std::string Venus_Spawn = "VenusSpawn";
+	const std::string Venus_Loop = "VenusLoop";
+	const std::string Venus_Death = "VenusDeath";
+}
+
 namespace GAniName
 {
 	// CUphead
 	const std::string DashDust = "DashDust";
 	const std::string LandDust = "LandDust";
-
-	// flower boss
-	const std::string Chomper_Chomp = "Chomper";
-	const std::string Chomper_Death = "ChomperDeath";
 }
 
 namespace FlowerBossAniName
@@ -41,11 +48,15 @@ namespace FlowerBossAniName
 	const std::string SeedPlant = "Plant";
 	const std::string SeedGrowUpBegin = "GrowUpBegin";
 
-	const std::string VineGrowUp = "VineGrowUp";
-	const std::string VineDisappear = "VineDisappear";
+	const std::string VineGrowUp = "Vine_GrowUp";
+	const std::string VineDisappear = "Vine_Disappear";
 
 	const std::string Chomper_Chomp = "Chomper_Chomp";
 	const std::string Chomper_Death = "Chomper_Death";
+
+	const std::string Venus_Spawn = "Venus_Spawn";
+	const std::string Venus_Loop = "Venus_Loop";
+	const std::string Venus_Death = "Venus_Death";
 
 }
 
@@ -75,6 +86,10 @@ namespace FlowerBossState
 
 	const std::string Chomp = "Chomp";
 	const std::string Chomp_Death = "Chomp_Death";
+
+	const std::string Venus_Spawn = "Venus_Spawn";
+	const std::string Venus_Flying = "Venus_Flying";
+	
 }
 
 namespace FlowerBossStageValue

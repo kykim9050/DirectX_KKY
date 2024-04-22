@@ -28,5 +28,7 @@ private:
 	void RendererInit() override;
 	void ColliderInit() override;
 	void AnimationInit() override;
+
+	void Flying(float _DeltaTime);
 };
 
