@@ -6,9 +6,9 @@
 // Ό³Έν :
 class UDefaultSceneComponent;
 class USpriteRenderer;
-class ABossUnit : public AActor, public UMonsterUnit
+class ABossUnit : public AMonsterUnit
 {
-	GENERATED_BODY(AActor)
+	GENERATED_BODY(AMonsterUnit)
 
 public:
 	// constrcuter destructer
