@@ -33,19 +33,35 @@ public:
 		ChaseType = _ChaseType;
 		Target = _Target;
 	}
-
-	inline void SetAutoSize()
+	inline void SetRendererAutoSize()
 	{
 		Renderer->SetAutoSize(1.0f, true);
 	}
-
 	template <typename EnumType>
-	inline void SetOrder(EnumType _Order)
+	inline void SetRendererOrder(EnumType _Order)
 	{
 		Renderer->SetOrder(_Order);
 	}
+	inline void SetColScale(float4 _Scale)
+	{
+		Collider->SetScale(_Scale);
+	}
+	inline void SetColPosition(float4 _Pos)
+	{
+		Collider->SetPosition(_Pos);
+	}
+	template<typename EnumType>
+	inline void SetColGroup(EnumType _Group)
+	{
+		Collider->SetCollisionGroup(_Group);
+	}
+	template<typename EnumType>
+	inline void SetColType(EnumType _Type)
+	{
+		Collider->SetCollisionType(_Type);
+	}
 
-	void SetImgPivot(EPivot _Pivot);
+	void SetRendererPivot(EPivot _Pivot);
 	void CreateAnimation(FAniInfo _Info, bool _Loop = true);
 	void ChangeAnimation(std::string_view _AnimationName);
 
