@@ -28,13 +28,27 @@ public:
 	ABossAttackUnit& operator=(const ABossAttackUnit& _Other) = delete;
 	ABossAttackUnit& operator=(ABossAttackUnit&& _Other) noexcept = delete;
 
-	void SetImgPivot(EPivot _Pivot);
-
 	inline void SetChaseType(EChaseType _ChaseType, AActor* _Target)
 	{
 		ChaseType = _ChaseType;
 		Target = _Target;
 	}
+
+	inline void SetAutoSize()
+	{
+		Renderer->SetAutoSize(1.0f, true);
+	}
+
+	template <typename EnumType>
+	inline void SetOrder(EnumType _Order)
+	{
+		Renderer->SetOrder(_Order);
+	}
+
+	void SetImgPivot(EPivot _Pivot);
+	void CreateAnimation(FAniInfo _Info, bool _Loop = true);
+	void ChangeAnimation(std::string_view _AnimationName);
+
 
 protected:
 	UCollision* Collider = nullptr;

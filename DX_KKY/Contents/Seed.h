@@ -43,5 +43,7 @@ private:
 	void Plant(float _DeltaTime);
 	void GrowUp(float _DeltaTime);
 
+	void CreateChomper();
+
 };
 

@@ -49,3 +49,15 @@ void ABossAttackUnit::SetImgPivot(EPivot _Pivot)
 
 	Renderer->SetPivot(_Pivot);
 }
+
+
+
+void ABossAttackUnit::CreateAnimation(FAniInfo _Info, bool _Loop)
+{
+	Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime, _Loop);
+}
+
+void ABossAttackUnit::ChangeAnimation(std::string_view _AnimationName)
+{
+	Renderer->ChangeAnimation(_AnimationName);
+}
