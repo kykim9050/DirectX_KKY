@@ -89,6 +89,7 @@ namespace FlowerBossState
 
 	const std::string Venus_Spawn = "Venus_Spawn";
 	const std::string Venus_Flying = "Venus_Flying";
+	const std::string Venus_Death = "Venus_Death";
 	
 }
 
