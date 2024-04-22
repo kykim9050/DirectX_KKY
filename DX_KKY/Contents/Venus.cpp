@@ -64,7 +64,7 @@ void AVenus::StateInit()
 void AVenus::RendererInit()
 {
 	SetRendererAutoSize();
-	SetRendererOrder(ERenderingOrder::Monster2);
+	SetRendererOrder(ERenderingOrder::Monster1);
 	SetRendererPivot(EPivot::BOT);
 }
 

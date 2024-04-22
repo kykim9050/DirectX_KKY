@@ -6,6 +6,7 @@
 #include "Seed.h"
 #include "Chomper.h"
 #include "Venus.h"
+#include "MiniFlower.h"
 
 ASeed::ASeed()
 {
@@ -160,7 +161,18 @@ void ASeed::AnimationInit()
 
 		VineRenderer->SetFrameCallback(FlowerBossAniName::VineGrowUp, 13, [this]()
 			{
-				CreateVenus();
+				switch (Color)
+				{
+				case ESeedColor::Blue:
+					CreateVenus();
+					break;
+				case ESeedColor::Pink:
+					CreateMiniFlower();
+					break;
+				default:
+					MsgBoxAssert("VineGrowUp에서 생성될 수 없는 씨앗 색입니다.");
+					return;
+				}
 			});
 		VineRenderer->SetFrameCallback(FlowerBossAniName::VineGrowUp, 36, [this]()
 			{
@@ -176,7 +188,7 @@ void ASeed::AnimationInit()
 void ASeed::RendererInit()
 {
 	VineRenderer->SetAutoSize(1.0f, true);
-	VineRenderer->SetOrder(ERenderingOrder::Monster1);
+	VineRenderer->SetOrder(ERenderingOrder::Monster2);
 	VineRenderer->SetPivot(EPivot::BOT);
 
 	Renderer->SetAutoSize(1.0f, true);
@@ -242,5 +254,14 @@ void ASeed::CreateVenus()
 	Venus->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
 	Venus->SetColPosition(float4(0.0f, GColliderScale::Venus_ColScale.hY(), 0.0f));
 	Venus->SetHp(2);
-	Venus->SetChaseType(EChaseType::Temporal, APlayer::GetMainPlayer().get());
+}
+
+void ASeed::CreateMiniFlower()
+{
+	float4 InitPos = GetActorLocation();
+	InitPos.Y += 235.0f;
+	InitPos.X -= 5.0f;
+
+	std::shared_ptr<AMiniFlower> MiniFlower = GetWorld()->SpawnActor<AMiniFlower>("MiniFlower");
+	MiniFlower->SetActorLocation(InitPos);
 }

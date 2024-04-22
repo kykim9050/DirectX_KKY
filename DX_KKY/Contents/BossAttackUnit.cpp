@@ -89,3 +89,8 @@ void ABossAttackUnit::ChangeAnimation(std::string_view _AnimationName)
 {
 	Renderer->ChangeAnimation(_AnimationName);
 }
+
+void ABossAttackUnit::CreateRevAnimation(FAniInfo _Info, bool _Loop, int _Start, int _End)
+{
+	Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime, _Loop, _Start, _End);
+}

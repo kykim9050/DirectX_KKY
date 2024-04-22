@@ -80,6 +80,7 @@ public:
 	void SetRendererPivot(EPivot _Pivot);
 	void CreateAnimation(FAniInfo _Info, bool _Loop = true);
 	void ChangeAnimation(std::string_view _AnimationName);
+	void CreateRevAnimation(FAniInfo _Info, bool _Loop, int _Start, int _End);
 
 	virtual void StateInit() {};
 	virtual void RendererInit() {};

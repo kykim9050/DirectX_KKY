@@ -58,6 +58,12 @@ namespace FlowerBossAniName
 	const std::string Venus_Loop = "Venus_Loop";
 	const std::string Venus_Death = "Venus_Death";
 
+	const std::string MiniFlower_Spawn = "MiniFlower_Spawn";
+	const std::string MiniFlower_Fly = "MiniFlower_Fly";
+	const std::string MiniFlower_Death = "MiniFlower_Death";
+	const std::string MiniFlower_Spit = "MiniFlower_Spit";
+	const std::string MiniFlower_RevSpit = "MiniFlower_RevSpit";
+
 }
 
 namespace FlowerBossState
@@ -91,6 +97,11 @@ namespace FlowerBossState
 	const std::string Venus_Flying = "Venus_Flying";
 	const std::string Venus_Death = "Venus_Death";
 	
+	const std::string MiniFlower_Spawn = "MiniFlower_Spawn";
+	const std::string MiniFlower_Fly = "MiniFlower_Fly";
+	const std::string MiniFlower_Death = "MiniFlower_Death";
+	const std::string MiniFlower_Spit = "MiniFlower_Spit";
+	const std::string MiniFlower_RevSpit = "MiniFlower_RevSpit";
 }
 
 namespace FlowerBossStageValue

@@ -40,6 +40,7 @@ private:
 
 	void CreateChomper();
 	void CreateVenus();
+	void CreateMiniFlower();
 
 	void StateInit() override;
 	void RendererInit() override;
