@@ -26,6 +26,9 @@ private:
 	float4 FlyingDir = float4::Left;
 	float UpSpeed = 250.0f;
 	float FlyingSpeed = 200.0f;
+	float SpitDelay = 4.0f;
+	float SpitDelayInit = 4.0f;
+	std::string PrevState = "None";
 
 
 	void StateInit() override;
