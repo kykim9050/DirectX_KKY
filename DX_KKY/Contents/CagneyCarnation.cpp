@@ -3,12 +3,11 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 #include "CagneyCarnation.h"
-//#include "PlayerBullet.h"
 
 
 ACagneyCarnation::ACagneyCarnation()
 {
-	SetHp(500);
+	SetHp(300);
 	ColliderInit();
 }
 
