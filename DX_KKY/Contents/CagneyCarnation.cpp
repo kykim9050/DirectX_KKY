@@ -70,6 +70,5 @@ void ACagneyCarnation::ColliderInit()
 
 void ACagneyCarnation::CollisionCheck()
 {
-	//HeadCollisionCheck();
 
 }

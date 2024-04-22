@@ -59,10 +59,20 @@ public:
 	{
 		Collider->SetCollisionType(_Type);
 	}
+	inline USpriteRenderer* GetRenderer() const
+	{
+		return Renderer;
+	}
+	inline void SetRendererFrameCallback(std::string_view _AnimationName, int _Index, std::function<void()> _Function)
+	{
+		Renderer->SetFrameCallback(_AnimationName, _Index, _Function);
+	}
 
 	void SetRendererPivot(EPivot _Pivot);
 	void CreateAnimation(FAniInfo _Info, bool _Loop = true);
 	void ChangeAnimation(std::string_view _AnimationName);
+
+	
 
 
 protected:

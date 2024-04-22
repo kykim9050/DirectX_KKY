@@ -22,6 +22,7 @@ public:
 	inline void SetGetHitFunction(std::function<void()> _Function)
 	{
 		GetHitFunction = _Function;
+		GetHitUse = true;
 	}
 
 	inline void SetHp(int _Hp)
@@ -36,6 +37,10 @@ public:
 	{
 		Hp += _Value;
 	}
+	inline void SubHp(int _Value)
+	{
+		Hp -= _Value;
+	}
 
 protected:
 
@@ -44,6 +49,9 @@ protected:
 
 private:
 	int Hp = 0;
+	bool GetHitUse = false;
+
 	std::function<void()> GetHitFunction = nullptr;
+	
 };
 

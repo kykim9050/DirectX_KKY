@@ -109,7 +109,7 @@ private:
 private:
 	inline void GetHit(int _DmgVal)
 	{
-		AddHp(-_DmgVal);
+		SubHp(_DmgVal);
 	}
 
 };
