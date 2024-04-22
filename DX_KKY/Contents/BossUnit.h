@@ -1,13 +1,14 @@
 #pragma once
 #include <EngineCore/StateManager.h>
+#include <EngineCore/Actor.h>
 #include "MonsterUnit.h"
 
 // Ό³Έν :
 class UDefaultSceneComponent;
 class USpriteRenderer;
-class ABossUnit : public AMonsterUnit
+class ABossUnit : public AActor, public UMonsterUnit
 {
-	GENERATED_BODY(AMonsterUnit)
+	GENERATED_BODY(AActor)
 
 public:
 	// constrcuter destructer
