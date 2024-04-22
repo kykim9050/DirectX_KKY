@@ -30,5 +30,6 @@ private:
 	void AnimationInit() override;
 
 	void Flying(float _DeltaTime);
+	void Rising(float _DeltaTime);
 };
 

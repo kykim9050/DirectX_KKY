@@ -30,18 +30,21 @@ void AMiniFlower::Tick(float _DeltaTime)
 void AMiniFlower::StateInit()
 {
 	State.CreateState(FlowerBossState::MiniFlower_Spawn);
+	State.CreateState(FlowerBossState::MiniFlower_Rise);
 	State.CreateState(FlowerBossState::MiniFlower_Fly);
 
 	State.SetStartFunction(FlowerBossState::MiniFlower_Spawn, [this]()
 		{
 			ChangeAnimation(FlowerBossAniName::MiniFlower_Spawn);
 		});
-	State.SetStartFunction(FlowerBossState::MiniFlower_Fly, [this]()
+	State.SetStartFunction(FlowerBossState::MiniFlower_Rise, [this]()
 		{
 			ChangeAnimation(FlowerBossAniName::MiniFlower_Fly);
 		});
+	State.SetStartFunction(FlowerBossState::MiniFlower_Fly, [this](){});
 
 	State.SetUpdateFunction(FlowerBossState::MiniFlower_Spawn, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::MiniFlower_Rise, std::bind(&AMiniFlower::Rising, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::MiniFlower_Fly, std::bind(&AMiniFlower::Flying, this, std::placeholders::_1));
 
 	State.ChangeState(FlowerBossState::MiniFlower_Spawn);
@@ -69,8 +72,21 @@ void AMiniFlower::AnimationInit()
 
 	SetRendererFrameCallback(FlowerBossAniName::MiniFlower_Spawn, 5, [this]()
 		{
-			State.ChangeState(FlowerBossState::MiniFlower_Fly);
+			State.ChangeState(FlowerBossState::MiniFlower_Rise);
 		});
+}
+
+void AMiniFlower::Rising(float _DeltaTime)
+{
+	float4 MyPos = GetActorLocation();
+	MyPos.Y *= -1;
+
+	if (MyPos.Y <= 50.0f) {
+		State.ChangeState(FlowerBossState::MiniFlower_Fly);
+		return;
+	}
+
+	AddActorLocation(float4::Up * 200.0f * _DeltaTime);
 }
 
 void AMiniFlower::Flying(float _DeltaTime)
