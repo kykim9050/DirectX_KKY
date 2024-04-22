@@ -112,7 +112,28 @@ void ASeed::AnimationInit()
 			});
 		Renderer->SetFrameCallback(FlowerBossAniName::SeedGrowUpBegin, 8, [this]()
 			{
-				VineRenderer->ChangeAnimation(FlowerBossAniName::VineGrowUp);
+				switch (Color)
+				{
+				case ESeedColor::Blue:
+				{
+					VineRenderer->ChangeAnimation(FlowerBossAniName::VineGrowUp);
+					break;
+				}
+				case ESeedColor::Purple:
+				{
+					// chomper 생성되도록 하기 그리고 본인 Destroy하기
+					break;
+				}
+				case ESeedColor::Pink:
+				{
+					VineRenderer->ChangeAnimation(FlowerBossAniName::VineGrowUp);
+					break;
+				}
+				default:
+					MsgBoxAssert("아직 색이 지정되지 않은 씨앗입니다.");
+					return;
+				}
+
 			});
 		Renderer->SetFrameCallback(FlowerBossAniName::SeedGrowUpBegin, 11, [this]()
 			{
@@ -121,24 +142,18 @@ void ASeed::AnimationInit()
 				switch (Color)
 				{
 				case ESeedColor::Blue:
-				{
-					int a = 0;
+				case ESeedColor::Pink:
 					break;
-				}
 				case ESeedColor::Purple:
 				{
-					int a = 0;
-					break;
-				}
-				case ESeedColor::Pink:
-				{
-					int a = 0;
+					Destroy();
 					break;
 				}
 				default:
 					MsgBoxAssert("아직 색이 지정되지 않은 씨앗입니다.");
 					return;
 				}
+
 			});
 
 		VineRenderer->SetFrameCallback(FlowerBossAniName::VineGrowUp, 36, [this]()
