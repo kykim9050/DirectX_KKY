@@ -47,6 +47,10 @@ void AMiniFlower::StateInit()
 	State.SetUpdateFunction(FlowerBossState::MiniFlower_Rise, std::bind(&AMiniFlower::Rising, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::MiniFlower_Fly, std::bind(&AMiniFlower::Flying, this, std::placeholders::_1));
 
+	State.SetEndFunction(FlowerBossState::MiniFlower_Rise, [this]() {
+		SetJumpVec(float4::Zero);
+		});
+
 	State.ChangeState(FlowerBossState::MiniFlower_Spawn);
 }
 
@@ -81,15 +85,35 @@ void AMiniFlower::Rising(float _DeltaTime)
 	float4 MyPos = GetActorLocation();
 	MyPos.Y *= -1;
 
-	if (MyPos.Y <= 50.0f) {
+	if (MyPos.Y <= FlowerBossStageValue::MiniFlower_RisingEnd_Height) {
 		State.ChangeState(FlowerBossState::MiniFlower_Fly);
 		return;
 	}
 
-	AddActorLocation(float4::Up * 200.0f * _DeltaTime);
+	SetJumpVec(float4::Up * UpSpeed);
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void AMiniFlower::Flying(float _DeltaTime)
 {
+	float4 MyPos = GetActorLocation();
 
+	if (MyPos.X <= FlowerBossStageValue::MiniFlower_Flying_XBound_Min)
+	{
+		AddActorLocation(float4::Right);
+		FlyingDir = float4::Right;
+	}
+	else if (MyPos.X >= FlowerBossStageValue::MiniFlower_Flying_XBound_Max)
+	{
+		AddActorLocation(float4::Left);
+		FlyingDir = float4::Left;
+	}
+
+	SetSpeedVec(FlyingDir * FlyingSpeed);
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void AMiniFlower::ResultMovementUpdate(float _DeltaTime)
+{
+	Super::ResultMovementUpdate(_DeltaTime);
 }

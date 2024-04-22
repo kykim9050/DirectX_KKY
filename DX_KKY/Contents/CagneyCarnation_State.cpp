@@ -112,9 +112,9 @@ void ACagneyCarnation::StartFunctionSet()
 				ASeed* NewSeed = GetWorld()->SpawnActor<ASeed>("NewSeed").get();
 				Seeds.push_back(NewSeed);
 
-				SeedRandXPos = UMath::GetInst().RandomReturnFloat(140.0f, 840.0f);
+				SeedRandXPos = UMath::GetInst().RandomReturnFloat(FlowerBossStageValue::SeedInitMinXPos, FlowerBossStageValue::SeedInitMaxXPos);
 
-				Seeds[i]->SetActorLocation(float4(SeedRandXPos, 100.0f + 300.0f * i, 0.0f));
+				Seeds[i]->SetActorLocation(float4(SeedRandXPos, FlowerBossStageValue::SeedInitYPos + FlowerBossStageValue::SeedFallInter * i, 0.0f));
 			}
 			// ÆÄ¶û 2°³, º¸¶ó 2°³, ºÐÈ« 1°³ ¾¾¾Ñ »ý¼º
 			Seeds[0]->SetColor(ESeedColor::Blue);
