@@ -121,7 +121,8 @@ void ASeed::AnimationInit()
 				}
 				case ESeedColor::Purple:
 				{
-					// chomper 생성되도록 하기 그리고 본인 Destroy하기
+					// chomper 생성
+					CreateChomper();
 					break;
 				}
 				case ESeedColor::Pink:
@@ -213,4 +214,15 @@ void ASeed::SetColor(ESeedColor _Color)
 	}
 
 	Color = _Color;
+}
+
+void ASeed::CreateChomper()
+{
+	std::shared_ptr<ABossAttackUnit> Chomper = GetWorld()->SpawnActor<ABossAttackUnit>("Chomper ");
+	Chomper->CreateAnimation(FAniInfo("Chomper", "Chomper", 0.0416f));
+	Chomper->CreateAnimation(FAniInfo("ChomperDeath", "ChomperDeath", 0.0416f), false);
+	Chomper->ChangeAnimation("Chomper");
+	Chomper->SetActorLocation(GetActorLocation());
+	Chomper->SetAutoSize();
+	Chomper->SetOrder(ERenderingOrder::Monster);
 }
