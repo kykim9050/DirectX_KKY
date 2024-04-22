@@ -245,7 +245,6 @@ void ASeed::CreateVenus()
 {
 	float4 InitPos = GetActorLocation();
 	InitPos.Y += 235.0f;
-	InitPos.X -= 5.0f;
 
 	float RandomDegree = UMath::GetInst().RandomReturnFloat(-45.0f, 0.0f);
 
@@ -260,7 +259,6 @@ void ASeed::CreateMiniFlower()
 {
 	float4 InitPos = GetActorLocation();
 	InitPos.Y += 235.0f;
-	InitPos.X -= 5.0f;
 
 	std::shared_ptr<AMiniFlower> MiniFlower = GetWorld()->SpawnActor<AMiniFlower>("MiniFlower");
 	MiniFlower->SetActorLocation(InitPos);
