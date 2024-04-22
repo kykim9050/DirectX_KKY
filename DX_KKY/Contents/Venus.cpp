@@ -41,12 +41,28 @@ void AVenus::StateInit()
 		{
 			BoundaryValue = GEngine->EngineWindow.GetWindowScale();
 
-			//float4 PlayerPos = APlayer::GetMainPlayer()->GetActorLocation();
-			//float4 MyPos = GetActorLocation();
+			{
+				float Speed = 100.0f;
+				float4 Direction = (APlayer::GetMainPlayer()->GetActorLocation() - GetActorLocation()).Normalize2DReturn();
 
-			//float4 ChaseVector = PlayerPos - MyPos;
+				Velocity = Direction * Speed;
 
-			//DirVec = ChaseVector.Normalize2DReturn();
+
+				float Theta = 0.0f;
+
+				{
+					float Angle = std::atan(Direction.Y / Direction.X);
+
+					if (Direction.X < 0)
+					{
+						Angle += static_cast<float>(std::atan(1) * 4)/*PI*/;
+					}
+
+					Theta = Angle * UEngineMath::RToD;
+				}
+
+				SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
+			}
 
 			ChangeAnimation(FlowerBossAniName::Venus_Loop);
 		});
@@ -102,26 +118,6 @@ void AVenus::Flying(float _DeltaTime)
 	}
 
 	{
-		float Speed = 100.0f;
-		float4 Direction = (APlayer::GetMainPlayer()->GetActorLocation() - GetActorLocation()).Normalize2DReturn();
-
-		float4 Velocity = Direction * Speed;
-
-
-		float Theta = 0.0f;
-
-		{
-			float Angle = std::atan(Direction.Y / Direction.X);
-
-			if (Direction.X < 0)
-			{
-				Angle += static_cast<float>(std::atan(1) * 4)/*PI*/;
-			}
-
-			Theta = Angle * UEngineMath::RToD;
-
-		}
-		SetActorRotation(float4( 0.0f, 0.0f, Theta + 180.0f ));
 		AddActorLocation(Velocity * _DeltaTime);
 	}
 
