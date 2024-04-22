@@ -310,6 +310,11 @@ void USpriteRenderer::CreateAnimation(
 
 void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName)
 {
+	if (nullptr != CurAnimation && _AnimationName == CurAnimation->GetName())
+	{
+		return;
+	}
+
 	std::string UpperName = UEngineString::ToUpper(_AnimationName);
 
 	if (false == Animations.contains(UpperName))
