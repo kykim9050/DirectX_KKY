@@ -65,7 +65,7 @@ void AVenus::RendererInit()
 {
 	SetRendererAutoSize();
 	SetRendererOrder(ERenderingOrder::Monster1);
-	SetRendererPivot(EPivot::BOT);
+	//SetRendererPivot(EPivot::BOT);
 }
 
 void AVenus::ColliderInit()
