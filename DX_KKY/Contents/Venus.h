@@ -24,6 +24,7 @@ protected:
 private:
 	UStateManager State;
 	float4 DirVec = float4::Zero;
+	float4 BoundaryValue = float4::Zero;
 
 	void StateInit() override;
 	void RendererInit() override;
@@ -31,5 +32,7 @@ private:
 	void AnimationInit() override;
 
 	void Flying(float _DeltaTime);
+
+	bool BoundaryCheck();
 };
 

@@ -39,6 +39,8 @@ void AVenus::StateInit()
 		});
 	State.SetStartFunction(FlowerBossState::Venus_Flying, [this]()
 		{
+			BoundaryValue = GEngine->EngineWindow.GetWindowScale();
+
 			float4 PlayerPos = APlayer::GetMainPlayer()->GetActorLocation();
 			float4 MyPos = GetActorLocation();
 
@@ -93,11 +95,40 @@ void AVenus::AnimationInit()
 
 void AVenus::Flying(float _DeltaTime)
 {
-	if (0 >= GetHp())
+
+	if (0 >= GetHp() || true == BoundaryCheck())
 	{
 		State.ChangeState(FlowerBossState::Venus_Death);
 		return;
 	}
 
 	AddActorLocation(DirVec * _DeltaTime * 100.0f);
+}
+
+bool AVenus::BoundaryCheck()
+{
+	float4 MyPos = GetActorLocation();
+	MyPos.Y *= -1;
+
+	if (MyPos.X < 0)
+	{
+		return true;
+	}
+
+	if (MyPos.Y < 0)
+	{
+		return true;
+	}
+
+	if (MyPos.X > BoundaryValue.X)
+	{
+		return true;
+	}
+
+	if (MyPos.Y > BoundaryValue.Y)
+	{
+		return true;
+	}
+
+	return false;
 }
