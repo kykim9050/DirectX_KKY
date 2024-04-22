@@ -41,28 +41,10 @@ void AVenus::StateInit()
 		{
 			BoundaryValue = GEngine->EngineWindow.GetWindowScale();
 
-			{
-				float Speed = 100.0f;
-				float4 Direction = (APlayer::GetMainPlayer()->GetActorLocation() - GetActorLocation()).Normalize2DReturn();
-
-				Velocity = Direction * Speed;
-
-
-				float Theta = 0.0f;
-
-				{
-					float Angle = std::atan(Direction.Y / Direction.X);
-
-					if (Direction.X < 0)
-					{
-						Angle += static_cast<float>(std::atan(1) * 4)/*PI*/;
-					}
-
-					Theta = Angle * UEngineMath::RToD;
-				}
-
-				SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
-			}
+			float4 Direction = (APlayer::GetMainPlayer()->GetActorLocation() - GetActorLocation()).Normalize2DReturn();
+			Velocity = Direction * Speed;
+			float Theta = UMath::GetInst().DirectionToDeg(Direction);
+			SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
 
 			ChangeAnimation(FlowerBossAniName::Venus_Loop);
 		});
@@ -117,11 +99,7 @@ void AVenus::Flying(float _DeltaTime)
 		return;
 	}
 
-	{
-		AddActorLocation(Velocity * _DeltaTime);
-	}
-
-
+	AddActorLocation(Velocity * _DeltaTime);
 }
 
 bool AVenus::BoundaryCheck()

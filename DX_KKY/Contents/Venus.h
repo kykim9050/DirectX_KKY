@@ -25,6 +25,7 @@ private:
 	UStateManager State;
 	float4 BoundaryValue = float4::Zero;
 	float4 Velocity = float4::Zero;
+	float Speed = 100.0f;
 
 	void StateInit() override;
 	void RendererInit() override;

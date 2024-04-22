@@ -46,6 +46,12 @@ public:
 		return RandomValue;
 	}
 
+	float DirectionToDeg(const float4& _Direction);
+	float DirectionToRad(const float4& _Direction);
+
+public:
+	float PI = static_cast<float>(std::atan(1) * 4);
+
 protected:
 
 private:
