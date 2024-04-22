@@ -28,7 +28,9 @@ private:
 	float FlyingSpeed = 200.0f;
 	float SpitDelay = 4.0f;
 	float SpitDelayInit = 4.0f;
+	float BulletSpeed = 250.0f;
 	std::string PrevState = "None";
+
 
 
 	void StateInit() override;
@@ -39,5 +41,8 @@ private:
 
 	void Flying(float _DeltaTime);
 	void Rising(float _DeltaTime);
+
+	void CreateBullet();
+
 };
 

@@ -63,7 +63,8 @@ namespace FlowerBossAniName
 	const std::string MiniFlower_Death = "MiniFlower_Death";
 	const std::string MiniFlower_Spit = "MiniFlower_Spit";
 	const std::string MiniFlower_RevSpit = "MiniFlower_RevSpit";
-
+	const std::string MiniFlower_Bullet = "MiniFlower_Bullet";
+	const std::string MiniFlower_BulletDeath = "MiniFlower_BulletDeath";
 }
 
 namespace FlowerBossState

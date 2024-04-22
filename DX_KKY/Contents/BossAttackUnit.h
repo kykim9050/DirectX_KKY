@@ -31,7 +31,7 @@ public:
 	{
 		ChaseType = _ChaseType;
 		Target = _Target;
-		Chase = true;
+		Move = true;
 	}
 	inline void SetRendererAutoSize()
 	{
@@ -104,6 +104,7 @@ private:
 	float4 Velocity = FVector::Zero;
 	std::function<float4()> VelocityGenerator;
 	bool Loop = false;
-	bool Chase = false;
+	bool Move = false;
+	bool IsSetTargetDir = false;
 };
 

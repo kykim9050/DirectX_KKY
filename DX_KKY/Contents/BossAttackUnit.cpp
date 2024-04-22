@@ -31,13 +31,8 @@ void ABossAttackUnit::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (true == Chase)
+	if (true == Move)
 	{
-		if (nullptr != VelocityGenerator)
-		{
-			Velocity = VelocityGenerator();
-		}
-
 		switch (ChaseType)
 		{
 		case EChaseType::None:
@@ -46,6 +41,22 @@ void ABossAttackUnit::Tick(float _DeltaTime)
 		}
 		case EChaseType::Temporal:
 		{
+			if (false == IsSetTargetDir)
+			{
+				if (nullptr != VelocityGenerator)
+				{
+					Velocity = VelocityGenerator();
+				}
+
+				IsSetTargetDir = true;
+
+				float Speed = Velocity.Size2D();
+
+				float4 Direction = (UContentsFunction::GetStagePlayer()->GetActorLocation() - GetActorLocation()).Normalize2DReturn();
+				Velocity = Direction * Speed;
+				float Theta = UMath::GetInst().DirectionToDeg(Direction);
+				SetActorRotation(float4(0.0f, 0.0f, Theta));
+			}
 			break;
 		}
 		case EChaseType::Permanent:
