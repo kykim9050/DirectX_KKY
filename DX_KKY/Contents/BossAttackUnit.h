@@ -63,6 +63,10 @@ public:
 	{
 		return Renderer;
 	}
+	inline UCollision* GetCollider() const
+	{
+		return Collider;
+	}
 	inline void SetRendererFrameCallback(std::string_view _AnimationName, int _Index, std::function<void()> _Function)
 	{
 		Renderer->SetFrameCallback(_AnimationName, _Index, _Function);
@@ -72,7 +76,10 @@ public:
 	void CreateAnimation(FAniInfo _Info, bool _Loop = true);
 	void ChangeAnimation(std::string_view _AnimationName);
 
-	
+	virtual void StateInit() {};
+	virtual void RendererInit() {};
+	virtual void ColliderInit() {};
+	virtual void AnimationInit() {};
 
 
 protected:
