@@ -5,6 +5,10 @@ namespace GAniName
 	// CUphead
 	const std::string DashDust = "DashDust";
 	const std::string LandDust = "LandDust";
+
+	// flower boss
+	const std::string Chomper_Chomp = "Chomper";
+	const std::string Chomper_Death = "ChomperDeath";
 }
 
 namespace FlowerBossAniName
@@ -39,6 +43,10 @@ namespace FlowerBossAniName
 
 	const std::string VineGrowUp = "VineGrowUp";
 	const std::string VineDisappear = "VineDisappear";
+
+	const std::string Chomper_Chomp = "Chomper_Chomp";
+	const std::string Chomper_Death = "Chomper_Death";
+
 }
 
 namespace FlowerBossState
@@ -65,6 +73,8 @@ namespace FlowerBossState
 	const std::string CreateObject_ReleaseRev = "CreateObject_ReleaseRev";
 	const std::string CreateObject_End = "CreateObject_End";
 
+	const std::string Chomp = "Chomp";
+	const std::string Chomp_Death = "Chomp_Death";
 }
 
 namespace FlowerBossStageValue
@@ -76,6 +86,8 @@ namespace GColliderScale
 {
 	const float4 FlowerBoss_HeadColScale = float4(250.0f, 250.0f, 1.0f);
 	const float4 FlowerBoss_FaceAttScale = float4(950.f, 280.f, 1.0f);
+
+	const float4 Chomper_ColScale = float4(48.0f, 64.0f, 1.0f);
 }
 
 namespace GColliderPosInfo

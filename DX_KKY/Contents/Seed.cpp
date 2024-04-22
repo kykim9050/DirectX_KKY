@@ -219,11 +219,8 @@ void ASeed::SetColor(ESeedColor _Color)
 
 void ASeed::CreateChomper()
 {
-	float ChomperColYOffset = 50.0f;
-
 	std::shared_ptr<AChomper> Chomper = GetWorld()->SpawnActor<AChomper>("Chomper");
 	Chomper->SetActorLocation(GetActorLocation());
-	Chomper->SetColPosition(float4(0.0f, ChomperColYOffset, 0.0f));
+	Chomper->SetColPosition(float4(0.0f, GColliderScale::Chomper_ColScale.hY(), 0.0f));
 	Chomper->SetHp(3);
-
 }

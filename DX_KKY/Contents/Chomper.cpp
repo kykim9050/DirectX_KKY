@@ -30,23 +30,23 @@ void AChomper::Tick(float _DeltaTime)
 
 void AChomper::StateInit()
 {
-	State.CreateState("Chomp");
-	State.CreateState("ChomperDeath");
+	State.CreateState(FlowerBossState::Chomp);
+	State.CreateState(FlowerBossState::Chomp_Death);
 
-	State.SetStartFunction("Chomp", [this]()
+	State.SetStartFunction(FlowerBossState::Chomp, [this]()
 		{
-			ChangeAnimation("Chomper");
+			ChangeAnimation(FlowerBossAniName::Chomper_Chomp);
 		});
-	State.SetStartFunction("ChomperDeath", [this]()
+	State.SetStartFunction(FlowerBossState::Chomp_Death, [this]()
 		{
 			GetCollider()->SetActive(false);
-			ChangeAnimation("ChomperDeath");
+			ChangeAnimation(FlowerBossAniName::Chomper_Death);
 		});
 
-	State.SetUpdateFunction("Chomp", std::bind(&AChomper::Chomp, this, std::placeholders::_1));
-	State.SetUpdateFunction("ChomperDeath", [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::Chomp, std::bind(&AChomper::Chomp, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::Chomp_Death, [this](float) {});
 
-	State.ChangeState("Chomp");
+	State.ChangeState(FlowerBossState::Chomp);
 }
 
 void AChomper::RendererInit()
@@ -58,17 +58,17 @@ void AChomper::RendererInit()
 
 void AChomper::ColliderInit()
 {
-	SetColScale(float4(100.0f, 100.0f, 1.0f));
+	SetColScale(GColliderScale::Chomper_ColScale);
 	SetColGroup(ECollisionGroup::Monster);
 	SetColType(ECollisionType::Rect);
 }
 
 void AChomper::AnimationInit()
 {
-	CreateAnimation(FAniInfo("Chomper", "Chomper", 0.0416f));
-	CreateAnimation(FAniInfo("ChomperDeath", "ChomperDeath", 0.0416f), false);
+	CreateAnimation(FAniInfo(FlowerBossAniName::Chomper_Chomp, GAniName::Chomper_Chomp, 0.0416f));
+	CreateAnimation(FAniInfo(FlowerBossAniName::Chomper_Death, GAniName::Chomper_Death, 0.0416f), false);
 	
-	SetRendererFrameCallback("ChomperDeath", 15, [this]()
+	SetRendererFrameCallback(FlowerBossAniName::Chomper_Death, 15, [this]()
 		{
 			Destroy();
 		});
@@ -78,7 +78,7 @@ void AChomper::Chomp(float _DeltaTime)
 {
 	if (0 >= GetHp())
 	{
-		State.ChangeState("ChomperDeath");
+		State.ChangeState(FlowerBossState::Chomp_Death);
 		return;
 	}
 }
