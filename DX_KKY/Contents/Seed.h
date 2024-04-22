@@ -39,6 +39,7 @@ private:
 	void GrowUp(float _DeltaTime);
 
 	void CreateChomper();
+	void CreateVenus();
 
 	void StateInit() override;
 	void RendererInit() override;

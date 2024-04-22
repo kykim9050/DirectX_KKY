@@ -65,8 +65,8 @@ void AChomper::ColliderInit()
 
 void AChomper::AnimationInit()
 {
-	CreateAnimation(FAniInfo(FlowerBossAniName::Chomper_Chomp, GAniName::Chomper_Chomp, 0.0416f));
-	CreateAnimation(FAniInfo(FlowerBossAniName::Chomper_Death, GAniName::Chomper_Death, 0.0416f), false);
+	CreateAnimation(FAniInfo(FlowerBossAniName::Chomper_Chomp, GSpriteName::Chomper_Chomp, 0.0416f));
+	CreateAnimation(FAniInfo(FlowerBossAniName::Chomper_Death, GSpriteName::Chomper_Death, 0.0416f), false);
 	
 	SetRendererFrameCallback(FlowerBossAniName::Chomper_Death, 15, [this]()
 		{
