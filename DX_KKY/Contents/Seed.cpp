@@ -20,6 +20,8 @@ void ASeed::BeginPlay()
 {
 	Super::BeginPlay();
 
+	ColliderInit();
+
 	StateInit();
 }
 
@@ -55,7 +57,6 @@ void ASeed::StateInit()
 		{
 			AnimationInit();
 			RendererInit();
-			ColliderInit();
 		});
 
 	State.ChangeState("Init");
