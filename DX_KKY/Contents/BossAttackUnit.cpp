@@ -33,7 +33,7 @@ void ABossAttackUnit::Tick(float _DeltaTime)
 }
 
 
-void ABossAttackUnit::SetImgPivot(EPivot _Pivot)
+void ABossAttackUnit::SetRendererPivot(EPivot _Pivot)
 {
 	switch (_Pivot)
 	{

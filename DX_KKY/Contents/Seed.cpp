@@ -223,6 +223,14 @@ void ASeed::CreateChomper()
 	Chomper->CreateAnimation(FAniInfo("ChomperDeath", "ChomperDeath", 0.0416f), false);
 	Chomper->ChangeAnimation("Chomper");
 	Chomper->SetActorLocation(GetActorLocation());
-	Chomper->SetAutoSize();
-	Chomper->SetOrder(ERenderingOrder::Monster);
+	Chomper->SetRendererAutoSize();
+	Chomper->SetRendererOrder(ERenderingOrder::Monster);
+	Chomper->SetRendererPivot(EPivot::BOT);
+
+	float ChomperColYOffset = 50.0f;
+
+	Chomper->SetColScale(float4(100.0f, 100.0f, 1.0f));
+	Chomper->SetColPosition(float4(0.0f, ChomperColYOffset, 0.0f));
+	Chomper->SetColGroup(ECollisionGroup::Monster);
+	Chomper->SetColType(ECollisionType::Rect);
 }
