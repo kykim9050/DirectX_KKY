@@ -27,7 +27,7 @@ protected:
 
 private:
 	UStateManager State;
-	float BulletSpeed = 250.0f;
+	float BulletSpeed = 400.0f;
 	float4 ResVelocity = float4::Zero;
 	float4 BoundaryValue = float4::Zero;
 

@@ -83,7 +83,7 @@ void ACagneyCarnation::CreateAcorn()
 
 		//Acorns.push_back(NewAcorn);
 		NewAcorn->SetActorLocation(GColliderPosInfo::AcornInitPos[i]);
-		NewAcorn->DelayCallBack(1.0f + 0.5f * i, [NewAcorn]()
+		NewAcorn->DelayCallBack(0.5f + 0.5f * i, [NewAcorn]()
 			{
 				NewAcorn->Shoot();
 			});
@@ -109,7 +109,7 @@ void ACagneyCarnation::CreateBoomerang()
 {
 	ABoomerang* NewBoomerang = GetWorld()->SpawnActor<ABoomerang>("CreateEffect").get();
 	NewBoomerang->SetActorLocation(GRendererPos::FlowerBoss_BoomarangInitPos);
-	NewBoomerang->DelayCallBack(1.0f, [NewBoomerang]()
+	NewBoomerang->DelayCallBack(0.5f, [NewBoomerang]()
 		{
 			NewBoomerang->Throw();
 		});
