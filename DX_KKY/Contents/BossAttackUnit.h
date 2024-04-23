@@ -86,7 +86,7 @@ public:
 	virtual void RendererInit() {};
 	virtual void ColliderInit() {};
 	virtual void AnimationInit() {};
-	bool BoundaryCheck(float4 _Boundary);
+	bool BoundaryCheck(float4 _Boundary, float OffsetX = 0.0f, float OffsetY = 0.0f);
 	
 
 protected:
