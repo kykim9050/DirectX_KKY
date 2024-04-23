@@ -81,7 +81,8 @@ private:
 	float MissileLaunchTImeValue = 0.3f;
 
 	// »ý¼ºµÈ Acorn
-	std::vector<AAcorn*> Acorns;
+	std::vector<AAcorn*> Acorns = std::vector<AAcorn*>();
+	const int AcornNum = 3;
 
 private:
 	void BeginPlay() override;

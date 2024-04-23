@@ -17,10 +17,18 @@ public:
 	AAcorn& operator=(const AAcorn& _Other) = delete;
 	AAcorn& operator=(AAcorn&& _Other) noexcept = delete;
 
+	inline void Shoot()
+	{
+		State.ChangeState(FlowerBossState::Acorn_Fly);
+		return;
+	}
+
 protected:
 
 private:
 	UStateManager State;
+	float BulletSpeed = 250.0f;
+	float4 ResVelocity = float4::Zero;
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -29,6 +37,8 @@ private:
 	void RendererInit() override;
 	void ColliderInit() override;
 	void AnimationInit() override;
+
+	void Flying(float _DeltaTime);
 
 };
 

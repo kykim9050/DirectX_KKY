@@ -100,8 +100,6 @@ void ACagneyCarnation::SetAnimationCallback()
 		});
 	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 3, [this]()
 		{
-			int AcornNum = static_cast<int>(GColliderPosInfo::AcornInitPos.size());
-
 			for (int i = 0; i < AcornNum; i++)
 			{
 				AAcorn* NewAcorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
