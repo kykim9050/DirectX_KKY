@@ -5,6 +5,7 @@
 #include "CagneyCarnation.h"
 #include "Acorn.h"
 #include "FXUnit.h"
+#include "Boomerang.h"
 
 
 ACagneyCarnation::ACagneyCarnation()
@@ -102,4 +103,14 @@ void ACagneyCarnation::CreateObjectSpawnEffect()
 	CreateEffect->SetRendererAutoSize();
 	CreateEffect->SetRendererOrder(ERenderingOrder::MonsterBulletFX);
 	CreateEffect->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_Effect);
+}
+
+void ACagneyCarnation::CreateBoomerang()
+{
+	ABoomerang* NewBoomerang = GetWorld()->SpawnActor<ABoomerang>("CreateEffect").get();
+	NewBoomerang->SetActorLocation(GColliderPosInfo::AcornInitPos[2]);
+	NewBoomerang->DelayCallBack(1.0f, [NewBoomerang]()
+		{
+			NewBoomerang->Throw();
+		});
 }

@@ -16,6 +16,8 @@ namespace GSpriteName
 	const std::string Acorn_Effect = "AcornEffect";
 
 	const std::string Flower_CreateObject_Effect = "CreateObjectEffect";
+
+	const std::string Boomerang_Rotate = "Boomerang";
 }
 
 namespace GAniName
@@ -78,6 +80,8 @@ namespace FlowerBossAniName
 	const std::string Acorn_Fly = "Acorn_Fly";
 	const std::string Acorn_Death = "Acorn_Death";
 	const std::string Acorn_Effect = "Acorn_Effect";
+
+	const std::string Boomerang_Rotate = "Boomerang_Rotate";
 }
 
 namespace FlowerBossState
@@ -121,6 +125,12 @@ namespace FlowerBossState
 	const std::string Acorn_Spawn = "Acorn_Spawn";
 	const std::string Acorn_Fly = "Acorn_Fly";
 	const std::string Acorn_Death = "Acorn_Death";
+
+	const std::string Boomerang_Init = "Boomerang_Init";
+	const std::string Boomerang_Spawn = "Boomerang_Spawn";
+	const std::string Boomerang_Throw = "Boomerang_Throw";
+	const std::string Boomerang_ComeBack = "Boomerang_ComeBack";
+
 }
 
 namespace FlowerBossStageValue
