@@ -129,7 +129,7 @@ namespace FlowerBossState
 	const std::string Boomerang_Init = "Boomerang_Init";
 	const std::string Boomerang_Spawn = "Boomerang_Spawn";
 	const std::string Boomerang_Throw = "Boomerang_Throw";
-	const std::string Boomerang_ComeBack = "Boomerang_ComeBack";
+	const std::string Boomerang_Destroy = "Boomerang_Destroy";
 
 }
 
@@ -157,6 +157,8 @@ namespace GColliderScale
 	const float4 Venus_ColScale = float4(48.0f, 48.0f, 1.0f);
 
 	const float4 Acorn_ColScale = float4(32.0f, 32.0f, 1.0f);
+
+	const float4 Boomerang_ColScale = float4(150.0f, 64.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
@@ -173,6 +175,8 @@ namespace GColliderPosInfo
 namespace GRendererPos
 {
 	const float4 FlowerBoss_MissileInitPos = float4(1070.f, -100.f, 0.0f);
+
+	const float4 FlowerBoss_BoomarangInitPos = float4(950.0f, -290.0f, 0.0f);
 }
 
 

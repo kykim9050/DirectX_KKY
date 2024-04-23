@@ -32,14 +32,17 @@ void ABoomerang::StateInit()
 	State.CreateState(FlowerBossState::Boomerang_Init);
 	State.CreateState(FlowerBossState::Boomerang_Spawn);
 	State.CreateState(FlowerBossState::Boomerang_Throw);
-	//State.CreateState(FlowerBossState::Boomerang_ComeBack);
+	//State.CreateState(FlowerBossState::Boomerang_Destroy);
 
 	State.SetStartFunction(FlowerBossState::Boomerang_Init, []() {});
 	State.SetStartFunction(FlowerBossState::Boomerang_Spawn, [this]()
 		{
 			ChangeAnimation(FlowerBossAniName::Boomerang_Rotate);
 		});
-	State.SetStartFunction(FlowerBossState::Boomerang_Throw, []() {});
+	State.SetStartFunction(FlowerBossState::Boomerang_Throw, [this]()
+		{
+			SetSpeedVec(ThrowingDir * ThrowingSpeed);
+		});
 
 	State.SetUpdateFunction(FlowerBossState::Boomerang_Init, [this](float)
 		{
@@ -47,7 +50,7 @@ void ABoomerang::StateInit()
 			return;
 		});
 	State.SetUpdateFunction(FlowerBossState::Boomerang_Spawn, [](float) {});
-	State.SetUpdateFunction(FlowerBossState::Boomerang_Throw, [](float) {});
+	State.SetUpdateFunction(FlowerBossState::Boomerang_Throw, std::bind(&ABoomerang::Throwing, this, std::placeholders::_1));
 
 
 	State.ChangeState(FlowerBossState::Boomerang_Init);
@@ -61,7 +64,7 @@ void ABoomerang::RendererInit()
 
 void ABoomerang::ColliderInit()
 {
-	SetColScale(float4(150.0f, 64.0f, 1.0f));
+	SetColScale(GColliderScale::Boomerang_ColScale);
 	SetColGroup(ECollisionGroup::MonsterBullet);
 	SetColType(ECollisionType::Rect);
 	SetColPosition(float4(0.0f, 0.0f, 0.0f));
@@ -70,4 +73,10 @@ void ABoomerang::ColliderInit()
 void ABoomerang::AnimationInit()
 {
 	CreateAnimation(FAniInfo(FlowerBossAniName::Boomerang_Rotate, GSpriteName::Boomerang_Rotate, 0.0416f));
+}
+
+void ABoomerang::Throwing(float _DeltaTime)
+{
+
+	ResultMovementUpdate(_DeltaTime);
 }
