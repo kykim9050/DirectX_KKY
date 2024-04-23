@@ -28,7 +28,7 @@ protected:
 private:
 	UStateManager State;
 	float4 ThrowingDir = float4::Left;
-	float ThrowingSpeed = 500.0f;
+	float ThrowingSpeed = 550.0f;
 	float4 BoundaryValue = float4::Zero;
 
 	void BeginPlay() override;

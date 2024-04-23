@@ -10,13 +10,6 @@ enum class EAttackPattern
 	Max,
 };
 
-enum class EKindOfCreateObj
-{
-	None,
-	Boomerang,
-	Acorn,
-};
-
 // 설명 :
 class AAcorn;
 class UCollision;
@@ -90,7 +83,6 @@ private:
 
 	// Createobject 관련
 	const int AcornNum = 3;
-	EKindOfCreateObj KindOfObject = EKindOfCreateObj::None;
 	float CreateObjectDelay = 0.0f;
 	float CreateObjectDelayInit = 0.0f;
 

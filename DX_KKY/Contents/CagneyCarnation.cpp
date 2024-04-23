@@ -81,7 +81,6 @@ void ACagneyCarnation::CreateAcorn()
 	{
 		AAcorn* NewAcorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
 
-		//Acorns.push_back(NewAcorn);
 		NewAcorn->SetActorLocation(GColliderPosInfo::AcornInitPos[i]);
 		NewAcorn->DelayCallBack(0.5f + 0.5f * i, [NewAcorn]()
 			{
