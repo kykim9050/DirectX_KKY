@@ -86,6 +86,9 @@ private:
 	float CreateObjectDelay = 0.0f;
 	float CreateObjectDelayInit = 0.0f;
 
+	int Phase2StartHP = 100;
+	float P2ChangeDelay = 0.5f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

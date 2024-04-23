@@ -38,7 +38,15 @@ void ACagneyCarnation::CreateAnimation()
 	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseRev, "CreateObjectRelease", 0.0416f, false, 6, 0);
 	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_End, "CreateObjectEnd", 0.0416f, false);
 
+	// Phase2 Intro
+	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro1, "FlowerFinalIntro1", 0.0416f, false);
+	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro2, "FlowerFinalIntro2", 0.0416f);
+	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro3, "FlowerFinalIntro3", 0.0416f, false);
+	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro4, "FlowerFinalIntro4", 0.0416f);
+	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro5, "FlowerFinalIntro5", 0.0416f, false);
 
+	// Phase2 Idle
+	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Idle, "FlowerFinal_Idle", 0.0416f);
 
 }
 
@@ -124,5 +132,11 @@ void ACagneyCarnation::SetAnimationCallback()
 			}
 
 			CreateObjectSpawnEffect();
+		});
+
+	// Phase2 Intro
+	Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro1, 5, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro2);
 		});
 }
