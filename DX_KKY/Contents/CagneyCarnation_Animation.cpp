@@ -143,4 +143,8 @@ void ACagneyCarnation::SetAnimationCallback()
 		{
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro4);
 		});
+	Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro5, 17, [this]()
+		{
+			State.ChangeState(FlowerBossState::Phase2_Idle);
+		});
 }

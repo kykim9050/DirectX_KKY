@@ -52,6 +52,10 @@ void ACagneyCarnation::StateCreate()
 	// Phase2 Intro
 	State.CreateState(FlowerBossState::Phase2Intro_1);
 	State.CreateState(FlowerBossState::Phase2Intro_2);
+	State.CreateState(FlowerBossState::Phase2Intro_3);
+
+	// Phase2 Idle
+	State.CreateState(FlowerBossState::Phase2_Idle);
 
 }
 
@@ -178,6 +182,16 @@ void ACagneyCarnation::StartFunctionSet()
 		{
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro3);
 		});
+	State.SetStartFunction(FlowerBossState::Phase2Intro_3, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro5);
+		});
+
+	// Phase2 Idle
+	State.SetStartFunction(FlowerBossState::Phase2_Idle, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Idle);
+		});
 
 }
 
@@ -187,33 +201,36 @@ void ACagneyCarnation::UpdateFunctionSet()
 	State.SetUpdateFunction(FlowerBossState::Idle, std::bind(&ACagneyCarnation::Idle, this, std::placeholders::_1));
 
 	//Intro
-	State.SetUpdateFunction(FlowerBossState::Intro, [this](float){});
+	State.SetUpdateFunction(FlowerBossState::Intro, [](float){});
 
 	// FaceAttack
-	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Begin, [this](float){});
+	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Begin, [](float){});
 	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_Idle, std::bind(&ACagneyCarnation::FaceAttackHigh_Idle, this, std::placeholders::_1));
-	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_End, [this](float){});
-	State.SetUpdateFunction(FlowerBossState::FaceAttackLow_Begin, [this](float){});
+	State.SetUpdateFunction(FlowerBossState::FaceAttackHigh_End, [](float){});
+	State.SetUpdateFunction(FlowerBossState::FaceAttackLow_Begin, [](float){});
 	State.SetUpdateFunction(FlowerBossState::FaceAttackLow_Idle, std::bind(&ACagneyCarnation::FaceAttackLow_Idle, this, std::placeholders::_1));
-	State.SetUpdateFunction(FlowerBossState::FaceAttackLow_End, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::FaceAttackLow_End, [](float) {});
 
 	// Gatling
-	State.SetUpdateFunction(FlowerBossState::Gatling_Begin, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::Gatling_Begin, [](float) {});
 	State.SetUpdateFunction(FlowerBossState::Gatling_Idle, std::bind(&ACagneyCarnation::Gatling_Idle, this, std::placeholders::_1));
-	State.SetUpdateFunction(FlowerBossState::Gatling_End, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::Gatling_End, [](float) {});
 
 	// Create Obeject
-	State.SetUpdateFunction(FlowerBossState::CreateObject_Begin, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::CreateObject_Begin, [](float) {});
 	State.SetUpdateFunction(FlowerBossState::CreateObject_Idle, std::bind(&ACagneyCarnation::CreateObject_Idle, this, std::placeholders::_1));
-	State.SetUpdateFunction(FlowerBossState::CreateObject_Release, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::CreateObject_Release, [](float) {});
 	State.SetUpdateFunction(FlowerBossState::CreateObject_ReleaseIdle, std::bind(&ACagneyCarnation::CreateObject_ReleaseIdle, this, std::placeholders::_1));
-	State.SetUpdateFunction(FlowerBossState::CreateObject_ReleaseRev, [this](float) {});
-	State.SetUpdateFunction(FlowerBossState::CreateObject_End, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::CreateObject_ReleaseRev, [](float) {});
+	State.SetUpdateFunction(FlowerBossState::CreateObject_End, [](float) {});
 
 	// Phase2 Intro
 	State.SetUpdateFunction(FlowerBossState::Phase2Intro_1, std::bind(&ACagneyCarnation::Phase2Intro_1, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::Phase2Intro_2, std::bind(&ACagneyCarnation::Phase2Intro_2, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::Phase2Intro_3, [](float) {});
 
+	// Phase2 Idle
+	State.SetUpdateFunction(FlowerBossState::Phase2_Idle, std::bind(&ACagneyCarnation::Phase2_Idle, this, std::placeholders::_1));
 }
 
 void ACagneyCarnation::EndFunctionSet()
@@ -372,5 +389,17 @@ void ACagneyCarnation::Phase2Intro_1(float _DeltaTime)
 
 void ACagneyCarnation::Phase2Intro_2(float _DeltaTime)
 {
-	
+	P2ChangingDelay -= _DeltaTime;
+
+	if (0.0f >= P2ChangingDelay)
+	{
+		P2ChangingDelay = 1.0f;
+		State.ChangeState(FlowerBossState::Phase2Intro_3);
+		return;
+	}
+}
+
+void ACagneyCarnation::Phase2_Idle(float _DeltaTime)
+{
+
 }
