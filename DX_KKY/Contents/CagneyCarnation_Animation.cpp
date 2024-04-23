@@ -100,8 +100,14 @@ void ACagneyCarnation::SetAnimationCallback()
 		});
 	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 3, [this]()
 		{
-			AAcorn* Acorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
+			int AcornNum = static_cast<int>(GColliderPosInfo::AcornInitPos.size());
 
-			Acorn->SetActorLocation(float4(800.0f, -320.0f, 0.0f));
+			for (int i = 0; i < AcornNum; i++)
+			{
+				AAcorn* NewAcorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
+				
+				Acorns.push_back(NewAcorn);
+				Acorns[i]->SetActorLocation(GColliderPosInfo::AcornInitPos[i]);
+			}
 		});
 }

@@ -11,6 +11,7 @@ enum class EAttackPattern
 };
 
 // 설명 :
+class AAcorn;
 class UCollision;
 class ACagneyCarnation : public ABossUnit
 {
@@ -78,6 +79,9 @@ private:
 	// MissileLaunchTIme
 	float MissileLaunchTIme = 0.0f;
 	float MissileLaunchTImeValue = 0.3f;
+
+	// 생성된 Acorn
+	std::vector<AAcorn*> Acorns;
 
 private:
 	void BeginPlay() override;
