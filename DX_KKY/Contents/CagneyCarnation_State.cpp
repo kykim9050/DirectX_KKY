@@ -3,6 +3,7 @@
 
 #include "FXBase.h"
 #include "Seed.h"
+#include "Acorn.h"
 
 void ACagneyCarnation::StateInit()
 {
@@ -299,6 +300,12 @@ void ACagneyCarnation::CreateObject_Idle(float _DeltaTime)
 void ACagneyCarnation::CreateObject_ReleaseIdle(float _DeltaTime)
 {
 	// Idle 시간은 추후에 도토리 , 부메랑에 따라서 다르게 적용하기
+	
+	for (int i = 0; i < AcornNum; i++)
+	{
+		Acorns[i]->Shoot();
+	}
+
 	CreateObjectReleaseTime -= _DeltaTime;
 
 	if (0.0f >= CreateObjectReleaseTime)
