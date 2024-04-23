@@ -40,6 +40,13 @@ void AFlowerPlatform::Tick(float _DeltaTime)
 
 void AFlowerPlatform::RendererInit()
 {
+	ShadowRenderer->SetAutoSize(1.0f, true);
+	ShadowRenderer->SetOrder(ERenderingOrder::Object2);
+	ShadowRenderer->SetPosition(float4(0.0f, -200.0f, 0.0f));
+
+	PropellorRenderer->SetAutoSize(1.0f, true);
+	PropellorRenderer->SetOrder(ERenderingOrder::Object2);
+	PropellorRenderer->SetPosition(float4(0.0f, 0.0f, 0.0f));
 
 }
 
@@ -50,5 +57,9 @@ void AFlowerPlatform::ColliderInit()
 
 void AFlowerPlatform::AnimationInit()
 {
-
+	ShadowRenderer->CreateAnimation(FlowerBossAniName::PlatformShadow, "PlatformShadow", 0.067f);
+	PropellorRenderer->CreateAnimation(FlowerBossAniName::PlatformPropeller, "FlowerPlatformPropellor", 0.067f);
+	
+	ShadowRenderer->ChangeAnimation(FlowerBossAniName::PlatformShadow);
+	PropellorRenderer->ChangeAnimation(FlowerBossAniName::PlatformPropeller);
 }
