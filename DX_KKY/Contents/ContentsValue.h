@@ -9,6 +9,11 @@ namespace GSpriteName
 	const std::string Venus_Spawn = "VenusSpawn";
 	const std::string Venus_Loop = "VenusLoop";
 	const std::string Venus_Death = "VenusDeath";
+
+	const std::string Acorn_Spawn = "AcornSpawn";
+	const std::string Acorn_Fly = "AcornFly";
+	const std::string Acorn_Death = "AcornDeath";
+	const std::string Acorn_Effect = "AcornEffect";
 }
 
 namespace GAniName
@@ -65,6 +70,10 @@ namespace FlowerBossAniName
 	const std::string MiniFlower_RevSpit = "MiniFlower_RevSpit";
 	const std::string MiniFlower_Bullet = "MiniFlower_Bullet";
 	const std::string MiniFlower_BulletDeath = "MiniFlower_BulletDeath";
+
+	const std::string Acorn_Spawn = "Acorn_Spawn";
+	const std::string Acorn_Fly = "Acorn_Fly";
+	const std::string Acorn_Death = "Acorn_Death";
 }
 
 namespace FlowerBossState
@@ -103,6 +112,11 @@ namespace FlowerBossState
 	const std::string MiniFlower_Rise = "MiniFlower_Rise";
 	const std::string MiniFlower_Death = "MiniFlower_Death";
 	const std::string MiniFlower_Spit = "MiniFlower_Spit";
+
+	const std::string Acorn_Init = "Acorn_Init";
+	const std::string Acorn_Spawn = "Acorn_Spawn";
+	const std::string Acorn_Fly = "Acorn_Fly";
+	const std::string Acorn_Death = "Acorn_Death";
 }
 
 namespace FlowerBossStageValue

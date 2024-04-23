@@ -12,7 +12,7 @@ void ACagneyCarnation::StateInit()
 	EndFunctionSet();
 
 	//State.ChangeState(FlowerBossState::Intro);
-	State.ChangeState(FlowerBossState::Gatling_Begin);
+	State.ChangeState(FlowerBossState::CreateObject_Begin);
 }
 
 
@@ -199,6 +199,7 @@ void ACagneyCarnation::EndFunctionSet()
 		{
 			MissileLaunchTIme = 0.0f;
 		});
+
 }
 
 void ACagneyCarnation::Idle(float _DeltaTime)
