@@ -104,8 +104,12 @@ void ACagneyCarnation::SetAnimationCallback()
 			{
 				AAcorn* NewAcorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
 				
-				Acorns.push_back(NewAcorn);
-				Acorns[i]->SetActorLocation(GColliderPosInfo::AcornInitPos[i]);
+				//Acorns.push_back(NewAcorn);
+				NewAcorn->SetActorLocation(GColliderPosInfo::AcornInitPos[i]);
+				NewAcorn->DelayCallBack(1.0f + 0.5f * i, [NewAcorn]()
+					{
+						NewAcorn->Shoot();
+					});
 			}
 		});
 }
