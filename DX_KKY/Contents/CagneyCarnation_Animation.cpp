@@ -102,17 +102,43 @@ void ACagneyCarnation::SetAnimationCallback()
 		});
 	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 3, [this]()
 		{
-			for (int i = 0; i < AcornNum; i++)
+			int Case = UMath::GetInst().RandomReturnInt(0, 1);
+
+			switch (Case)
 			{
-				AAcorn* NewAcorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
-				
-				//Acorns.push_back(NewAcorn);
-				NewAcorn->SetActorLocation(GColliderPosInfo::AcornInitPos[i]);
-				NewAcorn->DelayCallBack(1.0f + 0.5f * i, [NewAcorn]()
-					{
-						NewAcorn->Shoot();
-					});
+			case 0:
+			{
+				KindOfObject = EKindOfCreateObj::Boomerang;
+				CreateObjectDelay = 2.0f;
+				CreateObjectDelayInit = 2.0f;
+				break;
 			}
+			case 1:
+			{
+				KindOfObject = EKindOfCreateObj::Acorn;
+				CreateObjectDelay = 3.0f;
+				CreateObjectDelayInit = 3.0f;
+
+				for (int i = 0; i < AcornNum; i++)
+				{
+					AAcorn* NewAcorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
+
+					//Acorns.push_back(NewAcorn);
+					NewAcorn->SetActorLocation(GColliderPosInfo::AcornInitPos[i]);
+					NewAcorn->DelayCallBack(1.0f + 0.5f * i, [NewAcorn]()
+						{
+							NewAcorn->Shoot();
+						});
+				}
+
+				break;
+			}
+			default:
+				MsgBoxAssert("나올 수 없는 int형 랜덤 정수 입니다." + std::to_string(Case));
+				return;
+			}
+
+
 		
 			// 부메랑이던지 도토리 미사일이던지 전부다 적용되는 효과
 			AFXUnit* CreateEffect = GetWorld()->SpawnActor<AFXUnit>("CreateEffect").get();
