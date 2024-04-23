@@ -106,27 +106,27 @@ void ABossAttackUnit::CreateRevAnimation(FAniInfo _Info, bool _Loop, int _Start,
 	Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime, _Loop, _Start, _End);
 }
 
-bool ABossAttackUnit::BoundaryCheck(float4 _Boundary)
+bool ABossAttackUnit::BoundaryCheck(float4 _Boundary, float OffsetX /*= 0.0f*/, float OffsetY /*= 0.0f*/)
 {
 	float4 MyPos = GetActorLocation();
 	MyPos.Y *= -1;
 
-	if (MyPos.X < 50.0f)
+	if (MyPos.X < 50.0f - OffsetX)
 	{
 		return true;
 	}
 
-	if (MyPos.Y < 0.0f)
+	if (MyPos.Y < 0.0f - OffsetY)
 	{
 		return true;
 	}
 
-	if (MyPos.X > _Boundary.X - 50.0f)
+	if (MyPos.X > _Boundary.X - 50.0f + OffsetX)
 	{
 		return true;
 	}
 
-	if (MyPos.Y > _Boundary.Y - 100.0f)
+	if (MyPos.Y > _Boundary.Y - 100.0f + OffsetY)
 	{
 		return true;
 	}

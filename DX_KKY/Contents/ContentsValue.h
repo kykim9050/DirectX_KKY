@@ -129,7 +129,7 @@ namespace FlowerBossState
 	const std::string Boomerang_Init = "Boomerang_Init";
 	const std::string Boomerang_Spawn = "Boomerang_Spawn";
 	const std::string Boomerang_Throw = "Boomerang_Throw";
-	const std::string Boomerang_Destroy = "Boomerang_Destroy";
+	const std::string Boomerang_ComeBack = "Boomerang_ComeBack";
 
 }
 

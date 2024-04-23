@@ -29,6 +29,7 @@ private:
 	UStateManager State;
 	float4 ThrowingDir = float4::Left;
 	float ThrowingSpeed = 500.0f;
+	float4 BoundaryValue = float4::Zero;
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -39,5 +40,6 @@ private:
 	void AnimationInit() override;
 
 	void Throwing(float _DeltaTime);
+	void ComeBack(float _DeltaTime);
 };
 
