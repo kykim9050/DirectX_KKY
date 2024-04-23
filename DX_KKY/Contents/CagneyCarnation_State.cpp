@@ -291,7 +291,7 @@ void ACagneyCarnation::CreateObject_Idle(float _DeltaTime)
 
 	if (0.0f >= CreateObjectTime)
 	{
-		CreateObjectTime = 1.0f;
+		CreateObjectTime = CreateObjectTimeInit;
 
 		State.ChangeState(FlowerBossState::CreateObject_Release);
 		return;
@@ -300,11 +300,11 @@ void ACagneyCarnation::CreateObject_Idle(float _DeltaTime)
 
 void ACagneyCarnation::CreateObject_ReleaseIdle(float _DeltaTime)
 {
-	CreateObjectReleaseTime -= _DeltaTime;
+	CreateObjectDelay -= _DeltaTime;
 
-	if (0.0f >= CreateObjectReleaseTime)
+	if (0.0f >= CreateObjectDelay)
 	{
-		CreateObjectReleaseTime = 1.0f;
+		CreateObjectDelay = CreateObjectDelayInit;
 
 		// 난수 받아서 다시 어떤걸 실행시킬지 결정
 		int RandomValue = UMath::GetInst().RandomReturnInt(0, 1);

@@ -78,7 +78,8 @@ private:
 	float GatlingTimeValue = 5.0f;
 
 	// CreateObject Idle 지속 시간
-	float CreateObjectTime = 1.0f;
+	float CreateObjectTime = 0.5f;
+	float CreateObjectTimeInit = 0.5f;
 
 	// CreateObject Release 지속 시간
 	float CreateObjectReleaseTime = 1.0f;
