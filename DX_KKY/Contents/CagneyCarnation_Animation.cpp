@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 
 #include "CagneyCarnation.h"
+#include "Acorn.h"
 
 void ACagneyCarnation::AnimationInit()
 {
@@ -96,5 +97,11 @@ void ACagneyCarnation::SetAnimationCallback()
 	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_End, 5, [this]()
 		{
 			State.ChangeState(FlowerBossState::Idle);
+		});
+	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 3, [this]()
+		{
+			AAcorn* Acorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
+
+			Acorn->SetActorLocation(float4(800.0f, -320.0f, 0.0f));
 		});
 }
