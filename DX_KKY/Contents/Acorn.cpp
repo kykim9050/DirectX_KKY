@@ -57,6 +57,7 @@ void AAcorn::StateInit()
 		});
 	State.SetStartFunction(FlowerBossState::Acorn_Death, [this]()
 		{
+			GetCollider()->SetActive(false);
 			ChangeAnimation(FlowerBossAniName::Acorn_Death);
 		});
 	
@@ -82,9 +83,10 @@ void AAcorn::RendererInit()
 
 void AAcorn::ColliderInit()
 {
-	//SetColScale(float4(32.0f, 32.0f, 1.0f));
-	//SetColGroup(ECollisionGroup::MonsterBullet);
-	//SetColType(ECollisionType::CirCle);
+	SetColScale(GColliderScale::Acorn_ColScale);
+	SetColGroup(ECollisionGroup::MonsterBullet);
+	SetColType(ECollisionType::Rect);
+	SetColPosition(float4(0.0f,0.0f,0.0f));
 }
 
 void AAcorn::AnimationInit()
