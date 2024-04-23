@@ -165,24 +165,4 @@ void AMiniFlower::CreateBullet()
 {
 	AMiniFlowerBullet* Bullet = GetWorld()->SpawnActor<AMiniFlowerBullet>("MiniFlowerBullet").get();
 	Bullet->SetActorLocation(GetActorLocation());
-
-
-	//ABossAttackUnit* Bullet = GetWorld()->SpawnActor<ABossAttackUnit>("MiniFlowerBullet").get();
-
-	//Bullet->SetChaseType(EChaseType::Temporal, UContentsFunction::GetStagePlayer().get());
-	//
-	//std::function<float4()> VelocityGenerator = [this, Bullet]()->float4
-	//	{
-	//		float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
-	//		float4 BulletPos = GetActorLocation();
-
-	//		float4 TargetDir = (PlayerPos - BulletPos).Normalize2DReturn();
-
-	//		float4 ResVelocity = TargetDir * BulletSpeed;
-
-	//		return ResVelocity;
-	//	};
-
-	//Bullet->SetVelocityGenerator(VelocityGenerator);
-	//Bullet->SetDestroyCondition();
 }

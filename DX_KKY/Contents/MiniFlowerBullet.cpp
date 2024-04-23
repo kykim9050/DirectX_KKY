@@ -27,16 +27,31 @@ void AMiniFlowerBullet::Tick(float _DeltaTime)
 
 void AMiniFlowerBullet::StateInit()
 {
+	State.CreateState("Init");
 	State.CreateState("Fire");
 
+	State.SetStartFunction("Init", [this](){});
 	State.SetStartFunction("Fire", [this]()
 		{
+			float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
+			float4 BulletPos = GetActorLocation();
+			float4 TargetDir = (PlayerPos - BulletPos).Normalize2DReturn();
+
+			ResVelocity = TargetDir * BulletSpeed;
+
+			float Theta = UMath::GetInst().DirectionToDeg(TargetDir);
+			SetActorRotation(float4(0.0f, 0.0f, Theta));
+
 			Renderer->ChangeAnimation(FlowerBossAniName::MiniFlower_Bullet);
 		});
 
+	State.SetUpdateFunction("Init", [this](float) 
+		{
+			State.ChangeState("Fire");
+		});
 	State.SetUpdateFunction("Fire", std::bind(&AMiniFlowerBullet::Fire, this, std::placeholders::_1));
 
-	State.ChangeState("Fire");
+	State.ChangeState("Init");
 }
 
 void AMiniFlowerBullet::RendererInit()
@@ -63,7 +78,8 @@ void AMiniFlowerBullet::AnimationInit()
 		});
 }
 
-void AMiniFlowerBullet::Fire(float _DeltaTile)
+void AMiniFlowerBullet::Fire(float _DeltaTime)
 {
-
+	AddActorLocation(ResVelocity * _DeltaTime);
+	//ResultMovementUpdate(_DeltaTime);
 }

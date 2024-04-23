@@ -6,6 +6,7 @@
 class AMiniFlower : public ABossAttackUnit
 {
 	GENERATED_BODY(ABossAttackUnit)
+
 public:
 	// constrcuter destructer
 	AMiniFlower();
@@ -28,7 +29,7 @@ private:
 	float FlyingSpeed = 200.0f;
 	float SpitDelay = 4.0f;
 	float SpitDelayInit = 4.0f;
-	float BulletSpeed = 250.0f;
+	
 	std::string PrevState = "None";
 
 
