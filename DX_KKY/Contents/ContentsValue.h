@@ -14,6 +14,7 @@ namespace GSpriteName
 	const std::string Acorn_Fly = "AcornFly";
 	const std::string Acorn_Death = "AcornDeath";
 	const std::string Acorn_Effect = "AcornEffect";
+
 }
 
 namespace GAniName
@@ -74,6 +75,7 @@ namespace FlowerBossAniName
 	const std::string Acorn_Spawn = "Acorn_Spawn";
 	const std::string Acorn_Fly = "Acorn_Fly";
 	const std::string Acorn_Death = "Acorn_Death";
+	const std::string Acorn_Effect = "Acorn_Effect";
 }
 
 namespace FlowerBossState

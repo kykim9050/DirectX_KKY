@@ -3,6 +3,7 @@
 #include "CagneyCarnation.h"
 #include "Acorn.h"
 
+
 void ACagneyCarnation::AnimationInit()
 {
 	CreateAnimation();
@@ -111,5 +112,8 @@ void ACagneyCarnation::SetAnimationCallback()
 						NewAcorn->Shoot();
 					});
 			}
+		
+
+		
 		});
 }
