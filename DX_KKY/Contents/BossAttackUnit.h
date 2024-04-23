@@ -86,7 +86,7 @@ public:
 	virtual void RendererInit() {};
 	virtual void ColliderInit() {};
 	virtual void AnimationInit() {};
-
+	bool BoundaryCheck(float4 _Boundary);
 	
 
 protected:
@@ -100,6 +100,7 @@ protected:
 private:
 	EChaseType ChaseType = EChaseType::None;
 	AActor* Target = nullptr;
+	float4 BoundaryValue = float4::Zero;
 
 	float4 Velocity = FVector::Zero;
 	std::function<float4()> VelocityGenerator;

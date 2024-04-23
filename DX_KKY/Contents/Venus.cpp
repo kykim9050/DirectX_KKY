@@ -93,7 +93,7 @@ void AVenus::AnimationInit()
 
 void AVenus::Flying(float _DeltaTime)
 {
-	if (0 >= GetHp() || true == BoundaryCheck())
+	if (0 >= GetHp() || true == BoundaryCheck(BoundaryValue))
 	{
 		State.ChangeState(FlowerBossState::Venus_Death);
 		return;
@@ -102,30 +102,3 @@ void AVenus::Flying(float _DeltaTime)
 	AddActorLocation(Velocity * _DeltaTime);
 }
 
-bool AVenus::BoundaryCheck()
-{
-	float4 MyPos = GetActorLocation();
-	MyPos.Y *= -1;
-
-	if (MyPos.X < 50.0f)
-	{
-		return true;
-	}
-
-	if (MyPos.Y < 0.0f)
-	{
-		return true;
-	}
-
-	if (MyPos.X > BoundaryValue.X - 50.0f)
-	{
-		return true;
-	}
-
-	if (MyPos.Y > BoundaryValue.Y - 100.0f)
-	{
-		return true;
-	}
-
-	return false;
-}

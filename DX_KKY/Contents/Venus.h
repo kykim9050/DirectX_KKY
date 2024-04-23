@@ -33,7 +33,5 @@ private:
 	void AnimationInit() override;
 
 	void Flying(float _DeltaTime);
-
-	bool BoundaryCheck();
 };
 
