@@ -29,8 +29,12 @@ void AMiniFlowerBullet::StateInit()
 {
 	State.CreateState("Init");
 	State.CreateState("Fire");
+	State.CreateState("Death");
 
-	State.SetStartFunction("Init", [this](){});
+	State.SetStartFunction("Init", [this]()
+		{
+			BoundaryValue = GEngine->EngineWindow.GetWindowScale();		
+		});
 	State.SetStartFunction("Fire", [this]()
 		{
 			float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
@@ -38,18 +42,26 @@ void AMiniFlowerBullet::StateInit()
 			float4 TargetDir = (PlayerPos - BulletPos).Normalize2DReturn();
 
 			ResVelocity = TargetDir * BulletSpeed;
+			SetSpeedVec(ResVelocity);
 
 			float Theta = UMath::GetInst().DirectionToDeg(TargetDir);
 			SetActorRotation(float4(0.0f, 0.0f, Theta));
 
 			Renderer->ChangeAnimation(FlowerBossAniName::MiniFlower_Bullet);
 		});
+	State.SetStartFunction("Death", [this]()
+		{
+			SetSpeedVec(float4::Zero);
+			Renderer->ChangeAnimation(FlowerBossAniName::MiniFlower_BulletDeath);
+		});
+
 
 	State.SetUpdateFunction("Init", [this](float) 
 		{
 			State.ChangeState("Fire");
 		});
 	State.SetUpdateFunction("Fire", std::bind(&AMiniFlowerBullet::Fire, this, std::placeholders::_1));
+	State.SetUpdateFunction("Death", [this](float){});
 
 	State.ChangeState("Init");
 }
@@ -80,6 +92,39 @@ void AMiniFlowerBullet::AnimationInit()
 
 void AMiniFlowerBullet::Fire(float _DeltaTime)
 {
-	AddActorLocation(ResVelocity * _DeltaTime);
-	//ResultMovementUpdate(_DeltaTime);
+	if (true == BoundaryCheck(BoundaryValue))
+	{
+		State.ChangeState("Death");
+		return;
+	}
+
+	ResultMovementUpdate(_DeltaTime);
+}
+
+bool AMiniFlowerBullet::BoundaryCheck(float4 _Boundary)
+{
+	float4 MyPos = GetActorLocation();
+	MyPos.Y *= -1;
+
+	if (MyPos.X < 50.0f)
+	{
+		return true;
+	}
+
+	if (MyPos.Y < 0.0f)
+	{
+		return true;
+	}
+
+	if (MyPos.X > _Boundary.X - 50.0f)
+	{
+		return true;
+	}
+
+	if (MyPos.Y > _Boundary.Y - 100.0f)
+	{
+		return true;
+	}
+
+	return false;
 }
