@@ -8,13 +8,19 @@
 
 AFlowerPlatform::AFlowerPlatform()
 {
-	Root = CreateDefaultSubObject<UDefaultSceneComponent>("BossAttRoot");
+	Root = CreateDefaultSubObject<UDefaultSceneComponent>("FlowerPlatformRoot");
 	SetRoot(Root);
 
-	Renderer = CreateDefaultSubObject<USpriteRenderer>("BossAttRenderer");
-	Renderer->SetupAttachment(Root);
+	PlatformRenderer = CreateDefaultSubObject<USpriteRenderer>("FlowerPlatformRenderer");
+	PlatformRenderer->SetupAttachment(Root);
 
-	Collider = CreateDefaultSubObject<UCollision>("BossAttCollider");
+	ShadowRenderer = CreateDefaultSubObject<USpriteRenderer>("PlatformShadowRenderer");
+	ShadowRenderer->SetupAttachment(Root);
+	
+	PropellorRenderer = CreateDefaultSubObject<USpriteRenderer>("PlatformPropellorRenderer");
+	PropellorRenderer->SetupAttachment(Root);
+
+	Collider = CreateDefaultSubObject<UCollision>("FlowerPlatformCollider");
 	Collider->SetupAttachment(Root);
 }
 
@@ -32,3 +38,17 @@ void AFlowerPlatform::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 }
 
+void AFlowerPlatform::RendererInit()
+{
+
+}
+
+void AFlowerPlatform::ColliderInit()
+{
+
+}
+
+void AFlowerPlatform::AnimationInit()
+{
+
+}

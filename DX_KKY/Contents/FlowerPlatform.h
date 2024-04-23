@@ -23,10 +23,17 @@ public:
 protected:
 
 private:
-	UCollision* Collider = nullptr;
-	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
+	UCollision* Collider = nullptr;
+	USpriteRenderer* PlatformRenderer = nullptr;
+	USpriteRenderer* ShadowRenderer = nullptr;
+	USpriteRenderer* PropellorRenderer = nullptr;
 	
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void RendererInit();
+	void ColliderInit();
+	void AnimationInit();
+
 };
