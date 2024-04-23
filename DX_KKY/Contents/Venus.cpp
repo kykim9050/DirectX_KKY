@@ -4,6 +4,7 @@
 
 AVenus::AVenus()
 {
+	SetHp(2);
 }
 
 AVenus::~AVenus()

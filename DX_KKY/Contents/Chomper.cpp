@@ -5,6 +5,7 @@
 
 AChomper::AChomper()
 {
+	SetHp(2);
 }
 
 AChomper::~AChomper()

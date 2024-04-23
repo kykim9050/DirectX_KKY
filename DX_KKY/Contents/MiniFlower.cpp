@@ -5,6 +5,7 @@
 
 AMiniFlower::AMiniFlower()
 {
+	SetHp(5);
 }
 
 AMiniFlower::~AMiniFlower()
@@ -34,6 +35,7 @@ void AMiniFlower::StateInit()
 	State.CreateState(FlowerBossState::MiniFlower_Rise);
 	State.CreateState(FlowerBossState::MiniFlower_Fly);
 	State.CreateState(FlowerBossState::MiniFlower_Spit);
+	State.CreateState(FlowerBossState::MiniFlower_Death);
 
 	State.SetStartFunction(FlowerBossState::MiniFlower_Spawn, [this]()
 		{
@@ -54,12 +56,18 @@ void AMiniFlower::StateInit()
 		{
 			ChangeAnimation(FlowerBossAniName::MiniFlower_Spit);
 		});
+	State.SetStartFunction(FlowerBossState::MiniFlower_Death, [this]()
+		{
+			SetSpeedVec(float4::Zero);
+			ChangeAnimation(FlowerBossAniName::MiniFlower_Death);
+		});
 
 
 	State.SetUpdateFunction(FlowerBossState::MiniFlower_Spawn, [this](float) {});
 	State.SetUpdateFunction(FlowerBossState::MiniFlower_Rise, std::bind(&AMiniFlower::Rising, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::MiniFlower_Fly, std::bind(&AMiniFlower::Flying, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::MiniFlower_Spit, [this](float) {});
+	State.SetUpdateFunction(FlowerBossState::MiniFlower_Death, [this](float) {});
 
 	State.SetEndFunction(FlowerBossState::MiniFlower_Rise, [this]() {
 		SetJumpVec(float4::Zero);
@@ -78,12 +86,13 @@ void AMiniFlower::RendererInit()
 {
 	SetRendererAutoSize();
 	SetRendererOrder(ERenderingOrder::Monster1);
-	//SetRendererPivot(EPivot::BOT);
 }
 
 void AMiniFlower::ColliderInit()
 {
-
+	SetColScale(float4(64.0f, 64.0f, 1.0f));
+	SetColGroup(ECollisionGroup::Monster);
+	SetColType(ECollisionType::Rect);
 }
 
 void AMiniFlower::AnimationInit()
@@ -105,11 +114,15 @@ void AMiniFlower::AnimationInit()
 		});
 	SetRendererFrameCallback(FlowerBossAniName::MiniFlower_Spit, 17, [this]()
 		{
-			ChangeAnimation(FlowerBossState::MiniFlower_RevSpit);
+			ChangeAnimation(FlowerBossAniName::MiniFlower_RevSpit);
 		});
 	SetRendererFrameCallback(FlowerBossAniName::MiniFlower_RevSpit, 17, [this]()
 		{
 			State.ChangeState(FlowerBossState::MiniFlower_Fly);
+		});
+	SetRendererFrameCallback(FlowerBossAniName::MiniFlower_Death, 16, [this]()
+		{
+			Destroy();
 		});
 }
 
@@ -129,6 +142,12 @@ void AMiniFlower::Rising(float _DeltaTime)
 
 void AMiniFlower::Flying(float _DeltaTime)
 {
+	if (0 >= GetHp())
+	{
+		State.ChangeState(FlowerBossState::MiniFlower_Death);
+		return;
+	}
+
 	SpitDelay -= _DeltaTime;
 
 	if (0.0f >= SpitDelay)
