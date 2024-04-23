@@ -108,7 +108,7 @@ void ACagneyCarnation::CreateObjectSpawnEffect()
 void ACagneyCarnation::CreateBoomerang()
 {
 	ABoomerang* NewBoomerang = GetWorld()->SpawnActor<ABoomerang>("CreateEffect").get();
-	NewBoomerang->SetActorLocation(GColliderPosInfo::AcornInitPos[2]);
+	NewBoomerang->SetActorLocation(GRendererPos::FlowerBoss_BoomarangInitPos);
 	NewBoomerang->DelayCallBack(1.0f, [NewBoomerang]()
 		{
 			NewBoomerang->Throw();

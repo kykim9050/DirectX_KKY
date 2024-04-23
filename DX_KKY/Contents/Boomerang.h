@@ -27,6 +27,8 @@ protected:
 
 private:
 	UStateManager State;
+	float4 ThrowingDir = float4::Left;
+	float ThrowingSpeed = 500.0f;
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -35,5 +37,7 @@ private:
 	void RendererInit() override;
 	void ColliderInit() override;
 	void AnimationInit() override;
+
+	void Throwing(float _DeltaTime);
 };
 
