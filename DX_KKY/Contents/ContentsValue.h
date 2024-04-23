@@ -90,6 +90,9 @@ namespace FlowerBossAniName
 	const std::string FlowerP2_Intro5 = "FlowerP2_Intro5";
 
 	const std::string FlowerP2_Idle = "FlowerP2_Idle";
+
+	const std::string PlatformShadow = "PlatformShadow";
+	const std::string PlatformPropeller = "PlatformPropeller";
 }
 
 namespace FlowerBossState

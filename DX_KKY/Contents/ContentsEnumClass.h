@@ -13,6 +13,7 @@ enum class EActorType
 	Bullet,
 	FX,
 	BossMonster,
+	Object,
 };
 
 enum class ERenderingOrder
@@ -24,7 +25,8 @@ enum class ERenderingOrder
 	BackLayer1,
 	Animation,
 	StaticObject,
-	Object,
+	Object2,
+	Object1,
 	Monster2,
 	Monster1,
 	BossMonsterBackFX1,
