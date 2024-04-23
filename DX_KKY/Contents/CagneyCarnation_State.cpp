@@ -48,6 +48,10 @@ void ACagneyCarnation::StateCreate()
 	State.CreateState(FlowerBossState::CreateObject_ReleaseIdle);
 	State.CreateState(FlowerBossState::CreateObject_ReleaseRev);
 	InsertAttackPattern(EAttackPattern::CreateObject, FlowerBossState::CreateObject_Begin);
+
+	// Phase2 Intro
+	State.CreateState(FlowerBossState::Phase2Intro);
+
 }
 
 void ACagneyCarnation::StartFunctionSet()
@@ -164,6 +168,11 @@ void ACagneyCarnation::StartFunctionSet()
 		});
 
 
+	// Phase2 Intro
+	State.SetStartFunction(FlowerBossState::Phase2Intro, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro1);
+		});
 }
 
 void ACagneyCarnation::UpdateFunctionSet()
@@ -194,6 +203,10 @@ void ACagneyCarnation::UpdateFunctionSet()
 	State.SetUpdateFunction(FlowerBossState::CreateObject_ReleaseIdle, std::bind(&ACagneyCarnation::CreateObject_ReleaseIdle, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::CreateObject_ReleaseRev, [this](float) {});
 	State.SetUpdateFunction(FlowerBossState::CreateObject_End, [this](float) {});
+
+	// Phase2 Intro
+	State.SetUpdateFunction(FlowerBossState::Phase2Intro, [this](float) {});
+
 }
 
 void ACagneyCarnation::EndFunctionSet()
@@ -206,6 +219,19 @@ void ACagneyCarnation::EndFunctionSet()
 
 void ACagneyCarnation::Idle(float _DeltaTime)
 {
+	if (Phase2StartHP >= GetHp())
+	{
+		P2ChangeDelay -= _DeltaTime;
+
+		if (0.0f >= P2ChangeDelay)
+		{
+			State.ChangeState(FlowerBossState::Phase2Intro);
+			return;
+		}
+
+		return;
+	}
+
 	P1_ChangeDelay -= _DeltaTime;
 
 	if (0.0f >= P1_ChangeDelay)
