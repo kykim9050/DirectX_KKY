@@ -118,7 +118,9 @@ private:
 
 	void ColliderInit();
 	void CollisionCheck();
-	void HeadCollisionCheck();
+
+	void CreateAcorn();
+	void CreateObjectSpawnEffect();
 
 private:
 	inline void GetHit(int _DmgVal)
