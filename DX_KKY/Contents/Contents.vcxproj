@@ -237,6 +237,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FlowerPlatform.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FXBase.h">
       <SubType>
       </SubType>
@@ -386,6 +390,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FlowerLevelMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FlowerPlatform.cpp">
       <SubType>
       </SubType>
     </ClCompile>
