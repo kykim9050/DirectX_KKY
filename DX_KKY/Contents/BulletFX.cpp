@@ -32,6 +32,8 @@ void ABulletFX::BeginPlay()
 void ABulletFX::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	State.Update(_DeltaTime);
 }
 
 void ABulletFX::StateInit()

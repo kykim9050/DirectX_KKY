@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 
 #include "Acorn.h"
+#include "FXUnit.h"
 
 AAcorn::AAcorn()
 {
@@ -41,6 +42,20 @@ void AAcorn::StateInit()
 		});
 	State.SetStartFunction(FlowerBossState::Acorn_Fly, [this]()
 		{
+			AFXUnit* FlyEffect = GetWorld()->SpawnActor<AFXUnit>("FlyEffect").get();
+			FlyEffect->CreateAnimation(FAniInfo(FlowerBossAniName::Acorn_Effect, GSpriteName::Acorn_Effect, 0.0416f), false);
+			FlyEffect->SetRendererFrameCallback(FlowerBossAniName::Acorn_Effect, 8, [FlyEffect]()
+				{
+					FlyEffect->Destroy();
+				});
+			FlyEffect->SetActorLocation(GetActorLocation());
+			FlyEffect->SetRendererAutoSize();
+			FlyEffect->SetRendererOrder(ERenderingOrder::MonsterBulletFX);
+			// Pivot Left로 바꾸어 주어야 함
+			//FlyEffect->SetRendererPivot(EPivot::RIGHT);
+			FlyEffect->ChangeAnimation(FlowerBossAniName::Acorn_Effect);
+
+
 			BoundaryValue = GEngine->EngineWindow.GetWindowScale();
 
 			float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
@@ -51,7 +66,8 @@ void AAcorn::StateInit()
 			SetSpeedVec(ResVelocity);
 
 			float Theta = UMath::GetInst().DirectionToDeg(TargetDir);
-			SetActorRotation(float4(0.0f, 0.0f, Theta + 180));
+			SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
+			FlyEffect->SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
 
 			ChangeAnimation(FlowerBossAniName::Acorn_Fly);
 		});

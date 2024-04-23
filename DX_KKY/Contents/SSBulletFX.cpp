@@ -33,6 +33,8 @@ void ASSBulletFX::BeginPlay()
 void ASSBulletFX::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	State.Update(_DeltaTime);
 }
 
 void ASSBulletFX::StateInit()
