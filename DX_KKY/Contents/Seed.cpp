@@ -238,7 +238,6 @@ void ASeed::CreateChomper()
 	std::shared_ptr<AChomper> Chomper = GetWorld()->SpawnActor<AChomper>("Chomper");
 	Chomper->SetActorLocation(GetActorLocation());
 	Chomper->SetColPosition(float4(0.0f, GColliderScale::Chomper_ColScale.hY(), 0.0f));
-	Chomper->SetHp(2);
 }
 
 void ASeed::CreateVenus()
@@ -252,7 +251,6 @@ void ASeed::CreateVenus()
 	Venus->SetActorLocation(InitPos);
 	Venus->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
 	Venus->SetColPosition(float4(0.0f, GColliderScale::Venus_ColScale.hY(), 0.0f));
-	Venus->SetHp(2);
 }
 
 void ASeed::CreateMiniFlower()

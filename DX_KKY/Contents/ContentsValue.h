@@ -103,7 +103,6 @@ namespace FlowerBossState
 	const std::string MiniFlower_Rise = "MiniFlower_Rise";
 	const std::string MiniFlower_Death = "MiniFlower_Death";
 	const std::string MiniFlower_Spit = "MiniFlower_Spit";
-	const std::string MiniFlower_RevSpit = "MiniFlower_RevSpit";
 }
 
 namespace FlowerBossStageValue
