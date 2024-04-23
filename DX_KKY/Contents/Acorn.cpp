@@ -32,6 +32,7 @@ void AAcorn::StateInit()
 	State.CreateState(FlowerBossState::Acorn_Init);
 	State.CreateState(FlowerBossState::Acorn_Spawn);
 	State.CreateState(FlowerBossState::Acorn_Fly);
+	State.CreateState(FlowerBossState::Acorn_Death);
 
 	State.SetStartFunction(FlowerBossState::Acorn_Init, []() {});
 	State.SetStartFunction(FlowerBossState::Acorn_Spawn, [this]()
@@ -40,6 +41,8 @@ void AAcorn::StateInit()
 		});
 	State.SetStartFunction(FlowerBossState::Acorn_Fly, [this]()
 		{
+			BoundaryValue = GEngine->EngineWindow.GetWindowScale();
+
 			float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
 			float4 BulletPos = GetActorLocation();
 			float4 TargetDir = (PlayerPos - BulletPos).Normalize2DReturn();
@@ -52,6 +55,10 @@ void AAcorn::StateInit()
 
 			ChangeAnimation(FlowerBossAniName::Acorn_Fly);
 		});
+	State.SetStartFunction(FlowerBossState::Acorn_Death, [this]()
+		{
+			ChangeAnimation(FlowerBossAniName::Acorn_Death);
+		});
 	
 
 
@@ -62,7 +69,7 @@ void AAcorn::StateInit()
 		});
 	State.SetUpdateFunction(FlowerBossState::Acorn_Spawn, [](float) {});
 	State.SetUpdateFunction(FlowerBossState::Acorn_Fly, std::bind(&AAcorn::Flying, this, std::placeholders::_1));
-
+	State.SetUpdateFunction(FlowerBossState::Acorn_Death, [](float) {});
 
 	State.ChangeState(FlowerBossState::Acorn_Init);
 }
@@ -85,9 +92,20 @@ void AAcorn::AnimationInit()
 	CreateAnimation(FAniInfo(FlowerBossAniName::Acorn_Spawn, GSpriteName::Acorn_Spawn, 0.034f));
 	CreateAnimation(FAniInfo(FlowerBossAniName::Acorn_Fly, GSpriteName::Acorn_Fly, 0.034f));
 	CreateAnimation(FAniInfo(FlowerBossAniName::Acorn_Death, GSpriteName::Acorn_Death, 0.0416f), false);
+
+	SetRendererFrameCallback(FlowerBossAniName::Acorn_Death, 9, [this]()
+		{
+			Destroy();
+		});
 }
 
 void AAcorn::Flying(float _DeltaTime)
 {
+	if (BoundaryCheck(BoundaryValue))
+	{
+		State.ChangeState(FlowerBossState::Acorn_Death);
+		return;
+	}
+	
 	ResultMovementUpdate(_DeltaTime);
 }

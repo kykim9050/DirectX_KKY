@@ -154,6 +154,8 @@ void ACagneyCarnation::StartFunctionSet()
 		});
 	State.SetStartFunction(FlowerBossState::CreateObject_ReleaseIdle, [this]()
 		{
+			// 생성된 CreateObject의 종류에 따라서 활성화 시키는 대상이 다르게 만든다.
+
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseIdle);
 		});
 	State.SetStartFunction(FlowerBossState::CreateObject_ReleaseRev, [this]()
@@ -200,7 +202,6 @@ void ACagneyCarnation::EndFunctionSet()
 		{
 			MissileLaunchTIme = 0.0f;
 		});
-
 }
 
 void ACagneyCarnation::Idle(float _DeltaTime)
@@ -299,13 +300,6 @@ void ACagneyCarnation::CreateObject_Idle(float _DeltaTime)
 
 void ACagneyCarnation::CreateObject_ReleaseIdle(float _DeltaTime)
 {
-	// Idle 시간은 추후에 도토리 , 부메랑에 따라서 다르게 적용하기
-	
-	for (int i = 0; i < AcornNum; i++)
-	{
-		Acorns[i]->Shoot();
-	}
-
 	CreateObjectReleaseTime -= _DeltaTime;
 
 	if (0.0f >= CreateObjectReleaseTime)

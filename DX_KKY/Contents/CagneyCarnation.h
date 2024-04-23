@@ -80,8 +80,7 @@ private:
 	float MissileLaunchTIme = 0.0f;
 	float MissileLaunchTImeValue = 0.3f;
 
-	// 积己等 Acorn
-	std::vector<AAcorn*> Acorns = std::vector<AAcorn*>();
+	// Acorn 包访
 	const int AcornNum = 3;
 
 private:
