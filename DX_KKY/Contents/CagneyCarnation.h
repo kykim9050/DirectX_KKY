@@ -88,6 +88,7 @@ private:
 
 	int Phase2StartHP = 100;
 	float P2ChangeDelay = 0.5f;
+	float P2ChangingDelay = 1.0f;
 
 private:
 	void BeginPlay() override;
@@ -111,6 +112,8 @@ private:
 	void Gatling_Idle(float _DeltaTime);
 	void CreateObject_Idle(float _DeltaTime);
 	void CreateObject_ReleaseIdle(float _DeltaTime);
+	void Phase2Intro_1(float _DeltaTime);
+	void Phase2Intro_2(float _DeltaTime);
 
 	void ColliderInit();
 	void CollisionCheck();

@@ -139,7 +139,8 @@ namespace FlowerBossState
 	const std::string Boomerang_Throw = "Boomerang_Throw";
 	const std::string Boomerang_ComeBack = "Boomerang_ComeBack";
 
-	const std::string Phase2Intro = "Phase2Intro";
+	const std::string Phase2Intro_1 = "Phase2Intro";
+	const std::string Phase2Intro_2 = "Phase2Intro_2";
 }
 
 namespace FlowerBossStageValue

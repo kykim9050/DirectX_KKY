@@ -139,4 +139,8 @@ void ACagneyCarnation::SetAnimationCallback()
 		{
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro2);
 		});
+	Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro3, 10, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro4);
+		});
 }
