@@ -141,6 +141,8 @@ namespace GColliderScale
 
 	const float4 Chomper_ColScale = float4(48.0f, 64.0f, 1.0f);
 	const float4 Venus_ColScale = float4(48.0f, 48.0f, 1.0f);
+
+	const float4 Acorn_ColScale = float4(32.0f, 32.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
