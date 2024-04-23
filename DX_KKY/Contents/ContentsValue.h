@@ -141,6 +141,9 @@ namespace FlowerBossState
 
 	const std::string Phase2Intro_1 = "Phase2Intro";
 	const std::string Phase2Intro_2 = "Phase2Intro_2";
+	const std::string Phase2Intro_3 = "Phase2Intro_3";
+
+	const std::string Phase2_Idle = "Phase2_Idle";
 }
 
 namespace FlowerBossStageValue

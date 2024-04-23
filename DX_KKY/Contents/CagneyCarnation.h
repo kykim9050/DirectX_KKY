@@ -114,6 +114,7 @@ private:
 	void CreateObject_ReleaseIdle(float _DeltaTime);
 	void Phase2Intro_1(float _DeltaTime);
 	void Phase2Intro_2(float _DeltaTime);
+	void Phase2_Idle(float _DeltaTime);
 
 	void ColliderInit();
 	void CollisionCheck();
