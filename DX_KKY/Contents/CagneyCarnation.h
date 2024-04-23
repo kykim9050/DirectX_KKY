@@ -121,6 +121,7 @@ private:
 
 	void CreateAcorn();
 	void CreateObjectSpawnEffect();
+	void CreateBoomerang();
 
 private:
 	inline void GetHit(int _DmgVal)

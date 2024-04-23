@@ -105,18 +105,20 @@ void ACagneyCarnation::SetAnimationCallback()
 			{
 			case 0:
 			{
-				KindOfObject = EKindOfCreateObj::Boomerang;
+				CreateBoomerang();
+				//KindOfObject = EKindOfCreateObj::Boomerang;
+
 				CreateObjectDelay = 2.0f;
 				CreateObjectDelayInit = 2.0f;
 				break;
 			}
 			case 1:
 			{
-				KindOfObject = EKindOfCreateObj::Acorn;
+				CreateAcorn();
+				//KindOfObject = EKindOfCreateObj::Acorn;
 				CreateObjectDelay = 3.0f;
 				CreateObjectDelayInit = 3.0f;
 
-				CreateAcorn();
 				break;
 			}
 			default:

@@ -189,6 +189,9 @@
     <ClInclude Include="Acorn.h">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Boomerang.h">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -318,6 +321,9 @@
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="Acorn.cpp">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Boomerang.cpp">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
