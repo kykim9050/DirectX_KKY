@@ -1,9 +1,6 @@
 #include "PreCompile.h"
 
 #include "CagneyCarnation.h"
-#include "Acorn.h"
-#include "FXUnit.h"
-
 
 void ACagneyCarnation::AnimationInit()
 {
@@ -119,18 +116,7 @@ void ACagneyCarnation::SetAnimationCallback()
 				CreateObjectDelay = 3.0f;
 				CreateObjectDelayInit = 3.0f;
 
-				for (int i = 0; i < AcornNum; i++)
-				{
-					AAcorn* NewAcorn = GetWorld()->SpawnActor<AAcorn>("Acorn").get();
-
-					//Acorns.push_back(NewAcorn);
-					NewAcorn->SetActorLocation(GColliderPosInfo::AcornInitPos[i]);
-					NewAcorn->DelayCallBack(1.0f + 0.5f * i, [NewAcorn]()
-						{
-							NewAcorn->Shoot();
-						});
-				}
-
+				CreateAcorn();
 				break;
 			}
 			default:
@@ -138,19 +124,6 @@ void ACagneyCarnation::SetAnimationCallback()
 				return;
 			}
 
-
-		
-			// 부메랑이던지 도토리 미사일이던지 전부다 적용되는 효과
-			AFXUnit* CreateEffect = GetWorld()->SpawnActor<AFXUnit>("CreateEffect").get();
-			CreateEffect->CreateAnimation(FAniInfo(FlowerBossAniName::Flower_CreateObject_Effect, GSpriteName::Flower_CreateObject_Effect, 0.033f), false);
-			CreateEffect->SetRendererFrameCallback(FlowerBossAniName::Flower_CreateObject_Effect, 15, [CreateEffect]()
-				{
-					CreateEffect->Destroy();
-				});
-			CreateEffect->SetActorLocation(GColliderPosInfo::AcornInitPos[2]);
-			CreateEffect->SetRendererAutoSize();
-			CreateEffect->SetRendererOrder(ERenderingOrder::MonsterBulletFX);
-			CreateEffect->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_Effect);
-		
+			CreateObjectSpawnEffect();
 		});
 }
