@@ -688,6 +688,8 @@ void APlayer::TreadableCheck()
 				return;
 			}
 
+			Platform->PressedOver();
+
 			SetOnTreadableObject(false);
 			return;
 		});
@@ -701,6 +703,8 @@ void APlayer::TreadableCheck()
 				MsgBoxAssert("충돌 대상이 Platform가 아닙니다.");
 				return;
 			}
+
+			Platform->SetPressed();
 
 			SetJumpVec(float4::Zero);
 			SetGravityVec(float4::Zero);
