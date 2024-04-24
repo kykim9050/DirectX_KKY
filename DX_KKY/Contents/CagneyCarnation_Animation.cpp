@@ -60,99 +60,110 @@ void ACagneyCarnation::CreateAnimation()
 
 void ACagneyCarnation::SetAnimationCallback()
 {
-	// Intro
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_Intro, 38, [this]()
-		{
-			State.ChangeState(FlowerBossState::Idle);
-		});
-
-	// Face Attack High
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackHigh_Begin, 28, [this]()
-		{
-			State.ChangeState(FlowerBossState::FaceAttackHigh_Idle);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackHigh_End, 5, [this]()
-		{
-			State.ChangeState(FlowerBossState::Idle);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackLow_Begin, 28, [this]()
-		{
-			State.ChangeState(FlowerBossState::FaceAttackLow_Idle);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackLow_End, 6, [this]()
-		{
-			AddActorLocation(FVector(0.0f, 110.f, 0.0f));
-			FaceAttLowCollider->AddPosition(FVector(0.0f, -110.f, 0.0f));
-			State.ChangeState(FlowerBossState::Idle);
-		});
-
-	// Gatling
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_Gatling_Begin, 7, [this]()
-		{
-			State.ChangeState(FlowerBossState::Gatling_Idle);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_Gatling_End, 7, [this]()
-		{
-			State.ChangeState(FlowerBossState::Idle);
-		});
-
-	// Create Obecjt
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Begin, 10, [this]()
-		{
-			State.ChangeState(FlowerBossState::CreateObject_Idle);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 7, [this]()
-		{
-			State.ChangeState(FlowerBossState::CreateObject_ReleaseIdle);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_ReleaseRev, 7, [this]()
-		{
-			State.ChangeState(FlowerBossState::CreateObject_Idle);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_End, 5, [this]()
-		{
-			State.ChangeState(FlowerBossState::Idle);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 3, [this]()
-		{
-			int Case = UMath::GetInst().RandomReturnInt(0, 1);
-
-			switch (Case)
+	// BottomIvyRenderer
+	{
+		BottomIvyRenderer->SetFrameCallback(FlowerBossAniName::BottomIvy_Spawn, 21, [this]()
 			{
-			case 0:
+				BottomIvyRenderer->ChangeAnimation(FlowerBossAniName::BottomIvy_Idle);
+			});
+	}
+
+	// Main Renderer
+	{
+		// Intro
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_Intro, 38, [this]()
 			{
-				CreateBoomerang();
-				CreateObjectDelay = 0.5f;
-				CreateObjectDelayInit = 0.5f;
-				break;
-			}
-			case 1:
+				State.ChangeState(FlowerBossState::Idle);
+			});
+
+		// Face Attack High
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackHigh_Begin, 28, [this]()
 			{
-				CreateAcorn();
-				CreateObjectDelay = 1.5f;
-				CreateObjectDelayInit = 1.5f;
+				State.ChangeState(FlowerBossState::FaceAttackHigh_Idle);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackHigh_End, 5, [this]()
+			{
+				State.ChangeState(FlowerBossState::Idle);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackLow_Begin, 28, [this]()
+			{
+				State.ChangeState(FlowerBossState::FaceAttackLow_Idle);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_FaceAttackLow_End, 6, [this]()
+			{
+				AddActorLocation(FVector(0.0f, 110.f, 0.0f));
+				FaceAttLowCollider->AddPosition(FVector(0.0f, -110.f, 0.0f));
+				State.ChangeState(FlowerBossState::Idle);
+			});
 
-				break;
-			}
-			default:
-				MsgBoxAssert("나올 수 없는 int형 랜덤 정수 입니다." + std::to_string(Case));
-				return;
-			}
+		// Gatling
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_Gatling_Begin, 7, [this]()
+			{
+				State.ChangeState(FlowerBossState::Gatling_Idle);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_Gatling_End, 7, [this]()
+			{
+				State.ChangeState(FlowerBossState::Idle);
+			});
 
-			CreateObjectSpawnEffect();
-		});
+		// Create Obecjt
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Begin, 10, [this]()
+			{
+				State.ChangeState(FlowerBossState::CreateObject_Idle);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 7, [this]()
+			{
+				State.ChangeState(FlowerBossState::CreateObject_ReleaseIdle);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_ReleaseRev, 7, [this]()
+			{
+				State.ChangeState(FlowerBossState::CreateObject_Idle);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_End, 5, [this]()
+			{
+				State.ChangeState(FlowerBossState::Idle);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 3, [this]()
+			{
+				int Case = UMath::GetInst().RandomReturnInt(0, 1);
 
-	// Phase2 Intro
-	Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro1, 5, [this]()
-		{
-			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro2);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro3, 10, [this]()
-		{
-			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro4);
-		});
-	Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro5, 17, [this]()
-		{
-			State.ChangeState(FlowerBossState::Phase2_Idle);
-		});
+				switch (Case)
+				{
+				case 0:
+				{
+					CreateBoomerang();
+					CreateObjectDelay = 0.5f;
+					CreateObjectDelayInit = 0.5f;
+					break;
+				}
+				case 1:
+				{
+					CreateAcorn();
+					CreateObjectDelay = 1.5f;
+					CreateObjectDelayInit = 1.5f;
+
+					break;
+				}
+				default:
+					MsgBoxAssert("나올 수 없는 int형 랜덤 정수 입니다." + std::to_string(Case));
+					return;
+				}
+
+				CreateObjectSpawnEffect();
+			});
+
+		// Phase2 Intro
+		Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro1, 5, [this]()
+			{
+				Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro2);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro3, 10, [this]()
+			{
+				Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro4);
+			});
+		Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Intro5, 17, [this]()
+			{
+				State.ChangeState(FlowerBossState::Phase2_Idle);
+			});
+	}
 }
