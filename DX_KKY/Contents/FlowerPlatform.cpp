@@ -73,6 +73,15 @@ void AFlowerPlatform::StateInit()
 	State.CreateState(FlowerBossState::FlowerPlatform_Pressed);
 	State.CreateState(FlowerBossState::FlowerPlatform_Pause);
 
+	State.SetStartFunction(FlowerBossState::FlowerPlatform_Pressed, [this]()
+		{
+			SetSpeedVec(float4::Down * PressedSpeed);
+		});
+	State.SetStartFunction(FlowerBossState::FlowerPlatform_Floating, [this]()
+		{
+			FloatingDir = float4::Up;
+		});
+
 	State.SetUpdateFunction(FlowerBossState::FlowerPlatform_Floating, std::bind(&AFlowerPlatform::Floating, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::FlowerPlatform_Pressed, std::bind(&AFlowerPlatform::Pressed, this, std::placeholders::_1));
 	State.SetUpdateFunction(FlowerBossState::FlowerPlatform_Pause, [](float) {});
@@ -113,7 +122,6 @@ void AFlowerPlatform::Pressed(float _DeltaTime)
 		return;
 	}
 
-	SetSpeedVec(float4::Down * PressedSpeed);
 	ResultMovementUpdate(_DeltaTime);
 }
 
