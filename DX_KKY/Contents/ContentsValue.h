@@ -167,6 +167,7 @@ namespace FlowerBossStageValue
 	const float SeedInitYPos = 100.0f;
 	const float SeedFallInter = 300.0f;
 
+	const std::vector<float4> PlatformPos = { float4(160.0f, -420.0f, 0.0f), float4(430.0f, -420.0f, 0.0f) ,float4(720.0f, -420.0f, 0.0f) };
 }
 
 namespace GColliderScale

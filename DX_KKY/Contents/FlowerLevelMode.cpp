@@ -31,20 +31,11 @@ void AFlowerLevelMode::BeginPlay()
 	Camera = GetWorld()->GetMainCamera();
 	OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
-	
-	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
-	BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
+
 	MapFrontObject = GetWorld()->SpawnActor<AMapBase>("MapFrontObject", EActorType::Map);
 	Map = GetWorld()->SpawnActor<AMapBase>("Map", EActorType::Map);
 	BackGroundObject = GetWorld()->SpawnActor<AMapBase>("BackGroundObject", EActorType::Map);
 	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
-
-	{
-		Platform1 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform1", EActorType::Object);
-		Platform2 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform2", EActorType::Object);
-		Platform3 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform3", EActorType::Object);
-	}
-
 }
 
 void AFlowerLevelMode::Tick(float _DeltaTime)
@@ -57,11 +48,27 @@ void AFlowerLevelMode::LevelEnd(ULevel* _NextLevel)
 	Super::LevelEnd(_NextLevel);
 
 	UContentsValue::ColMapTexture = nullptr;
+
+	Player->Destroy();
+	Player = nullptr;
+
+	BossMonster->Destroy();
+	BossMonster = nullptr;
+
+	Platform1->Destroy();
+	Platform2->Destroy();
+	Platform3->Destroy();
+	Platform1 = nullptr;
+	Platform2 = nullptr;
+	Platform3 = nullptr;
 }
 
 void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+
+	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
+	BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
 
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
 	OldFilm->SetActorLocation(FVector{ UContentsValue::ContentsCameraInitXPos, UContentsValue::ContentsCameraInitYPos, 0.0f });
@@ -91,17 +98,22 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	UContentsValue::ColMapTexture = UEngineTexture::FindRes(ColMap->GetName());
 
 	{
+
+		Platform1 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform1", EActorType::Object);
+		Platform2 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform2", EActorType::Object);
+		Platform3 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform3", EActorType::Object);
+
 		Platform1->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform0", 0.067f));
 		Platform1->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
-		Platform1->SetActorLocation(float4(190.0f, -420.0f, 0.0f));
+		Platform1->SetActorLocation(FlowerBossStageValue::PlatformPos[0]);
 
 		Platform2->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform1", 0.067f));
 		Platform2->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
-		Platform2->SetActorLocation(float4(340.0f, -420.0f, 0.0f));
+		Platform2->SetActorLocation(FlowerBossStageValue::PlatformPos[1]);
 
 		Platform3->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f));
 		Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
-		Platform3->SetActorLocation(float4(490.0f, -420.0f, 0.0f));
+		Platform3->SetActorLocation(FlowerBossStageValue::PlatformPos[2]);
 	}
 
 
