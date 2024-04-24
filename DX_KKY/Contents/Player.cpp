@@ -675,6 +675,7 @@ void APlayer::TreadableCheck()
 			if ("Idle" != State.GetCurStateName())
 			{
 				SetOnTreadableObject(true);
+				CreateLandFX(GetActorLocation());
 				State.ChangeState("Idle");
 				return;
 			}

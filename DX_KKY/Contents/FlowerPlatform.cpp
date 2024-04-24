@@ -58,7 +58,7 @@ void AFlowerPlatform::ColliderInit()
 	Collider->SetScale(float4(150.0f, 16.0f, 1.0f));
 	Collider->SetCollisionGroup(ECollisionGroup::Platform);
 	Collider->SetCollisionType(ECollisionType::Rect);
-	Collider->SetPosition(float4(0.0f, 24.0f, 0.0f));
+	Collider->SetPosition(float4(0.0f, 16.0f, 0.0f));
 }
 
 void AFlowerPlatform::AnimationInit()
