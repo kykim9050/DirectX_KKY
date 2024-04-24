@@ -24,17 +24,17 @@ public:
 
 	inline void SetPressed()
 	{
-		State.ChangeState("Pressed");
+		State.ChangeState(FlowerBossState::FlowerPlatform_Pressed);
 		return;
 	}
 	inline void PressedOver()
 	{
-		State.ChangeState("Floating");
+		State.ChangeState(FlowerBossState::FlowerPlatform_Floating);
 		return;
 	}
 	inline bool GetIsPressed()
 	{
-		if ("Pressed" == State.GetCurStateName())
+		if (FlowerBossState::FlowerPlatform_Pressed == State.GetCurStateName())
 		{
 			return true;
 		}
@@ -52,6 +52,10 @@ private:
 	USpriteRenderer* PropellorRenderer = nullptr;
 	UStateManager State;
 	
+	float4 FloatingDir = float4::Up;
+	float FloatingSpeed = 10.0f;
+	float PressedSpeed = 50.0f;
+
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
@@ -63,6 +67,4 @@ private:
 	void Floating(float _DeltaTime);
 	void Pressed(float _DeltaTime);
 
-	float4 FloatingDir = float4::Up;
-	float FloatingSpeed = 10.0f;
 };

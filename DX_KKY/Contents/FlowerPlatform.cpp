@@ -50,39 +50,39 @@ void AFlowerPlatform::RendererInit()
 
 	PropellorRenderer->SetAutoSize(1.0f, true);
 	PropellorRenderer->SetOrder(ERenderingOrder::Object2);
-	PropellorRenderer->SetPosition(float4(5.0f, -45.0f, 0.0f));
+	PropellorRenderer->SetPosition(GRendererPos::FlowerPlatform_RelativePos);
 }
 
 void AFlowerPlatform::ColliderInit()
 {
-	Collider->SetScale(float4(150.0f, 16.0f, 1.0f));
+	Collider->SetScale(GColliderScale::FlowerPlatform_ColScale);
 	Collider->SetCollisionGroup(ECollisionGroup::Platform);
 	Collider->SetCollisionType(ECollisionType::Rect);
-	Collider->SetPosition(float4(0.0f, 16.0f, 0.0f));
+	Collider->SetPosition(GColliderPosInfo::FlowerPlatform_RelativePos);
 }
 
 void AFlowerPlatform::AnimationInit()
 {
 	//ShadowRenderer->CreateAnimation(FlowerBossAniName::PlatformShadow, "PlatformShadow", 0.067f);
-	PropellorRenderer->CreateAnimation(FlowerBossAniName::PlatformPropeller, "FlowerPlatformPropellor", 0.067f);
-	PlatformRenderer->CreateAnimation(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f);
-
 	//ShadowRenderer->ChangeAnimation(FlowerBossAniName::PlatformShadow);
+	PropellorRenderer->CreateAnimation(FlowerBossAniName::PlatformPropeller, "FlowerPlatformPropellor", 0.067f);
 	PropellorRenderer->ChangeAnimation(FlowerBossAniName::PlatformPropeller);
+
+	PlatformRenderer->CreateAnimation(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f);
 	PlatformRenderer->ChangeAnimation(FlowerBossAniName::FlowerPlatform);
 }
 
 void AFlowerPlatform::StateInit()
 {
-	State.CreateState("Floating");
-	State.CreateState("Pressed");
-	State.CreateState("Pause");
+	State.CreateState(FlowerBossState::FlowerPlatform_Floating);
+	State.CreateState(FlowerBossState::FlowerPlatform_Pressed);
+	State.CreateState(FlowerBossState::FlowerPlatform_Pause);
 
-	State.SetUpdateFunction("Floating", std::bind(&AFlowerPlatform::Floating, this, std::placeholders::_1));
-	State.SetUpdateFunction("Pressed", std::bind(&AFlowerPlatform::Pressed, this, std::placeholders::_1));
-	State.SetUpdateFunction("Pause", [](float) {});
+	State.SetUpdateFunction(FlowerBossState::FlowerPlatform_Floating, std::bind(&AFlowerPlatform::Floating, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::FlowerPlatform_Pressed, std::bind(&AFlowerPlatform::Pressed, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::FlowerPlatform_Pause, [](float) {});
 
-	State.ChangeState("Floating");
+	State.ChangeState(FlowerBossState::FlowerPlatform_Floating);
 }
 
 void AFlowerPlatform::Floating(float _DeltaTime)
@@ -90,12 +90,12 @@ void AFlowerPlatform::Floating(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y *= -1;
 
-	if (Pos.Y <= 400.0f)
+	if (Pos.Y <= GBoundaryPos::FlowerPlatform_BoundaryYPos[0])
 	{
 		AddActorLocation(float4::Down);
 		FloatingDir = float4::Down;
 	}
-	else if (Pos.Y >= 450.0f)
+	else if (Pos.Y >= GBoundaryPos::FlowerPlatform_BoundaryYPos[1])
 	{
 		AddActorLocation(float4::Up);
 		FloatingDir = float4::Up;
@@ -111,13 +111,13 @@ void AFlowerPlatform::Pressed(float _DeltaTime)
 	float4 Pos = GetActorLocation();
 	Pos.Y *= -1;
 
-	if (Pos.Y >= 450.0f)
+	if (Pos.Y >= GBoundaryPos::FlowerPlatform_BoundaryYPos[1])
 	{
 		SetSpeedVec(float4::Zero);
-		State.ChangeState("Pause");
+		State.ChangeState(FlowerBossState::FlowerPlatform_Pause);
 		return;
 	}
 
-	SetSpeedVec(float4::Down * 50.0f);
+	SetSpeedVec(float4::Down * PressedSpeed);
 	ResultMovementUpdate(_DeltaTime);
 }

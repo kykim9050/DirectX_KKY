@@ -148,6 +148,10 @@ namespace FlowerBossState
 	const std::string Phase2Intro_3 = "Phase2Intro_3";
 
 	const std::string Phase2_Idle = "Phase2_Idle";
+
+	const std::string FlowerPlatform_Floating = "FlowerPlatform_Floating";
+	const std::string FlowerPlatform_Pressed = "FlowerPlatform_Pressed";
+	const std::string FlowerPlatform_Pause = "FlowerPlatform_Pause";
 }
 
 namespace FlowerBossStageValue
@@ -176,6 +180,8 @@ namespace GColliderScale
 	const float4 Acorn_ColScale = float4(32.0f, 32.0f, 1.0f);
 
 	const float4 Boomerang_ColScale = float4(150.0f, 64.0f, 1.0f);
+
+	const float4 FlowerPlatform_ColScale = float4(150.0f, 16.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
@@ -186,7 +192,7 @@ namespace GColliderPosInfo
 
 	const std::vector<float4> AcornInitPos = { {950.0f, -190.0f, 0.0f}, {950.0f, -390.0f, 0.0f}, {950.0f, -290.0f, 0.0f } };
 
-
+	const float4 FlowerPlatform_RelativePos = float4(0.0f, 16.0f, 0.0f);
 }
 
 namespace GRendererPos
@@ -194,6 +200,13 @@ namespace GRendererPos
 	const float4 FlowerBoss_MissileInitPos = float4(1070.f, -100.f, 0.0f);
 
 	const float4 FlowerBoss_BoomarangInitPos = float4(950.0f, -290.0f, 0.0f);
+
+	const float4 FlowerPlatform_RelativePos = float4(5.0f, -45.0f, 0.0f);
+}
+
+namespace GBoundaryPos
+{
+	const std::vector<float> FlowerPlatform_BoundaryYPos = { {400.0f}, {450.0f} };
 }
 
 
