@@ -4,6 +4,8 @@
 // Ό³Έν :
 class UEngineRandom;
 
+
+class APlatformShadow;
 class AFlowerPlatform;
 class UCamera;
 class AOldFilmEffect;
@@ -45,7 +47,10 @@ private:
 	std::shared_ptr<AFlowerPlatform> Platform1;
 	std::shared_ptr<AFlowerPlatform> Platform2;
 	std::shared_ptr<AFlowerPlatform> Platform3;
+	std::vector<std::shared_ptr<APlatformShadow>> Shadows;
 
 	std::shared_ptr<UEngineRandom> Random;
+
+	int ShadowNum = 3;
 };
 

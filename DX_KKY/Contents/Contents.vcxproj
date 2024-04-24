@@ -273,6 +273,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlatformShadow.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h">
       <SubType>
@@ -426,6 +430,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="OldFilmEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlatformShadow.cpp">
       <SubType>
       </SubType>
     </ClCompile>
