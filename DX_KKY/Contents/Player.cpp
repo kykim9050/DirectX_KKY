@@ -186,6 +186,11 @@ void APlayer::MakeDebugMSG()
 		std::string Msg = std::format("GravityVal : {}\n", std::to_string(GetGravityVec().Y));
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
+
+	{
+		std::string Msg = std::format("OnTreadableObjectValue : {}\n", std::to_string(GetOnTreadableObject()));
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
 }
 
 std::string APlayer::ChangeStringName(const std::string& _MainName)
@@ -673,6 +678,19 @@ void APlayer::TreadableCheck()
 			}
 		});
 
+	FootCollider->CollisionExit(ECollisionGroup::Platform, [this](std::shared_ptr<UCollision> _Collision)
+		{
+			AFlowerPlatform* Platform = dynamic_cast<AFlowerPlatform*>(_Collision->GetActor());
+
+			if (nullptr == Platform)
+			{
+				MsgBoxAssert("충돌 대상이 Platform가 아닙니다.");
+				return;
+			}
+
+			SetOnTreadableObject(false);
+			return;
+		});
 
 	FootCollider->CollisionStay(ECollisionGroup::Platform, [this](std::shared_ptr<UCollision> _Collision)
 		{
@@ -687,6 +705,8 @@ void APlayer::TreadableCheck()
 			SetJumpVec(float4::Zero);
 			SetGravityVec(float4::Zero);
 		});
+
+	
 }
 
 bool APlayer::FallDownCheck(float4 _Pos)
@@ -696,13 +716,10 @@ bool APlayer::FallDownCheck(float4 _Pos)
 	Pos.Y = -Pos.Y;
 
 	if (false == PixelCheck(Pos, Color8Bit::Black)
-		&& false == PixelCheck(Pos, Color8Bit::Blue))
+		&& false == PixelCheck(Pos, Color8Bit::Blue)
+		&& false == GetOnTreadableObject()
+		)
 	{
-		//bool TestValue = FootCollider->CollisionStay(ECollisionGroup::Platform, [this](std::shared_ptr<UCollision> _Collision)
-		//	{
-		//		int a = 0;
-		//	});
-
 		State.ChangeState("FallDown");
 		return true;
 	}
