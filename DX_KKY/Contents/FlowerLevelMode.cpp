@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "MapBase.h"
 #include "CagneyCarnation.h"
+#include "FlowerPlatform.h"
 
 //
 
@@ -37,6 +38,10 @@ void AFlowerLevelMode::BeginPlay()
 	Map = GetWorld()->SpawnActor<AMapBase>("Map", EActorType::Map);
 	BackGroundObject = GetWorld()->SpawnActor<AMapBase>("BackGroundObject", EActorType::Map);
 	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
+
+	{
+		Platform = GetWorld()->SpawnActor<AFlowerPlatform>("Platform ", EActorType::Object);
+	}
 
 }
 
@@ -82,4 +87,10 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	ColMap->SetActorLocation(FVector(640.0f, -360.0f, 400.0f));
 	ColMap->SetOrdering(ERenderingOrder::CollisionLayer);
 	UContentsValue::ColMapTexture = UEngineTexture::FindRes(ColMap->GetName());
+
+	{
+		Platform->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
+	}
+
+
 }

@@ -4,6 +4,7 @@
 // Ό³Έν :
 class UEngineRandom;
 
+class AFlowerPlatform;
 class UCamera;
 class AOldFilmEffect;
 class APlayer;
@@ -42,5 +43,8 @@ private:
 	std::shared_ptr<AMapBase> ColMap;
 
 	std::shared_ptr<UEngineRandom> Random;
+
+
+	std::shared_ptr<AFlowerPlatform> Platform;
 };
 
