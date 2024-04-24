@@ -1,5 +1,7 @@
 #pragma once
 #include "MoveUnit.h"
+#include <EngineCore/StateManager.h>
+
 
 // Ό³Έν :
 class UCollision;
@@ -28,6 +30,7 @@ private:
 	USpriteRenderer* PlatformRenderer = nullptr;
 	USpriteRenderer* ShadowRenderer = nullptr;
 	USpriteRenderer* PropellorRenderer = nullptr;
+	UStateManager State;
 	
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -35,5 +38,10 @@ private:
 	void RendererInit();
 	void ColliderInit();
 	void AnimationInit();
+	void StateInit();
 
+	void Floating(float _DeltaTime);
+
+	float4 FloatingDir = float4::Up;
+	float FloatingSpeed = 10.0f;
 };

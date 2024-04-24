@@ -32,11 +32,14 @@ void AFlowerPlatform::BeginPlay()
 	AnimationInit();
 	ColliderInit();
 	RendererInit();
+	StateInit();
 }
 
 void AFlowerPlatform::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	State.Update(_DeltaTime);
 }
 
 void AFlowerPlatform::RendererInit()
@@ -67,6 +70,36 @@ void AFlowerPlatform::AnimationInit()
 	//ShadowRenderer->ChangeAnimation(FlowerBossAniName::PlatformShadow);
 	PropellorRenderer->ChangeAnimation(FlowerBossAniName::PlatformPropeller);
 	PlatformRenderer->ChangeAnimation(FlowerBossAniName::FlowerPlatform);
+}
 
+void AFlowerPlatform::StateInit()
+{
+	State.CreateState("Floating");
 
+	State.SetStartFunction("Floating", []() {});
+
+	State.SetUpdateFunction("Floating", std::bind(&AFlowerPlatform::Floating, this, std::placeholders::_1));
+
+	State.ChangeState("Floating");
+}
+
+void AFlowerPlatform::Floating(float _DeltaTime)
+{
+	float4 Pos = GetActorLocation();
+	Pos.Y *= -1;
+
+	if (Pos.Y <= 400.0f)
+	{
+		AddActorLocation(float4::Down);
+		FloatingDir = float4::Down;
+	}
+	else if (Pos.Y >= 450.0f)
+	{
+		AddActorLocation(float4::Up);
+		FloatingDir = float4::Up;
+	}
+
+	SetSpeedVec(FloatingDir * FloatingSpeed);
+
+	ResultMovementUpdate(_DeltaTime);
 }
