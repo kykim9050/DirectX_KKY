@@ -53,6 +53,7 @@ private:
 	UCollision* HeadCollider = nullptr;
 	UCollision* FaceAttHighCollider = nullptr;
 	UCollision* FaceAttLowCollider = nullptr;
+	UCollision* BottomIvyCollider = nullptr;
 
 	// 게틀링 패턴에서 생성하는 Seed의 수
 	const int SeedNum = 5;

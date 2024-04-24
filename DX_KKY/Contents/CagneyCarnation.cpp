@@ -67,6 +67,13 @@ void ACagneyCarnation::ColliderInit()
 	FaceAttLowCollider->SetCollisionType(ECollisionType::Rect);
 	FaceAttLowCollider->SetActive(false);
 
+	BottomIvyCollider = CreateDefaultSubObject<UCollision>("BottomIvyCollider");
+	BottomIvyCollider->SetupAttachment(Root);
+	BottomIvyCollider->SetScale(GColliderScale::BottomIvy_ColScale);
+	BottomIvyCollider->AddPosition(GColliderPosInfo::FlowerBoss_BottomIvy_RelativePos);
+	BottomIvyCollider->SetCollisionGroup(ECollisionGroup::Trap);
+	BottomIvyCollider->SetCollisionType(ECollisionType::Rect);
+	BottomIvyCollider->SetActive(false);
 }
 
 void ACagneyCarnation::CreateAcorn()
@@ -110,6 +117,7 @@ void ACagneyCarnation::CreateBoomerang()
 
 void ACagneyCarnation::CreateBottomIvy()
 {
+	BottomIvyCollider->SetActive(true);
 	BottomIvyRenderer->ChangeAnimation(FlowerBossAniName::BottomIvy_Spawn);
 }
 
