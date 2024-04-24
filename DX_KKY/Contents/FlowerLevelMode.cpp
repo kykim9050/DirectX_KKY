@@ -89,7 +89,7 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	UContentsValue::ColMapTexture = UEngineTexture::FindRes(ColMap->GetName());
 
 	{
-		Platform->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
+		Platform->SetActorLocation(float4(340.0f, -420.0f, 0.0f));
 	}
 
 

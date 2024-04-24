@@ -11,6 +11,7 @@
 #include "PlayerSSBullet.h"
 #include "SSBulletFX.h"
 #include "FXBase.h"
+#include "FlowerPlatform.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -235,6 +236,8 @@ void APlayer::ResultMovementUpdate(float _DeltaTime)
 void APlayer::CalGravityVec(float _DeltaTime)
 {
 	Super::CalGravityVec(_DeltaTime);
+
+	TreadableCheck();
 }
 
 void APlayer::CalJumpVec(float _DeltaTime)
@@ -632,4 +635,56 @@ void APlayer::CreateLandFX(float4 _Pos)
 	std::shared_ptr<AFXBase> LandingFX= GetWorld()->SpawnActor<AFXBase>("DashFX");
 	LandingFX->FXInit(ERenderingOrder::BackFX, FAniInfo(GAniName::LandDust, "LandDust", 0.0416f));
 	LandingFX->SetActorLocation(Pos);
+}
+
+void APlayer::FootColOnOff()
+{
+	float JumpVal = GetJumpVec().Y;
+	float GravityVal = GetGravityVec().Y;
+	GravityVal *= -1;
+
+	if (JumpVal > GravityVal)
+	{
+		FootColSetActive(false);
+	}
+	else if (JumpVal <= GravityVal)
+	{
+		FootColSetActive(true);
+	}
+}
+
+void APlayer::TreadableCheck()
+{
+	FootCollider->CollisionEnter(ECollisionGroup::Platform, [this](std::shared_ptr<UCollision> _Collision)
+		{
+			AFlowerPlatform* Platform = dynamic_cast<AFlowerPlatform*>(_Collision->GetActor());
+
+			if (nullptr == Platform)
+			{
+				MsgBoxAssert("충돌 대상이 Platform가 아닙니다.");
+				return;
+			}
+
+			if ("Idle" != State.GetCurStateName())
+			{
+				SetOnTreadableObject(true);
+				State.ChangeState("Idle");
+				return;
+			}
+		});
+
+
+	FootCollider->CollisionStay(ECollisionGroup::Platform, [this](std::shared_ptr<UCollision> _Collision)
+		{
+			AFlowerPlatform* Platform = dynamic_cast<AFlowerPlatform*>(_Collision->GetActor());
+
+			if (nullptr == Platform)
+			{
+				MsgBoxAssert("충돌 대상이 Platform가 아닙니다.");
+				return;
+			}
+
+			SetJumpVec(float4::Zero);
+			SetGravityVec(float4::Zero);
+		});
 }
