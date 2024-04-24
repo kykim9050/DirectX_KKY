@@ -22,6 +22,18 @@ public:
 	AFlowerPlatform& operator=(const AFlowerPlatform& _Other) = delete;
 	AFlowerPlatform& operator=(AFlowerPlatform&& _Other) noexcept = delete;
 
+	inline void SetPressed()
+	{
+		State.ChangeState("Pressed");
+		return;
+	}
+	inline void PressedOver()
+	{
+		State.ChangeState("Floating");
+		return;
+	}
+
+
 protected:
 
 private:
@@ -41,6 +53,7 @@ private:
 	void StateInit();
 
 	void Floating(float _DeltaTime);
+	void Pressed(float _DeltaTime);
 
 	float4 FloatingDir = float4::Up;
 	float FloatingSpeed = 10.0f;

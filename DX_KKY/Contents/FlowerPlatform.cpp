@@ -75,10 +75,12 @@ void AFlowerPlatform::AnimationInit()
 void AFlowerPlatform::StateInit()
 {
 	State.CreateState("Floating");
-
-	State.SetStartFunction("Floating", []() {});
+	State.CreateState("Pressed");
+	State.CreateState("Pause");
 
 	State.SetUpdateFunction("Floating", std::bind(&AFlowerPlatform::Floating, this, std::placeholders::_1));
+	State.SetUpdateFunction("Pressed", std::bind(&AFlowerPlatform::Pressed, this, std::placeholders::_1));
+	State.SetUpdateFunction("Pause", [](float) {});
 
 	State.ChangeState("Floating");
 }
@@ -101,5 +103,21 @@ void AFlowerPlatform::Floating(float _DeltaTime)
 
 	SetSpeedVec(FloatingDir * FloatingSpeed);
 
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void AFlowerPlatform::Pressed(float _DeltaTime)
+{
+	float4 Pos = GetActorLocation();
+	Pos.Y *= -1;
+
+	if (Pos.Y >= 450.0f)
+	{
+		SetSpeedVec(float4::Zero);
+		State.ChangeState("Pause");
+		return;
+	}
+
+	SetSpeedVec(FloatingDir * 100.0f);
 	ResultMovementUpdate(_DeltaTime);
 }
