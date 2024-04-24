@@ -195,6 +195,9 @@
     <ClInclude Include="FlowerPlatform.h">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="PlatformShadow.h">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -330,6 +333,9 @@
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="FlowerPlatform.cpp">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformShadow.cpp">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>

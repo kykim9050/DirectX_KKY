@@ -63,8 +63,6 @@ void AFlowerPlatform::ColliderInit()
 
 void AFlowerPlatform::AnimationInit()
 {
-	//ShadowRenderer->CreateAnimation(FlowerBossAniName::PlatformShadow, "PlatformShadow", 0.067f);
-	//ShadowRenderer->ChangeAnimation(FlowerBossAniName::PlatformShadow);
 	PropellorRenderer->CreateAnimation(FlowerBossAniName::PlatformPropeller, "FlowerPlatformPropellor", 0.067f);
 	PropellorRenderer->ChangeAnimation(FlowerBossAniName::PlatformPropeller);
 }

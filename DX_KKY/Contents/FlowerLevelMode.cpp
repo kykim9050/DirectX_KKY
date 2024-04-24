@@ -9,11 +9,7 @@
 #include "MapBase.h"
 #include "CagneyCarnation.h"
 #include "FlowerPlatform.h"
-
-//
-
-//
-
+#include "PlatformShadow.h"
 
 
 AFlowerLevelMode::AFlowerLevelMode()
@@ -36,6 +32,14 @@ void AFlowerLevelMode::BeginPlay()
 	Map = GetWorld()->SpawnActor<AMapBase>("Map", EActorType::Map);
 	BackGroundObject = GetWorld()->SpawnActor<AMapBase>("BackGroundObject", EActorType::Map);
 	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
+
+	for (int i = 0; i < ShadowNum; i++)
+	{
+		std::shared_ptr<APlatformShadow> Shadow = GetWorld()->SpawnActor<APlatformShadow>("Shadow", EActorType::Object);
+		Shadow->SetActorLocation(FlowerBossStageValue::PlatformShadowPos[i]);
+
+		Shadows.push_back(Shadow);
+	}
 }
 
 void AFlowerLevelMode::Tick(float _DeltaTime)
@@ -115,6 +119,4 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 		Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
 		Platform3->SetActorLocation(FlowerBossStageValue::PlatformPos[2]);
 	}
-
-
 }
