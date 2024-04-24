@@ -91,6 +91,8 @@ void AFlowerPlatform::StateInit()
 
 void AFlowerPlatform::Floating(float _DeltaTime)
 {
+	PlayerCheck(_DeltaTime);
+
 	float4 Pos = GetActorLocation();
 	Pos.Y *= -1;
 
@@ -112,6 +114,7 @@ void AFlowerPlatform::Floating(float _DeltaTime)
 
 void AFlowerPlatform::Pressed(float _DeltaTime)
 {
+	PlayerCheck(_DeltaTime);
 	float4 Pos = GetActorLocation();
 	Pos.Y *= -1;
 
@@ -133,4 +136,20 @@ void AFlowerPlatform::CreatePlatformAnimation(FAniInfo _info, bool _Loop)
 void AFlowerPlatform::ChangePlatformAnimation(std::string_view _AniName)
 {
 	PlatformRenderer->ChangeAnimation(_AniName);
+}
+
+void AFlowerPlatform::PlayerCheck(float _DeltaTime)
+{
+	Collider->CollisionStay(ECollisionGroup::PlayerFoot, [this, _DeltaTime](std::shared_ptr<UCollision> _Collision)
+		{
+			APlayer* Player = dynamic_cast<APlayer*>(_Collision->GetActor());
+
+			if (nullptr == Player)
+			{
+				MsgBoxAssert("충돌 대상이 Player가 아닙니다.");
+				return;
+			}
+
+			Player->AddActorLocation(float4::Down * PressedSpeed * _DeltaTime);
+		});
 }

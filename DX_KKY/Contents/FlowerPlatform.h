@@ -68,5 +68,6 @@ private:
 
 	void Floating(float _DeltaTime);
 	void Pressed(float _DeltaTime);
+	void PlayerCheck(float _DeltaTime);
 
 };
