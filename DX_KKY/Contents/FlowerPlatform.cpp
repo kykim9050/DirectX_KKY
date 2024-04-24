@@ -91,8 +91,6 @@ void AFlowerPlatform::StateInit()
 
 void AFlowerPlatform::Floating(float _DeltaTime)
 {
-	PlayerCheck(_DeltaTime);
-
 	float4 Pos = GetActorLocation();
 	Pos.Y *= -1;
 
