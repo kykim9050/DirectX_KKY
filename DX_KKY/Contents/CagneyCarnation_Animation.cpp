@@ -14,40 +14,48 @@ void ACagneyCarnation::AnimationInit()
 
 void ACagneyCarnation::CreateAnimation()
 {
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_Idle, "FlowerIdle", 0.0416f);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_Intro, "FlowerIntro", 0.0416f, false);
+	// BottomIvyRenderer
+	{
+		BottomIvyRenderer->CreateAnimation(FlowerBossAniName::BottomIvy_Spawn, "Ivy_Main", 0.0416f, false);
+		BottomIvyRenderer->CreateAnimation(FlowerBossAniName::BottomIvy_Idle, "Ivy_MainIdle", 0.1f);
+	}
 
-	// Face Attack
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackHigh_Begin, "FaceAttackHighBegin", 0.0416f, false);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackHigh_Idle, "FaceAttackHighIdle", 0.067f);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackHigh_End, "FaceAttackHighEnd", 0.067f, false);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackLow_Begin, "FaceAttackLowBegin", 0.0416f, false);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackLow_Idle, "FaceAttackLowIdle", 0.067f);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackLow_End, "FaceAttackLowEnd", 0.067f, false);
+	// Main Renderer
+	{
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_Idle, "FlowerIdle", 0.0416f);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_Intro, "FlowerIntro", 0.0416f, false);
 
-	// Gatling
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_Begin, "GatlingBegin", 0.0416f, false);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_Idle, "GatlingIdle", 0.0416f);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_End, "GatlingEnd", 0.0416f, false);
-	
-	// Create Object
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Begin, "CreateObjectBegin", 0.0416f, false);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Idle, "CreateObjectIdle", 0.0416f);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Release, "CreateObjectRelease", 0.0416f, false);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseIdle, "CreateObjectReleaseIdle", 0.0678f);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseRev, "CreateObjectRelease", 0.0416f, false, 6, 0);
-	Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_End, "CreateObjectEnd", 0.0416f, false);
+		// Face Attack
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackHigh_Begin, "FaceAttackHighBegin", 0.0416f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackHigh_Idle, "FaceAttackHighIdle", 0.067f);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackHigh_End, "FaceAttackHighEnd", 0.067f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackLow_Begin, "FaceAttackLowBegin", 0.0416f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackLow_Idle, "FaceAttackLowIdle", 0.067f);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_FaceAttackLow_End, "FaceAttackLowEnd", 0.067f, false);
 
-	// Phase2 Intro
-	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro1, "FlowerFinalIntro1", 0.0416f, false);
-	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro2, "FlowerFinalIntro2", 0.0416f);
-	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro3, "FlowerFinalIntro3", 0.0416f, false);
-	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro4, "FlowerFinalIntro4", 0.0416f);
-	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro5, "FlowerFinalIntro5", 0.0416f, false);
+		// Gatling
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_Begin, "GatlingBegin", 0.0416f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_Idle, "GatlingIdle", 0.0416f);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_Gatling_End, "GatlingEnd", 0.0416f, false);
 
-	// Phase2 Idle
-	Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Idle, "FlowerFinal_Idle", 0.0416f);
+		// Create Object
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Begin, "CreateObjectBegin", 0.0416f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Idle, "CreateObjectIdle", 0.0416f);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_Release, "CreateObjectRelease", 0.0416f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseIdle, "CreateObjectReleaseIdle", 0.0678f);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_ReleaseRev, "CreateObjectRelease", 0.0416f, false, 6, 0);
+		Renderer->CreateAnimation(FlowerBossAniName::Flower_CreateObject_End, "CreateObjectEnd", 0.0416f, false);
 
+		// Phase2 Intro
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro1, "FlowerFinalIntro1", 0.0416f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro2, "FlowerFinalIntro2", 0.0416f);
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro3, "FlowerFinalIntro3", 0.0416f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro4, "FlowerFinalIntro4", 0.0416f);
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Intro5, "FlowerFinalIntro5", 0.0416f, false);
+
+		// Phase2 Idle
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Idle, "FlowerFinal_Idle", 0.0416f);
+	}
 }
 
 void ACagneyCarnation::SetAnimationCallback()

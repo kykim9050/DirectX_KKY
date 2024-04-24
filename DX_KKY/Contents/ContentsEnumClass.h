@@ -32,6 +32,7 @@ enum class ERenderingOrder
 	BossMonsterBackFX1,
 	BossMonsterBackFX2,
 	BossMonster,
+	BossMonsterObject,
 	MonsterBullet,
 	MonsterBulletFX,
 	Dust,

@@ -184,6 +184,7 @@ void ACagneyCarnation::StartFunctionSet()
 		});
 	State.SetStartFunction(FlowerBossState::Phase2Intro_3, [this]()
 		{
+			CreateBottomIvy();
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro5);
 		});
 

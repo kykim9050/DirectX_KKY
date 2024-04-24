@@ -12,6 +12,7 @@ ACagneyCarnation::ACagneyCarnation()
 {
 	SetHp(300);
 	ColliderInit();
+	RendererInit();
 }
 
 ACagneyCarnation::~ACagneyCarnation()
@@ -30,8 +31,6 @@ void ACagneyCarnation::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	// 충돌 체크는 상태별로 업데이트 할 것
-	CollisionCheck();
 	DebugUpdate();
 }
 
@@ -67,11 +66,6 @@ void ACagneyCarnation::ColliderInit()
 	FaceAttLowCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	FaceAttLowCollider->SetCollisionType(ECollisionType::Rect);
 	FaceAttLowCollider->SetActive(false);
-
-}
-
-void ACagneyCarnation::CollisionCheck()
-{
 
 }
 
@@ -112,4 +106,19 @@ void ACagneyCarnation::CreateBoomerang()
 		{
 			NewBoomerang->Throw();
 		});
+}
+
+void ACagneyCarnation::CreateBottomIvy()
+{
+	BottomIvyRenderer->ChangeAnimation(FlowerBossAniName::BottomIvy_Spawn);
+}
+
+void ACagneyCarnation::RendererInit()
+{
+	BottomIvyRenderer = CreateDefaultSubObject<USpriteRenderer>("BottomIvyRenderer");
+	BottomIvyRenderer->SetupAttachment(Root);
+	BottomIvyRenderer->SetAutoSize(1.0f, true);
+	BottomIvyRenderer->SetOrder(ERenderingOrder::BossMonsterObject);
+	BottomIvyRenderer->SetPivot(EPivot::RIGHTBOTTOM);
+	BottomIvyRenderer->SetPosition(GRendererPos::FlowerBoss_BottomIvy_RelativePos);
 }
