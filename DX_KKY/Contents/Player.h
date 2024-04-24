@@ -2,6 +2,7 @@
 #include "MoveUnit.h"
 
 // Ό³Έν :
+class UCollision;
 class UStateManager;
 class APlayerBullet;
 class USpriteRenderer;
@@ -41,7 +42,8 @@ protected:
 private:
 	static std::shared_ptr<APlayer> MainPlayer;
 
-	USpriteRenderer* Renderer;
+	USpriteRenderer* Renderer = nullptr;
+	UCollision* FootCollider = nullptr;
 	UStateManager State = UStateManager();
 	EActorDir PlayerDir = EActorDir::Right;
 	EBulletShootType ShootType = EBulletShootType::None;

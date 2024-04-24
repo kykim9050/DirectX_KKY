@@ -3,6 +3,7 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/EngineDebugMsgWindow.h>
+#include <EngineCore/Collision.h>
 
 #include "Player.h"
 #include "PlayerBullet.h"
@@ -22,6 +23,8 @@ APlayer::APlayer()
 	Renderer->SetupAttachment(Root);
 	Renderer->SetPivot(EPivot::BOT);
 	
+	FootCollider = CreateDefaultSubObject<UCollision>("FootCollider");
+	FootCollider->SetupAttachment(Root);
 
 	InputOn();
 }
@@ -41,6 +44,11 @@ void APlayer::BeginPlay()
 	Renderer->ChangeAnimation("Player_Idle");
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::Player);
+
+	FootCollider->SetScale(float4(32.0f, 8.0f, 1.0f));
+	FootCollider->SetCollisionGroup(ECollisionGroup::PlayerFoot);
+	FootCollider->SetCollisionType(ECollisionType::Rect);
+	FootCollider->SetPosition(float4(0.0f, 8.0f, 0.0f));
 
 	StateInit();
 }
