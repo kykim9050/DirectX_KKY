@@ -702,12 +702,6 @@ void APlayer::DuckIdle(float _DeltaTime)
 
 		if (true == IsPress('X'))
 		{
-			//if (true == IsFree(VK_UP))
-			//{
-			//	State.ChangeState("Shoot_Straight");
-			//	return;
-			//}
-
 			State.ChangeState("Shoot_Duck");
 			return;
 		}
@@ -1457,12 +1451,9 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
-	float4 Pos = GetActorLocation();
-	Pos.Y = -Pos.Y;
 
-	if (false == PixelCheck(Pos, Color8Bit::Black) && false == PixelCheck(Pos, Color8Bit::Blue))
+	if (true == FallDownCheck(GetActorLocation()))
 	{
-		State.ChangeState("FallDown");
 		return;
 	}
 
@@ -1520,12 +1511,8 @@ void APlayer::Run_Shoot_Straight(float _DeltaTime)
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
-	float4 Pos = GetActorLocation();
-	Pos.Y = -Pos.Y;
-	
-	if (false == PixelCheck(Pos, Color8Bit::Black) && false == PixelCheck(Pos, Color8Bit::Blue))
+	if (true == FallDownCheck(GetActorLocation()))
 	{
-		State.ChangeState("FallDown");
 		return;
 	}
 
