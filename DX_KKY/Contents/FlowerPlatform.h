@@ -40,6 +40,8 @@ public:
 		}
 		return false;
 	}
+	void CreatePlatformAnimation(FAniInfo _info, bool _Loop = true);
+	void ChangePlatformAnimation(std::string_view _AniName);
 
 
 protected:

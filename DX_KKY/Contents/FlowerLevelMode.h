@@ -42,9 +42,10 @@ private:
 	std::shared_ptr<AMapBase> BackGroundObject;
 	std::shared_ptr<AMapBase> ColMap;
 
+	std::shared_ptr<AFlowerPlatform> Platform1;
+	std::shared_ptr<AFlowerPlatform> Platform2;
+	std::shared_ptr<AFlowerPlatform> Platform3;
+
 	std::shared_ptr<UEngineRandom> Random;
-
-
-	std::shared_ptr<AFlowerPlatform> Platform;
 };
 
