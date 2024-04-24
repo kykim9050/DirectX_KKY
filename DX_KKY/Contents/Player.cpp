@@ -688,3 +688,24 @@ void APlayer::TreadableCheck()
 			SetGravityVec(float4::Zero);
 		});
 }
+
+bool APlayer::FallDownCheck(float4 _Pos)
+{
+	float4 Pos = _Pos;
+
+	Pos.Y = -Pos.Y;
+
+	if (false == PixelCheck(Pos, Color8Bit::Black)
+		&& false == PixelCheck(Pos, Color8Bit::Blue))
+	{
+		//bool TestValue = FootCollider->CollisionStay(ECollisionGroup::Platform, [this](std::shared_ptr<UCollision> _Collision)
+		//	{
+		//		int a = 0;
+		//	});
+
+		State.ChangeState("FallDown");
+		return true;
+	}
+
+	return false;
+}
