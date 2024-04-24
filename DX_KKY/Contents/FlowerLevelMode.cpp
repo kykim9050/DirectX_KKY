@@ -40,7 +40,9 @@ void AFlowerLevelMode::BeginPlay()
 	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
 
 	{
-		Platform = GetWorld()->SpawnActor<AFlowerPlatform>("Platform ", EActorType::Object);
+		Platform1 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform1", EActorType::Object);
+		Platform2 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform2", EActorType::Object);
+		Platform3 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform3", EActorType::Object);
 	}
 
 }
@@ -89,7 +91,17 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	UContentsValue::ColMapTexture = UEngineTexture::FindRes(ColMap->GetName());
 
 	{
-		Platform->SetActorLocation(float4(340.0f, -420.0f, 0.0f));
+		Platform1->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform0", 0.067f));
+		Platform1->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
+		Platform1->SetActorLocation(float4(190.0f, -420.0f, 0.0f));
+
+		Platform2->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform1", 0.067f));
+		Platform2->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
+		Platform2->SetActorLocation(float4(340.0f, -420.0f, 0.0f));
+
+		Platform3->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f));
+		Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
+		Platform3->SetActorLocation(float4(490.0f, -420.0f, 0.0f));
 	}
 
 

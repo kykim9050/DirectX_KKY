@@ -67,9 +67,6 @@ void AFlowerPlatform::AnimationInit()
 	//ShadowRenderer->ChangeAnimation(FlowerBossAniName::PlatformShadow);
 	PropellorRenderer->CreateAnimation(FlowerBossAniName::PlatformPropeller, "FlowerPlatformPropellor", 0.067f);
 	PropellorRenderer->ChangeAnimation(FlowerBossAniName::PlatformPropeller);
-
-	PlatformRenderer->CreateAnimation(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f);
-	PlatformRenderer->ChangeAnimation(FlowerBossAniName::FlowerPlatform);
 }
 
 void AFlowerPlatform::StateInit()
@@ -120,4 +117,14 @@ void AFlowerPlatform::Pressed(float _DeltaTime)
 
 	SetSpeedVec(float4::Down * PressedSpeed);
 	ResultMovementUpdate(_DeltaTime);
+}
+
+void AFlowerPlatform::CreatePlatformAnimation(FAniInfo _info, bool _Loop)
+{
+	PlatformRenderer->CreateAnimation(_info.AnimationName, _info.SpriteName, _info.InterTime, _Loop);
+}
+
+void AFlowerPlatform::ChangePlatformAnimation(std::string_view _AniName)
+{
+	PlatformRenderer->ChangeAnimation(_AniName);
 }
