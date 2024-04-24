@@ -402,6 +402,10 @@ void APlayer::ShootCheck(float _DeltaTime)
 	{
 		ShootBullet(_DeltaTime);
 	}
+	else
+	{
+		ShootDelayTime = 0.0f;
+	}
 }
 
 void APlayer::SuperShootCheck(float _DeltaTime)
