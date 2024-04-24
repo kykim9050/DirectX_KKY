@@ -34,7 +34,7 @@ void UMoveUnit::ResultMovementUpdate(float _DeltaTime)
 void UMoveUnit::CalMovementVector(float _DeltaTime)
 {
 	TotalMovementVec = FVector::Zero;
-	TotalMovementVec = TotalMovementVec + SpeedVec + GravityVec + JumpVec  ;
+	TotalMovementVec = TotalMovementVec + SpeedVec + GravityVec + JumpVec ;
 }
 
 void UMoveUnit::ApplyMovement(float _DeltaTime)

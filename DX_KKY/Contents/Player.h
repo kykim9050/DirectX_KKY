@@ -61,6 +61,7 @@ private:
 
 	bool AvailableParry = true;
 	bool AvailableDownJump = false;
+	bool OnTreadableObject = false;
 
 	void StateInit();
 	void CreatePlayerAnimation();
@@ -120,6 +121,8 @@ private:
 	void CreateDashFX(float4 _Pos);
 	void CreateLandFX(float4 _Pos);
 
+	void FootColOnOff();
+	void TreadableCheck();
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
@@ -171,5 +174,17 @@ private:
 	inline bool GetAvailableDownJump() const
 	{
 		return AvailableDownJump;
+	}
+	inline void FootColSetActive(bool _Value) 
+	{
+		FootCollider->SetActive(_Value);
+	}
+	inline void SetOnTreadableObject(bool _Value)
+	{
+		OnTreadableObject = _Value;
+	}
+	inline bool GetOnTreadableObject() const
+	{
+		return OnTreadableObject;
 	}
 };
