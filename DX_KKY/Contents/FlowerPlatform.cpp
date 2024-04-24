@@ -118,6 +118,6 @@ void AFlowerPlatform::Pressed(float _DeltaTime)
 		return;
 	}
 
-	SetSpeedVec(FloatingDir * 100.0f);
+	SetSpeedVec(float4::Down * 100.0f);
 	ResultMovementUpdate(_DeltaTime);
 }
