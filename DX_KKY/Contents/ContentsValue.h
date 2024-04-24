@@ -93,6 +93,7 @@ namespace FlowerBossAniName
 
 	const std::string PlatformShadow = "PlatformShadow";
 	const std::string PlatformPropeller = "PlatformPropeller";
+	const std::string FlowerPlatform = "FlowerPlatform";
 }
 
 namespace FlowerBossState
