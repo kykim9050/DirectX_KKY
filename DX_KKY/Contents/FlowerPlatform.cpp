@@ -14,9 +14,6 @@ AFlowerPlatform::AFlowerPlatform()
 	PlatformRenderer = CreateDefaultSubObject<USpriteRenderer>("FlowerPlatformRenderer");
 	PlatformRenderer->SetupAttachment(Root);
 
-	//ShadowRenderer = CreateDefaultSubObject<USpriteRenderer>("PlatformShadowRenderer");
-	//ShadowRenderer->SetupAttachment(Root);
-	//
 	PropellorRenderer = CreateDefaultSubObject<USpriteRenderer>("PlatformPropellorRenderer");
 	PropellorRenderer->SetupAttachment(Root);
 
@@ -33,8 +30,8 @@ void AFlowerPlatform::BeginPlay()
 	Super::BeginPlay();
 
 	AnimationInit();
-	RendererInit();
 	ColliderInit();
+	RendererInit();
 }
 
 void AFlowerPlatform::Tick(float _DeltaTime)
@@ -44,10 +41,6 @@ void AFlowerPlatform::Tick(float _DeltaTime)
 
 void AFlowerPlatform::RendererInit()
 {
-	//ShadowRenderer->SetAutoSize(1.0f, true);
-	//ShadowRenderer->SetOrder(ERenderingOrder::Object2);
-	//ShadowRenderer->SetPosition(float4(0.0f, -200.0f, 0.0f));
-
 	PlatformRenderer->SetAutoSize(1.0f, true);
 	PlatformRenderer->SetOrder(ERenderingOrder::Object1);
 	PlatformRenderer->SetPosition(float4(0.0f, 0.0f, 0.0f));
@@ -55,12 +48,14 @@ void AFlowerPlatform::RendererInit()
 	PropellorRenderer->SetAutoSize(1.0f, true);
 	PropellorRenderer->SetOrder(ERenderingOrder::Object2);
 	PropellorRenderer->SetPosition(float4(5.0f, -45.0f, 0.0f));
-
 }
 
 void AFlowerPlatform::ColliderInit()
 {
-
+	Collider->SetScale(float4(150.0f, 16.0f, 1.0f));
+	Collider->SetCollisionGroup(ECollisionGroup::Platform);
+	Collider->SetCollisionType(ECollisionType::Rect);
+	Collider->SetPosition(float4(0.0f, 24.0f, 0.0f));
 }
 
 void AFlowerPlatform::AnimationInit()
