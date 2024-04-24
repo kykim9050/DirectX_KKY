@@ -66,6 +66,7 @@ enum class ECollisionGroup
 	MonsterBullet,
 	Platform,
 	PlayerFoot,
+	Trap,
 };
 
 enum class EActorDir
