@@ -11,6 +11,7 @@ enum class EAttackPattern
 };
 
 // 설명 :
+class USpriteRenderer;
 class AAcorn;
 class UCollision;
 class ACagneyCarnation : public ABossUnit
@@ -44,6 +45,9 @@ protected:
 
 
 private:
+
+	// FlowerBoss의 랜더러
+	USpriteRenderer* BottomIvyRenderer = nullptr;
 
 	// FlowerBoss의 콜리젼
 	UCollision* HeadCollider = nullptr;
@@ -117,11 +121,12 @@ private:
 	void Phase2_Idle(float _DeltaTime);
 
 	void ColliderInit();
-	void CollisionCheck();
+	void RendererInit();
 
 	void CreateAcorn();
 	void CreateObjectSpawnEffect();
 	void CreateBoomerang();
+	void CreateBottomIvy();
 
 private:
 	inline void GetHit(int _DmgVal)

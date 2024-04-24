@@ -94,6 +94,9 @@ namespace FlowerBossAniName
 	const std::string PlatformShadow = "PlatformShadow";
 	const std::string PlatformPropeller = "PlatformPropeller";
 	const std::string FlowerPlatform = "FlowerPlatform";
+
+	const std::string BottomIvy_Spawn = "BottomIvy_Spawn";
+	const std::string BottomIvy_Idle = "BottomIvy_Idle";
 }
 
 namespace FlowerBossState
@@ -200,10 +203,10 @@ namespace GColliderPosInfo
 namespace GRendererPos
 {
 	const float4 FlowerBoss_MissileInitPos = float4(1070.f, -100.f, 0.0f);
-
 	const float4 FlowerBoss_BoomarangInitPos = float4(950.0f, -290.0f, 0.0f);
-
 	const float4 FlowerPlatform_RelativePos = float4(5.0f, -45.0f, 0.0f);
+	const float4 FlowerBoss_BottomIvy_RelativePos = float4(-500.0f, 25.0f, 0.0f);
+
 }
 
 namespace GBoundaryPos
