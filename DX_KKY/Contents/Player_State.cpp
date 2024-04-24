@@ -764,6 +764,7 @@ void APlayer::Duck(float _DeltaTime)
 void APlayer::Parry(float _DeltaTime)
 {
 	ShootCheck(_DeltaTime);
+	FootColOnOff();
 
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
@@ -793,6 +794,7 @@ void APlayer::Parry(float _DeltaTime)
 void APlayer::AfterParry(float _DeltaTime)
 {
 	ShootCheck(_DeltaTime);
+	FootColOnOff();
 
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
@@ -839,6 +841,7 @@ void APlayer::DashAir(float _DeltaTime)
 void APlayer::AfterDashAir(float _DeltaTime)
 {
 	ShootCheck(_DeltaTime);
+	FootColOnOff();
 
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
