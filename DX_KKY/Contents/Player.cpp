@@ -670,6 +670,8 @@ void APlayer::TreadableCheck()
 				return;
 			}
 
+			Platform->SetPressed();
+
 			if ("Idle" != State.GetCurStateName())
 			{
 				SetOnTreadableObject(true);
@@ -688,10 +690,13 @@ void APlayer::TreadableCheck()
 				return;
 			}
 
-			Platform->PressedOver();
+			if (false == Platform->GetIsPressed())
+			{
+				Platform->PressedOver();
 
-			SetOnTreadableObject(false);
-			return;
+				SetOnTreadableObject(false);
+				return;
+			}
 		});
 
 	FootCollider->CollisionStay(ECollisionGroup::Platform, [this](std::shared_ptr<UCollision> _Collision)
@@ -704,8 +709,7 @@ void APlayer::TreadableCheck()
 				return;
 			}
 
-			Platform->SetPressed();
-
+			SetOnTreadableObject(true);
 			SetJumpVec(float4::Zero);
 			SetGravityVec(float4::Zero);
 		});
