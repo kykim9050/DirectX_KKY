@@ -123,6 +123,7 @@ private:
 
 	void FootColOnOff();
 	void TreadableCheck();
+	bool FallDownCheck(float4 _Pos);
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);

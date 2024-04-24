@@ -532,15 +532,8 @@ void APlayer::Run(float _DeltaTime)
 {
 	SuperShootCheck(_DeltaTime);
 
-	float4 Pos = GetActorLocation();
-	Pos.Y = -Pos.Y;
-
-	if (false == PixelCheck(Pos, Color8Bit::Black)
-		&& false == PixelCheck(Pos, Color8Bit::Blue) 
-		//&& false == FootCollider->CollisionStay(ECollisionGroup::Platform, [this](std::shared_ptr<UCollision> _Collision) {})
-		)
+	if (true == FallDownCheck(GetActorLocation()))
 	{
-		State.ChangeState("FallDown");
 		return;
 	}
 
