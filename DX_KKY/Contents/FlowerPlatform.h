@@ -32,6 +32,14 @@ public:
 		State.ChangeState("Floating");
 		return;
 	}
+	inline bool GetIsPressed()
+	{
+		if ("Pressed" == State.GetCurStateName())
+		{
+			return true;
+		}
+		return false;
+	}
 
 
 protected:
