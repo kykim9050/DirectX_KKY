@@ -287,13 +287,14 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 		FVector InitPos = FVector::Zero;
 		FVector InitRot = FVector::Zero;
+		float FXRandomRot = UMath::GetInst().RandomReturnFloat(0.0f, 360.f);
 
 		GetBulletInitPosAndRot(InitPos, InitRot, NewBullet);
 
 		NewBullet->SetActorLocation(InitPos);
 		NewBullet->SetActorRotation(InitRot);
 		BulletFX->SetActorLocation(InitPos);
-
+		BulletFX->SetActorRotation(float4(0.0f, 0.0f, FXRandomRot));
 	}
 
 }
