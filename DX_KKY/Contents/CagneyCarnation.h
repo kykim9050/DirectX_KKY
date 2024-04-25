@@ -110,6 +110,10 @@ private:
 	float SpitDelay = 1.0f;
 	float SpitDelayInit = 1.0f;
 
+	// Dead ฐüทร
+	float ExplosionEffDelay = 0.4f;
+	float ExplosionEffDelayInit = 0.4f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

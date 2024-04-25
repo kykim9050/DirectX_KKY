@@ -18,6 +18,8 @@ namespace GSpriteName
 	const std::string Flower_CreateObject_Effect = "CreateObjectEffect";
 
 	const std::string Boomerang_Rotate = "Boomerang";
+
+	const std::string ExplosionEffect = "Explosion";
 }
 
 namespace GAniName
@@ -25,6 +27,8 @@ namespace GAniName
 	// CUphead
 	const std::string DashDust = "DashDust";
 	const std::string LandDust = "LandDust";
+
+	const std::string ExplosionEffect = "ExplosionEffect";
 }
 
 namespace FlowerBossAniName
