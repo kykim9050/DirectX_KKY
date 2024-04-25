@@ -1,10 +1,11 @@
 #pragma once
 #include "BossAttackUnit.h"
+#include "ParryUnit.h"
 
 // Ό³Έν :
 class UStateManager;
 class USpriteRenderer;
-class ASeed : public ABossAttackUnit
+class ASeed : public ABossAttackUnit , public UParryUnit
 {
 	GENERATED_BODY(ABossAttackUnit)
 public:
