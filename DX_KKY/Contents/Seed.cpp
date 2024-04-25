@@ -57,6 +57,10 @@ void ASeed::StateInit()
 
 	State.SetEndFunction("Init", [this]()
 		{
+			if (ESeedColor::Pink == Color)
+			{
+				SetParryableObject();
+			}
 			AnimationInit();
 			RendererInit();
 		});

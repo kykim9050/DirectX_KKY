@@ -4,6 +4,7 @@
 
 AMiniFlowerBullet::AMiniFlowerBullet()
 {
+	SetParryableObject();
 }
 
 AMiniFlowerBullet::~AMiniFlowerBullet()
