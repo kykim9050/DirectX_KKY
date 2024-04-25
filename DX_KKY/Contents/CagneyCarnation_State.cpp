@@ -402,5 +402,11 @@ void ACagneyCarnation::Phase2Intro_2(float _DeltaTime)
 
 void ACagneyCarnation::Phase2_Idle(float _DeltaTime)
 {
+	if (CanCreateVine = true)
+	{
+		CanCreateVine = false;
+
+
+	}
 
 }

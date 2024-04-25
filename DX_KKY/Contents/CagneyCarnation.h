@@ -12,8 +12,9 @@ enum class EAttackPattern
 
 // 설명 :
 class USpriteRenderer;
-class AAcorn;
 class UCollision;
+class AAcorn;
+class AVine;
 class ACagneyCarnation : public ABossUnit
 {
 	GENERATED_BODY(ABossUnit)
@@ -91,9 +92,15 @@ private:
 	float CreateObjectDelay = 0.0f;
 	float CreateObjectDelayInit = 0.0f;
 
+	// Phase2 변화 관련
 	int Phase2StartHP = 100;
 	float P2ChangeDelay = 0.5f;
 	float P2ChangingDelay = 1.0f;
+
+	// Phase2 VineAttack 관련
+	int VineNum = 3;
+	std::vector<AVine*> Vines = std::vector<AVine*>();
+	bool CanCreateVine = true;
 
 private:
 	void BeginPlay() override;
@@ -128,6 +135,7 @@ private:
 	void CreateObjectSpawnEffect();
 	void CreateBoomerang();
 	void CreateBottomIvy();
+	void CreateVine();
 
 private:
 	inline void GetHit(int _DmgVal)

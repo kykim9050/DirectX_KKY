@@ -5,19 +5,19 @@
 // Ό³Έν :
 class USpriteRenderer;
 class UCollision;
-class Vine : public ABossAttackUnit
+class AVine : public ABossAttackUnit
 {
 	GENERATED_BODY(ABossAttackUnit)
 public:
 	// constrcuter destructer
-	Vine();
-	~Vine();
+	AVine();
+	~AVine();
 
 	// delete Function
-	Vine(const Vine& _Other) = delete;
-	Vine(Vine&& _Other) noexcept = delete;
-	Vine& operator=(const Vine& _Other) = delete;
-	Vine& operator=(Vine&& _Other) noexcept = delete;
+	AVine(const AVine& _Other) = delete;
+	AVine(AVine&& _Other) noexcept = delete;
+	AVine& operator=(const AVine& _Other) = delete;
+	AVine& operator=(AVine&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;
