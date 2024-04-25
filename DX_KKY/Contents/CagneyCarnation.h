@@ -105,10 +105,8 @@ private:
 	float VineAttackDelayInit = 5.0f;
 
 	// Phase2 Spit 관련
-	//float SpitDelay = 6.0f;
-	//float SpitDelayInit = 6.0f;
-	float SpitDelay = 1.0f;
-	float SpitDelayInit = 1.0f;
+	float SpitDelay = 6.0f;
+	float SpitDelayInit = 6.0f;
 
 	// Dead 관련
 	float ExplosionEffDelay = 0.4f;

@@ -25,7 +25,15 @@ void AFlowerLevelMode::BeginPlay()
 	Super::BeginPlay();
 
 	Camera = GetWorld()->GetMainCamera();
-	OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
+	//OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
+	{
+		OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
+		OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
+		OldFilm->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
+		OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
+		OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
+		OldFilm->ChangeAnimation("OldFilmAni");
+	}
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 
 	MapFrontObject = GetWorld()->SpawnActor<AMapBase>("MapFrontObject", EActorType::Map);
@@ -75,7 +83,7 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
 
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
-	OldFilm->SetActorLocation(FVector{ UContentsValue::ContentsCameraInitXPos, UContentsValue::ContentsCameraInitYPos, 0.0f });
+	//OldFilm->SetActorLocation(FVector{ UContentsValue::ContentsCameraInitXPos, UContentsValue::ContentsCameraInitYPos, 0.0f });
 	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
 	BossMonster->SetActorLocation(FVector{ 1380.0f, -680.0f, 100.0f });
 	
