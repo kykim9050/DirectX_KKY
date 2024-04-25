@@ -90,9 +90,9 @@ void APlayerBullet::StateInit()
 	}
 
 	{
-		State.SetUpdateFunction("Spawn", std::bind(&APlayerBullet::Spawn, this, std::placeholders::_1));
+		State.SetUpdateFunction("Spawn", [](float) {});
 		State.SetUpdateFunction("Flying", std::bind(&APlayerBullet::Flying, this, std::placeholders::_1));
-		State.SetUpdateFunction("Death", std::bind(&APlayerBullet::Death, this, std::placeholders::_1));
+		State.SetUpdateFunction("Death", [](float) {});
 	}
 
 	State.ChangeState("Spawn");
@@ -111,23 +111,6 @@ void APlayerBullet::Flying(float _DeltaTime)
 	SetSpeedVec(GetHorizontalDir() * BulletSpeed);
 	SetJumpVec(GetVerticalDir() * BulletSpeed);
 	ResultMovementUpdate(_DeltaTime);
-}
-
-void APlayerBullet::Spawn(float _DeltaTime)
-{
-	SetSpeedVec(GetHorizontalDir() * BulletSpeed);
-	SetJumpVec(GetVerticalDir() * BulletSpeed);
-	ResultMovementUpdate(_DeltaTime);
-}
-
-void APlayerBullet::Death(float _DeltaTime)
-{
-
-}
-
-void APlayerBullet::ResultMovementUpdate(float _DeltaTime)
-{
-	Super::ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayerBullet::CollisionCheck()
