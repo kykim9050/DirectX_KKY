@@ -250,7 +250,7 @@ void ASeed::CreateVenus()
 	std::shared_ptr<AVenus> Venus = GetWorld()->SpawnActor<AVenus>("Venus");
 	Venus->SetActorLocation(InitPos);
 	Venus->SetActorRotation(float4(0.0f, 0.0f, RandomDegree));
-	Venus->SetColPosition(float4(0.0f, GColliderScale::Venus_ColScale.hY(), 0.0f));
+	Venus->SetColPosition(float4(0.0f, 0.0f/*GColliderScale::Venus_ColScale.hY()*/, 0.0f));
 }
 
 void ASeed::CreateMiniFlower()
