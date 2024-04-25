@@ -60,6 +60,9 @@ void ACagneyCarnation::CreateAnimation()
 		// Phase2 Spit
 		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Spit_Begin, "FlowerFinalSpitBegin", 0.0416f, false);
 		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Spit_End, "FlowerFinalSpitEnd", 0.0416f, false);
+		
+		// Dead
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerBoss_Death, "FlowerDeath", 0.0416f);
 	}
 }
 

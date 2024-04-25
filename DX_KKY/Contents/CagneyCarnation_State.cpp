@@ -60,6 +60,9 @@ void ACagneyCarnation::StateCreate()
 
 	// Phase2 Spit
 	State.CreateState(FlowerBossState::Phase2_Spit);
+
+	// Dead
+	State.CreateState(FlowerBossState::FlowerBoss_Dead);
 }
 
 void ACagneyCarnation::StartFunctionSet()
@@ -203,6 +206,12 @@ void ACagneyCarnation::StartFunctionSet()
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Spit_Begin);
 		});
 
+	// Boss Dead
+	State.SetStartFunction(FlowerBossState::FlowerBoss_Dead, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::FlowerBoss_Death);
+		});
+
 }
 
 void ACagneyCarnation::UpdateFunctionSet()
@@ -244,6 +253,9 @@ void ACagneyCarnation::UpdateFunctionSet()
 
 	// Phase2 Spit
 	State.SetUpdateFunction(FlowerBossState::Phase2_Spit, [](float) {});
+
+	// Dead
+	State.SetUpdateFunction(FlowerBossState::FlowerBoss_Dead, std::bind(&ACagneyCarnation::Dead, this, std::placeholders::_1));
 }
 
 void ACagneyCarnation::EndFunctionSet()
@@ -414,6 +426,12 @@ void ACagneyCarnation::Phase2Intro_2(float _DeltaTime)
 
 void ACagneyCarnation::Phase2_Idle(float _DeltaTime)
 {
+	if (0.0f >= GetHp())
+	{
+		State.ChangeState(FlowerBossState::FlowerBoss_Dead);
+		return;
+	}
+
 	int WaitVineNum = 0;
 
 	for (int i = 0; i < VineNum; i++)
@@ -460,4 +478,9 @@ void ACagneyCarnation::Phase2_Idle(float _DeltaTime)
 		State.ChangeState(FlowerBossState::Phase2_Spit);
 		return;
 	}
+}
+
+void ACagneyCarnation::Dead(float _DeltaTime)
+{
+
 }
