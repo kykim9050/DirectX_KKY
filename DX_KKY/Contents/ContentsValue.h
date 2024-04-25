@@ -97,6 +97,17 @@ namespace FlowerBossAniName
 
 	const std::string BottomIvy_Spawn = "BottomIvy_Spawn";
 	const std::string BottomIvy_Idle = "BottomIvy_Idle";
+
+	const std::string FrontVine_Begin = "FrontVine_Begin";
+	const std::string FrontVine_Idle = "FrontVine_Idle";
+	const std::string FrontVine_Attack = "FrontVine_Attack";
+	const std::string FrontVine_AttackEnd = "FrontVine_AttackEnd";
+	const std::string FrontVine_Dissapear = "FrontVine_Dissapear";
+
+	const std::string BackVine_Begin = "BackVine_Begin";
+	const std::string BackVine_Idle = "BackVine_Idle";
+	const std::string BackVine_Dissapear = "BackVine_Dissapear";
+
 }
 
 namespace FlowerBossState

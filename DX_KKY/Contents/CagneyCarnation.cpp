@@ -126,7 +126,7 @@ void ACagneyCarnation::RendererInit()
 	BottomIvyRenderer = CreateDefaultSubObject<USpriteRenderer>("BottomIvyRenderer");
 	BottomIvyRenderer->SetupAttachment(Root);
 	BottomIvyRenderer->SetAutoSize(1.0f, true);
-	BottomIvyRenderer->SetOrder(ERenderingOrder::BossMonsterObject);
+	BottomIvyRenderer->SetOrder(ERenderingOrder::BossMonsterObject1);
 	BottomIvyRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	BottomIvyRenderer->SetPosition(GRendererPos::FlowerBoss_BottomIvy_RelativePos);
 }
