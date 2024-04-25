@@ -104,6 +104,10 @@ private:
 	float VineAttackDelay = 0.0f;
 	float VineAttackDelayInit = 5.0f;
 
+	// Phase2 Spit ฐüทร
+	float SpitDelay = 6.0f;
+	float SpitDelayInit = 6.0f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

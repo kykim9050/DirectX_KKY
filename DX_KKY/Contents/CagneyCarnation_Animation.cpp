@@ -55,6 +55,10 @@ void ACagneyCarnation::CreateAnimation()
 
 		// Phase2 Idle
 		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Idle, "FlowerFinal_Idle", 0.0416f);
+	
+		// Phase2 Spit
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Spit_Begin, "FlowerFinalSpitBegin", 0.0416f, false);
+		Renderer->CreateAnimation(FlowerBossAniName::FlowerP2_Spit_End, "FlowerFinalSpitEnd", 0.0416f, false);
 	}
 }
 
@@ -165,5 +169,17 @@ void ACagneyCarnation::SetAnimationCallback()
 			{
 				State.ChangeState(FlowerBossState::Phase2_Idle);
 			});
+
+		// Phase2 Spit
+		Renderer->SetLastFrameCallback(FlowerBossAniName::FlowerP2_Spit_Begin, [this]()
+			{
+				// 마지막에 Poll도 던지기
+				Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Spit_End);
+			});
+		Renderer->SetLastFrameCallback(FlowerBossAniName::FlowerP2_Spit_End, [this]()
+			{
+				State.ChangeState(FlowerBossState::Phase2_Idle);
+			});
+
 	}
 }
