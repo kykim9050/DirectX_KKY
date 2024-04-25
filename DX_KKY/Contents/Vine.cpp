@@ -70,8 +70,9 @@ void AVine::RendererInit()
 	SetRendererPivot(EPivot::BOT);
 
 	BackVineRenderer->SetAutoSize(1.0f, true);
-	BackVineRenderer->SetOrder(ERenderingOrder::Object2);
+	BackVineRenderer->SetOrder(ERenderingOrder::Object3);
 	BackVineRenderer->SetPivot(EPivot::BOT);
+	BackVineRenderer->SetPosition(float4(0.0f, 20.0f, 0.0f));
 }
 
 void AVine::ColliderInit()
@@ -89,9 +90,18 @@ void AVine::AnimationInit()
 	CreateRevAnimation(FAniInfo(FlowerBossAniName::FrontVine_AttackEnd, "vineFrontAttack", 0.0416f), false, 9, 0);
 	CreateRevAnimation(FAniInfo(FlowerBossAniName::FrontVine_Dissapear, "vineFrontBegin", 0.0416f), false, 7, 0);
 
+	GetRenderer()->SetLastFrameCallback(FlowerBossAniName::FrontVine_Begin, [this]()
+		{
+			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Idle);
+		});
+
 	// back vine
 	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Begin, "vineBackBegin", 0.0416f, false);
 	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Idle, "vineBackIdle", 0.0416f);
 	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Dissapear, "vineFrontBegin", 0.0416f, false);
 
+	BackVineRenderer->SetLastFrameCallback(FlowerBossAniName::BackVine_Begin, [this]()
+		{
+			BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Idle);
+		});
 }
