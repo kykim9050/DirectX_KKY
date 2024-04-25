@@ -3,7 +3,7 @@
 
 #include "Vine.h"
 
-Vine::Vine()
+AVine::AVine()
 {
 	BackVineRenderer = CreateDefaultSubObject<USpriteRenderer>("BackVineRenderer");
 	BackVineRenderer->SetupAttachment(GetRoot());
@@ -12,11 +12,11 @@ Vine::Vine()
 	StemCollider->SetupAttachment(GetRoot());
 }
 
-Vine::~Vine()
+AVine::~AVine()
 {
 }
 
-void Vine::BeginPlay()
+void AVine::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -26,14 +26,14 @@ void Vine::BeginPlay()
 	StateInit();
 }
 
-void Vine::Tick(float _DeltaTime)
+void AVine::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
 	State.Update(_DeltaTime);
 }
 
-void Vine::StateInit()
+void AVine::StateInit()
 {
 	State.CreateState(FlowerBossState::Vine_Wait);
 	State.CreateState(FlowerBossState::Vine_GrowUp);
@@ -44,10 +44,10 @@ void Vine::StateInit()
 			GetRenderer()->SetActive(false);
 			// back vine Renderer
 			BackVineRenderer->SetActive(false);
-			// front vine Collider
-			Collider->SetActive(false);
-			// vine sten Collider
-			StemCollider->SetActive(false);
+			//// front vine Collider
+			//Collider->SetActive(false);
+			//// vine sten Collider
+			//StemCollider->SetActive(false);
 		});
 	State.SetStartFunction(FlowerBossState::Vine_GrowUp, [this]() {
 		GetRenderer()->SetActive(true);
@@ -63,7 +63,7 @@ void Vine::StateInit()
 	State.ChangeState(FlowerBossState::Vine_Wait);
 }
 
-void Vine::RendererInit()
+void AVine::RendererInit()
 {
 	SetRendererAutoSize();
 	SetRendererOrder(ERenderingOrder::Object1);
@@ -74,13 +74,13 @@ void Vine::RendererInit()
 	BackVineRenderer->SetPivot(EPivot::BOT);
 }
 
-void Vine::ColliderInit()
+void AVine::ColliderInit()
 {
 	//StemCollider
 	//GetCollider
 }
 
-void Vine::AnimationInit()
+void AVine::AnimationInit()
 {
 	// front vine
 	CreateAnimation(FAniInfo(FlowerBossAniName::FrontVine_Begin, "vineFrontBegin", 0.0416f), false);

@@ -6,6 +6,7 @@
 #include "Acorn.h"
 #include "FXUnit.h"
 #include "Boomerang.h"
+#include "Vine.h"
 
 
 ACagneyCarnation::ACagneyCarnation()
@@ -23,6 +24,7 @@ void ACagneyCarnation::BeginPlay()
 {
 	Super::BeginPlay();
 
+	CreateVine();
 	AnimationInit();
 	StateInit();
 }
@@ -129,4 +131,15 @@ void ACagneyCarnation::RendererInit()
 	BottomIvyRenderer->SetOrder(ERenderingOrder::BossMonsterObject1);
 	BottomIvyRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	BottomIvyRenderer->SetPosition(GRendererPos::FlowerBoss_BottomIvy_RelativePos);
+}
+
+void ACagneyCarnation::CreateVine()
+{
+	for (int i = 0; i < VineNum; i++)
+	{
+		AVine* NewVine = GetWorld()->SpawnActor<AVine>("Vine").get();
+		NewVine->SetActorLocation(FlowerBossStageValue::AttackableVinePos[i]);
+
+		Vines.push_back(NewVine);
+	}
 }
