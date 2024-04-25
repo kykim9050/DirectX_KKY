@@ -203,6 +203,8 @@ namespace GColliderScale
 	const float4 Boomerang_ColScale = float4(150.0f, 64.0f, 1.0f);
 	const float4 FlowerPlatform_ColScale = float4(150.0f, 16.0f, 1.0f);
 	const float4 BottomIvy_ColScale = float4(1280.0f, 64.0f, 1.0f);
+	const float4 VineAttack_ColScale = float4(64.0f, 200.0f, 1.0f);
+	const float4 VineStem_ColScale = float4(64.0f, 200.0f, 1.0f);
 
 }
 
@@ -214,6 +216,8 @@ namespace GColliderPosInfo
 	const std::vector<float4> AcornInitPos = { {950.0f, -190.0f, 0.0f}, {950.0f, -390.0f, 0.0f}, {950.0f, -290.0f, 0.0f } };
 	const float4 FlowerPlatform_RelativePos = float4(0.0f, 16.0f, 0.0f);
 	const float4 FlowerBoss_BottomIvy_RelativePos = float4(-800.0f, 100.0f, 0.0f);
+	const float4 VineAttack_RelativePos = float4(0.0f, 350.0f, 0.0f);
+	const float4 VineStem_RelativePos = float4(0.0f, 150.0f, 0.0f);
 }
 
 namespace GRendererPos

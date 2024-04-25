@@ -46,10 +46,6 @@ void AVine::StateInit()
 			GetRenderer()->SetActive(false);
 			// back vine Renderer
 			BackVineRenderer->SetActive(false);
-			//// front vine Collider
-			//Collider->SetActive(false);
-			//// vine sten Collider
-			//StemCollider->SetActive(false);
 		});
 	State.SetStartFunction(FlowerBossState::Vine_GrowUp, [this]() {
 		GetRenderer()->SetActive(true);
@@ -63,6 +59,10 @@ void AVine::StateInit()
 		});
 	State.SetStartFunction(FlowerBossState::Vine_Attack, [this]()
 		{
+			//// front vine Collider
+			Collider->SetActive(true);
+			//// vine stem Collider
+			StemCollider->SetActive(true);
 			Renderer->ChangeAnimation(FlowerBossAniName::FrontVine_Attack);
 		});
 
@@ -84,12 +84,29 @@ void AVine::RendererInit()
 	BackVineRenderer->SetOrder(ERenderingOrder::Object3);
 	BackVineRenderer->SetPivot(EPivot::BOT);
 	BackVineRenderer->SetPosition(float4(0.0f, 20.0f, 0.0f));
+
+	// front vine Renderer
+	GetRenderer()->SetActive(false);
+	// back vine Renderer
+	BackVineRenderer->SetActive(false);
 }
 
 void AVine::ColliderInit()
 {
-	//StemCollider
-	//GetCollider
+	GetCollider()->SetScale(GColliderScale::VineAttack_ColScale);
+	GetCollider()->SetCollisionGroup(ECollisionGroup::Trap);
+	GetCollider()->SetCollisionType(ECollisionType::Rect);
+	GetCollider()->SetPosition(GColliderPosInfo::VineAttack_RelativePos);
+
+	StemCollider->SetScale(GColliderScale::VineStem_ColScale);
+	StemCollider->SetCollisionGroup(ECollisionGroup::Trap);
+	StemCollider->SetCollisionType(ECollisionType::Rect);
+	StemCollider->SetPosition(GColliderPosInfo::VineStem_RelativePos);
+
+	//// front vine Collider
+	Collider->SetActive(false);
+	//// vine sten Collider
+	StemCollider->SetActive(false);
 }
 
 void AVine::AnimationInit()
@@ -109,15 +126,20 @@ void AVine::AnimationInit()
 		{
 			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_AttackEnd);
 		});
-	GetRenderer()->SetLastFrameCallback(FlowerBossAniName::FrontVine_AttackEnd, [this]()
+	GetRenderer()->SetFrameCallback(FlowerBossAniName::FrontVine_AttackEnd, 10, [this]()
 		{
+			//// front vine Collider
+			Collider->SetActive(false);
 			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Dissapear);
 			BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Dissapear);
 		});
-	GetRenderer()->SetLastFrameCallback(FlowerBossAniName::FrontVine_Dissapear, [this]()
+	GetRenderer()->SetFrameCallback(FlowerBossAniName::FrontVine_Dissapear, 8, [this]()
 		{
+			StemCollider->SetActive(false);
 			GetRenderer()->SetActive(false);
 		});
+
+
 
 	// back vine
 	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Begin, "vineBackBegin", 0.0416f, false);
@@ -130,6 +152,10 @@ void AVine::AnimationInit()
 			State.ChangeState(FlowerBossState::Vine_WaitAttack);
 		});
 	BackVineRenderer->SetLastFrameCallback(FlowerBossAniName::BackVine_Dissapear, [this]()
+		{
+			State.ChangeState(FlowerBossState::Vine_Wait);
+		});
+	BackVineRenderer->SetFrameCallback(FlowerBossAniName::BackVine_Dissapear, 14,[this]()
 		{
 			State.ChangeState(FlowerBossState::Vine_Wait);
 		});
