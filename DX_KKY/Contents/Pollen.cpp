@@ -57,8 +57,7 @@ void APollen::ColliderInit()
 {
 	Collision->SetScale(float4(32.0f, 32.0f, 1.0f));
 	Collision->SetCollisionGroup(ECollisionGroup::MonsterBullet);
-	Collision->SetCollisionType(ECollisionType::CirCle);
-	Collision->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	Collision->SetCollisionType(ECollisionType::Rect);
 }
 
 void APollen::AnimationInit()
