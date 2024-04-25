@@ -25,6 +25,7 @@ protected:
 private:
 	int RandomValue = NOT_DEFINE;
 	std::string Color = "_None";
+	float AccTime = 0.0f;
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

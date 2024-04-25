@@ -35,7 +35,8 @@ void APollen::StateInit()
 		{
 			{
 				SetHorizontalDir(float4::Left);
-				SetHorizontalSpeed(500.0f);
+				SetVerticalDir(float4::Up);
+				SetHorizontalSpeed(350.0f);
 				SetSpeedVec(GetHorizontalDir() * GetHorizontalSpeed());
 			}
 			Renderer->ChangeAnimation(FlowerBossAniName::Pollen + Color);
@@ -97,6 +98,9 @@ void APollen::Throwing(float _DeltaTime)
 		return;
 	}
 	
+	AccTime += _DeltaTime;
 
+	AddActorLocation(float4(0.0f, 0.2f * sinf(AccTime * 5.0f), 0.0f));
+	SetActorRotation(float4(0.0f, 0.0f, 2.0f * AccTime * UEngineMath::RToD));
 	ResultMovementUpdate(_DeltaTime);
 }
