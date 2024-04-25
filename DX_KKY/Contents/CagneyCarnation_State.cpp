@@ -4,6 +4,7 @@
 #include "FXBase.h"
 #include "Seed.h"
 #include "Acorn.h"
+#include "Vine.h"
 
 void ACagneyCarnation::StateInit()
 {
@@ -402,11 +403,40 @@ void ACagneyCarnation::Phase2Intro_2(float _DeltaTime)
 
 void ACagneyCarnation::Phase2_Idle(float _DeltaTime)
 {
+	int WaitVineNum = 0;
+
+	for (int i = 0; i < VineNum; i++)
+	{
+		if (false == Vines[i]->IsWait())
+		{
+			continue;
+		}
+
+		++WaitVineNum;
+	}
+
+	if (3 == WaitVineNum)
+	{
+		CanCreateVine = true;
+	}
+
+	{
+		std::string Msg = std::format("RestVine Num : {}\n", std::to_string(WaitVineNum));
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
+
+
 	if (true == CanCreateVine)
 	{
-		CanCreateVine = false;
+		VineAttackDelay -= _DeltaTime;
 
-		VineGrowUp();
+		if (0.0f >= VineAttackDelay)
+		{
+			VineAttackDelay = VineAttackDelayInit;
+			CanCreateVine = false;
+
+			VineGrowUp();
+		}
 	}
 
 }
