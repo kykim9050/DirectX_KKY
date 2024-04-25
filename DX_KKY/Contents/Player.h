@@ -49,6 +49,8 @@ private:
 	EBulletShootType ShootType = EBulletShootType::None;
 	EPlayerKeyDir ActorKeyDir = EPlayerKeyDir::None;
 
+	std::vector<float> BulletYOffest = {10.0f, 0.0f, -10.0f};
+	int BulletYOffsetIdx = 0;
 	float RunSpeed = 500.0f;
 	float JumpVal = 900.0f;
 	float DashSpeed = 800.0f;

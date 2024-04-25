@@ -289,9 +289,11 @@ void APlayer::ShootBullet(float _DeltaTime)
 		FVector InitRot = FVector::Zero;
 
 		GetBulletInitPosAndRot(InitPos, InitRot, NewBullet);
+
 		NewBullet->SetActorLocation(InitPos);
 		NewBullet->SetActorRotation(InitRot);
 		BulletFX->SetActorLocation(InitPos);
+
 	}
 
 }
@@ -444,10 +446,16 @@ void APlayer::GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_p
 		Bullet->SetHorizontalDir(float4::Right);
 		break;
 	case EBulletShootType::StraightShoot:
-		PlusPos = UContentsValue::Straight_BulletInitPos;
+	{
+		if (BulletYOffsetIdx >= BulletYOffest.size())
+		{
+			BulletYOffsetIdx = 0;
+		}
+		PlusPos = UContentsValue::Straight_BulletInitPos + float4(0.0f, BulletYOffest[BulletYOffsetIdx++], 0.0f);
 		ResultRot = { 0.0f, 0.0f, 0.0f };
 		Bullet->SetHorizontalDir(float4::Right);
 		break;
+	}
 	case EBulletShootType::DiagonalDownShoot:
 		PlusPos = UContentsValue::DiagDown_BulletInitPos;
 		ResultRot = { 0.0f, 0.0f, -45.0f };
