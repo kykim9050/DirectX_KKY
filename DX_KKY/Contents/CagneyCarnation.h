@@ -100,7 +100,9 @@ private:
 	// Phase2 VineAttack ฐüทร
 	int VineNum = 3;
 	std::vector<AVine*> Vines = std::vector<AVine*>();
-	bool CanCreateVine = true;
+	bool CanCreateVine = false;
+	float VineAttackDelay = 0.0f;
+	float VineAttackDelayInit = 5.0f;
 
 private:
 	void BeginPlay() override;

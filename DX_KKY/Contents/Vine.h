@@ -24,6 +24,15 @@ public:
 		State.ChangeState(FlowerBossState::Vine_GrowUp);
 		return;
 	}
+	inline bool IsWait() const
+	{
+		if (FlowerBossState::Vine_Wait == State.GetCurStateName())
+		{
+			return true;
+		}
+
+		return false;
+	}
 
 protected:
 	void BeginPlay() override;
