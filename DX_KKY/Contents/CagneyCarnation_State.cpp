@@ -58,6 +58,8 @@ void ACagneyCarnation::StateCreate()
 	// Phase2 Idle
 	State.CreateState(FlowerBossState::Phase2_Idle);
 
+	// Phase2 Spit
+	State.CreateState(FlowerBossState::Phase2_Spit);
 }
 
 void ACagneyCarnation::StartFunctionSet()
@@ -195,6 +197,12 @@ void ACagneyCarnation::StartFunctionSet()
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Idle);
 		});
 
+	// Phase2 Spit
+	State.SetStartFunction(FlowerBossState::Phase2_Spit , [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Spit_Begin);
+		});
+
 }
 
 void ACagneyCarnation::UpdateFunctionSet()
@@ -233,6 +241,9 @@ void ACagneyCarnation::UpdateFunctionSet()
 
 	// Phase2 Idle
 	State.SetUpdateFunction(FlowerBossState::Phase2_Idle, std::bind(&ACagneyCarnation::Phase2_Idle, this, std::placeholders::_1));
+
+	// Phase2 Spit
+	State.SetUpdateFunction(FlowerBossState::Phase2_Spit, [](float) {});
 }
 
 void ACagneyCarnation::EndFunctionSet()
@@ -439,4 +450,14 @@ void ACagneyCarnation::Phase2_Idle(float _DeltaTime)
 		}
 	}
 
+	
+	SpitDelay -= _DeltaTime;
+
+	if (0.0f >= SpitDelay)
+	{
+		SpitDelay = SpitDelayInit;
+
+		State.ChangeState(FlowerBossState::Phase2_Spit);
+		return;
+	}
 }

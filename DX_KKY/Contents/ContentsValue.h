@@ -108,6 +108,9 @@ namespace FlowerBossAniName
 	const std::string BackVine_Idle = "BackVine_Idle";
 	const std::string BackVine_Dissapear = "BackVine_Dissapear";
 
+	const std::string FlowerP2_Spit_Begin = "FlowerP2_Spit_Begin";
+	const std::string FlowerP2_Spit_End = "FlowerP2_Spit_End";
+
 }
 
 namespace FlowerBossState
@@ -162,7 +165,8 @@ namespace FlowerBossState
 	const std::string Phase2Intro_3 = "Phase2Intro_3";
 
 	const std::string Phase2_Idle = "Phase2_Idle";
-
+	const std::string Phase2_Spit = "Phase2_Spit";
+	
 	const std::string FlowerPlatform_Floating = "FlowerPlatform_Floating";
 	const std::string FlowerPlatform_Pressed = "FlowerPlatform_Pressed";
 	const std::string FlowerPlatform_Pause = "FlowerPlatform_Pause";
@@ -217,7 +221,7 @@ namespace GColliderPosInfo
 	const float4 FlowerPlatform_RelativePos = float4(0.0f, 16.0f, 0.0f);
 	const float4 FlowerBoss_BottomIvy_RelativePos = float4(-800.0f, 100.0f, 0.0f);
 	const float4 VineAttack_RelativePos = float4(0.0f, 350.0f, 0.0f);
-	const float4 VineStem_RelativePos = float4(0.0f, 150.0f, 0.0f);
+	const float4 VineStem_RelativePos = float4(0.0f, 130.0f, 0.0f);
 }
 
 namespace GRendererPos
