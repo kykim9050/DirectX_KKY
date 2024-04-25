@@ -143,3 +143,18 @@ void ACagneyCarnation::CreateVine()
 		Vines.push_back(NewVine);
 	}
 }
+
+void ACagneyCarnation::VineGrowUp()
+{
+	int ExceptVineNum = UMath::GetInst().RandomReturnInt(0, 2);
+
+	for (int i = 0; i < VineNum; i++)
+	{
+		if (ExceptVineNum == i)
+		{
+			continue;
+		}
+
+		Vines[i]->GrowUp();
+	}
+}

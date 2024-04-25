@@ -19,6 +19,12 @@ public:
 	AVine& operator=(const AVine& _Other) = delete;
 	AVine& operator=(AVine&& _Other) noexcept = delete;
 
+	inline void GrowUp()
+	{
+		State.ChangeState(FlowerBossState::Vine_GrowUp);
+		return;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

@@ -66,7 +66,7 @@ void AVine::StateInit()
 void AVine::RendererInit()
 {
 	SetRendererAutoSize();
-	SetRendererOrder(ERenderingOrder::Object1);
+	SetRendererOrder(ERenderingOrder::BossMonsterObject2);
 	SetRendererPivot(EPivot::BOT);
 
 	BackVineRenderer->SetAutoSize(1.0f, true);
@@ -90,7 +90,8 @@ void AVine::AnimationInit()
 	CreateRevAnimation(FAniInfo(FlowerBossAniName::FrontVine_Dissapear, "vineFrontBegin", 0.0416f), false, 7, 0);
 
 	// back vine
-	CreateAnimation(FAniInfo(FlowerBossAniName::BackVine_Begin, "vineBackBegin", 0.0416f), false);
-	CreateAnimation(FAniInfo(FlowerBossAniName::BackVine_Idle, "vineBackIdle", 0.0416f));
-	CreateRevAnimation(FAniInfo(FlowerBossAniName::BackVine_Dissapear, "vineFrontBegin", 0.0416f), false, 13, 0);
+	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Begin, "vineBackBegin", 0.0416f, false);
+	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Idle, "vineBackIdle", 0.0416f);
+	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Dissapear, "vineFrontBegin", 0.0416f, false);
+
 }

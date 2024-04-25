@@ -12,8 +12,8 @@ void ACagneyCarnation::StateInit()
 	UpdateFunctionSet();
 	EndFunctionSet();
 
-	//State.ChangeState(FlowerBossState::Intro);
-	State.ChangeState(FlowerBossState::Gatling_Begin);
+	State.ChangeState(FlowerBossState::Intro);
+	//State.ChangeState(FlowerBossState::Gatling_Begin);
 }
 
 
@@ -402,11 +402,11 @@ void ACagneyCarnation::Phase2Intro_2(float _DeltaTime)
 
 void ACagneyCarnation::Phase2_Idle(float _DeltaTime)
 {
-	if (CanCreateVine = true)
+	if (true == CanCreateVine)
 	{
 		CanCreateVine = false;
 
-
+		VineGrowUp();
 	}
 
 }
