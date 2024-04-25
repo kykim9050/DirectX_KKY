@@ -176,7 +176,7 @@ void ACagneyCarnation::SetAnimationCallback()
 			{
 				// 마지막에 Poll도 던지기
 				APollen* NewPollen = GetWorld()->SpawnActor<APollen>("NewPollen").get();
-				NewPollen->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
+				NewPollen->SetActorLocation(float4(1020.0f, -320.0f, 0.0f));
 
 				Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Spit_End);
 			});

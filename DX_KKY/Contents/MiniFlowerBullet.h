@@ -29,7 +29,7 @@ private:
 	float4 Velocity = FVector::Zero;
 	float BulletSpeed = 250.0f;
 	float4 ResVelocity = float4::Zero;
-	float4 BoundaryValue = float4::Zero;
+	
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -38,8 +38,6 @@ private:
 	void RendererInit();
 	void ColliderInit();
 	void AnimationInit();
-
-	bool BoundaryCheck(float4 _Boundary);
 
 	void Fire(float _DeltaTime);
 };

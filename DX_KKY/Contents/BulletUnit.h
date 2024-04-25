@@ -44,6 +44,7 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	bool BoundaryCheck(float4 _Boundary, float OffsetX = 0.0f, float OffsetY = 0.0f);
 
 	virtual void StateInit() {};
 	
@@ -72,6 +73,7 @@ protected:
 	USpriteRenderer* Renderer;
 	UCollision* Collision;
 	UStateManager State = UStateManager();
+	float4 BoundaryValue = float4::Zero;
 
 private:
 	int Damage = 0;
@@ -79,5 +81,6 @@ private:
 	float4 VerticalDir = float4::Zero;
 	float HorizontalSpeed = 0.0f;
 	float VerticalSpeed = 0.0f;
+	
 };
 
