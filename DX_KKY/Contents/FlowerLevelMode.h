@@ -8,7 +8,8 @@ class UEngineRandom;
 class APlatformShadow;
 class AFlowerPlatform;
 class UCamera;
-class AOldFilmEffect;
+class UImage;
+//class AOldFilmEffect;
 class APlayer;
 class ACagneyCarnation;
 class AMapBase;
@@ -36,7 +37,7 @@ protected:
 
 private:
 	std::shared_ptr<UCamera> Camera;
-	std::shared_ptr<AOldFilmEffect> OldFilm;
+	UImage* OldFilm = nullptr;
 	std::shared_ptr<APlayer> Player;
 	std::shared_ptr<ACagneyCarnation> BossMonster;
 	std::shared_ptr<AMapBase> MapFrontObject;
