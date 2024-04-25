@@ -201,6 +201,9 @@
     <ClInclude Include="Vine.h">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="ParryUnit.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -343,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="Vine.cpp">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ParryUnit.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
