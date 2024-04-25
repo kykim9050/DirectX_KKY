@@ -32,10 +32,7 @@ void AMiniFlowerBullet::StateInit()
 	State.CreateState("Fire");
 	State.CreateState("Death");
 
-	State.SetStartFunction("Init", [this]()
-		{
-			BoundaryValue = GEngine->EngineWindow.GetWindowScale();		
-		});
+	State.SetStartFunction("Init", [this](){});
 	State.SetStartFunction("Fire", [this]()
 		{
 			float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
@@ -100,32 +97,4 @@ void AMiniFlowerBullet::Fire(float _DeltaTime)
 	}
 
 	ResultMovementUpdate(_DeltaTime);
-}
-
-bool AMiniFlowerBullet::BoundaryCheck(float4 _Boundary)
-{
-	float4 MyPos = GetActorLocation();
-	MyPos.Y *= -1;
-
-	if (MyPos.X < 50.0f)
-	{
-		return true;
-	}
-
-	if (MyPos.Y < 0.0f)
-	{
-		return true;
-	}
-
-	if (MyPos.X > _Boundary.X - 50.0f)
-	{
-		return true;
-	}
-
-	if (MyPos.Y > _Boundary.Y - 100.0f)
-	{
-		return true;
-	}
-
-	return false;
 }

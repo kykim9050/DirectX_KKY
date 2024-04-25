@@ -5,6 +5,7 @@
 APollen::APollen()
 {
 	DefineParryableUnit();
+
 }
 
 APollen::~APollen()
@@ -34,7 +35,7 @@ void APollen::StateInit()
 		{
 			{
 				SetHorizontalDir(float4::Left);
-				SetHorizontalSpeed(100.0f);
+				SetHorizontalSpeed(500.0f);
 				SetSpeedVec(GetHorizontalDir() * GetHorizontalSpeed());
 			}
 			Renderer->ChangeAnimation(FlowerBossAniName::Pollen + Color);
@@ -56,6 +57,7 @@ void APollen::ColliderInit()
 	Collision->SetScale(float4(32.0f, 32.0f, 1.0f));
 	Collision->SetCollisionGroup(ECollisionGroup::MonsterBullet);
 	Collision->SetCollisionType(ECollisionType::CirCle);
+	Collision->SetPosition(float4(0.0f, 0.0f, 0.0f));
 }
 
 void APollen::AnimationInit()
@@ -89,7 +91,12 @@ void APollen::DefineParryableUnit()
 
 void APollen::Throwing(float _DeltaTime)
 {
-
+	if (true == BoundaryCheck(BoundaryValue, 100.0f))
+	{
+		Destroy();
+		return;
+	}
+	
 
 	ResultMovementUpdate(_DeltaTime);
 }
