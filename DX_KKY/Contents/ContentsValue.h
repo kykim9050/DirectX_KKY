@@ -166,6 +166,9 @@ namespace FlowerBossState
 	const std::string FlowerPlatform_Floating = "FlowerPlatform_Floating";
 	const std::string FlowerPlatform_Pressed = "FlowerPlatform_Pressed";
 	const std::string FlowerPlatform_Pause = "FlowerPlatform_Pause";
+
+	const std::string Vine_GrowUp = "Vine_GrowUp";
+	const std::string Vine_Wait = "Vine_Wait";
 }
 
 namespace FlowerBossStageValue
