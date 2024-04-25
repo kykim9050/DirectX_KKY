@@ -155,6 +155,11 @@ void ACagneyCarnation::VineGrowUp()
 			continue;
 		}
 
-		Vines[i]->GrowUp();
+		float GrowUpRandomValue = UMath::GetInst().RandomReturnFloat(0.5f, 2.0f);
+
+		DelayCallBack(GrowUpRandomValue, [this, i]()
+			{
+				Vines[i]->GrowUp();
+			});
 	}
 }
