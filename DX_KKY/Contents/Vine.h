@@ -34,9 +34,13 @@ private:
 	USpriteRenderer* BackVineRenderer;
 	UCollision* StemCollider;
 
+	float AttackDelay = 0.0f;
+
 	void StateInit() override;
 	void RendererInit() override;
 	void ColliderInit() override;
 	void AnimationInit() override;
+
+	void WaitAttack(float _DeltaTime);
 };
 

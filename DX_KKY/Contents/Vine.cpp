@@ -37,6 +37,8 @@ void AVine::StateInit()
 {
 	State.CreateState(FlowerBossState::Vine_Wait);
 	State.CreateState(FlowerBossState::Vine_GrowUp);
+	State.CreateState(FlowerBossState::Vine_WaitAttack);
+	State.CreateState(FlowerBossState::Vine_Attack);
 
 	State.SetStartFunction(FlowerBossState::Vine_Wait, [this]()
 		{
@@ -52,13 +54,22 @@ void AVine::StateInit()
 	State.SetStartFunction(FlowerBossState::Vine_GrowUp, [this]() {
 		GetRenderer()->SetActive(true);
 		BackVineRenderer->SetActive(true);
-
 		GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Begin);
 		BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Begin);
+		});
+	State.SetStartFunction(FlowerBossState::Vine_WaitAttack, [this]()
+		{
+			AttackDelay = UMath::GetInst().RandomReturnFloat(1.0f, 1.5f);
+		});
+	State.SetStartFunction(FlowerBossState::Vine_Attack, [this]()
+		{
+			Renderer->ChangeAnimation(FlowerBossAniName::FrontVine_Attack);
 		});
 
 	State.SetUpdateFunction(FlowerBossState::Vine_Wait, [](float) {});
 	State.SetUpdateFunction(FlowerBossState::Vine_GrowUp, [](float) {});
+	State.SetUpdateFunction(FlowerBossState::Vine_WaitAttack, std::bind(&AVine::WaitAttack, this, std::placeholders::_1));
+	State.SetUpdateFunction(FlowerBossState::Vine_Attack, [](float) {});
 
 	State.ChangeState(FlowerBossState::Vine_Wait);
 }
@@ -94,6 +105,19 @@ void AVine::AnimationInit()
 		{
 			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Idle);
 		});
+	GetRenderer()->SetLastFrameCallback(FlowerBossAniName::FrontVine_Attack, [this]()
+		{
+			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_AttackEnd);
+		});
+	GetRenderer()->SetLastFrameCallback(FlowerBossAniName::FrontVine_AttackEnd, [this]()
+		{
+			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Dissapear);
+			BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Dissapear);
+		});
+	GetRenderer()->SetLastFrameCallback(FlowerBossAniName::FrontVine_Dissapear, [this]()
+		{
+			GetRenderer()->SetActive(false);
+		});
 
 	// back vine
 	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Begin, "vineBackBegin", 0.0416f, false);
@@ -103,5 +127,23 @@ void AVine::AnimationInit()
 	BackVineRenderer->SetLastFrameCallback(FlowerBossAniName::BackVine_Begin, [this]()
 		{
 			BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Idle);
+			State.ChangeState(FlowerBossState::Vine_WaitAttack);
 		});
+	BackVineRenderer->SetLastFrameCallback(FlowerBossAniName::BackVine_Dissapear, [this]()
+		{
+			State.ChangeState(FlowerBossState::Vine_Wait);
+		});
+}
+
+void AVine::WaitAttack(float _DeltaTime)
+{
+	AttackDelay -= _DeltaTime;
+
+	if (0.0f >= AttackDelay)
+	{
+		AttackDelay = 0.0f;
+
+		State.ChangeState(FlowerBossState::Vine_Attack);
+		return;
+	}
 }

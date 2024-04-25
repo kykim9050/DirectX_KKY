@@ -169,6 +169,9 @@ namespace FlowerBossState
 
 	const std::string Vine_GrowUp = "Vine_GrowUp";
 	const std::string Vine_Wait = "Vine_Wait";
+	const std::string Vine_Attack = "Vine_Attack";
+	const std::string Vine_WaitAttack = "Vine_WaitAttack";
+	
 }
 
 namespace FlowerBossStageValue
