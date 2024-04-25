@@ -111,6 +111,7 @@ namespace FlowerBossAniName
 	const std::string FlowerP2_Spit_Begin = "FlowerP2_Spit_Begin";
 	const std::string FlowerP2_Spit_End = "FlowerP2_Spit_End";
 
+	const std::string Pollen = "Pollen";
 }
 
 namespace FlowerBossState
@@ -166,6 +167,7 @@ namespace FlowerBossState
 
 	const std::string Phase2_Idle = "Phase2_Idle";
 	const std::string Phase2_Spit = "Phase2_Spit";
+	const std::string Pollen_Throwing = "Pollen_Throwing";
 	
 	const std::string FlowerPlatform_Floating = "FlowerPlatform_Floating";
 	const std::string FlowerPlatform_Pressed = "FlowerPlatform_Pressed";

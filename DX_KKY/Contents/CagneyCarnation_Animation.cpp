@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 
 #include "CagneyCarnation.h"
+#include "Pollen.h"
 
 void ACagneyCarnation::AnimationInit()
 {
@@ -174,6 +175,9 @@ void ACagneyCarnation::SetAnimationCallback()
 		Renderer->SetLastFrameCallback(FlowerBossAniName::FlowerP2_Spit_Begin, [this]()
 			{
 				// 마지막에 Poll도 던지기
+				APollen* NewPollen = GetWorld()->SpawnActor<APollen>("NewPollen").get();
+				NewPollen->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
+
 				Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Spit_End);
 			});
 		Renderer->SetLastFrameCallback(FlowerBossAniName::FlowerP2_Spit_End, [this]()

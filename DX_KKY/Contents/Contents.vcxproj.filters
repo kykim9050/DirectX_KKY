@@ -204,6 +204,9 @@
     <ClInclude Include="ParryUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="Pollen.h">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -349,6 +352,9 @@
     </ClCompile>
     <ClCompile Include="ParryUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Pollen.cpp">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
