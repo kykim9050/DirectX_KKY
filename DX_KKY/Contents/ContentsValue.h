@@ -112,6 +112,8 @@ namespace FlowerBossAniName
 	const std::string FlowerP2_Spit_End = "FlowerP2_Spit_End";
 
 	const std::string Pollen = "Pollen";
+
+	const std::string FlowerBoss_Death = "FlowerBoss_Death";
 }
 
 namespace FlowerBossState
@@ -177,6 +179,8 @@ namespace FlowerBossState
 	const std::string Vine_Wait = "Vine_Wait";
 	const std::string Vine_Attack = "Vine_Attack";
 	const std::string Vine_WaitAttack = "Vine_WaitAttack";
+
+	const std::string FlowerBoss_Dead = "FlowerBoss_Dead";
 	
 }
 
