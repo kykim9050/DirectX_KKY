@@ -25,6 +25,7 @@ enum class ERenderingOrder
 	BackLayer1,
 	Animation,
 	StaticObject,
+	Object3,
 	Object2,
 	Object1,
 	Monster2,
