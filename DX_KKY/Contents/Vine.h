@@ -4,6 +4,7 @@
 
 // Ό³Έν :
 class USpriteRenderer;
+class UCollision;
 class Vine : public ABossAttackUnit
 {
 	GENERATED_BODY(ABossAttackUnit)
@@ -25,6 +26,7 @@ protected:
 private:
 	UStateManager State;
 	USpriteRenderer* BackVineRenderer;
+	UCollision* StemCollider;
 
 	void StateInit() override;
 	void RendererInit() override;
