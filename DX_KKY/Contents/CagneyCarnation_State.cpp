@@ -482,5 +482,18 @@ void ACagneyCarnation::Phase2_Idle(float _DeltaTime)
 
 void ACagneyCarnation::Dead(float _DeltaTime)
 {
+	ExplosionEffDelay -= _DeltaTime;
+	
+	if (0.0f >= ExplosionEffDelay)
+	{
+		ExplosionEffDelay = ExplosionEffDelayInit + ExplosionEffDelay;
 
+		float RandomAngleValue = UMath::GetInst().RandomReturnFloat(0.0f, 360.0f);
+		//float RandomXPosValue = 
+
+		AFXBase* ExplosionEffect = GetWorld()->SpawnActor<AFXBase>("ExplosionEffect").get();
+		ExplosionEffect->FXInit(ERenderingOrder::FrontFX, FAniInfo(GAniName::ExplosionEffect, GSpriteName::ExplosionEffect, 0.0416f), false);
+		ExplosionEffect->SetActorLocation(GetActorLocation());
+		ExplosionEffect->SetActorRotation(float4(0.0f, 0.0f, RandomAngleValue));
+	}
 }

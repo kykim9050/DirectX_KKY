@@ -33,15 +33,7 @@ void AFXBase::FXInit(ERenderingOrder _Order, FAniInfo _Info, bool _Loop)
 {
 	Loop = _Loop;
 
-	if (false == Loop)
-	{
-		Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime, false);
-	}
-	else if (true == Loop)
-	{
-		Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime);
-	}
-
+	Renderer->CreateAnimation(_Info.AnimationName, _Info.SpriteName, _Info.InterTime, Loop);
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(_Order);
 	Renderer->ChangeAnimation(_Info.AnimationName);
