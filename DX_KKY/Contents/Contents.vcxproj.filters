@@ -64,6 +64,9 @@
     <Filter Include="Math">
       <UniqueIdentifier>{c410298d-fd98-4695-af4d-5e63404e1ca1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\CommonObject\Screen">
+      <UniqueIdentifier>{c0c23a1b-a679-4b35-b0bb-29513879c61a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -206,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="Pollen.h">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Level\PlayLevel\CommonObject\Screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +361,9 @@
     </ClCompile>
     <ClCompile Include="Pollen.cpp">
       <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Screen</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

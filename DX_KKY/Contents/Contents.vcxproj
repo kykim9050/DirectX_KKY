@@ -253,6 +253,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Message.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MiniFlower.h">
       <SubType>
       </SubType>
@@ -422,6 +426,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MapBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
       <SubType>
       </SubType>
     </ClCompile>
