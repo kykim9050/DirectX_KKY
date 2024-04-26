@@ -279,6 +279,10 @@ namespace GRendererPos
 
 	const float4 ParryEff_RelativePos = float4(0.0f, 64.0f, 0.0f);
 	
+	const float4 Wave1_Pos = float4(0.0f, -420.0f, 0.0f);
+	const float4 Wave2_Pos = float4(0.0f, -380.0f, 0.0f);
+	const float4 Wave3_Pos = float4(0.0f, -230.0f, 0.0f);
+	const float4 Wave4_Pos = float4(0.0f, -160.0f, 0.0f);
 }
 
 namespace GBoundaryPos

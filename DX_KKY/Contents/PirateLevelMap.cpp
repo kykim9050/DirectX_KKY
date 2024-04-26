@@ -42,10 +42,10 @@ void APirateLevelMap::Tick(float _DeltaTime)
 
 void APirateLevelMap::RendererInit()
 {
-	Wave1->SetAutoSize(1.0f, true);
-	Wave2->SetAutoSize(1.0f, true);
-	Wave3->SetAutoSize(1.0f, true);
-	Wave4->SetAutoSize(1.0f, true);
+	Wave1->SetAutoSize(1.3f, true);
+	Wave2->SetAutoSize(1.3f, true);
+	Wave3->SetAutoSize(1.3f, true);
+	Wave4->SetAutoSize(1.3f, true);
 
 	Wave1->SetOrder(ERenderingOrder::Wave1);
 	Wave2->SetOrder(ERenderingOrder::Wave2);
@@ -57,11 +57,10 @@ void APirateLevelMap::RendererInit()
 	Wave3->SetPivot(EPivot::BOT);
 	Wave4->SetPivot(EPivot::BOT);
 
-
-	Wave1->SetPosition(float4(0.0f, -360.0f, 0.0f));
-	Wave2->SetPosition(float4(0.0f, -360.0f, 0.0f));
-	Wave3->SetPosition(float4(0.0f, -260.0f, 0.0f));
-	Wave4->SetPosition(float4(0.0f, -160.0f, 0.0f));
+	Wave1->SetPosition(GRendererPos::Wave1_Pos);
+	Wave2->SetPosition(GRendererPos::Wave2_Pos);
+	Wave3->SetPosition(GRendererPos::Wave3_Pos);
+	Wave4->SetPosition(GRendererPos::Wave4_Pos);
 }
 
 void APirateLevelMap::AnimationInit()
