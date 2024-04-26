@@ -773,7 +773,7 @@ void APlayer::CollisionCheck()
 
 			if (true == GetParrying() && true == Bullet->GetParryableObject())
 			{
-				int a = 0;
+				Bullet->Destroy();
 			}
 			
 		});
@@ -790,7 +790,7 @@ void APlayer::CollisionCheck()
 
 			if (true == GetParrying() && true == Monster->GetParryableObject())
 			{
-				int a = 0;
+				Monster->Destroy();
 			}
 
 		});
