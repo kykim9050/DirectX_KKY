@@ -15,6 +15,7 @@ enum class EActorType
 	BossMonster,
 	Object,
 	ScreenMsg,
+	TimeScaleController,
 	Max,
 };
 

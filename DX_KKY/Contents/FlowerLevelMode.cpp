@@ -11,6 +11,7 @@
 #include "FlowerPlatform.h"
 #include "PlatformShadow.h"
 #include "Message.h"
+#include "TimeScaleControlUnit.h"
 
 AFlowerLevelMode::AFlowerLevelMode()
 {
@@ -91,6 +92,8 @@ void AFlowerLevelMode::CreateObject()
 
 		Shadows.push_back(Shadow);
 	}
+
+	TimeControlUnit = GetWorld()->SpawnActor<UTimeScaleControlUnit>("TimeControlUnit", EActorType::TimeScaleController);
 }
 
 void AFlowerLevelMode::ObjectInit()

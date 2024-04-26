@@ -213,6 +213,9 @@
     <ClInclude Include="Message.h">
       <Filter>Level\PlayLevel\CommonObject\Screen</Filter>
     </ClInclude>
+    <ClInclude Include="TimeScaleControlUnit.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -364,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="Message.cpp">
       <Filter>Level\PlayLevel\CommonObject\Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeScaleControlUnit.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

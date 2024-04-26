@@ -5,6 +5,7 @@
 class UEngineRandom;
 
 
+class UTimeScaleControlUnit;
 class AMessage;
 class APlatformShadow;
 class AFlowerPlatform;
@@ -52,6 +53,8 @@ private:
 	std::shared_ptr<AFlowerPlatform> Platform3;
 	std::vector<std::shared_ptr<APlatformShadow>> Shadows;
 	AMessage* ScreenMsg = nullptr;
+
+	std::shared_ptr<UTimeScaleControlUnit> TimeControlUnit;
 
 	std::shared_ptr<UEngineRandom> Random;
 

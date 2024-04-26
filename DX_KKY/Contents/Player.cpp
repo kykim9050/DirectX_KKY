@@ -13,6 +13,7 @@
 #include "FXBase.h"
 #include "FlowerPlatform.h"
 #include "BossAttackUnit.h"
+#include "TimeScaleControlUnit.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -813,4 +814,22 @@ void APlayer::AfterSuccessParrySetting()
 
 	SetJumpVec(float4::Up * ParrySuccessJumpSpeed);
 	SetGravityVec(float4::Zero);
+
+	UTimeScaleControlUnit::GetTimeController()->RecoveryTimeScale();
+
+	SetStopTimeScale();
+}
+
+void APlayer::SetStopTimeScale()
+{
+	for (int i = 0; i < static_cast<int>(EActorType::Max); i++)
+	{
+		if (static_cast<int>(EActorType::FilmEffect) == i
+			|| static_cast<int>(EActorType::TimeScaleController) == i
+			)
+		{
+			continue;
+		}
+		GEngine->SetOrderTimeScale(i, 0.0f);
+	}
 }

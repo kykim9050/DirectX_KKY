@@ -134,6 +134,7 @@ private:
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
 	void AfterSuccessParrySetting();
+	void SetStopTimeScale();
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)
