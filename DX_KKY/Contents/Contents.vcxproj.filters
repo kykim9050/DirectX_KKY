@@ -67,6 +67,9 @@
     <Filter Include="Level\PlayLevel\CommonObject\Screen">
       <UniqueIdentifier>{c0c23a1b-a679-4b35-b0bb-29513879c61a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\PirateLevel">
+      <UniqueIdentifier>{a64e4f5f-0e72-4c8e-9cfc-4994ea5b4538}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -215,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="TimeScaleControlUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="PirateLevelMode.h">
+      <Filter>Level\PlayLevel\PirateLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="TimeScaleControlUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="PirateLevelMode.cpp">
+      <Filter>Level\PlayLevel\PirateLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

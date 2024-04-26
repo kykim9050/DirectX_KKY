@@ -31,11 +31,7 @@ public:
 	AFlowerLevelMode& operator=(AFlowerLevelMode&& _Other) noexcept = delete;
 
 protected:
-	void BeginPlay() override;
-	void Tick(float _DeltaTime) override;
 
-	void LevelEnd(ULevel* _NextLevel);
-	void LevelStart(ULevel* _PrevLevel);
 
 private:
 	std::shared_ptr<UCamera> Camera;
@@ -59,6 +55,11 @@ private:
 	std::shared_ptr<UEngineRandom> Random;
 
 	int ShadowNum = 3;
+
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+	void LevelEnd(ULevel* _NextLevel) override;
+	void LevelStart(ULevel* _PrevLevel) override;
 
 	void WidgetInit();
 	void CreateObject();
