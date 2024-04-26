@@ -285,6 +285,7 @@ namespace GRendererPos
 	const float4 Wave4_Pos = float4(0.0f, -225.0f, 0.0f);
 
 	const float4 Dock_Pos = float4(-790.0f, -380.0f, 0.0f);
+	const float4 DockLog_Pos = float4(-707.0f, -313.0f, 0.0f);
 }
 
 namespace GBoundaryPos

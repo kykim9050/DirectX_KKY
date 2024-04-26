@@ -26,6 +26,7 @@ private:
 	USpriteRenderer* Wave3 = nullptr;
 	USpriteRenderer* Wave4 = nullptr;
 	USpriteRenderer* Dock = nullptr;
+	USpriteRenderer* DockLog = nullptr;
 
 	UDefaultSceneComponent* Root = nullptr;
 
