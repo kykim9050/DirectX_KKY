@@ -24,16 +24,9 @@ void AFlowerLevelMode::BeginPlay()
 {
 	Super::BeginPlay();
 
+	OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
+	
 	Camera = GetWorld()->GetMainCamera();
-	//OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
-	{
-		OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
-		OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
-		OldFilm->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
-		OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
-		OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
-		OldFilm->ChangeAnimation("OldFilmAni");
-	}
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 
 	MapFrontObject = GetWorld()->SpawnActor<AMapBase>("MapFrontObject", EActorType::Map);
@@ -83,7 +76,6 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
 
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
-	//OldFilm->SetActorLocation(FVector{ UContentsValue::ContentsCameraInitXPos, UContentsValue::ContentsCameraInitYPos, 0.0f });
 	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
 	BossMonster->SetActorLocation(FVector{ 1380.0f, -680.0f, 100.0f });
 	
@@ -109,22 +101,26 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	ColMap->SetOrdering(ERenderingOrder::CollisionLayer);
 	UContentsValue::ColMapTexture = UEngineTexture::FindRes(ColMap->GetName());
 
-	{
+	Platform1 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform1", EActorType::Object);
+	Platform2 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform2", EActorType::Object);
+	Platform3 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform3", EActorType::Object);
 
-		Platform1 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform1", EActorType::Object);
-		Platform2 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform2", EActorType::Object);
-		Platform3 = GetWorld()->SpawnActor<AFlowerPlatform>("Platform3", EActorType::Object);
+	Platform1->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform0", 0.067f));
+	Platform1->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
+	Platform1->SetActorLocation(FlowerBossStageValue::PlatformPos[0]);
 
-		Platform1->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform0", 0.067f));
-		Platform1->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
-		Platform1->SetActorLocation(FlowerBossStageValue::PlatformPos[0]);
+	Platform2->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform1", 0.067f));
+	Platform2->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
+	Platform2->SetActorLocation(FlowerBossStageValue::PlatformPos[1]);
 
-		Platform2->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform1", 0.067f));
-		Platform2->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
-		Platform2->SetActorLocation(FlowerBossStageValue::PlatformPos[1]);
+	Platform3->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f));
+	Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
+	Platform3->SetActorLocation(FlowerBossStageValue::PlatformPos[2]);
 
-		Platform3->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f));
-		Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
-		Platform3->SetActorLocation(FlowerBossStageValue::PlatformPos[2]);
-	}
+	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
+	OldFilm->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
+	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
+	OldFilm->ChangeAnimation("OldFilmAni");
+
 }
