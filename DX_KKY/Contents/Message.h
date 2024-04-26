@@ -49,5 +49,8 @@ private:
 	void StateInit();
 
 	std::string MsgName = "NONE";
+
+	void SetStageEndTimeScale();
+	void RecoveryTimeScale();
 };
 
