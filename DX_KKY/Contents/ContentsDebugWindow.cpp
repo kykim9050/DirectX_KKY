@@ -43,11 +43,6 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 		GEngine->ChangeLevel("WorldLevel");
 	}
 
-	//if (true == ImGui::Button("TestLevel"))
-	//{
-	//	GEngine->ChangeLevel("TestLevel");
-	//}
-
 	if (true == ImGui::Button("FlowerLevel"))
 	{
 		GEngine->ChangeLevel("FlowerLevel");
