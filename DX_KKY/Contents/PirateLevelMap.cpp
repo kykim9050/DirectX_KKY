@@ -21,6 +21,9 @@ APirateLevelMap::APirateLevelMap()
 	Wave4 = CreateDefaultSubObject<USpriteRenderer>("Wave4");
 	Wave4->SetupAttachment(Root);
 
+	Dock = CreateDefaultSubObject<USpriteRenderer>("Dock");
+	Dock->SetupAttachment(Root);
+
 }
 
 APirateLevelMap::~APirateLevelMap()
@@ -42,6 +45,7 @@ void APirateLevelMap::Tick(float _DeltaTime)
 
 void APirateLevelMap::RendererInit()
 {
+	// Wave
 	Wave1->SetAutoSize(1.3f, true);
 	Wave2->SetAutoSize(1.3f, true);
 	Wave3->SetAutoSize(1.3f, true);
@@ -61,17 +65,25 @@ void APirateLevelMap::RendererInit()
 	Wave2->SetPosition(GRendererPos::Wave2_Pos);
 	Wave3->SetPosition(GRendererPos::Wave3_Pos);
 	Wave4->SetPosition(GRendererPos::Wave4_Pos);
+
+	//Dock
+	Dock->SetAutoSize(1.0f, true);
+	Dock->SetOrder(ERenderingOrder::Object1);
+	Dock->SetPivot(EPivot::LEFTBOTTOM);
+	Dock->SetPosition(GRendererPos::Dock_Pos);
 }
 
 void APirateLevelMap::AnimationInit()
 {
-	Wave1->CreateAnimation("Wave1","Water_A", 0.034f, true);
-	Wave2->CreateAnimation("Wave2", "Water_B", 0.034f, true);
-	Wave3->CreateAnimation("Wave3", "Water_C", 0.034f, true);
-	Wave4->CreateAnimation("Wave4", "Water_D", 0.034f, true);
+	Wave1->CreateAnimation("Wave1","Water_A", 0.04f, true);
+	Wave2->CreateAnimation("Wave2", "Water_B", 0.04f, true);
+	Wave3->CreateAnimation("Wave3", "Water_C", 0.04f, true);
+	Wave4->CreateAnimation("Wave4", "Water_D", 0.04f, true);
 
 	Wave1->ChangeAnimation("Wave1");
 	Wave2->ChangeAnimation("Wave2");
 	Wave3->ChangeAnimation("Wave3");
 	Wave4->ChangeAnimation("Wave4");
+
+	Dock->SetSprite("pirateDockA.png");
 }
