@@ -765,39 +765,35 @@ void APlayer::CollisionCheck()
 	BodyCollider->CollisionStay(ECollisionGroup::MonsterBullet, [this](std::shared_ptr<UCollision> _Collision)
 		{
 			ABulletUnit* Bullet = dynamic_cast<ABulletUnit*>(_Collision->GetActor());
+			ABossAttackUnit* Monster = dynamic_cast<ABossAttackUnit*>(_Collision->GetActor());
 
-			if (nullptr == Bullet)
+			if (nullptr == Bullet && nullptr == Monster)
 			{
 				MsgBoxAssert("충돌 대상이 Monster Bullet이 아닙니다.");
 				return;
 			}
 
-			if (true == GetParrying() && true == Bullet->GetParryableObject())
+			if (nullptr != Bullet)
 			{
-				Bullet->Destroy();
-				
-				AfterSuccessParrySetting();
-			}
-			
-		});
+				if (true == GetParrying() && true == Bullet->GetParryableObject())
+				{
+					Bullet->Destroy();
 
-	BodyCollider->CollisionStay(ECollisionGroup::Monster, [this](std::shared_ptr<UCollision> _Collision)
-		{
-			ABossAttackUnit* Monster = dynamic_cast<ABossAttackUnit*>(_Collision->GetActor());
-
-			if (nullptr == Monster)
-			{
-				MsgBoxAssert("충돌 대상이 Monster가 아닙니다.");
-				return;
+					AfterSuccessParrySetting();
+					return;
+				}
 			}
 
-			if (true == GetParrying() && true == Monster->GetParryableObject())
+			if (nullptr != Monster)
 			{
-				Monster->Destroy();
+				if (true == GetParrying() && true == Monster->GetParryableObject())
+				{
+					Monster->Destroy();
 
-				AfterSuccessParrySetting();
+					AfterSuccessParrySetting();
+					return;
+				}
 			}
-
 		});
 }
 

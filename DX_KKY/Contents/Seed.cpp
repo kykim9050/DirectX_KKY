@@ -59,6 +59,7 @@ void ASeed::StateInit()
 		{
 			if (ESeedColor::Pink == Color)
 			{
+				Collider->SetCollisionGroup(ECollisionGroup::MonsterBullet);
 				SetParryableObject();
 			}
 			AnimationInit();

@@ -100,7 +100,7 @@ void AAcorn::RendererInit()
 void AAcorn::ColliderInit()
 {
 	SetColScale(GColliderScale::Acorn_ColScale);
-	SetColGroup(ECollisionGroup::MonsterBullet);
+	SetColGroup(ECollisionGroup::Monster);
 	SetColType(ECollisionType::Rect);
 	SetColPosition(float4(0.0f,0.0f,0.0f));
 }
