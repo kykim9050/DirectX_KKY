@@ -20,6 +20,7 @@ namespace GSpriteName
 	const std::string Boomerang_Rotate = "Boomerang";
 
 	const std::string ExplosionEffect = "Explosion";
+	const std::string ParryEffect = "ParryEffect";
 
 	const std::string Ready_Message = "ReadyWALLOP!";
 	const std::string PlayerDead_Message = "YouDied";
@@ -38,6 +39,7 @@ namespace GAniName
 
 	// Effect
 	const std::string ExplosionEffect = "ExplosionEffect";
+	const std::string ParryEffect = "ParryEffect";
 
 	// Screen Message
 	const std::string Ready_Message = "Ready_Message";
@@ -48,7 +50,7 @@ namespace GAniName
 	const std::string OldFilmAni = "OldFilmAni";
 	const std::string IrisAni = "IrisAni";
 	
-
+	
 }
 
 namespace GStateName

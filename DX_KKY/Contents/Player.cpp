@@ -802,6 +802,13 @@ void APlayer::CollisionCheck()
 
 void APlayer::AfterSuccessParrySetting()
 {
+	float RandomAngleValue = UMath::GetInst().RandomReturnFloat(0.0f, 360.0f);
+
+	std::shared_ptr<AFXBase> ParryEffect = GetWorld()->SpawnActor<AFXBase>("AFXBase", EActorType::FX);
+	ParryEffect->FXInit(ERenderingOrder::BackFX, FAniInfo(GAniName::ParryEffect, GSpriteName::ParryEffect, 0.034f), false);
+	ParryEffect->SetActorLocation(GetActorLocation());
+	ParryEffect->SetActorRotation(float4(0.0f, 0.0f, RandomAngleValue));
+
 	SetAvailableParry(true);
 
 	SetJumpVec(float4::Up * ParrySuccessJumpSpeed);
