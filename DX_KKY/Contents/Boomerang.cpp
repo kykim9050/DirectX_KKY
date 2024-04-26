@@ -76,7 +76,7 @@ void ABoomerang::RendererInit()
 void ABoomerang::ColliderInit()
 {
 	SetColScale(GColliderScale::Boomerang_ColScale);
-	SetColGroup(ECollisionGroup::MonsterBullet);
+	SetColGroup(ECollisionGroup::Monster);
 	SetColType(ECollisionType::Rect);
 	SetColPosition(float4(0.0f, 0.0f, 0.0f));
 }
