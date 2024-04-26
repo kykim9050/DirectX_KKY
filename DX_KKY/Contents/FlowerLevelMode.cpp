@@ -10,7 +10,7 @@
 #include "CagneyCarnation.h"
 #include "FlowerPlatform.h"
 #include "PlatformShadow.h"
-
+#include "Message.h"
 
 AFlowerLevelMode::AFlowerLevelMode()
 {
@@ -25,6 +25,16 @@ void AFlowerLevelMode::BeginPlay()
 	Super::BeginPlay();
 
 	OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
+	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
+	OldFilm->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
+	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
+
+	Iris = CreateWidget<UImage>(GetWorld(), "Iris");
+	Iris->AddToViewPort(ERenderingOrder::Iris);
+	Iris->CreateAnimation("IrisAni", "Iris", 0.034f, false);
+	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
 	
 	Camera = GetWorld()->GetMainCamera();
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
@@ -41,6 +51,8 @@ void AFlowerLevelMode::BeginPlay()
 
 		Shadows.push_back(Shadow);
 	}
+
+
 }
 
 void AFlowerLevelMode::Tick(float _DeltaTime)
@@ -117,10 +129,13 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
 	Platform3->SetActorLocation(FlowerBossStageValue::PlatformPos[2]);
 
-	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
-	OldFilm->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
-	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
-	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
 	OldFilm->ChangeAnimation("OldFilmAni");
+	Iris->ChangeAnimation("IrisAni");
 
+	DelayCallBack(0.5f, [this]()
+		{
+			ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg).get();
+			ScreenMsg->SetStageStartMsg();
+		});
+	
 }
