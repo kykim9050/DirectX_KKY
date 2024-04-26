@@ -53,4 +53,8 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 		GEngine->ChangeLevel("FlowerLevel");
 	}
 
+	if (true == ImGui::Button("PirateLevel"))
+	{
+		GEngine->ChangeLevel("PirateLevel");
+	}
 }
