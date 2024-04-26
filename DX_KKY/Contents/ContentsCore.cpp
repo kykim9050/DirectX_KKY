@@ -9,6 +9,8 @@
 #include "WorldGameMode.h"
 #include "FlowerLevelMode.h"
 #include "ContentsDebugWindow.h"
+#include "PirateLevelMode.h"
+
 
 #include "TestGameMode.h"
 
@@ -54,6 +56,7 @@ void UContentsCore::Initialize()
 	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
 	//GEngine->CreateLevel<ATestGameMode>("TestLevel");
 	GEngine->CreateLevel<AFlowerLevelMode>("FlowerLevel");
-	GEngine->ChangeLevel("FlowerLevel");
+	GEngine->CreateLevel<APirateLevelMode>("PirateLevel");
+	GEngine->ChangeLevel("PirateLevel");
 }
 

@@ -2,6 +2,12 @@
 #include <EngineCore/GameMode.h>
 
 // Ό³Έν :
+class UTimeScaleControlUnit;
+class UCamera;
+class UImage;
+class AMapBase;
+class APlayer;
+class AMessage;
 class APirateLevelMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -20,11 +26,23 @@ public:
 protected:
 
 private:
+	UImage* OldFilm = nullptr;
+	UImage* Iris = nullptr;
+
+	std::shared_ptr<UCamera> Camera = nullptr;
+	std::shared_ptr<AMapBase> Map = nullptr;
+
+	std::shared_ptr<APlayer> Player = nullptr;
+
+	std::shared_ptr<AMessage> ScreenMsg = nullptr;
+
+
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	void LevelEnd(ULevel* _NextLevel) override;
+	void LevelStart(ULevel* _PrevLevel) override;
 
-	void LevelEnd(ULevel* _NextLevel);
-	void LevelStart(ULevel* _PrevLevel);
+	void WidgetInit();
 };
 

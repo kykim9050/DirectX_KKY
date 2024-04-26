@@ -55,7 +55,7 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 
 	DelayCallBack(0.5f, [this]()
 		{
-			ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg).get();
+			ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
 			ScreenMsg->SetStageStartMsg();
 		});
 	

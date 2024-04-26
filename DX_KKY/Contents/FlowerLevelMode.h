@@ -11,7 +11,6 @@ class APlatformShadow;
 class AFlowerPlatform;
 class UCamera;
 class UImage;
-//class AOldFilmEffect;
 class APlayer;
 class ACagneyCarnation;
 class AMapBase;
@@ -34,23 +33,25 @@ protected:
 
 
 private:
-	std::shared_ptr<UCamera> Camera;
 	UImage* OldFilm = nullptr;
 	UImage* Iris = nullptr;
-	std::shared_ptr<APlayer> Player;
-	std::shared_ptr<ACagneyCarnation> BossMonster;
-	std::shared_ptr<AMapBase> MapFrontObject;
-	std::shared_ptr<AMapBase> Map;
-	std::shared_ptr<AMapBase> BackGroundObject;
-	std::shared_ptr<AMapBase> ColMap;
 
-	std::shared_ptr<AFlowerPlatform> Platform1;
-	std::shared_ptr<AFlowerPlatform> Platform2;
-	std::shared_ptr<AFlowerPlatform> Platform3;
+	std::shared_ptr<UCamera> Camera = nullptr;
+
+	std::shared_ptr<APlayer> Player = nullptr;
+	std::shared_ptr<ACagneyCarnation> BossMonster = nullptr;
+	std::shared_ptr<AMapBase> MapFrontObject = nullptr;
+	std::shared_ptr<AMapBase> Map = nullptr;
+	std::shared_ptr<AMapBase> BackGroundObject = nullptr;
+	std::shared_ptr<AMapBase> ColMap = nullptr;
+
+	std::shared_ptr<AFlowerPlatform> Platform1 = nullptr;
+	std::shared_ptr<AFlowerPlatform> Platform2 = nullptr;
+	std::shared_ptr<AFlowerPlatform> Platform3 = nullptr;
 	std::vector<std::shared_ptr<APlatformShadow>> Shadows;
-	AMessage* ScreenMsg = nullptr;
+	std::shared_ptr<AMessage> ScreenMsg = nullptr;
 
-	std::shared_ptr<UTimeScaleControlUnit> TimeControlUnit;
+	std::shared_ptr<UTimeScaleControlUnit> TimeControlUnit = nullptr;
 
 	std::shared_ptr<UEngineRandom> Random;
 
