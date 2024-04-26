@@ -24,6 +24,9 @@ APirateLevelMap::APirateLevelMap()
 	Dock = CreateDefaultSubObject<USpriteRenderer>("Dock");
 	Dock->SetupAttachment(Root);
 
+	DockLog = CreateDefaultSubObject<USpriteRenderer>("DockLog");
+	DockLog->SetupAttachment(Root);
+
 }
 
 APirateLevelMap::~APirateLevelMap()
@@ -71,6 +74,11 @@ void APirateLevelMap::RendererInit()
 	Dock->SetOrder(ERenderingOrder::Object1);
 	Dock->SetPivot(EPivot::LEFTBOTTOM);
 	Dock->SetPosition(GRendererPos::Dock_Pos);
+
+	DockLog->SetAutoSize(1.0f, true);
+	DockLog->SetOrder(ERenderingOrder::DockLog);
+	DockLog->SetPivot(EPivot::LEFTBOTTOM);
+	DockLog->SetPosition(GRendererPos::DockLog_Pos);
 }
 
 void APirateLevelMap::AnimationInit()
@@ -86,4 +94,6 @@ void APirateLevelMap::AnimationInit()
 	Wave4->ChangeAnimation("Wave4");
 
 	Dock->SetSprite("pirateDockA.png");
+	DockLog->SetSprite("pirateDockB.png");
+
 }
