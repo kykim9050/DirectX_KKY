@@ -44,6 +44,7 @@ enum class ERenderingOrder
 	Player,
 	FrontFX,
 	FrontLayer,
+	Message,
 	OldFilmEffect,
 };
 
