@@ -44,6 +44,7 @@ private:
 
 	USpriteRenderer* Renderer = nullptr;
 	UCollision* FootCollider = nullptr;
+	UCollision* BodyCollider = nullptr;
 	UStateManager State = UStateManager();
 	EActorDir PlayerDir = EActorDir::Right;
 	EBulletShootType ShootType = EBulletShootType::None;
@@ -126,6 +127,7 @@ private:
 	void FootColOnOff();
 	void TreadableCheck();
 	bool FallDownCheck(float4 _Pos);
+	void ParryColCheck();
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
