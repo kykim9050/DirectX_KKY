@@ -27,6 +27,9 @@ APirateLevelMap::APirateLevelMap()
 	DockLog = CreateDefaultSubObject<USpriteRenderer>("DockLog");
 	DockLog->SetupAttachment(Root);
 
+	DefaultSky = CreateDefaultSubObject<USpriteRenderer>("DefaultSky");
+	DefaultSky->SetupAttachment(Root);
+
 }
 
 APirateLevelMap::~APirateLevelMap()
@@ -79,6 +82,11 @@ void APirateLevelMap::RendererInit()
 	DockLog->SetOrder(ERenderingOrder::DockLog);
 	DockLog->SetPivot(EPivot::LEFTBOTTOM);
 	DockLog->SetPosition(GRendererPos::DockLog_Pos);
+
+	//Sky
+	DefaultSky->SetAutoSize(1.3f, true);
+	DefaultSky->SetOrder(ERenderingOrder::BackLayer3);
+	DefaultSky->SetPosition(GRendererPos::PirateLevel_DefaultSky_Pos);
 }
 
 void APirateLevelMap::AnimationInit()
@@ -96,4 +104,5 @@ void APirateLevelMap::AnimationInit()
 	Dock->SetSprite("pirateDockA.png");
 	DockLog->SetSprite("pirateDockB.png");
 
+	DefaultSky->SetSprite("pirate_clouds_D.png");
 }
