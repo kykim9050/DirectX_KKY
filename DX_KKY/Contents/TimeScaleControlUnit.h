@@ -20,16 +20,7 @@ public:
 	{
 		return TimeController;
 	}
-	inline void RecoveryTimeScale()
-	{
-		DelayCallBack(0.5f, []()
-			{
-				for (int i = 0; i < static_cast<int>(EActorType::Max); i++)
-				{
-					GEngine->SetOrderTimeScale(i, 1.0f);
-				}
-			});
-	}
+	void RecoveryTimeScale(std::function<void()> _Function, float _DelayTime = 0.0f);
 
 protected:
 

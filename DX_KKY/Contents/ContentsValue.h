@@ -276,6 +276,9 @@ namespace GRendererPos
 	const float4 FlowerBoss_BottomIvy_RelativePos = float4(-500.0f, 25.0f, 0.0f);
 
 	const float4 Msg_InitPos = float4(640.0f, -360.0f, 0.0f);
+
+	const float4 ParryEff_RelativePos = float4(0.0f, 64.0f, 0.0f);
+	
 }
 
 namespace GBoundaryPos
