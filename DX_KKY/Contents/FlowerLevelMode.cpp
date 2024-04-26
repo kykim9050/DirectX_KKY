@@ -24,35 +24,9 @@ void AFlowerLevelMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
-	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
-	OldFilm->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
-	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
-	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
-
-	Iris = CreateWidget<UImage>(GetWorld(), "Iris");
-	Iris->AddToViewPort(ERenderingOrder::Iris);
-	Iris->CreateAnimation("IrisAni", "Iris", 0.034f, false);
-	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
-	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
-	
-	Camera = GetWorld()->GetMainCamera();
+	WidgetInit();
+	CreateObject();
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
-
-	MapFrontObject = GetWorld()->SpawnActor<AMapBase>("MapFrontObject", EActorType::Map);
-	Map = GetWorld()->SpawnActor<AMapBase>("Map", EActorType::Map);
-	BackGroundObject = GetWorld()->SpawnActor<AMapBase>("BackGroundObject", EActorType::Map);
-	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
-
-	for (int i = 0; i < ShadowNum; i++)
-	{
-		std::shared_ptr<APlatformShadow> Shadow = GetWorld()->SpawnActor<APlatformShadow>("Shadow", EActorType::Object);
-		Shadow->SetActorLocation(FlowerBossStageValue::PlatformShadowPos[i]);
-
-		Shadows.push_back(Shadow);
-	}
-
-
 }
 
 void AFlowerLevelMode::Tick(float _DeltaTime)
@@ -66,36 +40,73 @@ void AFlowerLevelMode::LevelEnd(ULevel* _NextLevel)
 
 	UContentsValue::ColMapTexture = nullptr;
 
-	Player->Destroy();
-	Player = nullptr;
-
-	BossMonster->Destroy();
-	BossMonster = nullptr;
-
-	Platform1->Destroy();
-	Platform2->Destroy();
-	Platform3->Destroy();
-	Platform1 = nullptr;
-	Platform2 = nullptr;
-	Platform3 = nullptr;
+	ObjectDelete();
 }
 
 void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
+	ObjectInit();
+
+	OldFilm->ChangeAnimation("OldFilmAni");
+	Iris->ChangeAnimation("IrisAni");
+
+	DelayCallBack(0.5f, [this]()
+		{
+			ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg).get();
+			ScreenMsg->SetStageStartMsg();
+		});
+	
+}
+
+void AFlowerLevelMode::WidgetInit()
+{
+	OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
+	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
+	OldFilm->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
+	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
+
+	Iris = CreateWidget<UImage>(GetWorld(), "Iris");
+	Iris->AddToViewPort(ERenderingOrder::Iris);
+	Iris->CreateAnimation("IrisAni", "Iris", 0.034f, false);
+	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
+}
+
+void AFlowerLevelMode::CreateObject()
+{
+	Camera = GetWorld()->GetMainCamera();
+
+	MapFrontObject = GetWorld()->SpawnActor<AMapBase>("MapFrontObject", EActorType::Map);
+	Map = GetWorld()->SpawnActor<AMapBase>("Map", EActorType::Map);
+	BackGroundObject = GetWorld()->SpawnActor<AMapBase>("BackGroundObject", EActorType::Map);
+	ColMap = GetWorld()->SpawnActor<AMapBase>("ColMap", EActorType::Map);
+
+	for (int i = 0; i < ShadowNum; i++)
+	{
+		std::shared_ptr<APlatformShadow> Shadow = GetWorld()->SpawnActor<APlatformShadow>("Shadow", EActorType::Object);
+		Shadow->SetActorLocation(FlowerBossStageValue::PlatformShadowPos[i]);
+
+		Shadows.push_back(Shadow);
+	}
+}
+
+void AFlowerLevelMode::ObjectInit()
+{
 	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
 	BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
 
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
 	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
 	BossMonster->SetActorLocation(FVector{ 1380.0f, -680.0f, 100.0f });
-	
+
 	MapFrontObject->SetMapFile("Flower_Background_Front.png");
 	MapFrontObject->SetAutoScale();
 	MapFrontObject->SetActorLocation(FVector(630.0f, -575.0f, 50.0f));
 	MapFrontObject->SetOrdering(ERenderingOrder::FrontLayer);
-	
+
 	Map->SetMapFile("Flower_Background.png");
 	Map->SetAutoScale();
 	Map->SetActorLocation(FVector(689.0f, -404.0f, 200.0f));
@@ -128,14 +139,21 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	Platform3->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f));
 	Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
 	Platform3->SetActorLocation(FlowerBossStageValue::PlatformPos[2]);
-
-	OldFilm->ChangeAnimation("OldFilmAni");
-	Iris->ChangeAnimation("IrisAni");
-
-	DelayCallBack(0.5f, [this]()
-		{
-			ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg).get();
-			ScreenMsg->SetStageStartMsg();
-		});
-	
 }
+
+void AFlowerLevelMode::ObjectDelete()
+{
+	Player->Destroy();
+	Player = nullptr;
+
+	BossMonster->Destroy();
+	BossMonster = nullptr;
+
+	Platform1->Destroy();
+	Platform2->Destroy();
+	Platform3->Destroy();
+	Platform1 = nullptr;
+	Platform2 = nullptr;
+	Platform3 = nullptr;
+}
+
