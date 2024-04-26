@@ -2,7 +2,7 @@
 #include <EngineCore/Actor.h>
 
 // Ό³Έν :
-class UTimeScaleControlUnit : public AActor, public std::enable_shared_from_this<UTimeScaleControlUnit>
+class UTimeScaleControlUnit final : public AActor, public std::enable_shared_from_this<UTimeScaleControlUnit>
 {
 	GENERATED_BODY(AActor)
 public:
