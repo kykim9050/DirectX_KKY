@@ -49,8 +49,8 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 
 	ObjectInit();
 
-	OldFilm->ChangeAnimation("OldFilmAni");
-	Iris->ChangeAnimation("IrisAni");
+	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
+	Iris->ChangeAnimation(GAniName::IrisAni);
 
 	DelayCallBack(0.5f, [this]()
 		{
@@ -64,13 +64,13 @@ void AFlowerLevelMode::WidgetInit()
 {
 	OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
 	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
-	OldFilm->CreateAnimation("OldFilmAni", "OldFilmEffect", 0.05f);
+	OldFilm->CreateAnimation(GAniName::OldFilmAni, GSpriteName::OldFilm, 0.05f);
 	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
 
 	Iris = CreateWidget<UImage>(GetWorld(), "Iris");
 	Iris->AddToViewPort(ERenderingOrder::Iris);
-	Iris->CreateAnimation("IrisAni", "Iris", 0.034f, false);
+	Iris->CreateAnimation(GAniName::IrisAni, GSpriteName::Iris, 0.034f, false);
 	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
 }

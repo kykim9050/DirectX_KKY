@@ -25,6 +25,9 @@ namespace GSpriteName
 	const std::string PlayerDead_Message = "YouDied";
 	const std::string Stage_Clear = "Knockout";
 
+	const std::string OldFilm = "OldFilmEffect";
+	const std::string Iris = "Iris";
+
 }
 
 namespace GAniName
@@ -41,6 +44,10 @@ namespace GAniName
 	const std::string PlayerDead_Message = "PlayerDead_Message";
 	const std::string Stage_Clear = "Stage_Clear";
 
+	// Screen Effect
+	const std::string OldFilmAni = "OldFilmAni";
+	const std::string IrisAni = "IrisAni";
+	
 
 }
 
