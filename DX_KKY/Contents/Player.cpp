@@ -27,6 +27,9 @@ APlayer::APlayer()
 	FootCollider = CreateDefaultSubObject<UCollision>("FootCollider");
 	FootCollider->SetupAttachment(Root);
 
+	BodyCollider = CreateDefaultSubObject<UCollision>("BodyCollider");
+	BodyCollider->SetupAttachment(Root);
+
 	InputOn();
 }
 
@@ -46,10 +49,15 @@ void APlayer::BeginPlay()
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::Player);
 
-	FootCollider->SetScale(float4(32.0f, 8.0f, 1.0f));
+	FootCollider->SetScale(GColliderScale::PlayerFoot_ColScale);
 	FootCollider->SetCollisionGroup(ECollisionGroup::PlayerFoot);
 	FootCollider->SetCollisionType(ECollisionType::Rect);
-	FootCollider->SetPosition(float4(0.0f, 8.0f, 0.0f));
+	FootCollider->SetPosition(GColliderPosInfo::PlayerFootCol_RelativePos);
+
+	BodyCollider->SetScale(GColliderScale::PlayerBody_ColScale);
+	BodyCollider->SetCollisionGroup(ECollisionGroup::Player);
+	BodyCollider->SetCollisionType(ECollisionType::Rect);
+	BodyCollider->SetPosition(GColliderPosInfo::PlayerBodyCol_RelativePos);
 
 	StateInit();
 }
@@ -747,4 +755,10 @@ bool APlayer::FallDownCheck(float4 _Pos)
 	}
 
 	return false;
+}
+
+
+void APlayer::ParryColCheck()
+{
+
 }

@@ -88,7 +88,6 @@ void APlayer::StateInit()
 				SetAvailableAddJumpVec(false);
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
-				//SetGravityVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Idle");
 				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::None);
@@ -765,6 +764,7 @@ void APlayer::Parry(float _DeltaTime)
 {
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
+	ParryColCheck();
 
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
