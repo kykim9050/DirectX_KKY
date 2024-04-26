@@ -56,5 +56,10 @@ private:
 	std::shared_ptr<UEngineRandom> Random;
 
 	int ShadowNum = 3;
+
+	void WidgetInit();
+	void CreateObject();
+	void ObjectInit();
+	void ObjectDelete();
 };
 
