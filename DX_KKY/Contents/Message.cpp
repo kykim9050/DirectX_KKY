@@ -53,6 +53,7 @@ void AMessage::AnimationInit()
 		});
 	MsgRenderer->SetFrameCallback(GAniName::Stage_Clear, 35, [this]()
 		{
+			UContentsFunction::GetStagePlayer()->InputOn();
 			RecoveryTimeScale();
 			Destroy();
 		});
@@ -76,7 +77,7 @@ void AMessage::StateInit()
 				return;
 			}
 
-			SetStageEndTimeScale();
+			MsgPrintInitSetting();
 			MsgRenderer->ChangeAnimation(MsgName);
 		});
 
@@ -109,5 +110,29 @@ void AMessage::RecoveryTimeScale()
 	for (int i = 0; i < static_cast<int>(EActorType::Max); i++)
 	{
 		GEngine->SetOrderTimeScale(i, 1.0f);
+	}
+}
+
+void AMessage::MsgPrintInitSetting()
+{
+	if (GAniName::Stage_Clear == MsgName)
+	{
+		UContentsFunction::GetStagePlayer()->InputOff();
+		SetStageEndTimeScale();
+		return;
+	}
+	else if (GAniName::Ready_Message == MsgName)
+	{
+		return;
+	}
+	else if (GAniName::PlayerDead_Message == MsgName)
+	{
+
+		return;
+	}
+	else
+	{
+		MsgBoxAssert("유효하지 않은 메세지 이미지입니다.");
+		return;
 	}
 }
