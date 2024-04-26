@@ -52,5 +52,6 @@ private:
 
 	void SetStageEndTimeScale();
 	void RecoveryTimeScale();
+	void MsgPrintInitSetting();
 };
 
