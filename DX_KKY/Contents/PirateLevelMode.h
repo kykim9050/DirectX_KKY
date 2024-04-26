@@ -8,6 +8,7 @@ class UImage;
 class AMapBase;
 class APlayer;
 class AMessage;
+class APirateLevelMap;
 class APirateLevelMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -26,13 +27,14 @@ public:
 protected:
 
 private:
+
 	UImage* OldFilm = nullptr;
 	UImage* Iris = nullptr;
 
 	std::shared_ptr<UCamera> Camera = nullptr;
-	std::shared_ptr<AMapBase> Map = nullptr;
 
 	std::shared_ptr<APlayer> Player = nullptr;
+	std::shared_ptr<APirateLevelMap> Map = nullptr;
 
 	std::shared_ptr<AMessage> ScreenMsg = nullptr;
 
@@ -44,5 +46,7 @@ private:
 	void LevelStart(ULevel* _PrevLevel) override;
 
 	void WidgetInit();
+	void CreateObject();
+	void ObjectInit();
 };
 
