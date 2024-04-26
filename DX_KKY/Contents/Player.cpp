@@ -802,7 +802,7 @@ void APlayer::CollisionCheck()
 
 void APlayer::AfterSuccessParrySetting()
 {
-
+	SetAvailableParry(true);
 
 	SetJumpVec(float4::Up * ParrySuccessJumpSpeed);
 	SetGravityVec(float4::Zero);

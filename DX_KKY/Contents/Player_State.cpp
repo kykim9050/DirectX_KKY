@@ -781,6 +781,12 @@ void APlayer::Parry(float _DeltaTime)
 		return;
 	}
 
+	if (true == GetAvailableParry() && true == IsDown('Z'))
+	{
+		State.ChangeState("Parry");
+		return;
+	}
+
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		DirCheck();
@@ -808,6 +814,12 @@ void APlayer::AfterParry(float _DeltaTime)
 	{
 		CreateLandFX(GetActorLocation());
 		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == GetAvailableParry() && true == IsDown('Z'))
+	{
+		State.ChangeState("Parry");
 		return;
 	}
 
