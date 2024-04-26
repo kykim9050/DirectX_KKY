@@ -141,6 +141,7 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				SetJumpVec(GetPrevJumpVec());
+				SetParrying(true);
 				SetAvailableParry(false);
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Parry");
@@ -382,6 +383,10 @@ void APlayer::StateInit()
 				SetJumpVec(float4::Zero);
 			}
 		);
+		State.SetEndFunction("Parry", [this]()
+		{
+			SetParrying(false);
+		});
 	}
 
 
@@ -764,7 +769,7 @@ void APlayer::Parry(float _DeltaTime)
 {
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
-	ParryColCheck();
+	CollisionCheck();
 
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;

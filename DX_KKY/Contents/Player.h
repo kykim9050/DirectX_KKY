@@ -65,6 +65,7 @@ private:
 	bool AvailableParry = true;
 	bool AvailableDownJump = false;
 	bool OnTreadableObject = false;
+	bool Parrying = false;
 
 	void StateInit();
 	void CreatePlayerAnimation();
@@ -127,7 +128,7 @@ private:
 	void FootColOnOff();
 	void TreadableCheck();
 	bool FallDownCheck(float4 _Pos);
-	void ParryColCheck();
+	void CollisionCheck();
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
@@ -191,5 +192,13 @@ private:
 	inline bool GetOnTreadableObject() const
 	{
 		return OnTreadableObject;
+	}
+	inline bool GetParrying() const
+	{
+		return Parrying;
+	}
+	inline void SetParrying(bool _Value)
+	{
+		Parrying = _Value;
 	}
 };

@@ -1,12 +1,11 @@
 #pragma once
 #include "BulletUnit.h"
-#include "ParryUnit.h"
 
 #define PARRYABLE_VALUE 0
 #define NOT_DEFINE -1
 
 // Ό³Έν :
-class APollen : public ABulletUnit, public UParryUnit
+class APollen : public ABulletUnit
 {
 	GENERATED_BODY(ABulletUnit)
 public:

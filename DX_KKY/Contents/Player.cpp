@@ -12,6 +12,7 @@
 #include "SSBulletFX.h"
 #include "FXBase.h"
 #include "FlowerPlatform.h"
+#include "BossAttackUnit.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -758,7 +759,39 @@ bool APlayer::FallDownCheck(float4 _Pos)
 }
 
 
-void APlayer::ParryColCheck()
+void APlayer::CollisionCheck()
 {
+	BodyCollider->CollisionStay(ECollisionGroup::MonsterBullet, [this](std::shared_ptr<UCollision> _Collision)
+		{
+			ABulletUnit* Bullet = dynamic_cast<ABulletUnit*>(_Collision->GetActor());
 
+			if (nullptr == Bullet)
+			{
+				MsgBoxAssert("충돌 대상이 Monster Bullet이 아닙니다.");
+				return;
+			}
+
+			if (true == GetParrying() && true == Bullet->GetParryableObject())
+			{
+				int a = 0;
+			}
+			
+		});
+
+	BodyCollider->CollisionStay(ECollisionGroup::Monster, [this](std::shared_ptr<UCollision> _Collision)
+		{
+			ABossAttackUnit* Monster = dynamic_cast<ABossAttackUnit*>(_Collision->GetActor());
+
+			if (nullptr == Monster)
+			{
+				MsgBoxAssert("충돌 대상이 Monster가 아닙니다.");
+				return;
+			}
+
+			if (true == GetParrying() && true == Monster->GetParryableObject())
+			{
+				int a = 0;
+			}
+
+		});
 }

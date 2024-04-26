@@ -1,11 +1,12 @@
 #pragma once
 #include "MoveUnit.h"
 #include <EngineCore/StateManager.h>
+#include "ParryUnit.h"
 
 // Ό³Έν :
 class UCollision;
 class USpriteRenderer;
-class ABulletUnit : public UMoveUnit
+class ABulletUnit : public UMoveUnit ,public UParryUnit
 {
 	GENERATED_BODY(UMoveUnit)
 
