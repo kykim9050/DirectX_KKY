@@ -47,6 +47,7 @@ enum class ERenderingOrder
 	FrontFX,
 	FrontLayer,
 	Message,
+	Iris,
 	OldFilmEffect,
 };
 

@@ -5,6 +5,7 @@
 class UEngineRandom;
 
 
+class AMessage;
 class APlatformShadow;
 class AFlowerPlatform;
 class UCamera;
@@ -38,6 +39,7 @@ protected:
 private:
 	std::shared_ptr<UCamera> Camera;
 	UImage* OldFilm = nullptr;
+	UImage* Iris = nullptr;
 	std::shared_ptr<APlayer> Player;
 	std::shared_ptr<ACagneyCarnation> BossMonster;
 	std::shared_ptr<AMapBase> MapFrontObject;
@@ -49,6 +51,7 @@ private:
 	std::shared_ptr<AFlowerPlatform> Platform2;
 	std::shared_ptr<AFlowerPlatform> Platform3;
 	std::vector<std::shared_ptr<APlatformShadow>> Shadows;
+	AMessage* ScreenMsg = nullptr;
 
 	std::shared_ptr<UEngineRandom> Random;
 
