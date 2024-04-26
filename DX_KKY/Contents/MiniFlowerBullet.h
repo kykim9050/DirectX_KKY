@@ -1,9 +1,8 @@
 #pragma once
 #include "BulletUnit.h"
-#include "ParryUnit.h"
 
 // Ό³Έν :
-class AMiniFlowerBullet : public ABulletUnit, public UParryUnit
+class AMiniFlowerBullet : public ABulletUnit
 {
 	GENERATED_BODY(ABulletUnit)
 

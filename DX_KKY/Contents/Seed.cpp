@@ -207,7 +207,7 @@ void ASeed::ColliderInit()
 
 	Collider->SetScale(FlowerBossStageValue::SeedColliderScale);
 	Collider->SetPosition(ColliderPos);
-	Collider->SetCollisionGroup(ECollisionGroup::MonsterBullet);
+	Collider->SetCollisionGroup(ECollisionGroup::Monster);
 	Collider->SetCollisionType(ECollisionType::Rect);
 }
 
