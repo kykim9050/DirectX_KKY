@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
+#include <EngineCore/Camera.h>
 
 #include "PirateLevelMode.h"
+#include "PirateLevelMap.h"
 
 APirateLevelMode::APirateLevelMode()
 {
@@ -15,6 +17,8 @@ void APirateLevelMode::BeginPlay()
 	Super::BeginPlay();
 
 	WidgetInit();
+	CreateObject();
+	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 }
 
 void APirateLevelMode::Tick(float _DeltaTime)
@@ -30,6 +34,8 @@ void APirateLevelMode::LevelEnd(ULevel* _NextLevel)
 void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+
+	ObjectInit();
 
 	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
 	Iris->ChangeAnimation(GAniName::IrisAni);
@@ -48,4 +54,18 @@ void APirateLevelMode::WidgetInit()
 	Iris->CreateAnimation(GAniName::IrisAni, GSpriteName::Iris, 0.034f, false);
 	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
+}
+
+void APirateLevelMode::CreateObject()
+{
+	Camera = GetWorld()->GetMainCamera();
+
+	Map = GetWorld()->SpawnActor<APirateLevelMap>("Map", EActorType::Map);
+}
+
+void APirateLevelMode::ObjectInit()
+{
+	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
+
+	Map->SetActorLocation(float4(640.0f, -360.0f, 0.0f));
 }

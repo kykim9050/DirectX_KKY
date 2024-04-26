@@ -2,6 +2,8 @@
 #include <EngineCore/Actor.h>
 
 // Ό³Έν :
+class USpriteRenderer;
+class UDefaultSceneComponent;
 class APirateLevelMap : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -19,7 +21,19 @@ public:
 protected:
 
 private:
+	USpriteRenderer* Wave1 = nullptr;
+	USpriteRenderer* Wave2 = nullptr;
+	USpriteRenderer* Wave3 = nullptr;
+	USpriteRenderer* Wave4 = nullptr;
+
+	UDefaultSceneComponent* Root = nullptr;
+
+
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void RendererInit();
+	void AnimationInit();
+
 };
 
