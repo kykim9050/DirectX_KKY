@@ -210,8 +210,9 @@ void ACagneyCarnation::StartFunctionSet()
 	// Boss Dead
 	State.SetStartFunction(FlowerBossState::FlowerBoss_Dead, [this]()
 		{
-			AMessage* ClearMsg = GetWorld()->SpawnActor<AMessage>("ClearMsg").get();
-			ClearMsg->SetMsg("Stage_Clear");
+			AMessage* ClearMsg = GetWorld()->SpawnActor<AMessage>("ClearMsg",EActorType::ScreenMsg).get();
+			ClearMsg->SetStageEndMsg();
+
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerBoss_Death);
 		});
 

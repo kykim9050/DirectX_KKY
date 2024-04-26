@@ -23,6 +23,18 @@ public:
 	{
 		MsgName = _MsgName;
 	}
+	inline void SetStageEndMsg()
+	{
+		MsgName = GAniName::Stage_Clear;
+	}
+	inline void SetPlayerDeadMsg()
+	{
+		MsgName = GAniName::PlayerDead_Message;
+	}
+	inline void SetStageStartMsg()
+	{
+		MsgName = GAniName::Ready_Message;
+	}
 
 protected:
 

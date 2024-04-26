@@ -14,6 +14,8 @@ enum class EActorType
 	FX,
 	BossMonster,
 	Object,
+	ScreenMsg,
+	Max,
 };
 
 enum class ERenderingOrder
