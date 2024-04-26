@@ -20,6 +20,11 @@ namespace GSpriteName
 	const std::string Boomerang_Rotate = "Boomerang";
 
 	const std::string ExplosionEffect = "Explosion";
+
+	const std::string Ready_Message = "ReadyWALLOP!";
+	const std::string PlayerDead_Message = "YouDied";
+	const std::string Stage_Clear = "Knockout";
+
 }
 
 namespace GAniName
@@ -28,7 +33,23 @@ namespace GAniName
 	const std::string DashDust = "DashDust";
 	const std::string LandDust = "LandDust";
 
+	// Effect
 	const std::string ExplosionEffect = "ExplosionEffect";
+
+	// Screen Message
+	const std::string Ready_Message = "Ready_Message";
+	const std::string PlayerDead_Message = "PlayerDead_Message";
+	const std::string Stage_Clear = "Stage_Clear";
+
+
+}
+
+namespace GStateName
+{
+	// Screen Message
+	const std::string Message_Init = "Message_Init";
+	const std::string Message_Print = "Message_Print";
+
 }
 
 namespace FlowerBossAniName
@@ -241,6 +262,7 @@ namespace GRendererPos
 	const float4 FlowerPlatform_RelativePos = float4(5.0f, -45.0f, 0.0f);
 	const float4 FlowerBoss_BottomIvy_RelativePos = float4(-500.0f, 25.0f, 0.0f);
 
+	const float4 Msg_InitPos = float4(640.0f, -360.0f, 0.0f);
 }
 
 namespace GBoundaryPos

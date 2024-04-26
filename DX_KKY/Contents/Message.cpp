@@ -33,25 +33,25 @@ void AMessage::Tick(float _DeltaTime)
 void AMessage::ImageInit()
 {
 	MsgRenderer->SetOrder(ERenderingOrder::Message);
-	MsgRenderer->SetPosition(float4(640.0f, -360.0f, 0.0f));
+	MsgRenderer->SetPosition(GRendererPos::Msg_InitPos);
 	MsgRenderer->SetScale(GEngine->EngineWindow.GetWindowScale());
 }
 
 void AMessage::AnimationInit()
 {
-	MsgRenderer->CreateAnimation("Ready_Message", "ReadyWALLOP!", 0.0416f, false);
-	MsgRenderer->CreateAnimation("PlayerDead_Message", "YouDied", 0.0416f, false);
-	MsgRenderer->CreateAnimation("Stage_Clear", "Knockout", 0.0416f, false);
+	MsgRenderer->CreateAnimation(GAniName::Ready_Message, GSpriteName::Ready_Message, 0.0416f, false);
+	MsgRenderer->CreateAnimation(GAniName::PlayerDead_Message, GSpriteName::PlayerDead_Message, 0.0416f, false);
+	MsgRenderer->CreateAnimation(GAniName::Stage_Clear, GSpriteName::Stage_Clear, 0.0416f, false);
 
-	MsgRenderer->SetFrameCallback("Ready_Message", 50,[this]()
+	MsgRenderer->SetFrameCallback(GAniName::Ready_Message, 50,[this]()
 		{
 			Destroy();
 		});
-	MsgRenderer->SetFrameCallback("PlayerDead_Message", 8, [this]()
+	MsgRenderer->SetFrameCallback(GAniName::Ready_Message, 8, [this]()
 		{
 			Destroy();
 		});
-	MsgRenderer->SetFrameCallback("Stage_Clear", 35, [this]()
+	MsgRenderer->SetFrameCallback(GAniName::Stage_Clear, 35, [this]()
 		{
 			Destroy();
 		});
@@ -59,14 +59,17 @@ void AMessage::AnimationInit()
 
 void AMessage::StateInit()
 {
-	State.CreateState("Message_Init");
-	State.CreateState("Message_Print");
+	State.CreateState(GStateName::Message_Init);
+	State.CreateState(GStateName::Message_Print);
 
 	
-	State.SetStartFunction("Message_Init", []() {});
-	State.SetStartFunction("Message_Print", [this]()
+	State.SetStartFunction(GStateName::Message_Init, []() {});
+	State.SetStartFunction(GStateName::Message_Print, [this]()
 		{
-			if ("NONE" == MsgName)
+			if (GAniName::Stage_Clear != MsgName
+				&& GAniName::Ready_Message != MsgName
+				&& GAniName::PlayerDead_Message != MsgName
+				)
 			{
 				MsgBoxAssert("MSG 애니메이션 이름이 지정되지 않았습니다.");
 				return;
@@ -75,12 +78,12 @@ void AMessage::StateInit()
 			MsgRenderer->ChangeAnimation(MsgName);
 		});
 
-	State.SetUpdateFunction("Message_Init", [this](float)
+	State.SetUpdateFunction(GStateName::Message_Init, [this](float)
 		{
-			State.ChangeState("Message_Print");
+			State.ChangeState(GStateName::Message_Print);
 			return;
 		});
-	State.SetUpdateFunction("Message_Print", [](float) {});
+	State.SetUpdateFunction(GStateName::Message_Print, [](float) {});
 
-	State.ChangeState("Message_Init");
+	State.ChangeState(GStateName::Message_Init);
 }
