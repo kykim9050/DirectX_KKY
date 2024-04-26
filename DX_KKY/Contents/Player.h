@@ -60,6 +60,7 @@ private:
 	float SSReboundSpeed = 85.0f;
 	float LandFXOffset = 35.0f;
 	float DashFXOffset = 35.0f;
+	float ParrySuccessJumpSpeed = 1100.0f;
 	std::string PrevState = "None";
 
 	bool AvailableParry = true;
@@ -132,6 +133,7 @@ private:
 
 	std::string ChangeStringName(const std::string& _MainName);
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
+	void AfterSuccessParrySetting();
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)

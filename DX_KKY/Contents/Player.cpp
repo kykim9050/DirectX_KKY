@@ -774,6 +774,8 @@ void APlayer::CollisionCheck()
 			if (true == GetParrying() && true == Bullet->GetParryableObject())
 			{
 				Bullet->Destroy();
+				
+				AfterSuccessParrySetting();
 			}
 			
 		});
@@ -791,7 +793,17 @@ void APlayer::CollisionCheck()
 			if (true == GetParrying() && true == Monster->GetParryableObject())
 			{
 				Monster->Destroy();
+
+				AfterSuccessParrySetting();
 			}
 
 		});
+}
+
+void APlayer::AfterSuccessParrySetting()
+{
+
+
+	SetJumpVec(float4::Up * ParrySuccessJumpSpeed);
+	SetGravityVec(float4::Zero);
 }
