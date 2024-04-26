@@ -1,11 +1,10 @@
 #pragma once
-#include <EngineCore/Image.h>
 #include <EngineCore/Actor.h>
 
 
 // Ό³Έν :
-class UImage;
 class UStateManager;
+class USpriteRenderer;
 class AMessage : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -20,10 +19,15 @@ public:
 	AMessage& operator=(const AMessage& _Other) = delete;
 	AMessage& operator=(AMessage&& _Other) noexcept = delete;
 
+	inline void SetMsg(std::string_view _MsgName)
+	{
+		MsgName = _MsgName;
+	}
+
 protected:
 
 private:
-	UImage* Message = nullptr;
+	USpriteRenderer* MsgRenderer = nullptr;
 	UStateManager State;
 
 	void BeginPlay() override;
@@ -31,5 +35,7 @@ private:
 	void ImageInit();
 	void AnimationInit();
 	void StateInit();
+
+	std::string MsgName = "NONE";
 };
 
