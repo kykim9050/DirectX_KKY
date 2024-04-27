@@ -29,6 +29,8 @@ void APirateLevelMode::Tick(float _DeltaTime)
 void APirateLevelMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+
+	Map->ReleaseColMapTexInfo();
 }
 
 void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
