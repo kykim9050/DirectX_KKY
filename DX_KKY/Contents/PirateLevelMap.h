@@ -21,6 +21,8 @@ public:
 protected:
 
 private:
+	float AccTime = 0.0f;
+
 	USpriteRenderer* Wave1 = nullptr;
 	USpriteRenderer* Wave2 = nullptr;
 	USpriteRenderer* Wave3 = nullptr;
@@ -28,6 +30,7 @@ private:
 	USpriteRenderer* Dock = nullptr;
 	USpriteRenderer* DockLog = nullptr;
 	USpriteRenderer* DefaultSky = nullptr;
+	USpriteRenderer* MovingCloud1 = nullptr;
 
 	UDefaultSceneComponent* Root = nullptr;
 

@@ -23,6 +23,7 @@ enum class ERenderingOrder
 {
 	None,
 	CollisionLayer,
+	BackLayer4,
 	BackLayer3,
 	BackLayer2,
 	BackLayer1,

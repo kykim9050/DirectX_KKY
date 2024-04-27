@@ -30,6 +30,8 @@ APirateLevelMap::APirateLevelMap()
 	DefaultSky = CreateDefaultSubObject<USpriteRenderer>("DefaultSky");
 	DefaultSky->SetupAttachment(Root);
 
+	MovingCloud1 = CreateDefaultSubObject<USpriteRenderer>("MovingCloud1");
+	MovingCloud1->SetupAttachment(Root);
 }
 
 APirateLevelMap::~APirateLevelMap()
@@ -47,6 +49,10 @@ void APirateLevelMap::BeginPlay()
 void APirateLevelMap::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	AccTime += _DeltaTime;
+
+	MovingCloud1->SetVertexUVPlus(float4(AccTime * 0.1f , 0.0f, 0.0f));
 }
 
 void APirateLevelMap::RendererInit()
@@ -85,8 +91,14 @@ void APirateLevelMap::RendererInit()
 
 	//Sky
 	DefaultSky->SetAutoSize(1.3f, true);
-	DefaultSky->SetOrder(ERenderingOrder::BackLayer3);
+	DefaultSky->SetOrder(ERenderingOrder::BackLayer4);
 	DefaultSky->SetPosition(GRendererPos::PirateLevel_DefaultSky_Pos);
+
+	//Moving Background
+	MovingCloud1->SetAutoSize(1.3f, true);
+	MovingCloud1->SetOrder(ERenderingOrder::BackLayer1);
+	MovingCloud1->SetPivot(EPivot::BOT);
+	MovingCloud1->SetPosition(float4(0.0f, -230.0f, 0.0f));
 }
 
 void APirateLevelMap::AnimationInit()
@@ -105,4 +117,6 @@ void APirateLevelMap::AnimationInit()
 	DockLog->SetSprite("pirateDockB.png");
 
 	DefaultSky->SetSprite("pirate_clouds_D.png");
+
+	MovingCloud1->SetSprite("pirate_clouds_A.png");
 }
