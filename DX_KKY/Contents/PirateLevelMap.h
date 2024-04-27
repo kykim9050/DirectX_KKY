@@ -31,6 +31,8 @@ private:
 	USpriteRenderer* DockLog = nullptr;
 	USpriteRenderer* DefaultSky = nullptr;
 	USpriteRenderer* MovingCloud1 = nullptr;
+	USpriteRenderer* MovingCloud2 = nullptr;
+	USpriteRenderer* MovingCloud3 = nullptr;
 
 	UDefaultSceneComponent* Root = nullptr;
 
@@ -41,5 +43,6 @@ private:
 	void RendererInit();
 	void AnimationInit();
 
+	void CloudMoving(float _DeltaTime);
 };
 

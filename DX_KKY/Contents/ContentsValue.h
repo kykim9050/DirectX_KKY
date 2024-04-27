@@ -288,6 +288,9 @@ namespace GRendererPos
 	const float4 DockLog_Pos = float4(-707.0f, -313.0f, 0.0f);
 
 	const float4 PirateLevel_DefaultSky_Pos = float4(0.0f, 130.0f, 0.0f);
+	const float4 PirateLevel_Cloud1_Pos = float4(0.0f, -230.0f, 0.0f);
+	const float4 PirateLevel_Cloud2_Pos = float4(0.0f, -180.0f, 0.0f);
+	const float4 PirateLevel_Cloud3_Pos = float4(0.0f, -100.0f, 0.0f);
 }
 
 namespace GBoundaryPos

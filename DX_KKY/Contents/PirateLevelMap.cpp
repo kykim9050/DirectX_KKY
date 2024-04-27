@@ -32,6 +32,12 @@ APirateLevelMap::APirateLevelMap()
 
 	MovingCloud1 = CreateDefaultSubObject<USpriteRenderer>("MovingCloud1");
 	MovingCloud1->SetupAttachment(Root);
+
+	MovingCloud2 = CreateDefaultSubObject<USpriteRenderer>("MovingCloud2");
+	MovingCloud2->SetupAttachment(Root);
+
+	MovingCloud3 = CreateDefaultSubObject<USpriteRenderer>("MovingCloud3");
+	MovingCloud3->SetupAttachment(Root);
 }
 
 APirateLevelMap::~APirateLevelMap()
@@ -50,9 +56,7 @@ void APirateLevelMap::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	AccTime += _DeltaTime;
-
-	MovingCloud1->SetVertexUVPlus(float4(AccTime * 0.1f , 0.0f, 0.0f));
+	CloudMoving(_DeltaTime);
 }
 
 void APirateLevelMap::RendererInit()
@@ -96,9 +100,20 @@ void APirateLevelMap::RendererInit()
 
 	//Moving Background
 	MovingCloud1->SetAutoSize(1.3f, true);
+	MovingCloud2->SetAutoSize(1.3f, true);
+	MovingCloud3->SetAutoSize(1.3f, true);
+
 	MovingCloud1->SetOrder(ERenderingOrder::BackLayer1);
+	MovingCloud2->SetOrder(ERenderingOrder::BackLayer2);
+	MovingCloud3->SetOrder(ERenderingOrder::BackLayer3);
+
 	MovingCloud1->SetPivot(EPivot::BOT);
-	MovingCloud1->SetPosition(float4(0.0f, -230.0f, 0.0f));
+	MovingCloud2->SetPivot(EPivot::BOT);
+	MovingCloud3->SetPivot(EPivot::BOT);
+
+	MovingCloud1->SetPosition(GRendererPos::PirateLevel_Cloud1_Pos);
+	MovingCloud2->SetPosition(GRendererPos::PirateLevel_Cloud2_Pos);
+	MovingCloud3->SetPosition(GRendererPos::PirateLevel_Cloud3_Pos);
 }
 
 void APirateLevelMap::AnimationInit()
@@ -119,4 +134,15 @@ void APirateLevelMap::AnimationInit()
 	DefaultSky->SetSprite("pirate_clouds_D.png");
 
 	MovingCloud1->SetSprite("pirate_clouds_A.png");
+	MovingCloud2->SetSprite("pirate_clouds_B.png");
+	MovingCloud3->SetSprite("pirate_clouds_C.png");
+}
+
+void APirateLevelMap::CloudMoving(float _DeltaTime)
+{
+	AccTime += _DeltaTime;
+
+	MovingCloud1->SetVertexUVPlus(float4(AccTime * 0.13f, 0.0f, 0.0f));
+	MovingCloud2->SetVertexUVPlus(float4(AccTime * 0.065f, 0.0f, 0.0f));
+	MovingCloud3->SetVertexUVPlus(float4(AccTime * 0.03f, 0.0f, 0.0f));
 }
