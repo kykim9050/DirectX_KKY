@@ -30,7 +30,7 @@ void APirateLevelMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 
-	Map->ReleaseColMapTexInfo();
+	DeleteObject();
 }
 
 void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
@@ -70,4 +70,15 @@ void APirateLevelMode::ObjectInit()
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
 
 	Map->SetActorLocation(float4(640.0f, -360.0f, 0.0f));
+
+	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
+	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
+}
+
+void APirateLevelMode::DeleteObject()
+{
+	Player->Destroy();
+	Player = nullptr;
+
+	Map->ReleaseColMapTexInfo();
 }
