@@ -38,6 +38,9 @@ APirateLevelMap::APirateLevelMap()
 
 	MovingCloud3 = CreateDefaultSubObject<USpriteRenderer>("MovingCloud3");
 	MovingCloud3->SetupAttachment(Root);
+
+	ColMap = CreateDefaultSubObject<USpriteRenderer>("ColMap");
+	ColMap->SetupAttachment(Root);
 }
 
 APirateLevelMap::~APirateLevelMap()
@@ -114,6 +117,10 @@ void APirateLevelMap::RendererInit()
 	MovingCloud1->SetPosition(GRendererPos::PirateLevel_Cloud1_Pos);
 	MovingCloud2->SetPosition(GRendererPos::PirateLevel_Cloud2_Pos);
 	MovingCloud3->SetPosition(GRendererPos::PirateLevel_Cloud3_Pos);
+
+	ColMap->SetAutoSize(1.0f, true);
+	ColMap->SetOrder(ERenderingOrder::CollisionLayer);
+	ColMap->SetPosition(float4(0.0f, 0.0f, 0.0f));
 }
 
 void APirateLevelMap::AnimationInit()
@@ -136,6 +143,9 @@ void APirateLevelMap::AnimationInit()
 	MovingCloud1->SetSprite("pirate_clouds_A.png");
 	MovingCloud2->SetSprite("pirate_clouds_B.png");
 	MovingCloud3->SetSprite("pirate_clouds_C.png");
+
+	ColMap->SetSprite("Pirate_Background_PixelCheck.png");
+	UContentsValue::ColMapTexture = UEngineTexture::FindRes("Pirate_Background_PixelCheck.png");
 }
 
 void APirateLevelMap::CloudMoving(float _DeltaTime)
