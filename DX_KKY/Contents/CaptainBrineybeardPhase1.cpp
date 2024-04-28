@@ -36,7 +36,7 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	ShipRenderer = CreateDefaultSubObject<USpriteRenderer>("ShipRenderer");
 	ShipRenderer->SetupAttachment(Root);
 
-	ShipRenderer->SetAutoSize(1.0f, true);
+	ShipRenderer->SetAutoSize(1.2f, true);
 	ShipRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	ShipRenderer->SetOrder(ERenderingOrder::BossMonster);
 
