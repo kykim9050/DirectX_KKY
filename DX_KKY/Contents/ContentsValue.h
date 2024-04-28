@@ -300,6 +300,7 @@ namespace GRendererPos
 
 	const float4 Ship_Phase1_RelativePos = float4(100.0f, -70.0f, 0.0f);
 	const float4 ShipRail_RelativePos = float4(-30.0f, 400.0f, 0.0f);
+	const float4 ShipMast_RelativePos = float4(10.0f, 360.0f, 0.0f);
 }
 
 namespace GBoundaryPos
