@@ -43,6 +43,8 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	ShipMastRenderer = CreateDefaultSubObject<USpriteRenderer>("ShipMastRenderer");
 	ShipMastRenderer->SetupAttachment(Root);
 
+	ShipSailRenderer = CreateDefaultSubObject<USpriteRenderer>("ShipSailRenderer ");
+	ShipSailRenderer->SetupAttachment(Root);
 
 
 	ShipRenderer->SetAutoSize(1.2f, true);
@@ -58,6 +60,11 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	ShipMastRenderer->SetOrder(ERenderingOrder::Object3);
 	ShipMastRenderer->SetPivot(EPivot::BOT);
 	ShipMastRenderer->SetPosition(GRendererPos::ShipMast_RelativePos);
+
+	ShipSailRenderer->SetAutoSize(1.0f, true);
+	ShipSailRenderer->SetOrder(ERenderingOrder::Object2);
+	//ShipSailRenderer->SetPivot(EPivot::BOT);
+	//ShipSailRenderer->SetPosition(GRendererPos::);
 }
 
 void ACaptainBrineybeardPhase1::AnimationInit()
