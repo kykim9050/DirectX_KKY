@@ -297,6 +297,9 @@ namespace GRendererPos
 	const float4 PirateLevel_Cloud1_Pos = float4(0.0f, -230.0f, 0.0f);
 	const float4 PirateLevel_Cloud2_Pos = float4(0.0f, -180.0f, 0.0f);
 	const float4 PirateLevel_Cloud3_Pos = float4(0.0f, -100.0f, 0.0f);
+
+	const float4 Ship_Phase1_RelativePos = float4(100.0f, -70.0f, 0.0f);
+	const float4 ShipRail_RelativePos = float4(-30.0f, 400.0f, 0.0f);
 }
 
 namespace GBoundaryPos

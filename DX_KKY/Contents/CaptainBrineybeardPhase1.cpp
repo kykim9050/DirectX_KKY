@@ -43,10 +43,11 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	ShipRenderer->SetAutoSize(1.2f, true);
 	ShipRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	ShipRenderer->SetOrder(ERenderingOrder::BossMonster);
+	ShipRenderer->SetPosition(GRendererPos::Ship_Phase1_RelativePos);
 
-	ShipRailRenderer->SetAutoSize(1.2f, true);
+	ShipRailRenderer->SetAutoSize(1.0f, true);
 	ShipRailRenderer->SetOrder(ERenderingOrder::BossMonsterBackFX1);
-	ShipRailRenderer->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	ShipRailRenderer->SetPosition(GRendererPos::ShipRail_RelativePos);
 }
 
 void ACaptainBrineybeardPhase1::AnimationInit()
