@@ -237,6 +237,11 @@ namespace FlowerBossStageValue
 	const std::vector<float4> AttackableVinePos = { float4(170.0f, -650.0f, 0.0f), float4(440.0f, -650.0f, 0.0f) ,float4(730.0f, -650.0f, 0.0f) };
 }
 
+namespace PirateBossAniName
+{
+	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
+}
+
 namespace GColliderScale
 {
 	const float4 FlowerBoss_HeadColScale = float4(250.0f, 250.0f, 1.0f);
