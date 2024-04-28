@@ -3,6 +3,7 @@
 
 #include "PirateLevelMode.h"
 #include "PirateLevelMap.h"
+#include "CaptainBrineybeardPhase1.h"
 
 APirateLevelMode::APirateLevelMode()
 {
@@ -72,13 +73,29 @@ void APirateLevelMode::ObjectInit()
 	Map->SetActorLocation(float4(640.0f, -360.0f, 0.0f));
 
 	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
-	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
+	Player->SetActorLocation(float4{ 640.0f, -400.0f, 100.0f });
+
+	Phase1_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase1>("Phase1_Boss", EActorType::BossMonster);
+	Phase1_Boss->SetActorLocation(float4(1380.0f, -790.0f, 0.0f));
 }
 
 void APirateLevelMode::DeleteObject()
 {
-	Player->Destroy();
-	Player = nullptr;
+	if (nullptr != Player)
+	{
+		Player->Destroy();
+		Player = nullptr;
+	}
 
-	Map->ReleaseColMapTexInfo();
+	if (nullptr != Phase1_Boss)
+	{
+		Phase1_Boss->Destroy();
+		Phase1_Boss = nullptr;
+	}
+
+
+	if (nullptr != Map)
+	{
+		Map->ReleaseColMapTexInfo();
+	}
 }

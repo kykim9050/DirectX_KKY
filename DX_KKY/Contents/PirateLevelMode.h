@@ -2,6 +2,7 @@
 #include <EngineCore/GameMode.h>
 
 // Ό³Έν :
+class ACaptainBrineybeardPhase1;
 class UTimeScaleControlUnit;
 class UCamera;
 class UImage;
@@ -35,6 +36,7 @@ private:
 
 	std::shared_ptr<APlayer> Player = nullptr;
 	std::shared_ptr<APirateLevelMap> Map = nullptr;
+	std::shared_ptr<ACaptainBrineybeardPhase1> Phase1_Boss = nullptr;
 
 	std::shared_ptr<AMessage> ScreenMsg = nullptr;
 
