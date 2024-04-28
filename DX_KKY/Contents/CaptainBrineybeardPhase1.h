@@ -27,6 +27,7 @@ private:
 
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* ShipRenderer = nullptr;
+	USpriteRenderer* ShipRailRenderer = nullptr;
 
 private:
 	void BeginPlay() override;

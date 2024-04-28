@@ -240,6 +240,7 @@ namespace FlowerBossStageValue
 namespace PirateBossAniName
 {
 	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
+	const std::string Ship_Rail = "Ship_Rail";
 }
 
 namespace GColliderScale
