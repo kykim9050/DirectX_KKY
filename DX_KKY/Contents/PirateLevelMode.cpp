@@ -76,7 +76,8 @@ void APirateLevelMode::ObjectInit()
 	Player->SetActorLocation(float4{ 640.0f, -400.0f, 100.0f });
 
 	Phase1_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase1>("Phase1_Boss", EActorType::BossMonster);
-	Phase1_Boss->SetActorLocation(float4(1380.0f, -790.0f, 0.0f));
+	//Phase1_Boss->SetActorLocation(float4(1380.0f, -790.0f, 0.0f));
+	Phase1_Boss->SetActorLocation(float4(1280.0f, -720.0f, 0.0f));
 }
 
 void APirateLevelMode::DeleteObject()
