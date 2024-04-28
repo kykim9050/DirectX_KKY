@@ -23,11 +23,13 @@ public:
 protected:
 
 private:
-	UStateManager State;
+	UStateManager ShipState;
+	UStateManager PirateState;
 
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* ShipRenderer = nullptr;
 	USpriteRenderer* ShipRailRenderer = nullptr;
+	USpriteRenderer* ShipSailRenderer = nullptr;
 	USpriteRenderer* ShipMastRenderer = nullptr;
 
 private:
