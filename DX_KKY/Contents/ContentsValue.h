@@ -239,9 +239,11 @@ namespace FlowerBossStageValue
 
 namespace PirateBossAniName
 {
-	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
 	const std::string Ship_Rail = "Ship_Rail";
 	const std::string Ship_Sail = "Ship_Sail";
+
+	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
+	const std::string Ship_Phase1_Blink = "Ship_Phase1_Blink";
 }
 
 namespace PirateBossState

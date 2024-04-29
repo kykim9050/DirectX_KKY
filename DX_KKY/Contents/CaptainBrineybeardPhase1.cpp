@@ -23,6 +23,7 @@ void ACaptainBrineybeardPhase1::BeginPlay()
 	Super::BeginPlay();
 
 	AnimationInit();
+	SetAnimationCallback();
 	StateInit();
 }
 
