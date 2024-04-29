@@ -83,7 +83,7 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	PirateRenderer->SetAutoSize(1.0f, true);
 	PirateRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	PirateRenderer->SetOrder(ERenderingOrder::Monster2);
-	PirateRenderer->SetPosition(GRendererPos::Pirate_ReletivePos);
+	PirateRenderer->SetPosition(GRendererPos::Pirate_Idle_ReletivePos);
 
 	//PirateRenderer->SetPlusColor(GColorValue::BrightColor);
 }

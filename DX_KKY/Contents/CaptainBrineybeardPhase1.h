@@ -40,9 +40,14 @@ private:
 	float BlinkDelayInit = 4.0f;
 	
 	// Laugh
-	int LaughNum = 7;
+	//int LaughNum = 7;
+	int LaughNum = 2;
 	int LaughCount = 1;
 	bool Laughing = false;
+
+	// Octopus Attack
+	float PickOctopusDelay = 2.0f;
+	float PickOctopusDelayInit = 2.0f;
 
 private:
 	void BeginPlay() override;
@@ -65,6 +70,7 @@ private:
 
 	// State
 	void Ship_Idle(float _DeltaTime);
+	void Pirate_Idle(float _DeltaTime);
 
 };
 
