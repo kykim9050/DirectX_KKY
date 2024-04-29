@@ -253,7 +253,13 @@ namespace PirateBossAniName
 	const std::string OctopusShoot_Begin = "OctopusShoot_Begin";
 	const std::string OctopusShoot_Idle = "OctopusShoot_Idle";
 	const std::string OctopusShoot_Attack = "OctopusShoot_Attack";
-	
+	const std::string OctopusShoot_End = "OctopusShoot_End";
+
+	const std::string OctopusShoot_Begin_Top = "OctopusShoot_Begin_Top";
+	const std::string OctopusShoot_Idle_Top = "OctopusShoot_Idle_Top";
+	const std::string OctopusShoot_Attack_Top = "OctopusShoot_Attack_Top";
+	const std::string OctopusShoot_End_Top = "OctopusShoot_End_Top";
+
 }
 
 namespace PirateBossState

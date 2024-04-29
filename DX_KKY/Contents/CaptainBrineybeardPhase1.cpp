@@ -79,13 +79,21 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	// Pirate
 	PirateRenderer = CreateDefaultSubObject<USpriteRenderer>("PirateRenderer");
 	PirateRenderer->SetupAttachment(Root);
+	
+	PirateTopRenderer = CreateDefaultSubObject<USpriteRenderer>("PirateTopRenderer");
+	PirateTopRenderer->SetupAttachment(Root);
+
 
 	PirateRenderer->SetAutoSize(1.0f, true);
 	PirateRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	PirateRenderer->SetOrder(ERenderingOrder::Monster2);
 	PirateRenderer->SetPosition(GRendererPos::Pirate_Idle_ReletivePos);
 
-	//PirateRenderer->SetPlusColor(GColorValue::BrightColor);
+	PirateTopRenderer->SetAutoSize(1.0f, true);
+	PirateTopRenderer->SetPivot(EPivot::RIGHTBOTTOM);
+	PirateTopRenderer->SetOrder(ERenderingOrder::BossMonsterFrontLayer1);
+	PirateTopRenderer->SetPosition(GRendererPos::Pirate_Idle_ReletivePos);
+	PirateTopRenderer->SetActive(false);
 }
 
 void ACaptainBrineybeardPhase1::AnimationInit()

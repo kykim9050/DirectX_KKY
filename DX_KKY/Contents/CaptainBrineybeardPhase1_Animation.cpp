@@ -22,6 +22,12 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Begin, "Pirate_PickUp_Octopus", 0.047f, false);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Idle, "Pirate_Idle_Octopus", 0.057f);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Attack, "Pirate_Octopus_Attack", 0.034f, false);
+	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_End, "Pirate_PutDown_Octopus_Top", 0.047f, false);
+
+	PirateTopRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Begin_Top, "Pirate_PickUp_Octopus_Top", 0.047f, false);
+	PirateTopRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Idle_Top, "Pirate_Idle_Octopus_Top", 0.057f);
+	PirateTopRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Attack_Top, "Pirate_Octopus_Attack_Top", 0.034f, false);
+	PirateTopRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_End_Top, "Pirate_PutDown_Octopus_Top", 0.047f, false);
 
 
 	// Animation Change
