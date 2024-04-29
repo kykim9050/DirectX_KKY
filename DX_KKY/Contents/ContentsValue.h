@@ -241,6 +241,7 @@ namespace PirateBossAniName
 {
 	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
 	const std::string Ship_Rail = "Ship_Rail";
+	const std::string Ship_Sail = "Ship_Sail";
 }
 
 namespace GColliderScale
@@ -301,11 +302,17 @@ namespace GRendererPos
 	const float4 Ship_Phase1_RelativePos = float4(100.0f, -70.0f, 0.0f);
 	const float4 ShipRail_RelativePos = float4(-30.0f, 400.0f, 0.0f);
 	const float4 ShipMast_RelativePos = float4(10.0f, 360.0f, 0.0f);
+	const float4 ShipSail_RelativePos = float4(-300.0f, 540.0f, 0.0f);
 }
 
 namespace GBoundaryPos
 {
 	const std::vector<float> FlowerPlatform_BoundaryYPos = { {400.0f}, {425.0f} };
+}
+
+namespace GColorValue
+{
+	const float4 BrightColor = float4(0.1f, 0.1f, 0.1f);
 }
 
 
