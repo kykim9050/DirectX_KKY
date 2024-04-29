@@ -52,5 +52,5 @@ void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 
 	AccTime += _DeltaTime;
 
-	//AddActorLocation(float4(0.0f, 0.07f * sinf(AccTime * 0.5f), 0.0f));
+	AddActorLocation(float4(0.0f, 0.065f * sinf(AccTime * 1.5f), 0.0f));
 }
