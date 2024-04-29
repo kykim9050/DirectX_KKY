@@ -121,3 +121,15 @@ void ACaptainBrineybeardPhase1::DebugUpdate()
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
 }
+
+void ACaptainBrineybeardPhase1::MoveUpAndDown(float _DeltaTime)
+{
+	if (0.0f == _DeltaTime)
+	{
+		return;
+	}
+
+	AccTime += _DeltaTime;
+
+	AddActorLocation(float4(0.0f, 0.065f * sinf(AccTime * 1.5f), 0.0f));
+}

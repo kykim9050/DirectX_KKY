@@ -79,6 +79,7 @@ private:
 	void UpdateFunctionSet();
 	void EndFunctionSet();
 
+	void MoveUpAndDown(float _DeltaTime);
 
 	// State
 	void Ship_Idle(float _DeltaTime);
