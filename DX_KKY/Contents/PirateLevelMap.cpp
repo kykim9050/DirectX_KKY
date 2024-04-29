@@ -122,16 +122,16 @@ void APirateLevelMap::RendererInit()
 	ColMap->SetOrder(ERenderingOrder::CollisionLayer);
 	ColMap->SetPosition(float4(0.0f, 0.0f, 0.0f));
 
-	Wave1->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	Wave2->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	Wave3->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	Wave4->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	Dock->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	DockLog->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	DefaultSky->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	MovingCloud1->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	MovingCloud2->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	MovingCloud3->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	Wave1->SetPlusColor(GColorValue::BrightColor);
+	Wave2->SetPlusColor(GColorValue::BrightColor);
+	Wave3->SetPlusColor(GColorValue::BrightColor);
+	Wave4->SetPlusColor(GColorValue::BrightColor);
+	Dock->SetPlusColor(GColorValue::BrightColor);
+	DockLog->SetPlusColor(GColorValue::BrightColor);
+	DefaultSky->SetPlusColor(GColorValue::BrightColor);
+	MovingCloud1->SetPlusColor(GColorValue::BrightColor);
+	MovingCloud2->SetPlusColor(GColorValue::BrightColor);
+	MovingCloud3->SetPlusColor(GColorValue::BrightColor);
 }
 
 void APirateLevelMap::AnimationInit()

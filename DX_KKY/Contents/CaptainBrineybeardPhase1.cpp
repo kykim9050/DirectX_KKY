@@ -63,13 +63,13 @@ void ACaptainBrineybeardPhase1::RendererInit()
 
 	ShipSailRenderer->SetAutoSize(1.0f, true);
 	ShipSailRenderer->SetOrder(ERenderingOrder::Object2);
-	//ShipSailRenderer->SetPivot(EPivot::BOT);
-	//ShipSailRenderer->SetPosition(GRendererPos::);
+	ShipSailRenderer->SetPivot(EPivot::LEFTBOTTOM);
+	ShipSailRenderer->SetPosition(GRendererPos::ShipSail_RelativePos);
 
-	ShipRenderer->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	ShipRailRenderer->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	ShipMastRenderer->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
-	ShipSailRenderer->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	ShipRenderer->SetPlusColor(GColorValue::BrightColor);
+	ShipRailRenderer->SetPlusColor(GColorValue::BrightColor);
+	ShipMastRenderer->SetPlusColor(GColorValue::BrightColor);
+	ShipSailRenderer->SetPlusColor(GColorValue::BrightColor);
 }
 
 void ACaptainBrineybeardPhase1::AnimationInit()
