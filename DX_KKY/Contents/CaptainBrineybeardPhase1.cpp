@@ -92,7 +92,7 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	PirateTopRenderer->SetAutoSize(1.0f, true);
 	PirateTopRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	PirateTopRenderer->SetOrder(ERenderingOrder::BossMonsterFrontLayer1);
-	PirateTopRenderer->SetPosition(GRendererPos::Pirate_Idle_ReletivePos);
+	PirateTopRenderer->SetPosition(GRendererPos::Pirate_OctoPusAtt_ReletivePos);
 	PirateTopRenderer->SetActive(false);
 }
 
