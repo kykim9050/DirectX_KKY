@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 
 #include "CaptainBrineybeardPhase1.h"
+#include "OctopusBullet.h"
 
 void ACaptainBrineybeardPhase1::CreateAnimation()
 {
@@ -69,12 +70,16 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			{
 				PirateState.ChangeState(PirateBossState::Pirate_Idle);
 			});
+		PirateRenderer->SetFrameCallback(PirateBossState::OctopusShoot_Attack, 9, [this]()
+			{
+				AOctopusBullet* NewOctoBullet = GetWorld()->SpawnActor<AOctopusBullet>("NewOctoBullet").get();
+				NewOctoBullet->SetActorLocation(float4(320.0f, -100.0f, 0.0f));
+			});
 
 		PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_End_Top, [this]()
 			{
 				PirateTopRenderer->SetActive(false);
 			});
-
 
 
 		
