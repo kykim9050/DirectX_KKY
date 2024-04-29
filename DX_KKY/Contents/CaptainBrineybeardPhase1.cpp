@@ -65,6 +65,11 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	ShipSailRenderer->SetOrder(ERenderingOrder::Object2);
 	//ShipSailRenderer->SetPivot(EPivot::BOT);
 	//ShipSailRenderer->SetPosition(GRendererPos::);
+
+	ShipRenderer->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	ShipRailRenderer->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	ShipMastRenderer->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	ShipSailRenderer->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
 }
 
 void ACaptainBrineybeardPhase1::AnimationInit()

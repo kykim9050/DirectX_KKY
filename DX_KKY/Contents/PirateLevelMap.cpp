@@ -121,6 +121,17 @@ void APirateLevelMap::RendererInit()
 	ColMap->SetAutoSize(1.0f, true);
 	ColMap->SetOrder(ERenderingOrder::CollisionLayer);
 	ColMap->SetPosition(float4(0.0f, 0.0f, 0.0f));
+
+	Wave1->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	Wave2->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	Wave3->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	Wave4->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	Dock->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	DockLog->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	DefaultSky->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	MovingCloud1->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	MovingCloud2->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
+	MovingCloud3->SetPlusColor(float4(0.1f, 0.1f, 0.1f));
 }
 
 void APirateLevelMap::AnimationInit()
