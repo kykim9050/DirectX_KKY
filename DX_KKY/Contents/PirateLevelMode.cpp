@@ -62,14 +62,13 @@ void APirateLevelMode::WidgetInit()
 void APirateLevelMode::CreateObject()
 {
 	Camera = GetWorld()->GetMainCamera();
-
-	Map = GetWorld()->SpawnActor<APirateLevelMap>("Map", EActorType::Map);
 }
 
 void APirateLevelMode::ObjectInit()
 {
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
 
+	Map = GetWorld()->SpawnActor<APirateLevelMap>("Map", EActorType::Map);
 	Map->SetActorLocation(float4(640.0f, -360.0f, 0.0f));
 
 	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);

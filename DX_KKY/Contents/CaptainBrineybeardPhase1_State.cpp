@@ -24,6 +24,7 @@ void ACaptainBrineybeardPhase1::StateCreate()
 	// Pirate
 	{
 		PirateState.CreateState(PirateBossState::Pirate_Intro);
+		PirateState.CreateState(PirateBossState::Pirate_Laugh);
 	}
 
 }
@@ -44,6 +45,10 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			{
 				PirateRenderer->ChangeAnimation(PirateBossAniName::Pirate_Intro);
 			});
+		PirateState.SetStartFunction(PirateBossState::Pirate_Laugh, [this]()
+			{
+				PirateRenderer->ChangeAnimation(PirateBossAniName::Pirate_Laugh);
+			});
 	}
 }
 
@@ -56,7 +61,18 @@ void ACaptainBrineybeardPhase1::UpdateFunctionSet()
 
 	// Pirate
 	{
-		PirateState.SetUpdateFunction(PirateBossState::Pirate_Intro, [](float) {});
+		PirateState.SetUpdateFunction(PirateBossState::Pirate_Intro, [this](float)
+			{
+				if (true == PirateRenderer->IsCurAnimationEnd())
+				{
+					PirateState.ChangeState(PirateBossState::Pirate_Laugh);
+					return;
+				}
+			});
+		PirateState.SetUpdateFunction(PirateBossState::Pirate_Laugh, [this](float)
+			{
+
+			});
 	}
 }
 
