@@ -243,6 +243,9 @@
     <ClInclude Include="CaptainBrineybeardPhase1.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClInclude>
+    <ClInclude Include="OctopusBullet.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -411,6 +414,9 @@
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClCompile>
     <ClCompile Include="CaptainBrineybeardPhase1_Animation.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
+    </ClCompile>
+    <ClCompile Include="OctopusBullet.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClCompile>
   </ItemGroup>
