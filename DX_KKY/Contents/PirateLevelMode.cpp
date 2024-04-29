@@ -96,5 +96,7 @@ void APirateLevelMode::DeleteObject()
 	if (nullptr != Map)
 	{
 		Map->ReleaseColMapTexInfo();
+		Map->Destroy();
+		Map = nullptr;
 	}
 }

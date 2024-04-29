@@ -19,7 +19,7 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 		{ 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5 }, true);
 	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_StopLaugh, "Pirate_Intro", { 0.067f ,0.067f ,0.067f }, { 11, 12, 13 }, false);
 	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Idle, "Pirate_Idle", 0.047f);
-	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Begin, "Pirate_PeakUp_Octopus", 0.047f, false);
+	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Begin, "Pirate_PickUp_Octopus", 0.047f, false);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Idle, "Pirate_Idle_Octopus", 0.057f);
 
 
