@@ -21,6 +21,7 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Idle, "Pirate_Idle", 0.047f);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Begin, "Pirate_PickUp_Octopus", 0.047f, false);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Idle, "Pirate_Idle_Octopus", 0.057f);
+	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Attack, "Pirate_Octopus_Attack", 0.034f, false);
 
 
 	// Animation Change
@@ -46,6 +47,10 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 				PirateState.ChangeState(PirateBossState::Pirate_Idle);
 			});
 		PirateRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_Begin, [this]()
+			{
+				PirateState.ChangeState(PirateBossState::OctopusShoot_Idle);
+			});
+		PirateRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_Attack, [this]()
 			{
 				PirateState.ChangeState(PirateBossState::OctopusShoot_Idle);
 			});

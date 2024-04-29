@@ -48,6 +48,8 @@ private:
 	// Octopus Attack
 	float PickOctopusDelay = 2.0f;
 	float PickOctopusDelayInit = 2.0f;
+	float ShootDelay = 1.0f;
+	float ShootDelayInit = 1.0f;
 
 private:
 	void BeginPlay() override;
