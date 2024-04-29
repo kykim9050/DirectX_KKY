@@ -66,9 +66,9 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 				PirateTopRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Begin_Top);
 			});
 			
-		PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_Begin_Top, [this]()
-			{
-				PirateTopRenderer->SetActive(false);
-			});
+		//PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_Begin_Top, [this]()
+		//	{
+		//		PirateTopRenderer->SetActive(false);
+		//	});
 	}
 }
