@@ -34,6 +34,8 @@ private:
 	USpriteRenderer* ShipSailRenderer = nullptr;
 	USpriteRenderer* ShipMastRenderer = nullptr;
 
+	UCollision* MainCollider = nullptr;
+
 	float AccTime = 0.0f;
 
 	// blink
@@ -64,7 +66,7 @@ private:
 	void AnimationInit();
 	void CreateAnimation();
 	void SetAnimationCallback();
-	//void ColliderInit();
+	void ColliderInit();
 
 	void StateInit();
 	void StateCreate();

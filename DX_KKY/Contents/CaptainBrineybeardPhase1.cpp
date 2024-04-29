@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/Collision.h>
 
 #include "CaptainBrineybeardPhase1.h"
 
@@ -11,7 +12,7 @@ ACaptainBrineybeardPhase1::ACaptainBrineybeardPhase1()
 
 	SetHp(300);
 	RendererInit();
-	//ColliderInit();
+	ColliderInit();
 }
 
 ACaptainBrineybeardPhase1::~ACaptainBrineybeardPhase1()
@@ -99,5 +100,15 @@ void ACaptainBrineybeardPhase1::RendererInit()
 void ACaptainBrineybeardPhase1::AnimationInit()
 {
 	CreateAnimation();
+}
 
+void ACaptainBrineybeardPhase1::ColliderInit()
+{
+	MainCollider = CreateDefaultSubObject<UCollision>("MainCollider");
+	MainCollider->SetupAttachment(Root);
+
+	MainCollider->SetScale(GColliderScale::PirateBoss_Phase1_ColScale);
+	MainCollider->AddPosition(GColliderPosInfo::PirateBoss_Phase1_RelPos);
+	MainCollider->SetCollisionGroup(ECollisionGroup::Monster);
+	MainCollider->SetCollisionType(ECollisionType::Rect);
 }
