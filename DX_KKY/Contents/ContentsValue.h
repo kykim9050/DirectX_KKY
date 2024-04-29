@@ -358,6 +358,7 @@ namespace GActorPosValue
 
 	const float4 PL_Player_Init_Pos = float4(200.0f, -350.0f, 100.0f);
 	const float4 Phase1_Boss_Pos = float4(1280.0f, -765.0f, 0.0f);
+	const float4 OctoBullet_RelativePos = float4(-406.0f, 390.0f, 0.0f);
 }
 
 

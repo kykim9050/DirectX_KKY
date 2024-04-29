@@ -24,7 +24,7 @@ protected:
 private:
 	int RandomValue = NOT_DEFINE;
 	std::string Color = "_None";
-	float BulletSpeed = 250.0f;
+	float BulletSpeed = 500.0f;
 	float4 ResVelocity = float4::Zero;
 
 	void BeginPlay() override;
