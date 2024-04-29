@@ -19,6 +19,7 @@ void ACaptainBrineybeardPhase1::StateCreate()
 	// Ship State
 	{
 		ShipState.CreateState(PirateBossState::Ship_Phase1_Idle);
+		ShipState.CreateState(PirateBossState::Ship_Phase1_Blink);
 		ShipState.CreateState(PirateBossState::Ship_Phase1_CannonShoot);
 	}
 
@@ -42,6 +43,10 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 		ShipState.SetStartFunction(PirateBossState::Ship_Phase1_Idle, [this]()
 			{
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Idle);
+			});
+		ShipState.SetStartFunction(PirateBossState::Ship_Phase1_Blink, [this]()
+			{
+				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Blink);
 			});
 		ShipState.SetStartFunction(PirateBossState::Ship_Phase1_CannonShoot, [this]()
 			{
@@ -97,6 +102,7 @@ void ACaptainBrineybeardPhase1::UpdateFunctionSet()
 	// Ship State
 	{
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_Idle, std::bind(&ACaptainBrineybeardPhase1::Ship_Idle, this, std::placeholders::_1));
+		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_Blink, std::bind(&ACaptainBrineybeardPhase1::Ship_Blink, this, std::placeholders::_1));
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_CannonShoot, std::bind(&ACaptainBrineybeardPhase1::Ship_CannonShoot, this, std::placeholders::_1));
 	}
 
@@ -140,14 +146,15 @@ void ACaptainBrineybeardPhase1::EndFunctionSet()
 
 void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 {
-	//BlinkDelay -= _DeltaTime;
+	BlinkDelay -= _DeltaTime;
 
-	//if (0.0f >= BlinkDelay)
-	//{
-	//	BlinkDelay = BlinkDelayInit + BlinkDelay;
+	if (0.0f >= BlinkDelay)
+	{
+		BlinkDelay = BlinkDelayInit + BlinkDelay;
 
-	//	ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Blink);
-	//}
+		ShipState.ChangeState(PirateBossState::Ship_Phase1_Blink);
+		return;
+	}
 
 	if (150.0f >= GetHp())
 	{
@@ -202,6 +209,13 @@ void ACaptainBrineybeardPhase1::Pirate_OctoAtt_Idle(float _DeltaTime)
 }
 
 void ACaptainBrineybeardPhase1::Ship_CannonShoot(float _DeltaTime)
+{
+	AccTime += _DeltaTime;
+
+	AddActorLocation(float4(0.0f, 0.065f * sinf(AccTime * 1.5f), 0.0f));
+}
+
+void ACaptainBrineybeardPhase1::Ship_Blink(float _DeltaTime)
 {
 	AccTime += _DeltaTime;
 
