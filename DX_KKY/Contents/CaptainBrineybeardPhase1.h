@@ -28,6 +28,7 @@ private:
 
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* PirateRenderer = nullptr;
+	USpriteRenderer* PirateTopRenderer = nullptr;
 	USpriteRenderer* ShipRenderer = nullptr;
 	USpriteRenderer* ShipRailRenderer = nullptr;
 	USpriteRenderer* ShipSailRenderer = nullptr;
