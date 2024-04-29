@@ -13,9 +13,10 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase1_Blink, "Ship_Phase1_Blink", 0.065f);
 
 	// Pirate
-	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Intro, "Pirate_Intro", 0.047f);
-
-
+	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Intro, "Pirate_Intro", 0.047f, true, 0, 4);
+	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Laugh, "Pirate_Intro",
+		{ 0.047f,  0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f},
+		{ 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5 }, true);
 
 	// Animation Change
 	ShipRailRenderer->ChangeAnimation(PirateBossAniName::Ship_Rail);
