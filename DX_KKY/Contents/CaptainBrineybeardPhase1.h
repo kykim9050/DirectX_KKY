@@ -41,6 +41,11 @@ private:
 	// blink
 	float BlinkDelay = 4.0f;
 	float BlinkDelayInit = 4.0f;
+
+	// Cannon
+	float CannonShootDelay = 5.0f;
+	float CannonShootDelayInit = 5.0f;
+
 	
 	// Laugh
 	//int LaughNum = 7;
@@ -77,6 +82,7 @@ private:
 
 	// State
 	void Ship_Idle(float _DeltaTime);
+	void Ship_CannonShoot(float _DeltaTime);
 	void Pirate_Idle(float _DeltaTime);
 	void Pirate_OctoAtt_Idle(float _DeltaTime);
 };

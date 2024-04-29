@@ -19,6 +19,7 @@ void ACaptainBrineybeardPhase1::StateCreate()
 	// Ship State
 	{
 		ShipState.CreateState(PirateBossState::Ship_Phase1_Idle);
+		ShipState.CreateState(PirateBossState::Ship_Phase1_CannonShoot);
 	}
 
 	// Pirate
@@ -41,6 +42,10 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 		ShipState.SetStartFunction(PirateBossState::Ship_Phase1_Idle, [this]()
 			{
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Idle);
+			});
+		ShipState.SetStartFunction(PirateBossState::Ship_Phase1_CannonShoot, [this]()
+			{
+				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_CannonAtt);
 			});
 	}
 
@@ -92,6 +97,7 @@ void ACaptainBrineybeardPhase1::UpdateFunctionSet()
 	// Ship State
 	{
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_Idle, std::bind(&ACaptainBrineybeardPhase1::Ship_Idle, this, std::placeholders::_1));
+		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_CannonShoot, std::bind(&ACaptainBrineybeardPhase1::Ship_CannonShoot, this, std::placeholders::_1));
 	}
 
 	// Pirate
@@ -134,13 +140,26 @@ void ACaptainBrineybeardPhase1::EndFunctionSet()
 
 void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 {
-	BlinkDelay -= _DeltaTime;
+	//BlinkDelay -= _DeltaTime;
 
-	if (0.0f >= BlinkDelay)
+	//if (0.0f >= BlinkDelay)
+	//{
+	//	BlinkDelay = BlinkDelayInit + BlinkDelay;
+
+	//	ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Blink);
+	//}
+
+	if (150.0f >= GetHp())
 	{
-		BlinkDelay = BlinkDelayInit + BlinkDelay;
+		CannonShootDelay -= _DeltaTime;
 
-		ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Blink);
+		if (0.0f >= CannonShootDelay)
+		{
+			CannonShootDelay = CannonShootDelayInit + CannonShootDelay;
+
+			ShipState.ChangeState(PirateBossState::Ship_Phase1_CannonShoot);
+			return;
+		}
 	}
 
 
@@ -180,4 +199,11 @@ void ACaptainBrineybeardPhase1::Pirate_OctoAtt_Idle(float _DeltaTime)
 		PirateState.ChangeState(PirateBossState::OctopusShoot_Attack);
 		return;
 	}
+}
+
+void ACaptainBrineybeardPhase1::Ship_CannonShoot(float _DeltaTime)
+{
+	AccTime += _DeltaTime;
+
+	AddActorLocation(float4(0.0f, 0.065f * sinf(AccTime * 1.5f), 0.0f));
 }

@@ -12,6 +12,8 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 	
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase1_Idle, "Ship_Phase1_Idle", 0.065f);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase1_Blink, "Ship_Phase1_Blink", 0.065f);
+	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase1_CannonAtt, "Ship_Phase1_ShootCannonBall", 0.065f, false);
+
 
 	// Pirate
 	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Intro, "Pirate_Intro", 0.067f, true, 0, 4);
@@ -43,6 +45,10 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_Blink, [this]()
 			{
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Idle);
+			});
+		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_CannonAtt, [this]()
+			{
+				ShipState.ChangeState(PirateBossState::Ship_Phase1_Idle);
 			});
 	}
 
