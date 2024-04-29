@@ -67,10 +67,14 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 		PirateState.SetStartFunction(PirateBossState::OctopusShoot_Idle, [this]()
 			{
 				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Idle);
+
+				PirateTopRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Idle_Top);
 			});
 		PirateState.SetStartFunction(PirateBossState::OctopusShoot_Attack, [this]()
 			{
 				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Attack);
+
+				PirateTopRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Attack_Top);
 			});
 	}
 }
