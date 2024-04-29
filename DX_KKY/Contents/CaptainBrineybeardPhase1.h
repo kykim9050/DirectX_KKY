@@ -51,6 +51,8 @@ private:
 	float PickOctopusDelayInit = 2.0f;
 	float ShootDelay = 1.0f;
 	float ShootDelayInit = 1.0f;
+	int ShootNum = 2;
+	int ShootCount = 1;
 
 private:
 	void BeginPlay() override;

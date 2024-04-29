@@ -273,7 +273,7 @@ namespace PirateBossState
 	const std::string OctopusShoot_Begin = "OctopusShoot_Begin";
 	const std::string OctopusShoot_Idle = "OctopusShoot_Idle";
 	const std::string OctopusShoot_Attack = "OctopusShoot_Attack";
-	
+	const std::string OctopusShoot_End = "OctopusShoot_End";
 }
 
 namespace GColliderScale
