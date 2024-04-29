@@ -17,6 +17,8 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Laugh, "Pirate_Intro",
 		{ 0.047f,  0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f , 0.047f},
 		{ 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5 }, true);
+	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_StopLaugh, "Pirate_Intro", { 0.047f ,0.047f ,0.047f }, { 11, 12, 13 }, false);
+	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Idle, "Pirate_Idle", 0.047f);
 
 	// Animation Change
 	ShipRailRenderer->ChangeAnimation(PirateBossAniName::Ship_Rail);
@@ -25,9 +27,20 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 
 void ACaptainBrineybeardPhase1::SetAnimationCallback()
 {
-	ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_Blink, [this]()
-		{
-			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Idle);
-		});
+	// ship
+	{
+		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_Blink, [this]()
+			{
+				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Idle);
+			});
+	}
 
+
+	// Pirate
+	{
+		PirateRenderer->SetLastFrameCallback(PirateBossAniName::Pirate_StopLaugh, [this]()
+			{
+				PirateState.ChangeState("Pirate_Idle");
+			});
+	}
 }

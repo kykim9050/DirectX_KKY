@@ -39,6 +39,10 @@ private:
 	float BlinkDelay = 4.0f;
 	float BlinkDelayInit = 4.0f;
 	
+	// Laugh
+	int LaughNum = 7;
+	int LaughCount = 1;
+	bool Laughing = false;
 
 private:
 	void BeginPlay() override;
