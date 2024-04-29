@@ -32,6 +32,7 @@ private:
 	USpriteRenderer* ShipSailRenderer = nullptr;
 	USpriteRenderer* ShipMastRenderer = nullptr;
 
+	float AccTime = 0.0f;
 	
 
 private:
