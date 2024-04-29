@@ -32,6 +32,8 @@ private:
 	USpriteRenderer* ShipSailRenderer = nullptr;
 	USpriteRenderer* ShipMastRenderer = nullptr;
 
+	
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -44,12 +46,15 @@ private:
 	//void SetAnimationCallback();
 	//void ColliderInit();
 
-	//void StateInit();
-	//void StateCreate();
-	//void StartFunctionSet();
-	//void UpdateFunctionSet();
-	//void EndFunctionSet();
+	void StateInit();
+	void StateCreate();
+	void StartFunctionSet();
+	void UpdateFunctionSet();
+	void EndFunctionSet();
 
+
+	// State
+	void Ship_Idle(float _DeltaTime);
 
 };
 

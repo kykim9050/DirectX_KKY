@@ -244,6 +244,12 @@ namespace PirateBossAniName
 	const std::string Ship_Sail = "Ship_Sail";
 }
 
+namespace PirateBossState
+{
+	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
+
+}
+
 namespace GColliderScale
 {
 	const float4 FlowerBoss_HeadColScale = float4(250.0f, 250.0f, 1.0f);

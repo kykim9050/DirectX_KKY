@@ -23,12 +23,14 @@ void ACaptainBrineybeardPhase1::BeginPlay()
 	Super::BeginPlay();
 
 	AnimationInit();
-	//StateInit();
+	StateInit();
 }
 
 void ACaptainBrineybeardPhase1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	ShipState.Update(_DeltaTime);
 }
 
 void ACaptainBrineybeardPhase1::RendererInit()
