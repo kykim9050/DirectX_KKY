@@ -33,6 +33,10 @@ private:
 	USpriteRenderer* ShipMastRenderer = nullptr;
 
 	float AccTime = 0.0f;
+
+	// blink
+	float BlinkDelay = 4.0f;
+	float BlinkDelayInit = 4.0f;
 	
 
 private:
@@ -44,7 +48,7 @@ private:
 	void RendererInit();
 	void AnimationInit();
 	void CreateAnimation();
-	//void SetAnimationCallback();
+	void SetAnimationCallback();
 	//void ColliderInit();
 
 	void StateInit();

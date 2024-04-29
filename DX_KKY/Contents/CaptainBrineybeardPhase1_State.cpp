@@ -49,6 +49,15 @@ void ACaptainBrineybeardPhase1::EndFunctionSet()
 
 void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 {
+	BlinkDelay -= _DeltaTime;
+
+	if (0.0f >= BlinkDelay)
+	{
+		BlinkDelay = BlinkDelayInit + BlinkDelay;
+
+		ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Blink);
+	}
+
 
 	AccTime += _DeltaTime;
 
