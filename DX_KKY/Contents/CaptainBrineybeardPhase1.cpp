@@ -32,6 +32,7 @@ void ACaptainBrineybeardPhase1::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	ShipState.Update(_DeltaTime);
+	PirateState.Update(_DeltaTime);
 }
 
 void ACaptainBrineybeardPhase1::RendererInit()
@@ -73,6 +74,18 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	ShipRailRenderer->SetPlusColor(GColorValue::BrightColor);
 	ShipMastRenderer->SetPlusColor(GColorValue::BrightColor);
 	ShipSailRenderer->SetPlusColor(GColorValue::BrightColor);
+
+
+	// Pirate
+	PirateRenderer = CreateDefaultSubObject<USpriteRenderer>("PirateRenderer");
+	PirateRenderer->SetupAttachment(Root);
+
+	PirateRenderer->SetAutoSize(1.0f, true);
+	PirateRenderer->SetPivot(EPivot::RIGHTBOTTOM);
+	PirateRenderer->SetOrder(ERenderingOrder::Monster2);
+	PirateRenderer->SetPosition(GRendererPos::Pirate_ReletivePos);
+
+	//PirateRenderer->SetPlusColor(GColorValue::BrightColor);
 }
 
 void ACaptainBrineybeardPhase1::AnimationInit()

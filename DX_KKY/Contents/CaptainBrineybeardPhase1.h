@@ -27,6 +27,7 @@ private:
 	UStateManager PirateState;
 
 	UDefaultSceneComponent* Root = nullptr;
+	USpriteRenderer* PirateRenderer = nullptr;
 	USpriteRenderer* ShipRenderer = nullptr;
 	USpriteRenderer* ShipRailRenderer = nullptr;
 	USpriteRenderer* ShipSailRenderer = nullptr;

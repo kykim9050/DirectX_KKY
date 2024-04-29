@@ -244,11 +244,15 @@ namespace PirateBossAniName
 
 	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
 	const std::string Ship_Phase1_Blink = "Ship_Phase1_Blink";
+
+	const std::string Pirate_Intro = "Pirate_Intro";
 }
 
 namespace PirateBossState
 {
 	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
+
+	const std::string Pirate_Intro = "Pirate_Intro";
 
 }
 
@@ -311,6 +315,8 @@ namespace GRendererPos
 	const float4 ShipRail_RelativePos = float4(-30.0f, 400.0f, 0.0f);
 	const float4 ShipMast_RelativePos = float4(10.0f, 360.0f, 0.0f);
 	const float4 ShipSail_RelativePos = float4(-300.0f, 560.0f, 0.0f);
+
+	const float4 Pirate_ReletivePos = float4(-10.0f, 320.0f, 0.0f);
 }
 
 namespace GBoundaryPos
