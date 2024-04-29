@@ -22,7 +22,7 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Begin, "Pirate_PickUp_Octopus", 0.047f, false);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Idle, "Pirate_Idle_Octopus", 0.057f);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Attack, "Pirate_Octopus_Attack", 0.034f, false);
-	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_End, "Pirate_PutDown_Octopus_Top", 0.047f, false);
+	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_End, "Pirate_PutDown_Octopus", 0.047f, false);
 
 	PirateTopRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Begin_Top, "Pirate_PickUp_Octopus_Top", 0.047f, false);
 	PirateTopRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Idle_Top, "Pirate_Idle_Octopus_Top", 0.057f);
@@ -65,10 +65,20 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 				PirateTopRenderer->SetActive(true);
 				PirateTopRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Begin_Top);
 			});
-			
-		//PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_Begin_Top, [this]()
-		//	{
-		//		PirateTopRenderer->SetActive(false);
-		//	});
+		PirateRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_End, [this]()
+			{
+				PirateState.ChangeState(PirateBossState::Pirate_Idle);
+			});
+
+		PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_End_Top, [this]()
+			{
+				PirateTopRenderer->SetActive(false);
+			});
+
+
+
+		
+
+
 	}
 }
