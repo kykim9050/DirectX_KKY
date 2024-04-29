@@ -326,7 +326,7 @@ namespace GRendererPos
 	const float4 ShipSail_RelativePos = float4(-300.0f, 560.0f, 0.0f);
 
 	const float4 Pirate_Idle_ReletivePos = float4(-10.0f, 320.0f, 0.0f);
-	const float4 Pirate_OctoPusAtt_ReletivePos = float4(70.0f, 240.0f, 0.0f);
+	const float4 Pirate_OctoPusAtt_ReletivePos = float4(90.0f, 240.0f, 0.0f);
 }
 
 namespace GBoundaryPos

@@ -131,7 +131,7 @@ void ACaptainBrineybeardPhase1::Pirate_Idle(float _DeltaTime)
 {
 	PickOctopusDelay -= _DeltaTime;
 
-	if (0.0f >= PickOctopusDelay && true == PirateRenderer->IsCurAnimationEnd())
+	if (0.0f >= PickOctopusDelay && 8 == PirateRenderer->GetCurAnimationFrame())
 	{
 		PickOctopusDelay = PickOctopusDelayInit;
 
