@@ -60,7 +60,7 @@ private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	//void DebugUpdate();
+	void DebugUpdate();
 
 	void RendererInit();
 	void AnimationInit();
