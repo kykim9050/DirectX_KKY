@@ -169,10 +169,7 @@ void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 		}
 	}
 
-
-	AccTime += _DeltaTime;
-
-	AddActorLocation(float4(0.0f, 0.065f * sinf(AccTime * 1.5f), 0.0f));
+	MoveUpAndDown(_DeltaTime);
 }
 
 void ACaptainBrineybeardPhase1::Pirate_Idle(float _DeltaTime)
@@ -210,14 +207,10 @@ void ACaptainBrineybeardPhase1::Pirate_OctoAtt_Idle(float _DeltaTime)
 
 void ACaptainBrineybeardPhase1::Ship_CannonShoot(float _DeltaTime)
 {
-	AccTime += _DeltaTime;
-
-	AddActorLocation(float4(0.0f, 0.065f * sinf(AccTime * 1.5f), 0.0f));
+	MoveUpAndDown(_DeltaTime);
 }
 
 void ACaptainBrineybeardPhase1::Ship_Blink(float _DeltaTime)
 {
-	AccTime += _DeltaTime;
-
-	AddActorLocation(float4(0.0f, 0.065f * sinf(AccTime * 1.5f), 0.0f));
+	MoveUpAndDown(_DeltaTime);
 }
