@@ -32,6 +32,7 @@ void ACaptainBrineybeardPhase1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	DebugUpdate();
 	ShipState.Update(_DeltaTime);
 	PirateState.Update(_DeltaTime);
 }
@@ -111,4 +112,12 @@ void ACaptainBrineybeardPhase1::ColliderInit()
 	MainCollider->AddPosition(GColliderPosInfo::PirateBoss_Phase1_RelPos);
 	MainCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	MainCollider->SetCollisionType(ECollisionType::Rect);
+}
+
+void ACaptainBrineybeardPhase1::DebugUpdate()
+{
+	{
+		std::string Msg = std::format("PirateBoss Phase1 Hp : {}\n", std::to_string(GetHp()));
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
 }
