@@ -56,7 +56,6 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			});
 		PirateState.SetStartFunction(PirateBossState::Pirate_Idle, [this]()
 			{
-				//PirateRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 				PirateRenderer->SetPosition(GRendererPos::Pirate_Idle_ReletivePos);
 				PirateRenderer->ChangeAnimation(PirateBossAniName::Pirate_Idle);
 			});

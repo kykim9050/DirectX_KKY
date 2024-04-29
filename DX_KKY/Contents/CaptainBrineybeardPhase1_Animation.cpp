@@ -60,5 +60,15 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			{
 				PirateState.ChangeState(PirateBossState::OctopusShoot_Idle);
 			});
+		PirateRenderer->SetFrameCallback(PirateBossAniName::OctopusShoot_Begin, 16, [this]()
+			{
+				PirateTopRenderer->SetActive(true);
+				PirateTopRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Begin_Top);
+			});
+			
+		PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_Begin_Top, [this]()
+			{
+				PirateTopRenderer->SetActive(false);
+			});
 	}
 }
