@@ -297,8 +297,8 @@ namespace GRendererPos
 	const float4 Wave3_Pos = float4(0.0f, -280.0f, 0.0f);
 	const float4 Wave4_Pos = float4(0.0f, -225.0f, 0.0f);
 
-	const float4 Dock_Pos = float4(-690.0f, -380.0f, 0.0f);
-	const float4 DockLog_Pos = float4(-607.0f, -313.0f, 0.0f);
+	const float4 Dock_Pos = float4(-700.0f, -380.0f, 0.0f);
+	const float4 DockLog_Pos = float4(-617.0f, -313.0f, 0.0f);
 
 	const float4 PirateLevel_DefaultSky_Pos = float4(0.0f, 130.0f, 0.0f);
 	const float4 PirateLevel_Cloud1_Pos = float4(0.0f, -230.0f, 0.0f);
@@ -308,7 +308,7 @@ namespace GRendererPos
 	const float4 Ship_Phase1_RelativePos = float4(100.0f, -70.0f, 0.0f);
 	const float4 ShipRail_RelativePos = float4(-30.0f, 400.0f, 0.0f);
 	const float4 ShipMast_RelativePos = float4(10.0f, 360.0f, 0.0f);
-	const float4 ShipSail_RelativePos = float4(-300.0f, 540.0f, 0.0f);
+	const float4 ShipSail_RelativePos = float4(-300.0f, 560.0f, 0.0f);
 }
 
 namespace GBoundaryPos
@@ -319,6 +319,14 @@ namespace GBoundaryPos
 namespace GColorValue
 {
 	const float4 BrightColor = float4(0.1f, 0.1f, 0.1f);
+}
+
+namespace GActorPosValue
+{
+	// pirate Level
+
+	const float4 PL_Player_Init_Pos = float4(200.0f, -350.0f, 100.0f);
+	const float4 Phase1_Boss_Pos = float4(1280.0f, -765.0f, 0.0f);
 }
 
 
