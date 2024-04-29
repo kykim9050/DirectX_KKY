@@ -250,7 +250,8 @@ namespace PirateBossAniName
 	const std::string Pirate_StopLaugh = "Pirate_StopLaugh";
 	const std::string Pirate_Idle = "Pirate_Idle";
 
-	const std::string OctopusShoot_Begin = "OctopusShoot_Begin";	
+	const std::string OctopusShoot_Begin = "OctopusShoot_Begin";
+	const std::string OctopusShoot_Idle = "OctopusShoot_Idle";
 }
 
 namespace PirateBossState
@@ -260,8 +261,9 @@ namespace PirateBossState
 	const std::string Pirate_Intro = "Pirate_Intro";
 	const std::string Pirate_Laugh = "Pirate_Laugh";
 	const std::string Pirate_Idle = "Pirate_Idle";
+
 	const std::string OctopusShoot_Begin = "OctopusShoot_Begin";
-	
+	const std::string OctopusShoot_Idle = "OctopusShoot_Idle";
 	
 }
 
