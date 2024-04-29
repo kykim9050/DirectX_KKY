@@ -293,6 +293,8 @@ namespace GColliderScale
 	const float4 PlayerFoot_ColScale = float4(32.0f, 8.0f, 1.0f);
 	const float4 PlayerBody_ColScale = float4(64.0f, 64.0f, 1.0f);
 
+	const float4 PirateBoss_Phase1_ColScale = float4(150.0f, 180.0f, 1.0f);
+
 }
 
 namespace GColliderPosInfo
@@ -307,6 +309,8 @@ namespace GColliderPosInfo
 	const float4 VineStem_RelativePos = float4(0.0f, 130.0f, 0.0f);
 	const float4 PlayerFootCol_RelativePos = float4(0.0f, 8.0f, 0.0f);
 	const float4 PlayerBodyCol_RelativePos = float4(0.0f, 64.0f, 0.0f);
+
+	const float4 PirateBoss_Phase1_RelPos = float4(-180.0f, 530.0f, 0.0f);
 }
 
 namespace GRendererPos
