@@ -27,6 +27,7 @@ void ACaptainBrineybeardPhase1::StateCreate()
 		PirateState.CreateState(PirateBossState::Pirate_Laugh);
 		PirateState.CreateState(PirateBossState::Pirate_Idle);
 		PirateState.CreateState(PirateBossState::OctopusShoot_Begin);
+		PirateState.CreateState(PirateBossState::OctopusShoot_Idle);
 	}
 
 }
@@ -63,7 +64,10 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 				PirateRenderer->SetPosition(GRendererPos::Pirate_OctoPusAtt_ReletivePos);
 				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Begin);
 			});
-
+		PirateState.SetStartFunction(PirateBossState::OctopusShoot_Idle, [this]()
+			{
+				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Idle);
+			});
 	}
 }
 
@@ -101,7 +105,7 @@ void ACaptainBrineybeardPhase1::UpdateFunctionSet()
 			});
 		PirateState.SetUpdateFunction(PirateBossState::Pirate_Idle, std::bind(&ACaptainBrineybeardPhase1::Pirate_Idle, this, std::placeholders::_1));
 		PirateState.SetUpdateFunction(PirateBossState::OctopusShoot_Begin, [](float) {});
-
+		PirateState.SetUpdateFunction(PirateBossState::OctopusShoot_Idle, std::bind(&ACaptainBrineybeardPhase1::Pirate_OctoAtt_Idle, this, std::placeholders::_1));
 	}
 }
 
@@ -138,4 +142,9 @@ void ACaptainBrineybeardPhase1::Pirate_Idle(float _DeltaTime)
 		PirateState.ChangeState(PirateBossState::OctopusShoot_Begin);
 		return;
 	}
+}
+
+void ACaptainBrineybeardPhase1::Pirate_OctoAtt_Idle(float _DeltaTime)
+{
+
 }
