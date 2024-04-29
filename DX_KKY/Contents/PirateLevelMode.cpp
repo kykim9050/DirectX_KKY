@@ -4,6 +4,7 @@
 #include "PirateLevelMode.h"
 #include "PirateLevelMap.h"
 #include "CaptainBrineybeardPhase1.h"
+#include "TimeScaleControlUnit.h"
 
 APirateLevelMode::APirateLevelMode()
 {
@@ -76,6 +77,8 @@ void APirateLevelMode::ObjectInit()
 
 	Phase1_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase1>("Phase1_Boss", EActorType::BossMonster);
 	Phase1_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
+
+	TimeControlUnit = GetWorld()->SpawnActor<UTimeScaleControlUnit>("TimeControlUnit", EActorType::TimeScaleController);
 }
 
 void APirateLevelMode::DeleteObject()
@@ -98,5 +101,11 @@ void APirateLevelMode::DeleteObject()
 		Map->ReleaseColMapTexInfo();
 		Map->Destroy();
 		Map = nullptr;
+	}
+
+	if (nullptr != TimeControlUnit)
+	{
+		TimeControlUnit->Destroy();
+		TimeControlUnit = nullptr;
 	}
 }

@@ -40,7 +40,7 @@ private:
 
 	std::shared_ptr<AMessage> ScreenMsg = nullptr;
 
-
+	std::shared_ptr<UTimeScaleControlUnit> TimeControlUnit = nullptr;
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

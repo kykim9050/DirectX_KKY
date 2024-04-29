@@ -93,11 +93,12 @@ void AFlowerLevelMode::CreateObject()
 		Shadows.push_back(Shadow);
 	}
 
-	TimeControlUnit = GetWorld()->SpawnActor<UTimeScaleControlUnit>("TimeControlUnit", EActorType::TimeScaleController);
 }
 
 void AFlowerLevelMode::ObjectInit()
 {
+	TimeControlUnit = GetWorld()->SpawnActor<UTimeScaleControlUnit>("TimeControlUnit", EActorType::TimeScaleController);
+	
 	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
 	BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
 
@@ -146,17 +147,41 @@ void AFlowerLevelMode::ObjectInit()
 
 void AFlowerLevelMode::ObjectDelete()
 {
-	Player->Destroy();
-	Player = nullptr;
+	
+	if (nullptr != Player)
+	{
+		Player->Destroy();
+		Player = nullptr;
+	}
 
-	BossMonster->Destroy();
-	BossMonster = nullptr;
+	if (nullptr != BossMonster)
+	{
+		BossMonster->Destroy();
+		BossMonster = nullptr;
+	}
 
-	Platform1->Destroy();
-	Platform2->Destroy();
-	Platform3->Destroy();
-	Platform1 = nullptr;
-	Platform2 = nullptr;
-	Platform3 = nullptr;
+	if (nullptr != Platform1)
+	{
+		Platform1->Destroy();
+		Platform1 = nullptr;
+	}
+
+	if (nullptr != Platform2)
+	{
+		Platform2->Destroy();
+		Platform2 = nullptr;
+	}
+
+	if (nullptr != Platform3)
+	{
+		Platform3->Destroy();
+		Platform3 = nullptr;
+	}
+
+	if (nullptr != TimeControlUnit)
+	{
+		TimeControlUnit->Destroy();
+		TimeControlUnit = nullptr;
+	}
 }
 
