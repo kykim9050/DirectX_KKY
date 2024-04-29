@@ -82,6 +82,7 @@ private:
 
 	// State
 	void Ship_Idle(float _DeltaTime);
+	void Ship_Blink(float _DeltaTime);
 	void Ship_CannonShoot(float _DeltaTime);
 	void Pirate_Idle(float _DeltaTime);
 	void Pirate_OctoAtt_Idle(float _DeltaTime);

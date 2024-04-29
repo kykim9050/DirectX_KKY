@@ -268,6 +268,7 @@ namespace PirateBossAniName
 namespace PirateBossState
 {
 	const std::string Ship_Phase1_Idle = "Ship_Phase1_Idle";
+	const std::string Ship_Phase1_Blink = "Ship_Phase1_Blink";
 	const std::string Ship_Phase1_CannonShoot = "Ship_Phase1_CannonShoot";
 	
 	const std::string Pirate_Intro = "Pirate_Intro";
