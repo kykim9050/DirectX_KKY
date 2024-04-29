@@ -73,7 +73,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 		PirateRenderer->SetFrameCallback(PirateBossState::OctopusShoot_Attack, 9, [this]()
 			{
 				AOctopusBullet* NewOctoBullet = GetWorld()->SpawnActor<AOctopusBullet>("NewOctoBullet").get();
-				NewOctoBullet->SetActorLocation(float4(320.0f, -100.0f, 0.0f));
+				NewOctoBullet->SetActorLocation(GetActorLocation() + float4(GActorPosValue::OctoBullet_RelativePos));
 			});
 
 		PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_End_Top, [this]()
