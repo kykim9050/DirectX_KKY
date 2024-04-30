@@ -4,6 +4,7 @@
 #include <EngineCore/Collision.h>
 
 #include "CaptainBrineybeardPhase1.h"
+#include "FXBase.h"
 
 ACaptainBrineybeardPhase1::ACaptainBrineybeardPhase1()
 {
@@ -131,4 +132,12 @@ void ACaptainBrineybeardPhase1::MoveUpAndDown(float _DeltaTime)
 	AccTime += _DeltaTime;
 
 	AddActorLocation(float4(0.0f, 0.065f * sinf(AccTime * 1.5f), 0.0f));
+}
+
+void ACaptainBrineybeardPhase1::CreateWhistleEffect()
+{
+	AFXBase* WhistleEffect = GetWorld()->SpawnActor<AFXBase>("WhistleEffect", static_cast<int>(EActorType::FX)).get();
+	WhistleEffect->FXInit(ERenderingOrder::BossMonsterFrontFX1, FAniInfo(PirateBossAniName::Pirate_Whistle_Effect, GSpriteName::Pirate_Whistle_Effect, 0.047f));
+	WhistleEffect->SetImgPivot(EPivot::RIGHT);
+	WhistleEffect->SetActorLocation(GetActorLocation() + GRendererPos::Pirate_WhistleEff_RelativePos);
 }
