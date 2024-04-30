@@ -1,8 +1,8 @@
 #include "PreCompile.h"
 
 #include "CaptainBrineybeardPhase1.h"
-#include "OctopusBullet.h"
-#include "CannonBall.h"
+
+
 
 void ACaptainBrineybeardPhase1::CreateAnimation()
 {
@@ -48,7 +48,6 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_Blink, [this]()
 			{
 				ShipState.ChangeState(PirateBossState::Ship_Phase1_Idle);
-				//ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Idle);
 			});
 		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_CannonAtt, [this]()
 			{
@@ -56,8 +55,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			});
 		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase1_CannonAtt, 19, [this]()
 			{
-				ACannonBall* CannonBall = GetWorld()->SpawnActor<ACannonBall>("ACannonBall", static_cast<int>(EActorType::MonsterBullet)).get();
-				CannonBall->SetActorLocation(GetActorLocation() + GActorPosValue::CannonBall_RelativePos);
+				CreateCannonBall();
 			});
 		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_Wince_Begin, [this]()
 			{
@@ -91,8 +89,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			});
 		PirateRenderer->SetFrameCallback(PirateBossAniName::OctopusShoot_Attack, 9, [this]()
 			{
-				AOctopusBullet* NewOctoBullet = GetWorld()->SpawnActor<AOctopusBullet>("NewOctoBullet", static_cast<int>(EActorType::MonsterBullet)).get();
-				NewOctoBullet->SetActorLocation(GetActorLocation() + GActorPosValue::OctoBullet_RelativePos);
+				CreateOctopusBullet();
 			});
 		PirateRenderer->SetLastFrameCallback(PirateBossAniName::Pirate_Whistle, [this]()
 			{

@@ -5,6 +5,8 @@
 
 #include "CaptainBrineybeardPhase1.h"
 #include "FXBase.h"
+#include "CannonBall.h"
+#include "OctopusBullet.h"
 
 ACaptainBrineybeardPhase1::ACaptainBrineybeardPhase1()
 {
@@ -140,4 +142,16 @@ void ACaptainBrineybeardPhase1::CreateWhistleEffect()
 	WhistleEffect->FXInit(ERenderingOrder::BossMonsterFrontFX1, FAniInfo(PirateBossAniName::Pirate_Whistle_Effect, GSpriteName::Pirate_Whistle_Effect, 0.047f));
 	WhistleEffect->SetImgPivot(EPivot::RIGHT);
 	WhistleEffect->SetActorLocation(GetActorLocation() + GRendererPos::Pirate_WhistleEff_RelativePos);
+}
+
+void ACaptainBrineybeardPhase1::CreateCannonBall()
+{
+	ACannonBall* CannonBall = GetWorld()->SpawnActor<ACannonBall>("ACannonBall", static_cast<int>(EActorType::MonsterBullet)).get();
+	CannonBall->SetActorLocation(GetActorLocation() + GActorPosValue::CannonBall_RelativePos);
+}
+
+void ACaptainBrineybeardPhase1::CreateOctopusBullet()
+{
+	AOctopusBullet* NewOctoBullet = GetWorld()->SpawnActor<AOctopusBullet>("NewOctoBullet", static_cast<int>(EActorType::MonsterBullet)).get();
+	NewOctoBullet->SetActorLocation(GetActorLocation() + GActorPosValue::OctoBullet_RelativePos);
 }
