@@ -1,9 +1,13 @@
 ﻿#include "PreCompile.h"
+#include <EngineCore/SpriteRenderer.h>
 
 #include "CannonBall.h"
 
 ACannonBall::ACannonBall()
 {
+	EffectRenderer = CreateDefaultSubObject<USpriteRenderer>("EffectRenderer");
+	EffectRenderer->SetupAttachment(GetRoot());
+
 	SetVerticalDir(float4::Left);
 	SetVerticalSpeed(850.0f);
 }
@@ -33,6 +37,9 @@ void ACannonBall::RendererInit()
 	Renderer->SetOrder(ERenderingOrder::MonsterBullet);
 	Renderer->SetPlusColor(GColorValue::BrightColor);
 	
+	EffectRenderer->SetAutoSize(1.0f, true);
+	EffectRenderer->SetOrder(ERenderingOrder::MonsterBulletFX);
+	EffectRenderer->SetPlusColor(GColorValue::BrightColor);
 }
 
 void ACannonBall::ColliderInit()
@@ -46,6 +53,12 @@ void ACannonBall::ColliderInit()
 void ACannonBall::AnimationInit()
 {
 	Renderer->CreateAnimation(PirateBossAniName::CannonBall, "Cannonball_Idle", 0.047f);
+	EffectRenderer->CreateAnimation(PirateBossAniName::CannonBall_Effect, "Cannonball_Effect", 0.047f, false);
+
+	EffectRenderer->SetLastFrameCallback(PirateBossAniName::CannonBall_Effect, [this]()
+		{
+			EffectRenderer->SetActive(false);
+		});
 }
 
 void ACannonBall::Fire(float _DeltaTime)
@@ -72,6 +85,8 @@ void ACannonBall::StateInit()
 			{
 				SetSpeedVec(GetVerticalDir() * GetVerticalSpeed());
 				Renderer->ChangeAnimation(PirateBossAniName::CannonBall);
+
+				EffectRenderer->ChangeAnimation(PirateBossAniName::CannonBall_Effect);
 			});
 	}
 
