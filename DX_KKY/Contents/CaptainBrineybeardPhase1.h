@@ -54,16 +54,16 @@ private:
 	bool Laughing = false;
 
 	// Octopus Attack
-	float PickOctopusDelay = 2.0f;
-	float PickOctopusDelayInit = 2.0f;
+	float PickOctopusDelay = 3.0f;
+	float PickOctopusDelayInit = 3.0f;
 	float ShootDelay = 1.0f;
 	float ShootDelayInit = 1.0f;
 	int ShootNum = 2;
 	int ShootCount = 1;
 
 	// Whistling
-	float WhistleDelay = 1.0f;
-	float WhistleDelayInit = 1.0f;
+	float WhistleDelay = 5.0f;
+	float WhistleDelayInit = 5.0f;
 
 private:
 	void BeginPlay() override;
