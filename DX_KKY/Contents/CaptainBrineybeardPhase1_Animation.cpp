@@ -17,6 +17,7 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase1_Wince_Begin, "Ship_Phase1_Wince", 0.065f, false, 0, 1);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase1_Wince_Idle, "Ship_Phase1_Wince", 0.065f, true, 1, 8);
 
+
 	// Pirate
 	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Intro, "Pirate_Intro", 0.067f, true, 0, 4);
 	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Laugh, "Pirate_Intro",

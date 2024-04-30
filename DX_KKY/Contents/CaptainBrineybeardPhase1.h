@@ -65,6 +65,10 @@ private:
 	float WhistleDelay = 5.0f;
 	float WhistleDelayInit = 5.0f;
 
+	// Wince
+	int WinceTime = 5;
+	int WinceCount = 0;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
