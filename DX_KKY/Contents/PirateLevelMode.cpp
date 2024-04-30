@@ -5,6 +5,7 @@
 #include "PirateLevelMode.h"
 #include "PirateLevelMap.h"
 #include "CaptainBrineybeardPhase1.h"
+#include "CaptainBrineybeardPhase2.h"
 #include "TimeScaleControlUnit.h"
 
 APirateLevelMode::APirateLevelMode()
@@ -96,6 +97,11 @@ void APirateLevelMode::DeleteObject()
 		Phase1_Boss = nullptr;
 	}
 
+	if (nullptr != Phase2_Boss)
+	{
+		Phase2_Boss->Destroy();
+		Phase2_Boss = nullptr;
+	}
 
 	if (nullptr != Map)
 	{
@@ -121,12 +127,16 @@ void APirateLevelMode::StateInit()
 	{
 		ModeState.SetStartFunction("Phase1", [this]()
 			{
+				// 페이즈1 보스 생성
 				Phase1_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase1>("Phase1_Boss", EActorType::BossMonster);
 				Phase1_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
 			});
 		ModeState.SetStartFunction("Phase2", [this]()
 			{
 				// 페이즈2 보스 생성
+				Phase2_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase2>("Phase2_Boss ", EActorType::BossMonster);
+				// 보스 위치 이전 페이즈보스 최종 위치를 받아와서 생성하도록 구현하자
+				Phase2_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
 			});
 	}
 	
@@ -160,5 +170,5 @@ void APirateLevelMode::Phase1(float _DeltaTime)
 
 void APirateLevelMode::Phase2(float _DeltaTime)
 {
-
+	int a = 0;
 }

@@ -85,6 +85,9 @@
     <Filter Include="Level\PlayLevel\PirateLevel\Object\Phase1">
       <UniqueIdentifier>{5da0577d-3181-4165-8691-b13dfb305dfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\PirateLevel\Object\Phase2">
+      <UniqueIdentifier>{cdc9c4fd-1cbd-4bd4-ac3c-0e91b67e7015}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -251,6 +254,9 @@
     </ClInclude>
     <ClInclude Include="PhaseUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="CaptainBrineybeardPhase2.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +436,15 @@
     </ClCompile>
     <ClCompile Include="PhaseUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="CaptainBrineybeardPhase2.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
+    </ClCompile>
+    <ClCompile Include="CaptainBrineybeardPhase2_Animation.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
+    </ClCompile>
+    <ClCompile Include="CaptainBrineybeardPhase2_State.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
