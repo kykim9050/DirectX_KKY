@@ -1,5 +1,6 @@
 ﻿#include "PreCompile.h"
 #include <EngineCore/Camera.h>
+#include <EngineCore/StateManager.h>
 
 #include "PirateLevelMode.h"
 #include "PirateLevelMap.h"
@@ -26,6 +27,8 @@ void APirateLevelMode::BeginPlay()
 void APirateLevelMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	ModeState.Update(_DeltaTime);
 }
 
 void APirateLevelMode::LevelEnd(ULevel* _NextLevel)
@@ -40,6 +43,7 @@ void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
 	Super::LevelStart(_PrevLevel);
 
 	ObjectInit();
+	StateInit();
 
 	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
 	Iris->ChangeAnimation(GAniName::IrisAni);
@@ -75,9 +79,6 @@ void APirateLevelMode::ObjectInit()
 	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
 	Player->SetActorLocation(GActorPosValue::PL_Player_Init_Pos);
 
-	Phase1_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase1>("Phase1_Boss", EActorType::BossMonster);
-	Phase1_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
-
 	TimeControlUnit = GetWorld()->SpawnActor<UTimeScaleControlUnit>("TimeControlUnit", EActorType::TimeScaleController);
 }
 
@@ -108,4 +109,56 @@ void APirateLevelMode::DeleteObject()
 		TimeControlUnit->Destroy();
 		TimeControlUnit = nullptr;
 	}
+}
+
+void APirateLevelMode::StateInit()
+{
+	{
+		ModeState.CreateState("Phase1");
+		ModeState.CreateState("Phase2");
+	}
+
+	{
+		ModeState.SetStartFunction("Phase1", [this]()
+			{
+				Phase1_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase1>("Phase1_Boss", EActorType::BossMonster);
+				Phase1_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
+			});
+		ModeState.SetStartFunction("Phase2", [this]()
+			{
+				// 페이즈2 보스 생성
+			});
+	}
+	
+	{
+		ModeState.SetUpdateFunction("Phase1", std::bind(&APirateLevelMode::Phase1, this, std::placeholders::_1));
+		ModeState.SetUpdateFunction("Phase2", std::bind(&APirateLevelMode::Phase2, this, std::placeholders::_1));
+	}
+
+	{
+		ModeState.SetEndFunction("Phase1", [this]()
+			{
+				if (nullptr != Phase1_Boss)
+				{
+					Phase1_Boss->Destroy();
+					Phase1_Boss = nullptr;
+				}
+			});
+	}
+
+	ModeState.ChangeState("Phase1");
+}
+
+void APirateLevelMode::Phase1(float _DeltaTime)
+{
+	if (true == Phase1_Boss->GetIsPhaseEnd())
+	{
+		ModeState.ChangeState("Phase2");
+		return;
+	}
+}
+
+void APirateLevelMode::Phase2(float _DeltaTime)
+{
+
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EngineCore/StateManager.h>
 
 // Ό³Έν :
 class ACaptainBrineybeardPhase1;
@@ -28,6 +29,8 @@ public:
 protected:
 
 private:
+	UStateManager ModeState;
+
 
 	UImage* OldFilm = nullptr;
 	UImage* Iris = nullptr;
@@ -42,14 +45,19 @@ private:
 
 	std::shared_ptr<UTimeScaleControlUnit> TimeControlUnit = nullptr;
 
+private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	void LevelEnd(ULevel* _NextLevel) override;
 	void LevelStart(ULevel* _PrevLevel) override;
+	void StateInit();
 
 	void WidgetInit();
 	void CreateObject();
 	void ObjectInit();
 	void DeleteObject();
+
+	void Phase1(float _DeltaTime);
+	void Phase2(float _DeltaTime);
 };
 
