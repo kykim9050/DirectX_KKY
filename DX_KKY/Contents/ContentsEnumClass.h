@@ -11,6 +11,7 @@ enum class EActorType
 	Player,
 	Dust,
 	Bullet,
+	MonsterBullet,
 	FX,
 	BossMonster,
 	Object,

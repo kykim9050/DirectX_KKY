@@ -2,6 +2,7 @@
 
 #include "CaptainBrineybeardPhase1.h"
 #include "OctopusBullet.h"
+#include "CannonBall.h"
 
 void ACaptainBrineybeardPhase1::CreateAnimation()
 {
@@ -51,6 +52,11 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_CannonAtt, [this]()
 			{
 				ShipState.ChangeState(PirateBossState::Ship_Phase1_Idle);
+			});
+		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase1_CannonAtt, 19, [this]()
+			{
+				ACannonBall* CannonBall = GetWorld()->SpawnActor<ACannonBall>("ACannonBall", static_cast<int>(EActorType::MonsterBullet)).get();
+				CannonBall->SetActorLocation(GetActorLocation() + GActorPosValue::CannonBall_RelativePos);
 			});
 	}
 
