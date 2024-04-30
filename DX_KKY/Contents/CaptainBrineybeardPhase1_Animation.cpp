@@ -26,6 +26,7 @@ void ACaptainBrineybeardPhase1::CreateAnimation()
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Idle, "Pirate_Idle_Octopus", 0.057f);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Attack, "Pirate_Octopus_Attack", 0.034f, false);
 	PirateRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_End, "Pirate_PutDown_Octopus", 0.047f, false);
+	PirateRenderer->CreateAnimation(PirateBossAniName::Pirate_Whistle, "Pirate_Whistle", 0.047f, false);
 
 	PirateTopRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Begin_Top, "Pirate_PickUp_Octopus_Top", 0.047f, false);
 	PirateTopRenderer->CreateAnimation(PirateBossAniName::OctopusShoot_Idle_Top, "Pirate_Idle_Octopus_Top", 0.057f);
@@ -77,11 +78,16 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			{
 				PirateState.ChangeState(PirateBossState::Pirate_Idle);
 			});
-		PirateRenderer->SetFrameCallback(PirateBossState::OctopusShoot_Attack, 9, [this]()
+		PirateRenderer->SetFrameCallback(PirateBossAniName::OctopusShoot_Attack, 9, [this]()
 			{
 				AOctopusBullet* NewOctoBullet = GetWorld()->SpawnActor<AOctopusBullet>("NewOctoBullet").get();
 				NewOctoBullet->SetActorLocation(GetActorLocation() + float4(GActorPosValue::OctoBullet_RelativePos));
 			});
+		PirateRenderer->SetLastFrameCallback(PirateBossAniName::Pirate_Whistle, [this]()
+			{
+				PirateState.ChangeState(PirateBossState::Pirate_Idle);
+			});
+
 
 		PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_End_Top, [this]()
 			{
