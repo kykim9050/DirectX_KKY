@@ -42,6 +42,9 @@ void ACaptainBrineybeardPhase2::RendererInit()
 	JawRenderer = CreateDefaultSubObject<USpriteRenderer>("JawRenderer");
 	JawRenderer->SetupAttachment(Root);
 
+	UvulaRenderer = CreateDefaultSubObject<USpriteRenderer>("JawRenderer");
+	UvulaRenderer->SetupAttachment(Root);
+
 
 	ShipRenderer->SetAutoSize(1.2f, true);
 	ShipRenderer->SetPivot(EPivot::RIGHTBOTTOM);
@@ -53,6 +56,13 @@ void ACaptainBrineybeardPhase2::RendererInit()
 	JawRenderer->SetOrder(ERenderingOrder::Object2);
 	JawRenderer->SetPosition(GRendererPos::Ship_Phase1_RelativePos);
 	JawRenderer->SetActive(false);
+
+	UvulaRenderer->SetAutoSize(1.2f, true);
+	// RightTop 만들기
+	//UvulaRenderer->SetPivot(EPivot::RIGHTTOP);
+	UvulaRenderer->SetOrder(ERenderingOrder::Monster1);
+	UvulaRenderer->SetPosition(/*GRendererPos::*/float4(-400.0f, 300.0f, 0.0f));
+	UvulaRenderer->SetActive(false);
 }
 
 void ACaptainBrineybeardPhase2::AnimationInit()

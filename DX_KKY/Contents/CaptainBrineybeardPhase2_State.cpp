@@ -35,6 +35,9 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		
 			JawRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_JawIdle);
 			JawRenderer->SetActive(true);
+
+			UvulaRenderer->ChangeAnimation(PirateBossAniName::Uvula_Idle);
+			UvulaRenderer->SetActive(true);
 		});
 }
 
@@ -61,6 +64,7 @@ void ACaptainBrineybeardPhase2::EndFunctionSet()
 	ShipState.SetEndFunction(PirateBossState::Ship_Phase2_Idle, [this]()
 		{
 			JawRenderer->SetActive(false);
+			UvulaRenderer->SetActive(false);
 		});
 }
 
