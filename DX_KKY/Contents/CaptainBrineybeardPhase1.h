@@ -1,12 +1,14 @@
 #pragma once
-#include "MonsterUnit.h"
 #include <EngineCore/StateManager.h>
+
+#include "MonsterUnit.h"
+#include "PhaseUnit.h"
 
 // Ό³Έν :
 class UDefaultSceneComponent;
 class USpriteRenderer;
 class UCollision;
-class ACaptainBrineybeardPhase1 : public AMonsterUnit
+class ACaptainBrineybeardPhase1 : public AMonsterUnit, public UPhaseUnit
 {
 	GENERATED_BODY(AMonsterUnit)
 public:
