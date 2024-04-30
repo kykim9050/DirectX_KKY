@@ -251,5 +251,14 @@ void ACaptainBrineybeardPhase1::Ship_Blink(float _DeltaTime)
 
 void ACaptainBrineybeardPhase1::Ship_Wince(float _DeltaTime)
 {
+	if (true == ShipRenderer->IsCurAnimationEnd())
+	{
+		if (WinceTime <= WinceCount)
+		{
+			//ShipState.ChangeState(PirateBossState::Ship_Transform_Begin);
+			return;
+		}
 
+		++WinceCount;
+	}
 }
