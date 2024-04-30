@@ -61,6 +61,10 @@ private:
 	int ShootNum = 2;
 	int ShootCount = 1;
 
+	// Whistling
+	float WhistleDelay = 5.0f;
+	float WhistleDelayInit = 5.0f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

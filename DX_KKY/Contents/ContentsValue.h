@@ -250,6 +250,7 @@ namespace PirateBossAniName
 	const std::string Pirate_Laugh = "Pirate_Laugh";
 	const std::string Pirate_StopLaugh = "Pirate_StopLaugh";
 	const std::string Pirate_Idle = "Pirate_Idle";
+	const std::string Pirate_Whistle = "Pirate_Whistle";
 
 	const std::string OctopusShoot_Begin = "OctopusShoot_Begin";
 	const std::string OctopusShoot_Idle = "OctopusShoot_Idle";
@@ -274,6 +275,7 @@ namespace PirateBossState
 	const std::string Pirate_Intro = "Pirate_Intro";
 	const std::string Pirate_Laugh = "Pirate_Laugh";
 	const std::string Pirate_Idle = "Pirate_Idle";
+	const std::string Pirate_Whistle = "Pirate_Whistle";
 
 	const std::string OctopusShoot_Begin = "OctopusShoot_Begin";
 	const std::string OctopusShoot_Idle = "OctopusShoot_Idle";
@@ -345,8 +347,9 @@ namespace GRendererPos
 	const float4 ShipMast_RelativePos = float4(10.0f, 360.0f, 0.0f);
 	const float4 ShipSail_RelativePos = float4(-300.0f, 560.0f, 0.0f);
 
-	const float4 Pirate_Idle_ReletivePos = float4(-10.0f, 320.0f, 0.0f);
-	const float4 Pirate_OctoPusAtt_ReletivePos = float4(90.0f, 240.0f, 0.0f);
+	const float4 Pirate_Idle_ReletivePos = float4(0.0f, 310.0f, 0.0f);
+	const float4 Pirate_OctoPusAtt_ReletivePos = float4(100.0f, 240.0f, 0.0f);
+	const float4 Pirate_Whistle_RelativePos = float4(220.0f, 240.0f, 0.0f);
 }
 
 namespace GBoundaryPos
