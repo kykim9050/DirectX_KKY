@@ -62,8 +62,8 @@ private:
 	int ShootCount = 1;
 
 	// Whistling
-	float WhistleDelay = 5.0f;
-	float WhistleDelayInit = 5.0f;
+	float WhistleDelay = 1.0f;
+	float WhistleDelayInit = 1.0f;
 
 private:
 	void BeginPlay() override;
@@ -84,6 +84,7 @@ private:
 	void EndFunctionSet();
 
 	void MoveUpAndDown(float _DeltaTime);
+	void CreateWhistleEffect();
 
 	// State
 	void Ship_Idle(float _DeltaTime);

@@ -29,6 +29,7 @@ namespace GSpriteName
 	const std::string OldFilm = "OldFilmEffect";
 	const std::string Iris = "Iris";
 
+	const std::string Pirate_Whistle_Effect = "Whistle_Effect";
 }
 
 namespace GAniName
@@ -251,6 +252,7 @@ namespace PirateBossAniName
 	const std::string Pirate_StopLaugh = "Pirate_StopLaugh";
 	const std::string Pirate_Idle = "Pirate_Idle";
 	const std::string Pirate_Whistle = "Pirate_Whistle";
+	const std::string Pirate_Whistle_Effect = "Pirate_Whistle_Effect";
 
 	const std::string OctopusShoot_Begin = "OctopusShoot_Begin";
 	const std::string OctopusShoot_Idle = "OctopusShoot_Idle";
@@ -355,6 +357,7 @@ namespace GRendererPos
 	const float4 Pirate_Idle_ReletivePos = float4(0.0f, 310.0f, 0.0f);
 	const float4 Pirate_OctoPusAtt_ReletivePos = float4(100.0f, 240.0f, 0.0f);
 	const float4 Pirate_Whistle_RelativePos = float4(220.0f, 240.0f, 0.0f);
+	const float4 Pirate_WhistleEff_RelativePos = float4(-280.0f, 575.0f, 0.0f);
 }
 
 namespace GBoundaryPos

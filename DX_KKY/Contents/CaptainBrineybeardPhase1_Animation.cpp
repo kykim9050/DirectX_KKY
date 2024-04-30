@@ -86,23 +86,22 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			});
 		PirateRenderer->SetFrameCallback(PirateBossAniName::OctopusShoot_Attack, 9, [this]()
 			{
-				AOctopusBullet* NewOctoBullet = GetWorld()->SpawnActor<AOctopusBullet>("NewOctoBullet").get();
-				NewOctoBullet->SetActorLocation(GetActorLocation() + float4(GActorPosValue::OctoBullet_RelativePos));
+				AOctopusBullet* NewOctoBullet = GetWorld()->SpawnActor<AOctopusBullet>("NewOctoBullet", static_cast<int>(EActorType::MonsterBullet)).get();
+				NewOctoBullet->SetActorLocation(GetActorLocation() + GActorPosValue::OctoBullet_RelativePos);
 			});
 		PirateRenderer->SetLastFrameCallback(PirateBossAniName::Pirate_Whistle, [this]()
 			{
 				PirateState.ChangeState(PirateBossState::Pirate_Idle);
 			});
-
+		PirateRenderer->SetFrameCallback(PirateBossAniName::Pirate_Whistle, 30, [this]()
+			{
+				CreateWhistleEffect();
+			});
 
 		PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_End_Top, [this]()
 			{
 				PirateTopRenderer->SetActive(false);
 			});
-
-
-		
-
 
 	}
 }
