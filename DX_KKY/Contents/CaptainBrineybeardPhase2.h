@@ -55,5 +55,7 @@ private:
 	void StartFunctionSet();
 	void UpdateFunctionSet();
 	void EndFunctionSet();
+
+	void Ship_Idle(float _DeltaTime);
 };
 
