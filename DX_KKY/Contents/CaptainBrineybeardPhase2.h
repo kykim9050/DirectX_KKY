@@ -30,6 +30,10 @@ private:
 	int RoarTime = 22;
 	int RoarCount = 0;
 
+	// bubble shot ฐüทร
+	float BubbleShootDelay = 2.0f;
+	float BubbleShootDelayInit = 2.0f;
+
 	UStateManager ShipState;
 
 	UDefaultSceneComponent* Root = nullptr;

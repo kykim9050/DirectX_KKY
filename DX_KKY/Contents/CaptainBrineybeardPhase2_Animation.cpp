@@ -11,7 +11,7 @@ void ACaptainBrineybeardPhase2::CreateAnimation()
 
 	// Uvula
 	UvulaRenderer->CreateAnimation(PirateBossAniName::Uvula_Idle, "Uvula_Idle", 0.047f);
-
+	UvulaRenderer->CreateAnimation(PirateBossAniName::Uvula_Shoot, "Uvula_Shoot", 0.047f, false);
 
 	// other
 	JawRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_JawIdle, "Ship_Phase2_JawIdle", 0.047f);
@@ -19,8 +19,16 @@ void ACaptainBrineybeardPhase2::CreateAnimation()
 
 void ACaptainBrineybeardPhase2::SetAnimationCallback()
 {
+	// Ship
 	ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase2_Transform_End, [this]()
 		{
 			ShipState.ChangeState(PirateBossState::Ship_Phase2_Idle);
 		});
+
+	// Uvula
+	UvulaRenderer->SetLastFrameCallback(PirateBossAniName::Uvula_Shoot, [this]()
+		{
+			UvulaRenderer->ChangeAnimation(PirateBossAniName::Uvula_Idle);
+		});
+
 }
