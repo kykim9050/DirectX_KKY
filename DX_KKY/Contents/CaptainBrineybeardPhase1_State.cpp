@@ -22,6 +22,7 @@ void ACaptainBrineybeardPhase1::StateCreate()
 		ShipState.CreateState(PirateBossState::Ship_Phase1_Blink);
 		ShipState.CreateState(PirateBossState::Ship_Phase1_CannonShoot);
 		ShipState.CreateState(PirateBossState::Ship_Wince);
+		ShipState.CreateState(PirateBossState::Ship_Transform_Begin);
 	}
 
 	// Pirate
@@ -57,6 +58,10 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 		ShipState.SetStartFunction(PirateBossState::Ship_Wince, [this]()
 			{
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Wince_Begin);
+			});
+		ShipState.SetStartFunction(PirateBossState::Ship_Transform_Begin, [this]()
+			{
+				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Transform_Begin);
 			});
 	}
 
@@ -116,6 +121,7 @@ void ACaptainBrineybeardPhase1::UpdateFunctionSet()
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_Blink, std::bind(&ACaptainBrineybeardPhase1::Ship_Blink, this, std::placeholders::_1));
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_CannonShoot, std::bind(&ACaptainBrineybeardPhase1::Ship_CannonShoot, this, std::placeholders::_1));
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Wince, std::bind(&ACaptainBrineybeardPhase1::Ship_Wince, this, std::placeholders::_1));
+		ShipState.SetUpdateFunction(PirateBossState::Ship_Transform_Begin, [](float) {});
 	}
 
 	// Pirate
@@ -255,7 +261,7 @@ void ACaptainBrineybeardPhase1::Ship_Wince(float _DeltaTime)
 	{
 		if (WinceTime <= WinceCount)
 		{
-			//ShipState.ChangeState(PirateBossState::Ship_Transform_Begin);
+			ShipState.ChangeState(PirateBossState::Ship_Transform_Begin);
 			return;
 		}
 

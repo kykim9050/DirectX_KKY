@@ -273,6 +273,7 @@ namespace PirateBossAniName
 	const std::string Ship_Phase1_Wince_Begin = "Ship_Phase1_Wince_Begin";
 	const std::string Ship_Phase1_Wince_Idle = "Ship_Phase1_Wince_Idle";
 	
+	const std::string Ship_Transform_Begin = "Ship_Transform_Begin";
 }
 
 namespace PirateBossState
