@@ -2,6 +2,7 @@
 #include "BulletUnit.h"
 
 // Ό³Έν :
+class USpriteRenderer;
 class ACannonBall : public ABulletUnit
 {
 	GENERATED_BODY(ABulletUnit)
@@ -19,6 +20,8 @@ public:
 protected:
 
 private:
+	USpriteRenderer* EffectRenderer = nullptr;
+
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	void StateInit() override;
