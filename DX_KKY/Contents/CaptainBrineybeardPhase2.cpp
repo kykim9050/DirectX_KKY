@@ -39,10 +39,20 @@ void ACaptainBrineybeardPhase2::RendererInit()
 	ShipRenderer = CreateDefaultSubObject<USpriteRenderer>("ShipRenderer");
 	ShipRenderer->SetupAttachment(Root);
 
+	JawRenderer = CreateDefaultSubObject<USpriteRenderer>("JawRenderer");
+	JawRenderer->SetupAttachment(Root);
+
+
 	ShipRenderer->SetAutoSize(1.2f, true);
 	ShipRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	ShipRenderer->SetOrder(ERenderingOrder::BossMonster);
 	ShipRenderer->SetPosition(GRendererPos::Ship_Phase1_RelativePos);
+
+	JawRenderer->SetAutoSize(1.2f, true);
+	JawRenderer->SetPivot(EPivot::RIGHTBOTTOM);
+	JawRenderer->SetOrder(ERenderingOrder::Object2);
+	JawRenderer->SetPosition(GRendererPos::Ship_Phase1_RelativePos);
+	JawRenderer->SetActive(false);
 }
 
 void ACaptainBrineybeardPhase2::AnimationInit()

@@ -35,6 +35,7 @@ private:
 	UDefaultSceneComponent* Root = nullptr;
 
 	USpriteRenderer* ShipRenderer = nullptr;
+	USpriteRenderer* JawRenderer = nullptr;
 
 	UCollision* MainCollider = nullptr;
 
