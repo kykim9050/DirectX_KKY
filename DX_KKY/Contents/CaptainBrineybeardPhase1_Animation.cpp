@@ -66,6 +66,12 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			{
 				Phase1_EndSetting();
 			});
+		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Transform_Begin, [this]()
+			{
+				// 페이즈 종료 신호 보내기
+				SetIsPhaseEnd(true);
+				return;
+			});
 	}
 
 

@@ -249,6 +249,9 @@
     <ClInclude Include="CannonBall.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClInclude>
+    <ClInclude Include="PhaseUnit.h">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -424,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="CannonBall.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
+    </ClCompile>
+    <ClCompile Include="PhaseUnit.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
