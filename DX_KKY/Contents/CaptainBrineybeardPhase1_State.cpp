@@ -197,15 +197,16 @@ void ACaptainBrineybeardPhase1::Pirate_Idle(float _DeltaTime)
 	{
 		return;
 	}
-	//PickOctopusDelay -= _DeltaTime;
 
-	//if (0.0f >= PickOctopusDelay && 8 == PirateRenderer->GetCurAnimationFrame())
-	//{
-	//	PickOctopusDelay = PickOctopusDelayInit;
+	PickOctopusDelay -= _DeltaTime;
 
-	//	PirateState.ChangeState(PirateBossState::OctopusShoot_Begin);
-	//	return;
-	//}
+	if (0.0f >= PickOctopusDelay && 8 == PirateRenderer->GetCurAnimationFrame())
+	{
+		PickOctopusDelay = PickOctopusDelayInit;
+
+		PirateState.ChangeState(PirateBossState::OctopusShoot_Begin);
+		return;
+	}
 
 	WhistleDelay -= _DeltaTime;
 
