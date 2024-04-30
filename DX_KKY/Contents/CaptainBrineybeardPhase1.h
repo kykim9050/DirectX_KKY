@@ -85,6 +85,8 @@ private:
 
 	void MoveUpAndDown(float _DeltaTime);
 	void CreateWhistleEffect();
+	void CreateCannonBall();
+	void CreateOctopusBullet();
 
 	// State
 	void Ship_Idle(float _DeltaTime);
