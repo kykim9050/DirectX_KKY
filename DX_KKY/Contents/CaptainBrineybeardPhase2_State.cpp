@@ -32,6 +32,9 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 	ShipState.SetStartFunction(PirateBossState::Ship_Phase2_Idle, [this]()
 		{
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Idle);
+		
+			JawRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_JawIdle);
+			JawRenderer->SetActive(true);
 		});
 }
 
@@ -55,7 +58,10 @@ void ACaptainBrineybeardPhase2::UpdateFunctionSet()
 
 void ACaptainBrineybeardPhase2::EndFunctionSet()
 {
-
+	ShipState.SetEndFunction(PirateBossState::Ship_Phase2_Idle, [this]()
+		{
+			JawRenderer->SetActive(false);
+		});
 }
 
 void ACaptainBrineybeardPhase2::Ship_Idle(float _DeltaTime)
