@@ -264,6 +264,9 @@ namespace PirateBossAniName
 	
 	const std::string OctoBullet = "OctoBullet";
 	const std::string OctoBullet_Effect = "OctoBullet_Effect";
+
+	const std::string CannonBall = "CannonBall";
+	const std::string CannonBall_Effect = "CannonBall_Effect";
 }
 
 namespace PirateBossState
@@ -300,6 +303,7 @@ namespace GColliderScale
 
 	const float4 PirateBoss_Phase1_ColScale = float4(150.0f, 180.0f, 1.0f);
 
+	const float4 PirateBoss_Cannon_ColScale = float4(70.0f, 90.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
@@ -316,6 +320,7 @@ namespace GColliderPosInfo
 	const float4 PlayerBodyCol_RelativePos = float4(0.0f, 64.0f, 0.0f);
 
 	const float4 PirateBoss_Phase1_RelPos = float4(-180.0f, 530.0f, 0.0f);
+	const float4 PirateBoss_CannonRelPos = float4(-60.0f, 0.0f, 0.0f);
 }
 
 namespace GRendererPos
@@ -369,7 +374,9 @@ namespace GActorPosValue
 	const float4 PL_Player_Init_Pos = float4(200.0f, -350.0f, 100.0f);
 	const float4 Phase1_Boss_Pos = float4(1280.0f, -765.0f, 0.0f);
 	const float4 OctoBullet_RelativePos = float4(-406.0f, 390.0f, 0.0f);
+	const float4 CannonBall_RelativePos = float4(-350.0f, 165.0f, 0.0f);
 }
+
 
 
 // Ό³Έν :

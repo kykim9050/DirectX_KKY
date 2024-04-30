@@ -246,6 +246,9 @@
     <ClInclude Include="OctopusBullet.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClInclude>
+    <ClInclude Include="CannonBall.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -417,6 +420,9 @@
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClCompile>
     <ClCompile Include="OctopusBullet.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
+    </ClCompile>
+    <ClCompile Include="CannonBall.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClCompile>
   </ItemGroup>
