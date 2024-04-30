@@ -9,6 +9,10 @@ void ACaptainBrineybeardPhase2::CreateAnimation()
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_Transform_End, "Ship_Transform", 0.047f, false, 11, 17);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_Idle, "Ship_Phase2_Idle", 0.047f);
 
+	// Uvula
+	UvulaRenderer->CreateAnimation(PirateBossAniName::Uvula_Idle, "Uvula_Idle", 0.047f);
+
+
 	// other
 	JawRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_JawIdle, "Ship_Phase2_JawIdle", 0.047f);
 }

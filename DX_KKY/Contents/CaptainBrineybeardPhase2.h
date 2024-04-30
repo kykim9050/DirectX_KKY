@@ -36,6 +36,7 @@ private:
 
 	USpriteRenderer* ShipRenderer = nullptr;
 	USpriteRenderer* JawRenderer = nullptr;
+	USpriteRenderer* UvulaRenderer = nullptr;
 
 	UCollision* MainCollider = nullptr;
 

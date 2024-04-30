@@ -278,6 +278,9 @@ namespace PirateBossAniName
 	const std::string Ship_Phase2_Transform_End = "Ship_Phase2_Transform_End";
 	const std::string Ship_Phase2_Idle = "Ship_Phase2_Idle";
 	const std::string Ship_Phase2_JawIdle = "Ship_Phase2_JawIdle";
+
+	const std::string Uvula_Idle = "Uvula_Idle";
+	const std::string Uvula_Shoot = "Uvula_Shoot";
 	
 }
 
