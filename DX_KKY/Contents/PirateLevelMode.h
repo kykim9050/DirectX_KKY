@@ -3,6 +3,7 @@
 #include <EngineCore/StateManager.h>
 
 // Ό³Έν :
+class ACaptainBrineybeardPhase2;
 class ACaptainBrineybeardPhase1;
 class UTimeScaleControlUnit;
 class UCamera;
@@ -40,6 +41,7 @@ private:
 	std::shared_ptr<APlayer> Player = nullptr;
 	std::shared_ptr<APirateLevelMap> Map = nullptr;
 	std::shared_ptr<ACaptainBrineybeardPhase1> Phase1_Boss = nullptr;
+	std::shared_ptr<ACaptainBrineybeardPhase2> Phase2_Boss = nullptr;
 
 	std::shared_ptr<AMessage> ScreenMsg = nullptr;
 
