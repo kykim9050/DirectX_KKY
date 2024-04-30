@@ -26,6 +26,10 @@ public:
 protected:
 
 private:
+	// transforming ฐüทร
+	int RoarTime = 22;
+	int RoarCount = 0;
+
 	UStateManager ShipState;
 
 	UDefaultSceneComponent* Root = nullptr;

@@ -135,7 +135,6 @@ void APirateLevelMode::StateInit()
 			{
 				// 페이즈2 보스 생성
 				Phase2_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase2>("Phase2_Boss ", EActorType::BossMonster);
-				// 보스 위치 이전 페이즈보스 최종 위치를 받아와서 생성하도록 구현하자
 				Phase2_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
 			});
 	}

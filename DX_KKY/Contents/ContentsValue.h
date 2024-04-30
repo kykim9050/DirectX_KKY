@@ -275,6 +275,7 @@ namespace PirateBossAniName
 	
 	const std::string Ship_Transform_Begin = "Ship_Transform_Begin";
 	const std::string Ship_Phase2_Transform_Idle = "Ship_Phase2_Transform_Idle";
+	const std::string Ship_Phase2_Transform_End = "Ship_Phase2_Transform_End";
 }
 
 namespace PirateBossState
@@ -284,6 +285,7 @@ namespace PirateBossState
 	const std::string Ship_Phase1_CannonShoot = "Ship_Phase1_CannonShoot";
 	const std::string Ship_Wince = "Ship_Wince";
 	const std::string Ship_Phase2_Transforming = "Ship_Phase2_Transforming";
+	const std::string Ship_Phase2_Transforming_End = "Ship_Phase2_Transforming_End";
 
 	const std::string Pirate_Intro = "Pirate_Intro";
 	const std::string Pirate_Laugh = "Pirate_Laugh";
