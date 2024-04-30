@@ -86,6 +86,7 @@ private:
 	void StartFunctionSet();
 	void UpdateFunctionSet();
 	void EndFunctionSet();
+	void Phase1_EndSetting();
 
 	void MoveUpAndDown(float _DeltaTime);
 	void CreateWhistleEffect();
