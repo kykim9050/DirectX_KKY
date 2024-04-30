@@ -21,6 +21,7 @@ void ACaptainBrineybeardPhase1::StateCreate()
 		ShipState.CreateState(PirateBossState::Ship_Phase1_Idle);
 		ShipState.CreateState(PirateBossState::Ship_Phase1_Blink);
 		ShipState.CreateState(PirateBossState::Ship_Phase1_CannonShoot);
+		ShipState.CreateState(PirateBossState::Ship_Wince);
 	}
 
 	// Pirate
@@ -52,6 +53,10 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 		ShipState.SetStartFunction(PirateBossState::Ship_Phase1_CannonShoot, [this]()
 			{
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_CannonAtt);
+			});
+		ShipState.SetStartFunction(PirateBossState::Ship_Wince, [this]()
+			{
+				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Wince_Begin);
 			});
 	}
 
@@ -110,6 +115,7 @@ void ACaptainBrineybeardPhase1::UpdateFunctionSet()
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_Idle, std::bind(&ACaptainBrineybeardPhase1::Ship_Idle, this, std::placeholders::_1));
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_Blink, std::bind(&ACaptainBrineybeardPhase1::Ship_Blink, this, std::placeholders::_1));
 		ShipState.SetUpdateFunction(PirateBossState::Ship_Phase1_CannonShoot, std::bind(&ACaptainBrineybeardPhase1::Ship_CannonShoot, this, std::placeholders::_1));
+		ShipState.SetUpdateFunction(PirateBossState::Ship_Wince, std::bind(&ACaptainBrineybeardPhase1::Ship_Wince, this, std::placeholders::_1));
 	}
 
 	// Pirate
@@ -153,6 +159,12 @@ void ACaptainBrineybeardPhase1::EndFunctionSet()
 
 void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 {
+	if (0 >= GetHp())
+	{
+		ShipState.ChangeState(PirateBossState::Ship_Wince);
+		return;
+	}
+
 	BlinkDelay -= _DeltaTime;
 
 	if (0.0f >= BlinkDelay)
@@ -181,6 +193,10 @@ void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 
 void ACaptainBrineybeardPhase1::Pirate_Idle(float _DeltaTime)
 {
+	if (0 >= GetHp())
+	{
+		return;
+	}
 	//PickOctopusDelay -= _DeltaTime;
 
 	//if (0.0f >= PickOctopusDelay && 8 == PirateRenderer->GetCurAnimationFrame())
@@ -230,4 +246,9 @@ void ACaptainBrineybeardPhase1::Ship_CannonShoot(float _DeltaTime)
 void ACaptainBrineybeardPhase1::Ship_Blink(float _DeltaTime)
 {
 	MoveUpAndDown(_DeltaTime);
+}
+
+void ACaptainBrineybeardPhase1::Ship_Wince(float _DeltaTime)
+{
+
 }

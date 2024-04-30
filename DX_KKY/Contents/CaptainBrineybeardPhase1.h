@@ -92,5 +92,6 @@ private:
 	void Ship_CannonShoot(float _DeltaTime);
 	void Pirate_Idle(float _DeltaTime);
 	void Pirate_OctoAtt_Idle(float _DeltaTime);
+	void Ship_Wince(float _DeltaTime);
 };
 
