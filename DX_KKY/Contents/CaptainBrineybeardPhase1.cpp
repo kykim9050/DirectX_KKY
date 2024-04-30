@@ -72,7 +72,7 @@ void ACaptainBrineybeardPhase1::RendererInit()
 	ShipSailRenderer->SetPivot(EPivot::LEFTBOTTOM);
 	ShipSailRenderer->SetPosition(GRendererPos::ShipSail_RelativePos);
 
-	ShipRenderer->SetPlusColor(GColorValue::BrightColor);
+	//ShipRenderer->SetPlusColor(GColorValue::BrightColor);
 	ShipRailRenderer->SetPlusColor(GColorValue::BrightColor);
 	ShipMastRenderer->SetPlusColor(GColorValue::BrightColor);
 	ShipSailRenderer->SetPlusColor(GColorValue::BrightColor);
