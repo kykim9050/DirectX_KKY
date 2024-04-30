@@ -155,3 +155,13 @@ void ACaptainBrineybeardPhase1::CreateOctopusBullet()
 	AOctopusBullet* NewOctoBullet = GetWorld()->SpawnActor<AOctopusBullet>("NewOctoBullet", static_cast<int>(EActorType::MonsterBullet)).get();
 	NewOctoBullet->SetActorLocation(GetActorLocation() + GActorPosValue::OctoBullet_RelativePos);
 }
+
+void ACaptainBrineybeardPhase1::Phase1_EndSetting()
+{
+	PirateRenderer->SetActive(false);
+	PirateTopRenderer->SetActive(false);
+	ShipRailRenderer->SetActive(false);
+	ShipSailRenderer->SetActive(false);
+	ShipMastRenderer->SetActive(false);
+	MainCollider->SetActive(false);
+}
