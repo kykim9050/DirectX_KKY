@@ -71,4 +71,12 @@ void ACaptainBrineybeardPhase2::EndFunctionSet()
 void ACaptainBrineybeardPhase2::Ship_Idle(float _DeltaTime)
 {
 
+	BubbleShootDelay -= _DeltaTime;
+
+	if (0.0f >= BubbleShootDelay)
+	{
+		BubbleShootDelay = BubbleShootDelayInit;
+		UvulaRenderer->ChangeAnimation(PirateBossAniName::Uvula_Shoot);
+	}
+
 }
