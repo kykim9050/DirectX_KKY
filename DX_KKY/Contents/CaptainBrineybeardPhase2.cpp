@@ -42,8 +42,6 @@ void ACaptainBrineybeardPhase2::RendererInit()
 	ShipRenderer->SetAutoSize(1.2f, true);
 	ShipRenderer->SetPivot(EPivot::RIGHTBOTTOM);
 	ShipRenderer->SetOrder(ERenderingOrder::BossMonster);
-
-	// 이전 페이즈에서 마지막 액터 값을 저장해서 가져와야되는뎀... 확인해보기
 	ShipRenderer->SetPosition(GRendererPos::Ship_Phase1_RelativePos);
 }
 
