@@ -1,5 +1,6 @@
 ﻿#include "PreCompile.h"
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/Collision.h>
 
 #include "CaptainBrineybeardPhase2.h"
 
@@ -84,7 +85,14 @@ void ACaptainBrineybeardPhase2::AnimationInit()
 
 void ACaptainBrineybeardPhase2::ColliderInit()
 {
+	LazarCollider = CreateDefaultSubObject<UCollision>("LazarCollider");
+	LazarCollider->SetupAttachment(Root);
 
+	LazarCollider->SetScale(float4(1200.0f, 150.0f, 1.0f));
+	LazarCollider->AddPosition(float4(-835.0f, 313.0f, 0.0f));
+	LazarCollider->SetCollisionGroup(ECollisionGroup::MonsterBullet);
+	LazarCollider->SetCollisionType(ECollisionType::Rect);
+	LazarCollider->SetActive(false);
 }
 
 void ACaptainBrineybeardPhase2::DebugUpdate()
