@@ -249,13 +249,16 @@
     <ClInclude Include="OctopusBullet.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClInclude>
-    <ClInclude Include="CannonBall.h">
-      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
-    </ClInclude>
     <ClInclude Include="PhaseUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
     <ClInclude Include="CaptainBrineybeardPhase2.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
+    </ClInclude>
+    <ClInclude Include="CannonBall.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
+    </ClInclude>
+    <ClInclude Include="UvulaBubble.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
     </ClInclude>
   </ItemGroup>
@@ -431,9 +434,6 @@
     <ClCompile Include="OctopusBullet.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClCompile>
-    <ClCompile Include="CannonBall.cpp">
-      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
-    </ClCompile>
     <ClCompile Include="PhaseUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
@@ -444,6 +444,12 @@
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
     </ClCompile>
     <ClCompile Include="CaptainBrineybeardPhase2_State.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
+    </ClCompile>
+    <ClCompile Include="CannonBall.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
+    </ClCompile>
+    <ClCompile Include="UvulaBubble.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
     </ClCompile>
   </ItemGroup>
