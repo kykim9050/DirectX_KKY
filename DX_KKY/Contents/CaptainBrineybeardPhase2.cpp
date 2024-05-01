@@ -69,10 +69,10 @@ void ACaptainBrineybeardPhase2::RendererInit()
 	UvulaRenderer->SetPosition(float4(-400.0f, 300.0f, 0.0f));
 	UvulaRenderer->SetActive(false);
 
-	LazarRenderer->SetAutoSize(1.0f, true);
+	LazarRenderer->SetAutoSize(1.2f, true);
 	LazarRenderer->SetPivot(EPivot::RIGHT);
 	LazarRenderer->SetOrder(ERenderingOrder::BossMonsterFrontFX1);
-	LazarRenderer->SetPosition(float4(-640.0f, 360.0f, 0.0f));
+	LazarRenderer->SetPosition(GRendererPos::Ship_Lazar_ReletivePos);
 	LazarRenderer->SetPlusColor(GColorValue::BrightColor);
 	LazarRenderer->SetActive(false);
 }
