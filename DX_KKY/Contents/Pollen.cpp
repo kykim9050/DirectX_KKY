@@ -97,6 +97,11 @@ void APollen::Throwing(float _DeltaTime)
 		return;
 	}
 	
+	if (0.0f == _DeltaTime)
+	{
+		return;
+	}
+
 	AccTime += _DeltaTime;
 
 	AddActorLocation(float4(0.0f, 0.2f * sinf(AccTime * 5.0f), 0.0f));
