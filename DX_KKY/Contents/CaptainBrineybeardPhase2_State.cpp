@@ -21,6 +21,7 @@ void ACaptainBrineybeardPhase2::StateCreate()
 	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAtt_Charging);
 	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd);
 	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAttack);
+	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAttack_End);
 }
 
 void ACaptainBrineybeardPhase2::StartFunctionSet()
@@ -59,6 +60,10 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		{
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAttack1);
 		});
+	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAttack_End, [this]()
+		{
+			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAttack_End);
+		});
 }
 
 void ACaptainBrineybeardPhase2::UpdateFunctionSet()
@@ -94,13 +99,29 @@ void ACaptainBrineybeardPhase2::UpdateFunctionSet()
 			}
 		});
 	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd, [](float) {});
-	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAttack, [](float) {});
+	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAttack, [this](float)
+		{
+			if (true == ShipRenderer->IsCurAnimationEnd())
+			{
+				if (LazarAttTime <= LazarAttCount)
+				{
+					LazarAttCount = 0;
+
+					ShipState.ChangeState(PirateBossState::Ship_phase2_LazarAttack_End);
+					return;
+				}
+				++LazarAttCount;
+			}
+		});
+	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAttack_End, [](float) {});
 }
 
 void ACaptainBrineybeardPhase2::EndFunctionSet()
 {
 	ShipState.SetEndFunction(PirateBossState::Ship_Phase2_Idle, [this]()
 		{
+			JawRenderer->AnimationReset();
+			UvulaRenderer->AnimationReset();
 			JawRenderer->SetActive(false);
 			UvulaRenderer->SetActive(false);
 		});

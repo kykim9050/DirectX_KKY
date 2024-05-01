@@ -13,6 +13,7 @@ void ACaptainBrineybeardPhase2::CreateAnimation()
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_ChargingEnd, "Ship_phase2_Lazar_Begin", 0.047f, false, 9, 13);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAttack1, "Ship_Phase2_LazarShot", 0.047f, false);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAttack2, "Ship_Phase2_LazarShot", 0.047f, true, 1, 4);
+	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAttack_End, "Ship_Phase2_LazarShot", 0.065f, false, 4, 5);
 
 
 	// Uvula
@@ -41,6 +42,10 @@ void ACaptainBrineybeardPhase2::SetAnimationCallback()
 	ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase2_LazarAttack1, [this]()
 		{
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAttack2);
+		});
+	ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase2_LazarAttack_End, [this]()
+		{
+			ShipState.ChangeState(PirateBossState::Ship_Phase2_Idle);
 		});
 
 	// Uvula
