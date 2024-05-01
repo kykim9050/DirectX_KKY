@@ -36,6 +36,8 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		});
 	ShipState.SetStartFunction(PirateBossState::Ship_Phase2_Idle, [this]()
 		{
+			MainCollider->SetActive(true);
+
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Idle);
 		
 			JawRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_JawIdle);
@@ -46,6 +48,8 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		});
 	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAtt_Begin, [this]()
 		{
+			MainCollider->SetActive(false);
+
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_Begin);
 		});
 	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAtt_Charging, [this]()
