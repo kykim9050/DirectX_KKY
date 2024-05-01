@@ -14,7 +14,6 @@ void ACagneyCarnation::StateInit()
 	EndFunctionSet();
 
 	State.ChangeState(FlowerBossState::Intro);
-	State.ChangeState(FlowerBossState::Gatling_Begin);
 }
 
 
