@@ -66,6 +66,7 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		});
 	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAttack_End, [this]()
 		{
+			LazarCollider->SetActive(false);
 			LazarRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Lazar_End);
 
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAttack_End);

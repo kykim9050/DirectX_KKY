@@ -61,6 +61,7 @@ void ACaptainBrineybeardPhase2::SetAnimationCallback()
 	// Other
 	LazarRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_Lazar_Begin, 3, [this]()
 		{
+			LazarCollider->SetActive(true);
 			LazarRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Lazar_Idle);
 		});
 	LazarRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_Lazar_End, 3, [this]()
