@@ -60,6 +60,7 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		{
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAttack1);
 
+			LazarRenderer->AnimationReset();
 			LazarRenderer->SetActive(true);
 			LazarRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Lazar_Begin);
 		});
@@ -129,11 +130,6 @@ void ACaptainBrineybeardPhase2::EndFunctionSet()
 			UvulaRenderer->AnimationReset();
 			JawRenderer->SetActive(false);
 			UvulaRenderer->SetActive(false);
-		});
-	ShipState.SetEndFunction(PirateBossState::Ship_phase2_LazarAttack_End, [this]
-		{
-			LazarRenderer->AnimationReset();
-			LazarRenderer->SetActive(false);
 		});
 }
 
