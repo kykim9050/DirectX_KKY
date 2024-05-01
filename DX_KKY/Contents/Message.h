@@ -19,21 +19,21 @@ public:
 	AMessage& operator=(const AMessage& _Other) = delete;
 	AMessage& operator=(AMessage&& _Other) noexcept = delete;
 
-	inline void SetMsg(std::string_view _MsgName)
-	{
-		MsgName = _MsgName;
-	}
+	
 	inline void SetStageEndMsg()
 	{
-		MsgName = GAniName::Stage_Clear;
+		SetMsg(GAniName::Stage_Clear);
+		State.ChangeState(GStateName::Message_Print);
 	}
 	inline void SetPlayerDeadMsg()
 	{
-		MsgName = GAniName::PlayerDead_Message;
+		SetMsg(GAniName::PlayerDead_Message);
+		State.ChangeState(GStateName::Message_Print);
 	}
 	inline void SetStageStartMsg()
 	{
-		MsgName = GAniName::Ready_Message;
+		SetMsg(GAniName::Ready_Message);
+		State.ChangeState(GStateName::Message_Print);
 	}
 
 protected:
@@ -53,5 +53,10 @@ private:
 	void SetStageEndTimeScale();
 	void RecoveryTimeScale();
 	void MsgPrintInitSetting();
+
+	inline void SetMsg(std::string_view _MsgName)
+	{
+		MsgName = _MsgName;
+	}
 };
 
