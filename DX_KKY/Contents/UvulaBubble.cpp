@@ -51,7 +51,7 @@ void AUvulaBubble::ColliderInit()
 {
 	Collision->SetScale(GColliderScale::PirateBoss_Bubble_ColScale);
 	Collision->SetCollisionGroup(ECollisionGroup::MonsterBullet);
-	Collision->SetCollisionType(ECollisionType::Rect);
+	Collision->SetCollisionType(ECollisionType::RotRect);
 	Collision->AddPosition(ComponentPivotDist);
 }
 
@@ -96,6 +96,5 @@ void AUvulaBubble::Fire(float _DeltaTime)
 
 	SetActorRotation(float4(0.0f, 0.0f, -AccTime * RotationSpeed));
 	Renderer->SetRotationDeg(float4(0.0f, 0.0f, AccTime * RotationSpeed));
-	Collision->SetRotationDeg(float4(0.0f, 0.0f, AccTime * RotationSpeed));
 	ResultMovementUpdate(_DeltaTime);
 }
