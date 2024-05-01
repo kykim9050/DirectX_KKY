@@ -75,5 +75,7 @@ private:
 	void EndFunctionSet();
 
 	void Ship_Idle(float _DeltaTime);
+
+	void CreateUvulaBubble();
 };
 

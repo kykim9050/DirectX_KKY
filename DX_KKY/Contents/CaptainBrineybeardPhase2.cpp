@@ -3,6 +3,7 @@
 #include <EngineCore/Collision.h>
 
 #include "CaptainBrineybeardPhase2.h"
+#include "UvulaBubble.h"
 
 ACaptainBrineybeardPhase2::ACaptainBrineybeardPhase2()
 {
@@ -111,4 +112,10 @@ void ACaptainBrineybeardPhase2::DebugUpdate()
 		std::string Msg = std::format("PirateBoss Phase2 Hp : {}\n", std::to_string(GetHp()));
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
+}
+
+void ACaptainBrineybeardPhase2::CreateUvulaBubble()
+{
+	AUvulaBubble* Bubble = GetWorld()->SpawnActor<AUvulaBubble>("Bubble", EActorType::MonsterBullet).get();
+	Bubble->SetActorLocation(GetActorLocation() + GActorPosValue::UvulaBubble_RelativePos);
 }
