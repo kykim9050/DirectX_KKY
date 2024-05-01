@@ -31,6 +31,9 @@ private:
 	int ChargingCount = 0;
 	float LazarShootDelay = 5.0f;
 	float LazarShootDelayInit = 5.0f;
+	int LazarAttTime = 17;
+	int LazarAttCount = 0;
+
 
 	// transforming ฐüทร
 	int RoarTime = 22;
