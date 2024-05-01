@@ -300,6 +300,9 @@ namespace PirateBossAniName
 	const std::string Ship_Phase2_Bubble_Idle = "Ship_Phase2_Bubble_Idle";
 	const std::string Ship_Phase2_Bubble_Pop = "Ship_Phase2_Bubble_Pop";
 
+	const std::string Ship_Death = "Ship_Death";
+	const std::string Ship_DeathRev = "Ship_DeathRev";
+
 }
 
 namespace PirateBossState
@@ -311,11 +314,12 @@ namespace PirateBossState
 	const std::string Ship_Phase2_Transforming = "Ship_Phase2_Transforming";
 	const std::string Ship_Phase2_Transforming_End = "Ship_Phase2_Transforming_End";
 	const std::string Ship_Phase2_Idle = "Ship_Phase2_Idle";
-	const std::string Ship_phase2_LazarAtt_Begin = "Ship_phase2_LazarAtt_Begin";
-	const std::string Ship_phase2_LazarAtt_Charging = "Ship_phase2_LazarAtt_Charging";
-	const std::string Ship_phase2_LazarAtt_ChargingEnd = "Ship_phase2_LazarAtt_ChargingEnd";
-	const std::string Ship_phase2_LazarAttack = "Ship_phase2_LazarAttack";
-	const std::string Ship_phase2_LazarAttack_End = "Ship_phase2_LazarAttack_End";
+	const std::string Ship_Phase2_LazarAtt_Begin = "Ship_Phase2_LazarAtt_Begin";
+	const std::string Ship_Phase2_LazarAtt_Charging = "Ship_Phase2_LazarAtt_Charging";
+	const std::string Ship_Phase2_LazarAtt_ChargingEnd = "Ship_Phase2_LazarAtt_ChargingEnd";
+	const std::string Ship_Phase2_LazarAttack = "Ship_Phase2_LazarAttack";
+	const std::string Ship_Phase2_LazarAttack_End = "Ship_Phase2_LazarAttack_End";
+	const std::string Ship_Phase2_BossDead = "Ship_Phase2_BossDead";
 	
 	const std::string Pirate_Intro = "Pirate_Intro";
 	const std::string Pirate_Laugh = "Pirate_Laugh";
