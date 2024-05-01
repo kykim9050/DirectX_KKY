@@ -20,6 +20,7 @@ void ACaptainBrineybeardPhase2::StateCreate()
 	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAtt_Begin);
 	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAtt_Charging);
 	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd);
+	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAttack);
 }
 
 void ACaptainBrineybeardPhase2::StartFunctionSet()
@@ -53,6 +54,10 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd, [this]()
 		{
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_ChargingEnd);
+		});
+	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAttack, [this]()
+		{
+			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAttack1);
 		});
 }
 
@@ -89,6 +94,7 @@ void ACaptainBrineybeardPhase2::UpdateFunctionSet()
 			}
 		});
 	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd, [](float) {});
+	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAttack, [](float) {});
 }
 
 void ACaptainBrineybeardPhase2::EndFunctionSet()
