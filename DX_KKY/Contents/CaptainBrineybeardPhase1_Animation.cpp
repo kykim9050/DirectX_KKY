@@ -62,11 +62,11 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			{
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Wince_Idle);
 			});
-		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Transform_Begin, 3, [this]()
+		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Transform_Begin, 4, [this]()
 			{
 				Phase1_EndSetting();
 			});
-		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Transform_Begin, 2, [this]()
+		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Transform_Begin, 9, [this]()
 			{
 				// 페이즈 종료 신호 보내기
 				SetIsPhaseEnd(true);
