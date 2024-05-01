@@ -53,6 +53,10 @@ void ACaptainBrineybeardPhase2::SetAnimationCallback()
 		});
 
 	// Uvula
+	UvulaRenderer->SetFrameCallback(PirateBossAniName::Uvula_Shoot, 8, [this]()
+		{
+			CreateUvulaBubble();
+		});
 	UvulaRenderer->SetFrameCallback(PirateBossAniName::Uvula_Shoot, 13, [this]()
 		{
 			UvulaRenderer->ChangeAnimation(PirateBossAniName::Uvula_Idle);

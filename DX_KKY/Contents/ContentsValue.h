@@ -60,6 +60,9 @@ namespace GStateName
 	const std::string Message_Init = "Message_Init";
 	const std::string Message_Print = "Message_Print";
 
+	// Bullet
+	const std::string Bullet_Init = "Bullet_Init";
+	const std::string Bullet_Fire = "Bullet_Fire";
 }
 
 namespace FlowerBossAniName
@@ -292,6 +295,11 @@ namespace PirateBossAniName
 	const std::string Ship_Phase2_Lazar_Begin = "Ship_Phase2_Lazar_Begin";
 	const std::string Ship_Phase2_Lazar_Idle = "Ship_Phase2_Lazar_Idle";
 	const std::string Ship_Phase2_Lazar_End = "Ship_Phase2_Lazar_End";
+
+	const std::string Ship_Phase2_Bubble_Spawn = "Ship_Phase2_Bubble_Spawn";
+	const std::string Ship_Phase2_Bubble_Idle = "Ship_Phase2_Bubble_Idle";
+	const std::string Ship_Phase2_Bubble_Pop = "Ship_Phase2_Bubble_Pop";
+
 }
 
 namespace PirateBossState
@@ -419,6 +427,7 @@ namespace GActorPosValue
 	const float4 Phase1_Boss_Pos = float4(1280.0f, -765.0f, 0.0f);
 	const float4 OctoBullet_RelativePos = float4(-406.0f, 390.0f, 0.0f);
 	const float4 CannonBall_RelativePos = float4(-350.0f, 165.0f, 0.0f);
+	const float4 UvulaBubble_RelativePos = float4(-205.0f, 280.0f, 0.0f);
 }
 
 
