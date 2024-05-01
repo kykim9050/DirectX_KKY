@@ -65,14 +65,14 @@ void ACaptainBrineybeardPhase2::RendererInit()
 	UvulaRenderer->SetAutoSize(1.2f, true);
 	UvulaRenderer->SetPivot(EPivot::RIGHTTOP);
 	UvulaRenderer->SetOrder(ERenderingOrder::Monster1);
-	UvulaRenderer->SetPosition(float4(-40.0f, 433.0f, 0.0f));
+	UvulaRenderer->SetPosition(GRendererPos::Ship_Uvula_RelativePos);
 	UvulaRenderer->SetPlusColor(float4(0.2f, 0.2f, 0.2f));
 	UvulaRenderer->SetActive(false);
 
 	LazarRenderer->SetAutoSize(1.2f, true);
 	LazarRenderer->SetPivot(EPivot::RIGHT);
 	LazarRenderer->SetOrder(ERenderingOrder::BossMonsterFrontFX1);
-	LazarRenderer->SetPosition(GRendererPos::Ship_Lazar_ReletivePos);
+	LazarRenderer->SetPosition(GRendererPos::Ship_Lazar_RelativePos);
 	LazarRenderer->SetPlusColor(GColorValue::BrightColor);
 	LazarRenderer->SetActive(false);
 }
@@ -84,8 +84,19 @@ void ACaptainBrineybeardPhase2::AnimationInit()
 
 void ACaptainBrineybeardPhase2::ColliderInit()
 {
+	MainCollider = CreateDefaultSubObject<UCollision>("MainCollider");
+	MainCollider->SetupAttachment(Root);
+
 	LazarCollider = CreateDefaultSubObject<UCollision>("LazarCollider");
 	LazarCollider->SetupAttachment(Root);
+
+
+
+	MainCollider->SetScale(GColliderScale::PirateBoss_Phase2_ColScale);
+	MainCollider->AddPosition(GColliderPosInfo::PirateBoss_Phase2_RelPos);
+	MainCollider->SetCollisionGroup(ECollisionGroup::Monster);
+	MainCollider->SetCollisionType(ECollisionType::Rect);
+	MainCollider->SetActive(false);
 
 	LazarCollider->SetScale(GColliderScale::PirateBoss_Lazar_ColScale);
 	LazarCollider->AddPosition(GColliderPosInfo::PirateBoss_Lazar_RelPos);
