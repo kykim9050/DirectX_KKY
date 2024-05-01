@@ -63,8 +63,7 @@ void ACaptainBrineybeardPhase2::RendererInit()
 	JawRenderer->SetActive(false);
 
 	UvulaRenderer->SetAutoSize(1.2f, true);
-	// RightTop 만들기
-	UvulaRenderer->SetPivot(EPivot::RIGHT);
+	UvulaRenderer->SetPivot(EPivot::RIGHTTOP);
 	UvulaRenderer->SetOrder(ERenderingOrder::Monster1);
 	// 위치 수정
 	UvulaRenderer->SetPosition(float4(-400.0f, 300.0f, 0.0f));
