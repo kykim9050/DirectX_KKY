@@ -32,6 +32,7 @@ void AMessage::Tick(float _DeltaTime)
 
 void AMessage::ImageInit()
 {
+	MsgRenderer->SetActive(false);
 	MsgRenderer->SetOrder(ERenderingOrder::Message);
 	MsgRenderer->SetPosition(GRendererPos::Msg_InitPos);
 	MsgRenderer->SetScale(GEngine->EngineWindow.GetWindowScale());
@@ -45,17 +46,20 @@ void AMessage::AnimationInit()
 
 	MsgRenderer->SetFrameCallback(GAniName::Ready_Message, 50,[this]()
 		{
-			Destroy();
+			MsgRenderer->SetActive(false);
+			State.ChangeState(GStateName::Message_Init);
 		});
 	MsgRenderer->SetFrameCallback(GAniName::PlayerDead_Message, 8, [this]()
 		{
-			Destroy();
+			MsgRenderer->SetActive(false);
+			State.ChangeState(GStateName::Message_Init);
 		});
 	MsgRenderer->SetFrameCallback(GAniName::Stage_Clear, 35, [this]()
 		{
 			UContentsFunction::GetStagePlayer()->InputOn();
 			RecoveryTimeScale();
-			Destroy();
+			MsgRenderer->SetActive(false);
+			State.ChangeState(GStateName::Message_Init);
 		});
 }
 
@@ -76,17 +80,19 @@ void AMessage::StateInit()
 				MsgBoxAssert("MSG 애니메이션 이름이 지정되지 않았습니다.");
 				return;
 			}
-
+			
+			MsgRenderer->SetActive(true);
 			MsgPrintInitSetting();
 			MsgRenderer->ChangeAnimation(MsgName);
 		});
 
-	State.SetUpdateFunction(GStateName::Message_Init, [this](float)
-		{
-			State.ChangeState(GStateName::Message_Print);
-			return;
-		});
+	State.SetUpdateFunction(GStateName::Message_Init, [this](float){});
 	State.SetUpdateFunction(GStateName::Message_Print, [](float) {});
+
+	State.SetEndFunction(GStateName::Message_Print, [this]()
+		{
+			MsgRenderer->SetActive(false);
+		});
 
 	State.ChangeState(GStateName::Message_Init);
 }
@@ -127,7 +133,6 @@ void AMessage::MsgPrintInitSetting()
 	}
 	else if (GAniName::PlayerDead_Message == MsgName)
 	{
-
 		return;
 	}
 	else

@@ -82,6 +82,8 @@ void APirateLevelMode::ObjectInit()
 	Player->SetActorLocation(GActorPosValue::PL_Player_Init_Pos);
 
 	TimeControlUnit = GetWorld()->SpawnActor<UTimeScaleControlUnit>("TimeControlUnit", EActorType::TimeScaleController);
+
+	ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
 }
 
 void APirateLevelMode::DeleteObject()
@@ -116,6 +118,12 @@ void APirateLevelMode::DeleteObject()
 		TimeControlUnit->Destroy();
 		TimeControlUnit = nullptr;
 	}
+
+	if (nullptr != ScreenMsg)
+	{
+		ScreenMsg->Destroy();
+		ScreenMsg = nullptr;
+	}
 }
 
 void APirateLevelMode::StateInit()
@@ -130,9 +138,8 @@ void APirateLevelMode::StateInit()
 		ModeState.SetStartFunction("Phase1", [this]()
 			{
 				// 페이즈1 보스 생성
-				DelayCallBack(0.5f, [this]()
+				DelayCallBack(0.8f, [this]()
 					{
-						ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
 						ScreenMsg->SetStageStartMsg();
 					});
 
@@ -147,7 +154,6 @@ void APirateLevelMode::StateInit()
 			});
 		ModeState.SetStartFunction("GameEnd", [this]()
 			{
-				ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
 				ScreenMsg->SetStageEndMsg();
 			});
 	}
