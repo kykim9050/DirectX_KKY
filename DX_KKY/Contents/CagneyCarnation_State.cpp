@@ -5,7 +5,6 @@
 #include "Seed.h"
 #include "Acorn.h"
 #include "Vine.h"
-#include "Message.h"
 
 void ACagneyCarnation::StateInit()
 {
@@ -210,10 +209,8 @@ void ACagneyCarnation::StartFunctionSet()
 	// Boss Dead
 	State.SetStartFunction(FlowerBossState::FlowerBoss_Dead, [this]()
 		{
-			AMessage* ClearMsg = GetWorld()->SpawnActor<AMessage>("ClearMsg",EActorType::ScreenMsg).get();
-			ClearMsg->SetStageEndMsg();
-
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerBoss_Death);
+			SetIsPhaseEnd(true);
 		});
 
 }
