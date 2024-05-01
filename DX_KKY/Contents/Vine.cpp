@@ -118,11 +118,11 @@ void AVine::AnimationInit()
 	CreateRevAnimation(FAniInfo(FlowerBossAniName::FrontVine_AttackEnd, "vineFrontAttack", 0.0416f), false, 9, 0);
 	CreateRevAnimation(FAniInfo(FlowerBossAniName::FrontVine_Dissapear, "vineFrontBegin", 0.0416f), false, 7, 0);
 
-	GetRenderer()->SetLastFrameCallback(FlowerBossAniName::FrontVine_Begin, [this]()
+	GetRenderer()->SetFrameCallback(FlowerBossAniName::FrontVine_Begin, 8, [this]()
 		{
 			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Idle);
 		});
-	GetRenderer()->SetLastFrameCallback(FlowerBossAniName::FrontVine_Attack, [this]()
+	GetRenderer()->SetFrameCallback(FlowerBossAniName::FrontVine_Attack, 10, [this]()
 		{
 			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_AttackEnd);
 		});
@@ -144,18 +144,14 @@ void AVine::AnimationInit()
 	// back vine
 	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Begin, "vineBackBegin", 0.0416f, false);
 	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Idle, "vineBackIdle", 0.0416f);
-	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Dissapear, "vineFrontBegin", 0.0416f, false);
+	BackVineRenderer->CreateAnimation(FlowerBossAniName::BackVine_Dissapear, "vineBackBegin", 0.0416f, false, 13, 0);
 
-	BackVineRenderer->SetLastFrameCallback(FlowerBossAniName::BackVine_Begin, [this]()
+	BackVineRenderer->SetFrameCallback(FlowerBossAniName::BackVine_Begin, 14, [this]()
 		{
 			BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Idle);
 			State.ChangeState(FlowerBossState::Vine_WaitAttack);
 		});
-	BackVineRenderer->SetLastFrameCallback(FlowerBossAniName::BackVine_Dissapear, [this]()
-		{
-			State.ChangeState(FlowerBossState::Vine_Wait);
-		});
-	BackVineRenderer->SetFrameCallback(FlowerBossAniName::BackVine_Dissapear, 14,[this]()
+	BackVineRenderer->SetFrameCallback(FlowerBossAniName::BackVine_Dissapear, 14, [this]()
 		{
 			State.ChangeState(FlowerBossState::Vine_Wait);
 		});
