@@ -33,13 +33,13 @@ void AFlowerLevelMode::BeginPlay()
 void AFlowerLevelMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	ModeState.Update(_DeltaTime);
 }
 
 void AFlowerLevelMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
-
-	UContentsValue::ColMapTexture = nullptr;
 
 	ObjectDelete();
 }
@@ -49,15 +49,10 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	Super::LevelStart(_PrevLevel);
 
 	ObjectInit();
+	StateInit();
 
 	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
 	Iris->ChangeAnimation(GAniName::IrisAni);
-
-	DelayCallBack(0.5f, [this]()
-		{
-			ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
-			ScreenMsg->SetStageStartMsg();
-		});
 	
 }
 
@@ -97,14 +92,14 @@ void AFlowerLevelMode::CreateObject()
 
 void AFlowerLevelMode::ObjectInit()
 {
+	ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
+
 	TimeControlUnit = GetWorld()->SpawnActor<UTimeScaleControlUnit>("TimeControlUnit", EActorType::TimeScaleController);
 	
 	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
-	BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
 
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
 	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
-	BossMonster->SetActorLocation(FVector{ 1380.0f, -680.0f, 100.0f });
 
 	MapFrontObject->SetMapFile("Flower_Background_Front.png");
 	MapFrontObject->SetAutoScale();
@@ -147,7 +142,8 @@ void AFlowerLevelMode::ObjectInit()
 
 void AFlowerLevelMode::ObjectDelete()
 {
-	
+	UContentsValue::ColMapTexture = nullptr;
+
 	if (nullptr != Player)
 	{
 		Player->Destroy();
@@ -183,5 +179,52 @@ void AFlowerLevelMode::ObjectDelete()
 		TimeControlUnit->Destroy();
 		TimeControlUnit = nullptr;
 	}
+
+	if (nullptr != ScreenMsg)
+	{
+		ScreenMsg->Destroy();
+		ScreenMsg = nullptr;
+	}
 }
 
+void AFlowerLevelMode::StateInit()
+{
+	{
+		ModeState.CreateState("Phase1");
+		ModeState.CreateState("GameEnd");
+	}
+
+	{
+		ModeState.SetStartFunction("Phase1", [this]()
+			{
+				// 페이즈1 보스 생성
+				DelayCallBack(0.8f, [this]()
+					{
+						ScreenMsg->SetStageStartMsg();
+					});
+
+				BossMonster = GetWorld()->SpawnActor<ACagneyCarnation>("BossMonster", EActorType::BossMonster);
+				BossMonster->SetActorLocation(FVector{ 1380.0f, -680.0f, 100.0f });
+			});
+		ModeState.SetStartFunction("GameEnd", [this]()
+			{
+				ScreenMsg->SetStageEndMsg();
+			});
+	}
+
+	{
+		ModeState.SetUpdateFunction("Phase1", std::bind(&AFlowerLevelMode::Phase1, this, std::placeholders::_1));
+		ModeState.SetUpdateFunction("GameEnd", [](float) {});
+	}
+
+	ModeState.ChangeState("Phase1");
+}
+
+void AFlowerLevelMode::Phase1(float _DeltaTime)
+{
+	if (true == BossMonster->GetIsPhaseEnd())
+	{
+		ModeState.ChangeState("GameEnd");
+		return;
+	}
+}

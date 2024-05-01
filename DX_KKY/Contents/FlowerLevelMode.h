@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EngineCore/StateManager.h>
 
 // Ό³Έν :
 class UEngineRandom;
@@ -33,6 +34,8 @@ protected:
 
 
 private:
+	UStateManager ModeState;
+
 	UImage* OldFilm = nullptr;
 	UImage* Iris = nullptr;
 
@@ -61,10 +64,13 @@ private:
 	void Tick(float _DeltaTime) override;
 	void LevelEnd(ULevel* _NextLevel) override;
 	void LevelStart(ULevel* _PrevLevel) override;
+	void StateInit();
 
 	void WidgetInit();
 	void CreateObject();
 	void ObjectInit();
 	void ObjectDelete();
+
+	void Phase1(float _DeltaTime);
 };
 

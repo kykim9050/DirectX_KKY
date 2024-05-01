@@ -1,5 +1,6 @@
 #pragma once
 #include "BossUnit.h"
+#include "PhaseUnit.h"
 
 enum class EAttackPattern
 {
@@ -15,7 +16,7 @@ class USpriteRenderer;
 class UCollision;
 class AAcorn;
 class AVine;
-class ACagneyCarnation : public ABossUnit
+class ACagneyCarnation : public ABossUnit, public UPhaseUnit
 {
 	GENERATED_BODY(ABossUnit)
 
