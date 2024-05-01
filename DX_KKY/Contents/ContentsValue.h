@@ -427,7 +427,7 @@ namespace GActorPosValue
 	const float4 Phase1_Boss_Pos = float4(1280.0f, -765.0f, 0.0f);
 	const float4 OctoBullet_RelativePos = float4(-406.0f, 390.0f, 0.0f);
 	const float4 CannonBall_RelativePos = float4(-350.0f, 165.0f, 0.0f);
-	const float4 UvulaBubble_RelativePos = float4(-205.0f, 280.0f, 0.0f);
+	const float4 UvulaBubble_RelativePos = float4(-135.0f, 340.0f, 0.0f);
 }
 
 

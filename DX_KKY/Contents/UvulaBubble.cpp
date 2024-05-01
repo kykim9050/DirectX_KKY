@@ -4,6 +4,8 @@
 
 AUvulaBubble::AUvulaBubble()
 {
+	SetVerticalDir(float4::Left);
+	SetVerticalSpeed(300.0f);
 }
 
 AUvulaBubble::~AUvulaBubble()
@@ -30,6 +32,7 @@ void AUvulaBubble::RendererInit()
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::MonsterBullet);
 	Renderer->SetPlusColor(GColorValue::BrightColor);
+	Renderer->AddPosition(RendererPivotDist);
 }
 
 void AUvulaBubble::AnimationInit()
@@ -40,8 +43,6 @@ void AUvulaBubble::AnimationInit()
 
 	Renderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_Bubble_Spawn, 3, [this]()
 		{
-			SetVerticalDir(float4::Left);
-			SetVerticalSpeed(500.0f);
 			SetSpeedVec(GetVerticalDir() * GetVerticalSpeed());
 
 			Renderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Bubble_Idle);
@@ -82,11 +83,15 @@ void AUvulaBubble::StateInit()
 
 void AUvulaBubble::Fire(float _DeltaTime)
 {
-	if (true == BoundaryCheck(BoundaryValue, 200.0f))
+	if (true == BoundaryCheck(BoundaryValue, 300.0f))
 	{
 		Destroy();
 		return;
 	}
 
+	AccTime += _DeltaTime;
+
+	SetActorRotation(float4(0.0f, 0.0f, -AccTime * RotationSpeed));
+	Renderer->SetRotationDeg(float4(0.0f, 0.0f, AccTime * RotationSpeed));
 	ResultMovementUpdate(_DeltaTime);
 }
