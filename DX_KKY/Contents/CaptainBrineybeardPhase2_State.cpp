@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 
 #include "CaptainBrineybeardPhase2.h"
+#include "FXBase.h"
 
 void ACaptainBrineybeardPhase2::StateInit()
 {
@@ -78,7 +79,10 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		});
 	ShipState.SetStartFunction(PirateBossState::Ship_Phase2_BossDead, [this]()
 		{
+			MainCollider->SetActive(false);
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Death);
+
+			//SetIsPhaseEnd(true);
 		});
 }
 
@@ -130,7 +134,7 @@ void ACaptainBrineybeardPhase2::UpdateFunctionSet()
 			}
 		});
 	ShipState.SetUpdateFunction(PirateBossState::Ship_Phase2_LazarAttack_End, [](float) {});
-	ShipState.SetUpdateFunction(PirateBossState::Ship_Phase2_BossDead, [](float) {});
+	ShipState.SetUpdateFunction(PirateBossState::Ship_Phase2_BossDead, std::bind(&ACaptainBrineybeardPhase2::Dead, this, std::placeholders::_1));
 }
 
 void ACaptainBrineybeardPhase2::EndFunctionSet()
@@ -170,4 +174,23 @@ void ACaptainBrineybeardPhase2::Ship_Idle(float _DeltaTime)
 		UvulaRenderer->ChangeAnimation(PirateBossAniName::Uvula_Shoot);
 	}
 
+}
+
+void ACaptainBrineybeardPhase2::Dead(float _DeltaTime)
+{
+	ExplosionEffDelay -= _DeltaTime;
+
+	if (0.0f >= ExplosionEffDelay)
+	{
+		ExplosionEffDelay = ExplosionEffDelayInit + ExplosionEffDelay;
+
+		float RandomAngleValue = UMath::GetInst().RandomReturnFloat(0.0f, 360.0f);
+		float RandomXPosValue = UMath::GetInst().RandomReturnFloat(860.0f, 1150.0f);
+		float RandomYPosValue = UMath::GetInst().RandomReturnFloat(360.0f, 620.0f);
+
+		AFXBase* ExplosionEffect = GetWorld()->SpawnActor<AFXBase>("ExplosionEffect").get();
+		ExplosionEffect->FXInit(ERenderingOrder::FrontFX, FAniInfo(GAniName::ExplosionEffect, GSpriteName::ExplosionEffect, 0.0416f), false);
+		ExplosionEffect->SetActorLocation(float4(RandomXPosValue, -RandomYPosValue, 0.0f));
+		ExplosionEffect->SetActorRotation(float4(0.0f, 0.0f, RandomAngleValue));
+	}
 }

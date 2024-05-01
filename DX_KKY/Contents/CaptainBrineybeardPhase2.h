@@ -43,6 +43,10 @@ private:
 	float BubbleShootDelay = 2.0f;
 	float BubbleShootDelayInit = 2.0f;
 
+	// Dead ฐüทร
+	float ExplosionEffDelay = 0.4f;
+	float ExplosionEffDelayInit = 0.4f;
+
 	UStateManager ShipState;
 
 	UDefaultSceneComponent* Root = nullptr;
@@ -77,5 +81,6 @@ private:
 	void Ship_Idle(float _DeltaTime);
 
 	void CreateUvulaBubble();
+	void Dead(float _DeltaTime);
 };
 
