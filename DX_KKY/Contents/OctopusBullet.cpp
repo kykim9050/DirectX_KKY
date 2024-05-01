@@ -86,7 +86,7 @@ void AOctopusBullet::AnimationInit()
 	Renderer->CreateAnimation(PirateBossAniName::OctoBullet + Color, "OctoBullet" + Color, 0.0678f);
 	Renderer->CreateAnimation(PirateBossAniName::OctoBullet_Effect + Color, "OctoBullet_Effect" + Color, 0.0416f, false);
 
-	Renderer->SetLastFrameCallback(PirateBossAniName::OctoBullet_Effect + Color, [this]()
+	Renderer->SetFrameCallback(PirateBossAniName::OctoBullet_Effect + Color, 5, [this]()
 		{
 			Destroy();
 		});

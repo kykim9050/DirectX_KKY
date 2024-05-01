@@ -55,7 +55,7 @@ void ACannonBall::AnimationInit()
 	Renderer->CreateAnimation(PirateBossAniName::CannonBall, "Cannonball_Idle", 0.047f);
 	EffectRenderer->CreateAnimation(PirateBossAniName::CannonBall_Effect, "Cannonball_Effect", 0.047f, false);
 
-	EffectRenderer->SetLastFrameCallback(PirateBossAniName::CannonBall_Effect, [this]()
+	EffectRenderer->SetFrameCallback(PirateBossAniName::CannonBall_Effect, 14, [this]()
 		{
 			EffectRenderer->SetActive(false);
 		});

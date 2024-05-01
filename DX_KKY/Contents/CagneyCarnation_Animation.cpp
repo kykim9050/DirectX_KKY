@@ -175,7 +175,7 @@ void ACagneyCarnation::SetAnimationCallback()
 			});
 
 		// Phase2 Spit
-		Renderer->SetLastFrameCallback(FlowerBossAniName::FlowerP2_Spit_Begin, [this]()
+		Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Spit_Begin, 11, [this]()
 			{
 				// 마지막에 Poll도 던지기
 				APollen* NewPollen = GetWorld()->SpawnActor<APollen>("NewPollen").get();
@@ -183,7 +183,7 @@ void ACagneyCarnation::SetAnimationCallback()
 
 				Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Spit_End);
 			});
-		Renderer->SetLastFrameCallback(FlowerBossAniName::FlowerP2_Spit_End, [this]()
+		Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Spit_End, 11, [this]()
 			{
 				State.ChangeState(FlowerBossState::Phase2_Idle);
 			});
