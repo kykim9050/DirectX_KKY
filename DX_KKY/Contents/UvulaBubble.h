@@ -19,6 +19,10 @@ public:
 protected:
 
 private:
+	float AccTime = 0.0f;
+	float RotationSpeed = 250.0f;
+	float4 RendererPivotDist = float4(0.0f, -150.0f, 0.0f);
+
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	void StateInit() override;
