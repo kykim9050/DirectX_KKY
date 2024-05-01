@@ -78,13 +78,13 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			});
 		PirateState.SetStartFunction(PirateBossState::Pirate_Idle, [this]()
 			{
-				PirateRenderer->SetPosition(GRendererPos::Pirate_Idle_ReletivePos);
 				PirateRenderer->ChangeAnimation(PirateBossAniName::Pirate_Idle);
+				PirateRenderer->SetPosition(GRendererPos::Pirate_Idle_ReletivePos);
 			});
 		PirateState.SetStartFunction(PirateBossState::OctopusShoot_Begin, [this]()
 			{
-				PirateRenderer->SetPosition(GRendererPos::Pirate_OctoPusAtt_ReletivePos);
 				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Begin);
+				PirateRenderer->SetPosition(GRendererPos::Pirate_OctoPusAtt_ReletivePos);
 			});
 		PirateState.SetStartFunction(PirateBossState::OctopusShoot_Idle, [this]()
 			{
@@ -106,8 +106,8 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			});
 		PirateState.SetStartFunction(PirateBossState::Pirate_Whistle, [this]()
 			{
-				PirateRenderer->SetPosition(GRendererPos::Pirate_Whistle_RelativePos);
 				PirateRenderer->ChangeAnimation(PirateBossAniName::Pirate_Whistle);
+				PirateRenderer->SetPosition(GRendererPos::Pirate_Whistle_RelativePos);
 			});
 
 	}
@@ -206,7 +206,8 @@ void ACaptainBrineybeardPhase1::Pirate_Idle(float _DeltaTime)
 
 	PickOctopusDelay -= _DeltaTime;
 
-	if (0.0f >= PickOctopusDelay && 8 == PirateRenderer->GetCurAnimationFrame())
+	//if (0.0f >= PickOctopusDelay && 8 == PirateRenderer->GetCurAnimationFrame())
+	if (0.0f >= PickOctopusDelay && true == PirateRenderer->IsCurAnimationEnd())
 	{
 		PickOctopusDelay = PickOctopusDelayInit;
 
