@@ -46,11 +46,11 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 {
 	// ship
 	{
-		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_Blink, [this]()
+		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase1_Blink, 7, [this]()
 			{
 				ShipState.ChangeState(PirateBossState::Ship_Phase1_Idle);
 			});
-		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_CannonAtt, [this]()
+		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase1_CannonAtt, 29, [this]()
 			{
 				ShipState.ChangeState(PirateBossState::Ship_Phase1_Idle);
 			});
@@ -58,7 +58,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			{
 				CreateCannonBall();
 			});
-		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase1_Wince_Begin, [this]()
+		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase1_Wince_Begin, 2, [this]()
 			{
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Wince_Idle);
 			});
@@ -66,7 +66,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			{
 				Phase1_EndSetting();
 			});
-		ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Transform_Begin, [this]()
+		ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Transform_Begin, 2, [this]()
 			{
 				// 페이즈 종료 신호 보내기
 				SetIsPhaseEnd(true);
@@ -77,15 +77,15 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 
 	// Pirate
 	{
-		PirateRenderer->SetLastFrameCallback(PirateBossAniName::Pirate_StopLaugh, [this]()
+		PirateRenderer->SetFrameCallback(PirateBossAniName::Pirate_StopLaugh, 3, [this]()
 			{
 				PirateState.ChangeState(PirateBossState::Pirate_Idle);
 			});
-		PirateRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_Begin, [this]()
+		PirateRenderer->SetFrameCallback(PirateBossAniName::OctopusShoot_Begin, 21, [this]()
 			{
 				PirateState.ChangeState(PirateBossState::OctopusShoot_Idle);
 			});
-		PirateRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_Attack, [this]()
+		PirateRenderer->SetFrameCallback(PirateBossAniName::OctopusShoot_Attack, 19, [this]()
 			{
 				PirateState.ChangeState(PirateBossState::OctopusShoot_Idle);
 			});
@@ -94,7 +94,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 				PirateTopRenderer->SetActive(true);
 				PirateTopRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Begin_Top);
 			});
-		PirateRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_End, [this]()
+		PirateRenderer->SetFrameCallback(PirateBossAniName::OctopusShoot_End, 13, [this]()
 			{
 				PirateState.ChangeState(PirateBossState::Pirate_Idle);
 			});
@@ -102,7 +102,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			{
 				CreateOctopusBullet();
 			});
-		PirateRenderer->SetLastFrameCallback(PirateBossAniName::Pirate_Whistle, [this]()
+		PirateRenderer->SetFrameCallback(PirateBossAniName::Pirate_Whistle, 50, [this]()
 			{
 				PirateState.ChangeState(PirateBossState::Pirate_Idle);
 			});
@@ -111,7 +111,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 				CreateWhistleEffect();
 			});
 
-		PirateTopRenderer->SetLastFrameCallback(PirateBossAniName::OctopusShoot_End_Top, [this]()
+		PirateTopRenderer->SetFrameCallback(PirateBossAniName::OctopusShoot_End_Top, 8, [this]()
 			{
 				PirateTopRenderer->SetActive(false);
 			});
