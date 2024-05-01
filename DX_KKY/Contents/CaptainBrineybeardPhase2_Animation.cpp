@@ -18,7 +18,7 @@ void ACaptainBrineybeardPhase2::CreateAnimation()
 
 	// Uvula
 	UvulaRenderer->CreateAnimation(PirateBossAniName::Uvula_Idle, "Uvula_Idle", 0.047f);
-	UvulaRenderer->CreateAnimation(PirateBossAniName::Uvula_Shoot, "Uvula_Shoot", 0.047f, false);
+	UvulaRenderer->CreateAnimation(PirateBossAniName::Uvula_Shoot, "Uvula_Shoot", 0.053f, false);
 
 	// other
 	JawRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_JawIdle, "Ship_Phase2_JawIdle", 0.047f);

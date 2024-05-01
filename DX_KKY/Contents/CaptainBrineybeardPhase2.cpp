@@ -65,8 +65,8 @@ void ACaptainBrineybeardPhase2::RendererInit()
 	UvulaRenderer->SetAutoSize(1.2f, true);
 	UvulaRenderer->SetPivot(EPivot::RIGHTTOP);
 	UvulaRenderer->SetOrder(ERenderingOrder::Monster1);
-	// 위치 수정
-	UvulaRenderer->SetPosition(float4(-400.0f, 300.0f, 0.0f));
+	UvulaRenderer->SetPosition(float4(-40.0f, 433.0f, 0.0f));
+	UvulaRenderer->SetPlusColor(float4(0.2f, 0.2f, 0.2f));
 	UvulaRenderer->SetActive(false);
 
 	LazarRenderer->SetAutoSize(1.2f, true);
