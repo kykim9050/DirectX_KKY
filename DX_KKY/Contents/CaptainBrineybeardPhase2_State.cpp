@@ -17,6 +17,9 @@ void ACaptainBrineybeardPhase2::StateCreate()
 	ShipState.CreateState(PirateBossState::Ship_Phase2_Transforming);
 	ShipState.CreateState(PirateBossState::Ship_Phase2_Transforming_End);
 	ShipState.CreateState(PirateBossState::Ship_Phase2_Idle);
+	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAtt_Begin);
+	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAtt_Charging);
+	ShipState.CreateState(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd);
 }
 
 void ACaptainBrineybeardPhase2::StartFunctionSet()
@@ -39,6 +42,18 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 			UvulaRenderer->ChangeAnimation(PirateBossAniName::Uvula_Idle);
 			UvulaRenderer->SetActive(true);
 		});
+	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAtt_Begin, [this]()
+		{
+			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_Begin);
+		});
+	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAtt_Charging, [this]()
+		{
+			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_Charging);
+		});
+	ShipState.SetStartFunction(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd, [this]()
+		{
+			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_ChargingEnd);
+		});
 }
 
 void ACaptainBrineybeardPhase2::UpdateFunctionSet()
@@ -49,6 +64,7 @@ void ACaptainBrineybeardPhase2::UpdateFunctionSet()
 			{
 				if (RoarTime <= RoarCount)
 				{
+					RoarCount = 0;
 					ShipState.ChangeState(PirateBossState::Ship_Phase2_Transforming_End);
 					return;
 				}
@@ -57,6 +73,22 @@ void ACaptainBrineybeardPhase2::UpdateFunctionSet()
 		});
 	ShipState.SetUpdateFunction(PirateBossState::Ship_Phase2_Transforming_End, [](float) {});
 	ShipState.SetUpdateFunction(PirateBossState::Ship_Phase2_Idle, std::bind(&ACaptainBrineybeardPhase2::Ship_Idle, this, std::placeholders::_1));
+	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAtt_Begin, [](float) {});
+	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAtt_Charging, [this](float)
+		{
+			if (true == ShipRenderer->IsCurAnimationEnd())
+			{
+				if (ChargingTime <= ChargingCount)
+				{
+					ChargingCount = 0;
+					
+					ShipState.ChangeState(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd);
+					return;
+				}
+				++ChargingCount;
+			}
+		});
+	ShipState.SetUpdateFunction(PirateBossState::Ship_phase2_LazarAtt_ChargingEnd, [](float) {});
 }
 
 void ACaptainBrineybeardPhase2::EndFunctionSet()
@@ -70,6 +102,15 @@ void ACaptainBrineybeardPhase2::EndFunctionSet()
 
 void ACaptainBrineybeardPhase2::Ship_Idle(float _DeltaTime)
 {
+	LazarShootDelay -= _DeltaTime;
+
+	if (0.0f >= LazarShootDelay)
+	{
+		LazarShootDelay = LazarShootDelayInit;
+		ShipState.ChangeState(PirateBossState::Ship_phase2_LazarAtt_Begin);
+		return;
+	}
+
 
 	BubbleShootDelay -= _DeltaTime;
 

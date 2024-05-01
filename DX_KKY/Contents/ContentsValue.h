@@ -281,6 +281,10 @@ namespace PirateBossAniName
 
 	const std::string Uvula_Idle = "Uvula_Idle";
 	const std::string Uvula_Shoot = "Uvula_Shoot";
+
+	const std::string Ship_Phase2_LazarAtt_Begin = "Ship_Phase2_LazarAtt_Begin";
+	const std::string Ship_Phase2_LazarAtt_Charging = "Ship_Phase2_LazarAtt_Charging";
+	const std::string Ship_Phase2_LazarAtt_ChargingEnd = "Ship_Phase2_LazarAtt_ChargingEnd";
 	
 }
 
@@ -293,8 +297,11 @@ namespace PirateBossState
 	const std::string Ship_Phase2_Transforming = "Ship_Phase2_Transforming";
 	const std::string Ship_Phase2_Transforming_End = "Ship_Phase2_Transforming_End";
 	const std::string Ship_Phase2_Idle = "Ship_Phase2_Idle";
+	const std::string Ship_phase2_LazarAtt_Begin = "Ship_phase2_LazarAtt_Begin";
+	const std::string Ship_phase2_LazarAtt_Charging = "Ship_phase2_LazarAtt_Charging";
+	const std::string Ship_phase2_LazarAtt_ChargingEnd = "Ship_phase2_LazarAtt_ChargingEnd";
 	
-
+	
 	const std::string Pirate_Intro = "Pirate_Intro";
 	const std::string Pirate_Laugh = "Pirate_Laugh";
 	const std::string Pirate_Idle = "Pirate_Idle";

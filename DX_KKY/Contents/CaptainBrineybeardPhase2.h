@@ -26,6 +26,12 @@ public:
 protected:
 
 private:
+	// Lazar 관련
+	int ChargingTime = 10;
+	int ChargingCount = 0;
+	float LazarShootDelay = 5.0f;
+	float LazarShootDelayInit = 5.0f;
+
 	// transforming 관련
 	int RoarTime = 22;
 	int RoarCount = 0;
