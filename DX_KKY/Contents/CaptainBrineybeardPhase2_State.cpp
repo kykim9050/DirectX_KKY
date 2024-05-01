@@ -82,7 +82,7 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 			MainCollider->SetActive(false);
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Death);
 
-			//SetIsPhaseEnd(true);
+			SetIsPhaseEnd(true);
 		});
 }
 

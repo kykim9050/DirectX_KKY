@@ -7,6 +7,7 @@
 #include "CaptainBrineybeardPhase1.h"
 #include "CaptainBrineybeardPhase2.h"
 #include "TimeScaleControlUnit.h"
+#include "Message.h"
 
 APirateLevelMode::APirateLevelMode()
 {
@@ -122,12 +123,19 @@ void APirateLevelMode::StateInit()
 	{
 		ModeState.CreateState("Phase1");
 		ModeState.CreateState("Phase2");
+		ModeState.CreateState("GameEnd");
 	}
 
 	{
 		ModeState.SetStartFunction("Phase1", [this]()
 			{
 				// 페이즈1 보스 생성
+				DelayCallBack(0.5f, [this]()
+					{
+						ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
+						ScreenMsg->SetStageStartMsg();
+					});
+
 				Phase1_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase1>("Phase1_Boss", EActorType::BossMonster);
 				Phase1_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
 			});
@@ -137,11 +145,17 @@ void APirateLevelMode::StateInit()
 				Phase2_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase2>("Phase2_Boss ", EActorType::BossMonster);
 				Phase2_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
 			});
+		ModeState.SetStartFunction("GameEnd", [this]()
+			{
+				ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
+				ScreenMsg->SetStageEndMsg();
+			});
 	}
 	
 	{
 		ModeState.SetUpdateFunction("Phase1", std::bind(&APirateLevelMode::Phase1, this, std::placeholders::_1));
 		ModeState.SetUpdateFunction("Phase2", std::bind(&APirateLevelMode::Phase2, this, std::placeholders::_1));
+		ModeState.SetUpdateFunction("GameEnd", [](float) {});
 	}
 
 	{
@@ -169,5 +183,9 @@ void APirateLevelMode::Phase1(float _DeltaTime)
 
 void APirateLevelMode::Phase2(float _DeltaTime)
 {
-	int a = 0;
+	if (true == Phase2_Boss->GetIsPhaseEnd())
+	{
+		ModeState.ChangeState("GameEnd");
+		return;
+	}
 }
