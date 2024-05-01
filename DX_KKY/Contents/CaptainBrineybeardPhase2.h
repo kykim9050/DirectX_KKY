@@ -50,8 +50,11 @@ private:
 	USpriteRenderer* ShipRenderer = nullptr;
 	USpriteRenderer* JawRenderer = nullptr;
 	USpriteRenderer* UvulaRenderer = nullptr;
+	USpriteRenderer* LazarRenderer = nullptr;
 
+	UCollision* LazarCollider = nullptr;
 	UCollision* MainCollider = nullptr;
+
 
 private:
 	void BeginPlay() override;

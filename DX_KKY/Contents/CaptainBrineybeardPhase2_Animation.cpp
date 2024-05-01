@@ -22,6 +22,10 @@ void ACaptainBrineybeardPhase2::CreateAnimation()
 
 	// other
 	JawRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_JawIdle, "Ship_Phase2_JawIdle", 0.047f);
+	LazarRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_Lazar_Begin, "Ship_Lazar", 0.047f, false, 0, 2);
+	LazarRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_Lazar_Idle, "Ship_Lazar", 0.047f, true, 3, 6);
+	LazarRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_Lazar_End, "Ship_Lazar", 0.067f, false, 2, 0);
+
 }
 
 void ACaptainBrineybeardPhase2::SetAnimationCallback()
@@ -54,4 +58,9 @@ void ACaptainBrineybeardPhase2::SetAnimationCallback()
 			UvulaRenderer->ChangeAnimation(PirateBossAniName::Uvula_Idle);
 		});
 
+	// Other
+	LazarRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_Lazar_Begin, 3, [this]()
+		{
+			LazarRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Lazar_Idle);
+		});
 }
