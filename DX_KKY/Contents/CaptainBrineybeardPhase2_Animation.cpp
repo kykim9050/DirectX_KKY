@@ -11,7 +11,7 @@ void ACaptainBrineybeardPhase2::CreateAnimation()
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_Begin, "Ship_phase2_Lazar_Begin", 0.047f, false, 0, 5);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_Charging, "Ship_phase2_Lazar_Begin", 0.047f, true, 6, 8);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAtt_ChargingEnd, "Ship_phase2_Lazar_Begin", 0.047f, false, 9, 13);
-	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAttack1, "Ship_Phase2_LazarShot", 0.047f, false);
+	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAttack1, "Ship_Phase2_LazarShot", 0.047f, false, 0, 4);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAttack2, "Ship_Phase2_LazarShot", 0.047f, true, 1, 4);
 	ShipRenderer->CreateAnimation(PirateBossAniName::Ship_Phase2_LazarAttack_End, "Ship_Phase2_LazarShot", 0.067f, false, 5, 5);
 
@@ -27,19 +27,19 @@ void ACaptainBrineybeardPhase2::CreateAnimation()
 void ACaptainBrineybeardPhase2::SetAnimationCallback()
 {
 	// Ship
-	ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase2_Transform_End, [this]()
+	ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_Transform_End, 7, [this]()
 		{
 			ShipState.ChangeState(PirateBossState::Ship_Phase2_Idle);
 		});
-	ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase2_LazarAtt_Begin, [this]()
+	ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_LazarAtt_Begin, 6, [this]()
 		{
 			ShipState.ChangeState(PirateBossState::Ship_phase2_LazarAtt_Charging);
 		});
-	ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase2_LazarAtt_ChargingEnd, [this]()
+	ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_LazarAtt_ChargingEnd, 5, [this]()
 		{
 			ShipState.ChangeState(PirateBossState::Ship_phase2_LazarAttack);
 		});
-	ShipRenderer->SetLastFrameCallback(PirateBossAniName::Ship_Phase2_LazarAttack1, [this]()
+	ShipRenderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_LazarAttack1, 5, [this]()
 		{
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAttack2);
 		});
@@ -49,7 +49,7 @@ void ACaptainBrineybeardPhase2::SetAnimationCallback()
 		});
 
 	// Uvula
-	UvulaRenderer->SetLastFrameCallback(PirateBossAniName::Uvula_Shoot, [this]()
+	UvulaRenderer->SetFrameCallback(PirateBossAniName::Uvula_Shoot, 13, [this]()
 		{
 			UvulaRenderer->ChangeAnimation(PirateBossAniName::Uvula_Idle);
 		});
