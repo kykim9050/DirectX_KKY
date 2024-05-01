@@ -32,7 +32,7 @@ void AUvulaBubble::RendererInit()
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::MonsterBullet);
 	Renderer->SetPlusColor(GColorValue::BrightColor);
-	Renderer->AddPosition(RendererPivotDist);
+	Renderer->AddPosition(ComponentPivotDist);
 }
 
 void AUvulaBubble::AnimationInit()
@@ -43,15 +43,16 @@ void AUvulaBubble::AnimationInit()
 
 	Renderer->SetFrameCallback(PirateBossAniName::Ship_Phase2_Bubble_Spawn, 3, [this]()
 		{
-			SetSpeedVec(GetVerticalDir() * GetVerticalSpeed());
-
 			Renderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Bubble_Idle);
 		});
 }
 
 void AUvulaBubble::ColliderInit()
 {
-
+	Collision->SetScale(GColliderScale::PirateBoss_Bubble_ColScale);
+	Collision->SetCollisionGroup(ECollisionGroup::MonsterBullet);
+	Collision->SetCollisionType(ECollisionType::Rect);
+	Collision->AddPosition(ComponentPivotDist);
 }
 
 void AUvulaBubble::StateInit()
@@ -65,6 +66,8 @@ void AUvulaBubble::StateInit()
 		State.SetStartFunction(GStateName::Bullet_Init, []() {});
 		State.SetStartFunction(GStateName::Bullet_Fire, [this]()
 			{
+				SetSpeedVec(GetVerticalDir() * GetVerticalSpeed());
+
 				Renderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_Bubble_Spawn);
 			});
 	}
@@ -93,5 +96,6 @@ void AUvulaBubble::Fire(float _DeltaTime)
 
 	SetActorRotation(float4(0.0f, 0.0f, -AccTime * RotationSpeed));
 	Renderer->SetRotationDeg(float4(0.0f, 0.0f, AccTime * RotationSpeed));
+	Collision->SetRotationDeg(float4(0.0f, 0.0f, AccTime * RotationSpeed));
 	ResultMovementUpdate(_DeltaTime);
 }

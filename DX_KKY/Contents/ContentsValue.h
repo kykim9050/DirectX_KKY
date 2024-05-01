@@ -349,6 +349,7 @@ namespace GColliderScale
 	const float4 PirateBoss_Phase2_ColScale = float4(100.0f, 150.0f, 1.0f);
 	const float4 PirateBoss_Cannon_ColScale = float4(70.0f, 90.0f, 1.0f);
 	const float4 PirateBoss_Lazar_ColScale = float4(1200.0f, 150.0f, 1.0f);
+	const float4 PirateBoss_Bubble_ColScale = float4(80.0f, 80.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
