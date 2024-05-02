@@ -41,6 +41,7 @@ private:
 
 	// Attack ฐüทร
 	float AttackRange = 50.0f;
+	float DropEndLine = 490.0f;
 
 private:
 	void BeginPlay() override;
@@ -55,6 +56,7 @@ private:
 	void DebugUpdate();
 
 	bool PlayerNearCheck(float4 _MyPos);
+	bool DropEndLineCheck(float4 _MyPos);
 
 	// State
 	void StateInit();
