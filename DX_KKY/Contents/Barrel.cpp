@@ -11,6 +11,8 @@ ABarrel::ABarrel()
 
 	RendererInit();
 	ColliderInit();
+
+	SetGravityAccVec(float4::Down * 1500.0f);
 }
 
 ABarrel::~ABarrel()
@@ -84,7 +86,12 @@ void ABarrel::CreateAnimation()
 
 void ABarrel::ColliderInit()
 {
+	MainCollider = CreateDefaultSubObject<UCollision>("MainCollider");
+	MainCollider->SetupAttachment(Root);
 
+	MainCollider->SetScale(GColliderScale::Barrel_ColScale);
+	MainCollider->SetCollisionGroup(ECollisionGroup::Trap);
+	MainCollider->SetCollisionType(ECollisionType::Rect);
 }
 
 void ABarrel::SetAnimationCallback()
@@ -147,18 +154,22 @@ void ABarrel::StateInit()
 	{
 		State.SetStartFunction(PirateBossState::Barrel_Intro, [this]()
 			{
+				MainCollider->SetPosition(GColliderPosInfo::Barrel_Idle_RelPos);
+				BarrelRenderer->SetPosition(GRendererPos::Barrel_AttWait_RelativePos);
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 			});
 		State.SetStartFunction(PirateBossState::Barrel_AttWait_Idle, [this]()
 			{
+				MainCollider->SetPosition(GColliderPosInfo::Barrel_Idle_RelPos);
 				BarrelRenderer->SetPosition(GRendererPos::Barrel_AttWait_RelativePos);
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 			});
 		State.SetStartFunction(PirateBossState::Barrel_Drop, [this]()
 			{
-				SetSpeedVec(float4::Zero);
+				MainCollider->SetPosition(GColliderPosInfo::Barrel_Drop_RelPos);
 				BarrelRenderer->SetPosition(GRendererPos::Barrel_Drop_RelativePos);
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Drop_Begin);
+				SetSpeedVec(float4::Zero);
 			});
 	}
 
@@ -198,6 +209,19 @@ bool ABarrel::PlayerNearCheck(float4 _MyPos)
 	return false;
 }
 
+bool ABarrel::DropEndLineCheck(float4 _MyPos)
+{
+	float4 MyPos = _MyPos;
+	MyPos.Y *= -1;
+
+	if (MyPos.Y >= DropEndLine)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void ABarrel::AttWait_Idle(float _DeltaTime)
 {
 	float4 MyPos = GetActorLocation();
@@ -225,8 +249,9 @@ void ABarrel::AttWait_Idle(float _DeltaTime)
 
 void ABarrel::Drop(float _DeltaTime)
 {
-	if (-GetActorLocation().Y >= 500.0f)
+	if (true == DropEndLineCheck(GetActorLocation()))
 	{
+		int a = 0;
 		return;
 	}
 

@@ -377,6 +377,8 @@ namespace GColliderScale
 	const float4 PirateBoss_Cannon_ColScale = float4(70.0f, 90.0f, 1.0f);
 	const float4 PirateBoss_Lazar_ColScale = float4(1200.0f, 150.0f, 1.0f);
 	const float4 PirateBoss_Bubble_ColScale = float4(80.0f, 80.0f, 1.0f);
+
+	const float4 Barrel_ColScale = float4(150.0f, 100.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
@@ -396,6 +398,9 @@ namespace GColliderPosInfo
 	const float4 PirateBoss_Phase2_RelPos = float4(-80.0f, 385.0f, 0.0f);
 	const float4 PirateBoss_CannonRelPos = float4(-60.0f, 0.0f, 0.0f);
 	const float4 PirateBoss_Lazar_RelPos = float4(-835.0f, 313.0f, 0.0f);
+
+	const float4 Barrel_Idle_RelPos = float4(0.0f, -50.0f, 0.0f);
+	const float4 Barrel_Drop_RelPos = float4(-2.0f, -56.0f, 0.0f);
 }
 
 namespace GRendererPos

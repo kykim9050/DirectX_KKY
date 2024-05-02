@@ -45,6 +45,10 @@ protected:
 	{
 		GravityVec = _GravityVec;
 	}
+	inline void SetGravityAccVec(float4 _GravityAccVec)
+	{
+		GravityAccVec = _GravityAccVec;
+	}
 	
 
 	inline void SetAvailableAddJumpVec(bool _Value)
@@ -75,6 +79,7 @@ protected:
 	{
 		return PrevGravityVec;
 	}
+
 
 
 
