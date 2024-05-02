@@ -24,7 +24,8 @@ void ABarrel::BeginPlay()
 	StateInit();
 
 	{
-		Renderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Begin);
+		BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Begin);
+		DustRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Dust);
 	}
 }
 
@@ -37,8 +38,16 @@ void ABarrel::Tick(float _DeltaTime)
 
 void ABarrel::RendererInit()
 {
-	Renderer = CreateDefaultSubObject<USpriteRenderer>("BarrelRenderer");
-	Renderer->SetupAttachment(Root);
+	BarrelRenderer = CreateDefaultSubObject<USpriteRenderer>("BarrelRenderer");
+	BarrelRenderer->SetupAttachment(Root);
+	BarrelRenderer->SetAutoSize(1.0f, true);
+	BarrelRenderer->SetOrder(ERenderingOrder::SubMonster1);
+
+	DustRenderer = CreateDefaultSubObject<USpriteRenderer>("DustRenderer");
+	DustRenderer->SetupAttachment(Root);
+	DustRenderer->SetAutoSize(1.0f, true);
+	DustRenderer->SetOrder(ERenderingOrder::Dust);
+	DustRenderer->SetActive(false);
 }
 
 void ABarrel::AnimationInit()
@@ -49,57 +58,68 @@ void ABarrel::AnimationInit()
 
 void ABarrel::CreateAnimation()
 {
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_Normal_Idle, "Barrel_Normal_Idle.png", 0.047f, false, 0, 10);
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_Normal_IdleRev, "Barrel_Normal_Idle.png", 0.047f, false, 9, 1);
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_AttWait_Idle, "Pirate_Barrel_AttWait_Idle.png", 0.047f, false, 0, 10);
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_AttWait_IdleRev, "Pirate_Barrel_AttWait_Idle.png", 0.047f, false, 9, 1);
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_Drop_Begin, "Pirate_Barrel_Drop.png", 0.067f, false);
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_Dropping, "Pirate_Barrel_Drop.png", 0.067f, true, 1, 3);
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Begin, "Pirate_Barrel_Smash.png", 0.067f, false);
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_Smashing, "Pirate_Barrel_Smash.png", 0.067f, true, 3, 4);
+	// Barrel
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Normal_Idle, "Barrel_Normal_Idle.png", 0.047f, false, 0, 10);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Normal_IdleRev, "Barrel_Normal_Idle.png", 0.047f, false, 9, 1);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_AttWait_Idle, "Pirate_Barrel_AttWait_Idle.png", 0.047f, false, 0, 10);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_AttWait_IdleRev, "Pirate_Barrel_AttWait_Idle.png", 0.047f, false, 9, 1);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Drop_Begin, "Pirate_Barrel_Drop.png", 0.067f, false);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Dropping, "Pirate_Barrel_Drop.png", 0.067f, true, 1, 3);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Begin, "Pirate_Barrel_Smash.png", 0.067f, false);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smashing, "Pirate_Barrel_Smash.png", 0.067f, true, 3, 4);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Begin, "Pirate_Barrel_BackUp.png", 0.067f, false);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Idle, "Pirate_Barrel_BackUp.png", 0.067f, true, 3, 5);
 
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Begin, "Pirate_Barrel_BackUp.png", 0.067f, false);
-	Renderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Idle, "Pirate_Barrel_BackUp.png", 0.067f, true, 3, 5);
+	// Dust
+	DustRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Dust, "Barrel_Smash_Dust.png", 0.047f, false);
 }
 
 
 void ABarrel::ColliderInit()
 {
-	Renderer->SetAutoSize(1.0f, true);
-	Renderer->SetOrder(ERenderingOrder::Monster2);
+
 }
 
 void ABarrel::SetAnimationCallback()
 {
-	Renderer->SetFrameCallback(PirateBossAniName::Barrel_Normal_Idle, 11, [this]()
+
+	// Barrel
+	BarrelRenderer->SetFrameCallback(PirateBossAniName::Barrel_Normal_Idle, 11, [this]()
 		{
-			Renderer->ChangeAnimation(PirateBossAniName::Barrel_Normal_IdleRev);
+			BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Normal_IdleRev);
 		});
-	Renderer->SetFrameCallback(PirateBossAniName::Barrel_Normal_IdleRev, 9, [this]()
+	BarrelRenderer->SetFrameCallback(PirateBossAniName::Barrel_Normal_IdleRev, 9, [this]()
 		{
-			Renderer->ChangeAnimation(PirateBossAniName::Barrel_Normal_Idle);
+			BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Normal_Idle);
 		});
-	Renderer->SetFrameCallback(PirateBossAniName::Barrel_AttWait_Idle, 11, [this]()
+	BarrelRenderer->SetFrameCallback(PirateBossAniName::Barrel_AttWait_Idle, 11, [this]()
 		{
-			Renderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_IdleRev);
+			BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_IdleRev);
 		});
-	Renderer->SetFrameCallback(PirateBossAniName::Barrel_AttWait_IdleRev, 9, [this]()
+	BarrelRenderer->SetFrameCallback(PirateBossAniName::Barrel_AttWait_IdleRev, 9, [this]()
 		{
-			Renderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
+			BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 		});
-	Renderer->SetFrameCallback(PirateBossAniName::Barrel_Drop_Begin, 4, [this]()
+	BarrelRenderer->SetFrameCallback(PirateBossAniName::Barrel_Drop_Begin, 4, [this]()
 		{
-			Renderer->ChangeAnimation(PirateBossAniName::Barrel_Dropping);
+			BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Dropping);
 		});
-	Renderer->SetFrameCallback(PirateBossAniName::Barrel_Smash_Begin, 5, [this]()
+	BarrelRenderer->SetFrameCallback(PirateBossAniName::Barrel_Smash_Begin, 5, [this]()
 		{
-			Renderer->ChangeAnimation(PirateBossAniName::Barrel_Smashing);
+			BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smashing);
 		});
-	Renderer->SetFrameCallback(PirateBossAniName::Barrel_BackUp_Begin, 6, [this]()
+	BarrelRenderer->SetFrameCallback(PirateBossAniName::Barrel_BackUp_Begin, 6, [this]()
 		{
-			Renderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Idle);
+			BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Idle);
 		});
 
+
+	// Dust
+	DustRenderer->SetFrameCallback(PirateBossAniName::Barrel_Smash_Dust, 23, [this]()
+		{
+			// 나중에 상태 끝날 때 애니메이션 초기화도 해줘야 함
+			DustRenderer->SetActive(false);
+		});
 }
 
 void ABarrel::StateInit()
