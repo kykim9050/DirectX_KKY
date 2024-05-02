@@ -39,6 +39,9 @@ private:
 	int IntroRockTime = 4;
 	int IntroRockCount = 0;
 
+	// Attack ฐüทร
+	float AttackRange = 50.0f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -49,9 +52,10 @@ private:
 	void SetAnimationCallback();
 	void ColliderInit();
 
-	void StateInit();
+	bool PlayerNearCheck(float4 _MyPos);
 
 	// State
+	void StateInit();
 	void AttWait_Idle(float _DeltaTime);
 };
 
