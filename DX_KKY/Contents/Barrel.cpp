@@ -66,12 +66,12 @@ void ABarrel::CreateAnimation()
 	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Normal_IdleRev, "Barrel_Normal_Idle.png", 0.047f, false, 9, 1);
 	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_AttWait_Idle, "Pirate_Barrel_AttWait_Idle.png", 0.047f, false, 0, 10);
 	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_AttWait_IdleRev, "Pirate_Barrel_AttWait_Idle.png", 0.047f, false, 9, 1);
-	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Drop_Begin, "Pirate_Barrel_Drop.png", 0.067f, false);
-	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Dropping, "Pirate_Barrel_Drop.png", 0.067f, true, 1, 3);
-	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Begin, "Pirate_Barrel_Smash.png", 0.067f, false);
-	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smashing, "Pirate_Barrel_Smash.png", 0.067f, true, 3, 4);
-	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Begin, "Pirate_Barrel_BackUp.png", 0.067f, false);
-	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Idle, "Pirate_Barrel_BackUp.png", 0.067f, true, 3, 5);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Drop_Begin, "Pirate_Barrel_Drop.png", 0.057f, false);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Dropping, "Pirate_Barrel_Drop.png", 0.057f, true, 1, 3);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Begin, "Pirate_Barrel_Smash.png", 0.057f, false);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smashing, "Pirate_Barrel_Smash.png", 0.057f, true, 3, 4);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Begin, "Pirate_Barrel_BackUp.png", 0.057f, false);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Idle, "Pirate_Barrel_BackUp.png", 0.057f, true, 3, 5);
 
 	// Dust
 	DustRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Dust, "Barrel_Smash_Dust.png", 0.047f, false);
@@ -150,11 +150,12 @@ void ABarrel::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Barrel_AttWait_Idle, [this]()
 			{
-				BarrelRenderer->SetPosition(float4(0.0f, 0.0f, 0.0f));
+				BarrelRenderer->SetPosition(GRendererPos::Barrel_AttWait_RelativePos);
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 			});
 		State.SetStartFunction(PirateBossState::Barrel_Drop, [this]()
 			{
+				BarrelRenderer->SetPosition(GRendererPos::Barrel_Drop_RelativePos);
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Drop_Begin);
 			});
 	}
@@ -222,5 +223,15 @@ void ABarrel::AttWait_Idle(float _DeltaTime)
 
 void ABarrel::Drop(float _DeltaTime)
 {
-	int a = 0;
+	static float DelayTime = 2.0f;
+
+	DelayTime -= _DeltaTime;
+
+	if (0.0f >= DelayTime)
+	{
+		DelayTime = 2.0f;
+
+		State.ChangeState(PirateBossState::Barrel_AttWait_Idle);
+		return;
+	}
 }

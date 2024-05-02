@@ -433,8 +433,10 @@ namespace GRendererPos
 	const float4 Pirate_WhistleEff_RelativePos = float4(-280.0f, 575.0f, 0.0f);
 
 	const float4 Ship_Lazar_RelativePos = float4(-135.0f, 313.0f, 0.0f);
-
 	const float4 Ship_Uvula_RelativePos = float4(-40.0f, 433.0f, 0.0f);
+
+	const float4 Barrel_AttWait_RelativePos = float4(0.0f, 0.0f, 0.0f);
+	const float4 Barrel_Drop_RelativePos = float4(-2.0f, 14.0f, 0.0f);
 }
 
 namespace GBoundaryPos
