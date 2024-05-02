@@ -138,10 +138,15 @@ void ABarrel::SetAnimationCallback()
 void ABarrel::StateInit()
 {
 	{
+		State.CreateState(PirateBossState::Barrel_Intro);
 		State.CreateState(PirateBossState::Barrel_AttWait_Idle);
 	}
 
 	{
+		State.SetStartFunction(PirateBossState::Barrel_Intro, [this]()
+			{
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
+			});
 		State.SetStartFunction(PirateBossState::Barrel_AttWait_Idle, [this]()
 			{
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
@@ -149,10 +154,23 @@ void ABarrel::StateInit()
 	}
 
 	{
+		State.SetUpdateFunction(PirateBossState::Barrel_Intro, [this](float)
+			{
+				if (true == BarrelRenderer->IsCurAnimationEnd())
+				{
+					if (IntroRockTime <= IntroRockCount)
+					{
+						IntroRockCount = 0;
+						State.ChangeState(PirateBossState::Barrel_AttWait_Idle);
+						return;
+					}
+					++IntroRockCount;
+				}
+			});
 		State.SetUpdateFunction(PirateBossState::Barrel_AttWait_Idle, std::bind(&ABarrel::AttWait_Idle, this, std::placeholders::_1));
 	}
 
-	State.ChangeState(PirateBossState::Barrel_AttWait_Idle);
+	State.ChangeState(PirateBossState::Barrel_Intro);
 }
 
 void ABarrel::AttWait_Idle(float _DeltaTime)

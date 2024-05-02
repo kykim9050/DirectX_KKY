@@ -35,6 +35,10 @@ private:
 	float4 MoveDir = float4::Left;
 	float MoveSpeed = 100.0f;
 
+	// Intro
+	int IntroRockTime = 4;
+	int IntroRockCount = 0;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
