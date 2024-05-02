@@ -45,6 +45,9 @@ private:
 	int SmashTime = 8;
 	int SmashCount = 0;
 
+	// Attack After
+	float BackUpSpeed = 350.0f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -65,5 +68,6 @@ private:
 	void AttWait_Idle(float _DeltaTime);
 	void Drop(float _DeltaTime);
 	void BackUp(float _DeltaTime);
+	void Normal_Idle(float _DeltaTime);
 };
 
