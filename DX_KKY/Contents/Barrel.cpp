@@ -140,6 +140,7 @@ void ABarrel::StateInit()
 	{
 		State.CreateState(PirateBossState::Barrel_Intro);
 		State.CreateState(PirateBossState::Barrel_AttWait_Idle);
+		State.CreateState(PirateBossState::Barrel_Drop);
 	}
 
 	{
@@ -149,7 +150,12 @@ void ABarrel::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Barrel_AttWait_Idle, [this]()
 			{
+				BarrelRenderer->SetPosition(float4(0.0f, 0.0f, 0.0f));
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
+			});
+		State.SetStartFunction(PirateBossState::Barrel_Drop, [this]()
+			{
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Drop_Begin);
 			});
 	}
 
@@ -168,9 +174,25 @@ void ABarrel::StateInit()
 				}
 			});
 		State.SetUpdateFunction(PirateBossState::Barrel_AttWait_Idle, std::bind(&ABarrel::AttWait_Idle, this, std::placeholders::_1));
+		State.SetUpdateFunction(PirateBossState::Barrel_Drop, std::bind(&ABarrel::Drop, this, std::placeholders::_1));
 	}
 
 	State.ChangeState(PirateBossState::Barrel_Intro);
+}
+
+bool ABarrel::PlayerNearCheck(float4 _MyPos)
+{
+	float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
+	float4 MyPos = _MyPos;
+
+	float XValue = abs(PlayerPos.X - MyPos.X);
+
+	if (AttackRange >= XValue)
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void ABarrel::AttWait_Idle(float _DeltaTime)
@@ -179,7 +201,8 @@ void ABarrel::AttWait_Idle(float _DeltaTime)
 
 	if (true == PlayerNearCheck(MyPos))
 	{
-		int a = 0;
+		State.ChangeState(PirateBossState::Barrel_Drop);
+		return;
 	}
 
 	if (MyPos.X <= PirateBossStageValue::Barrel_Moving_XBound_Min)
@@ -197,17 +220,7 @@ void ABarrel::AttWait_Idle(float _DeltaTime)
 	ResultMovementUpdate(_DeltaTime);
 }
 
-bool ABarrel::PlayerNearCheck(float4 _MyPos)
+void ABarrel::Drop(float _DeltaTime)
 {
-	float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
-	float4 MyPos = _MyPos;
-
-	float XValue = abs(PlayerPos.X - MyPos.X);
-
-	if (AttackRange >= XValue)
-	{
-		return true;
-	}
-
-	return false;
+	int a = 0;
 }
