@@ -52,6 +52,8 @@ void UContentsCore::Initialize()
 	{
 		UEngineSprite::CreateCutting("Barrel_Normal_Idle.png", 6, 2);
 		UEngineSprite::CreateCutting("Pirate_Barrel_AttWait_Idle.png", 6, 2);
+		UEngineSprite::CreateCutting("Pirate_Barrel_Drop.png", 4, 1);
+		
 	}
 
 	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("ContentsDebugWindow");

@@ -305,9 +305,11 @@ namespace PirateBossAniName
 
 	const std::string Barrel_Normal_Idle = "Barrel_Normal_Idle";
 	const std::string Barrel_Normal_IdleRev = "Barrel_Normal_IdleRev";
-	
 	const std::string Barrel_AttWait_Idle = "Barrel_AttWait_Idle";
 	const std::string Barrel_AttWait_IdleRev = "Barrel_AttWait_IdleRev";
+	const std::string Barrel_Drop_Begin = "Barrel_Drop_Begin";
+	const std::string Barrel_Dropping = "Barrel_Dropping";
+
 }
 
 namespace PirateBossState
