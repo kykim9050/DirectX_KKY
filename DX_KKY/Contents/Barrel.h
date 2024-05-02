@@ -66,6 +66,7 @@ private:
 
 	bool PlayerNearCheck(float4 _MyPos);
 	bool DropEndLineCheck(float4 _MyPos);
+	void CalGravityVec(float _DeltaTime) override;
 
 	// State
 	void StateInit();

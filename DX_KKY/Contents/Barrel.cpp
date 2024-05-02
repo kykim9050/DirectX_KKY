@@ -354,3 +354,10 @@ void ABarrel::DebugUpdate()
 	}
 }
 
+void ABarrel::CalGravityVec(float _DeltaTime)
+{
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	AddGravityVec(_DeltaTime);
+}
