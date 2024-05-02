@@ -24,7 +24,7 @@ public:
 protected:
 
 private:
-	UStateManager State;
+	//UStateManager State;
 
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* Renderer = nullptr;
