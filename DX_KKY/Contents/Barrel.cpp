@@ -12,7 +12,7 @@ ABarrel::ABarrel()
 	RendererInit();
 	ColliderInit();
 
-	SetGravityAccVec(float4::Down * 1500.0f);
+	SetGravityAccVec(float4::Down * 1700.0f);
 }
 
 ABarrel::~ABarrel()
@@ -47,13 +47,14 @@ void ABarrel::RendererInit()
 	DustRenderer->SetAutoSize(1.0f, true);
 	DustRenderer->SetOrder(ERenderingOrder::FrontDust);
 	DustRenderer->SetActive(false);
+	DustRenderer->SetPosition(float4(0.0f, -170.0f, 0.0f));
 
 	EffectRenderer = CreateDefaultSubObject<USpriteRenderer>("EffectRenderer");
 	EffectRenderer->SetupAttachment(Root);
 	EffectRenderer->SetAutoSize(1.0f, true);
 	EffectRenderer->SetOrder(ERenderingOrder::FrontFX);
 	EffectRenderer->SetActive(false);
-	
+	EffectRenderer->SetPosition(float4(0.0f, -160.0f, 0.0f));
 }
 
 void ABarrel::AnimationInit()
@@ -80,10 +81,10 @@ void ABarrel::CreateAnimation()
 
 
 	// Dust
-	DustRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Dust, "Barrel_Smash_Dust.png", 0.047f, false);
+	DustRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Dust, "Barrel_Smash_Dust.png", 0.037f, false);
 
 	// Effect
-	EffectRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Effect, "Barrel_Smash_FX.png", 0.047f, false);
+	EffectRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Effect, "Barrel_Smash_FX.png", 0.037f, false);
 }
 
 
@@ -187,6 +188,14 @@ void ABarrel::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Barrel_Smash, [this]()
 			{
+				DustRenderer->AnimationReset();
+				DustRenderer->SetActive(true);
+				DustRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Dust);
+
+				EffectRenderer->AnimationReset();
+				EffectRenderer->SetActive(true);
+				EffectRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Effect);
+
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Begin);
 				BarrelRenderer->SetPosition(GRendererPos::Barrel_Smash_RelativePos);
 				SetGravityVec(float4::Zero);
