@@ -348,7 +348,7 @@ namespace PirateBossState
 	
 	const std::string Barrel_Intro = "Barrel_Intro";
 	const std::string Barrel_AttWait_Idle = "Barrel_AttWait_Idle";
-	
+	const std::string Barrel_Drop = "Barrel_Drop";
 }
 
 namespace PirateBossStageValue

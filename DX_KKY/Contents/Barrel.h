@@ -57,5 +57,6 @@ private:
 	// State
 	void StateInit();
 	void AttWait_Idle(float _DeltaTime);
+	void Drop(float _DeltaTime);
 };
 
