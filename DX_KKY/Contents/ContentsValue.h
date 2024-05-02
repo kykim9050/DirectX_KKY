@@ -311,6 +311,7 @@ namespace PirateBossAniName
 	const std::string Barrel_Dropping = "Barrel_Dropping";
 	const std::string Barrel_Smash_Begin = "Barrel_Smash_Begin";
 	const std::string Barrel_Smashing = "Barrel_Smashing";
+	const std::string Barrel_Smash_End = "Barrel_Smash_End";
 	const std::string Barrel_BackUp_Begin = "Barrel_BackUp_Begin";
 	const std::string Barrel_BackUp_Idle = "Barrel_BackUp_Idle";
 	const std::string Barrel_Smash_Dust = "Barrel_Smash_Dust";
@@ -350,6 +351,7 @@ namespace PirateBossState
 	const std::string Barrel_AttWait_Idle = "Barrel_AttWait_Idle";
 	const std::string Barrel_Drop = "Barrel_Drop";
 	const std::string Barrel_Smash = "Barrel_Smash";
+	const std::string Barrel_BackUp = "Barrel_BackUp";
 }
 
 namespace PirateBossStageValue

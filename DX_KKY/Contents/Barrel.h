@@ -42,6 +42,8 @@ private:
 	// Attack ฐüทร
 	float AttackRange = 50.0f;
 	float DropEndLine = 490.0f;
+	int SmashTime = 8;
+	int SmashCount = 0;
 
 private:
 	void BeginPlay() override;
@@ -62,5 +64,6 @@ private:
 	void StateInit();
 	void AttWait_Idle(float _DeltaTime);
 	void Drop(float _DeltaTime);
+	void BackUp(float _DeltaTime);
 };
 
