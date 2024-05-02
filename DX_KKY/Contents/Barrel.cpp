@@ -168,27 +168,27 @@ void ABarrel::StateInit()
 	{
 		State.SetStartFunction(PirateBossState::Barrel_Intro, [this]()
 			{
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 				MainCollider->SetPosition(GColliderPosInfo::Barrel_Idle_RelPos);
 				BarrelRenderer->SetPosition(GRendererPos::Barrel_AttWait_RelativePos);
-				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 			});
 		State.SetStartFunction(PirateBossState::Barrel_AttWait_Idle, [this]()
 			{
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 				MainCollider->SetPosition(GColliderPosInfo::Barrel_Idle_RelPos);
 				BarrelRenderer->SetPosition(GRendererPos::Barrel_AttWait_RelativePos);
-				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 			});
 		State.SetStartFunction(PirateBossState::Barrel_Drop, [this]()
 			{
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Drop_Begin);
 				MainCollider->SetPosition(GColliderPosInfo::Barrel_Drop_RelPos);
 				BarrelRenderer->SetPosition(GRendererPos::Barrel_Drop_RelativePos);
-				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Drop_Begin);
 				SetSpeedVec(float4::Zero);
 			});
 		State.SetStartFunction(PirateBossState::Barrel_Smash, [this]()
 			{
-				BarrelRenderer->SetPosition(GRendererPos::Barrel_Smash_RelativePos);
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Begin);
+				BarrelRenderer->SetPosition(GRendererPos::Barrel_Smash_RelativePos);
 				SetGravityVec(float4::Zero);
 			});
 		State.SetStartFunction(PirateBossState::Barrel_BackUp, [this]()

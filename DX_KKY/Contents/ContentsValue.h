@@ -449,7 +449,7 @@ namespace GRendererPos
 	const float4 Barrel_AttWait_RelativePos = float4(0.0f, 0.0f, 0.0f);
 	const float4 Barrel_Drop_RelativePos = float4(-2.0f, 14.0f, 0.0f);
 	const float4 Barrel_Smash_RelativePos = float4(-2.0f, 260.0f, 0.0f);
-	const float4 Barrel_NormalIdle_RelativePos = float4(-3.0f, -20.0f, 0.0f);
+	const float4 Barrel_NormalIdle_RelativePos = float4(-3.0f, -10.0f, 0.0f);
 	
 }
 
