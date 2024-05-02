@@ -48,6 +48,10 @@ private:
 	// Attack After
 	float BackUpSpeed = 350.0f;
 
+	// Normal idle
+	int NorIdleTime = 6;
+	int NorIdleCount = 0;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
