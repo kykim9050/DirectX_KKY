@@ -27,7 +27,8 @@ private:
 	//UStateManager State;
 
 	UDefaultSceneComponent* Root = nullptr;
-	USpriteRenderer* Renderer = nullptr;
+	USpriteRenderer* BarrelRenderer = nullptr;
+	USpriteRenderer* DustRenderer = nullptr;
 	UCollision* MainCollider = nullptr;
 
 
