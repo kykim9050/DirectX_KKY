@@ -24,7 +24,7 @@ void ABarrel::BeginPlay()
 	StateInit();
 
 	{
-		Renderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Begin);
+		Renderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Begin);
 	}
 }
 
@@ -58,6 +58,8 @@ void ABarrel::CreateAnimation()
 	Renderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Begin, "Pirate_Barrel_Smash.png", 0.067f, false);
 	Renderer->CreateAnimation(PirateBossAniName::Barrel_Smashing, "Pirate_Barrel_Smash.png", 0.067f, true, 3, 4);
 
+	Renderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Begin, "Pirate_Barrel_BackUp.png", 0.067f, false);
+	Renderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Idle, "Pirate_Barrel_BackUp.png", 0.067f, true, 3, 5);
 }
 
 
@@ -93,6 +95,11 @@ void ABarrel::SetAnimationCallback()
 		{
 			Renderer->ChangeAnimation(PirateBossAniName::Barrel_Smashing);
 		});
+	Renderer->SetFrameCallback(PirateBossAniName::Barrel_BackUp_Begin, 6, [this]()
+		{
+			Renderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Idle);
+		});
+
 }
 
 void ABarrel::StateInit()
