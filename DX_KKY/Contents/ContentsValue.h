@@ -349,6 +349,7 @@ namespace PirateBossState
 	const std::string Barrel_Intro = "Barrel_Intro";
 	const std::string Barrel_AttWait_Idle = "Barrel_AttWait_Idle";
 	const std::string Barrel_Drop = "Barrel_Drop";
+	const std::string Barrel_Smash = "Barrel_Smash";
 }
 
 namespace PirateBossStageValue
@@ -442,6 +443,7 @@ namespace GRendererPos
 
 	const float4 Barrel_AttWait_RelativePos = float4(0.0f, 0.0f, 0.0f);
 	const float4 Barrel_Drop_RelativePos = float4(-2.0f, 14.0f, 0.0f);
+	const float4 Barrel_Smash_RelativePos = float4(-2.0f, 260.0f, 0.0f);
 }
 
 namespace GBoundaryPos

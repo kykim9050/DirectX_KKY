@@ -149,6 +149,7 @@ void ABarrel::StateInit()
 		State.CreateState(PirateBossState::Barrel_Intro);
 		State.CreateState(PirateBossState::Barrel_AttWait_Idle);
 		State.CreateState(PirateBossState::Barrel_Drop);
+		State.CreateState(PirateBossState::Barrel_Smash);
 	}
 
 	{
@@ -171,6 +172,12 @@ void ABarrel::StateInit()
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Drop_Begin);
 				SetSpeedVec(float4::Zero);
 			});
+		State.SetStartFunction(PirateBossState::Barrel_Smash, [this]()
+			{
+				BarrelRenderer->SetPosition(GRendererPos::Barrel_Smash_RelativePos);
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Begin);
+				SetGravityVec(float4::Zero);
+			});
 	}
 
 	{
@@ -189,6 +196,25 @@ void ABarrel::StateInit()
 			});
 		State.SetUpdateFunction(PirateBossState::Barrel_AttWait_Idle, std::bind(&ABarrel::AttWait_Idle, this, std::placeholders::_1));
 		State.SetUpdateFunction(PirateBossState::Barrel_Drop, std::bind(&ABarrel::Drop, this, std::placeholders::_1));
+		State.SetUpdateFunction(PirateBossState::Barrel_Smash, [this](float)
+			{
+
+				// Test Code
+				static int Count = 0;
+
+				if (true == BarrelRenderer->IsCurAnimationEnd())
+				{
+					if (Count >= 10)
+					{
+						Count = 0;
+						AddActorLocation(float4::Up * 300.0f);
+						State.ChangeState(PirateBossState::Barrel_Drop);
+						return;
+					}
+					++Count;
+				}
+
+			});
 	}
 
 	State.ChangeState(PirateBossState::Barrel_Intro);
@@ -251,7 +277,7 @@ void ABarrel::Drop(float _DeltaTime)
 {
 	if (true == DropEndLineCheck(GetActorLocation()))
 	{
-		int a = 0;
+		State.ChangeState(PirateBossState::Barrel_Smash);
 		return;
 	}
 
