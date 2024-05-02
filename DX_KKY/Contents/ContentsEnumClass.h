@@ -54,6 +54,7 @@ enum class ERenderingOrder
 	PlayerBulletFx,
 	BackFX,
 	Player,
+	FrontDust,
 	FrontFX,
 	FrontLayer,
 	DockLog,

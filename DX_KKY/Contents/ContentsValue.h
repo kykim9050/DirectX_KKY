@@ -314,7 +314,7 @@ namespace PirateBossAniName
 	const std::string Barrel_BackUp_Begin = "Barrel_BackUp_Begin";
 	const std::string Barrel_BackUp_Idle = "Barrel_BackUp_Idle";
 	const std::string Barrel_Smash_Dust = "Barrel_Smash_Dust";
-
+	const std::string Barrel_Smash_Effect = "Barrel_Smash_Effect";
 }
 
 namespace PirateBossState

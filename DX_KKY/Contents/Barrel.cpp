@@ -26,6 +26,7 @@ void ABarrel::BeginPlay()
 	{
 		BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Begin);
 		DustRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Dust);
+		EffectRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Effect);
 	}
 }
 
@@ -46,8 +47,15 @@ void ABarrel::RendererInit()
 	DustRenderer = CreateDefaultSubObject<USpriteRenderer>("DustRenderer");
 	DustRenderer->SetupAttachment(Root);
 	DustRenderer->SetAutoSize(1.0f, true);
-	DustRenderer->SetOrder(ERenderingOrder::Dust);
+	DustRenderer->SetOrder(ERenderingOrder::FrontDust);
 	DustRenderer->SetActive(false);
+
+	EffectRenderer = CreateDefaultSubObject<USpriteRenderer>("EffectRenderer");
+	EffectRenderer->SetupAttachment(Root);
+	EffectRenderer->SetAutoSize(1.0f, true);
+	EffectRenderer->SetOrder(ERenderingOrder::FrontFX);
+	EffectRenderer->SetActive(false);
+	
 }
 
 void ABarrel::AnimationInit()
@@ -72,6 +80,9 @@ void ABarrel::CreateAnimation()
 
 	// Dust
 	DustRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Dust, "Barrel_Smash_Dust.png", 0.047f, false);
+
+	// Effect
+	EffectRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Effect, "Barrel_Smash_FX.png", 0.047f, false);
 }
 
 
@@ -119,6 +130,13 @@ void ABarrel::SetAnimationCallback()
 		{
 			// 나중에 상태 끝날 때 애니메이션 초기화도 해줘야 함
 			DustRenderer->SetActive(false);
+		});
+
+	// Effect
+	EffectRenderer->SetFrameCallback(PirateBossAniName::Barrel_Smash_Effect, 12, [this]()
+		{
+			// 나중에 상태 끝날 때 애니메이션 초기화도 해줘야 함
+			EffectRenderer->SetActive(false);
 		});
 }
 

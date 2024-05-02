@@ -29,6 +29,7 @@ private:
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* BarrelRenderer = nullptr;
 	USpriteRenderer* DustRenderer = nullptr;
+	USpriteRenderer* EffectRenderer = nullptr;
 	UCollision* MainCollider = nullptr;
 
 
