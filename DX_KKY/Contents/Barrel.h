@@ -24,7 +24,7 @@ public:
 protected:
 
 private:
-	//UStateManager State;
+	UStateManager State;
 
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* BarrelRenderer = nullptr;
@@ -43,5 +43,8 @@ private:
 	void ColliderInit();
 
 	void StateInit();
+
+	// State
+	void AttWait_Idle(float _DeltaTime);
 };
 

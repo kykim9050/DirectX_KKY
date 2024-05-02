@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 #include <EngineCore/DefaultSceneComponent.h>
 
+
 #include "Barrel.h"
 
 ABarrel::ABarrel()
@@ -22,19 +23,13 @@ void ABarrel::BeginPlay()
 
 	AnimationInit();
 	StateInit();
-
-	{
-		BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Begin);
-		DustRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Dust);
-		EffectRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Effect);
-	}
 }
 
 void ABarrel::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	//State.Update(_DeltaTime);
+	State.Update(_DeltaTime);
 }
 
 void ABarrel::RendererInit()
@@ -141,6 +136,26 @@ void ABarrel::SetAnimationCallback()
 }
 
 void ABarrel::StateInit()
+{
+	{
+		State.CreateState(PirateBossState::Barrel_AttWait_Idle);
+	}
+
+	{
+		State.SetStartFunction(PirateBossState::Barrel_AttWait_Idle, [this]()
+			{
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
+			});
+	}
+
+	{
+		State.SetUpdateFunction(PirateBossState::Barrel_AttWait_Idle, std::bind(&ABarrel::AttWait_Idle, this, std::placeholders::_1));
+	}
+
+	State.ChangeState(PirateBossState::Barrel_AttWait_Idle);
+}
+
+void ABarrel::AttWait_Idle(float _DeltaTime)
 {
 
 }

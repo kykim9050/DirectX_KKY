@@ -344,6 +344,11 @@ namespace PirateBossState
 	const std::string OctopusShoot_End = "OctopusShoot_End";
 
 	const std::string Ship_Transform_Begin = "Ship_Transform_Begin";
+
+	
+	const std::string Barrel_Intro = "Barrel_Intro";
+	const std::string Barrel_AttWait_Idle = "Barrel_AttWait_Idle";
+	
 }
 
 namespace GColliderScale
