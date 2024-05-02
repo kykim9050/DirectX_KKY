@@ -73,8 +73,10 @@ void ABarrel::CreateAnimation()
 	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Dropping, "Pirate_Barrel_Drop.png", 0.057f, true, 1, 3);
 	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Begin, "Pirate_Barrel_Smash.png", 0.057f, false);
 	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smashing, "Pirate_Barrel_Smash.png", 0.057f, true, 3, 4);
+	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_End, "Pirate_Barrel_Smash.png", 0.057f, false, 3, 0);
 	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Begin, "Pirate_Barrel_BackUp.png", 0.057f, false);
 	BarrelRenderer->CreateAnimation(PirateBossAniName::Barrel_BackUp_Idle, "Pirate_Barrel_BackUp.png", 0.057f, true, 3, 5);
+
 
 	// Dust
 	DustRenderer->CreateAnimation(PirateBossAniName::Barrel_Smash_Dust, "Barrel_Smash_Dust.png", 0.047f, false);
@@ -126,6 +128,10 @@ void ABarrel::SetAnimationCallback()
 		{
 			BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Idle);
 		});
+	BarrelRenderer->SetFrameCallback(PirateBossAniName::Barrel_Smash_End, 4, [this]()
+		{
+			State.ChangeState(PirateBossState::Barrel_BackUp);
+		});
 
 
 	// Dust
@@ -150,6 +156,7 @@ void ABarrel::StateInit()
 		State.CreateState(PirateBossState::Barrel_AttWait_Idle);
 		State.CreateState(PirateBossState::Barrel_Drop);
 		State.CreateState(PirateBossState::Barrel_Smash);
+		State.CreateState(PirateBossState::Barrel_BackUp);
 	}
 
 	{
@@ -178,6 +185,11 @@ void ABarrel::StateInit()
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_Begin);
 				SetGravityVec(float4::Zero);
 			});
+		State.SetStartFunction(PirateBossState::Barrel_BackUp, [this]()
+			{
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Begin);
+				//SetJumpVec(float4::Up * 300.0f);
+			});
 	}
 
 	{
@@ -198,23 +210,18 @@ void ABarrel::StateInit()
 		State.SetUpdateFunction(PirateBossState::Barrel_Drop, std::bind(&ABarrel::Drop, this, std::placeholders::_1));
 		State.SetUpdateFunction(PirateBossState::Barrel_Smash, [this](float)
 			{
-
-				// Test Code
-				static int Count = 0;
-
 				if (true == BarrelRenderer->IsCurAnimationEnd())
 				{
-					if (Count >= 10)
+					if (SmashTime <= SmashCount)
 					{
-						Count = 0;
-						AddActorLocation(float4::Up * 300.0f);
-						State.ChangeState(PirateBossState::Barrel_Drop);
+						SmashCount = 0;
+						BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Smash_End);
 						return;
 					}
-					++Count;
+					++SmashCount;
 				}
-
 			});
+		State.SetUpdateFunction(PirateBossState::Barrel_BackUp, std::bind(&ABarrel::BackUp, this, std::placeholders::_1));
 	}
 
 	State.ChangeState(PirateBossState::Barrel_Intro);
@@ -285,6 +292,16 @@ void ABarrel::Drop(float _DeltaTime)
 	ResultMovementUpdate(_DeltaTime);
 }
 
+void ABarrel::BackUp(float _DeltaTime)
+{
+	//if (-GetActorLocation().Y < 150.0f)
+	//{
+	//	return;
+	//}
+
+	//ResultMovementUpdate(_DeltaTime);
+}
+
 void ABarrel::DebugUpdate()
 {
 	{
@@ -292,4 +309,3 @@ void ABarrel::DebugUpdate()
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
 }
-
