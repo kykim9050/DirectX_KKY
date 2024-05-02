@@ -24,7 +24,7 @@ void ABarrel::BeginPlay()
 	StateInit();
 
 	{
-		Renderer->ChangeAnimation(PirateBossAniName::Barrel_Normal_Idle);
+		Renderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
 	}
 }
 
@@ -52,6 +52,8 @@ void ABarrel::CreateAnimation()
 	Renderer->CreateAnimation(PirateBossAniName::Barrel_Normal_Idle, "Barrel_Normal_Idle.png", 0.047f, true, 0, 10);
 	Renderer->CreateAnimation(PirateBossAniName::Barrel_Normal_IdleRev, "Barrel_Normal_Idle.png", 0.047f, true, 9, 1);
 
+	Renderer->CreateAnimation(PirateBossAniName::Barrel_AttWait_Idle, "Pirate_Barrel_AttWait_Idle.png", 0.047f, true, 0, 10);
+	Renderer->CreateAnimation(PirateBossAniName::Barrel_AttWait_IdleRev, "Pirate_Barrel_AttWait_Idle.png", 0.047f, true, 9, 1);
 }
 
 void ABarrel::ColliderInit()
@@ -70,6 +72,15 @@ void ABarrel::SetAnimationCallback()
 		{
 			Renderer->ChangeAnimation(PirateBossAniName::Barrel_Normal_Idle);
 		});
+	Renderer->SetFrameCallback(PirateBossAniName::Barrel_AttWait_Idle, 11, [this]()
+		{
+			Renderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_IdleRev);
+		});
+	Renderer->SetFrameCallback(PirateBossAniName::Barrel_AttWait_IdleRev, 9, [this]()
+		{
+			Renderer->ChangeAnimation(PirateBossAniName::Barrel_AttWait_Idle);
+		});
+
 }
 
 void ABarrel::StateInit()
