@@ -30,6 +30,7 @@ void ABarrel::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	State.Update(_DeltaTime);
+	DebugUpdate();
 }
 
 void ABarrel::RendererInit()
@@ -155,6 +156,7 @@ void ABarrel::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Barrel_Drop, [this]()
 			{
+				SetSpeedVec(float4::Zero);
 				BarrelRenderer->SetPosition(GRendererPos::Barrel_Drop_RelativePos);
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Drop_Begin);
 			});
@@ -223,15 +225,20 @@ void ABarrel::AttWait_Idle(float _DeltaTime)
 
 void ABarrel::Drop(float _DeltaTime)
 {
-	static float DelayTime = 2.0f;
-
-	DelayTime -= _DeltaTime;
-
-	if (0.0f >= DelayTime)
+	if (-GetActorLocation().Y >= 500.0f)
 	{
-		DelayTime = 2.0f;
-
-		State.ChangeState(PirateBossState::Barrel_AttWait_Idle);
 		return;
 	}
+
+	CalGravityVec(_DeltaTime);
+	ResultMovementUpdate(_DeltaTime);
 }
+
+void ABarrel::DebugUpdate()
+{
+	{
+		std::string Msg = std::format("Barrel Pos : {}\n", GetActorLocation().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
+}
+
