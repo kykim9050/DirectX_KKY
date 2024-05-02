@@ -157,6 +157,7 @@ void ABarrel::StateInit()
 		State.CreateState(PirateBossState::Barrel_Drop);
 		State.CreateState(PirateBossState::Barrel_Smash);
 		State.CreateState(PirateBossState::Barrel_BackUp);
+		State.CreateState(PirateBossState::Barrel_Normal_Idle);
 	}
 
 	{
@@ -188,7 +189,13 @@ void ABarrel::StateInit()
 		State.SetStartFunction(PirateBossState::Barrel_BackUp, [this]()
 			{
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_BackUp_Begin);
-				//SetJumpVec(float4::Up * 300.0f);
+				SetJumpVec(float4::Up * BackUpSpeed);
+			});
+		State.SetStartFunction(PirateBossState::Barrel_Normal_Idle, [this]()
+			{
+				BarrelRenderer->SetPosition(GRendererPos::Barrel_AttWait_RelativePos);
+				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Normal_Idle);
+				SetJumpVec(float4::Zero);
 			});
 	}
 
@@ -222,6 +229,7 @@ void ABarrel::StateInit()
 				}
 			});
 		State.SetUpdateFunction(PirateBossState::Barrel_BackUp, std::bind(&ABarrel::BackUp, this, std::placeholders::_1));
+		State.SetUpdateFunction(PirateBossState::Barrel_Normal_Idle, std::bind(&ABarrel::Normal_Idle, this, std::placeholders::_1));
 	}
 
 	State.ChangeState(PirateBossState::Barrel_Intro);
@@ -294,12 +302,32 @@ void ABarrel::Drop(float _DeltaTime)
 
 void ABarrel::BackUp(float _DeltaTime)
 {
-	//if (-GetActorLocation().Y < 150.0f)
-	//{
-	//	return;
-	//}
+	if (GetActorLocation().Y >= GActorPosValue::Barrel_Init_Pos.Y)
+	{
+		State.ChangeState(PirateBossState::Barrel_Normal_Idle);
+		return;
+	}
 
-	//ResultMovementUpdate(_DeltaTime);
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void ABarrel::Normal_Idle(float _DeltaTime)
+{
+	float4 MyPos = GetActorLocation();
+
+	if (MyPos.X <= PirateBossStageValue::Barrel_Moving_XBound_Min)
+	{
+		AddActorLocation(float4::Right);
+		MoveDir = float4::Right;
+	}
+	else if (MyPos.X >= PirateBossStageValue::Barrel_Moving_XBound_Max)
+	{
+		AddActorLocation(float4::Left);
+		MoveDir = float4::Left;
+	}
+
+	SetSpeedVec(MoveDir * MoveSpeed);
+	ResultMovementUpdate(_DeltaTime);
 }
 
 void ABarrel::DebugUpdate()
@@ -309,3 +337,4 @@ void ABarrel::DebugUpdate()
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
 }
+
