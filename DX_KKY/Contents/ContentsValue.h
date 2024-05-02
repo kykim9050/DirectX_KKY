@@ -351,6 +351,12 @@ namespace PirateBossState
 	
 }
 
+namespace PirateBossStageValue
+{
+	const float Barrel_Moving_XBound_Min = 40.0f;
+	const float Barrel_Moving_XBound_Max = 880.0f;
+}
+
 namespace GColliderScale
 {
 	const float4 FlowerBoss_HeadColScale = float4(250.0f, 250.0f, 1.0f);
@@ -450,6 +456,8 @@ namespace GActorPosValue
 	const float4 OctoBullet_RelativePos = float4(-406.0f, 390.0f, 0.0f);
 	const float4 CannonBall_RelativePos = float4(-350.0f, 165.0f, 0.0f);
 	const float4 UvulaBubble_RelativePos = float4(-135.0f, 340.0f, 0.0f);
+	const float4 Barrel_Init_Pos = float4(800.0f, -50.0f, 0.0f);
+
 }
 
 

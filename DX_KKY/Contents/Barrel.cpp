@@ -157,5 +157,19 @@ void ABarrel::StateInit()
 
 void ABarrel::AttWait_Idle(float _DeltaTime)
 {
+	float4 MyPos = GetActorLocation();
 
+	if (MyPos.X <= PirateBossStageValue::Barrel_Moving_XBound_Min)
+	{
+		AddActorLocation(float4::Right);
+		MoveDir = float4::Right;
+	}
+	else if (MyPos.X >= PirateBossStageValue::Barrel_Moving_XBound_Max)
+	{
+		AddActorLocation(float4::Left);
+		MoveDir = float4::Left;
+	}
+
+	SetSpeedVec(MoveDir * MoveSpeed);
+	ResultMovementUpdate(_DeltaTime);
 }
