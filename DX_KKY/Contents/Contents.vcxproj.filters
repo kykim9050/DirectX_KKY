@@ -88,6 +88,12 @@
     <Filter Include="Level\PlayLevel\PirateLevel\Object\Phase2">
       <UniqueIdentifier>{cdc9c4fd-1cbd-4bd4-ac3c-0e91b67e7015}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\PirateLevel\Object\Phase1\MonsterBullet">
+      <UniqueIdentifier>{bf3497f3-f54c-4a70-9f5f-23bf131b0824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\PlayLevel\PirateLevel\Object\Phase1\SubObject">
+      <UniqueIdentifier>{eece5799-d753-4deb-a922-e9f75b1e06a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -246,20 +252,23 @@
     <ClInclude Include="CaptainBrineybeardPhase1.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClInclude>
-    <ClInclude Include="OctopusBullet.h">
-      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
-    </ClInclude>
     <ClInclude Include="PhaseUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClInclude>
     <ClInclude Include="CaptainBrineybeardPhase2.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
     </ClInclude>
-    <ClInclude Include="CannonBall.h">
-      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
-    </ClInclude>
     <ClInclude Include="UvulaBubble.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
+    </ClInclude>
+    <ClInclude Include="CannonBall.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\MonsterBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="OctopusBullet.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\MonsterBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrel.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -431,9 +440,6 @@
     <ClCompile Include="CaptainBrineybeardPhase1_Animation.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
     </ClCompile>
-    <ClCompile Include="OctopusBullet.cpp">
-      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
-    </ClCompile>
     <ClCompile Include="PhaseUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
     </ClCompile>
@@ -446,11 +452,17 @@
     <ClCompile Include="CaptainBrineybeardPhase2_State.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
     </ClCompile>
-    <ClCompile Include="CannonBall.cpp">
-      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1</Filter>
-    </ClCompile>
     <ClCompile Include="UvulaBubble.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase2</Filter>
+    </ClCompile>
+    <ClCompile Include="CannonBall.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\MonsterBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="OctopusBullet.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\MonsterBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrel.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
