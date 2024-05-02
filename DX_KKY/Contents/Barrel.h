@@ -52,6 +52,8 @@ private:
 	void SetAnimationCallback();
 	void ColliderInit();
 
+	void DebugUpdate();
+
 	bool PlayerNearCheck(float4 _MyPos);
 
 	// State
