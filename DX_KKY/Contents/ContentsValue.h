@@ -303,6 +303,8 @@ namespace PirateBossAniName
 	const std::string Ship_Death = "Ship_Death";
 	const std::string Ship_DeathRev = "Ship_DeathRev";
 
+	
+	const std::string Barrel_Normal_Idle_Begin = "Barrel_Normal_Idle_Begin";
 	const std::string Barrel_Normal_Idle = "Barrel_Normal_Idle";
 	const std::string Barrel_Normal_IdleRev = "Barrel_Normal_IdleRev";
 	const std::string Barrel_AttWait_Idle = "Barrel_AttWait_Idle";
@@ -447,6 +449,8 @@ namespace GRendererPos
 	const float4 Barrel_AttWait_RelativePos = float4(0.0f, 0.0f, 0.0f);
 	const float4 Barrel_Drop_RelativePos = float4(-2.0f, 14.0f, 0.0f);
 	const float4 Barrel_Smash_RelativePos = float4(-2.0f, 260.0f, 0.0f);
+	const float4 Barrel_NormalIdle_RelativePos = float4(-3.0f, -20.0f, 0.0f);
+	
 }
 
 namespace GBoundaryPos
