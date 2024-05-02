@@ -198,8 +198,8 @@ void ABarrel::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Barrel_Normal_Idle, [this]()
 			{
-				BarrelRenderer->SetPosition(GRendererPos::Barrel_NormalIdle_RelativePos);
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Normal_Idle_Begin);
+				BarrelRenderer->SetPosition(GRendererPos::Barrel_NormalIdle_RelativePos);
 				SetJumpVec(float4::Zero);
 			});
 	}
@@ -318,6 +318,17 @@ void ABarrel::BackUp(float _DeltaTime)
 
 void ABarrel::Normal_Idle(float _DeltaTime)
 {
+	if (true == BarrelRenderer->IsCurAnimationEnd())
+	{
+		if (NorIdleTime <= NorIdleCount)
+		{
+			NorIdleCount = 0;
+			State.ChangeState(PirateBossState::Barrel_AttWait_Idle);
+			return;
+		}
+		++NorIdleCount;
+	}
+
 	float4 MyPos = GetActorLocation();
 
 	if (MyPos.X <= PirateBossStageValue::Barrel_Moving_XBound_Min)
