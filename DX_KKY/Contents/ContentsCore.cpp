@@ -51,6 +51,7 @@ void UContentsCore::Initialize()
 	// 이미지 커팅
 	{
 		UEngineSprite::CreateCutting("Barrel_Normal_Idle.png", 6, 2);
+		UEngineSprite::CreateCutting("Pirate_Barrel_AttWait_Idle.png", 6, 2);
 	}
 
 	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("ContentsDebugWindow");
