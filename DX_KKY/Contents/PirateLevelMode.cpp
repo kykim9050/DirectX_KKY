@@ -125,6 +125,12 @@ void APirateLevelMode::DeleteObject()
 		ScreenMsg->Destroy();
 		ScreenMsg = nullptr;
 	}
+
+	if (nullptr != Barrel)
+	{
+		Barrel->Destroy();
+		Barrel = nullptr;
+	}
 }
 
 void APirateLevelMode::StateInit()
@@ -148,7 +154,7 @@ void APirateLevelMode::StateInit()
 				Phase1_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
 
 				Barrel = GetWorld()->SpawnActor<ABarrel>("Barrel", EActorType::Monster);
-				Barrel->SetActorLocation(float4(640.0f, -480.0f, 0.0f));
+				Barrel->SetActorLocation(GActorPosValue::Barrel_Init_Pos);
 			});
 		ModeState.SetStartFunction("Phase2", [this]()
 			{

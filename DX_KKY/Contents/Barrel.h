@@ -32,7 +32,10 @@ private:
 	USpriteRenderer* EffectRenderer = nullptr;
 	UCollision* MainCollider = nullptr;
 
+	float4 MoveDir = float4::Left;
+	float MoveSpeed = 100.0f;
 
+private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
