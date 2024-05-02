@@ -13,6 +13,7 @@ enum class EActorType
 	Bullet,
 	MonsterBullet,
 	FX,
+	Monster,
 	BossMonster,
 	Object,
 	ScreenMsg,

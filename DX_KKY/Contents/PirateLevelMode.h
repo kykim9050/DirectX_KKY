@@ -12,6 +12,7 @@ class AMapBase;
 class APlayer;
 class AMessage;
 class APirateLevelMap;
+class ABarrel;
 class APirateLevelMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -42,6 +43,7 @@ private:
 	std::shared_ptr<APirateLevelMap> Map = nullptr;
 	std::shared_ptr<ACaptainBrineybeardPhase1> Phase1_Boss = nullptr;
 	std::shared_ptr<ACaptainBrineybeardPhase2> Phase2_Boss = nullptr;
+	std::shared_ptr<ABarrel> Barrel = nullptr;
 
 	std::shared_ptr<AMessage> ScreenMsg = nullptr;
 

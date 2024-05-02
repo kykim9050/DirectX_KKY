@@ -303,6 +303,8 @@ namespace PirateBossAniName
 	const std::string Ship_Death = "Ship_Death";
 	const std::string Ship_DeathRev = "Ship_DeathRev";
 
+	const std::string Barrel_Normal_Idle = "Barrel_Normal_Idle";
+
 }
 
 namespace PirateBossState

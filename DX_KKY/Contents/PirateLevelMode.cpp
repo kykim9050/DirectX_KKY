@@ -8,6 +8,7 @@
 #include "CaptainBrineybeardPhase2.h"
 #include "TimeScaleControlUnit.h"
 #include "Message.h"
+#include "Barrel.h"
 
 APirateLevelMode::APirateLevelMode()
 {
@@ -145,6 +146,9 @@ void APirateLevelMode::StateInit()
 
 				Phase1_Boss = GetWorld()->SpawnActor<ACaptainBrineybeardPhase1>("Phase1_Boss", EActorType::BossMonster);
 				Phase1_Boss->SetActorLocation(GActorPosValue::Phase1_Boss_Pos);
+
+				Barrel = GetWorld()->SpawnActor<ABarrel>("Barrel", EActorType::Monster);
+				Barrel->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
 			});
 		ModeState.SetStartFunction("Phase2", [this]()
 			{
