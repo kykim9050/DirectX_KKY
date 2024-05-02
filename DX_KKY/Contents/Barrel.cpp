@@ -177,6 +177,11 @@ void ABarrel::AttWait_Idle(float _DeltaTime)
 {
 	float4 MyPos = GetActorLocation();
 
+	if (true == PlayerNearCheck(MyPos))
+	{
+		int a = 0;
+	}
+
 	if (MyPos.X <= PirateBossStageValue::Barrel_Moving_XBound_Min)
 	{
 		AddActorLocation(float4::Right);
@@ -190,4 +195,19 @@ void ABarrel::AttWait_Idle(float _DeltaTime)
 
 	SetSpeedVec(MoveDir * MoveSpeed);
 	ResultMovementUpdate(_DeltaTime);
+}
+
+bool ABarrel::PlayerNearCheck(float4 _MyPos)
+{
+	float4 PlayerPos = UContentsFunction::GetStagePlayer()->GetActorLocation();
+	float4 MyPos = _MyPos;
+
+	float XValue = abs(PlayerPos.X - MyPos.X);
+
+	if (AttackRange >= XValue)
+	{
+		return true;
+	}
+
+	return false;
 }
