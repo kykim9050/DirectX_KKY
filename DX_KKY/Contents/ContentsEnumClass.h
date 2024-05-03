@@ -31,6 +31,7 @@ enum class ERenderingOrder
 	BackLayer1,
 	Wave4,
 	Wave3,
+	SharkFin,
 	Wave2,
 	Animation,
 	StaticObject,

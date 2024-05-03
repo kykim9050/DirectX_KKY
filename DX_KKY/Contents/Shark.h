@@ -28,6 +28,7 @@ private:
 
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* SharkRenderer = nullptr;
+	USpriteRenderer* FinRenderer = nullptr;
 	USpriteRenderer* EffectRenderer = nullptr;
 	UCollision* MainCollider = nullptr;
 
