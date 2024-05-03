@@ -101,6 +101,7 @@ void AShark::StateInit()
 		State.CreateState(PirateBossState::Shark_Appear_Intro);
 		State.CreateState(PirateBossState::Shark_Appear);
 		State.CreateState(PirateBossState::Shark_Chomp);
+		State.CreateState(PirateBossState::Shark_Leave);
 	}
 
 	{
@@ -121,12 +122,18 @@ void AShark::StateInit()
 			{
 				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp1);
 			});
+		State.SetStartFunction(PirateBossState::Shark_Leave, [this]()
+			{
+				SetSpeedVec(float4::Left * LeaveSpeed);
+				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Leave);
+			});
 	}
 
 	{
 		State.SetUpdateFunction(PirateBossState::Shark_Appear_Intro, std::bind(&AShark::Appear_Intro, this, std::placeholders::_1));
 		State.SetUpdateFunction(PirateBossState::Shark_Appear, std::bind(&AShark::Appear, this, std::placeholders::_1));
 		State.SetUpdateFunction(PirateBossState::Shark_Chomp, std::bind(&AShark::Chomp, this, std::placeholders::_1));
+		State.SetUpdateFunction(PirateBossState::Shark_Leave, std::bind(&AShark::Leave, this, std::placeholders::_1));
 	}
 
 	{
@@ -134,6 +141,10 @@ void AShark::StateInit()
 			{
 				SetSpeedVec(float4::Zero);
 				FinRenderer->SetActive(false);
+			});
+		State.SetEndFunction(PirateBossState::Shark_Chomp, [this]()
+			{
+				SetSpeedVec(float4::Zero);
 			});
 	}
 
@@ -174,9 +185,14 @@ void AShark::Chomp(float _DeltaTime)
 {
 	if (SharkRenderer->IsCurAnimationEnd())
 	{
-		int a = 0;
+		State.ChangeState(PirateBossState::Shark_Leave);
 		return;
 	}
 
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void AShark::Leave(float _DeltaTime)
+{
 	ResultMovementUpdate(_DeltaTime);
 }

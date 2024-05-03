@@ -36,6 +36,7 @@ private:
 	float AppearIntroSpeed = 500.0f;
 	float FinMoveBoundaryValue = -700.0f;
 	float AttackSpeed = 1000.0f;
+	float LeaveSpeed = 500.0f;
 
 private:
 	void BeginPlay() override;
@@ -54,6 +55,7 @@ private:
 	void Appear_Intro(float _DeltaTime);
 	void Appear(float _DeltaTime);
 	void Chomp(float _DeltaTime);
+	void Leave(float _DeltaTime);
 
 };
 
