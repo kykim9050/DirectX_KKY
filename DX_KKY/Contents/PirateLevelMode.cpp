@@ -11,6 +11,7 @@
 #include "Message.h"
 #include "Barrel.h"
 #include "Shark.h"
+#include "SeaDog.h"
 #include "PirateLevelDebugWindow.h"
 
 APirateLevelMode::APirateLevelMode()
@@ -56,7 +57,8 @@ void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
 	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
 	Iris->ChangeAnimation(GAniName::IrisAni);
 
-	DebugWindow->SetSharkAppearFunction(std::bind(&APirateLevelMode::ObjectCreate_DebugMode, this));
+	DebugWindow->SetSharkAppearFunction(std::bind(&APirateLevelMode::ObjectCreate_Shark, this));
+	DebugWindow->SetSeaDogAppearFunction(std::bind(&APirateLevelMode::ObjectCreate_SeaDog, this));
 	DebugWindow->On();
 }
 
@@ -216,8 +218,19 @@ void APirateLevelMode::Phase2(float _DeltaTime)
 	}
 }
 
-void APirateLevelMode::ObjectCreate_DebugMode()
+void APirateLevelMode::ObjectCreate_Shark()
 {
 	AShark* Shark = GetWorld()->SpawnActor<AShark>("Shark", EActorType::Monster).get();
 	Shark->SetActorLocation(GActorPosValue::Shark_Init_Pos);
+}
+
+void APirateLevelMode::ObjectCreate_SeaDog()
+{
+	ASeaDog* SeaDog = GetWorld()->SpawnActor<ASeaDog>("SeaDog", EActorType::Monster).get();
+	SeaDog->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
+
+	DelayCallBack(10.0f, [this, SeaDog]()
+		{
+			SeaDog->Destroy();
+		});
 }
