@@ -13,6 +13,7 @@ class APlayer;
 class AMessage;
 class APirateLevelMap;
 class ABarrel;
+class UPirateLevelDebugWindow;
 class APirateLevelMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -31,8 +32,9 @@ public:
 protected:
 
 private:
-	UStateManager ModeState;
+	std::shared_ptr<UPirateLevelDebugWindow> DebugWindow;
 
+	UStateManager ModeState;
 
 	UImage* OldFilm = nullptr;
 	UImage* Iris = nullptr;
