@@ -38,6 +38,7 @@ void AShark::RendererInit()
 	SharkRenderer->SetupAttachment(Root);
 	SharkRenderer->SetAutoSize(1.0f, true);
 	SharkRenderer->SetOrder(ERenderingOrder::SubMonster1);
+	SharkRenderer->SetPivot(EPivot::LEFTBOTTOM);
 	SharkRenderer->SetActive(false);
 
 	FinRenderer = CreateDefaultSubObject<USpriteRenderer>("FinRenderer");
@@ -98,6 +99,7 @@ void AShark::StateInit()
 {
 	{
 		State.CreateState(PirateBossState::Shark_Appear_Intro);
+		State.CreateState(PirateBossState::Shark_Appear);
 	}
 
 	{
@@ -107,10 +109,18 @@ void AShark::StateInit()
 				FinRenderer->SetActive(true);
 				FinRenderer->ChangeAnimation(PirateBossAniName::Shark_Before_Appear);
 			});
+		State.SetStartFunction(PirateBossState::Shark_Appear, [this]()
+			{
+				AddActorLocation(float4::Down * 170.0f);
+				SetSpeedVec(float4::Right * AttackSpeed);
+				SharkRenderer->SetActive(true);
+				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Appear);
+			});
 	}
 
 	{
 		State.SetUpdateFunction(PirateBossState::Shark_Appear_Intro, std::bind(&AShark::Appear_Intro, this, std::placeholders::_1));
+		State.SetUpdateFunction(PirateBossState::Shark_Appear, std::bind(&AShark::Appear, this, std::placeholders::_1));
 	}
 
 	{
@@ -126,6 +136,11 @@ void AShark::StateInit()
 
 void AShark::Appear_Intro(float _DeltaTime)
 {
+	if (GetActorLocation().X < FinMoveBoundaryValue)
+	{
+		State.ChangeState(PirateBossState::Shark_Appear);
+		return;
+	}
 
 	ResultMovementUpdate(_DeltaTime);
 }
@@ -136,4 +151,10 @@ void AShark::DebugUpdate()
 		std::string Msg = std::format("Shark Pos : {}\n", GetActorLocation().ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
+}
+
+void AShark::Appear(float _DeltaTime)
+{
+
+	ResultMovementUpdate(_DeltaTime);
 }
