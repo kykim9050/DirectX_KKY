@@ -326,6 +326,11 @@ namespace PirateBossAniName
 	const std::string Shark_Leave = "Shark_Leave";
 	const std::string Shark_Appear_Effect = "Shark_Appear_Effect";
 	
+	const std::string SeaDog_Before_Appear = "SeaDog_Before_Appear";
+	const std::string SeaDog_Appear = "SeaDog_Appear";
+	const std::string SeaDog_Move = "SeaDog_Move";
+	const std::string SeaDog_Death = "SeaDog_Death";
+
 }
 
 namespace PirateBossState
