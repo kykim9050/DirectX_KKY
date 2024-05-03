@@ -209,5 +209,11 @@ void AShark::Chomp(float _DeltaTime)
 
 void AShark::Leave(float _DeltaTime)
 {
+	if (GetActorLocation().X < FinMoveBoundaryValue)
+	{
+		Destroy();
+		return;
+	}
+
 	ResultMovementUpdate(_DeltaTime);
 }
