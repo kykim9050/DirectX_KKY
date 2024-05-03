@@ -21,6 +21,10 @@ public:
 	{
 		SharkAppearFunction = _Function;
 	}
+	void SetSeaDogAppearFunction(std::function<void()> _Function)
+	{
+		SeaDogAppearFunction = _Function;
+	}
 
 protected:
 
@@ -30,6 +34,7 @@ private:
 	void OnGui(ULevel* Level, float _Delta) override;
 
 	std::function<void()> SharkAppearFunction = nullptr;
+	std::function<void()> SeaDogAppearFunction = nullptr;
 	
 };
 

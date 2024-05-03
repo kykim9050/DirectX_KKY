@@ -29,6 +29,13 @@ void UPirateLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 		{
 			SharkAppearFunction();
 		}
-		return;
+	}
+
+	if (true == ImGui::Button("SeaDogAppear"))
+	{
+		if (nullptr != SeaDogAppearFunction)
+		{
+			SeaDogAppearFunction();
+		}
 	}
 }
