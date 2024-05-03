@@ -51,6 +51,7 @@ private:
 
 	std::shared_ptr<UTimeScaleControlUnit> TimeControlUnit = nullptr;
 
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -65,7 +66,6 @@ private:
 
 	void Phase1(float _DeltaTime);
 	void Phase2(float _DeltaTime);
-
 
 	void ObjectCreate_DebugMode();
 };

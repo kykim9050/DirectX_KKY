@@ -2,7 +2,6 @@
 #include <EngineCore/EngineEditorWindow.h>
 
 // Ό³Έν :
-class AShark;
 class UPirateLevelDebugWindow : public UEngineEditorWindow
 {
 	GENERATED_BODY(UEngineEditorWindow)
@@ -18,6 +17,11 @@ public:
 	UPirateLevelDebugWindow& operator=(const UPirateLevelDebugWindow& _Other) = delete;
 	UPirateLevelDebugWindow& operator=(UPirateLevelDebugWindow&& _Other) noexcept = delete;
 
+	void SetSharkAppearFunction(std::function<void()> _Function)
+	{
+		SharkAppearFunction = _Function;
+	}
+
 protected:
 
 private:
@@ -25,6 +29,7 @@ private:
 	void Tick(ULevel* Level, float _Delta) override;
 	void OnGui(ULevel* Level, float _Delta) override;
 
-	AShark* Shark = nullptr;
+	std::function<void()> SharkAppearFunction = nullptr;
+	
 };
 

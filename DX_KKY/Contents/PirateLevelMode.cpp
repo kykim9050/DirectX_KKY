@@ -56,6 +56,7 @@ void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
 	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
 	Iris->ChangeAnimation(GAniName::IrisAni);
 
+	DebugWindow->SetSharkAppearFunction(std::bind(&APirateLevelMode::ObjectCreate_DebugMode, this));
 	DebugWindow->On();
 }
 
@@ -164,9 +165,6 @@ void APirateLevelMode::StateInit()
 
 				Barrel = GetWorld()->SpawnActor<ABarrel>("Barrel", EActorType::Monster);
 				Barrel->SetActorLocation(GActorPosValue::Barrel_Init_Pos);
-
-				// Debug용 오브젝트 생성 기능
-				ObjectCreate_DebugMode();
 			});
 		ModeState.SetStartFunction("Phase2", [this]()
 			{
@@ -218,9 +216,13 @@ void APirateLevelMode::Phase2(float _DeltaTime)
 	}
 }
 
-
 void APirateLevelMode::ObjectCreate_DebugMode()
 {
 	AShark* Shark = GetWorld()->SpawnActor<AShark>("Shark", EActorType::Monster).get();
-	Shark->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
+	Shark->SetActorLocation(float4(1280.0f, -360.0f, 0.0f));
+
+	Shark->DelayCallBack(10.0f, [Shark]()
+		{
+			Shark->Destroy();
+		});
 }
