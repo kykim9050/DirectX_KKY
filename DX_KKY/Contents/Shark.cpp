@@ -64,10 +64,10 @@ void AShark::AnimationInit()
 void AShark::CreateAnimation()
 {
 	// Shark
-	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.067f);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.0416f, false);
 	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp1, "Shark_Chomp1.png", 0.0416f, false);
 	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp2, "Shark_Chomp2.png", 0.0416f, false);
-	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Leave, "Shark_Leave.png", 0.067f, true);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Leave, "Shark_Leave.png", 0.0416f, true);
 
 	// ShartFin
 	FinRenderer->CreateAnimation(PirateBossAniName::Shark_Before_Appear, "Shark_Fin.png", 0.0416f);
@@ -100,6 +100,7 @@ void AShark::StateInit()
 	{
 		State.CreateState(PirateBossState::Shark_Appear_Intro);
 		State.CreateState(PirateBossState::Shark_Appear);
+		State.CreateState(PirateBossState::Shark_Chomp);
 	}
 
 	{
@@ -116,11 +117,16 @@ void AShark::StateInit()
 				SharkRenderer->SetActive(true);
 				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Appear);
 			});
+		State.SetStartFunction(PirateBossState::Shark_Chomp, [this]()
+			{
+				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp1);
+			});
 	}
 
 	{
 		State.SetUpdateFunction(PirateBossState::Shark_Appear_Intro, std::bind(&AShark::Appear_Intro, this, std::placeholders::_1));
 		State.SetUpdateFunction(PirateBossState::Shark_Appear, std::bind(&AShark::Appear, this, std::placeholders::_1));
+		State.SetUpdateFunction(PirateBossState::Shark_Chomp, std::bind(&AShark::Chomp, this, std::placeholders::_1));
 	}
 
 	{
@@ -155,6 +161,22 @@ void AShark::DebugUpdate()
 
 void AShark::Appear(float _DeltaTime)
 {
+	if (SharkRenderer->IsCurAnimationEnd())
+	{
+		State.ChangeState(PirateBossState::Shark_Chomp);
+		return;
+	}
+
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void AShark::Chomp(float _DeltaTime)
+{
+	if (SharkRenderer->IsCurAnimationEnd())
+	{
+		int a = 0;
+		return;
+	}
 
 	ResultMovementUpdate(_DeltaTime);
 }
