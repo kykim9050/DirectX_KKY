@@ -24,7 +24,7 @@ void AShark::BeginPlay()
 	StateInit();
 
 	{
-		SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Appear);
+		SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp1);
 	}
 }
 
@@ -57,12 +57,25 @@ void AShark::CreateAnimation()
 	// Shark
 	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Before_Appear, "Shark_Fin.png", 0.0416f);
 	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.0416f);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp1, "Shark_Chomp1.png", 0.0416f, false);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp2, "Shark_Chomp2.png", 0.0416f, false);
 
 }
 
 void AShark::SetAnimationCallback()
 {
+	SharkRenderer->SetFrameCallback(PirateBossAniName::Shark_Chomp1, 10, [this]()
+		{
+			SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp2);
+		});
 
+
+	{
+		SharkRenderer->SetFrameCallback(PirateBossAniName::Shark_Chomp2, 3, [this]()
+			{
+				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp1);
+			});
+	}
 }
 
 void AShark::ColliderInit()
