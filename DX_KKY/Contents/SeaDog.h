@@ -4,8 +4,12 @@
 #include "MonsterUnit.h"
 
 // Ό³Έν :
-class ASeaDog
+class USpriteRenderer;
+class UCollision;
+class UDefaultSceneComponent;
+class ASeaDog : public AMonsterUnit
 {
+	GENERATED_BODY(AMonsterUnit)
 public:
 	// constrcuter destructer
 	ASeaDog();
@@ -20,6 +24,26 @@ public:
 protected:
 
 private:
+	//UStateManager State;
 
+	UDefaultSceneComponent* Root = nullptr;
+	USpriteRenderer* SeaDogRenderer = nullptr;
+	USpriteRenderer* EffectRenderer = nullptr;
+	USpriteRenderer* ScopeRenderer = nullptr;
+	UCollision* MainCollider = nullptr;
+
+private:
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
+	void RendererInit();
+	void AnimationInit();
+	void CreateAnimation();
+	void SetAnimationCallback();
+	void ColliderInit();
+
+
+	// State
+	void StateInit();
 };
 
