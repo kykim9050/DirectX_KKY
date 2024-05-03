@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 
 #include "PirateLevelDebugWindow.h"
+#include "Shark.h"
 
 UPirateLevelDebugWindow::UPirateLevelDebugWindow()
 {
@@ -24,7 +25,10 @@ void UPirateLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 {
 	if (true == ImGui::Button("SharkAppear"))
 	{
-		int a = 0;
+		if (nullptr != SharkAppearFunction)
+		{
+			SharkAppearFunction();
+		}
 		return;
 	}
 }
