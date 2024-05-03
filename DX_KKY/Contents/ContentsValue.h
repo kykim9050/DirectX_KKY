@@ -365,6 +365,7 @@ namespace PirateBossState
 	const std::string Barrel_Normal_Idle = "Barrel_Normal_Idle";
 
 	const std::string Shark_Appear_Intro = "Shark_Appear_Intro";
+	const std::string Shark_Appear = "Shark_Appear";
 }
 
 namespace PirateBossStageValue
