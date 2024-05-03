@@ -270,6 +270,9 @@
     <ClInclude Include="Barrel.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
     </ClInclude>
+    <ClInclude Include="Shark.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -462,6 +465,9 @@
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\MonsterBullet</Filter>
     </ClCompile>
     <ClCompile Include="Barrel.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Shark.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
     </ClCompile>
   </ItemGroup>
