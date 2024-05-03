@@ -54,6 +54,7 @@ void AShark::RendererInit()
 	EffectRenderer->SetOrder(ERenderingOrder::FrontFX);
 	EffectRenderer->SetPivot(EPivot::LEFTBOTTOM);
 	EffectRenderer->SetActive(false);
+	EffectRenderer->SetPosition(GRendererPos::Shark_AppearEff_RelativePos);
 }
 
 void AShark::AnimationInit()
@@ -97,8 +98,8 @@ void AShark::ColliderInit()
 	MainCollider = CreateDefaultSubObject<UCollision>("MainCollider");
 	MainCollider->SetupAttachment(Root);
 
-	MainCollider->SetScale(float4(750.0f, 350.0f, 1.0f));
-	MainCollider->SetPosition(float4(375.0f, 175.0f, 0.0f));
+	MainCollider->SetScale(GColliderScale::Shark_ColScale);
+	MainCollider->SetPosition(GColliderPosInfo::Shark_RelPos);
 	MainCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	MainCollider->SetCollisionType(ECollisionType::Rect);
 	MainCollider->SetActive(false);
@@ -130,6 +131,10 @@ void AShark::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Shark_Chomp, [this]()
 			{
+				EffectRenderer->SetActive(true);
+				EffectRenderer->AnimationReset();
+				EffectRenderer->ChangeAnimation(PirateBossAniName::Shark_Appear_Effect);
+
 				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp1);
 			});
 		State.SetStartFunction(PirateBossState::Shark_Leave, [this]()

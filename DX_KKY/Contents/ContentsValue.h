@@ -398,6 +398,7 @@ namespace GColliderScale
 	const float4 PirateBoss_Bubble_ColScale = float4(80.0f, 80.0f, 1.0f);
 
 	const float4 Barrel_ColScale = float4(150.0f, 100.0f, 1.0f);
+	const float4 Shark_ColScale = float4(750.0f, 350.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
@@ -420,6 +421,7 @@ namespace GColliderPosInfo
 
 	const float4 Barrel_Idle_RelPos = float4(0.0f, -50.0f, 0.0f);
 	const float4 Barrel_Drop_RelPos = float4(-2.0f, -56.0f, 0.0f);
+	const float4 Shark_RelPos = float4(375.0f, 175.0f, 0.0f);
 }
 
 namespace GRendererPos
@@ -464,7 +466,7 @@ namespace GRendererPos
 	const float4 Barrel_Smash_RelativePos = float4(-2.0f, 260.0f, 0.0f);
 	const float4 Barrel_NormalIdle_RelativePos = float4(-3.0f, -10.0f, 0.0f);
 	const float4 Shark_RelativePos = float4(0.0f, -50.0f, 0.0f);
-	
+	const float4 Shark_AppearEff_RelativePos = float4(200.0f, 0.0f, 0.0f);
 }
 
 namespace GBoundaryPos
