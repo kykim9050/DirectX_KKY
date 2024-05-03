@@ -320,6 +320,7 @@ namespace PirateBossAniName
 	const std::string Barrel_Smash_Effect = "Barrel_Smash_Effect";
 
 	const std::string Shark_Before_Appear = "Shark_Before_Appear";
+	const std::string Shark_Appear = "Shark_Appear";
 }
 
 namespace PirateBossState
