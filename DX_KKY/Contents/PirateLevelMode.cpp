@@ -9,6 +9,7 @@
 #include "TimeScaleControlUnit.h"
 #include "Message.h"
 #include "Barrel.h"
+#include "Shark.h"
 
 APirateLevelMode::APirateLevelMode()
 {
@@ -155,6 +156,9 @@ void APirateLevelMode::StateInit()
 
 				Barrel = GetWorld()->SpawnActor<ABarrel>("Barrel", EActorType::Monster);
 				Barrel->SetActorLocation(GActorPosValue::Barrel_Init_Pos);
+
+				// Debug용 오브젝트 생성 기능
+				ObjectCreate_DebugMode();
 			});
 		ModeState.SetStartFunction("Phase2", [this]()
 			{
@@ -204,4 +208,11 @@ void APirateLevelMode::Phase2(float _DeltaTime)
 		ModeState.ChangeState("GameEnd");
 		return;
 	}
+}
+
+
+void APirateLevelMode::ObjectCreate_DebugMode()
+{
+	AShark* Shark = GetWorld()->SpawnActor<AShark>("Shark", EActorType::Monster).get();
+	Shark->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
 }

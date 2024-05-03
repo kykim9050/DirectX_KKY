@@ -63,5 +63,8 @@ private:
 
 	void Phase1(float _DeltaTime);
 	void Phase2(float _DeltaTime);
+
+
+	void ObjectCreate_DebugMode();
 };
 
