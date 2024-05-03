@@ -323,6 +323,7 @@ namespace PirateBossAniName
 	const std::string Shark_Appear = "Shark_Appear";
 	const std::string Shark_Chomp1 = "Shark_Chomp1";
 	const std::string Shark_Chomp2 = "Shark_Chomp2";
+	const std::string Shark_Leave = "Shark_Leave";
 	
 }
 
