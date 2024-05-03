@@ -24,7 +24,7 @@ void AShark::BeginPlay()
 	StateInit();
 
 	{
-		SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Before_Appear);
+		SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Appear);
 	}
 }
 
@@ -56,6 +56,7 @@ void AShark::CreateAnimation()
 {
 	// Shark
 	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Before_Appear, "Shark_Fin.png", 0.0416f);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.0416f);
 
 }
 
