@@ -33,6 +33,9 @@ private:
 	UCollision* MainCollider = nullptr;
 
 private:
+	float AppearIntroSpeed = 500.0f;
+
+private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
@@ -41,8 +44,11 @@ private:
 	void CreateAnimation();
 	void SetAnimationCallback();
 	void ColliderInit();
+	void DebugUpdate();
+
 
 	// State
 	void StateInit();
+	void Appear_Intro(float _DeltaTime);
 };
 
