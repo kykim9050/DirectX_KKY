@@ -40,6 +40,7 @@ void AShark::RendererInit()
 	SharkRenderer->SetOrder(ERenderingOrder::SubMonster1);
 	SharkRenderer->SetPivot(EPivot::LEFTBOTTOM);
 	SharkRenderer->SetActive(false);
+	SharkRenderer->SetPosition(GRendererPos::Shark_RelativePos);
 
 	FinRenderer = CreateDefaultSubObject<USpriteRenderer>("FinRenderer");
 	FinRenderer->SetupAttachment(Root);
@@ -64,14 +65,10 @@ void AShark::AnimationInit()
 void AShark::CreateAnimation()
 {
 	// Shark
-	//SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.0416f, false);
-	//SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp1, "Shark_Chomp1.png", 0.0416f, false);
-	//SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp2, "Shark_Chomp2.png", 0.0416f, false);
-	//SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Leave, "Shark_Leave.png", 0.0416f, true);
-	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.1f, false);
-	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp1, "Shark_Chomp1.png", 0.1f, false);
-	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp2, "Shark_Chomp2.png", 0.1f, false);
-	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Leave, "Shark_Leave.png", 0.1f, true);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.0416f, false);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp1, "Shark_Chomp1.png", 0.0416f, false);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp2, "Shark_Chomp2.png", 0.0416f, false);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Leave, "Shark_Leave.png", 0.0416f, true);
 
 	// ShartFin
 	FinRenderer->CreateAnimation(PirateBossAniName::Shark_Before_Appear, "Shark_Fin.png", 0.0416f);
@@ -85,7 +82,6 @@ void AShark::SetAnimationCallback()
 	SharkRenderer->SetFrameCallback(PirateBossAniName::Shark_Chomp1, 10, [this]()
 		{
 			SetSpeedVec(float4::Zero);
-			SharkRenderer->SetPosition(float4(0.0f, -70.0f, 0.0f));
 			SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp2);
 		});
 
@@ -126,12 +122,10 @@ void AShark::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Shark_Chomp, [this]()
 			{
-				SharkRenderer->SetPosition(float4(-50.0f, -50.0f, 0.0f));
 				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp1);
 			});
 		State.SetStartFunction(PirateBossState::Shark_Leave, [this]()
 			{
-				SharkRenderer->SetPosition(float4(0.0f, 0.0f, 0.0f));
 				SetSpeedVec(float4::Left * LeaveSpeed);
 				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Leave);
 			});

@@ -35,10 +35,8 @@ private:
 private:
 	float AppearIntroSpeed = 500.0f;
 	float FinMoveBoundaryValue = -700.0f;
-	//float AttackSpeed = 1000.0f;
-	//float LeaveSpeed = 500.0f;
-	float AttackSpeed = 0.0f;
-	float LeaveSpeed = 0.0f;
+	float AttackSpeed = 1000.0f;
+	float LeaveSpeed = 250.0f;
 
 private:
 	void BeginPlay() override;
