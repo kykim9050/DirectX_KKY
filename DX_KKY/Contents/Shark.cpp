@@ -22,17 +22,13 @@ void AShark::BeginPlay()
 
 	AnimationInit();
 	StateInit();
-
-	{
-		EffectRenderer->ChangeAnimation(PirateBossAniName::Shark_Appear_Effect);
-	}
 }
 
 void AShark::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	//State.Update(_DeltaTime);
+	State.Update(_DeltaTime);
 }
 
 void AShark::RendererInit()
@@ -47,13 +43,14 @@ void AShark::RendererInit()
 	FinRenderer->SetupAttachment(Root);
 	FinRenderer->SetAutoSize(1.0f, true);
 	FinRenderer->SetOrder(ERenderingOrder::SharkFin);
+	FinRenderer->SetActive(false);
 
 	EffectRenderer = CreateDefaultSubObject<USpriteRenderer>("EffectRenderer");
 	EffectRenderer->SetupAttachment(Root);
 	EffectRenderer->SetAutoSize(1.0f, true);
 	EffectRenderer->SetOrder(ERenderingOrder::FrontFX);
 	EffectRenderer->SetPivot(EPivot::LEFTBOTTOM);
-	//EffectRenderer->SetActive(false);
+	EffectRenderer->SetActive(false);
 }
 
 void AShark::AnimationInit()
@@ -74,7 +71,7 @@ void AShark::CreateAnimation()
 	FinRenderer->CreateAnimation(PirateBossAniName::Shark_Before_Appear, "Shark_Fin.png", 0.0416f);
 
 	// Effect
-	EffectRenderer->CreateAnimation(PirateBossAniName::Shark_Appear_Effect, "Shark_Appear_Effect.png", 0.0416f, true);
+	EffectRenderer->CreateAnimation(PirateBossAniName::Shark_Appear_Effect, "Shark_Appear_Effect.png", 0.0416f, false);
 }
 
 void AShark::SetAnimationCallback()
@@ -82,6 +79,11 @@ void AShark::SetAnimationCallback()
 	SharkRenderer->SetFrameCallback(PirateBossAniName::Shark_Chomp1, 10, [this]()
 		{
 			SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Chomp2);
+		});
+
+	EffectRenderer->SetFrameCallback(PirateBossAniName::Shark_Appear_Effect, 22, [this]()
+		{
+			EffectRenderer->SetActive(false);
 		});
 
 }
@@ -93,5 +95,21 @@ void AShark::ColliderInit()
 
 void AShark::StateInit()
 {
+	{
+		State.CreateState(PirateBossState::Shark_Appear_Intro);
+	}
 
+	{
+		State.SetStartFunction(PirateBossState::Shark_Appear_Intro, [this]()
+			{
+				FinRenderer->SetActive(true);
+				FinRenderer->ChangeAnimation(PirateBossAniName::Shark_Before_Appear);
+			});
+	}
+
+	{
+		State.SetUpdateFunction(PirateBossState::Shark_Appear_Intro, [](float) {});
+	}
+
+	State.ChangeState(PirateBossState::Shark_Appear_Intro);
 }
