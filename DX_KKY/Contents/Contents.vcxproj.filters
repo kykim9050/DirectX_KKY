@@ -94,6 +94,9 @@
     <Filter Include="Level\PlayLevel\PirateLevel\Object\Phase1\SubObject">
       <UniqueIdentifier>{eece5799-d753-4deb-a922-e9f75b1e06a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\PirateLevel\DebugGUI">
+      <UniqueIdentifier>{a4076c34-4740-401b-919d-c3b1b2d063b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -272,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="Shark.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
+    </ClInclude>
+    <ClInclude Include="PirateLevelDebugWindow.h">
+      <Filter>Level\PlayLevel\PirateLevel\DebugGUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -469,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="Shark.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PirateLevelDebugWindow.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\DebugGUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

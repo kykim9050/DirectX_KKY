@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 #include <EngineCore/Camera.h>
 #include <EngineCore/StateManager.h>
+#include <EngineCore/EngineEditorGUI.h>
 
 #include "PirateLevelMode.h"
 #include "PirateLevelMap.h"
@@ -10,6 +11,7 @@
 #include "Message.h"
 #include "Barrel.h"
 #include "Shark.h"
+#include "PirateLevelDebugWindow.h"
 
 APirateLevelMode::APirateLevelMode()
 {
@@ -40,6 +42,8 @@ void APirateLevelMode::LevelEnd(ULevel* _NextLevel)
 	Super::LevelEnd(_NextLevel);
 
 	DeleteObject();
+
+	DebugWindow->Off();
 }
 
 void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
@@ -51,6 +55,8 @@ void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
 
 	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
 	Iris->ChangeAnimation(GAniName::IrisAni);
+
+	DebugWindow->On();
 }
 
 void APirateLevelMode::WidgetInit()
@@ -71,6 +77,8 @@ void APirateLevelMode::WidgetInit()
 void APirateLevelMode::CreateObject()
 {
 	Camera = GetWorld()->GetMainCamera();
+
+	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UPirateLevelDebugWindow>("PirateLevelDebugWindow");
 }
 
 void APirateLevelMode::ObjectInit()
