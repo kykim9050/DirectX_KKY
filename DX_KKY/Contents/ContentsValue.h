@@ -367,6 +367,7 @@ namespace PirateBossState
 	const std::string Shark_Appear_Intro = "Shark_Appear_Intro";
 	const std::string Shark_Appear = "Shark_Appear";
 	const std::string Shark_Chomp = "Shark_Chomp";
+	const std::string Shark_Leave = "Shark_Leave";
 }
 
 namespace PirateBossStageValue
