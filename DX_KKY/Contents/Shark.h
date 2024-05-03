@@ -34,8 +34,8 @@ private:
 
 private:
 	float AppearIntroSpeed = 500.0f;
-	float FinMoveBoundaryValue = -700.0f;
-	float AttackSpeed = 1000.0f;
+	float FinMoveBoundaryValue = -800.0f;
+	float AttackSpeed = 1100.0f;
 	float LeaveSpeed = 250.0f;
 
 private:
