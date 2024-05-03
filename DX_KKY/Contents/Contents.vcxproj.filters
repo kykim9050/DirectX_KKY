@@ -279,6 +279,9 @@
     <ClInclude Include="PirateLevelDebugWindow.h">
       <Filter>Level\PlayLevel\PirateLevel\DebugGUI</Filter>
     </ClInclude>
+    <ClInclude Include="SeaDog.h">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -478,6 +481,9 @@
     </ClCompile>
     <ClCompile Include="PirateLevelDebugWindow.cpp">
       <Filter>Level\PlayLevel\PirateLevel\DebugGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SeaDog.cpp">
+      <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

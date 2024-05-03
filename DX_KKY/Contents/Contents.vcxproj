@@ -339,6 +339,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="SeaDog.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Seed.h">
       <SubType>
       </SubType>
@@ -570,6 +574,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Math.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SeaDog.cpp">
       <SubType>
       </SubType>
     </ClCompile>
