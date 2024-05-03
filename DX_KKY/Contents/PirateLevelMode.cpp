@@ -221,7 +221,7 @@ void APirateLevelMode::ObjectCreate_DebugMode()
 	AShark* Shark = GetWorld()->SpawnActor<AShark>("Shark", EActorType::Monster).get();
 	Shark->SetActorLocation(GActorPosValue::Shark_Init_Pos);
 
-	Shark->DelayCallBack(10.0f, [Shark]()
+	Shark->DelayCallBack(15.0f, [Shark]()
 		{
 			Shark->Destroy();
 		});
