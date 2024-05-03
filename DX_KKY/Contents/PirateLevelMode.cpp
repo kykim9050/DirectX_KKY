@@ -219,7 +219,7 @@ void APirateLevelMode::Phase2(float _DeltaTime)
 void APirateLevelMode::ObjectCreate_DebugMode()
 {
 	AShark* Shark = GetWorld()->SpawnActor<AShark>("Shark", EActorType::Monster).get();
-	Shark->SetActorLocation(float4(1280.0f, -360.0f, 0.0f));
+	Shark->SetActorLocation(GActorPosValue::Shark_Init_Pos);
 
 	Shark->DelayCallBack(10.0f, [Shark]()
 		{

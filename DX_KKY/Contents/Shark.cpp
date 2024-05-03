@@ -29,6 +29,7 @@ void AShark::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	State.Update(_DeltaTime);
+	DebugUpdate();
 }
 
 void AShark::RendererInit()
@@ -62,7 +63,7 @@ void AShark::AnimationInit()
 void AShark::CreateAnimation()
 {
 	// Shark
-	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.0416f);
+	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Appear, "Shark_Appear.png", 0.067f);
 	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp1, "Shark_Chomp1.png", 0.0416f, false);
 	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Chomp2, "Shark_Chomp2.png", 0.0416f, false);
 	SharkRenderer->CreateAnimation(PirateBossAniName::Shark_Leave, "Shark_Leave.png", 0.067f, true);
@@ -102,14 +103,37 @@ void AShark::StateInit()
 	{
 		State.SetStartFunction(PirateBossState::Shark_Appear_Intro, [this]()
 			{
+				SetSpeedVec(float4::Left * AppearIntroSpeed);
 				FinRenderer->SetActive(true);
 				FinRenderer->ChangeAnimation(PirateBossAniName::Shark_Before_Appear);
 			});
 	}
 
 	{
-		State.SetUpdateFunction(PirateBossState::Shark_Appear_Intro, [](float) {});
+		State.SetUpdateFunction(PirateBossState::Shark_Appear_Intro, std::bind(&AShark::Appear_Intro, this, std::placeholders::_1));
+	}
+
+	{
+		State.SetEndFunction(PirateBossState::Shark_Appear_Intro, [this]()
+			{
+				SetSpeedVec(float4::Zero);
+				FinRenderer->SetActive(false);
+			});
 	}
 
 	State.ChangeState(PirateBossState::Shark_Appear_Intro);
+}
+
+void AShark::Appear_Intro(float _DeltaTime)
+{
+
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void AShark::DebugUpdate()
+{
+	{
+		std::string Msg = std::format("Shark Pos : {}\n", GetActorLocation().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
 }

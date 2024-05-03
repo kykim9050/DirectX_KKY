@@ -483,6 +483,7 @@ namespace GActorPosValue
 	const float4 CannonBall_RelativePos = float4(-350.0f, 165.0f, 0.0f);
 	const float4 UvulaBubble_RelativePos = float4(-135.0f, 340.0f, 0.0f);
 	const float4 Barrel_Init_Pos = float4(800.0f, -50.0f, 0.0f);
+	const float4 Shark_Init_Pos = float4(1280.0f, -500.0f, 0.0f);
 
 }
 
