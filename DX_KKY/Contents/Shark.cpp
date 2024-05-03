@@ -94,7 +94,14 @@ void AShark::SetAnimationCallback()
 
 void AShark::ColliderInit()
 {
+	MainCollider = CreateDefaultSubObject<UCollision>("MainCollider");
+	MainCollider->SetupAttachment(Root);
 
+	MainCollider->SetScale(float4(750.0f, 350.0f, 1.0f));
+	MainCollider->SetPosition(float4(375.0f, 175.0f, 0.0f));
+	MainCollider->SetCollisionGroup(ECollisionGroup::Monster);
+	MainCollider->SetCollisionType(ECollisionType::Rect);
+	MainCollider->SetActive(false);
 }
 
 void AShark::StateInit()
@@ -119,6 +126,7 @@ void AShark::StateInit()
 				SetSpeedVec(float4::Right * AttackSpeed);
 				SharkRenderer->SetActive(true);
 				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Appear);
+				MainCollider->SetActive(true);
 			});
 		State.SetStartFunction(PirateBossState::Shark_Chomp, [this]()
 			{
