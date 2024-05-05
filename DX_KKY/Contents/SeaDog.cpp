@@ -10,6 +10,8 @@ ASeaDog::ASeaDog()
 
 	RendererInit();
 	ColliderInit();
+
+	SetHp(2);
 }
 
 ASeaDog::~ASeaDog()
@@ -40,9 +42,6 @@ void ASeaDog::RendererInit()
 
 	//EffectRenderer = CreateDefaultSubObject<USpriteRenderer>("EffectRenderer");
 	//EffectRenderer->SetupAttachment(Root);
-
-	//ScopeRenderer = CreateDefaultSubObject<USpriteRenderer>("ScopeRenderer");
-	//ScopeRenderer->SetupAttachment(Root);
 }
 
 void ASeaDog::AnimationInit()
@@ -77,7 +76,14 @@ void ASeaDog::SetAnimationCallback()
 
 void ASeaDog::ColliderInit()
 {
+	MainCollider = CreateDefaultSubObject<UCollision>("MainCollider");
+	MainCollider->SetupAttachment(Root);
 
+	MainCollider->SetScale(GColliderScale::SeaDog_ColScale);
+	MainCollider->SetPosition(GColliderPosInfo::SeaDog_RelPos);
+	MainCollider->SetCollisionGroup(ECollisionGroup::Monster);
+	MainCollider->SetCollisionType(ECollisionType::Rect);
+	MainCollider->SetActive(false);
 }
 
 void ASeaDog::StateInit()
@@ -99,6 +105,8 @@ void ASeaDog::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Appear2, [this]()
 			{
+				MainCollider->SetActive(true);
+
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear2);
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Appear3, [this]()

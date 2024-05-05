@@ -414,6 +414,7 @@ namespace GColliderScale
 
 	const float4 Barrel_ColScale = float4(150.0f, 100.0f, 1.0f);
 	const float4 Shark_ColScale = float4(750.0f, 350.0f, 1.0f);
+	const float4 SeaDog_ColScale = float4(150.0f, 70.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
@@ -437,6 +438,7 @@ namespace GColliderPosInfo
 	const float4 Barrel_Idle_RelPos = float4(0.0f, -50.0f, 0.0f);
 	const float4 Barrel_Drop_RelPos = float4(-2.0f, -56.0f, 0.0f);
 	const float4 Shark_RelPos = float4(375.0f, 175.0f, 0.0f);
+	const float4 SeaDog_RelPos = float4(0.0f, -35.0f, 0.0f);
 }
 
 namespace GRendererPos
