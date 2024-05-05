@@ -326,7 +326,7 @@ namespace PirateBossAniName
 	const std::string Shark_Leave = "Shark_Leave";
 	const std::string Shark_Appear_Effect = "Shark_Appear_Effect";
 	
-	const std::string SeaDog_Before_Appear = "SeaDog_Before_Appear";
+	const std::string SeaDog_Periscope = "SeaDog_Periscope";
 	const std::string SeaDog_Appear1 = "SeaDog_Appear1";
 	const std::string SeaDog_Appear2 = "SeaDog_Appear2";
 	const std::string SeaDog_Appear3 = "SeaDog_Appear3";
@@ -511,7 +511,7 @@ namespace GActorPosValue
 	const float4 Barrel_Init_Pos = float4(800.0f, -50.0f, 0.0f);
 	const float4 Shark_Init_Pos = float4(1280.0f, -500.0f, 0.0f);
 	const float4 SeaDog_Init_Pos = float4(1140.0f, -710.0f, 0.0f);
-	
+	const float4 Periscope_Init_Pos = float4(1200.0f, -710.0f, 0.0f);
 }
 
 
