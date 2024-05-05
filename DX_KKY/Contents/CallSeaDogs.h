@@ -22,6 +22,9 @@ protected:
 
 private:
 	UDefaultSceneComponent* Root = nullptr;
+	int SeaDogsNum = 4;
+	float SeaDogInitDelay = 1.0f;
+	float SeaDogAppearDelay = 1.5f;
 
 private:
 	void BeginPlay() override;
