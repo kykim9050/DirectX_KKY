@@ -28,8 +28,6 @@ private:
 
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* SeaDogRenderer = nullptr;
-	USpriteRenderer* EffectRenderer = nullptr;
-	USpriteRenderer* ScopeRenderer = nullptr;
 	UCollision* MainCollider = nullptr;
 	
 	float JumpSpeed = 1600.0f;
@@ -41,6 +39,7 @@ private:
 	float DestroyBoundaryXValue = -200.0f;
 	float DestroyBoundaryYValue = -100.0f;
 	float UpSpeed = 500.0f;
+	float4 DeathEffectOffset = float4(0.0f, -20.0f, 0.0f);
 
 private:
 	void BeginPlay() override;
@@ -52,6 +51,8 @@ private:
 	void SetAnimationCallback();
 	void ColliderInit();
 
+
+	void CreateDeathEffect();
 	void CalGravityVec(float _DeltaTime) override;
 
 	// State

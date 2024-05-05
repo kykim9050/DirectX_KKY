@@ -2,6 +2,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 #include "SeaDog.h"
+#include "FXBase.h"
 
 ASeaDog::ASeaDog()
 {
@@ -39,12 +40,6 @@ void ASeaDog::RendererInit()
 	SeaDogRenderer->SetupAttachment(Root);
 	SeaDogRenderer->SetAutoSize(1.0f, true);
 	SeaDogRenderer->SetOrder(ERenderingOrder::SubMonster1);
-
-	EffectRenderer = CreateDefaultSubObject<USpriteRenderer>("EffectRenderer");
-	EffectRenderer->SetupAttachment(Root);
-	EffectRenderer->SetAutoSize(1.0f, true);
-	EffectRenderer->SetOrder(ERenderingOrder::SubMonster1FX);
-	EffectRenderer->SetActive(false);
 }
 
 void ASeaDog::AnimationInit()
@@ -63,10 +58,8 @@ void ASeaDog::CreateAnimation()
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Move, "SeaDog_Move.png", 0.0417f);
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Death, "SeaDog_Death.png", 0.0417f);
 
-	EffectRenderer->CreateAnimation(PirateBossAniName::SeaDog_Death_Effect, "SeaDog_Death_Effect.png", 0.0417f, false);
+	
 	//UEngineSprite::CreateCutting("SeaDog_Appear_Effect.png", 6, 2);
-	//UEngineSprite::CreateCutting("SeaDog_Death.png", 8, 1);
-	//UEngineSprite::CreateCutting("SeaDog_Death_Effect.png", 5, 2);
 	//UEngineSprite::CreateCutting("SeaDog_Periscope.png", 10, 5);
 }
 
@@ -75,12 +68,6 @@ void ASeaDog::SetAnimationCallback()
 	SeaDogRenderer->SetFrameCallback(PirateBossAniName::SeaDog_Appear5, 2, [this]()
 		{
 			SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Move);
-		});
-
-	EffectRenderer->SetFrameCallback(PirateBossAniName::SeaDog_Death_Effect, 10, [this]()
-		{
-			MainCollider->SetActive(false);
-			EffectRenderer->SetActive(false);
 		});
 }
 
@@ -140,8 +127,7 @@ void ASeaDog::StateInit()
 
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Death);
 
-				EffectRenderer->SetActive(true);
-				EffectRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Death_Effect);
+				CreateDeathEffect();
 			});
 	}
 
@@ -181,6 +167,7 @@ void ASeaDog::StateInit()
 			});
 		State.SetEndFunction(PirateBossState::SeaDog_Move, [this]()
 			{
+				MainCollider->SetActive(false);
 				SetSpeedVec(float4::Zero);
 			});
 	}
@@ -249,4 +236,12 @@ void ASeaDog::Death(float _DeltaTime)
 	}
 
 	ResultMovementUpdate(_DeltaTime);
+}
+
+void ASeaDog::CreateDeathEffect()
+{
+	std::shared_ptr<AFXBase> Effect = GetWorld()->SpawnActor<AFXBase>("Effect", EActorType::FX);
+		
+	Effect->FXInit(ERenderingOrder::SubMonster1FX, FAniInfo(PirateBossAniName::SeaDog_Death_Effect, "SeaDog_Death_Effect.png", 0.0417f));
+	Effect->SetActorLocation(GetActorLocation() + DeathEffectOffset);
 }
