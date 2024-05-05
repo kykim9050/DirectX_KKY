@@ -53,8 +53,8 @@ void ASeaDog::AnimationInit()
 
 void ASeaDog::CreateAnimation()
 {
-	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear1, "SeaDog_Appear.png", 0.057f, false, 0, 11);
-	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear2, "SeaDog_Appear.png", 0.0417f, false, 12, 13);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear1, "SeaDog_Appear.png", 0.0517f, false, 0, 11);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear2, "SeaDog_Appear.png", 0.057f, false, 12, 13);
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear3, "SeaDog_Appear.png", 0.0417f, false, 14, 15);
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear4, "SeaDog_Appear.png", 0.0417f, false, 16, 19);
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear5, "SeaDog_Appear.png", 0.0417f, false, 20, 21);
@@ -81,6 +81,7 @@ void ASeaDog::StateInit()
 {
 	{
 		State.CreateState(PirateBossState::SeaDog_Appear1);
+		State.CreateState(PirateBossState::SeaDog_Appear2);
 	}
 
 	{
@@ -90,10 +91,24 @@ void ASeaDog::StateInit()
 				SetSpeedVec(float4::Left * Appear1Speed);
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear1);
 			});
+		State.SetStartFunction(PirateBossState::SeaDog_Appear2, [this]()
+			{
+				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear2);
+			});
 	}
 
 	{
 		State.SetUpdateFunction(PirateBossState::SeaDog_Appear1, std::bind(&ASeaDog::Appear_Step1, this, std::placeholders::_1));
+		State.SetUpdateFunction(PirateBossState::SeaDog_Appear2, [](float) {});
+	}
+
+	{
+		State.SetEndFunction(PirateBossState::SeaDog_Appear1, [this]()
+			{
+				SetJumpVec(float4::Zero);
+				SetSpeedVec(float4::Zero);
+				SetGravityAccVec(float4::Zero);
+			});
 	}
 
 	State.ChangeState(PirateBossState::SeaDog_Appear1);
@@ -110,11 +125,11 @@ void ASeaDog::CalGravityVec(float _DeltaTime)
 void ASeaDog::Appear_Step1(float _DeltaTime)
 {
 	float4 Pos = GetActorLocation();
-	Pos.Y = -Pos.Y + 100.0f;
+	Pos.Y = -Pos.Y + PixelCheckOffset;
 
-	if (800.0f >= Pos.X && true == PixelCheck(Pos, Color8Bit::Black))
+	if (FirstAppearXBoundary >= Pos.X && true == PixelCheck(Pos, Color8Bit::Black))
 	{
-		SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear2);
+		State.ChangeState(PirateBossState::SeaDog_Appear2);
 		return;
 	}
 
