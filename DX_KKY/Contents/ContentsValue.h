@@ -382,7 +382,7 @@ namespace PirateBossState
 	const std::string SeaDog_Appear2 = "SeaDog_Appear2";
 	const std::string SeaDog_Appear3 = "SeaDog_Appear3";
 	const std::string SeaDog_Appear4 = "SeaDog_Appear4";
-
+	const std::string SeaDog_Move = "SeaDog_Move";
 }
 
 namespace PirateBossStageValue
