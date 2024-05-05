@@ -327,7 +327,11 @@ namespace PirateBossAniName
 	const std::string Shark_Appear_Effect = "Shark_Appear_Effect";
 	
 	const std::string SeaDog_Before_Appear = "SeaDog_Before_Appear";
-	const std::string SeaDog_Appear = "SeaDog_Appear";
+	const std::string SeaDog_Appear1 = "SeaDog_Appear1";
+	const std::string SeaDog_Appear2 = "SeaDog_Appear2";
+	const std::string SeaDog_Appear3 = "SeaDog_Appear3";
+	const std::string SeaDog_Appear4 = "SeaDog_Appear4";
+	const std::string SeaDog_Appear5 = "SeaDog_Appear5";
 	const std::string SeaDog_Move = "SeaDog_Move";
 	const std::string SeaDog_Death = "SeaDog_Death";
 

@@ -24,7 +24,7 @@ void ASeaDog::BeginPlay()
 	//StateInit();
 
 	{
-		SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear);
+		SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear1);
 	}
 }
 
@@ -57,7 +57,12 @@ void ASeaDog::AnimationInit()
 
 void ASeaDog::CreateAnimation()
 {
-	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear, "SeaDog_Appear.png", 0.0417f);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear1, "SeaDog_Appear.png", 0.0417f, false, 0, 11);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear2, "SeaDog_Appear.png", 0.0417f, false, 12, 13);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear3, "SeaDog_Appear.png", 0.0417f, false, 14, 15);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear4, "SeaDog_Appear.png", 0.0417f, false, 16, 19);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear5, "SeaDog_Appear.png", 0.0417f, false, 20, 21);
+
 
 	//	UEngineSprite::CreateCutting("SeaDog_Appear.png", 11, 2);
 	//UEngineSprite::CreateCutting("SeaDog_Appear_Effect.png", 6, 2);
