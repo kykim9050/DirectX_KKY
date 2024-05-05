@@ -33,9 +33,9 @@ private:
 	UCollision* MainCollider = nullptr;
 	
 	float JumpSpeed = 1600.0f;
-	float Appear1Speed = 500.0f;
+	float Appear1Speed = 550.0f;
 	float Appear2Speed = 1000.0f;
-	float PixelCheckOffset = 100.0f;
+	float PixelCheckOffset = 75.0f;
 	float FirstAppearXBoundary = 800.0f;
 	float MoveSpeed = 600.0f;
 	float DestroyBoundaryValue = -200.0f;
