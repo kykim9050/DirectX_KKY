@@ -40,6 +40,7 @@ private:
 	float DestroyBoundaryYValue = -100.0f;
 	float UpSpeed = 500.0f;
 	float4 DeathEffectOffset = float4(0.0f, -20.0f, 0.0f);
+	float4 AppearEffectOffset = float4(-50.0f, 160.0f, 0.0f);
 
 private:
 	void BeginPlay() override;
@@ -53,6 +54,7 @@ private:
 
 
 	void CreateDeathEffect();
+	void CreateAppearEffect();
 	void CalGravityVec(float _DeltaTime) override;
 
 	// State

@@ -335,6 +335,7 @@ namespace PirateBossAniName
 	const std::string SeaDog_Move = "SeaDog_Move";
 	const std::string SeaDog_Death = "SeaDog_Death";
 	const std::string SeaDog_Death_Effect = "SeaDog_Death_Effect";
+	const std::string SeaDog_Appear_Effect = "SeaDog_Appear_Effect";
 
 }
 
@@ -509,7 +510,8 @@ namespace GActorPosValue
 	const float4 UvulaBubble_RelativePos = float4(-135.0f, 340.0f, 0.0f);
 	const float4 Barrel_Init_Pos = float4(800.0f, -50.0f, 0.0f);
 	const float4 Shark_Init_Pos = float4(1280.0f, -500.0f, 0.0f);
-
+	const float4 SeaDog_Init_Pos = float4(1140.0f, -710.0f, 0.0f);
+	
 }
 
 
