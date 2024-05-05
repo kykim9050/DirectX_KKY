@@ -100,6 +100,8 @@ void ASeaDog::StateInit()
 				SetJumpVec(float4::Up * JumpSpeed);
 				SetSpeedVec(float4::Left * Appear1Speed);
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear1);
+
+				CreateAppearEffect();
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Appear2, [this]()
 			{
@@ -244,4 +246,12 @@ void ASeaDog::CreateDeathEffect()
 		
 	Effect->FXInit(ERenderingOrder::SubMonster1FX, FAniInfo(PirateBossAniName::SeaDog_Death_Effect, "SeaDog_Death_Effect.png", 0.0417f));
 	Effect->SetActorLocation(GetActorLocation() + DeathEffectOffset);
+}
+
+void ASeaDog::CreateAppearEffect()
+{
+	std::shared_ptr<AFXBase> Effect = GetWorld()->SpawnActor<AFXBase>("Effect", EActorType::FX);
+
+	Effect->FXInit(ERenderingOrder::SubMonster1FX, FAniInfo(PirateBossAniName::SeaDog_Appear_Effect, "SeaDog_Appear_Effect.png", 0.0417f));
+	Effect->SetActorLocation(GActorPosValue::SeaDog_Init_Pos + AppearEffectOffset);
 }
