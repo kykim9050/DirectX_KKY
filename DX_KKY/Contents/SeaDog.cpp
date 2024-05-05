@@ -82,6 +82,8 @@ void ASeaDog::StateInit()
 	{
 		State.CreateState(PirateBossState::SeaDog_Appear1);
 		State.CreateState(PirateBossState::SeaDog_Appear2);
+		State.CreateState(PirateBossState::SeaDog_Appear3);
+		State.CreateState(PirateBossState::SeaDog_Appear4);
 	}
 
 	{
@@ -95,11 +97,35 @@ void ASeaDog::StateInit()
 			{
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear2);
 			});
+		State.SetStartFunction(PirateBossState::SeaDog_Appear3, [this]()
+			{
+				SetSpeedVec(float4::Left * 1000.0f);
+				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear3);
+			});
+		State.SetStartFunction(PirateBossState::SeaDog_Appear4, [this]()
+			{
+				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear4);
+			});
 	}
 
 	{
 		State.SetUpdateFunction(PirateBossState::SeaDog_Appear1, std::bind(&ASeaDog::Appear_Step1, this, std::placeholders::_1));
-		State.SetUpdateFunction(PirateBossState::SeaDog_Appear2, [](float) {});
+		State.SetUpdateFunction(PirateBossState::SeaDog_Appear2, [this](float)
+			{
+				if (true == SeaDogRenderer->IsCurAnimationEnd())
+				{
+					State.ChangeState(PirateBossState::SeaDog_Appear3);
+					return;
+				}
+			});
+		State.SetUpdateFunction(PirateBossState::SeaDog_Appear3, std::bind(&ASeaDog::Appear_Step2, this, std::placeholders::_1));
+		State.SetUpdateFunction(PirateBossState::SeaDog_Appear4, [this](float)
+			{
+				if (true == SeaDogRenderer->IsCurAnimationEnd())
+				{
+					return;
+				}
+			});
 	}
 
 	{
@@ -107,7 +133,11 @@ void ASeaDog::StateInit()
 			{
 				SetJumpVec(float4::Zero);
 				SetSpeedVec(float4::Zero);
-				SetGravityAccVec(float4::Zero);
+				SetGravityVec(float4::Zero);
+			});
+		State.SetEndFunction(PirateBossState::SeaDog_Appear3, [this]()
+			{
+				SetSpeedVec(float4::Zero);
 			});
 	}
 
@@ -137,3 +167,13 @@ void ASeaDog::Appear_Step1(float _DeltaTime)
 	ResultMovementUpdate(_DeltaTime);
 }
 
+void ASeaDog::Appear_Step2(float _DeltaTime)
+{
+	if (true == SeaDogRenderer->IsCurAnimationEnd())
+	{
+		State.ChangeState(PirateBossState::SeaDog_Appear4);
+		return;
+	}
+
+	ResultMovementUpdate(_DeltaTime);
+}

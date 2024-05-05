@@ -52,5 +52,6 @@ private:
 	// State
 	void StateInit();
 	void Appear_Step1(float _DeltaTime);
+	void Appear_Step2(float _DeltaTime);
 };
 
