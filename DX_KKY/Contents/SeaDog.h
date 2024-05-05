@@ -38,7 +38,9 @@ private:
 	float PixelCheckOffset = 75.0f;
 	float FirstAppearXBoundary = 800.0f;
 	float MoveSpeed = 600.0f;
-	float DestroyBoundaryValue = -200.0f;
+	float DestroyBoundaryXValue = -200.0f;
+	float DestroyBoundaryYValue = -100.0f;
+	float UpSpeed = 500.0f;
 
 private:
 	void BeginPlay() override;
@@ -57,5 +59,6 @@ private:
 	void Appear_Step1(float _DeltaTime);
 	void Appear_Step2(float _DeltaTime);
 	void Move(float _DeltaTime);
+	void Death(float _DeltaTime);
 };
 
