@@ -2,6 +2,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 #include "CallSeaDogs.h"
+#include "SeaDog.h"
 #include "FXBase.h"
 
 ACallSeaDogs::ACallSeaDogs()
@@ -20,6 +21,10 @@ void ACallSeaDogs::BeginPlay()
 
 	CreatePeriscope();
 	CreateSeaDogs();
+	DelayCallBack(SeaDogInitDelay + SeaDogAppearDelay * (SeaDogsNum + 1), [this]()
+		{
+			Destroy();
+		});
 }
 
 void ACallSeaDogs::Tick(float _DeltaTime)
@@ -37,5 +42,12 @@ void ACallSeaDogs::CreatePeriscope()
 
 void ACallSeaDogs::CreateSeaDogs()
 {
-
+	for (int i = 0; i < SeaDogsNum; i++)
+	{
+		DelayCallBack(SeaDogInitDelay + SeaDogAppearDelay * (i + 1), [this]()
+			{
+				std::shared_ptr<ASeaDog> SeaDog = GetWorld()->SpawnActor<ASeaDog>("SeaDog", EActorType::Monster);
+				SeaDog->SetActorLocation(GActorPosValue::SeaDog_Init_Pos);
+			});
+	}
 }
