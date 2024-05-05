@@ -334,6 +334,7 @@ namespace PirateBossAniName
 	const std::string SeaDog_Appear5 = "SeaDog_Appear5";
 	const std::string SeaDog_Move = "SeaDog_Move";
 	const std::string SeaDog_Death = "SeaDog_Death";
+	const std::string SeaDog_Death_Effect = "SeaDog_Death_Effect";
 
 }
 
@@ -383,6 +384,7 @@ namespace PirateBossState
 	const std::string SeaDog_Appear3 = "SeaDog_Appear3";
 	const std::string SeaDog_Appear4 = "SeaDog_Appear4";
 	const std::string SeaDog_Move = "SeaDog_Move";
+	const std::string SeaDog_Death = "SeaDog_Death";
 }
 
 namespace PirateBossStageValue
