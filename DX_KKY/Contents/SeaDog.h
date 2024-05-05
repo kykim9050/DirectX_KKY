@@ -34,6 +34,8 @@ private:
 	
 	float JumpSpeed = 1600.0f;
 	float Appear1Speed = 500.0f;
+	float PixelCheckOffset = 100.0f;
+	float FirstAppearXBoundary = 800.0f;
 
 private:
 	void BeginPlay() override;

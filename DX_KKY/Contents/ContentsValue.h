@@ -379,6 +379,7 @@ namespace PirateBossState
 	const std::string Shark_Leave = "Shark_Leave";
 
 	const std::string SeaDog_Appear1 = "SeaDog_Appear1";
+	const std::string SeaDog_Appear2 = "SeaDog_Appear2";
 
 }
 
