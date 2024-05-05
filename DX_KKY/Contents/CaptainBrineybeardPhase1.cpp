@@ -7,6 +7,8 @@
 #include "FXBase.h"
 #include "CannonBall.h"
 #include "OctopusBullet.h"
+#include "Shark.h"
+#include "CallSeaDogs.h"
 
 ACaptainBrineybeardPhase1::ACaptainBrineybeardPhase1()
 {
@@ -164,4 +166,15 @@ void ACaptainBrineybeardPhase1::Phase1_EndSetting()
 	ShipSailRenderer->SetActive(false);
 	ShipMastRenderer->SetActive(false);
 	MainCollider->SetActive(false);
+}
+
+void ACaptainBrineybeardPhase1::SpawnShark()
+{
+	AShark* Shark = GetWorld()->SpawnActor<AShark>("Shark", EActorType::Monster).get();
+	Shark->SetActorLocation(GActorPosValue::Shark_Init_Pos);
+}
+
+void ACaptainBrineybeardPhase1::SpawnSeaDogs()
+{
+	std::shared_ptr<ACallSeaDogs> SeaDogs = GetWorld()->SpawnActor<ACallSeaDogs>("SeaDogs", EActorType::Monster);
 }

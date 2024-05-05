@@ -94,6 +94,8 @@ private:
 	void CreateWhistleEffect();
 	void CreateCannonBall();
 	void CreateOctopusBullet();
+	void SpawnShark();
+	void SpawnSeaDogs();
 
 	// State
 	void Ship_Idle(float _DeltaTime);

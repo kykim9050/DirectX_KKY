@@ -108,6 +108,21 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			});
 		PirateRenderer->SetFrameCallback(PirateBossAniName::Pirate_Whistle, 30, [this]()
 			{
+				int RandomVal = UMath::GetInst().RandomReturnInt(0, 1);
+
+				switch (RandomVal)
+				{
+				case 0:
+					SpawnShark();
+					break;
+				case 1:
+					SpawnSeaDogs();
+					break;
+				default:
+					MsgBoxAssert("존재할 수 없는 랜덤 값입니다." + std::to_string(RandomVal));
+					return;
+				}
+
 				CreateWhistleEffect();
 			});
 
