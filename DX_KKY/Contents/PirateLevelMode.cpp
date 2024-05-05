@@ -11,7 +11,7 @@
 #include "Message.h"
 #include "Barrel.h"
 #include "Shark.h"
-#include "SeaDog.h"
+#include "CallSeaDogs.h"
 #include "PirateLevelDebugWindow.h"
 
 APirateLevelMode::APirateLevelMode()
@@ -226,6 +226,5 @@ void APirateLevelMode::ObjectCreate_Shark()
 
 void APirateLevelMode::ObjectCreate_SeaDog()
 {
-	ASeaDog* SeaDog = GetWorld()->SpawnActor<ASeaDog>("SeaDog", EActorType::Monster).get();
-	SeaDog->SetActorLocation(GActorPosValue::SeaDog_Init_Pos);
+	std::shared_ptr<ACallSeaDogs> SeaDogs = GetWorld()->SpawnActor<ACallSeaDogs>("SeaDogs", EActorType::Monster);
 }
