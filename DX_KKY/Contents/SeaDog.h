@@ -34,8 +34,11 @@ private:
 	
 	float JumpSpeed = 1600.0f;
 	float Appear1Speed = 500.0f;
+	float Appear2Speed = 1000.0f;
 	float PixelCheckOffset = 100.0f;
 	float FirstAppearXBoundary = 800.0f;
+	float MoveSpeed = 600.0f;
+	float DestroyBoundaryValue = -200.0f;
 
 private:
 	void BeginPlay() override;
@@ -53,5 +56,6 @@ private:
 	void StateInit();
 	void Appear_Step1(float _DeltaTime);
 	void Appear_Step2(float _DeltaTime);
+	void Move(float _DeltaTime);
 };
 

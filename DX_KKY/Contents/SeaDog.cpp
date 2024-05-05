@@ -57,19 +57,22 @@ void ASeaDog::CreateAnimation()
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear2, "SeaDog_Appear.png", 0.057f, false, 12, 13);
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear3, "SeaDog_Appear.png", 0.0417f, false, 14, 15);
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear4, "SeaDog_Appear.png", 0.0417f, false, 16, 19);
-	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear5, "SeaDog_Appear.png", 0.0417f, false, 20, 21);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear5, "SeaDog_Appear.png", 0.057f, false, 20, 21);
+	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Move, "SeaDog_Move.png", 0.0417f);
 
 
 	//UEngineSprite::CreateCutting("SeaDog_Appear_Effect.png", 6, 2);
 	//UEngineSprite::CreateCutting("SeaDog_Death.png", 8, 1);
 	//UEngineSprite::CreateCutting("SeaDog_Death_Effect.png", 5, 2);
-	//UEngineSprite::CreateCutting("SeaDog_Move.png", 6, 2);
 	//UEngineSprite::CreateCutting("SeaDog_Periscope.png", 10, 5);
 }
 
 void ASeaDog::SetAnimationCallback()
 {
-
+	SeaDogRenderer->SetFrameCallback(PirateBossAniName::SeaDog_Appear5, 2, [this]()
+		{
+			SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Move);
+		});
 }
 
 void ASeaDog::ColliderInit()
@@ -84,6 +87,7 @@ void ASeaDog::StateInit()
 		State.CreateState(PirateBossState::SeaDog_Appear2);
 		State.CreateState(PirateBossState::SeaDog_Appear3);
 		State.CreateState(PirateBossState::SeaDog_Appear4);
+		State.CreateState(PirateBossState::SeaDog_Move);
 	}
 
 	{
@@ -99,12 +103,17 @@ void ASeaDog::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Appear3, [this]()
 			{
-				SetSpeedVec(float4::Left * 1000.0f);
+				SetSpeedVec(float4::Left * Appear2Speed);
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear3);
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Appear4, [this]()
 			{
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear4);
+			});
+		State.SetStartFunction(PirateBossState::SeaDog_Move, [this]()
+			{
+				SetSpeedVec(float4::Left * MoveSpeed);
+				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear5);
 			});
 	}
 
@@ -123,9 +132,11 @@ void ASeaDog::StateInit()
 			{
 				if (true == SeaDogRenderer->IsCurAnimationEnd())
 				{
+					State.ChangeState(PirateBossState::SeaDog_Move);
 					return;
 				}
 			});
+		State.SetUpdateFunction(PirateBossState::SeaDog_Move, std::bind(&ASeaDog::Move, this, std::placeholders::_1));
 	}
 
 	{
@@ -155,7 +166,7 @@ void ASeaDog::CalGravityVec(float _DeltaTime)
 void ASeaDog::Appear_Step1(float _DeltaTime)
 {
 	float4 Pos = GetActorLocation();
-	Pos.Y = -Pos.Y + PixelCheckOffset;
+	Pos.Y = -(Pos.Y - PixelCheckOffset);
 
 	if (FirstAppearXBoundary >= Pos.X && true == PixelCheck(Pos, Color8Bit::Black))
 	{
@@ -172,6 +183,17 @@ void ASeaDog::Appear_Step2(float _DeltaTime)
 	if (true == SeaDogRenderer->IsCurAnimationEnd())
 	{
 		State.ChangeState(PirateBossState::SeaDog_Appear4);
+		return;
+	}
+
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void ASeaDog::Move(float _DeltaTime)
+{
+	if (GetActorLocation().X < DestroyBoundaryValue)
+	{
+		Destroy();
 		return;
 	}
 
