@@ -24,13 +24,16 @@ public:
 protected:
 
 private:
-	//UStateManager State;
+	UStateManager State;
 
 	UDefaultSceneComponent* Root = nullptr;
 	USpriteRenderer* SeaDogRenderer = nullptr;
 	USpriteRenderer* EffectRenderer = nullptr;
 	USpriteRenderer* ScopeRenderer = nullptr;
 	UCollision* MainCollider = nullptr;
+	
+	float JumpSpeed = 1600.0f;
+	float Appear1Speed = 500.0f;
 
 private:
 	void BeginPlay() override;
@@ -42,8 +45,10 @@ private:
 	void SetAnimationCallback();
 	void ColliderInit();
 
+	void CalGravityVec(float _DeltaTime) override;
 
 	// State
 	void StateInit();
+	void Appear_Step1(float _DeltaTime);
 };
 

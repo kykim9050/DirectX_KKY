@@ -227,7 +227,7 @@ void APirateLevelMode::ObjectCreate_Shark()
 void APirateLevelMode::ObjectCreate_SeaDog()
 {
 	ASeaDog* SeaDog = GetWorld()->SpawnActor<ASeaDog>("SeaDog", EActorType::Monster).get();
-	SeaDog->SetActorLocation(float4(640.0f, -320.0f, 0.0f));
+	SeaDog->SetActorLocation(float4(1140.0f, -710.0f, 0.0f));
 
 	DelayCallBack(10.0f, [this, SeaDog]()
 		{
