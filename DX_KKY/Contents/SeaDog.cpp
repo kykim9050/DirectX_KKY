@@ -105,12 +105,11 @@ void ASeaDog::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Appear2, [this]()
 			{
-				MainCollider->SetActive(true);
-
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear2);
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Appear3, [this]()
 			{
+				MainCollider->SetActive(true);
 				SetSpeedVec(float4::Left * Appear2Speed);
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear3);
 			});
@@ -125,10 +124,9 @@ void ASeaDog::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Death, [this]()
 			{
+				MainCollider->SetActive(false);
 				SetJumpVec(float4::Up * UpSpeed);
-
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Death);
-
 				CreateDeathEffect();
 			});
 	}
@@ -169,7 +167,6 @@ void ASeaDog::StateInit()
 			});
 		State.SetEndFunction(PirateBossState::SeaDog_Move, [this]()
 			{
-				MainCollider->SetActive(false);
 				SetSpeedVec(float4::Zero);
 			});
 	}
@@ -202,6 +199,8 @@ void ASeaDog::Appear_Step1(float _DeltaTime)
 
 void ASeaDog::Appear_Step2(float _DeltaTime)
 {
+	DeathCheck();
+
 	if (true == SeaDogRenderer->IsCurAnimationEnd())
 	{
 		State.ChangeState(PirateBossState::SeaDog_Appear4);
@@ -213,11 +212,7 @@ void ASeaDog::Appear_Step2(float _DeltaTime)
 
 void ASeaDog::Move(float _DeltaTime)
 {
-	if (0 >= GetHp())
-	{
-		State.ChangeState(PirateBossState::SeaDog_Death);
-		return;
-	}
+	DeathCheck();
 
 	if (GetActorLocation().X < DestroyBoundaryXValue)
 	{
@@ -254,4 +249,13 @@ void ASeaDog::CreateAppearEffect()
 
 	Effect->FXInit(ERenderingOrder::SubMonster1FX, FAniInfo(PirateBossAniName::SeaDog_Appear_Effect, "SeaDog_Appear_Effect.png", 0.0417f));
 	Effect->SetActorLocation(GActorPosValue::SeaDog_Init_Pos + AppearEffectOffset);
+}
+
+void ASeaDog::DeathCheck()
+{
+	if (0 >= GetHp())
+	{
+		State.ChangeState(PirateBossState::SeaDog_Death);
+		return;
+	}
 }

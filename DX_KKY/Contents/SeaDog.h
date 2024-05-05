@@ -56,6 +56,7 @@ private:
 	void CreateDeathEffect();
 	void CreateAppearEffect();
 	void CalGravityVec(float _DeltaTime) override;
+	void DeathCheck();
 
 	// State
 	void StateInit();
