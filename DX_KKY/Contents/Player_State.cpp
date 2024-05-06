@@ -96,6 +96,7 @@ void APlayer::StateInit()
 
 		State.SetStartFunction("Idle", [this]
 			{
+				SetAvailableAirSuperShoot(true);
 				DirCheck();
 				SetAvailableParry(true);
 				SetAvailableAddJumpVec(false);
@@ -377,6 +378,7 @@ void APlayer::StateInit()
 
 		State.SetStartFunction(CupheadStateName::Player_SSAir_Up, [this]
 			{
+				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_Up);
 				AnimationDirSet(Renderer, PlayerDir);
@@ -384,6 +386,7 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_DiagonalUp, [this]
 			{
+				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_DiagonalUp);
 				AnimationDirSet(Renderer, PlayerDir);
@@ -391,6 +394,7 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_Straight, [this]
 			{
+				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_Straight);
 				AnimationDirSet(Renderer, PlayerDir);
@@ -398,6 +402,7 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_DiagonalDown, [this]
 			{
+				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_DiagonalDown);
 				AnimationDirSet(Renderer, PlayerDir);
@@ -405,6 +410,7 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_Down, [this]
 			{
+				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_Down);
 				AnimationDirSet(Renderer, PlayerDir);
@@ -419,7 +425,7 @@ void APlayer::StateInit()
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
 				AnimationDirSet(Renderer, PlayerDir);
-				SetShootType(EBulletShootType::None);
+				SetShootType(EBulletShootType::JumpShoot);
 			});
 	}
 
