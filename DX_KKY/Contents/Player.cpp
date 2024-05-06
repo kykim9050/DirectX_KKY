@@ -862,3 +862,17 @@ void APlayer::ResetRunFXDelay()
 {
 	RunDustDelay = RunDustDelayInit;
 }
+
+void APlayer::ColInfoChange(bool _IsDucking)
+{
+	if (true == _IsDucking)
+	{
+		BodyCollider->SetScale(GColliderScale::PlayerDuckBody_ColScale);
+		BodyCollider->SetPosition(GColliderPosInfo::PlayerDuckBodyCol_RelativePos);
+	}
+	else
+	{
+		BodyCollider->SetScale(GColliderScale::PlayerBody_ColScale);
+		BodyCollider->SetPosition(GColliderPosInfo::PlayerBodyCol_RelativePos);
+	}
+}
