@@ -338,7 +338,7 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 }
 
-void APlayer::SuperShoot(float _DeltaTime)
+void APlayer::SuperShoot()
 {
 	GetPlayerKeyDir();
 
@@ -347,6 +347,8 @@ void APlayer::SuperShoot(float _DeltaTime)
 
 	FVector InitPos = FVector::Zero;
 	FVector InitRot = FVector::Zero;
+
+
 
 	switch (ActorKeyDir)
 	{
@@ -455,7 +457,7 @@ void APlayer::SuperShootCheck(float _DeltaTime)
 	if (true == IsDown('V'))
 	{
 		ChangeSuperShootState();
-		SuperShoot(_DeltaTime);
+		SuperShoot();
 	}
 }
 
@@ -908,11 +910,12 @@ void APlayer::ColInfoChange(bool _IsDucking)
 
 void APlayer::JumpSuperShootCheck()
 {
-	if (true == IsDown('V'))
+	if (true == GetAvailableAirSuperShoot() && true == IsDown('V'))
 	{
 		// 먼저 애니메이션 부터 바꾸고
 		ChangeJumpSuperShootState();
 		// 그 다음에 방향에 따라서 발사하는 위치 바꾸고
+		SuperShoot();
 	}
 }
 

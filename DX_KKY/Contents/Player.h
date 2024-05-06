@@ -70,6 +70,7 @@ private:
 	bool AvailableDownJump = false;
 	bool OnTreadableObject = false;
 	bool Parrying = false;
+	bool AvailableAirSuperShoot = false;
 
 	void StateInit();
 	void CreatePlayerAnimation();
@@ -126,7 +127,7 @@ private:
 	void After_SSAir(float _DeltaTime);
 
 	void ShootBullet(float _DeltaTime);
-	void SuperShoot(float _DeltaTime);
+	void SuperShoot();
 	void ShootCheck(float _DeltaTime);
 	void SuperShootCheck(float _DeltaTime);
 	void JumpSuperShootCheck();
@@ -218,5 +219,13 @@ private:
 	inline void SetParrying(bool _Value)
 	{
 		Parrying = _Value;
+	}
+	inline void SetAvailableAirSuperShoot(bool _Value)
+	{
+		AvailableAirSuperShoot = _Value;
+	}
+	inline bool GetAvailableAirSuperShoot() const
+	{
+		return AvailableAirSuperShoot;
 	}
 };
