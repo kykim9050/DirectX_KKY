@@ -69,7 +69,7 @@ namespace CupheadStateName
 	const std::string Player_SSAir_Down = "Player_SSAir_Down";
 	const std::string Player_SSAir_DiagonalUp = "Player_SSAir_DiagonalUp";
 	const std::string Player_SSAir_DiagonalDown = "Player_SSAir_DiagonalDown";
-
+	const std::string After_SSAir = "After_SSAir";
 }
 
 namespace GStateName

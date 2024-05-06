@@ -49,6 +49,7 @@ void APlayer::StateInit()
 		State.CreateState(CupheadStateName::Player_SSAir_Down);
 		State.CreateState(CupheadStateName::Player_SSAir_DiagonalUp);
 		State.CreateState(CupheadStateName::Player_SSAir_DiagonalDown);
+		State.CreateState(CupheadStateName::After_SSAir);
 
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
@@ -91,6 +92,7 @@ void APlayer::StateInit()
 		State.SetUpdateFunction(CupheadStateName::Player_SSAir_Straight, std::bind(&APlayer::SSAir_Straight, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::Player_SSAir_DiagonalDown, std::bind(&APlayer::SSAir_DiagonalDown, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::Player_SSAir_Down, std::bind(&APlayer::SSAir_Down, this, std::placeholders::_1));
+		State.SetUpdateFunction(CupheadStateName::After_SSAir, std::bind(&APlayer::After_SSAir, this, std::placeholders::_1));
 
 		State.SetStartFunction("Idle", [this]
 			{
@@ -407,6 +409,19 @@ void APlayer::StateInit()
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_Down);
 				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
+			});
+
+		State.SetStartFunction(CupheadStateName::After_SSAir, [this]()
+			{
+				DirCheck();
+				SetJumpVec(float4::Zero);
+				SetGravityVec(float4::Zero);
+				//SetAvailableAddJumpVec(false);
+				//SetJumpVec(GetPrevJumpVec());
+				//SetGravityVec(GetPrevGravityVec());
+				Renderer->ChangeAnimation("Player_Jump");
+				AnimationDirSet(Renderer, PlayerDir);
+				//SetShootType(EBulletShootType::None);
 			});
 	}
 
@@ -1775,4 +1790,40 @@ void APlayer::SSAir_DiagonalDown(float _DeltaTime)
 void APlayer::SSAir_Down(float _DeltaTime)
 {
 
+}
+
+void APlayer::After_SSAir(float _DeltaTime)
+{
+	//ShootCheck(_DeltaTime);
+	//FootColOnOff();
+
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
+	{
+		CreateLandFX(GetActorLocation());
+		State.ChangeState("Idle");
+		return;
+	}
+
+	//if (true == GetAvailableParry() && true == IsDown('Z'))
+	//{
+	//	State.ChangeState("Parry");
+	//	return;
+	//}
+
+	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
+	{
+		DirCheck();
+		SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
+		AnimationDirSet(Renderer, PlayerDir);
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Zero);
+	}
+
+	ResultMovementUpdate(_DeltaTime);
 }

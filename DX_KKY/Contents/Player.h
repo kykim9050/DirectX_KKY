@@ -123,8 +123,9 @@ private:
 	void SSAir_Straight(float _DeltaTime);
 	void SSAir_DiagonalDown(float _DeltaTime);
 	void SSAir_Down(float _DeltaTime);
+	void After_SSAir(float _DeltaTime);
 
-		void ShootBullet(float _DeltaTime);
+	void ShootBullet(float _DeltaTime);
 	void SuperShoot(float _DeltaTime);
 	void ShootCheck(float _DeltaTime);
 	void SuperShootCheck(float _DeltaTime);

@@ -172,6 +172,33 @@ void APlayer::CreatePlayerAnimation()
 				State.ChangeState("Idle");
 			}
 		);
+
+		Renderer->SetFrameCallback(GAniName::Player_SSAir_Up, 15, [this]()
+			{
+				State.ChangeState(CupheadStateName::After_SSAir);
+			}
+		);
+		Renderer->SetFrameCallback(GAniName::Player_SSAir_DiagonalUp, 15, [this]()
+			{
+				State.ChangeState(CupheadStateName::After_SSAir);
+			}
+		);
+		Renderer->SetFrameCallback(GAniName::Player_SSAir_Straight, 15, [this]()
+			{
+				State.ChangeState(CupheadStateName::After_SSAir);
+			}
+		);
+		Renderer->SetFrameCallback(GAniName::Player_SSAir_DiagonalDown, 15, [this]()
+			{
+				State.ChangeState(CupheadStateName::After_SSAir);
+			}
+		);
+		Renderer->SetFrameCallback(GAniName::Player_SSAir_Down, 15, [this]()
+			{
+				State.ChangeState(CupheadStateName::After_SSAir);
+			}
+		);
+
 	}
 }
 
