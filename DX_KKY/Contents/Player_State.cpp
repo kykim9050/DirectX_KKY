@@ -45,10 +45,10 @@ void APlayer::StateInit()
 		State.CreateState("Ground_SS_Down");
 
 		State.CreateState(CupheadStateName::Player_SSAir_Straight);
-		//State.CreateState(CupheadStateName::Player_SSAir_Up);
-		//State.CreateState(CupheadStateName::Player_SSAir_Down);
-		//State.CreateState(CupheadStateName::Player_SSAir_DiagonalUp);
-		//State.CreateState(CupheadStateName::Player_SSAir_DiagonalDown);
+		State.CreateState(CupheadStateName::Player_SSAir_Up);
+		State.CreateState(CupheadStateName::Player_SSAir_Down);
+		State.CreateState(CupheadStateName::Player_SSAir_DiagonalUp);
+		State.CreateState(CupheadStateName::Player_SSAir_DiagonalDown);
 
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
@@ -86,7 +86,11 @@ void APlayer::StateInit()
 		State.SetUpdateFunction("Ground_SS_DiagonalDown", std::bind(&APlayer::Ground_SS_DiagonalDown, this, std::placeholders::_1));
 		State.SetUpdateFunction("Ground_SS_Down", std::bind(&APlayer::Ground_SS_Down, this, std::placeholders::_1));
 
+		State.SetUpdateFunction(CupheadStateName::Player_SSAir_Up, std::bind(&APlayer::SSAir_Up, this, std::placeholders::_1));
+		State.SetUpdateFunction(CupheadStateName::Player_SSAir_DiagonalUp, std::bind(&APlayer::SSAir_DiagonalUp, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::Player_SSAir_Straight, std::bind(&APlayer::SSAir_Straight, this, std::placeholders::_1));
+		State.SetUpdateFunction(CupheadStateName::Player_SSAir_DiagonalDown, std::bind(&APlayer::SSAir_DiagonalDown, this, std::placeholders::_1));
+		State.SetUpdateFunction(CupheadStateName::Player_SSAir_Down, std::bind(&APlayer::SSAir_Down, this, std::placeholders::_1));
 
 		State.SetStartFunction("Idle", [this]
 			{
@@ -369,10 +373,38 @@ void APlayer::StateInit()
 			}
 		);
 
+		State.SetStartFunction(CupheadStateName::Player_SSAir_Up, [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation(GAniName::Player_SSAir_Up);
+				AnimationDirSet(Renderer, PlayerDir);
+				SetShootType(EBulletShootType::JumpShoot);
+			});
+		State.SetStartFunction(CupheadStateName::Player_SSAir_DiagonalUp, [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation(GAniName::Player_SSAir_DiagonalUp);
+				AnimationDirSet(Renderer, PlayerDir);
+				SetShootType(EBulletShootType::JumpShoot);
+			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_Straight, [this]
 			{
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_Straight);
+				AnimationDirSet(Renderer, PlayerDir);
+				SetShootType(EBulletShootType::JumpShoot);
+			});
+		State.SetStartFunction(CupheadStateName::Player_SSAir_DiagonalDown, [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation(GAniName::Player_SSAir_DiagonalDown);
+				AnimationDirSet(Renderer, PlayerDir);
+				SetShootType(EBulletShootType::JumpShoot);
+			});
+		State.SetStartFunction(CupheadStateName::Player_SSAir_Down, [this]
+			{
+				DirCheck();
+				Renderer->ChangeAnimation(GAniName::Player_SSAir_Down);
 				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
 			});
@@ -1720,7 +1752,27 @@ void APlayer::Ground_SS_Down(float _DeltaTime)
 
 }
 
+void APlayer::SSAir_Up(float _DeltaTime)
+{
+
+}
+
+void APlayer::SSAir_DiagonalUp(float _DeltaTime)
+{
+
+}
+
 void APlayer::SSAir_Straight(float _DeltaTime)
+{
+
+}
+
+void APlayer::SSAir_DiagonalDown(float _DeltaTime)
+{
+
+}
+
+void APlayer::SSAir_Down(float _DeltaTime)
 {
 
 }
