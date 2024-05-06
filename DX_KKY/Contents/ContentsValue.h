@@ -37,6 +37,7 @@ namespace GAniName
 	// CUphead
 	const std::string DashDust = "DashDust";
 	const std::string LandDust = "LandDust";
+	const std::string RunDust = "RunDust";
 
 	// Effect
 	const std::string ExplosionEffect = "ExplosionEffect";

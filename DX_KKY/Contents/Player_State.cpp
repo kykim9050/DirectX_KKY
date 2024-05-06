@@ -365,16 +365,19 @@ void APlayer::StateInit()
 		State.SetEndFunction("Run", [this]()
 			{
 				SetSpeedVec(float4::Zero);
+				ResetRunFXDelay();
 			}
 		);
 		State.SetEndFunction("Run_Shoot_DiagonalUp", [this]()
 			{
 				SetSpeedVec(float4::Zero);
+				ResetRunFXDelay();
 			}
 		);
 		State.SetEndFunction("Run_Shoot_Straight", [this]()
 			{
 				SetSpeedVec(float4::Zero);
+				ResetRunFXDelay();
 			}
 		);
 		State.SetEndFunction("Jump", [this]()
@@ -532,6 +535,7 @@ void APlayer::Idle(float _DeltaTime)
 
 void APlayer::Run(float _DeltaTime)
 {
+	CreateRunFX(_DeltaTime);
 	SuperShootCheck(_DeltaTime);
 
 	if (true == FallDownCheck(GetActorLocation()))
@@ -1466,6 +1470,7 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 
 void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 {
+	CreateRunFX(_DeltaTime);
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
@@ -1526,6 +1531,7 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 void APlayer::Run_Shoot_Straight(float _DeltaTime)
 {
+	CreateRunFX(_DeltaTime);
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
