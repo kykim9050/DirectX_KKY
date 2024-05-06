@@ -118,6 +118,7 @@ private:
 	void Ground_SS_Straight(float _DeltaTime);
 	void Ground_SS_DiagonalDown(float _DeltaTime);
 	void Ground_SS_Down(float _DeltaTime);
+	void SSAir_Straight(float _DeltaTime);
 
 	void ShootBullet(float _DeltaTime);
 	void SuperShoot(float _DeltaTime);
