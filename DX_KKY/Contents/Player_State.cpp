@@ -842,6 +842,7 @@ void APlayer::Duck(float _DeltaTime)
 
 void APlayer::Parry(float _DeltaTime)
 {
+	JumpSuperShootCheck();
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
 	CollisionCheck();
@@ -879,6 +880,7 @@ void APlayer::Parry(float _DeltaTime)
 
 void APlayer::AfterParry(float _DeltaTime)
 {
+	JumpSuperShootCheck();
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
 
@@ -954,6 +956,7 @@ void APlayer::DashAir(float _DeltaTime)
 
 void APlayer::AfterDashAir(float _DeltaTime)
 {
+	JumpSuperShootCheck();
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
 
@@ -1805,11 +1808,11 @@ void APlayer::After_SSAir(float _DeltaTime)
 		return;
 	}
 
-	//if (true == GetAvailableParry() && true == IsDown('Z'))
-	//{
-	//	State.ChangeState("Parry");
-	//	return;
-	//}
+	if (true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("DashAir");
+		return;
+	}
 
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
