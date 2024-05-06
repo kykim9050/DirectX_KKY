@@ -861,13 +861,35 @@ void APlayer::AfterParry(float _DeltaTime)
 
 void APlayer::Dash(float _DeltaTime)
 {
-	AddActorLocation(MoveDir(PlayerDir) * GetDashSpeed() * _DeltaTime);
+	float Speed = 0;
+
+	if (true == WallCheck())
+	{
+		Speed = 0;
+	}
+	else
+	{
+		Speed = GetDashSpeed();
+	}
+
+	AddActorLocation(MoveDir(PlayerDir) * Speed * _DeltaTime);
 }
 
 void APlayer::DashAir(float _DeltaTime)
 {
+	float Speed = 0;
+
+	if (true == WallCheck())
+	{
+		Speed = 0;
+	}
+	else
+	{
+		Speed = GetDashSpeed();
+	}
+
 	AddGravityVec(0.4f, _DeltaTime);
-	AddActorLocation(MoveDir(PlayerDir) * GetDashSpeed() * _DeltaTime);
+	AddActorLocation(MoveDir(PlayerDir) * Speed * _DeltaTime);
 }
 
 void APlayer::AfterDashAir(float _DeltaTime)
