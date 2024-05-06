@@ -243,7 +243,7 @@ void APlayer::ResultMovementUpdate(float _DeltaTime)
 {
 	CalGravityVec(_DeltaTime);
 	CalJumpVec(_DeltaTime);
-	WallCheck(_DeltaTime);
+	WallCheck();
 
 	Super::ResultMovementUpdate(_DeltaTime);
 }
@@ -260,7 +260,7 @@ void APlayer::CalJumpVec(float _DeltaTime)
 	Super::CalJumpVec(_DeltaTime);
 }
 
-void APlayer::WallCheck(float _DeltaTime)
+bool APlayer::WallCheck()
 {
 	float4 CheckPos = GetActorLocation();
 	CheckPos.Y = -(CheckPos.Y + UContentsValue::PlayerCheckPosOffSet);
@@ -280,8 +280,10 @@ void APlayer::WallCheck(float _DeltaTime)
 	if (true == PixelCheck(CheckPos, Color8Bit::Black))
 	{
 		SetSpeedVec(float4::Zero);
-		return;
+		return true;
 	}
+
+	return false;
 }
 
 void APlayer::ShootBullet(float _DeltaTime)

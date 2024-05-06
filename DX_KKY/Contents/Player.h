@@ -81,7 +81,7 @@ private:
 	EPlayerKeyDir KeyDirCheck();
 	void GetPlayerKeyDir();
 	void ChangeSuperShootState();
-	void WallCheck(float _DeltaTime);
+	bool WallCheck();
 	bool DownJumpCheck();
 
 	void Idle(float _DeltaTime);
