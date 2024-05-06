@@ -75,12 +75,14 @@ void ACagneyCarnation::StartFunctionSet()
 	//Idle
 	State.SetStartFunction(FlowerBossState::Idle, [this]()
 		{
+			HeadCollider->SetPosition(GColliderPosInfo::FlowerBoss_HeadColRelPos);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Idle);
 		});
 
 	// FaceAttack
 	State.SetStartFunction(FlowerBossState::FaceAttackHigh_Begin, [this]()
 		{
+			HeadCollider->SetPosition(GColliderPosInfo::FlowerBoss_FAH_HeadColRelPos);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackHigh_Begin);
 		});
 	State.SetStartFunction(FlowerBossState::FaceAttackHigh_Idle, [this]()
@@ -98,6 +100,7 @@ void ACagneyCarnation::StartFunctionSet()
 		{
 			AddActorLocation(FVector(0.0f, -110.f, 0.0f));
 			FaceAttLowCollider->AddPosition(FVector(0.0f, 110.f, 0.0f));
+			HeadCollider->SetPosition(GColliderPosInfo::FlowerBoss_FAL_HeadColRelPos);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackLow_Begin);
 		});
 	State.SetStartFunction(FlowerBossState::FaceAttackLow_Idle, [this]()
@@ -196,6 +199,7 @@ void ACagneyCarnation::StartFunctionSet()
 	// Phase2 Idle
 	State.SetStartFunction(FlowerBossState::Phase2_Idle, [this]()
 		{
+			HeadCollider->SetPosition(GColliderPosInfo::FlowerBoss_P2_HeadColRelPos);
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Idle);
 		});
 

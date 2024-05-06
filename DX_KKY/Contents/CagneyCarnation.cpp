@@ -49,7 +49,7 @@ void ACagneyCarnation::ColliderInit()
 	HeadCollider = CreateDefaultSubObject<UCollision>("HeadCollider");
 	HeadCollider->SetupAttachment(Root);
 	HeadCollider->SetScale(GColliderScale::FlowerBoss_HeadColScale);
-	HeadCollider->AddPosition(GColliderPosInfo::FlowerBoss_HeadColRelPos);
+	HeadCollider->SetPosition(GColliderPosInfo::FlowerBoss_HeadColRelPos);
 	HeadCollider->SetCollisionGroup(ECollisionGroup::Monster);
 	HeadCollider->SetCollisionType(ECollisionType::Rect);
 

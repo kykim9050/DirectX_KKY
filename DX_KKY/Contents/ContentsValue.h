@@ -442,6 +442,10 @@ namespace GColliderScale
 namespace GColliderPosInfo
 {
 	const float4 FlowerBoss_HeadColRelPos = float4(-300.f, 470.f, 1.0f);
+	const float4 FlowerBoss_FAL_HeadColRelPos = float4(-150.f, 320.f, 1.0f);
+	const float4 FlowerBoss_FAH_HeadColRelPos = float4(-200.f, 320.f, 1.0f);
+	
+	const float4 FlowerBoss_P2_HeadColRelPos = float4(-300.0f, 340.0f, 1.0f);
 	const float4 FlowerBoss_FaceAttHighPos = float4(-825.f, 430.f, 1.0f);
 	const float4 FlowerBoss_FaceAttLowPos = float4(-825.f, 130.f, 1.0f);
 	const std::vector<float4> AcornInitPos = { {950.0f, -190.0f, 0.0f}, {950.0f, -390.0f, 0.0f}, {950.0f, -290.0f, 0.0f } };
