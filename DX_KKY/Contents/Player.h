@@ -124,6 +124,7 @@ private:
 	void SuperShoot(float _DeltaTime);
 	void ShootCheck(float _DeltaTime);
 	void SuperShootCheck(float _DeltaTime);
+	void JumpSuperShootCheck();
 	void GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 	void JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 	

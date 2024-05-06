@@ -633,11 +633,7 @@ void APlayer::Run(float _DeltaTime)
 
 void APlayer::Jump(float _DeltaTime)
 {
-	if (true == IsDown('V'))
-	{
-		State.ChangeState(CupheadStateName::Player_SSAir_Straight);
-		return;
-	}
+	JumpSuperShootCheck();
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
 
