@@ -62,8 +62,8 @@ enum class ERenderingOrder
 	DockLog,
 	Wave1,
 	Message,
-	HourGlass,
 	Iris,
+	HourGlass,
 	OldFilmEffect,
 };
 
