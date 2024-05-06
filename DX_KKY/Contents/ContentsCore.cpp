@@ -83,6 +83,6 @@ void UContentsCore::Initialize()
 	GEngine->CreateLevel<AFlowerLevelMode>("FlowerLevel");
 	GEngine->CreateLevel<APirateLevelMode>("PirateLevel");
 	GEngine->CreateLevel<ALoadingMode>("LoadingLevel");
-	GEngine->ChangeLevel("FlowerLevel");
+	GEngine->ChangeLevel("PirateLevel");
 }
 
