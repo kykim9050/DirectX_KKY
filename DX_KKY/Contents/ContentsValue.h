@@ -428,7 +428,7 @@ namespace GColliderScale
 	const float4 PlayerBody_ColScale = float4(64.0f, 64.0f, 1.0f);
 	const float4 PlayerDuckBody_ColScale = float4(64.0f, 32.0f, 1.0f);
 
-	const float4 PirateBoss_Phase1_ColScale = float4(150.0f, 180.0f, 1.0f);
+	const float4 PirateBoss_Phase1_ColScale = float4(150.0f, 220.0f, 1.0f);
 	const float4 PirateBoss_Phase2_ColScale = float4(100.0f, 150.0f, 1.0f);
 	const float4 PirateBoss_Cannon_ColScale = float4(70.0f, 90.0f, 1.0f);
 	const float4 PirateBoss_Lazar_ColScale = float4(1200.0f, 150.0f, 1.0f);
@@ -457,7 +457,7 @@ namespace GColliderPosInfo
 	const float4 PlayerBodyCol_RelativePos = float4(0.0f, 64.0f, 0.0f);
 	const float4 PlayerDuckBodyCol_RelativePos = float4(0.0f, 40.0f, 0.0f);
 
-	const float4 PirateBoss_Phase1_RelPos = float4(-180.0f, 530.0f, 0.0f);
+	const float4 PirateBoss_Phase1_RelPos = float4(-180.0f, 510.0f, 0.0f);
 	const float4 PirateBoss_Phase2_RelPos = float4(-80.0f, 385.0f, 0.0f);
 	const float4 PirateBoss_CannonRelPos = float4(-60.0f, 0.0f, 0.0f);
 	const float4 PirateBoss_Lazar_RelPos = float4(-835.0f, 313.0f, 0.0f);
