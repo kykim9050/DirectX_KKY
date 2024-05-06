@@ -35,6 +35,11 @@ namespace GSpriteName
 namespace GAniName
 {
 	// CUphead
+	const std::string Player_SSAir_Straight = "Player_SSAir_Straight";
+	const std::string Player_SSAir_Up = "Player_SSAir_Up";
+	const std::string Player_SSAir_Down = "Player_SSAir_Down";
+	const std::string Player_SSAir_DiagonalUp = "Player_SSAir_DiagonalUp";
+	const std::string Player_SSAir_DiagonalDown = "Player_SSAir_DiagonalDown";
 	const std::string DashDust = "DashDust";
 	const std::string LandDust = "LandDust";
 	const std::string RunDust = "RunDust";

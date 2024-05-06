@@ -104,17 +104,17 @@ void APlayer::CreatePlayerAnimation()
 		Renderer->CreateAnimation("Player_Shoot_DiagonalDown", "CupHead_Shoot_DiagonalDown", 0.033f);
 		Renderer->CreateAnimation("Player_Duck_Shoot", "CupHead_Duck_Shoot", 0.033f);
 
-		Renderer->CreateAnimation("Player_SSAir_Straight", "CupHead_SSAir_Straight", 0.0416f, false);
-		Renderer->CreateAnimation("Player_SSAir_Up", "CupHead_SSAir_Up", 0.0416f, false);
-		Renderer->CreateAnimation("Player_SSAir_Down", "CupHead_SSAir_Down", 0.0416f, false);
-		Renderer->CreateAnimation("Player_SSAir_DiagonalUp", "CupHead_SSAir_DiagonalUp", 0.0416f, false);
-		Renderer->CreateAnimation("Player_SSAir_DiagonalDown", "CupHead_SSAir_DiagonalDown", 0.0416f, false);
-
 		Renderer->CreateAnimation("Player_SSGround_Straight", "CupHead_SSGround_Straight", 0.0416f, false);
 		Renderer->CreateAnimation("Player_SSGround_Up", "CupHead_SSGround_Up", 0.0416f, false);
 		Renderer->CreateAnimation("Player_SSGround_Down", "CupHead_SSGround_Down", 0.0416f, false);
 		Renderer->CreateAnimation("Player_SSGround_DiagonalUp", "CupHead_SSGround_DiagonalUp", 0.0416f, false);
 		Renderer->CreateAnimation("Player_SSGround_DiagonalDown", "CupHead_SSGround_DiagonalDown", 0.0416f, false);
+
+		Renderer->CreateAnimation(GAniName::Player_SSAir_Straight, "CupHead_SSAir_Straight", 0.0416f, false);
+		Renderer->CreateAnimation(GAniName::Player_SSAir_Up, "CupHead_SSAir_Up", 0.0416f, false);
+		Renderer->CreateAnimation(GAniName::Player_SSAir_Down, "CupHead_SSAir_Down", 0.0416f, false);
+		Renderer->CreateAnimation(GAniName::Player_SSAir_DiagonalUp, "CupHead_SSAir_DiagonalUp", 0.0416f, false);
+		Renderer->CreateAnimation(GAniName::Player_SSAir_DiagonalDown, "CupHead_SSAir_DiagonalDown", 0.0416f, false);
 
 		Renderer->CreateAnimation("Player_Hit_Ground", "CupHead_Hit_Ground", 0.05f, false);
 
