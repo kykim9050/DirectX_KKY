@@ -16,7 +16,7 @@ void ASSBulletFX::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Renderer->CreateAnimation("SpawnFX", "SSDust", 0.0416f, false);
+	Renderer->CreateAnimation("SpawnFX", "SSDust", 0.05f, false);
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::PlayerBulletFx);
 	Renderer->AddPosition(FVector(-150.0f, 0.0f));
