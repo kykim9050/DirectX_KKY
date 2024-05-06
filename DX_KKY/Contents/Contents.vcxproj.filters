@@ -97,6 +97,9 @@
     <Filter Include="Level\PlayLevel\PirateLevel\DebugGUI">
       <UniqueIdentifier>{a4076c34-4740-401b-919d-c3b1b2d063b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\LoadingLevel">
+      <UniqueIdentifier>{210eccdb-21ba-4f7b-9858-ff615c720a1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -284,6 +287,9 @@
     </ClInclude>
     <ClInclude Include="CallSeaDogs.h">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingMode.h">
+      <Filter>Level\LoadingLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +496,9 @@
     </ClCompile>
     <ClCompile Include="CallSeaDogs.cpp">
       <Filter>Level\PlayLevel\PirateLevel\Object\Phase1\SubObject</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingMode.cpp">
+      <Filter>Level\LoadingLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
