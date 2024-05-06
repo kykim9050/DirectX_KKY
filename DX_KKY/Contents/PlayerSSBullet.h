@@ -20,6 +20,8 @@ public:
 protected:
 
 private:
+	float SpawnDelay = 0.2f;
+	float SpawnDelayInit = 0.2f;
 	float BulletSpeed = 1000.0f;
 	bool IsMonsterHit = false;
 
@@ -29,8 +31,10 @@ private:
 
 	void CreateAnimation();
 
+	void Init(float _DeltaTime);
 	void Flying(float _DeltaTime);
 	void Death(float _DeltaTime);
+
 
 	void CollisionCheck();
 
