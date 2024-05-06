@@ -51,6 +51,8 @@ namespace GAniName
 	const std::string OldFilmAni = "OldFilmAni";
 	const std::string IrisAni = "IrisAni";
 	
+	const std::string Hourglass = "Hourglass";
+
 	
 }
 
