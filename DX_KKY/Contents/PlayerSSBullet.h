@@ -23,8 +23,13 @@ private:
 	float SpawnDelay = 0.2f;
 	float SpawnDelayInit = 0.2f;
 	float BulletSpeed = 1000.0f;
+	float AfterHitBulletAccSpeed = 4000.0f;
 	bool IsMonsterHit = false;
+	int HitTime = 3;
+	float AfterHitDelay = 0.2f;
+	float AfterHitDelayInit = 0.2f;
 
+private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	void StateInit() override;
@@ -34,7 +39,7 @@ private:
 	void Init(float _DeltaTime);
 	void Flying(float _DeltaTime);
 	void Death(float _DeltaTime);
-
+	void Hit(float _DeltaTime);
 
 	void CollisionCheck();
 

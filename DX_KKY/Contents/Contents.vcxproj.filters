@@ -103,6 +103,9 @@
     <Filter Include="Level\LoadingLevel\Object">
       <UniqueIdentifier>{a26362b9-2dba-48f0-98f6-8a8f5c96d3fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\CommonObject\Player\Bullet">
+      <UniqueIdentifier>{1e3974da-910d-4505-99e3-83178dc31b86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -171,13 +174,7 @@
     <ClInclude Include="BulletFX.h">
       <Filter>Level\PlayLevel\CommonObject\FX</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerBullet.h">
-      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSSBullet.h">
       <Filter>Level\PlayLevel\CommonObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="SSBulletFX.h">
@@ -297,6 +294,12 @@
     <ClInclude Include="LoadActor.h">
       <Filter>Level\LoadingLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>Level\PlayLevel\CommonObject\Player\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSSBullet.h">
+      <Filter>Level\PlayLevel\CommonObject\Player\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -365,16 +368,10 @@
     <ClCompile Include="BulletFX.cpp">
       <Filter>Level\PlayLevel\CommonObject\FX</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerBullet.cpp">
-      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Player_State.cpp">
       <Filter>Level\PlayLevel\CommonObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Level\PlayLevel\CommonObject\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSSBullet.cpp">
       <Filter>Level\PlayLevel\CommonObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="SSBulletFX.cpp">
@@ -508,6 +505,12 @@
     </ClCompile>
     <ClCompile Include="LoadActor.cpp">
       <Filter>Level\LoadingLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Player\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSSBullet.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Player\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
