@@ -50,15 +50,15 @@ void APlayerSSBullet::StateInit()
 		State.SetStartFunction("Spawn", [this]()
 			{
 				Renderer->ChangeAnimation("BulletSpawn");
-				DelayCallBack(2.0f, [this]()
-					{
-						Destroy();
-					});
 			}
 		);
 		State.SetStartFunction("Flying", [this]()
 			{
 				Renderer->ChangeAnimation("BulletFlying");
+				DelayCallBack(2.0f, [this]()
+					{
+						Destroy();
+					});
 			}
 		);
 		State.SetStartFunction("Death", [this]()
@@ -69,7 +69,7 @@ void APlayerSSBullet::StateInit()
 	}
 
 	{
-		State.SetUpdateFunction("Spawn", std::bind(&APlayerSSBullet::Spawn, this, std::placeholders::_1));
+		State.SetUpdateFunction("Spawn", [](float) {});
 		State.SetUpdateFunction("Flying", std::bind(&APlayerSSBullet::Flying, this, std::placeholders::_1));
 		State.SetUpdateFunction("Death", std::bind(&APlayerSSBullet::Death, this, std::placeholders::_1));
 	}
@@ -80,7 +80,7 @@ void APlayerSSBullet::StateInit()
 void APlayerSSBullet::CreateAnimation()
 {
 
-	Renderer->CreateAnimation("BulletSpawn", "PeaEX_Spawn", 0.0416f, false);
+	Renderer->CreateAnimation("BulletSpawn", "PeaEX_Spawn", 0.01f, false);
 	Renderer->CreateAnimation("BulletFlying", "PeaEX_Loop", 0.034f);
 	Renderer->CreateAnimation("BulletDeath", "PeaEX_Death", 0.0416f, false);
 
@@ -113,21 +113,9 @@ void APlayerSSBullet::Flying(float _DeltaTime)
 	ResultMovementUpdate(_DeltaTime);
 }
 
-void APlayerSSBullet::Spawn(float _DeltaTime)
-{
-	SetSpeedVec(GetHorizontalDir() * BulletSpeed);
-	SetJumpVec(GetVerticalDir() * BulletSpeed);
-	ResultMovementUpdate(_DeltaTime);
-}
-
 void APlayerSSBullet::Death(float _DeltaTime)
 {
 
-}
-
-void APlayerSSBullet::ResultMovementUpdate(float _DeltaTime)
-{
-	Super::ResultMovementUpdate(_DeltaTime);
 }
 
 void APlayerSSBullet::CollisionCheck()
