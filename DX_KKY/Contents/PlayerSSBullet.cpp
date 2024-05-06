@@ -96,6 +96,11 @@ void APlayerSSBullet::StateInit()
 			});
 		State.SetEndFunction("Hit", [this]()
 			{
+				if (0 >= HitTime)
+				{
+					return;
+				}
+
 				Collision->SetActive(true);
 			});
 	}
