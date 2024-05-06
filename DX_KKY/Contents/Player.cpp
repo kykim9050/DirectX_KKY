@@ -835,3 +835,30 @@ void APlayer::SetStopTimeScale()
 		GEngine->SetOrderTimeScale(i, 0.0f);
 	}
 }
+
+void APlayer::SpawnRunFX(float4 _Pos)
+{
+	float4 Pos = _Pos;
+	Pos.Y += RunFXOffset;
+
+	std::shared_ptr<AFXBase> RunFX = GetWorld()->SpawnActor<AFXBase>("RunFX");
+	RunFX->FXInit(ERenderingOrder::FrontDust, FAniInfo(GAniName::RunDust, "Cuphead_Run_Dust", 0.05f));	
+	RunFX->SetActorLocation(Pos);
+}
+
+void APlayer::CreateRunFX(float _DeltaTime)
+{
+	RunDustDelay -= _DeltaTime;
+
+	if (0.0f >= RunDustDelay)
+	{
+		RunDustDelay = RunDustDelayInit + RunDustDelay;
+
+		SpawnRunFX(GetActorLocation());
+	}
+}
+
+void APlayer::ResetRunFXDelay()
+{
+	RunDustDelay = RunDustDelayInit;
+}

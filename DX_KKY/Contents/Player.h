@@ -61,6 +61,9 @@ private:
 	float LandFXOffset = 35.0f;
 	float DashFXOffset = 35.0f;
 	float ParrySuccessJumpSpeed = 1100.0f;
+	float RunDustDelay = 0.5f;
+	float RunDustDelayInit = 0.5f;
+	float RunFXOffset = 50.0f;
 	std::string PrevState = "None";
 
 	bool AvailableParry = true;
@@ -125,6 +128,9 @@ private:
 	
 	void CreateDashFX(float4 _Pos);
 	void CreateLandFX(float4 _Pos);
+	void SpawnRunFX(float4 _Pos);
+	void CreateRunFX(float _DeltaTime);
+	void ResetRunFXDelay();
 
 	void FootColOnOff();
 	void TreadableCheck();
