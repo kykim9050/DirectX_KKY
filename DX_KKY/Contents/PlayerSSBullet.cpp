@@ -22,11 +22,13 @@ void APlayerSSBullet::BeginPlay()
 
 	Renderer->SetAutoSize(1.0f, true);
 	Renderer->SetOrder(ERenderingOrder::PlayerBullet);
+	Renderer->SetActive(false);
 
 	Collision->SetScale(UContentsValue::PlayerSSBulletColSize);
 	Collision->SetCollisionGroup(ECollisionGroup::PlayerBullet);
 	Collision->SetCollisionType(ECollisionType::RotRect);
 	Collision->AddPosition(FVector(150.0f, 0.0f));
+	Collision->SetActive(false);
 
 	StateInit();
 }
@@ -41,15 +43,20 @@ void APlayerSSBullet::StateInit()
 	Super::StateInit();
 
 	{
+		State.CreateState("Init");
 		State.CreateState("Spawn");
 		State.CreateState("Flying");
 		State.CreateState("Death");
 	}
 
 	{
+		State.SetStartFunction("Init", []() {});
 		State.SetStartFunction("Spawn", [this]()
 			{
+				Renderer->SetActive(true);
 				Renderer->ChangeAnimation("BulletSpawn");
+
+				Collision->SetActive(true);
 			}
 		);
 		State.SetStartFunction("Flying", [this]()
@@ -69,12 +76,20 @@ void APlayerSSBullet::StateInit()
 	}
 
 	{
+		State.SetUpdateFunction("Init", std::bind(&APlayerSSBullet::Init, this, std::placeholders::_1));
 		State.SetUpdateFunction("Spawn", [](float) {});
 		State.SetUpdateFunction("Flying", std::bind(&APlayerSSBullet::Flying, this, std::placeholders::_1));
 		State.SetUpdateFunction("Death", std::bind(&APlayerSSBullet::Death, this, std::placeholders::_1));
 	}
 
-	State.ChangeState("Spawn");
+	{
+		State.SetEndFunction("Init", [this]()
+			{
+				SpawnDelay = SpawnDelayInit;
+			});
+	}
+
+	State.ChangeState("Init");
 }
 
 void APlayerSSBullet::CreateAnimation()
@@ -137,4 +152,15 @@ void APlayerSSBullet::CollisionCheck()
 			// Player의 SuperMeter 충전해주기
 
 		});
+}
+
+void APlayerSSBullet::Init(float _DeltaTime)
+{
+	SpawnDelay -= _DeltaTime;
+
+	if (0.0f >= SpawnDelay)
+	{
+		State.ChangeState("Spawn");
+		return;
+	}
 }

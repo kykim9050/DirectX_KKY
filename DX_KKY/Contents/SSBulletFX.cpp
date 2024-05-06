@@ -3,7 +3,6 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "SSBulletFX.h"
-#include "PlayerSSBullet.h"
 
 ASSBulletFX::ASSBulletFX()
 {
@@ -27,11 +26,7 @@ void ASSBulletFX::BeginPlay()
 			Destroy();
 		}
 	);
-	Renderer->SetFrameCallback("SpawnFX", 4, [this]()
-		{
-			std::shared_ptr<APlayerSSBullet> NewBullet = GetWorld()->SpawnActor<APlayerSSBullet>("Bullet", EActorType::Bullet);
-			NewBullet->SetActorLocation(GetActorLocation());
-		});
+
 
 	StateInit();
 }
