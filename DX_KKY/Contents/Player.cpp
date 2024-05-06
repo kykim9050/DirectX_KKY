@@ -884,10 +884,36 @@ void APlayer::JumpSuperShootCheck()
 	if (true == IsDown('V'))
 	{
 		// 먼저 애니메이션 부터 바꾸고
-
+		ChangeJumpSuperShootState();
 		// 그 다음에 방향에 따라서 발사하는 위치 바꾸고
+	}
+}
 
+void APlayer::ChangeJumpSuperShootState()
+{
+	GetPlayerKeyDir();
+
+	switch (ActorKeyDir)
+	{
+	case EPlayerKeyDir::Up:
+		State.ChangeState(CupheadStateName::Player_SSAir_Up);
+		break;
+	case EPlayerKeyDir::RightUp:
+	case EPlayerKeyDir::LeftUp:
+		State.ChangeState(CupheadStateName::Player_SSAir_DiagonalUp);
+		break;
+	case EPlayerKeyDir::Right:
+	case EPlayerKeyDir::Left:
 		State.ChangeState(CupheadStateName::Player_SSAir_Straight);
-		return;
+		break;
+	case EPlayerKeyDir::RightDown:
+	case EPlayerKeyDir::LeftDown:
+		State.ChangeState(CupheadStateName::Player_SSAir_DiagonalDown);
+		break;
+	case EPlayerKeyDir::Down:
+		State.ChangeState(CupheadStateName::Player_SSAir_Down);
+		break;
+	default:
+		break;
 	}
 }

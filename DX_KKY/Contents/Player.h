@@ -118,13 +118,18 @@ private:
 	void Ground_SS_Straight(float _DeltaTime);
 	void Ground_SS_DiagonalDown(float _DeltaTime);
 	void Ground_SS_Down(float _DeltaTime);
+	void SSAir_Up(float _DeltaTime);
+	void SSAir_DiagonalUp(float _DeltaTime);
 	void SSAir_Straight(float _DeltaTime);
+	void SSAir_DiagonalDown(float _DeltaTime);
+	void SSAir_Down(float _DeltaTime);
 
-	void ShootBullet(float _DeltaTime);
+		void ShootBullet(float _DeltaTime);
 	void SuperShoot(float _DeltaTime);
 	void ShootCheck(float _DeltaTime);
 	void SuperShootCheck(float _DeltaTime);
 	void JumpSuperShootCheck();
+	void ChangeJumpSuperShootState();
 	void GetBulletInitPosAndRot(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 	void JumpShootInit(FVector& _Pos, FVector& _Rot, std::shared_ptr<APlayerBullet>& _Bullet);
 	
