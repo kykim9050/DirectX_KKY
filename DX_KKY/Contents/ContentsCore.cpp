@@ -10,6 +10,7 @@
 #include "FlowerLevelMode.h"
 #include "ContentsDebugWindow.h"
 #include "PirateLevelMode.h"
+#include "LoadingMode.h"
 
 
 #include "TestGameMode.h"
@@ -81,6 +82,7 @@ void UContentsCore::Initialize()
 	//GEngine->CreateLevel<ATestGameMode>("TestLevel");
 	GEngine->CreateLevel<AFlowerLevelMode>("FlowerLevel");
 	GEngine->CreateLevel<APirateLevelMode>("PirateLevel");
-	GEngine->ChangeLevel("PirateLevel");
+	GEngine->CreateLevel<ALoadingMode>("LoadingLevel");
+	GEngine->ChangeLevel("LoadingLevel");
 }
 

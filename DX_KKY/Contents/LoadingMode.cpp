@@ -2,30 +2,30 @@
 
 #include "LoadingMode.h"
 
-LoadingMode::LoadingMode()
+ALoadingMode::ALoadingMode()
 {
 }
 
-LoadingMode::~LoadingMode()
+ALoadingMode::~ALoadingMode()
 {
 }
 
-void LoadingMode::BeginPlay()
+void ALoadingMode::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void ALoadingMode::Tick(float _DeltaTime)
+{
+	Super::Tick(_DeltaTime);
+}
+
+void ALoadingMode::LevelEnd(ULevel* _NextLevel)
 {
 
 }
 
-void LoadingMode::Tick(float _DeltaTime)
-{
-
-}
-
-void LoadingMode::LevelEnd(ULevel* _NextLevel)
-{
-
-}
-
-void LoadingMode::LevelStart(ULevel* _PrevLevel)
+void ALoadingMode::LevelStart(ULevel* _PrevLevel)
 {
 
 }

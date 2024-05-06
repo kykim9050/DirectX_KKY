@@ -2,19 +2,19 @@
 #include <EngineCore/GameMode.h>
 
 // Ό³Έν :
-class LoadingMode : public AGameMode
+class ALoadingMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
 public:
 	// constrcuter destructer
-	LoadingMode();
-	~LoadingMode();
+	ALoadingMode();
+	~ALoadingMode();
 
 	// delete Function
-	LoadingMode(const LoadingMode& _Other) = delete;
-	LoadingMode(LoadingMode&& _Other) noexcept = delete;
-	LoadingMode& operator=(const LoadingMode& _Other) = delete;
-	LoadingMode& operator=(LoadingMode&& _Other) noexcept = delete;
+	ALoadingMode(const ALoadingMode& _Other) = delete;
+	ALoadingMode(ALoadingMode&& _Other) noexcept = delete;
+	ALoadingMode& operator=(const ALoadingMode& _Other) = delete;
+	ALoadingMode& operator=(ALoadingMode&& _Other) noexcept = delete;
 
 protected:
 
