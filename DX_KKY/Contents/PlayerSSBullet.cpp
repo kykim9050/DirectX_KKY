@@ -5,9 +5,7 @@
 
 APlayerSSBullet::APlayerSSBullet()
 {
-	SetDamage(5);
-	SetHorizontalSpeed(1000.0f);
-	SetVerticalSpeed(1000.0f);
+	SetDamage(3);
 }
 
 APlayerSSBullet::~APlayerSSBullet()
@@ -46,6 +44,7 @@ void APlayerSSBullet::StateInit()
 		State.CreateState("Init");
 		State.CreateState("Spawn");
 		State.CreateState("Flying");
+		State.CreateState("Hit");
 		State.CreateState("Death");
 	}
 
@@ -68,6 +67,13 @@ void APlayerSSBullet::StateInit()
 					});
 			}
 		);
+		State.SetStartFunction("Hit", [this]()
+			{
+				--HitTime;
+				SetSpeedVec(float4::Zero);
+				SetJumpVec(float4::Zero);
+				Collision->SetActive(false);
+			});
 		State.SetStartFunction("Death", [this]()
 			{
 				Renderer->ChangeAnimation("BulletDeath");
@@ -79,6 +85,7 @@ void APlayerSSBullet::StateInit()
 		State.SetUpdateFunction("Init", std::bind(&APlayerSSBullet::Init, this, std::placeholders::_1));
 		State.SetUpdateFunction("Spawn", [](float) {});
 		State.SetUpdateFunction("Flying", std::bind(&APlayerSSBullet::Flying, this, std::placeholders::_1));
+		State.SetUpdateFunction("Hit", std::bind(&APlayerSSBullet::Hit, this, std::placeholders::_1));
 		State.SetUpdateFunction("Death", std::bind(&APlayerSSBullet::Death, this, std::placeholders::_1));
 	}
 
@@ -86,6 +93,10 @@ void APlayerSSBullet::StateInit()
 		State.SetEndFunction("Init", [this]()
 			{
 				SpawnDelay = SpawnDelayInit;
+			});
+		State.SetEndFunction("Hit", [this]()
+			{
+				Collision->SetActive(true);
 			});
 	}
 
@@ -119,6 +130,12 @@ void APlayerSSBullet::Flying(float _DeltaTime)
 
 	if (true == GetIsMonsterHit())
 	{
+		if (0 < HitTime)
+		{
+			State.ChangeState("Hit");
+			return;
+		}
+
 		State.ChangeState("Death");
 		return;
 	}
@@ -135,7 +152,7 @@ void APlayerSSBullet::Death(float _DeltaTime)
 
 void APlayerSSBullet::CollisionCheck()
 {
-	Collision->CollisionEnter(ECollisionGroup::Monster, [=](std::shared_ptr<UCollision> _Collision)
+	Collision->CollisionStay(ECollisionGroup::Monster, [=](std::shared_ptr<UCollision> _Collision)
 		{
 			AMonsterUnit* Monster = dynamic_cast<AMonsterUnit*>(_Collision->GetActor());
 
@@ -163,4 +180,21 @@ void APlayerSSBullet::Init(float _DeltaTime)
 		State.ChangeState("Spawn");
 		return;
 	}
+}
+
+void APlayerSSBullet::Hit(float _DeltaTime)
+{
+	AfterHitDelay -= _DeltaTime;
+
+	if (0.0f >= AfterHitDelay)
+	{
+		AfterHitDelay = AfterHitDelayInit + AfterHitDelay;
+
+		State.ChangeState("Flying");
+		return;
+	}
+
+	AccSpeedVec(GetHorizontalDir() * _DeltaTime, AfterHitBulletAccSpeed);
+	AccJumpVec(GetVerticalDir() * _DeltaTime, AfterHitBulletAccSpeed);
+	ResultMovementUpdate(_DeltaTime);
 }

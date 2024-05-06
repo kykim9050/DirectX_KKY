@@ -54,7 +54,14 @@ protected:
 		GravityVec += GravityAccVec * _DeltaTime;
 	}
 	
-
+	inline void AccSpeedVec(float4 _DirDelta, float _AccVector)
+	{
+		SpeedVec += _DirDelta * _AccVector;
+	}
+	inline void AccJumpVec(float4 _DirDelta, float _AccVector)
+	{
+		JumpVec += _DirDelta * _AccVector;
+	}
 	inline void SetAvailableAddJumpVec(bool _Value)
 	{
 		AvailableAddJumpVec = _Value;
