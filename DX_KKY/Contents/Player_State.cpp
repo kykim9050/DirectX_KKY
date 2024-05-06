@@ -415,13 +415,11 @@ void APlayer::StateInit()
 			{
 				DirCheck();
 				SetJumpVec(float4::Zero);
-				SetGravityVec(float4::Zero);
-				//SetAvailableAddJumpVec(false);
-				//SetJumpVec(GetPrevJumpVec());
-				//SetGravityVec(GetPrevGravityVec());
+				SetGravityVec(float4::Down * 100.0f);
+				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
 				AnimationDirSet(Renderer, PlayerDir);
-				//SetShootType(EBulletShootType::None);
+				SetShootType(EBulletShootType::None);
 			});
 	}
 
@@ -1794,8 +1792,8 @@ void APlayer::SSAir_Down(float _DeltaTime)
 
 void APlayer::After_SSAir(float _DeltaTime)
 {
-	//ShootCheck(_DeltaTime);
-	//FootColOnOff();
+	ShootCheck(_DeltaTime);
+	FootColOnOff();
 
 	float4 Pos = GetActorLocation();
 	Pos.Y = -Pos.Y;
