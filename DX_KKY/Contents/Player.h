@@ -141,6 +141,7 @@ private:
 	void AnimationDirSet(USpriteRenderer* _Renderer, EActorDir _Dir);
 	void AfterSuccessParrySetting();
 	void SetStopTimeScale();
+	void ColInfoChange(bool _IsDucking);
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)

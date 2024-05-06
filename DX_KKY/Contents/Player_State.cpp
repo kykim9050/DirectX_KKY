@@ -115,6 +115,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Duck", [this]
 			{
+				ColInfoChange(true);
 				DirCheck();
 				SetAvailableParry(true);
 				SetAvailableAddJumpVec(false);
@@ -127,6 +128,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("DuckIdle", [this]
 			{
+				ColInfoChange(true);
 				DirCheck();
 				SetAvailableParry(true);
 				SetAvailableAddJumpVec(false);
@@ -292,6 +294,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Shoot_Duck", [this]
 			{
+				ColInfoChange(true);
 				DirCheck();
 				SetSpeedVec(float4::Zero);
 				Renderer->ChangeAnimation("Player_Duck_Shoot");
@@ -366,30 +369,38 @@ void APlayer::StateInit()
 			{
 				SetSpeedVec(float4::Zero);
 				ResetRunFXDelay();
-			}
-		);
+			});
 		State.SetEndFunction("Run_Shoot_DiagonalUp", [this]()
 			{
 				SetSpeedVec(float4::Zero);
 				ResetRunFXDelay();
-			}
-		);
+			});
 		State.SetEndFunction("Run_Shoot_Straight", [this]()
 			{
 				SetSpeedVec(float4::Zero);
 				ResetRunFXDelay();
-			}
-		);
+			});
 		State.SetEndFunction("Jump", [this]()
 			{
 				SetPrevJumpVec(GetJumpVec());
 				SetJumpVec(float4::Zero);
-			}
-		);
+			});
 		State.SetEndFunction("Parry", [this]()
-		{
-			SetParrying(false);
-		});
+			{
+				SetParrying(false);
+			});
+		State.SetEndFunction("Duck", [this]()
+			{
+				ColInfoChange(false);
+			});
+		State.SetEndFunction("DuckIdle", [this]()
+			{
+				ColInfoChange(false);
+			});
+		State.SetEndFunction("Shoot_Duck", [this]()
+			{
+				ColInfoChange(false);
+			});
 	}
 
 
