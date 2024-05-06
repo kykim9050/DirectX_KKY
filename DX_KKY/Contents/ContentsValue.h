@@ -448,6 +448,9 @@ namespace GColliderPosInfo
 
 namespace GRendererPos
 {
+	const float4 Loading_BackGround_InitPos = float4(640.0f, -360.0f, 0.0f);
+	const float4 Loading_HourGlass_InitPos = float4(1120.0f, -500.0f, 0.0f);
+
 	const float4 FlowerBoss_MissileInitPos = float4(1070.f, -100.f, 0.0f);
 	const float4 FlowerBoss_BoomarangInitPos = float4(950.0f, -290.0f, 0.0f);
 	const float4 FlowerPlatform_RelativePos = float4(5.0f, -45.0f, 0.0f);

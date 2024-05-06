@@ -41,7 +41,6 @@ void ALoadingMode::CreateActor()
 	OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
 	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
 	OldFilm->CreateAnimation(GAniName::OldFilmAni, GSpriteName::OldFilm, 0.05f);
-	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
 	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
 

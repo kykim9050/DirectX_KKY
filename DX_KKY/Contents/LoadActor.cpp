@@ -43,12 +43,12 @@ void ALoadActor::RendererInit()
 {
 	HourglassRenderer->SetAutoSize(1.0f, true);
 	HourglassRenderer->SetOrder(ERenderingOrder::HourGlass);
-	HourglassRenderer->SetPosition(float4(640.0f, -360.0f, 0.0f));
+	HourglassRenderer->SetPosition(GRendererPos::Loading_HourGlass_InitPos);
 
 
 	BackGroundRenderer->SetScale(GEngine->EngineWindow.GetWindowScale());
 	BackGroundRenderer->SetOrder(ERenderingOrder::Iris);
-	BackGroundRenderer->SetPosition(float4(640.0f, -360.0f, 0.0f));
+	BackGroundRenderer->SetPosition(GRendererPos::Loading_BackGround_InitPos);
 	BackGroundRenderer->SetSprite("Iris", 0);
 }
 
