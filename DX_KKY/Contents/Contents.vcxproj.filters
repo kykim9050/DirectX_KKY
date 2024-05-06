@@ -100,6 +100,9 @@
     <Filter Include="Level\LoadingLevel">
       <UniqueIdentifier>{210eccdb-21ba-4f7b-9858-ff615c720a1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\LoadingLevel\Object">
+      <UniqueIdentifier>{a26362b9-2dba-48f0-98f6-8a8f5c96d3fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -290,6 +293,9 @@
     </ClInclude>
     <ClInclude Include="LoadingMode.h">
       <Filter>Level\LoadingLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadActor.h">
+      <Filter>Level\LoadingLevel\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +505,9 @@
     </ClCompile>
     <ClCompile Include="LoadingMode.cpp">
       <Filter>Level\LoadingLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadActor.cpp">
+      <Filter>Level\LoadingLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
