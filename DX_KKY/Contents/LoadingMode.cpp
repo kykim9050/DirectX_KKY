@@ -15,6 +15,8 @@ ALoadingMode::~ALoadingMode()
 void ALoadingMode::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 }
 
 void ALoadingMode::Tick(float _DeltaTime)
