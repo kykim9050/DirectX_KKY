@@ -29,11 +29,8 @@ private:
 
 	void CreateAnimation();
 
-	void Spawn(float _DeltaTime);
 	void Flying(float _DeltaTime);
 	void Death(float _DeltaTime);
-
-	void ResultMovementUpdate(float _DeltaTime) override;
 
 	void CollisionCheck();
 
