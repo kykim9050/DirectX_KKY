@@ -28,5 +28,6 @@ void AMonsterUnit::Tick(float _DeltaTime)
 		}
 
 		GetHitFunction();
+		GetHitUse = false;
 	}
 }

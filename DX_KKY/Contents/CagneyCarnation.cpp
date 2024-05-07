@@ -9,6 +9,8 @@
 #include "Vine.h"
 
 
+#include "PlayerBullet.h"
+
 ACagneyCarnation::ACagneyCarnation()
 {
 	SetHp(300);
@@ -34,6 +36,8 @@ void ACagneyCarnation::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	DebugUpdate();
+
+	CollisionCheck();
 }
 
 void ACagneyCarnation::DebugUpdate()
@@ -164,3 +168,28 @@ void ACagneyCarnation::VineGrowUp()
 	}
 }
 
+void ACagneyCarnation::RendererFlash()
+{
+	Renderer->SetPlusColor(float4(0.15f, 0.15f, 0.15f));
+
+	DelayCallBack(0.05f, [this]()
+		{
+			Renderer->SetPlusColor(float4(-0.15f, -0.15f, -0.15f));
+		});
+}
+
+void ACagneyCarnation::CollisionCheck()
+{
+	HeadCollider->CollisionEnter(ECollisionGroup::PlayerBullet, [=](std::shared_ptr<UCollision> _Collision)
+		{
+			APlayerBullet* PBullet = dynamic_cast<APlayerBullet*>(_Collision->GetActor());
+
+			if (nullptr == PBullet)
+			{
+				MsgBoxAssert("충돌 대상이 APlayerBullet가 아닙니다.");
+				return;
+			}
+
+			RendererFlash();
+		});
+}
