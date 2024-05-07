@@ -2,22 +2,25 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Camera.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/Collision.h>
 
 #include "WorldPlayer.h"
 #include "WorldDust.h"
 #include "WorldGameMode.h"
-#include "OldFilmEffect.h"
 
 std::shared_ptr<AWorldPlayer> AWorldPlayer:: MainPlayer = std::shared_ptr<AWorldPlayer>();
 
 AWorldPlayer::AWorldPlayer()
 	: Dir(EPlayerKeyDir::RightDown)
 {
-	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("PlayerRoot");
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("WPlayerRoot");
 	SetRoot(Root);
 
-	Renderer = CreateDefaultSubObject<USpriteRenderer>("PlayerRenderer");
+	Renderer = CreateDefaultSubObject<USpriteRenderer>("WPlayerRenderer");
 	Renderer->SetupAttachment(Root);
+
+	Collider = CreateDefaultSubObject<UCollision>("WPlayerCollider");
+	Collider->SetupAttachment(Root);
 
 	InputOn();
 }
@@ -34,6 +37,7 @@ void AWorldPlayer::BeginPlay()
 	Renderer->SetOrder(ERenderingOrder::Player);
 
 	CreatePlayerAnimation();
+	ColliderInit();
 	StateInit();
 }
 
@@ -146,4 +150,11 @@ void AWorldPlayer::CameraMove(float _DeltaTime)
 	}
 
 	GetWorld()->GetMainCamera()->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
+}
+
+void AWorldPlayer::ColliderInit()
+{
+	Collider->SetScale(GColliderScale::WorldPlayer_ColScale);
+	Collider->SetCollisionGroup(ECollisionGroup::Player);
+	Collider->SetCollisionType(ECollisionType::Rect);
 }

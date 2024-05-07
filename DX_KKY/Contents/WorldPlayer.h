@@ -1,8 +1,10 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineCore/StateManager.h>
 
 // Ό³Έν :
 class USpriteRenderer;
+class UCollision;
 class AWorldPlayer : public AActor, public std::enable_shared_from_this<AWorldPlayer>
 {
 	GENERATED_BODY(AActor)
@@ -27,9 +29,22 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void CreatePlayerAnimation();
+private:
+	UStateManager State = UStateManager();
+	USpriteRenderer* Renderer = nullptr;
+	UCollision* Collider = nullptr;
 
-	void StateInit();
+	float Speed = 230.0f;
+	float DiagonalSpeed = 170.0f;
+
+	EPlayerKeyDir Dir = EPlayerKeyDir::None;
+
+	float DustInitXOffset = -15.0f;
+	float DustDelayTime = 1.0f;
+	float DustDelayTimeInit = 0.3f;
+
+	static std::shared_ptr<AWorldPlayer> MainPlayer;
+
 
 private:
 	void UpIdle(float _DeltaTime);
@@ -40,7 +55,6 @@ private:
 	void LeftDownIdle(float _DeltaTime);
 	void LeftIdle(float _DeltaTime);
 	void LeftUpIdle(float _DeltaTime);
-
 	void UpWalk(float _DeltaTime);
 	void RightUpWalk(float _DeltaTime);
 	void RightWalk(float _DeltaTime);
@@ -49,11 +63,14 @@ private:
 	void LeftDownWalk(float _DeltaTime);
 	void LeftWalk(float _DeltaTime);
 	void LeftUpWalk(float _DeltaTime);
-
 	bool MapCollisionCheck();
 	void MakeDust(float _DeltaTime);
 	void ResetDustDelayTime();
 	void CameraMove(float _DeltaTime);
+
+	void CreatePlayerAnimation();
+	void ColliderInit();
+	void StateInit();
 
 	inline float GetSpeed() const
 	{
@@ -63,22 +80,9 @@ private:
 	{
 		return DiagonalSpeed;
 	}
-
-	static std::shared_ptr<AWorldPlayer> MainPlayer;
 	inline void SetMainPlayer(std::shared_ptr<AWorldPlayer> _Player)
 	{
 		MainPlayer = _Player;
 	}
-
-	UStateManager State = UStateManager();
-	USpriteRenderer* Renderer;
-	float Speed = 230.0f;
-	float DiagonalSpeed = 170.0f;
-
-	EPlayerKeyDir Dir = EPlayerKeyDir::None;
-
-	float DustInitXOffset = -15.0f;
-	float DustDelayTime = 1.0f;
-	float DustDelayTimeInit = 0.3f;
 };
 

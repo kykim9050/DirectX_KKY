@@ -417,6 +417,7 @@ namespace PirateBossStageValue
 
 namespace GColliderScale
 {
+	const float4 WorldPlayer_ColScale = float4(50.0f, 80.0f, 1.0f);
 	const float4 FlowerGate_ColScale = float4(180.0f, 120.0f, 1.0f);
 
 	const float4 FlowerBoss_HeadColScale = float4(250.0f, 250.0f, 1.0f);
