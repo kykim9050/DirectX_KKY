@@ -525,7 +525,7 @@ namespace GColorValue
 {
 	const float4 BrightColor = float4(0.1f, 0.1f, 0.1f);
 	const float4 AttackColor = float4(0.13f, 0.13f, 0.13f);
-	const float4 AttackRestoreColor = float4(-0.13f, -0.13f, -0.13f);
+	const float4 AttackRestoreColor = float4(0.0f, 0.0f, 0.0f);
 }
 
 namespace GActorPosValue
