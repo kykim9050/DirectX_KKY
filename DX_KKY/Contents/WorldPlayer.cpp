@@ -146,5 +146,4 @@ void AWorldPlayer::CameraMove(float _DeltaTime)
 	}
 
 	GetWorld()->GetMainCamera()->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
-	AWorldGameMode::GetOldFilm()->AddActorLocation(ChasePlayerVector.Normalize3DReturn() * _DeltaTime * 300.0f);
 }
