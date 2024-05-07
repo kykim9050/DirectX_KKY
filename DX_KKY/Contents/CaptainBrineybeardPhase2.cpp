@@ -13,6 +13,7 @@ ACaptainBrineybeardPhase2::ACaptainBrineybeardPhase2()
 	SetHp(150);
 	RendererInit();
 	ColliderInit();
+	SetGetHitFunction(std::bind(&ACaptainBrineybeardPhase2::AfterHitFlash, this));
 }
 
 ACaptainBrineybeardPhase2::~ACaptainBrineybeardPhase2()
@@ -118,4 +119,24 @@ void ACaptainBrineybeardPhase2::CreateUvulaBubble()
 {
 	AUvulaBubble* Bubble = GetWorld()->SpawnActor<AUvulaBubble>("Bubble", EActorType::MonsterBullet).get();
 	Bubble->SetActorLocation(GetActorLocation() + GActorPosValue::UvulaBubble_RelativePos);
+}
+
+void ACaptainBrineybeardPhase2::AfterHitFlash()
+{
+	ShipRenderer->SetPlusColor(GColorValue::AttackColor);
+	JawRenderer->SetPlusColor(GColorValue::AttackColor);
+	UvulaRenderer->SetPlusColor(GColorValue::AttackColor);
+
+	DelayCallBack(0.05f, [this]()
+		{
+			ShipRenderer->SetPlusColor(GColorValue::AttackRestoreColor);
+		});
+	DelayCallBack(0.05f, [this]()
+		{
+			JawRenderer->SetPlusColor(GColorValue::AttackRestoreColor);
+		});
+	DelayCallBack(0.05f, [this]()
+		{
+			UvulaRenderer->SetPlusColor(GColorValue::AttackRestoreColor);
+		});
 }
