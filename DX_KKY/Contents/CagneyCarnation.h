@@ -116,6 +116,7 @@ private:
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	void AfterHitFlash() override;
 	void DebugUpdate();
 
 	// 애니메이션 관련
@@ -149,8 +150,6 @@ private:
 	void CreateBottomIvy();
 	void CreateVine();
 	void VineGrowUp();
-	void RendererFlash();
-	void CollisionCheck();
 
 private:
 	inline void GetHit(int _DmgVal)
