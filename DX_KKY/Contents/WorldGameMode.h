@@ -46,5 +46,6 @@ private:
 	void CreateObject();
 	void ObjectInit();
 	void DeleteObject();
+	void PermanentObjectCreate();
 };
 

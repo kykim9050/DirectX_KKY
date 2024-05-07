@@ -19,8 +19,7 @@ void AWorldGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	WidgetInit();
-
-
+	PermanentObjectCreate();
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 }
@@ -69,8 +68,6 @@ void AWorldGameMode::WidgetStart()
 
 void AWorldGameMode::CreateObject()
 {
-	Camera = GetWorld()->GetMainCamera();
-	WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
 	MapLayer = GetWorld()->SpawnActor<AMapBase>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
 	WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
 	WorldCollisionMap = GetWorld()->SpawnActor<AMapBase>("WorldCollisionMap", static_cast<int>(EActorType::Map));
@@ -95,8 +92,6 @@ void AWorldGameMode::ObjectInit()
 	WorldMap->SetOrdering(ERenderingOrder::BackLayer1);
 	WorldCollisionMap->SetOrdering(ERenderingOrder::CollisionLayer);
 
-	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
-	WPlayer->SetActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
 	MapLayer->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f });
 	WorldMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
 	WorldCollisionMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
@@ -106,17 +101,6 @@ void AWorldGameMode::ObjectInit()
 
 void AWorldGameMode::DeleteObject()
 {
-	if (nullptr != Camera)
-	{
-		Camera = nullptr;
-	}
-
-	if (nullptr != WPlayer)
-	{
-		WPlayer->Destroy();
-		WPlayer = nullptr;
-	}
-
 	if (nullptr != MapLayer)
 	{
 		MapLayer->Destroy();
@@ -138,3 +122,11 @@ void AWorldGameMode::DeleteObject()
 	UContentsValue::ColMapTexture = nullptr;
 }
 
+void AWorldGameMode::PermanentObjectCreate()
+{
+	Camera = GetWorld()->GetMainCamera();
+	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
+
+	WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
+	WPlayer->SetActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
+}
