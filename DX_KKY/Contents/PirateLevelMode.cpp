@@ -73,6 +73,7 @@ void APirateLevelMode::WidgetInit()
 	Iris = CreateWidget<UImage>(GetWorld(), "Iris");
 	Iris->AddToViewPort(ERenderingOrder::Iris);
 	Iris->CreateAnimation(GAniName::IrisAni, GSpriteName::Iris, 0.034f, false);
+	Iris->CreateAnimation(GAniName::IrisRevAni, GSpriteName::Iris, 0.034f, false, 16, 0);
 	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
 }
@@ -178,6 +179,17 @@ void APirateLevelMode::StateInit()
 		ModeState.SetStartFunction("GameEnd", [this]()
 			{
 				ScreenMsg->SetStageEndMsg();
+
+				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
+					{
+						GEngine->ChangeLevel(GLevelName::EndingLevel);
+					});
+
+				// 레벨 전환 기능
+				DelayCallBack(3.5f, [this]()
+					{
+						Iris->ChangeAnimation(GAniName::IrisRevAni);
+					});
 			});
 	}
 	
