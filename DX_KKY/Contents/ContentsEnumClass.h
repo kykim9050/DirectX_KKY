@@ -82,6 +82,7 @@ enum class EPlayerKeyDir
 
 enum class ECollisionGroup
 {
+	None,
 	Player,
 	PlayerBullet,
 	Monster,
@@ -89,6 +90,7 @@ enum class ECollisionGroup
 	Platform,
 	PlayerFoot,
 	Trap,
+	Gate,
 };
 
 enum class EActorDir

@@ -31,5 +31,6 @@ private:
 	void Tick(float _DeltaTime) override;
 
 	void RendererInit();
+	void ColliderInit();
 };
 
