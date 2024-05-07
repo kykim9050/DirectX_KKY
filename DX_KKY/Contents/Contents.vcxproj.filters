@@ -312,6 +312,9 @@
     <ClInclude Include="GateUnit.h">
       <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
     </ClInclude>
+    <ClInclude Include="PirateLevelGate.h">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -528,6 +531,9 @@
       <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
     </ClCompile>
     <ClCompile Include="GateUnit.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="PirateLevelGate.cpp">
       <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
     </ClCompile>
   </ItemGroup>

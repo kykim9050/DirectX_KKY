@@ -8,6 +8,7 @@ class AWorldPlayer;
 class AMapBase;
 class UImage;
 class AFlowerLevelGate;
+class APirateLevelGate;
 class AWorldGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -40,6 +41,7 @@ private:
 	std::shared_ptr<AMapBase> WorldMap = nullptr;
 	std::shared_ptr<AMapBase> WorldCollisionMap = nullptr;
 	std::shared_ptr<AFlowerLevelGate> FlowerLevelGate = nullptr;
+	std::shared_ptr<APirateLevelGate> PirateLevelGate = nullptr;
 
 	UStateManager ModeState = UStateManager();
 

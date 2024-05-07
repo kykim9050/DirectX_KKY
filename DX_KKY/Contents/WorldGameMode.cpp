@@ -5,6 +5,7 @@
 #include "WorldPlayer.h"
 #include "MapBase.h"
 #include "FlowerLevelGate.h"
+#include "PirateLevelGate.h"
 
 AWorldGameMode::AWorldGameMode()
 {
@@ -75,6 +76,7 @@ void AWorldGameMode::CreateObject()
 	WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
 	WorldCollisionMap = GetWorld()->SpawnActor<AMapBase>("WorldCollisionMap", static_cast<int>(EActorType::Map));
 	FlowerLevelGate = GetWorld()->SpawnActor<AFlowerLevelGate>("FlowerLevelGate", static_cast<int>(EActorType::BackGroundSubStaticObject));
+	PirateLevelGate = GetWorld()->SpawnActor<APirateLevelGate>("PirateLevelGate", static_cast<int>(EActorType::BackGroundSubStaticObject));
 }
 
 void AWorldGameMode::ObjectInit()
@@ -91,7 +93,7 @@ void AWorldGameMode::ObjectInit()
 	float4 ColMapScale = UContentsValue::ColMapTexture->GetScale();
 
 	// OldFilm, WPlayer는 오더링 고정
-	MapLayer->SetOrdering(ERenderingOrder::FrontLayer);
+	MapLayer->SetOrdering(ERenderingOrder::FrontLayer2);
 	WorldMap->SetOrdering(ERenderingOrder::BackLayer1);
 	WorldCollisionMap->SetOrdering(ERenderingOrder::CollisionLayer);
 
@@ -99,7 +101,7 @@ void AWorldGameMode::ObjectInit()
 	WorldMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
 	WorldCollisionMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
 	FlowerLevelGate->SetActorLocation(GActorPosValue::FlowerLevel_GatePos);
-
+	PirateLevelGate->SetActorLocation(GActorPosValue::PirateLevel_GatePos);
 }
 
 void AWorldGameMode::DeleteObject()
@@ -126,6 +128,12 @@ void AWorldGameMode::DeleteObject()
 	{
 		FlowerLevelGate->Destroy();
 		FlowerLevelGate = nullptr;
+	}
+
+	if (nullptr != PirateLevelGate)
+	{
+		PirateLevelGate->Destroy();
+		PirateLevelGate = nullptr;
 	}
 
 	UContentsValue::ColMapTexture = nullptr;

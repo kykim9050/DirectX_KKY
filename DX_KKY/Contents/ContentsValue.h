@@ -47,6 +47,8 @@ namespace GAniName
 {
 	// World Mode
 	const std::string FlowerLevel_GateAni = "FlowerLevel_GateAni";
+	const std::string PirateLevel_GateAni = "PirateLevel_GateAni";
+	const std::string PirateLevel_SubAni = "PirateLevel_SubAni";
 
 	// CUphead
 	const std::string Player_SSAir_Straight = "Player_SSAir_Straight";
@@ -456,7 +458,7 @@ namespace GColliderScale
 	const float4 Shark_ColScale = float4(750.0f, 350.0f, 1.0f);
 	const float4 SeaDog_ColScale = float4(150.0f, 70.0f, 1.0f);
 
-	
+	const float4 WorldModeShip_ColScale = float4(220.0f, 115.0f, 1.0f);
 }
 
 namespace GColliderPosInfo
@@ -534,6 +536,8 @@ namespace GRendererPos
 	const float4 Barrel_NormalIdle_RelativePos = float4(-3.0f, -10.0f, 0.0f);
 	const float4 Shark_RelativePos = float4(0.0f, -50.0f, 0.0f);
 	const float4 Shark_AppearEff_RelativePos = float4(200.0f, 0.0f, 0.0f);
+
+	const float4 ShipRipples_RelativePos = float4(50.0f, -150.0f, 0.0f);
 }
 
 namespace GBoundaryPos
@@ -563,6 +567,7 @@ namespace GActorPosValue
 
 	// World Level
 	const float4 FlowerLevel_GatePos = float4(2125.0f, -925.0f, 0.0f);
+	const float4 PirateLevel_GatePos = float4(2260.0f, -1750.0f, 0.0f);
 }
 
 
