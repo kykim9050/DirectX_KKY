@@ -20,34 +20,27 @@ void AWorldGameMode::BeginPlay()
 
 	WidgetInit();
 
-	Camera = GetWorld()->GetMainCamera();
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
-	
-	WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
-	MapLayer = GetWorld()->SpawnActor<AMapBase>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
-	WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
-	WorldCollisionMap = GetWorld()->SpawnActor<AMapBase>("WorldCollisionMap", static_cast<int>(EActorType::Map));
 }
 
 void AWorldGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
 }
 
 void AWorldGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 
-	UContentsValue::ColMapTexture = nullptr;
+	DeleteObject();
 }
 
 void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
-	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
-	Iris->ChangeAnimation(GAniName::IrisAni);
+	WidgetStart();
+	CreateObject();
 
 	MapLayer->SetMapFile("WorldMap_Layer.png");
 	WorldMap->SetMapFile("WorldMap.png");
@@ -87,6 +80,53 @@ void AWorldGameMode::WidgetInit()
 	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
 }
 
-//void CreateObject();
+void AWorldGameMode::WidgetStart()
+{
+	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
+	Iris->ChangeAnimation(GAniName::IrisAni);
+}
+
+void AWorldGameMode::CreateObject()
+{
+	Camera = GetWorld()->GetMainCamera();
+	WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
+	MapLayer = GetWorld()->SpawnActor<AMapBase>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
+	WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
+	WorldCollisionMap = GetWorld()->SpawnActor<AMapBase>("WorldCollisionMap", static_cast<int>(EActorType::Map));
+}
+
+void AWorldGameMode::DeleteObject()
+{
+	if (nullptr != Camera)
+	{
+		Camera = nullptr;
+	}
+
+	if (nullptr != WPlayer)
+	{
+		WPlayer->Destroy();
+		WPlayer = nullptr;
+	}
+
+	if (nullptr != MapLayer)
+	{
+		MapLayer->Destroy();
+		MapLayer = nullptr;
+	}
+
+	if (nullptr != WorldMap)
+	{
+		WorldMap->Destroy();
+		WorldMap = nullptr;
+	}
+
+	if (nullptr != WorldCollisionMap)
+	{
+		WorldCollisionMap->Destroy();
+		WorldCollisionMap = nullptr;
+	}
+
+	UContentsValue::ColMapTexture = nullptr;
+}
+
 //void ObjectInit();
-//void DeleteObject();
