@@ -170,11 +170,11 @@ void ACagneyCarnation::VineGrowUp()
 
 void ACagneyCarnation::RendererFlash()
 {
-	Renderer->SetPlusColor(float4(0.15f, 0.15f, 0.15f));
+	Renderer->SetPlusColor(GColorValue::AttackColor);
 
 	DelayCallBack(0.05f, [this]()
 		{
-			Renderer->SetPlusColor(float4(-0.15f, -0.15f, -0.15f));
+			Renderer->SetPlusColor(GColorValue::AttackRestoreColor);
 		});
 }
 
