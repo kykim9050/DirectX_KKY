@@ -1,13 +1,13 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include "GateUnit.h"
 
 // Ό³Έν :
 class UDefaultSceneComponent;
 class USpriteRenderer;
 class UCollision;
-class AFlowerLevelGate : public AActor
+class AFlowerLevelGate : public AGateUnit
 {
-	GENERATED_BODY(AActor)
+	GENERATED_BODY(AGateUnit)
 public:
 	// constrcuter destructer
 	AFlowerLevelGate();

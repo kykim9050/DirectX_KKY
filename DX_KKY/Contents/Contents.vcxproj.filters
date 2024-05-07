@@ -109,6 +109,9 @@
     <Filter Include="Level\PlayLevel\WorldLevel\Object\Player">
       <UniqueIdentifier>{be144bde-002d-4972-a540-573c14ff1f2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\WorldLevel\Object\Gate">
+      <UniqueIdentifier>{3d5fd571-d521-4d98-861a-031ed76cd997}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -297,14 +300,17 @@
     <ClInclude Include="PlayerSSBullet.h">
       <Filter>Level\PlayLevel\CommonObject\Player\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="FlowerLevelGate.h">
-      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
-    </ClInclude>
     <ClInclude Include="WorldDust.h">
       <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="WorldPlayer.h">
       <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowerLevelGate.h">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
+    </ClInclude>
+    <ClInclude Include="GateUnit.h">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -509,9 +515,6 @@
     <ClCompile Include="PlayerSSBullet.cpp">
       <Filter>Level\PlayLevel\CommonObject\Player\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="FlowerLevelGate.cpp">
-      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
-    </ClCompile>
     <ClCompile Include="WorldPlayer_State.cpp">
       <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
     </ClCompile>
@@ -520,6 +523,12 @@
     </ClCompile>
     <ClCompile Include="WorldPlayer.cpp">
       <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowerLevelGate.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="GateUnit.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
