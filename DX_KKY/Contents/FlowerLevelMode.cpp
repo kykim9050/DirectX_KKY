@@ -105,7 +105,7 @@ void AFlowerLevelMode::ObjectInit()
 	MapFrontObject->SetMapFile("Flower_Background_Front.png");
 	MapFrontObject->SetAutoScale();
 	MapFrontObject->SetActorLocation(FVector(630.0f, -575.0f, 50.0f));
-	MapFrontObject->SetOrdering(ERenderingOrder::FrontLayer);
+	MapFrontObject->SetOrdering(ERenderingOrder::FrontLayer2);
 
 	Map->SetMapFile("Flower_Background.png");
 	Map->SetAutoScale();

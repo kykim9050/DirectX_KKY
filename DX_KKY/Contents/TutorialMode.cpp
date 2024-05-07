@@ -37,7 +37,7 @@ void ATutorialMode::BeginPlay()
 	TutorialMap->SetAutoScale();
 
 	// OldFilmEffect, Player는 랜더러 오더링이 정해져 있음
-	FrontScreen->SetOrdering(ERenderingOrder::FrontLayer);
+	FrontScreen->SetOrdering(ERenderingOrder::FrontLayer2);
 	TutorialMap->SetOrdering(ERenderingOrder::StaticObject);
 	BackScreen->SetOrdering(ERenderingOrder::BackLayer1);
 
