@@ -24,9 +24,22 @@ AFlowerLevelGate::~AFlowerLevelGate()
 void AFlowerLevelGate::BeginPlay()
 {
 	Super::BeginPlay();
+
+	RendererInit();
+	//ColliderInit();
 }
 
 void AFlowerLevelGate::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
+
+void AFlowerLevelGate::RendererInit()
+{
+	Renderer->SetAutoSize(1.0f, true);
+	Renderer->SetOrder(ERenderingOrder::Object1);
+
+	Renderer->CreateAnimation(GAniName::FlowerLevel_GateAni, "FloralFury_Garden.png", 0.1f);
+	Renderer->ChangeAnimation(GAniName::FlowerLevel_GateAni);
+}
+

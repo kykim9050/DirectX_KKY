@@ -4,7 +4,7 @@
 #include "WorldGameMode.h"
 #include "WorldPlayer.h"
 #include "MapBase.h"
-#include "OldFilmEffect.h"
+#include "FlowerLevelGate.h"
 
 AWorldGameMode::AWorldGameMode()
 {
@@ -19,6 +19,8 @@ void AWorldGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	WidgetInit();
+
+
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 }
@@ -72,6 +74,7 @@ void AWorldGameMode::CreateObject()
 	MapLayer = GetWorld()->SpawnActor<AMapBase>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
 	WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
 	WorldCollisionMap = GetWorld()->SpawnActor<AMapBase>("WorldCollisionMap", static_cast<int>(EActorType::Map));
+	FlowerLevelGate = GetWorld()->SpawnActor<AFlowerLevelGate>("FlowerLevelGate", static_cast<int>(EActorType::BackGroundSubStaticObject));
 }
 
 void AWorldGameMode::ObjectInit()
@@ -97,6 +100,8 @@ void AWorldGameMode::ObjectInit()
 	MapLayer->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f });
 	WorldMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
 	WorldCollisionMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
+	FlowerLevelGate->SetActorLocation(GActorPosValue::FlowerLevel_GatePos);
+
 }
 
 void AWorldGameMode::DeleteObject()

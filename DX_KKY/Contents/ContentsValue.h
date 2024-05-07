@@ -34,6 +34,9 @@ namespace GSpriteName
 
 namespace GAniName
 {
+	// World Mode
+	const std::string FlowerLevel_GateAni = "FlowerLevel_GateAni";
+
 	// CUphead
 	const std::string Player_SSAir_Straight = "Player_SSAir_Straight";
 	const std::string Player_SSAir_Up = "Player_SSAir_Up";
@@ -531,7 +534,6 @@ namespace GColorValue
 namespace GActorPosValue
 {
 	// pirate Level
-
 	const float4 PL_Player_Init_Pos = float4(200.0f, -350.0f, 100.0f);
 	const float4 Phase1_Boss_Pos = float4(1280.0f, -765.0f, 0.0f);
 	const float4 OctoBullet_RelativePos = float4(-406.0f, 390.0f, 0.0f);
@@ -541,6 +543,9 @@ namespace GActorPosValue
 	const float4 Shark_Init_Pos = float4(1280.0f, -500.0f, 0.0f);
 	const float4 SeaDog_Init_Pos = float4(1140.0f, -710.0f, 0.0f);
 	const float4 Periscope_Init_Pos = float4(1200.0f, -710.0f, 0.0f);
+
+	// World Level
+	const float4 FlowerLevel_GatePos = float4(2125.0f, -925.0f, 0.0f);
 }
 
 

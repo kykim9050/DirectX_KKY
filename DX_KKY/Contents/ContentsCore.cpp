@@ -71,6 +71,10 @@ void UContentsCore::Initialize()
 		UEngineSprite::CreateCutting("SeaDog_Death_Effect.png", 5, 2);
 		UEngineSprite::CreateCutting("SeaDog_Move.png", 6, 2);
 		UEngineSprite::CreateCutting("SeaDog_Periscope.png", 10, 5);
+
+		UEngineSprite::CreateCutting("FloralFury_Garden.png", 3, 1);
+		UEngineSprite::CreateCutting("ShootinNLootin_Ripples.png", 3, 1);
+		UEngineSprite::CreateCutting("ShootinNLootin_Ship.png", 3, 1);
 	}
 
 	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("ContentsDebugWindow");
