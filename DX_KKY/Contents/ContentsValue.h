@@ -59,6 +59,7 @@ namespace GAniName
 	// Screen Effect
 	const std::string OldFilmAni = "OldFilmAni";
 	const std::string IrisAni = "IrisAni";
+	const std::string IrisRevAni = "IrisRevAni";
 	
 	const std::string Hourglass = "Hourglass";
 
