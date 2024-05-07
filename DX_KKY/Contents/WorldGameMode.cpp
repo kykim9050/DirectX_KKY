@@ -153,6 +153,7 @@ void AWorldGameMode::StateInit()
 	{
 		ModeState.CreateState("Idle");
 		ModeState.CreateState("FlowerLevelChange");
+		ModeState.CreateState("PirateLevelChange");
 	}
 
 	{
@@ -165,11 +166,21 @@ void AWorldGameMode::StateInit()
 
 				Iris->ChangeAnimation(GAniName::IrisRevAni);
 			});
+		ModeState.SetStartFunction("PirateLevelChange", [this]()
+			{
+				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
+					{
+						GEngine->ChangeLevel(GLevelName::PirateLevel);
+					});
+
+				Iris->ChangeAnimation(GAniName::IrisRevAni);
+			});
 	}
 
 	{
 		ModeState.SetUpdateFunction("Idle", std::bind(&AWorldGameMode::Idle, this, std::placeholders::_1));
 		ModeState.SetUpdateFunction("FlowerLevelChange", [](float) {});
+		ModeState.SetUpdateFunction("PirateLevelChange", [](float) {});
 	}
 
 	ModeState.ChangeState("Idle");
@@ -180,6 +191,12 @@ void AWorldGameMode::Idle(float _DeltaTime)
 	if (true == FlowerLevelGate->GetIsGateOpen())
 	{
 		ModeState.ChangeState("FlowerLevelChange");
+		return;
+	}
+
+	if (true == PirateLevelGate->GetIsGateOpen())
+	{
+		ModeState.ChangeState("PirateLevelChange");
 		return;
 	}
 }
