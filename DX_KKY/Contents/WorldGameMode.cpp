@@ -152,7 +152,7 @@ void AWorldGameMode::StateInit()
 			{
 				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
 					{
-						GEngine->ChangeLevel("FlowerLevel");
+						GEngine->ChangeLevel(GLevelName::FlowerLevel);
 					});
 
 				Iris->ChangeAnimation(GAniName::IrisRevAni);
