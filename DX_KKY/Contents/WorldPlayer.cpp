@@ -7,6 +7,7 @@
 #include "WorldPlayer.h"
 #include "WorldDust.h"
 #include "WorldGameMode.h"
+#include "GateUnit.h"
 
 std::shared_ptr<AWorldPlayer> AWorldPlayer:: MainPlayer = std::shared_ptr<AWorldPlayer>();
 
@@ -46,6 +47,7 @@ void AWorldPlayer::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	State.Update(_DeltaTime);
+	CollisionCheck();
 }
 
 void AWorldPlayer::CreatePlayerAnimation()
@@ -157,4 +159,21 @@ void AWorldPlayer::ColliderInit()
 	Collider->SetScale(GColliderScale::WorldPlayer_ColScale);
 	Collider->SetCollisionGroup(ECollisionGroup::Player);
 	Collider->SetCollisionType(ECollisionType::Rect);
+}
+
+void AWorldPlayer::CollisionCheck()
+{
+	Collider->CollisionEnter(ECollisionGroup::Gate, [=](std::shared_ptr<UCollision> _Collision)
+		{
+			AGateUnit* Gate = dynamic_cast<AGateUnit*>(_Collision->GetActor());
+
+			if (nullptr == Gate)
+			{
+				MsgBoxAssert("충돌 대상이 Gate가 아닙니다.");
+				return;
+			}
+
+
+			int a = 0;
+		});
 }

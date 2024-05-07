@@ -71,6 +71,7 @@ private:
 	void CreatePlayerAnimation();
 	void ColliderInit();
 	void StateInit();
+	void CollisionCheck();
 
 	inline float GetSpeed() const
 	{
