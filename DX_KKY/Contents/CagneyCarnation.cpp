@@ -16,7 +16,7 @@ ACagneyCarnation::ACagneyCarnation()
 	SetHp(300);
 	ColliderInit();
 	RendererInit();
-	SetGetHitFunction(std::bind(&ACagneyCarnation::RendererFlash, this));
+	SetGetHitFunction(std::bind(&ACagneyCarnation::AfterHitFlash, this));
 }
 
 ACagneyCarnation::~ACagneyCarnation()
@@ -167,7 +167,7 @@ void ACagneyCarnation::VineGrowUp()
 	}
 }
 
-void ACagneyCarnation::RendererFlash()
+void ACagneyCarnation::AfterHitFlash()
 {
 	Renderer->SetPlusColor(GColorValue::AttackColor);
 

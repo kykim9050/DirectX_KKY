@@ -48,6 +48,8 @@ public:
 	}
 
 protected:
+	virtual void AfterHitFlash() {};
+	
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
