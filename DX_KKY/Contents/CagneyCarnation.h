@@ -149,6 +149,8 @@ private:
 	void CreateBottomIvy();
 	void CreateVine();
 	void VineGrowUp();
+	void RendererFlash();
+	void CollisionCheck();
 
 private:
 	inline void GetHit(int _DmgVal)

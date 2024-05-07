@@ -44,7 +44,6 @@ public:
 	}
 
 protected:
-
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
@@ -53,6 +52,5 @@ private:
 	bool GetHitUse = false;
 
 	std::function<void()> GetHitFunction = nullptr;
-	
 };
 
