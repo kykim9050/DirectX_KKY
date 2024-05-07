@@ -6,6 +6,7 @@ class UCamera;
 class AWorldPlayer;
 class AMapBase;
 class UImage;
+class AFlowerLevelGate;
 class AWorldGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -32,11 +33,12 @@ private:
 	UImage* OldFilm = nullptr;
 	UImage* Iris = nullptr;
 
-	std::shared_ptr<UCamera> Camera;
-	std::shared_ptr<AWorldPlayer> WPlayer;
-	std::shared_ptr<AMapBase> MapLayer;
-	std::shared_ptr<AMapBase> WorldMap;
-	std::shared_ptr<AMapBase> WorldCollisionMap;
+	std::shared_ptr<UCamera> Camera = nullptr;
+	std::shared_ptr<AWorldPlayer> WPlayer = nullptr;
+	std::shared_ptr<AMapBase> MapLayer = nullptr;
+	std::shared_ptr<AMapBase> WorldMap = nullptr;
+	std::shared_ptr<AMapBase> WorldCollisionMap = nullptr;
+	std::shared_ptr<AFlowerLevelGate> FlowerLevelGate = nullptr;
 
 private:
 	void WidgetInit();

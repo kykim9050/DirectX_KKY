@@ -26,8 +26,10 @@ private:
 	USpriteRenderer* Renderer = nullptr;
 	UCollision* Collider = nullptr;
 
+private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	void RendererInit();
 };
 
