@@ -3,9 +3,9 @@
 
 // Ό³Έν :
 class UCamera;
-class AOldFilmEffect;
 class AWorldPlayer;
 class AMapBase;
+class UImage;
 class AWorldGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -21,12 +21,6 @@ public:
 	AWorldGameMode& operator=(const AWorldGameMode& _Other) = delete;
 	AWorldGameMode& operator=(AWorldGameMode&& _Other) noexcept = delete;
 
-
-	inline static std::shared_ptr<AOldFilmEffect> GetOldFilm()
-	{
-		return OldFilm;
-	}
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -35,11 +29,16 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 
 private:
+	UImage* OldFilm = nullptr;
+	UImage* Iris = nullptr;
+
 	std::shared_ptr<UCamera> Camera;
-	static std::shared_ptr<AOldFilmEffect> OldFilm;
 	std::shared_ptr<AWorldPlayer> WPlayer;
 	std::shared_ptr<AMapBase> MapLayer;
 	std::shared_ptr<AMapBase> WorldMap;
 	std::shared_ptr<AMapBase> WorldCollisionMap;
+
+private:
+	void WidgetInit();
 };
 

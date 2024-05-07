@@ -6,10 +6,6 @@
 #include "MapBase.h"
 #include "OldFilmEffect.h"
 
-
-
-std::shared_ptr<AOldFilmEffect> AWorldGameMode::OldFilm = nullptr;
-
 AWorldGameMode::AWorldGameMode()
 {
 }
@@ -22,8 +18,9 @@ void AWorldGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
+	WidgetInit();
+
 	Camera = GetWorld()->GetMainCamera();
-	OldFilm = GetWorld()->SpawnActor<AOldFilmEffect>("OldFilmEffect", static_cast<int>(EActorType::FilmEffect));
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 	
 	WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
@@ -49,6 +46,9 @@ void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
+	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
+	Iris->ChangeAnimation(GAniName::IrisAni);
+
 	MapLayer->SetMapFile("WorldMap_Layer.png");
 	WorldMap->SetMapFile("WorldMap.png");
 	WorldCollisionMap->SetMapFile("WorldMap_PixelCheck.png");
@@ -66,10 +66,27 @@ void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 	WorldCollisionMap->SetOrdering(ERenderingOrder::CollisionLayer);
 
 	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
-	OldFilm->SetActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 0.0f });
 	WPlayer->SetActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
 	MapLayer->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f });
 	WorldMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
 	WorldCollisionMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
-
 }
+
+void AWorldGameMode::WidgetInit()
+{
+	OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
+	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
+	OldFilm->CreateAnimation(GAniName::OldFilmAni, GSpriteName::OldFilm, 0.05f);
+	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
+
+	Iris = CreateWidget<UImage>(GetWorld(), "Iris");
+	Iris->AddToViewPort(ERenderingOrder::Iris);
+	Iris->CreateAnimation(GAniName::IrisAni, GSpriteName::Iris, 0.034f, false);
+	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
+	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
+}
+
+//void CreateObject();
+//void ObjectInit();
+//void DeleteObject();
