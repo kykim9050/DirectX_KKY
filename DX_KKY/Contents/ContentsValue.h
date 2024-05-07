@@ -524,8 +524,8 @@ namespace GBoundaryPos
 namespace GColorValue
 {
 	const float4 BrightColor = float4(0.1f, 0.1f, 0.1f);
-	const float4 AttackColor = float4(0.15f, 0.15f, 0.15f);
-	const float4 AttackRestoreColor = float4(-0.15f, -0.15f, -0.15f);
+	const float4 AttackColor = float4(0.1f, 0.1f, 0.1f);
+	const float4 AttackRestoreColor = float4(-0.1f, -0.1f, -0.1f);
 }
 
 namespace GActorPosValue

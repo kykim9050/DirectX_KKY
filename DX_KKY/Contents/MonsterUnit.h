@@ -20,10 +20,14 @@ public:
 
 	virtual void GetHit(int _DmgVal) {};
 
-	inline void SetGetHitFunction(std::function<void()> _Function)
+	inline void ExcuteGetHitFunction()
 	{
-		GetHitFunction = _Function;
-		GetHitUse = true;
+		if (nullptr == GetHitFunction)
+		{
+			return;
+		}
+
+		GetHitFunction();
 	}
 
 	inline void SetHp(int _Hp)
@@ -46,6 +50,11 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	inline void SetGetHitFunction(std::function<void()> _Function)
+	{
+		GetHitFunction = _Function;
+	}
 
 private:
 	int Hp = 0;

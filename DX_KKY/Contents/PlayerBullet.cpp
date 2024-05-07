@@ -95,6 +95,13 @@ void APlayerBullet::StateInit()
 		State.SetUpdateFunction("Death", [](float) {});
 	}
 
+	{
+		State.SetEndFunction("Flying", [this]()
+			{
+				Collision->SetActive(false);
+			});
+	}
+
 	State.ChangeState("Spawn");
 }
 
@@ -128,6 +135,8 @@ void APlayerBullet::CollisionCheck()
 			SetIsMonsterHit(true);
 
 			Monster->SubHp(GetDamage());
+
+			Monster->ExcuteGetHitFunction();
 
 			// Player의 SuperMeter 충전해주기
 			

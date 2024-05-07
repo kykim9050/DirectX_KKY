@@ -16,6 +16,7 @@ ACagneyCarnation::ACagneyCarnation()
 	SetHp(300);
 	ColliderInit();
 	RendererInit();
+	SetGetHitFunction(std::bind(&ACagneyCarnation::RendererFlash, this));
 }
 
 ACagneyCarnation::~ACagneyCarnation()
@@ -36,8 +37,6 @@ void ACagneyCarnation::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	DebugUpdate();
-
-	CollisionCheck();
 }
 
 void ACagneyCarnation::DebugUpdate()
@@ -175,21 +174,5 @@ void ACagneyCarnation::RendererFlash()
 	DelayCallBack(0.05f, [this]()
 		{
 			Renderer->SetPlusColor(GColorValue::AttackRestoreColor);
-		});
-}
-
-void ACagneyCarnation::CollisionCheck()
-{
-	HeadCollider->CollisionEnter(ECollisionGroup::PlayerBullet, [=](std::shared_ptr<UCollision> _Collision)
-		{
-			APlayerBullet* PBullet = dynamic_cast<APlayerBullet*>(_Collision->GetActor());
-
-			if (nullptr == PBullet)
-			{
-				MsgBoxAssert("충돌 대상이 APlayerBullet가 아닙니다.");
-				return;
-			}
-
-			RendererFlash();
 		});
 }
