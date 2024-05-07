@@ -51,15 +51,16 @@ void AWorldGameMode::WidgetInit()
 {
 	OldFilm = CreateWidget<UImage>(GetWorld(), "OldFilm");
 	OldFilm->AddToViewPort(ERenderingOrder::OldFilmEffect);
-	OldFilm->CreateAnimation(GAniName::OldFilmAni, GSpriteName::OldFilm, 0.05f);
 	OldFilm->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	OldFilm->SetScale(GEngine->EngineWindow.GetWindowScale());
+	OldFilm->CreateAnimation(GAniName::OldFilmAni, GSpriteName::OldFilm, 0.05f);
 
 	Iris = CreateWidget<UImage>(GetWorld(), "Iris");
 	Iris->AddToViewPort(ERenderingOrder::Iris);
-	Iris->CreateAnimation(GAniName::IrisAni, GSpriteName::Iris, 0.034f, false);
 	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
+	Iris->CreateAnimation(GAniName::IrisAni, GSpriteName::Iris, 0.034f, false);
+	Iris->CreateAnimation(GAniName::IrisRevAni, GSpriteName::Iris, 0.034f, false, 16, 0);
 }
 
 void AWorldGameMode::WidgetStart()
@@ -121,6 +122,12 @@ void AWorldGameMode::DeleteObject()
 		WorldCollisionMap = nullptr;
 	}
 
+	if (nullptr != FlowerLevelGate)
+	{
+		FlowerLevelGate->Destroy();
+		FlowerLevelGate = nullptr;
+	}
+
 	UContentsValue::ColMapTexture = nullptr;
 }
 
@@ -137,10 +144,24 @@ void AWorldGameMode::StateInit()
 {
 	{
 		ModeState.CreateState("Idle");
+		ModeState.CreateState("FlowerLevelChange");
+	}
+
+	{
+		ModeState.SetStartFunction("FlowerLevelChange", [this]()
+			{
+				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
+					{
+						GEngine->ChangeLevel("FlowerLevel");
+					});
+
+				Iris->ChangeAnimation(GAniName::IrisRevAni);
+			});
 	}
 
 	{
 		ModeState.SetUpdateFunction("Idle", std::bind(&AWorldGameMode::Idle, this, std::placeholders::_1));
+		ModeState.SetUpdateFunction("FlowerLevelChange", [](float) {});
 	}
 
 	ModeState.ChangeState("Idle");
@@ -150,6 +171,7 @@ void AWorldGameMode::Idle(float _DeltaTime)
 {
 	if (true == FlowerLevelGate->GetIsGateOpen())
 	{
-		int a = 0;
+		ModeState.ChangeState("FlowerLevelChange");
+		return;
 	}
 }

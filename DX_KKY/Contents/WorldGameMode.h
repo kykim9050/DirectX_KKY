@@ -43,6 +43,8 @@ private:
 
 	UStateManager ModeState = UStateManager();
 
+	float LevelChangeDelay = 2.0f;
+	float LevelChangeDelayInit = 2.0f;
 private:
 	void StateInit();
 	void Idle(float _DeltaTime);
