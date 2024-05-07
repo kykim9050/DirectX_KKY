@@ -82,6 +82,7 @@ void APirateLevelMode::CreateObject()
 	Camera = GetWorld()->GetMainCamera();
 
 	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UPirateLevelDebugWindow>("PirateLevelDebugWindow");
+	DebugWindow->Off();
 }
 
 void APirateLevelMode::ObjectInit()

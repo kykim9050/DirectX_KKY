@@ -6,8 +6,8 @@
 
 APlayerBullet::APlayerBullet()
 {
-	//SetDamage(1);
-	SetDamage(101);
+	SetDamage(1);
+	//SetDamage(101);
 	SetHorizontalSpeed(1000.0f);
 	SetVerticalSpeed(1000.0f);
 }
@@ -130,6 +130,6 @@ void APlayerBullet::CollisionCheck()
 			Monster->SubHp(GetDamage());
 
 			// Player의 SuperMeter 충전해주기
-
+			
 		});
 }
