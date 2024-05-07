@@ -106,6 +106,9 @@
     <Filter Include="Level\PlayLevel\CommonObject\Player\Bullet">
       <UniqueIdentifier>{1e3974da-910d-4505-99e3-83178dc31b86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\WorldLevel\Object\Player">
+      <UniqueIdentifier>{be144bde-002d-4972-a540-573c14ff1f2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -147,17 +150,11 @@
     <ClInclude Include="ContentsEnumClass.h">
       <Filter>ContentsHelper</Filter>
     </ClInclude>
-    <ClInclude Include="WorldPlayer.h">
-      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
-    </ClInclude>
     <ClInclude Include="ContentsValue.h">
       <Filter>ContentsHelper</Filter>
     </ClInclude>
     <ClInclude Include="ContentsFunction.h">
       <Filter>ContentsHelper</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldDust.h">
-      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
     </ClInclude>
     <ClInclude Include="MoveUnit.h">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
@@ -300,6 +297,15 @@
     <ClInclude Include="PlayerSSBullet.h">
       <Filter>Level\PlayLevel\CommonObject\Player\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="FlowerLevelGate.h">
+      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldDust.h">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldPlayer.h">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -338,20 +344,11 @@
     <ClCompile Include="WorldGameMode.cpp">
       <Filter>Level\PlayLevel\WorldLevel</Filter>
     </ClCompile>
-    <ClCompile Include="WorldPlayer.cpp">
-      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
-    </ClCompile>
     <ClCompile Include="ContentsValue.cpp">
       <Filter>ContentsHelper</Filter>
     </ClCompile>
-    <ClCompile Include="WorldPlayer_State.cpp">
-      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
-    </ClCompile>
     <ClCompile Include="ContentsFunction.cpp">
       <Filter>ContentsHelper</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldDust.cpp">
-      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="MoveUnit.cpp">
       <Filter>Level\PlayLevel\CommonObject\Unit</Filter>
@@ -511,6 +508,18 @@
     </ClCompile>
     <ClCompile Include="PlayerSSBullet.cpp">
       <Filter>Level\PlayLevel\CommonObject\Player\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowerLevelGate.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldPlayer_State.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldDust.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldPlayer.cpp">
+      <Filter>Level\PlayLevel\WorldLevel\Object\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
