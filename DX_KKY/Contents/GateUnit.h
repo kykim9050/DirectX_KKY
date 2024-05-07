@@ -16,9 +16,18 @@ public:
 	AGateUnit& operator=(const AGateUnit& _Other) = delete;
 	AGateUnit& operator=(AGateUnit&& _Other) noexcept = delete;
 
+	inline void SetIsGateOpen(bool _Value)
+	{
+		IsGateOpen = _Value;
+	}
+	inline bool GetIsGateOpen() const
+	{
+		return IsGateOpen;
+	}
+
 protected:
 
 private:
-
+	bool IsGateOpen = false;
 };
 

@@ -20,13 +20,14 @@ void AWorldGameMode::BeginPlay()
 
 	WidgetInit();
 	PermanentObjectCreate();
-
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 }
 
 void AWorldGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	ModeState.Update(_DeltaTime);
 }
 
 void AWorldGameMode::LevelEnd(ULevel* _NextLevel)
@@ -43,6 +44,7 @@ void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 	WidgetStart();
 	CreateObject();
 	ObjectInit();
+	StateInit();
 }
 
 void AWorldGameMode::WidgetInit()
@@ -129,4 +131,25 @@ void AWorldGameMode::PermanentObjectCreate()
 
 	WPlayer = GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer", static_cast<int>(EActorType::Player));
 	WPlayer->SetActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
+}
+
+void AWorldGameMode::StateInit()
+{
+	{
+		ModeState.CreateState("Idle");
+	}
+
+	{
+		ModeState.SetUpdateFunction("Idle", std::bind(&AWorldGameMode::Idle, this, std::placeholders::_1));
+	}
+
+	ModeState.ChangeState("Idle");
+}
+
+void AWorldGameMode::Idle(float _DeltaTime)
+{
+	if (true == FlowerLevelGate->GetIsGateOpen())
+	{
+		int a = 0;
+	}
 }

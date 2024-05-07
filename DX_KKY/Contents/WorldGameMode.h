@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EngineCore/StateManager.h>
 
 // Ό³Έν :
 class UCamera;
@@ -40,7 +41,12 @@ private:
 	std::shared_ptr<AMapBase> WorldCollisionMap = nullptr;
 	std::shared_ptr<AFlowerLevelGate> FlowerLevelGate = nullptr;
 
+	UStateManager ModeState = UStateManager();
+
 private:
+	void StateInit();
+	void Idle(float _DeltaTime);
+
 	void WidgetInit();
 	void WidgetStart();
 	void CreateObject();
