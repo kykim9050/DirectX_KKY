@@ -12,11 +12,10 @@
 
 ACaptainBrineybeardPhase1::ACaptainBrineybeardPhase1()
 {
-	Root = CreateDefaultSubObject<UDefaultSceneComponent>("BulletRoot");
+	Root = CreateDefaultSubObject<UDefaultSceneComponent>("Root");
 	SetRoot(Root);
 
-	//SetHp(300);
-	SetHp(10);
+	SetHp(300);
 	RendererInit();
 	ColliderInit();
 	SetGetHitFunction(std::bind(&ACaptainBrineybeardPhase1::AfterHitFlash, this));
