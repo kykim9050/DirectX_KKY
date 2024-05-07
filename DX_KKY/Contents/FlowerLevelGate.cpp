@@ -26,7 +26,7 @@ void AFlowerLevelGate::BeginPlay()
 	Super::BeginPlay();
 
 	RendererInit();
-	//ColliderInit();
+	ColliderInit();
 }
 
 void AFlowerLevelGate::Tick(float _DeltaTime)
@@ -43,3 +43,9 @@ void AFlowerLevelGate::RendererInit()
 	Renderer->ChangeAnimation(GAniName::FlowerLevel_GateAni);
 }
 
+void AFlowerLevelGate::ColliderInit()
+{
+	Collider->SetScale(GColliderScale::FlowerGate_ColScale);
+	Collider->SetCollisionGroup(ECollisionGroup::Gate);
+	Collider->SetCollisionType(ECollisionType::Rect);
+}

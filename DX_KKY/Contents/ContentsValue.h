@@ -417,6 +417,8 @@ namespace PirateBossStageValue
 
 namespace GColliderScale
 {
+	const float4 FlowerGate_ColScale = float4(180.0f, 120.0f, 1.0f);
+
 	const float4 FlowerBoss_HeadColScale = float4(250.0f, 250.0f, 1.0f);
 	const float4 FlowerBoss_FaceAttScale = float4(950.f, 280.f, 1.0f);
 	const float4 Chomper_ColScale = float4(48.0f, 64.0f, 1.0f);
@@ -440,6 +442,8 @@ namespace GColliderScale
 	const float4 Barrel_ColScale = float4(150.0f, 100.0f, 1.0f);
 	const float4 Shark_ColScale = float4(750.0f, 350.0f, 1.0f);
 	const float4 SeaDog_ColScale = float4(150.0f, 70.0f, 1.0f);
+
+	
 }
 
 namespace GColliderPosInfo
