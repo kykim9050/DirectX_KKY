@@ -212,6 +212,11 @@ void ACagneyCarnation::StartFunctionSet()
 	// Boss Dead
 	State.SetStartFunction(FlowerBossState::FlowerBoss_Dead, [this]()
 		{
+			HeadCollider->SetActive(false);
+			FaceAttHighCollider->SetActive(false);
+			FaceAttLowCollider->SetActive(false);
+			BottomIvyCollider->SetActive(false);
+
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerBoss_Death);
 			SetIsPhaseEnd(true);
 		});

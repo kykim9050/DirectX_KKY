@@ -7,7 +7,7 @@
 
 ACaptainBrineybeardPhase2::ACaptainBrineybeardPhase2()
 {
-	Root = CreateDefaultSubObject<UDefaultSceneComponent>("BulletRoot");
+	Root = CreateDefaultSubObject<UDefaultSceneComponent>("Root");
 	SetRoot(Root);
 
 	SetHp(150);
