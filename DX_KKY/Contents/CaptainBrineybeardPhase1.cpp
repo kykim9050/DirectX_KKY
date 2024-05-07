@@ -18,6 +18,7 @@ ACaptainBrineybeardPhase1::ACaptainBrineybeardPhase1()
 	SetHp(300);
 	RendererInit();
 	ColliderInit();
+	SetGetHitFunction(std::bind(&ACaptainBrineybeardPhase1::AfterHitFlash, this));
 }
 
 ACaptainBrineybeardPhase1::~ACaptainBrineybeardPhase1()
@@ -177,4 +178,19 @@ void ACaptainBrineybeardPhase1::SpawnShark()
 void ACaptainBrineybeardPhase1::SpawnSeaDogs()
 {
 	std::shared_ptr<ACallSeaDogs> SeaDogs = GetWorld()->SpawnActor<ACallSeaDogs>("SeaDogs", EActorType::Monster);
+}
+
+void ACaptainBrineybeardPhase1::AfterHitFlash()
+{
+	PirateRenderer->SetPlusColor(GColorValue::AttackColor);
+	PirateTopRenderer->SetPlusColor(GColorValue::AttackColor);
+
+	DelayCallBack(0.05f, [this]()
+		{
+			PirateRenderer->SetPlusColor(GColorValue::AttackRestoreColor);
+		});
+	DelayCallBack(0.05f, [this]()
+		{
+			PirateTopRenderer->SetPlusColor(GColorValue::AttackRestoreColor);
+		});		
 }
