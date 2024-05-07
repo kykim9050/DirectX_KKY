@@ -157,7 +157,7 @@ void APlayerSSBullet::Death(float _DeltaTime)
 
 void APlayerSSBullet::CollisionCheck()
 {
-	Collision->CollisionStay(ECollisionGroup::Monster, [=](std::shared_ptr<UCollision> _Collision)
+	Collision->CollisionEnter(ECollisionGroup::Monster, [=](std::shared_ptr<UCollision> _Collision)
 		{
 			AMonsterUnit* Monster = dynamic_cast<AMonsterUnit*>(_Collision->GetActor());
 
