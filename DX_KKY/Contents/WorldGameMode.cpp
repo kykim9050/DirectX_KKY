@@ -41,28 +41,7 @@ void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 
 	WidgetStart();
 	CreateObject();
-
-	MapLayer->SetMapFile("WorldMap_Layer.png");
-	WorldMap->SetMapFile("WorldMap.png");
-	WorldCollisionMap->SetMapFile("WorldMap_PixelCheck.png");
-	MapLayer->SetAutoScale();
-	WorldMap->SetAutoScale();
-	WorldCollisionMap->SetAutoScale();
-
-	// 콜리젼 맵을 가져와서 ContentsValue 클래스에 정보 저장
-	UContentsValue::ColMapTexture = UEngineTexture::FindRes(WorldCollisionMap->GetName());
-	float4 ColMapScale = UContentsValue::ColMapTexture->GetScale();
-
-	// OldFilm, WPlayer는 오더링 고정
-	MapLayer->SetOrdering(ERenderingOrder::FrontLayer);
-	WorldMap->SetOrdering(ERenderingOrder::BackLayer1);
-	WorldCollisionMap->SetOrdering(ERenderingOrder::CollisionLayer);
-
-	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
-	WPlayer->SetActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
-	MapLayer->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f });
-	WorldMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
-	WorldCollisionMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
+	ObjectInit();
 }
 
 void AWorldGameMode::WidgetInit()
@@ -93,6 +72,31 @@ void AWorldGameMode::CreateObject()
 	MapLayer = GetWorld()->SpawnActor<AMapBase>("MapLayer", static_cast<int>(EActorType::BackGroundSubStaticObject));
 	WorldMap = GetWorld()->SpawnActor<AMapBase>("WorldMap", static_cast<int>(EActorType::Map));
 	WorldCollisionMap = GetWorld()->SpawnActor<AMapBase>("WorldCollisionMap", static_cast<int>(EActorType::Map));
+}
+
+void AWorldGameMode::ObjectInit()
+{
+	MapLayer->SetMapFile("WorldMap_Layer.png");
+	WorldMap->SetMapFile("WorldMap.png");
+	WorldCollisionMap->SetMapFile("WorldMap_PixelCheck.png");
+	MapLayer->SetAutoScale();
+	WorldMap->SetAutoScale();
+	WorldCollisionMap->SetAutoScale();
+
+	// 콜리젼 맵을 가져와서 ContentsValue 클래스에 정보 저장
+	UContentsValue::ColMapTexture = UEngineTexture::FindRes(WorldCollisionMap->GetName());
+	float4 ColMapScale = UContentsValue::ColMapTexture->GetScale();
+
+	// OldFilm, WPlayer는 오더링 고정
+	MapLayer->SetOrdering(ERenderingOrder::FrontLayer);
+	WorldMap->SetOrdering(ERenderingOrder::BackLayer1);
+	WorldCollisionMap->SetOrdering(ERenderingOrder::CollisionLayer);
+
+	Camera->SetActorLocation(UContentsValue::WorldMapCameraInitValue);
+	WPlayer->SetActorLocation(FVector{ UContentsValue::WorldMapPlayerXInitValue, UContentsValue::WorldMapPlayerYInitValue, 100.0f });
+	MapLayer->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 50.0f });
+	WorldMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 200.0f });
+	WorldCollisionMap->SetActorLocation(FVector{ ColMapScale.hX(), -ColMapScale.hY(), 300.0f });
 }
 
 void AWorldGameMode::DeleteObject()
@@ -129,4 +133,3 @@ void AWorldGameMode::DeleteObject()
 	UContentsValue::ColMapTexture = nullptr;
 }
 
-//void ObjectInit();

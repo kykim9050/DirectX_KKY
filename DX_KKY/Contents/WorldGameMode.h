@@ -42,6 +42,7 @@ private:
 	void WidgetInit();
 	void WidgetStart();
 	void CreateObject();
+	void ObjectInit();
 	void DeleteObject();
 };
 
