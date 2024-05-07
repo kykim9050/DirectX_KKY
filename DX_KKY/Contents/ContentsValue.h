@@ -1,5 +1,16 @@
 #pragma once
 
+namespace GLevelName
+{
+	const std::string TitleLevel = "TitleLevel";
+	const std::string EndingLevel = "EndingLevel";
+	const std::string WorldLevel = "WorldLevel";
+	const std::string FlowerLevel = "FlowerLevel";
+	const std::string PirateLevel = "PirateLevel";
+	const std::string LoadingLevel = "LoadingLevel";
+
+}
+
 namespace GSpriteName
 {
 	// flower boss

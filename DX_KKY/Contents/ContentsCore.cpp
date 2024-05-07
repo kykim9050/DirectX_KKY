@@ -79,14 +79,13 @@ void UContentsCore::Initialize()
 
 	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("ContentsDebugWindow");
 
-	GEngine->CreateLevel<ATitleMode>("TitleLevel");
-	GEngine->CreateLevel<AEndingMode>("EndingLevel");
+	GEngine->CreateLevel<ATitleMode>(GLevelName::TitleLevel);
+	GEngine->CreateLevel<AEndingMode>(GLevelName::EndingLevel);
 	//GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
-	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
-	//GEngine->CreateLevel<ATestGameMode>("TestLevel");
-	GEngine->CreateLevel<AFlowerLevelMode>("FlowerLevel");
-	GEngine->CreateLevel<APirateLevelMode>("PirateLevel");
-	GEngine->CreateLevel<ALoadingMode>("LoadingLevel");
-	GEngine->ChangeLevel("WorldLevel");
+	GEngine->CreateLevel<AWorldGameMode>(GLevelName::WorldLevel);
+	GEngine->CreateLevel<AFlowerLevelMode>(GLevelName::FlowerLevel);
+	GEngine->CreateLevel<APirateLevelMode>(GLevelName::PirateLevel);
+	GEngine->CreateLevel<ALoadingMode>(GLevelName::LoadingLevel);
+	GEngine->ChangeLevel(GLevelName::WorldLevel);
 }
 
