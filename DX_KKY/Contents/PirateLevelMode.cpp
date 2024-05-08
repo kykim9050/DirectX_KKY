@@ -45,6 +45,7 @@ void APirateLevelMode::LevelEnd(ULevel* _NextLevel)
 	DeleteObject();
 
 	DebugWindow->Off();
+	BGMPlayer.Off();
 }
 
 void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
@@ -60,6 +61,10 @@ void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
 	DebugWindow->SetSharkAppearFunction(std::bind(&APirateLevelMode::ObjectCreate_Shark, this));
 	DebugWindow->SetSeaDogAppearFunction(std::bind(&APirateLevelMode::ObjectCreate_SeaDog, this));
 	DebugWindow->On();
+
+	BGMPlayer = UEngineSound::SoundPlay("PirateLevel_bgm.mp3");
+	BGMPlayer.SetVolume(0.5f);
+	BGMPlayer.Loop();
 }
 
 void APirateLevelMode::WidgetInit()
@@ -178,6 +183,8 @@ void APirateLevelMode::StateInit()
 			});
 		ModeState.SetStartFunction("GameEnd", [this]()
 			{
+				BGMPlayer.Off();
+
 				ScreenMsg->SetStageEndMsg();
 
 				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
