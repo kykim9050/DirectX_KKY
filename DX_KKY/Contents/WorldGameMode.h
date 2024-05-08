@@ -45,6 +45,8 @@ private:
 
 	UStateManager ModeState = UStateManager();
 
+	UEngineSoundPlayer BGMPlayer = UEngineSoundPlayer();
+
 	float LevelChangeDelay = 2.0f;
 	float LevelChangeDelayInit = 2.0f;
 private:

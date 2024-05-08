@@ -35,12 +35,18 @@ void AWorldGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 
+	BGMPlayer.Off();
+
 	DeleteObject();
 }
 
 void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+
+	BGMPlayer = UEngineSound::SoundPlay("World_bgm.wav");
+	BGMPlayer.SetVolume(0.5f);
+	BGMPlayer.Loop();
 
 	WidgetStart();
 	CreateObject();

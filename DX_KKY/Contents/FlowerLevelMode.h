@@ -57,6 +57,9 @@ private:
 	std::shared_ptr<UTimeScaleControlUnit> TimeControlUnit = nullptr;
 
 	std::shared_ptr<UEngineRandom> Random;
+	
+	UEngineSoundPlayer BGMPlayer = UEngineSoundPlayer();
+
 
 	int ShadowNum = 3;
 

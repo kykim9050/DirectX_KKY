@@ -53,6 +53,7 @@ void ATitleMode::LevelStart(ULevel* _PrevLevel)
 	BGMPlayer.Loop();
 
 	BaseSound = UEngineSound::SoundPlay("OpticalLoop.wav");
+	BaseSound.SetVolume(0.8f);
 	BaseSound.Loop();
 
 	WidgetStart();
