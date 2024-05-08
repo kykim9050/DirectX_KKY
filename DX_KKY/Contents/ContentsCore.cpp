@@ -26,6 +26,15 @@ UContentsCore::~UContentsCore()
 
 void UContentsCore::Initialize()
 {
+	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("ContentsDebugWindow");
+
+	ResourceLoad();
+	CreateAllLevel();
+	GEngine->ChangeLevel(GLevelName::TitleLevel);
+}
+
+void UContentsCore::ResourceLoad()
+{
 	{
 		UEngineDirectory Dir;
 		Dir.MoveToSearchChild("ContentsResources");
@@ -37,7 +46,7 @@ void UContentsCore::Initialize()
 		}
 	}
 
-	{	
+	{
 		UEngineDirectory Dir;
 		Dir.MoveToSearchChild("ContentsResources");
 		Dir.Move("Image");
@@ -76,9 +85,10 @@ void UContentsCore::Initialize()
 		UEngineSprite::CreateCutting("ShootinNLootin_Ripples.png", 3, 1);
 		UEngineSprite::CreateCutting("ShootinNLootin_Ship.png", 3, 1);
 	}
+}
 
-	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("ContentsDebugWindow");
-
+void UContentsCore::CreateAllLevel()
+{
 	GEngine->CreateLevel<ATitleMode>(GLevelName::TitleLevel);
 	GEngine->CreateLevel<AEndingMode>(GLevelName::EndingLevel);
 	//GEngine->CreateLevel<ATutorialMode>("TutorialLevel");
@@ -86,6 +96,5 @@ void UContentsCore::Initialize()
 	GEngine->CreateLevel<AFlowerLevelMode>(GLevelName::FlowerLevel);
 	GEngine->CreateLevel<APirateLevelMode>(GLevelName::PirateLevel);
 	GEngine->CreateLevel<ALoadingMode>(GLevelName::LoadingLevel);
-	GEngine->ChangeLevel(GLevelName::TitleLevel);
-}
 
+}

@@ -21,5 +21,10 @@ protected:
 
 private:
 	std::shared_ptr<UContentsDebugWindow> DebugWindow;
+
+
+	void ResourceLoad();
+	void CreateAllLevel();
+
 };
 
