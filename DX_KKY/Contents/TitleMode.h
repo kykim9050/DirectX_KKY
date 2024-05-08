@@ -4,8 +4,8 @@
 // Ό³Έν :
 class UCamera;
 class ATitleAnimation;
-class AOldFilmEffect;
 class ATitleLogo;
+class UImage;
 class ATitleMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -30,8 +30,16 @@ protected:
 
 private:
 	std::shared_ptr<UCamera> Camera;
-	std::shared_ptr<AOldFilmEffect> OldFilm;
 	std::shared_ptr<ATitleAnimation> TitleAni;
 	std::shared_ptr<ATitleLogo> TitleLogo;
+	
+	UImage* OldFilm = nullptr;
+	UImage* Iris = nullptr;
+
+private:
+	void WidgetInit();
+	void WidgetStart();
+	void CreateObject();
+	void DeleteObject();
 };
 
