@@ -204,19 +204,9 @@ void AFlowerLevelMode::StateInit()
 	{
 		ModeState.SetStartFunction("Phase1", [this]()
 			{
-				{
-					int Random = UMath::GetInst().RandomReturnInt(1, 2);
-					UEngineSound::SoundPlay("level_announcer_0001_" + std::to_string(Random) + ".wav");
-					UEngineSound::SoundPlay("level_bell_intro.wav");
-
-					DelayCallBack(2.5f, [=]
-						{
-							UEngineSound::SoundPlay("level_announcer_0002_" + std::to_string(Random) + ".wav");
-						});
-				}
-
+				
 				// 페이즈1 보스 생성
-				DelayCallBack(0.8f, [this]()
+				DelayCallBack(0.5f, [this]()
 					{
 						ScreenMsg->SetStageStartMsg();
 					});
