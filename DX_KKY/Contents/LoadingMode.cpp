@@ -51,7 +51,7 @@ void ALoadingMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
-	ResourceLoad();
+	ImgResourceLoad();
 }
 
 void ALoadingMode::CreateActor()
@@ -103,46 +103,287 @@ void ALoadingMode::FirstResourceLoad()
 	}
 }
 
-void ALoadingMode::ResourceLoad()
+void ALoadingMode::ImgResourceLoad()
 {
-	// Bullet
-	// Cuphead
-	// Effect
-	// Ending_Animation
-	// Flower
-	// Pirate
-	// Title
-	// Tutorial
-	// World
-
 	UEngineDirectory Dir;
-	Dir.MoveToSearchChild("ContentsResources");
-	Dir.Move("Image");
-	Dir.Move("OtherRes");
-	std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
-	std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
 
-	LoadingCount = static_cast<int>(Files.size()) + static_cast<int>(Directorys.size());
-
-
-	for (UEngineFile& File : Files)
+	// Bullet
 	{
-		GEngine->JobWorker.Work([=]()
-			{
-				UEngineSprite::ThreadSafeLoad(File.GetFullPath());
-				LoadingCount--;
-			});
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Bullet");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
 	}
 
-	for (size_t i = 0; i < Directorys.size(); i++)
+	// Cuphead
 	{
-		std::string Name = Directorys[i].GetFolderName();
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Cuphead");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
 
-		GEngine->JobWorker.Work([=]()
-			{
-				UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
-				LoadingCount--;
-			});
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
+	}
+
+	// Effect
+	{
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Effect");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
+	}
+
+	// Ending
+	{
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Ending");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
+	}
+
+	// Flower
+	{
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Flower");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
+	}
+
+	// Pirate
+	{
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Pirate");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
+	}
+
+	// Title
+	{
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Title");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
+	}
+
+	// Tutorial
+	{
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("Tutorial");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
+	}
+
+	// World
+	{
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Image");
+		Dir.Move("World");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+		LoadingCount += (static_cast<int>(Files.size()) + static_cast<int>(Directorys.size()));
+
+		for (UEngineFile& File : Files)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+					LoadingCount--;
+				});
+		}
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+					LoadingCount--;
+				});
+		}
 	}
 }
 
