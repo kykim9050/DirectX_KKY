@@ -51,6 +51,7 @@ private:
 
 	std::shared_ptr<UTimeScaleControlUnit> TimeControlUnit = nullptr;
 
+	UEngineSoundPlayer BGMPlayer = UEngineSoundPlayer();
 
 private:
 	void BeginPlay() override;

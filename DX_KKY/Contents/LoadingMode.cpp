@@ -34,7 +34,6 @@ void ALoadingMode::Tick(float _DeltaTime)
 	{
 		LoadingCount = -1;
 		CuttingImgSet();
-		SoundResourceLoad();
 		CreateAllLevel();
 		GEngine->ChangeLevel(GLevelName::TitleLevel);
 		return;
@@ -52,6 +51,7 @@ void ALoadingMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
+	SoundResourceLoad();
 	ImgResourceLoad();
 }
 

@@ -42,6 +42,8 @@ void AFlowerLevelMode::LevelEnd(ULevel* _NextLevel)
 	Super::LevelEnd(_NextLevel);
 
 	ObjectDelete();
+
+	BGMPlayer.Off();
 }
 
 void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)

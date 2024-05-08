@@ -30,5 +30,7 @@ private:
 	std::shared_ptr<UCamera> Camera;
 	std::shared_ptr<AOldFilmEffect> OldFilm;
 	std::shared_ptr<AEndingAnimation> EndingAni;
+
+	UEngineSoundPlayer BGMPlayer = UEngineSoundPlayer();
 };
 

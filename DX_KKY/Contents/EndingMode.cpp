@@ -35,6 +35,8 @@ void AEndingMode::LevelEnd(ULevel* _NextLevel)
 
 	EndingAni->Destroy();
 	EndingAni = nullptr;
+
+	BGMPlayer.Off();
 }
 
 void AEndingMode::LevelStart(ULevel* _PrevLevel)
@@ -43,4 +45,7 @@ void AEndingMode::LevelStart(ULevel* _PrevLevel)
 
 	EndingAni = GetWorld()->SpawnActor<AEndingAnimation>("EndingAnimation", static_cast<int>(EActorType::BackGroundAnimation));
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, UContentsValue::CameraInitZValue));
+
+	BGMPlayer = UEngineSound::SoundPlay("Ending_bgm.wav");
+	BGMPlayer.Loop();
 }
