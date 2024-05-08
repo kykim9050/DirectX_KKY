@@ -45,7 +45,7 @@ void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 	Super::LevelStart(_PrevLevel);
 
 	BGMPlayer = UEngineSound::SoundPlay("World_bgm.wav");
-	BGMPlayer.SetVolume(0.5f);
+	BGMPlayer.SetVolume(0.3f);
 	BGMPlayer.Loop();
 
 	WidgetStart();
