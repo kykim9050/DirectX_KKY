@@ -165,6 +165,8 @@ void AWorldGameMode::StateInit()
 	{
 		ModeState.SetStartFunction("FlowerLevelChange", [this]()
 			{
+				UEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_StartLevel.wav");
+				
 				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
 					{
 						GEngine->ChangeLevel(GLevelName::FlowerLevel);
@@ -174,6 +176,8 @@ void AWorldGameMode::StateInit()
 			});
 		ModeState.SetStartFunction("PirateLevelChange", [this]()
 			{
+				UEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_StartLevel.wav");
+
 				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
 					{
 						GEngine->ChangeLevel(GLevelName::PirateLevel);
