@@ -35,27 +35,40 @@ void UContentsCore::Initialize()
 
 void UContentsCore::ResourceLoad()
 {
+
+
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("ContentsResources");
+	Dir.Move("Image");
+	std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+	std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
+
+	LoadingCount = static_cast<int>(Files.size()) + static_cast<int>(Directorys.size());
+
+
+	for (UEngineFile& File : Files)
 	{
-		UEngineDirectory Dir;
-		Dir.MoveToSearchChild("ContentsResources");
-		Dir.Move("Image");
-		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
-		for (UEngineFile& File : Files)
-		{
-			UEngineSprite::Load(File.GetFullPath());
-		}
+		GEngine->JobWorker.Work([=]()
+			{
+				UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+				LoadingCount--;
+			});
 	}
 
+	for (size_t i = 0; i < Directorys.size(); i++)
 	{
-		UEngineDirectory Dir;
-		Dir.MoveToSearchChild("ContentsResources");
-		Dir.Move("Image");
-		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory(true);
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			std::string Name = Directorys[i].GetFolderName();
-			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
-		}
+		std::string Name = Directorys[i].GetFolderName();
+
+		GEngine->JobWorker.Work([=]()
+			{
+				UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+				LoadingCount--;
+			});
+	}
+
+	while (0 != LoadingCount)
+	{
+
 	}
 
 	// 이미지 커팅
@@ -98,3 +111,4 @@ void UContentsCore::CreateAllLevel()
 	GEngine->CreateLevel<ALoadingMode>(GLevelName::LoadingLevel);
 
 }
+
