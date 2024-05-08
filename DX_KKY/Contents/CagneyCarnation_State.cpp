@@ -212,6 +212,11 @@ void ACagneyCarnation::StartFunctionSet()
 	// Boss Dead
 	State.SetStartFunction(FlowerBossState::FlowerBoss_Dead, [this]()
 		{
+			DelayCallBack(0.01f, []()
+				{
+					UEngineSound::SoundPlay("level_knockout_boom.wav");
+				});
+
 			HeadCollider->SetActive(false);
 			FaceAttHighCollider->SetActive(false);
 			FaceAttLowCollider->SetActive(false);
@@ -219,6 +224,7 @@ void ACagneyCarnation::StartFunctionSet()
 
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerBoss_Death);
 			SetIsPhaseEnd(true);
+
 		});
 
 }

@@ -79,6 +79,11 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		});
 	ShipState.SetStartFunction(PirateBossState::Ship_Phase2_BossDead, [this]()
 		{
+			DelayCallBack(0.01f, []()
+				{
+					UEngineSound::SoundPlay("level_knockout_boom.wav");
+				});
+
 			MainCollider->SetActive(false);
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Death);
 
