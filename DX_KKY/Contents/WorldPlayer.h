@@ -42,6 +42,8 @@ private:
 	float DustInitXOffset = -15.0f;
 	float DustDelayTime = 1.0f;
 	float DustDelayTimeInit = 0.3f;
+	float WalkDelayTime = 0.0f;
+	float WalkDelayTimeInit = 0.25f;
 
 	static std::shared_ptr<AWorldPlayer> MainPlayer;
 
@@ -72,6 +74,8 @@ private:
 	void ColliderInit();
 	void StateInit();
 	void CollisionCheck();
+	void WalkCheck(float _DeltaTime);
+	void WalkSoundPlay();
 
 	inline float GetSpeed() const
 	{

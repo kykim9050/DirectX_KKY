@@ -48,6 +48,7 @@ void AWorldPlayer::Tick(float _DeltaTime)
 
 	State.Update(_DeltaTime);
 	CollisionCheck();
+	WalkCheck(_DeltaTime);
 }
 
 void AWorldPlayer::CreatePlayerAnimation()
@@ -207,4 +208,32 @@ void AWorldPlayer::CollisionCheck()
 			UEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_BubbleDisappear.wav");
 			Gate->SetIsGateOpen(false);
 		});
+}
+
+void AWorldPlayer::WalkSoundPlay()
+{
+	int Random = UMath::GetInst().RandomReturnInt(1, 5);
+	UEngineSound::SoundPlay("sfx_WorldMap_Footstep_00" + std::to_string(Random) + ".wav");
+}
+
+void AWorldPlayer::WalkCheck(float _DeltaTime)
+{
+	if (true == IsPress(VK_UP)
+		|| true == IsPress(VK_DOWN)
+		|| true == IsPress(VK_LEFT)
+		|| true == IsPress(VK_RIGHT)
+		)
+	{
+		WalkDelayTime -= _DeltaTime;
+
+		if (0.0f >= WalkDelayTime)
+		{
+			WalkDelayTime = WalkDelayTimeInit + WalkDelayTime;
+			WalkSoundPlay();
+		}
+	}
+	else
+	{
+		WalkDelayTime = 0.0f;
+	}
 }
