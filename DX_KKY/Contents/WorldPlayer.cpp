@@ -163,6 +163,20 @@ void AWorldPlayer::ColliderInit()
 
 void AWorldPlayer::CollisionCheck()
 {
+	Collider->CollisionEnter(ECollisionGroup::Gate, [=](std::shared_ptr<UCollision> _Collision)
+		{
+			AGateUnit* Gate = dynamic_cast<AGateUnit*>(_Collision->GetActor());
+
+			if (nullptr == Gate)
+			{
+				MsgBoxAssert("충돌 대상이 Gate가 아닙니다.");
+				return;
+			}
+	
+			UEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_BubbleAppear.wav");
+		});
+
+
 	Collider->CollisionStay(ECollisionGroup::Gate, [=](std::shared_ptr<UCollision> _Collision)
 		{
 			AGateUnit* Gate = dynamic_cast<AGateUnit*>(_Collision->GetActor());
@@ -190,6 +204,7 @@ void AWorldPlayer::CollisionCheck()
 				return;
 			}
 
+			UEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_BubbleDisappear.wav");
 			Gate->SetIsGateOpen(false);
 		});
 }
