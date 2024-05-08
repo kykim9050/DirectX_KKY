@@ -8,7 +8,7 @@
 
 ATitleMode::ATitleMode() 
 {
-	InputOn();
+
 }
 
 ATitleMode::~ATitleMode()
@@ -28,6 +28,8 @@ void ATitleMode::BeginPlay()
 void ATitleMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	ModeState.Update(_DeltaTime);
 }
 
 void ATitleMode::LevelEnd(ULevel* _NextLevel)
@@ -35,6 +37,7 @@ void ATitleMode::LevelEnd(ULevel* _NextLevel)
 	Super::LevelEnd(_NextLevel);
 
 	DeleteObject();
+	InputOff();
 }
 
 void ATitleMode::LevelStart(ULevel* _PrevLevel)
@@ -43,6 +46,8 @@ void ATitleMode::LevelStart(ULevel* _PrevLevel)
 
 	WidgetStart();
 	CreateObject();
+	StateInit();
+	InputOn();
 }
 
 void ATitleMode::WidgetInit()
@@ -84,5 +89,42 @@ void ATitleMode::DeleteObject()
 	{
 		TitleLogo->Destroy();
 		TitleLogo = nullptr;
+	}
+}
+
+void ATitleMode::StateInit()
+{
+	{
+		ModeState.CreateState("Idle");
+		ModeState.CreateState("WorldLevelChange");
+	}
+
+	{
+		ModeState.SetStartFunction("WorldLevelChange", [this]()
+			{
+				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
+					{
+						GEngine->ChangeLevel(GLevelName::WorldLevel);
+					});
+
+				Iris->SetActive(true);
+				Iris->ChangeAnimation(GAniName::IrisRevAni);
+			});
+	}
+
+	{
+		ModeState.SetUpdateFunction("Idle", std::bind(&ATitleMode::Idle, this, std::placeholders::_1));
+		ModeState.SetUpdateFunction("WorldLevelChange", [](float) {});
+	}
+
+	ModeState.ChangeState("Idle");
+}
+
+void ATitleMode::Idle(float _DeltaTime)
+{
+	if (true == IsAnykeyDown())
+	{
+		ModeState.ChangeState("WorldLevelChange");
+		return;
 	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EngineCore/StateManager.h>
 
 // 설명 :
 class UCamera;
@@ -29,17 +30,23 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 
 private:
-	std::shared_ptr<UCamera> Camera;
-	std::shared_ptr<ATitleAnimation> TitleAni;
-	std::shared_ptr<ATitleLogo> TitleLogo;
+	std::shared_ptr<UCamera> Camera = nullptr;
+	std::shared_ptr<ATitleAnimation> TitleAni = nullptr;
+	std::shared_ptr<ATitleLogo> TitleLogo = nullptr;
 	
 	UImage* OldFilm = nullptr;
 	UImage* Iris = nullptr;
+
+	UStateManager ModeState = UStateManager();
 
 private:
 	void WidgetInit();
 	void WidgetStart();
 	void CreateObject();
 	void DeleteObject();
+
+	// State 관련
+	void StateInit();
+	void Idle(float _DeltaTime);
 };
 
