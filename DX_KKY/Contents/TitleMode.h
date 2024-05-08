@@ -7,6 +7,7 @@ class UCamera;
 class ATitleAnimation;
 class ATitleLogo;
 class UImage;
+class UContentsDebugWindow;
 class ATitleMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -39,11 +40,14 @@ private:
 
 	UStateManager ModeState = UStateManager();
 
+	std::shared_ptr<UContentsDebugWindow> DebugWindow;
+
 private:
 	void WidgetInit();
 	void WidgetStart();
 	void CreateObject();
 	void DeleteObject();
+	void CreateDebugWindow();
 
 	// State ฐüทร
 	void StateInit();

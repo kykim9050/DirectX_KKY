@@ -1,10 +1,11 @@
 #include "PreCompile.h"
 #include <EngineCore/Camera.h>
+#include <EngineCore/EngineEditorGUI.h>
 
 #include "TitleMode.h"
 #include "TitleLogo.h"
 #include "TitleAnimation.h"
-#include "ContentsEnumClass.h"
+#include "ContentsDebugWindow.h"
 
 ATitleMode::ATitleMode() 
 {
@@ -18,6 +19,8 @@ ATitleMode::~ATitleMode()
 void ATitleMode::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CreateDebugWindow();
 
 	Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, UContentsValue::CameraInitZValue));
@@ -134,4 +137,10 @@ void ATitleMode::Idle(float _DeltaTime)
 		ModeState.ChangeState("WorldLevelChange");
 		return;
 	}
+}
+
+void ATitleMode::CreateDebugWindow()
+{
+	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("ContentsDebugWindow");
+	DebugWindow->On();
 }
