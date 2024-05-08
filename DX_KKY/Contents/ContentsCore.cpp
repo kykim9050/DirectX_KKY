@@ -86,6 +86,6 @@ void UContentsCore::Initialize()
 	GEngine->CreateLevel<AFlowerLevelMode>(GLevelName::FlowerLevel);
 	GEngine->CreateLevel<APirateLevelMode>(GLevelName::PirateLevel);
 	GEngine->CreateLevel<ALoadingMode>(GLevelName::LoadingLevel);
-	GEngine->ChangeLevel(GLevelName::WorldLevel);
+	GEngine->ChangeLevel(GLevelName::TitleLevel);
 }
 
