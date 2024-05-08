@@ -22,6 +22,7 @@ public:
 protected:
 
 private:
+	std::atomic_int LoadingCount = -1;
 	std::shared_ptr<ALoadActor> LoadActor = nullptr;
 	std::shared_ptr<UCamera> Camera = nullptr;
 
@@ -34,5 +35,8 @@ private:
 
 	void ReleaseActor();
 	void CreateActor();
-
+	void FirstResourceLoad();
+	void ResourceLoad();
+	void CreateAllLevel();
+	void CuttingImgSet();
 };
