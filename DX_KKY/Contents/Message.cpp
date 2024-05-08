@@ -123,6 +123,11 @@ void AMessage::MsgPrintInitSetting()
 {
 	if (GAniName::Stage_Clear == MsgName)
 	{
+		{
+			UEngineSound::SoundPlay("level_announcer_knockout.wav");
+			UEngineSound::SoundPlay("level_knockout_bell.wav");
+		}
+
 		UContentsFunction::GetStagePlayer()->InputOff();
 		SetStageEndTimeScale();
 		return;
