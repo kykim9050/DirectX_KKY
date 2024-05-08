@@ -129,10 +129,21 @@ void AMessage::MsgPrintInitSetting()
 	}
 	else if (GAniName::Ready_Message == MsgName)
 	{
+		{
+			int Random = UMath::GetInst().RandomReturnInt(1, 2);
+			UEngineSound::SoundPlay("level_announcer_0001_" + std::to_string(Random) + ".wav");
+			UEngineSound::SoundPlay("level_bell_intro.wav");
+
+			DelayCallBack(2.5f, [=]
+				{
+					UEngineSound::SoundPlay("level_announcer_0002_" + std::to_string(Random) + ".wav");
+				});
+		}
 		return;
 	}
 	else if (GAniName::PlayerDead_Message == MsgName)
 	{
+		
 		return;
 	}
 	else
