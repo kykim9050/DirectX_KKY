@@ -166,6 +166,7 @@ void APirateLevelMode::StateInit()
 				{
 					int Random = UMath::GetInst().RandomReturnInt(1, 2);
 					UEngineSound::SoundPlay("level_announcer_0001_" + std::to_string(Random) + ".wav");
+					UEngineSound::SoundPlay("level_bell_intro.wav");
 
 					DelayCallBack(2.5f, [=]
 						{
