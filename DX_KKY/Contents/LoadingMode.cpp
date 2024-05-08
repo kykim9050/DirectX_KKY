@@ -36,6 +36,7 @@ void ALoadingMode::Tick(float _DeltaTime)
 		CuttingImgSet();
 		CreateAllLevel();
 		GEngine->ChangeLevel(GLevelName::TitleLevel);
+		return;
 	}
 }
 
