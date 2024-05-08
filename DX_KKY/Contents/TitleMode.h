@@ -43,6 +43,7 @@ private:
 	std::shared_ptr<UContentsDebugWindow> DebugWindow;
 
 	UEngineSoundPlayer BGMPlayer = UEngineSoundPlayer();
+	UEngineSoundPlayer BaseSound = UEngineSoundPlayer();
 
 private:
 	void WidgetInit();
