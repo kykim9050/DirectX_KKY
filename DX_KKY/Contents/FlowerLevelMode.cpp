@@ -58,7 +58,7 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	Iris->ChangeAnimation(GAniName::IrisAni);
 	
 	BGMPlayer = UEngineSound::SoundPlay("FlowerLevel_bgm.wav");
-	BGMPlayer.SetVolume(0.5f);
+	BGMPlayer.SetVolume(0.75f);
 	BGMPlayer.Loop();
 }
 
@@ -204,6 +204,16 @@ void AFlowerLevelMode::StateInit()
 	{
 		ModeState.SetStartFunction("Phase1", [this]()
 			{
+				{
+					int Random = UMath::GetInst().RandomReturnInt(1, 2);
+					UEngineSound::SoundPlay("level_announcer_0001_" + std::to_string(Random) + ".wav");
+
+					DelayCallBack(2.5f, [=]
+						{
+							UEngineSound::SoundPlay("level_announcer_0002_" + std::to_string(Random) + ".wav");
+						});
+				}
+
 				// 페이즈1 보스 생성
 				DelayCallBack(0.8f, [this]()
 					{
