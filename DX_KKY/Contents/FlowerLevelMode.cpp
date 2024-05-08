@@ -48,12 +48,16 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
+
 	ObjectInit();
 	StateInit();
 
 	OldFilm->ChangeAnimation(GAniName::OldFilmAni);
 	Iris->ChangeAnimation(GAniName::IrisAni);
 	
+	BGMPlayer = UEngineSound::SoundPlay("FlowerLevel_bgm.wav");
+	BGMPlayer.SetVolume(0.5f);
+	BGMPlayer.Loop();
 }
 
 void AFlowerLevelMode::WidgetInit()
@@ -209,6 +213,8 @@ void AFlowerLevelMode::StateInit()
 			});
 		ModeState.SetStartFunction("GameEnd", [this]()
 			{
+				BGMPlayer.Off();
+
 				ScreenMsg->SetStageEndMsg();
 
 				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
