@@ -100,6 +100,10 @@ void ATitleMode::StateInit()
 	}
 
 	{
+		ModeState.SetStartFunction("Idle", [this]()
+			{
+				Iris->SetActive(false);
+			});
 		ModeState.SetStartFunction("WorldLevelChange", [this]()
 			{
 				Iris->SetFrameCallback(GAniName::IrisRevAni, 17, [this]()
@@ -114,7 +118,7 @@ void ATitleMode::StateInit()
 
 	{
 		ModeState.SetUpdateFunction("Idle", std::bind(&ATitleMode::Idle, this, std::placeholders::_1));
-		ModeState.SetUpdateFunction("WorldLevelChange", [](float) {});
+		ModeState.SetUpdateFunction("WorldLevelChange", [](float){});
 	}
 
 	ModeState.ChangeState("Idle");
@@ -122,7 +126,10 @@ void ATitleMode::StateInit()
 
 void ATitleMode::Idle(float _DeltaTime)
 {
-	if (true == IsAnykeyDown())
+	if (true == IsAnykeyDown()
+		&& false == IsDown(VK_LBUTTON)
+		&& false == IsDown(VK_RBUTTON)
+		&& false == IsDown(VK_MBUTTON))
 	{
 		ModeState.ChangeState("WorldLevelChange");
 		return;
