@@ -34,6 +34,7 @@ void ALoadingMode::Tick(float _DeltaTime)
 	{
 		LoadingCount = -1;
 		CuttingImgSet();
+		SoundResourceLoad();
 		CreateAllLevel();
 		GEngine->ChangeLevel(GLevelName::TitleLevel);
 		return;
@@ -384,6 +385,19 @@ void ALoadingMode::ImgResourceLoad()
 					LoadingCount--;
 				});
 		}
+	}
+}
+
+void ALoadingMode::SoundResourceLoad()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("ContentsResources");
+	Dir.Move("Sound");
+	std::vector<UEngineFile> Files = Dir.GetAllFile({ ".mp3", ".wav" }, true);
+
+	for (UEngineFile& File : Files)
+	{
+		UEngineSound::Load(File.GetFullPath());
 	}
 }
 

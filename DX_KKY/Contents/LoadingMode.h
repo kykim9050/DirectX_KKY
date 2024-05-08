@@ -37,6 +37,7 @@ private:
 	void CreateActor();
 	void FirstResourceLoad();
 	void ImgResourceLoad();
+	void SoundResourceLoad();
 	void CreateAllLevel();
 	void CuttingImgSet();
 };
