@@ -39,6 +39,8 @@ void ATitleMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 
+	BGMPlayer.Off();
+
 	DeleteObject();
 	InputOff();
 }
@@ -46,6 +48,9 @@ void ATitleMode::LevelEnd(ULevel* _NextLevel)
 void ATitleMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+
+	BGMPlayer = UEngineSound::SoundPlay("Title_bgm.wav");
+	BGMPlayer.Loop();
 
 	WidgetStart();
 	CreateObject();
