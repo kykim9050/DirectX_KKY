@@ -117,8 +117,8 @@ private:
 
 	// Dbg 관련
 	int PatternNum = -1;
-	float Dbg_PatternSwitchDelay = 0.2f;
-	float Dbg_PatternSwitchDelayInit = 0.2f;
+	float Dbg_PatternSwitchDelay = 0.5f;
+	float Dbg_PatternSwitchDelayInit = 0.5f;
 
 
 private:
@@ -160,7 +160,7 @@ private:
 	void VineGrowUp();
 
 	// 디버그 모드
-	void Dbg_CreateBoomerang();
+	void Dbg_ChangePattern(int _PatternNum);
 
 private:
 	inline void GetHit(int _DmgVal)

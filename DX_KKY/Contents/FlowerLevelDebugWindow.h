@@ -21,9 +21,9 @@ public:
 	{
 		IsPhase2 = false;
 	}
-	inline void SetFunction(std::function<void()> _Function)
+	inline void SetFunction(std::function<void(int)> _Function)
 	{
-		Function = _Function;
+		PhaseSetFunction = _Function;
 	}
 
 protected:
@@ -35,6 +35,6 @@ private:
 
 	bool IsPhase2 = false;
 
-	std::function<void()> Function = nullptr;
+	std::function<void(int)> PhaseSetFunction = nullptr;
 };
 
