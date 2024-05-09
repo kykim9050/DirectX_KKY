@@ -244,6 +244,9 @@ void ACagneyCarnation::StartFunctionSet()
 			DelayCallBack(0.01f, []()
 				{
 					UEngineSound::SoundPlay("level_knockout_boom.wav");
+					
+					UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_phase2_death.wav");
+					Sound.SetVolume(0.2f);
 				});
 
 			HeadCollider->SetActive(false);
