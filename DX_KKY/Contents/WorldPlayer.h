@@ -32,6 +32,7 @@ protected:
 private:
 	UStateManager State = UStateManager();
 	USpriteRenderer* Renderer = nullptr;
+	USpriteRenderer* ButtonRenderer = nullptr;
 	UCollision* Collider = nullptr;
 
 	float Speed = 230.0f;
@@ -76,6 +77,7 @@ private:
 	void CollisionCheck();
 	void WalkCheck(float _DeltaTime);
 	void WalkSoundPlay();
+	void RendererInit();
 
 	inline float GetSpeed() const
 	{

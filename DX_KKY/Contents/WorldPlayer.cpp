@@ -20,6 +20,9 @@ AWorldPlayer::AWorldPlayer()
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("WPlayerRenderer");
 	Renderer->SetupAttachment(Root);
 
+	ButtonRenderer = CreateDefaultSubObject<USpriteRenderer>("ButtonRenderer");
+	ButtonRenderer->SetupAttachment(Root);
+
 	Collider = CreateDefaultSubObject<UCollision>("WPlayerCollider");
 	Collider->SetupAttachment(Root);
 
@@ -35,8 +38,7 @@ void AWorldPlayer::BeginPlay()
 	Super::BeginPlay();
 
 	SetMainPlayer(shared_from_this());
-	Renderer->SetOrder(ERenderingOrder::Player);
-
+	RendererInit();
 	CreatePlayerAnimation();
 	ColliderInit();
 	StateInit();
@@ -173,7 +175,8 @@ void AWorldPlayer::CollisionCheck()
 				MsgBoxAssert("충돌 대상이 Gate가 아닙니다.");
 				return;
 			}
-	
+			
+			ButtonRenderer->SetActive(true);
 			UEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_BubbleAppear.wav");
 		});
 
@@ -188,7 +191,7 @@ void AWorldPlayer::CollisionCheck()
 				return;
 			}
 
-			if (true == IsDown('A'))
+			if (true == IsDown('Z'))
 			{
 				Gate->SetIsGateOpen(true);
 				return;
@@ -204,6 +207,8 @@ void AWorldPlayer::CollisionCheck()
 				MsgBoxAssert("충돌 대상이 Gate가 아닙니다.");
 				return;
 			}
+
+			ButtonRenderer->SetActive(false);
 
 			UEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_BubbleDisappear.wav");
 			Gate->SetIsGateOpen(false);
@@ -236,4 +241,16 @@ void AWorldPlayer::WalkCheck(float _DeltaTime)
 	{
 		WalkDelayTime = 0.0f;
 	}
+}
+
+void AWorldPlayer::RendererInit()
+{
+	Renderer->SetOrder(ERenderingOrder::Player);
+	
+	ButtonRenderer->SetSprite("overworld_zbutton.png");
+	ButtonRenderer->SetAutoSize(1.0f, true);
+	ButtonRenderer->SetOrder(ERenderingOrder::FrontFX);
+	ButtonRenderer->SetPivot(EPivot::BOT);
+	ButtonRenderer->SetPosition(float4(0.0f, 60.0f, 0.0f));
+	ButtonRenderer->SetActive(false);
 }
