@@ -135,7 +135,7 @@ void AMessage::MsgPrintInitSetting()
 	else if (GAniName::Ready_Message == MsgName)
 	{
 		{
-			int Random = UMath::GetInst().RandomReturnInt(1, 2);
+			int Random = UMath::RandomReturnInt(1, 2);
 			UEngineSound::SoundPlay("level_announcer_0001_" + std::to_string(Random) + ".wav");
 			UEngineSound::SoundPlay("level_bell_intro.wav");
 

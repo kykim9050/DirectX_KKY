@@ -45,7 +45,7 @@ void AOctopusBullet::StateInit()
 				ResVelocity = TargetDir * BulletSpeed;
 				SetSpeedVec(ResVelocity);
 
-				float Theta = UMath::GetInst().DirectionToDeg(TargetDir);
+				float Theta = UMath::DirectionToDeg(TargetDir);
 				SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
 
 				Renderer->ChangeAnimation(PirateBossAniName::OctoBullet + Color);
@@ -95,7 +95,7 @@ void AOctopusBullet::AnimationInit()
 void AOctopusBullet::DefineParryableUnit()
 {
 	// 75% 확률로 Parryable 이 된다
-	RandomValue = UMath::GetInst().RandomReturnInt(0, 3);
+	RandomValue = UMath::RandomReturnInt(0, 3);
 
 	if (NOT_DEFINE == RandomValue)
 	{

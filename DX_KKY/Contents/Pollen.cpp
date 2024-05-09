@@ -68,7 +68,7 @@ void APollen::AnimationInit()
 void APollen::DefineParryableUnit()
 {
 	// 25% 확률로 Parryable 이 된다
-	RandomValue = UMath::GetInst().RandomReturnInt(0, 3);
+	RandomValue = UMath::RandomReturnInt(0, 3);
 
 	if (NOT_DEFINE == RandomValue)
 	{

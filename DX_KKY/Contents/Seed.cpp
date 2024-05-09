@@ -250,7 +250,7 @@ void ASeed::CreateVenus()
 	float4 InitPos = GetActorLocation();
 	InitPos.Y += 235.0f;
 
-	float RandomDegree = UMath::GetInst().RandomReturnFloat(-45.0f, 0.0f);
+	float RandomDegree = UMath::RandomReturnFloat(-45.0f, 0.0f);
 
 	std::shared_ptr<AVenus> Venus = GetWorld()->SpawnActor<AVenus>("Venus");
 	Venus->SetActorLocation(InitPos);

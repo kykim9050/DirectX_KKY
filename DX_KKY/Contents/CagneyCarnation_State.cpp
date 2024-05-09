@@ -130,7 +130,7 @@ void ACagneyCarnation::StartFunctionSet()
 				ASeed* NewSeed = GetWorld()->SpawnActor<ASeed>("NewSeed").get();
 				Seeds.push_back(NewSeed);
 
-				SeedRandXPos = UMath::GetInst().RandomReturnFloat(FlowerBossStageValue::SeedInitMinXPos, FlowerBossStageValue::SeedInitMaxXPos);
+				SeedRandXPos = UMath::RandomReturnFloat(FlowerBossStageValue::SeedInitMinXPos, FlowerBossStageValue::SeedInitMaxXPos);
 
 				Seeds[i]->SetActorLocation(float4(SeedRandXPos, FlowerBossStageValue::SeedInitYPos + FlowerBossStageValue::SeedFallInter * i, 0.0f));
 			}
@@ -302,7 +302,7 @@ void ACagneyCarnation::Idle(float _DeltaTime)
 	{
 		P1_ChangeDelay = P1_ChangeDelayValue;
 
-		int PatternNum = UMath::GetInst().RandomReturnIntEnum(0, EAttackPattern::Max);
+		int PatternNum = UMath::RandomReturnIntEnum(0, EAttackPattern::Max);
 
 
 		State.ChangeState(AttackPattern[PatternNum]);
@@ -345,8 +345,8 @@ void ACagneyCarnation::Gatling_Idle(float _DeltaTime)
 
 		std::shared_ptr<AFXBase> Missile = GetWorld()->SpawnActor<AFXBase>("Missile");
 
-		int RandomCase = UMath::GetInst().RandomReturnInt(0, 1);
-		float RandomDegree = UMath::GetInst().RandomReturnFloat(-10.0f, 10.0f);
+		int RandomCase = UMath::RandomReturnInt(0, 1);
+		float RandomDegree = UMath::RandomReturnFloat(-10.0f, 10.0f);
 
 		switch (RandomCase)
 		{
@@ -397,7 +397,7 @@ void ACagneyCarnation::CreateObject_ReleaseIdle(float _DeltaTime)
 		CreateObjectDelay = CreateObjectDelayInit;
 
 		// 난수 받아서 다시 어떤걸 실행시킬지 결정
-		int RandomValue = UMath::GetInst().RandomReturnInt(0, 1);
+		int RandomValue = UMath::RandomReturnInt(0, 1);
 
 		switch (RandomValue)
 		{
@@ -503,9 +503,9 @@ void ACagneyCarnation::Dead(float _DeltaTime)
 	{
 		ExplosionEffDelay = ExplosionEffDelayInit + ExplosionEffDelay;
 
-		float RandomAngleValue = UMath::GetInst().RandomReturnFloat(0.0f, 360.0f);
-		float RandomXPosValue = UMath::GetInst().RandomReturnFloat(860.0f, 1150.0f);
-		float RandomYPosValue = UMath::GetInst().RandomReturnFloat(360.0f, 620.0f);
+		float RandomAngleValue = UMath::RandomReturnFloat(0.0f, 360.0f);
+		float RandomXPosValue = UMath::RandomReturnFloat(860.0f, 1150.0f);
+		float RandomYPosValue = UMath::RandomReturnFloat(360.0f, 620.0f);
 
 		AFXBase* ExplosionEffect = GetWorld()->SpawnActor<AFXBase>("ExplosionEffect").get();
 		ExplosionEffect->FXInit(ERenderingOrder::FrontFX, FAniInfo(GAniName::ExplosionEffect, GSpriteName::ExplosionEffect, 0.0416f), false);

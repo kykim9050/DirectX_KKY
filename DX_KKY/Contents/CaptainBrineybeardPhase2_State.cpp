@@ -189,9 +189,9 @@ void ACaptainBrineybeardPhase2::Dead(float _DeltaTime)
 	{
 		ExplosionEffDelay = ExplosionEffDelayInit + ExplosionEffDelay;
 
-		float RandomAngleValue = UMath::GetInst().RandomReturnFloat(0.0f, 360.0f);
-		float RandomXPosValue = UMath::GetInst().RandomReturnFloat(860.0f, 1150.0f);
-		float RandomYPosValue = UMath::GetInst().RandomReturnFloat(360.0f, 620.0f);
+		float RandomAngleValue = UMath::RandomReturnFloat(0.0f, 360.0f);
+		float RandomXPosValue = UMath::RandomReturnFloat(860.0f, 1150.0f);
+		float RandomYPosValue = UMath::RandomReturnFloat(360.0f, 620.0f);
 
 		AFXBase* ExplosionEffect = GetWorld()->SpawnActor<AFXBase>("ExplosionEffect").get();
 		ExplosionEffect->FXInit(ERenderingOrder::FrontFX, FAniInfo(GAniName::ExplosionEffect, GSpriteName::ExplosionEffect, 0.0416f), false);

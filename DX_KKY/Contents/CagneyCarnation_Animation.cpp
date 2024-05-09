@@ -133,7 +133,7 @@ void ACagneyCarnation::SetAnimationCallback()
 			});
 		Renderer->SetFrameCallback(FlowerBossAniName::Flower_CreateObject_Release, 3, [this]()
 			{
-				int Case = UMath::GetInst().RandomReturnInt(0, 1);
+				int Case = UMath::RandomReturnInt(0, 1);
 
 				switch (Case)
 				{
