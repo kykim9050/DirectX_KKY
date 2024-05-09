@@ -63,7 +63,7 @@ void APirateLevelMode::LevelStart(ULevel* _PrevLevel)
 	DebugWindow->On();
 
 	BGMPlayer = UEngineSound::SoundPlay("PirateLevel_bgm.mp3");
-	BGMPlayer.SetVolume(0.75f);
+	BGMPlayer.SetVolume(0.5f);
 	BGMPlayer.Loop();
 }
 

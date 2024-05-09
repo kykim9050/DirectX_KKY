@@ -58,7 +58,7 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	Iris->ChangeAnimation(GAniName::IrisAni);
 	
 	BGMPlayer = UEngineSound::SoundPlay("FlowerLevel_bgm.wav");
-	BGMPlayer.SetVolume(0.75f);
+	BGMPlayer.SetVolume(0.5f);
 	BGMPlayer.Loop();
 }
 

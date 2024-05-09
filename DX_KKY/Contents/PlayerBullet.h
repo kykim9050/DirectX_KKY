@@ -20,7 +20,7 @@ public:
 protected:
 
 private:
-	float BulletSpeed = 1600.0f;
+	float BulletSpeed = 1800.0f;
 	bool IsMonsterHit = false;
 
 	void BeginPlay() override;

@@ -22,12 +22,12 @@ protected:
 private:
 	float SpawnDelay = 0.2f;
 	float SpawnDelayInit = 0.2f;
-	float BulletSpeed = 1000.0f;
-	float AfterHitBulletAccSpeed = 4000.0f;
+	float BulletSpeed = 1300.0f;
+	float AfterHitBulletAccSpeed = 8000.0f;
 	bool IsMonsterHit = false;
 	int HitTime = 3;
-	float AfterHitDelay = 0.2f;
-	float AfterHitDelayInit = 0.2f;
+	float AfterHitDelay = 0.12f;
+	float AfterHitDelayInit = 0.12f;
 
 private:
 	void BeginPlay() override;
@@ -42,6 +42,7 @@ private:
 	void Hit(float _DeltaTime);
 
 	void CollisionCheck();
+	void PlayHitSound();
 
 
 	inline bool GetIsMonsterHit() const
