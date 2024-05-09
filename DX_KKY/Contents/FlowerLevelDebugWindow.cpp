@@ -28,29 +28,28 @@ void UFlowerLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 	{
 		if (true == ImGui::Button("CreateObject"))
 		{
-			Function();
+			PhaseSetFunction(static_cast<int>(EFlowerBossPattern::CreateObject));
 		}
 
 		if (true == ImGui::Button("Gatling"))
 		{
-
+			PhaseSetFunction(static_cast<int>(EFlowerBossPattern::Gatling));
 		}
 
 		if (true == ImGui::Button("FaceAttack_High"))
 		{
-
+			PhaseSetFunction(static_cast<int>(EFlowerBossPattern::FaceAttack_High));
 		}
 
 		if (true == ImGui::Button("FaceAttack_Low"))
 		{
-
+			PhaseSetFunction(static_cast<int>(EFlowerBossPattern::FaceAttack_Low));
 		}
 	}
 
 	if (true == ImGui::Button("Phase2"))
 	{
 		IsPhase2 = true;
-
+		PhaseSetFunction(static_cast<int>(EFlowerBossPattern::Phase2));
 	}
-
 }

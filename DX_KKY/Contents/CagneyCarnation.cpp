@@ -29,7 +29,8 @@ void ACagneyCarnation::BeginPlay()
 {
 	Super::BeginPlay();
 
-	AFlowerLevelMode::DebugWindow->SetFunction(std::bind(&ACagneyCarnation::Dbg_CreateBoomerang, this));
+	// functional로 패턴을 마음대로 바꿀 수 있는 디버깅관련 함수 bind
+	AFlowerLevelMode::DebugWindow->SetFunction(std::bind(&ACagneyCarnation::Dbg_ChangePattern, this, std::placeholders::_1));
 
 	CreateVine();
 	AnimationInit();
@@ -181,7 +182,12 @@ void ACagneyCarnation::AfterHitFlash()
 		});
 }
 
-void ACagneyCarnation::Dbg_CreateBoomerang()
+void ACagneyCarnation::Dbg_ChangePattern(int _PatternNum)
 {
-	PatternNum = 1;
+	if (-1 != PatternNum)
+	{
+		return;
+	}
+
+	PatternNum = _PatternNum;
 }

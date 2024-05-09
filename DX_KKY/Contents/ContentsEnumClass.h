@@ -126,3 +126,12 @@ enum class ESeedColor
 	Purple,
 	Pink,
 };
+
+enum class EFlowerBossPattern
+{
+	CreateObject,
+	Gatling,
+	FaceAttack_High,
+	FaceAttack_Low,
+	Phase2,
+};
