@@ -152,6 +152,8 @@ private:
 	void SetStopTimeScale();
 	void ColInfoChange(bool _IsDucking);
 
+	void PlayDashSound();
+
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)
 	{

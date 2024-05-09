@@ -177,6 +177,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Dash", [this]
 			{
+				PlayDashSound();
 				DirCheck();
 				CreateDashFX(GetActorLocation());
 				SetAvailableAddJumpVec(false);
@@ -187,6 +188,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("DashAir", [this]
 			{
+				PlayDashSound();
 				DirCheck();
 				CreateDashFX(GetActorLocation());
 				SetJumpVec(GetPrevJumpVec());

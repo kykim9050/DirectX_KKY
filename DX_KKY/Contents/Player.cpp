@@ -947,3 +947,9 @@ void APlayer::ChangeJumpSuperShootState()
 		break;
 	}
 }
+
+void APlayer::PlayDashSound()
+{
+	int RandomVal = UMath::GetInst().RandomReturnInt(1, 3);
+	UEngineSound::SoundPlay("sfx_player_dash_0" + std::to_string(RandomVal) + ".wav");
+}
