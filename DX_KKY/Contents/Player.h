@@ -159,6 +159,7 @@ private:
 
 	void PlayDashSound();
 	void ShootSoundSwitch(bool _OnOrOff);
+	void PlayJumpSound();
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)

@@ -696,6 +696,8 @@ void APlayer::CreateDashFX(float4 _Pos)
 
 void APlayer::CreateLandFX(float4 _Pos)
 {
+	UEngineSound::SoundPlay("sfx_player_land_ground_01.wav");
+
 	float4 Pos = _Pos;
 	Pos.Y += LandFXOffset;
 
@@ -979,4 +981,10 @@ void APlayer::ShootSoundSwitch(bool _OnOrOff)
 		IsShooting = false;
 		ShootIdleSound.Off();
 	}
+}
+
+void APlayer::PlayJumpSound()
+{
+	int RandomVal = UMath::RandomReturnInt(1, 3);
+	UEngineSound::SoundPlay("sfx_player_jump_0" + std::to_string(RandomVal) + ".wav");
 }

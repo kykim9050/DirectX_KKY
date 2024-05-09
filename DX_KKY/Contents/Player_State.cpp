@@ -119,6 +119,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Jump", [this]
 			{
+				PlayJumpSound();
 				DirCheck();
 				AddActorLocation(float4::Up * 10);
 				SetJumpVec(float4::Up * GetJumpVal());
