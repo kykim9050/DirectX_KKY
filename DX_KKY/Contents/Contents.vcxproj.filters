@@ -112,6 +112,9 @@
     <Filter Include="Level\PlayLevel\WorldLevel\Object\Gate">
       <UniqueIdentifier>{3d5fd571-d521-4d98-861a-031ed76cd997}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\FlowerLevel\DebugGUI">
+      <UniqueIdentifier>{d7b7f32d-3cea-4b91-8109-1b800a48e4cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -314,6 +317,9 @@
     </ClInclude>
     <ClInclude Include="PirateLevelGate.h">
       <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowerLevelDebugWindow.h">
+      <Filter>Level\PlayLevel\FlowerLevel\DebugGUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -535,6 +541,9 @@
     </ClCompile>
     <ClCompile Include="PirateLevelGate.cpp">
       <Filter>Level\PlayLevel\WorldLevel\Object\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowerLevelDebugWindow.cpp">
+      <Filter>Level\PlayLevel\FlowerLevel\DebugGUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,10 +1,8 @@
 ﻿#include "PreCompile.h"
 #include <EngineCore/Camera.h>
+#include <EngineCore/EngineEditorGUI.h>
 
 #include "FlowerLevelMode.h"
-
-
-#include "OldFilmEffect.h"
 #include "Player.h"
 #include "MapBase.h"
 #include "CagneyCarnation.h"
@@ -12,6 +10,7 @@
 #include "PlatformShadow.h"
 #include "Message.h"
 #include "TimeScaleControlUnit.h"
+#include "FlowerLevelDebugWindow.h"
 
 AFlowerLevelMode::AFlowerLevelMode()
 {
@@ -44,6 +43,8 @@ void AFlowerLevelMode::LevelEnd(ULevel* _NextLevel)
 	ObjectDelete();
 
 	BGMPlayer.Off();
+
+	DebugWindow->Off();
 }
 
 void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
@@ -60,6 +61,8 @@ void AFlowerLevelMode::LevelStart(ULevel* _PrevLevel)
 	BGMPlayer = UEngineSound::SoundPlay("FlowerLevel_bgm.wav");
 	BGMPlayer.SetVolume(0.5f);
 	BGMPlayer.Loop();
+
+	DebugWindow->On();
 }
 
 void AFlowerLevelMode::WidgetInit()
@@ -95,6 +98,8 @@ void AFlowerLevelMode::CreateObject()
 		Shadows.push_back(Shadow);
 	}
 
+	DebugWindow = UEngineEditorGUI::CreateEditorWindow<UFlowerLevelDebugWindow>("FlowerLevelDebugWindow");
+	DebugWindow->Off();
 }
 
 void AFlowerLevelMode::ObjectInit()

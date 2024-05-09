@@ -4,8 +4,7 @@
 
 // Ό³Έν :
 class UEngineRandom;
-
-
+class UFlowerLevelDebugWindow;
 class UTimeScaleControlUnit;
 class AMessage;
 class APlatformShadow;
@@ -38,6 +37,7 @@ private:
 
 	UImage* OldFilm = nullptr;
 	UImage* Iris = nullptr;
+	int ShadowNum = 3;
 
 	std::shared_ptr<UCamera> Camera = nullptr;
 
@@ -60,9 +60,10 @@ private:
 	
 	UEngineSoundPlayer BGMPlayer = UEngineSoundPlayer();
 
+	std::shared_ptr<UFlowerLevelDebugWindow> DebugWindow;
 
-	int ShadowNum = 3;
 
+private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	void LevelEnd(ULevel* _NextLevel) override;
