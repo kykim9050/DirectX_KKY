@@ -115,6 +115,12 @@ private:
 	float ExplosionEffDelay = 0.4f;
 	float ExplosionEffDelayInit = 0.4f;
 
+	// Dbg ฐüทร
+	int PatternNum = -1;
+	float Dbg_PatternSwitchDelay = 0.2f;
+	float Dbg_PatternSwitchDelayInit = 0.2f;
+
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
