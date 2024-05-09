@@ -6,8 +6,8 @@
 
 APlayerBullet::APlayerBullet()
 {
-	//SetDamage(1);
-	SetDamage(101);
+	SetDamage(1);
+	//SetDamage(101);
 	SetHorizontalSpeed(1000.0f);
 	SetVerticalSpeed(1000.0f);
 }
