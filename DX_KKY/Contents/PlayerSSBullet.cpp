@@ -70,12 +70,14 @@ void APlayerSSBullet::StateInit()
 		State.SetStartFunction("Hit", [this]()
 			{
 				--HitTime;
+				PlayHitSound();
 				SetSpeedVec(float4::Zero);
 				SetJumpVec(float4::Zero);
 				Collision->SetActive(false);
 			});
 		State.SetStartFunction("Death", [this]()
 			{
+				PlayHitSound();
 				Renderer->ChangeAnimation("BulletDeath");
 			}
 		);
@@ -202,4 +204,9 @@ void APlayerSSBullet::Hit(float _DeltaTime)
 	AccSpeedVec(GetHorizontalDir() * _DeltaTime, AfterHitBulletAccSpeed);
 	AccJumpVec(GetVerticalDir() * _DeltaTime, AfterHitBulletAccSpeed);
 	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayerSSBullet::PlayHitSound()
+{
+	UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 }

@@ -340,6 +340,7 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 void APlayer::SuperShoot()
 {
+	UEngineSound::SoundPlay("sfx_player_ex_forward_ground_01.wav");
 	GetPlayerKeyDir();
 
 	std::shared_ptr<ASSBulletFX> BulletFX = GetWorld()->SpawnActor<ASSBulletFX>("BulletFX", EActorType::FX);
