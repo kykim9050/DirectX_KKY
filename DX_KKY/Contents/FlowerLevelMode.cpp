@@ -44,6 +44,7 @@ void AFlowerLevelMode::LevelEnd(ULevel* _NextLevel)
 
 	BGMPlayer.Off();
 
+	DebugWindow->ResetIsPhase2();
 	DebugWindow->Off();
 }
 

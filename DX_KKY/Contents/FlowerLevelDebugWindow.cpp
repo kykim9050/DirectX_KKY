@@ -13,6 +13,8 @@ UFlowerLevelDebugWindow::~UFlowerLevelDebugWindow()
 void UFlowerLevelDebugWindow::Init()
 {
 	Super::Init();
+
+
 }
 
 void UFlowerLevelDebugWindow::Tick(ULevel* Level, float _Delta)
