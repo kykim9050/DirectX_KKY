@@ -122,7 +122,7 @@ private:
 	float Dbg_PatternSwitchDelayInit = 0.5f;
 
 	// Sound ฐüทร
-	UEngineSoundPlayer Sound = UEngineSoundPlayer();
+	UEngineSoundPlayer GatlingSound = UEngineSoundPlayer();
 
 
 private:
