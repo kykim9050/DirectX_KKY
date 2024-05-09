@@ -177,6 +177,9 @@ void ACagneyCarnation::SetAnimationCallback()
 		// Phase2 Spit
 		Renderer->SetFrameCallback(FlowerBossAniName::FlowerP2_Spit_Begin, 11, [this]()
 			{
+				UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_phase2_spit_projectile.wav");
+				Sound.SetVolume(0.5f);
+
 				// 마지막에 Poll도 던지기
 				APollen* NewPollen = GetWorld()->SpawnActor<APollen>("NewPollen").get();
 				NewPollen->SetActorLocation(float4(1020.0f, -320.0f, 0.0f));
