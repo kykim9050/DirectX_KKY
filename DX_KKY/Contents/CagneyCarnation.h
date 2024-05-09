@@ -12,6 +12,7 @@ enum class EAttackPattern
 };
 
 // 설명 :
+class UEngineSoundPlayer;
 class AFlowerLevelMode;
 class USpriteRenderer;
 class UCollision;
@@ -120,6 +121,9 @@ private:
 	float Dbg_PatternSwitchDelay = 0.5f;
 	float Dbg_PatternSwitchDelayInit = 0.5f;
 
+	// Sound 관련
+	UEngineSoundPlayer Sound = UEngineSoundPlayer();
+
 
 private:
 	void BeginPlay() override;
@@ -161,6 +165,7 @@ private:
 
 	// 디버그 모드
 	void Dbg_ChangePattern(int _PatternNum);
+	void Dbg_ChangeState();
 
 private:
 	inline void GetHit(int _DmgVal)
