@@ -26,14 +26,9 @@ void UFlowerLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 {
 	if (false == IsPhase2)
 	{
-		if (true == ImGui::Button("CreateBoomerang"))
+		if (true == ImGui::Button("CreateObject"))
 		{
 			Function();
-		}
-
-		if (true == ImGui::Button("CreateAcorns"))
-		{
-
 		}
 
 		if (true == ImGui::Button("Gatling"))
