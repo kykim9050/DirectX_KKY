@@ -1,7 +1,6 @@
 ﻿#include "PreCompile.h"
 
 #include "PirateLevelDebugWindow.h"
-#include "Shark.h"
 
 UPirateLevelDebugWindow::UPirateLevelDebugWindow()
 {
