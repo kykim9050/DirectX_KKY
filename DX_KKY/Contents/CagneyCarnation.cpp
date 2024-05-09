@@ -183,5 +183,5 @@ void ACagneyCarnation::AfterHitFlash()
 
 void ACagneyCarnation::Dbg_CreateBoomerang()
 {
-	int a = 0;
+	PatternNum = 1;
 }

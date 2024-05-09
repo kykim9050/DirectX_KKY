@@ -283,6 +283,20 @@ void ACagneyCarnation::EndFunctionSet()
 
 void ACagneyCarnation::Idle(float _DeltaTime)
 {
+	if (-1 != PatternNum)
+	{
+		Dbg_PatternSwitchDelay -= _DeltaTime;
+
+		if (0.0f >= Dbg_PatternSwitchDelay)
+		{
+			Dbg_PatternSwitchDelay = Dbg_PatternSwitchDelayInit;
+			PatternNum = -1;
+			State.ChangeState(FlowerBossState::CreateObject_Begin);
+			return;
+		}
+		return;
+	}
+
 	if (Phase2StartHP >= GetHp())
 	{
 		P2ChangeDelay -= _DeltaTime;
