@@ -127,6 +127,9 @@ void ACagneyCarnation::CreateBoomerang()
 
 void ACagneyCarnation::CreateBottomIvy()
 {
+	UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_intro_vinegrow.wav");
+	Sound.SetVolume(0.5f);
+
 	BottomIvyCollider->SetActive(true);
 	BottomIvyRenderer->ChangeAnimation(FlowerBossAniName::BottomIvy_Spawn);
 }
