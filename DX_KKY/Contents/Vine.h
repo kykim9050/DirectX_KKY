@@ -1,6 +1,15 @@
 #pragma once
 #include "BossAttackUnit.h"
 #include <EngineCore/StateManager.h>
+#include <EnginePlatform/EngineSound.h>
+
+enum class EVineAttackStep
+{
+	None,
+	Grow,
+	Attack,
+	Retract,
+};
 
 // 설명 :
 class USpriteRenderer;
@@ -51,5 +60,40 @@ private:
 	void AnimationInit() override;
 
 	void WaitAttack(float _DeltaTime);
+
+	template <typename EnumType>
+	void PlayVineAttackSound(EnumType _Type)
+	{
+		int Type = static_cast<int>(_Type);
+		UEngineSoundPlayer Sound = UEngineSoundPlayer();
+		int RandomVal = 0;
+
+		switch (Type)
+		{
+		case static_cast<int>(EVineAttackStep::Grow):
+		{
+			RandomVal = UMath::RandomReturnInt(1, 4);
+			Sound = UEngineSound::SoundPlay("sfx_level_flower_vinehand_grow_0" + std::to_string(RandomVal) + ".wav");
+			break;
+		}
+		case static_cast<int>(EVineAttackStep::Attack):
+		{
+			RandomVal = UMath::RandomReturnInt(1, 2);
+			Sound = UEngineSound::SoundPlay("sfx_level_flower_vinehand_grow_continue_0" + std::to_string(RandomVal) + ".wav");
+			break;
+		}
+		case static_cast<int>(EVineAttackStep::Retract):
+		{
+			RandomVal = UMath::RandomReturnInt(1, 2);
+			Sound = UEngineSound::SoundPlay("sfx_level_flower_vinehand_grow_retract_0" + std::to_string(RandomVal) + ".wav");
+			break;
+		}
+		default:
+			MsgBoxAssert("지정되지 않은 공격 Step입니다.");
+			return;
+		}
+
+		Sound.SetVolume(0.3f);
+	}
 };
 

@@ -47,11 +47,13 @@ void AVine::StateInit()
 			// back vine Renderer
 			BackVineRenderer->SetActive(false);
 		});
-	State.SetStartFunction(FlowerBossState::Vine_GrowUp, [this]() {
-		GetRenderer()->SetActive(true);
-		BackVineRenderer->SetActive(true);
-		GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Begin);
-		BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Begin);
+	State.SetStartFunction(FlowerBossState::Vine_GrowUp, [this]()
+		{
+			GetRenderer()->SetActive(true);
+			BackVineRenderer->SetActive(true);
+			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Begin);
+			BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Begin);
+			PlayVineAttackSound(EVineAttackStep::Grow);
 		});
 	State.SetStartFunction(FlowerBossState::Vine_WaitAttack, [this]()
 		{
@@ -64,6 +66,7 @@ void AVine::StateInit()
 			//// vine stem Collider
 			StemCollider->SetActive(true);
 			Renderer->ChangeAnimation(FlowerBossAniName::FrontVine_Attack);
+			PlayVineAttackSound(EVineAttackStep::Attack);
 		});
 
 	State.SetUpdateFunction(FlowerBossState::Vine_Wait, [](float) {});
@@ -132,6 +135,7 @@ void AVine::AnimationInit()
 			Collider->SetActive(false);
 			GetRenderer()->ChangeAnimation(FlowerBossAniName::FrontVine_Dissapear);
 			BackVineRenderer->ChangeAnimation(FlowerBossAniName::BackVine_Dissapear);
+			PlayVineAttackSound(EVineAttackStep::Retract);
 		});
 	GetRenderer()->SetFrameCallback(FlowerBossAniName::FrontVine_Dissapear, 8, [this]()
 		{
