@@ -69,6 +69,9 @@ void ACagneyCarnation::StartFunctionSet()
 	//Intro
 	State.SetStartFunction(FlowerBossState::Intro, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_intro_yell.wav");
+			Sound.SetVolume(0.5f);
+
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Intro);
 		});
 
