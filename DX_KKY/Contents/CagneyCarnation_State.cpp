@@ -172,6 +172,9 @@ void ACagneyCarnation::StartFunctionSet()
 	// Create Object
 	State.SetStartFunction(FlowerBossState::CreateObject_Begin, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_pot_hands_start.wav");
+			Sound.SetVolume(0.5f);
+
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_Begin);
 		});
 	State.SetStartFunction(FlowerBossState::CreateObject_Idle, [this]()
@@ -180,10 +183,16 @@ void ACagneyCarnation::StartFunctionSet()
 		});
 	State.SetStartFunction(FlowerBossState::CreateObject_End, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_pot_hands_end.wav");
+			Sound.SetVolume(0.5f);
+
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_End);
 		});
 	State.SetStartFunction(FlowerBossState::CreateObject_Release, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_pot_hands_open.wav");
+			Sound.SetVolume(0.5f);
+
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_CreateObject_Release);
 		});
 	State.SetStartFunction(FlowerBossState::CreateObject_ReleaseIdle, [this]()
