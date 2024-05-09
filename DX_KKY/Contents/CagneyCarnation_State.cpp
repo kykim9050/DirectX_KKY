@@ -195,6 +195,9 @@ void ACagneyCarnation::StartFunctionSet()
 	// Phase2 Intro
 	State.SetStartFunction(FlowerBossState::Phase2Intro_1, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_phaseOneTwo_transition.wav");
+			Sound.SetVolume(0.5f);
+
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Intro1);
 		});
 	State.SetStartFunction(FlowerBossState::Phase2Intro_2, [this]()
@@ -216,7 +219,7 @@ void ACagneyCarnation::StartFunctionSet()
 
 	// Phase2 Spit
 	State.SetStartFunction(FlowerBossState::Phase2_Spit , [this]()
-		{
+		{			
 			Renderer->ChangeAnimation(FlowerBossAniName::FlowerP2_Spit_Begin);
 		});
 
