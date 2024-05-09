@@ -36,6 +36,9 @@ void AChomper::StateInit()
 
 	State.SetStartFunction(FlowerBossState::Chomp, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_plant_chomper.wav");
+			Sound.SetVolume(0.5f);
+
 			ChangeAnimation(FlowerBossAniName::Chomper_Chomp);
 		});
 	State.SetStartFunction(FlowerBossState::Chomp_Death, [this]()
