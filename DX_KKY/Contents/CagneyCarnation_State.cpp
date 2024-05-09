@@ -85,22 +85,26 @@ void ACagneyCarnation::StartFunctionSet()
 	// FaceAttack
 	State.SetStartFunction(FlowerBossState::FaceAttackHigh_Begin, [this]()
 		{
+			PlayFaceAttackSound(EAttackStep::Begin);
 			HeadCollider->SetPosition(GColliderPosInfo::FlowerBoss_FAH_HeadColRelPos);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackHigh_Begin);
 		});
 	State.SetStartFunction(FlowerBossState::FaceAttackHigh_Idle, [this]()
 		{
+			PlayFaceAttackSound(EAttackStep::Idle);
 			FaceAttHighCollider->SetActive(true);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackHigh_Idle);
 		});
 	State.SetStartFunction(FlowerBossState::FaceAttackHigh_End, [this]()
 		{
+			PlayFaceAttackSound(EAttackStep::End);
 			FaceAttHighCollider->SetActive(false);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackHigh_End);
 		});
 
 	State.SetStartFunction(FlowerBossState::FaceAttackLow_Begin, [this]()
 		{
+			PlayFaceAttackSound(EAttackStep::Begin);
 			AddActorLocation(FVector(0.0f, -110.f, 0.0f));
 			FaceAttLowCollider->AddPosition(FVector(0.0f, 110.f, 0.0f));
 			HeadCollider->SetPosition(GColliderPosInfo::FlowerBoss_FAL_HeadColRelPos);
@@ -108,11 +112,13 @@ void ACagneyCarnation::StartFunctionSet()
 		});
 	State.SetStartFunction(FlowerBossState::FaceAttackLow_Idle, [this]()
 		{
+			PlayFaceAttackSound(EAttackStep::Idle);
 			FaceAttLowCollider->SetActive(true);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackLow_Idle);
 		});
 	State.SetStartFunction(FlowerBossState::FaceAttackLow_End, [this]()
 		{
+			PlayFaceAttackSound(EAttackStep::End);
 			FaceAttLowCollider->SetActive(false);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_FaceAttackLow_End);
 		});
@@ -289,6 +295,14 @@ void ACagneyCarnation::UpdateFunctionSet()
 
 void ACagneyCarnation::EndFunctionSet()
 {
+	State.SetEndFunction(FlowerBossState::FaceAttackLow_Idle, [this]()
+		{
+			FaceAttSound.Off();
+		});
+	State.SetEndFunction(FlowerBossState::FaceAttackHigh_Idle, [this]()
+		{
+			FaceAttSound.Off();
+		});
 	State.SetEndFunction(FlowerBossState::Gatling_Idle, [this]()
 		{
 			GatlingSound.Off();

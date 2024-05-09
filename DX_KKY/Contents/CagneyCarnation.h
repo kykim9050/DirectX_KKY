@@ -1,6 +1,15 @@
 #pragma once
 #include "BossUnit.h"
 #include "PhaseUnit.h"
+#include <EnginePlatform/EngineSound.h>
+
+enum class EAttackStep
+{
+	None,
+	Begin,
+	Idle,
+	End,
+};
 
 enum class EAttackPattern
 {
@@ -123,7 +132,7 @@ private:
 
 	// Sound 관련
 	UEngineSoundPlayer GatlingSound = UEngineSoundPlayer();
-
+	UEngineSoundPlayer FaceAttSound = UEngineSoundPlayer();
 
 private:
 	void BeginPlay() override;
@@ -173,5 +182,36 @@ private:
 		SubHp(_DmgVal);
 	}
 
+	template <typename EnumType>
+	void PlayFaceAttackSound(EnumType _Type)
+	{
+		int Type = static_cast<int>(_Type);
+
+		switch (Type)
+		{
+		case static_cast<int>(EAttackStep::Begin):
+		{
+			UEngineSoundPlayer Sound= UEngineSound::SoundPlay("sfx_flower_face_attack_start.wav");
+			Sound.SetVolume(0.5f);
+			break;
+		}
+		case static_cast<int>(EAttackStep::End):
+		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_face_attack_end.wav");
+			Sound.SetVolume(0.5f);
+			break;
+		}
+		case static_cast<int>(EAttackStep::Idle):
+		{
+			FaceAttSound = UEngineSound::SoundPlay("sfx_flower_face_attack_hold_loop.wav");
+			FaceAttSound.Loop();
+			FaceAttSound.SetVolume(0.5f);
+			break;
+		}
+		default:
+			MsgBoxAssert("지정되지 않은 공격 Step입니다.");
+			return;
+		}
+	}
 };
 
