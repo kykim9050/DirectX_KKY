@@ -3,6 +3,7 @@
 #include <EngineCore/StateManager.h>
 
 // Ό³Έν :
+class UEngineSoundPlayer;
 class ABoomerang : public ABossAttackUnit
 {
 	GENERATED_BODY(ABossAttackUnit)
@@ -26,11 +27,13 @@ public:
 protected:
 
 private:
-	UStateManager State;
+	UStateManager State = UStateManager();
 	float4 ThrowingDir = float4::Left;
 	float ThrowingSpeed = 550.0f;
 	float4 BoundaryValue = float4::Zero;
+	UEngineSoundPlayer Sound = UEngineSoundPlayer();
 
+private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 

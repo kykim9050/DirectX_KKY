@@ -37,6 +37,9 @@ void ABoomerang::StateInit()
 	State.SetStartFunction(FlowerBossState::Boomerang_Init, []() {});
 	State.SetStartFunction(FlowerBossState::Boomerang_Spawn, [this]()
 		{
+			Sound = UEngineSound::SoundPlay("sfx_flower_boomerang_projectile.wav");
+			Sound.Loop();
+
 			ChangeAnimation(FlowerBossAniName::Boomerang_Rotate);
 		});
 	State.SetStartFunction(FlowerBossState::Boomerang_Throw, [this]()
@@ -48,8 +51,9 @@ void ABoomerang::StateInit()
 			AddActorLocation(float4(0.0f, -250.0f, 0.0f));
 			ThrowingDir = float4::Right;
 			SetSpeedVec(ThrowingDir * ThrowingSpeed);
-			DelayCallBack(5.0f, [this]()
+			DelayCallBack(3.5f, [this]
 				{
+					Sound.Off();
 					Destroy();
 				});
 		});
