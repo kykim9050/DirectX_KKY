@@ -123,6 +123,9 @@ void ASeed::AnimationInit()
 				{
 				case ESeedColor::Blue:
 				{
+					UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_venus_vine_grow_medium.wav");
+					Sound.SetVolume(0.3f);
+
 					VineRenderer->ChangeAnimation(FlowerBossAniName::VineGrowUp);
 					break;
 				}
@@ -134,6 +137,9 @@ void ASeed::AnimationInit()
 				}
 				case ESeedColor::Pink:
 				{
+					UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_venus_vine_grow_medium.wav");
+					Sound.SetVolume(0.3f);
+
 					VineRenderer->ChangeAnimation(FlowerBossAniName::VineGrowUp);
 					break;
 				}

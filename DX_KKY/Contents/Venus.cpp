@@ -36,6 +36,9 @@ void AVenus::StateInit()
 
 	State.SetStartFunction(FlowerBossState::Venus_Spawn, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_venus_grow_end.wav");
+			Sound.SetVolume(0.3f);
+
 			ChangeAnimation(FlowerBossAniName::Venus_Spawn);
 		});
 	State.SetStartFunction(FlowerBossState::Venus_Flying, [this]()
