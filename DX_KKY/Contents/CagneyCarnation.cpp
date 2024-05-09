@@ -2,12 +2,14 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
+
 #include "CagneyCarnation.h"
 #include "Acorn.h"
 #include "FXUnit.h"
 #include "Boomerang.h"
 #include "Vine.h"
-
+#include "FlowerLevelMode.h"
+#include "FlowerLevelDebugWindow.h"
 
 #include "PlayerBullet.h"
 
@@ -26,6 +28,8 @@ ACagneyCarnation::~ACagneyCarnation()
 void ACagneyCarnation::BeginPlay()
 {
 	Super::BeginPlay();
+
+	AFlowerLevelMode::DebugWindow->SetFunction(std::bind(&ACagneyCarnation::Dbg_CreateBoomerang, this));
 
 	CreateVine();
 	AnimationInit();
@@ -175,4 +179,9 @@ void ACagneyCarnation::AfterHitFlash()
 		{
 			Renderer->SetPlusColor(GColorValue::AttackRestoreColor);
 		});
+}
+
+void ACagneyCarnation::Dbg_CreateBoomerang()
+{
+	int a = 0;
 }

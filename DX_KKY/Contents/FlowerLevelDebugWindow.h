@@ -21,6 +21,10 @@ public:
 	{
 		IsPhase2 = false;
 	}
+	inline void SetFunction(std::function<void()> _Function)
+	{
+		Function = _Function;
+	}
 
 protected:
 
@@ -30,5 +34,7 @@ private:
 	void OnGui(ULevel* Level, float _Delta) override;
 
 	bool IsPhase2 = false;
+
+	std::function<void()> Function = nullptr;
 };
 
