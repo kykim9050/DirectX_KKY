@@ -117,10 +117,16 @@ void ACagneyCarnation::StartFunctionSet()
 	// Gatling
 	State.SetStartFunction(FlowerBossState::Gatling_Begin, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_gattling_start.wav");
+			Sound.SetVolume(0.5f);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Gatling_Begin);
 		});
 	State.SetStartFunction(FlowerBossState::Gatling_Idle, [this]()
 		{
+			GatlingSound = UEngineSound::SoundPlay("sfx_flower_gattling_loop.wav");
+			GatlingSound.SetVolume(0.5f);
+			GatlingSound.Loop();
+
 			std::vector<ASeed*> Seeds = std::vector<ASeed*>();
 
 			float SeedRandXPos = 0.0f;
@@ -149,6 +155,8 @@ void ACagneyCarnation::StartFunctionSet()
 		});
 	State.SetStartFunction(FlowerBossState::Gatling_End, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_gattling_end.wav");
+			Sound.SetVolume(0.5f);
 			Renderer->ChangeAnimation(FlowerBossAniName::Flower_Gatling_End);
 		});
 
@@ -277,6 +285,7 @@ void ACagneyCarnation::EndFunctionSet()
 {
 	State.SetEndFunction(FlowerBossState::Gatling_Idle, [this]()
 		{
+			GatlingSound.Off();
 			MissileLaunchTIme = 0.0f;
 		});
 }
