@@ -6,8 +6,8 @@
 
 APlayerBullet::APlayerBullet()
 {
-	//SetDamage(1);
-	SetDamage(101);
+	SetDamage(1);
+	//SetDamage(101);
 	SetHorizontalSpeed(1000.0f);
 	SetVerticalSpeed(1000.0f);
 }
@@ -84,6 +84,8 @@ void APlayerBullet::StateInit()
 		);
 		State.SetStartFunction("Death", [this]()
 			{
+				UEngineSound::SoundPlay("sfx_player_weapon_peashot_death.wav");
+				
 				Renderer->ChangeAnimation("BulletDeath");
 			}
 		);
@@ -140,5 +142,7 @@ void APlayerBullet::CollisionCheck()
 
 			// Player의 SuperMeter 충전해주기
 			
+			UEngineSoundPlayer HitSound = UEngineSound::SoundPlay("sfx_player_shoot_hit.wav");
+			HitSound.SetVolume(0.3f);
 		});
 }
