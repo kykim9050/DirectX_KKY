@@ -2,6 +2,7 @@
 #include "MoveUnit.h"
 
 // Ό³Έν :
+class UEngineSoundPlayer;
 class UCollision;
 class UStateManager;
 class APlayerBullet;
@@ -71,7 +72,11 @@ private:
 	bool OnTreadableObject = false;
 	bool Parrying = false;
 	bool AvailableAirSuperShoot = false;
+	bool IsShooting = false;
 
+	UEngineSoundPlayer ShootIdleSound = UEngineSoundPlayer();
+
+private:
 	void StateInit();
 	void CreatePlayerAnimation();
 	void MakeDebugMSG();
@@ -153,6 +158,7 @@ private:
 	void ColInfoChange(bool _IsDucking);
 
 	void PlayDashSound();
+	void ShootSoundSwitch(bool _OnOrOff);
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)
