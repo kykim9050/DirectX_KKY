@@ -55,7 +55,7 @@ void AVine::StateInit()
 		});
 	State.SetStartFunction(FlowerBossState::Vine_WaitAttack, [this]()
 		{
-			AttackDelay = UMath::GetInst().RandomReturnFloat(1.0f, 1.5f);
+			AttackDelay = UMath::RandomReturnFloat(1.0f, 1.5f);
 		});
 	State.SetStartFunction(FlowerBossState::Vine_Attack, [this]()
 		{

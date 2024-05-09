@@ -54,7 +54,7 @@ void ABossAttackUnit::Tick(float _DeltaTime)
 
 				float4 Direction = (UContentsFunction::GetStagePlayer()->GetActorLocation() - GetActorLocation()).Normalize2DReturn();
 				Velocity = Direction * Speed;
-				float Theta = UMath::GetInst().DirectionToDeg(Direction);
+				float Theta = UMath::DirectionToDeg(Direction);
 				SetActorRotation(float4(0.0f, 0.0f, Theta));
 			}
 			break;

@@ -326,7 +326,7 @@ void APlayer::ShootBullet(float _DeltaTime)
 
 		FVector InitPos = FVector::Zero;
 		FVector InitRot = FVector::Zero;
-		float FXRandomRot = UMath::GetInst().RandomReturnFloat(0.0f, 360.f);
+		float FXRandomRot = UMath::RandomReturnFloat(0.0f, 360.f);
 
 		GetBulletInitPosAndRot(InitPos, InitRot, NewBullet);
 
@@ -832,7 +832,7 @@ void APlayer::AfterSuccessParrySetting()
 {
 	InputOff();
 
-	float RandomAngleValue = UMath::GetInst().RandomReturnFloat(0.0f, 360.0f);
+	float RandomAngleValue = UMath::RandomReturnFloat(0.0f, 360.0f);
 
 	std::shared_ptr<AFXBase> ParryEffect = GetWorld()->SpawnActor<AFXBase>("AFXBase", EActorType::FX);
 	ParryEffect->FXInit(ERenderingOrder::BackFX, FAniInfo(GAniName::ParryEffect, GSpriteName::ParryEffect, 0.034f), false);
@@ -950,6 +950,6 @@ void APlayer::ChangeJumpSuperShootState()
 
 void APlayer::PlayDashSound()
 {
-	int RandomVal = UMath::GetInst().RandomReturnInt(1, 3);
+	int RandomVal = UMath::RandomReturnInt(1, 3);
 	UEngineSound::SoundPlay("sfx_player_dash_0" + std::to_string(RandomVal) + ".wav");
 }

@@ -2,6 +2,8 @@
 
 #include "Math.h"
 
+float UMath::PI = static_cast<float>(std::atan(1) * 4);
+
 UMath::UMath()
 {
 }

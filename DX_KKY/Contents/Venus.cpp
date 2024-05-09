@@ -44,7 +44,7 @@ void AVenus::StateInit()
 
 			float4 Direction = (UContentsFunction::GetStagePlayer()->GetActorLocation() - GetActorLocation()).Normalize2DReturn();
 			Velocity = Direction * Speed;
-			float Theta = UMath::GetInst().DirectionToDeg(Direction);
+			float Theta = UMath::DirectionToDeg(Direction);
 			SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
 
 			ChangeAnimation(FlowerBossAniName::Venus_Loop);

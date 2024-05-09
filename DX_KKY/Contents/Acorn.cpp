@@ -65,7 +65,7 @@ void AAcorn::StateInit()
 			ResVelocity = TargetDir * BulletSpeed;
 			SetSpeedVec(ResVelocity);
 
-			float Theta = UMath::GetInst().DirectionToDeg(TargetDir);
+			float Theta = UMath::DirectionToDeg(TargetDir);
 			SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
 			FlyEffect->SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
 

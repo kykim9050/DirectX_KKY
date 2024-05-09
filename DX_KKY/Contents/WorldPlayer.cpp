@@ -212,7 +212,7 @@ void AWorldPlayer::CollisionCheck()
 
 void AWorldPlayer::WalkSoundPlay()
 {
-	int Random = UMath::GetInst().RandomReturnInt(1, 5);
+	int Random = UMath::RandomReturnInt(1, 5);
 	UEngineSound::SoundPlay("sfx_WorldMap_Footstep_00" + std::to_string(Random) + ".wav");
 }
 

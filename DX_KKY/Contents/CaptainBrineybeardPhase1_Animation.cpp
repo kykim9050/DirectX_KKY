@@ -108,7 +108,7 @@ void ACaptainBrineybeardPhase1::SetAnimationCallback()
 			});
 		PirateRenderer->SetFrameCallback(PirateBossAniName::Pirate_Whistle, 30, [this]()
 			{
-				int RandomVal = UMath::GetInst().RandomReturnInt(0, 1);
+				int RandomVal = UMath::RandomReturnInt(0, 1);
 
 				switch (RandomVal)
 				{

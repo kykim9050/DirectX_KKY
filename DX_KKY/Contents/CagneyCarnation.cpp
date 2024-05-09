@@ -149,7 +149,7 @@ void ACagneyCarnation::CreateVine()
 
 void ACagneyCarnation::VineGrowUp()
 {
-	int ExceptVineNum = UMath::GetInst().RandomReturnInt(0, 2);
+	int ExceptVineNum = UMath::RandomReturnInt(0, 2);
 
 	for (int i = 0; i < VineNum; i++)
 	{
@@ -158,7 +158,7 @@ void ACagneyCarnation::VineGrowUp()
 			continue;
 		}
 
-		float GrowUpRandomValue = UMath::GetInst().RandomReturnFloat(1.0f, 2.0f);
+		float GrowUpRandomValue = UMath::RandomReturnFloat(1.0f, 2.0f);
 
 		DelayCallBack(GrowUpRandomValue, [this, i]()
 			{

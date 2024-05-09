@@ -42,7 +42,7 @@ void AMiniFlowerBullet::StateInit()
 			ResVelocity = TargetDir * BulletSpeed;
 			SetSpeedVec(ResVelocity);
 
-			float Theta = UMath::GetInst().DirectionToDeg(TargetDir);
+			float Theta = UMath::DirectionToDeg(TargetDir);
 			SetActorRotation(float4(0.0f, 0.0f, Theta));
 
 			Renderer->ChangeAnimation(FlowerBossAniName::MiniFlower_Bullet);
