@@ -977,9 +977,11 @@ void APlayer::ShootSoundSwitch(bool _OnOrOff)
 	{
 		IsShooting = true;
 		ShootIdleSound = UEngineSound::SoundPlay("sfx_player_default_fire_loop_01.wav");
+		ShootIdleSound.SetVolume(0.5f);
 		ShootIdleSound.Loop();
 
-		UEngineSound::SoundPlay("sfx_player_default_fire_start_01.wav");
+		UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_player_default_fire_start_01.wav");
+		Sound.SetVolume(0.5f);
 	}
 	else
 	{
