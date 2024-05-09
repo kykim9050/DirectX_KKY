@@ -444,10 +444,19 @@ void APlayer::ShootCheck(float _DeltaTime)
 {
 	if (true == IsPress('X'))
 	{
+		if (false == IsShooting)
+		{
+			ShootSoundSwitch(true);
+		}
 		ShootBullet(_DeltaTime);
 	}
 	else
 	{
+		if (true == IsShooting)
+		{
+			ShootSoundSwitch(false);
+		}
+		
 		ShootDelayTime = 0.0f;
 	}
 }
@@ -952,4 +961,22 @@ void APlayer::PlayDashSound()
 {
 	int RandomVal = UMath::RandomReturnInt(1, 3);
 	UEngineSound::SoundPlay("sfx_player_dash_0" + std::to_string(RandomVal) + ".wav");
+}
+
+
+void APlayer::ShootSoundSwitch(bool _OnOrOff)
+{
+	if (true == _OnOrOff)
+	{
+		IsShooting = true;
+		ShootIdleSound = UEngineSound::SoundPlay("sfx_player_default_fire_loop_01.wav");
+		ShootIdleSound.Loop();
+
+		UEngineSound::SoundPlay("sfx_player_default_fire_start_01.wav");
+	}
+	else
+	{
+		IsShooting = false;
+		ShootIdleSound.Off();
+	}
 }
