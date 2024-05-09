@@ -28,7 +28,7 @@ void UFlowerLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 	{
 		if (true == ImGui::Button("CreateBoomerang"))
 		{
-
+			Function();
 		}
 
 		if (true == ImGui::Button("CreateAcorns"))

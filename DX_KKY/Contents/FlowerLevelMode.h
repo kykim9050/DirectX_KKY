@@ -29,6 +29,8 @@ public:
 	AFlowerLevelMode& operator=(const AFlowerLevelMode& _Other) = delete;
 	AFlowerLevelMode& operator=(AFlowerLevelMode&& _Other) noexcept = delete;
 
+	static std::shared_ptr<UFlowerLevelDebugWindow> DebugWindow;
+
 protected:
 
 
@@ -59,9 +61,6 @@ private:
 	std::shared_ptr<UEngineRandom> Random;
 	
 	UEngineSoundPlayer BGMPlayer = UEngineSoundPlayer();
-
-	std::shared_ptr<UFlowerLevelDebugWindow> DebugWindow;
-
 
 private:
 	void BeginPlay() override;

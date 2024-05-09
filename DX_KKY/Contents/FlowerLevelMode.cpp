@@ -12,6 +12,8 @@
 #include "TimeScaleControlUnit.h"
 #include "FlowerLevelDebugWindow.h"
 
+std::shared_ptr<UFlowerLevelDebugWindow> AFlowerLevelMode::DebugWindow = std::shared_ptr<UFlowerLevelDebugWindow>();
+
 AFlowerLevelMode::AFlowerLevelMode()
 {
 }

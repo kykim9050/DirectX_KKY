@@ -12,12 +12,14 @@ enum class EAttackPattern
 };
 
 // 설명 :
+class AFlowerLevelMode;
 class USpriteRenderer;
 class UCollision;
 class AAcorn;
 class AVine;
 class ACagneyCarnation : public ABossUnit, public UPhaseUnit
 {
+	friend AFlowerLevelMode;
 	GENERATED_BODY(ABossUnit)
 
 public:
@@ -150,6 +152,9 @@ private:
 	void CreateBottomIvy();
 	void CreateVine();
 	void VineGrowUp();
+
+	// 디버그 모드
+	void Dbg_CreateBoomerang();
 
 private:
 	inline void GetHit(int _DmgVal)
