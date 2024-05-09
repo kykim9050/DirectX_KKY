@@ -191,3 +191,32 @@ void ACagneyCarnation::Dbg_ChangePattern(int _PatternNum)
 
 	PatternNum = _PatternNum;
 }
+
+void ACagneyCarnation::Dbg_ChangeState()
+{
+	switch (PatternNum)
+	{
+	case static_cast<int>(EFlowerBossPattern::CreateObject):
+		State.ChangeState(FlowerBossState::CreateObject_Begin);
+		break;
+	case static_cast<int>(EFlowerBossPattern::Gatling):
+		State.ChangeState(FlowerBossState::Gatling_Begin);
+		break;
+	case static_cast<int>(EFlowerBossPattern::FaceAttack_High):
+		State.ChangeState(FlowerBossState::FaceAttackHigh_Begin);
+		break;
+	case static_cast<int>(EFlowerBossPattern::FaceAttack_Low):
+		State.ChangeState(FlowerBossState::FaceAttackLow_Begin);
+		break;
+	case static_cast<int>(EFlowerBossPattern::Phase2):
+		State.ChangeState(FlowerBossState::Phase2Intro_1);
+		break;
+	default:
+		MsgBoxAssert("지정되지 않은 패턴을 실행하려고 했습니다.");
+		break;
+	}
+
+	Dbg_PatternSwitchDelay = Dbg_PatternSwitchDelayInit;
+	PatternNum = -1;
+	return;
+}
