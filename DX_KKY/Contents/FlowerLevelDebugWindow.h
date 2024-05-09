@@ -17,6 +17,11 @@ public:
 	UFlowerLevelDebugWindow& operator=(const UFlowerLevelDebugWindow& _Other) = delete;
 	UFlowerLevelDebugWindow& operator=(UFlowerLevelDebugWindow&& _Other) noexcept = delete;
 
+	inline void ResetIsPhase2()
+	{
+		IsPhase2 = false;
+	}
+
 protected:
 
 private:
