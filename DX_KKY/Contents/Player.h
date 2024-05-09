@@ -160,6 +160,7 @@ private:
 	void PlayDashSound();
 	void ShootSoundSwitch(bool _OnOrOff);
 	void PlayJumpSound();
+	void PlaySuccessParrySound();
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)

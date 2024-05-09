@@ -841,6 +841,8 @@ void APlayer::CollisionCheck()
 
 void APlayer::AfterSuccessParrySetting()
 {
+	PlaySuccessParrySound();
+
 	InputOff();
 
 	float RandomAngleValue = UMath::RandomReturnFloat(0.0f, 360.0f);
@@ -987,4 +989,11 @@ void APlayer::PlayJumpSound()
 {
 	int RandomVal = UMath::RandomReturnInt(1, 3);
 	UEngineSound::SoundPlay("sfx_player_jump_0" + std::to_string(RandomVal) + ".wav");
+}
+
+void APlayer::PlaySuccessParrySound()
+{
+	int RandomVal = UMath::RandomReturnInt(1, 2);
+	UEngineSound::SoundPlay("sfx_player_parry_power_up_hit_0" + std::to_string(RandomVal) + ".wav");
+	UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
 }
