@@ -1,7 +1,13 @@
 #pragma once
 #include "MoveUnit.h"
 
-// Ό³Έν :
+enum class EGroundOrAir
+{
+	None,
+	Ground,
+	Air,
+};
+
 class UEngineSoundPlayer;
 class UCollision;
 class UStateManager;
@@ -75,6 +81,8 @@ private:
 	bool IsShooting = false;
 
 	UEngineSoundPlayer ShootIdleSound = UEngineSoundPlayer();
+
+	EGroundOrAir WhereIsPlayer = EGroundOrAir::None;
 
 private:
 	void StateInit();
@@ -237,5 +245,9 @@ private:
 	inline bool GetAvailableAirSuperShoot() const
 	{
 		return AvailableAirSuperShoot;
+	}
+	inline void SetWhereIsPlayer(EGroundOrAir _Place)
+	{
+		WhereIsPlayer = _Place;
 	}
 };

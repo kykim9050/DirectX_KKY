@@ -50,6 +50,7 @@ void APlayer::StateInit()
 		State.CreateState(CupheadStateName::Player_SSAir_DiagonalUp);
 		State.CreateState(CupheadStateName::Player_SSAir_DiagonalDown);
 		State.CreateState(CupheadStateName::After_SSAir);
+		State.CreateState(CupheadStateName::Player_GetHit);
 
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
@@ -93,9 +94,12 @@ void APlayer::StateInit()
 		State.SetUpdateFunction(CupheadStateName::Player_SSAir_DiagonalDown, std::bind(&APlayer::SSAir_DiagonalDown, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::Player_SSAir_Down, std::bind(&APlayer::SSAir_Down, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::After_SSAir, std::bind(&APlayer::After_SSAir, this, std::placeholders::_1));
+		State.SetUpdateFunction(CupheadStateName::Player_GetHit, [](float){});
+
 
 		State.SetStartFunction("Idle", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				SetAvailableAirSuperShoot(true);
 				DirCheck();
 				SetAvailableParry(true);
@@ -109,6 +113,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Run", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				SetAvailableParry(true);
 				SetAvailableAddJumpVec(false);
@@ -119,6 +124,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Jump", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				PlayJumpSound();
 				DirCheck();
 				AddActorLocation(float4::Up * 10);
@@ -130,6 +136,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Duck", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				ColInfoChange(true);
 				DirCheck();
 				SetAvailableParry(true);
@@ -143,6 +150,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("DuckIdle", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				ColInfoChange(true);
 				DirCheck();
 				SetAvailableParry(true);
@@ -156,6 +164,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Parry", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				DirCheck();
 				SetJumpVec(GetPrevJumpVec());
 				SetParrying(true);
@@ -168,6 +177,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("AfterParry", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				DirCheck();
 				SetJumpVec(GetPrevJumpVec());
 				SetAvailableAddJumpVec(false);
@@ -178,6 +188,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Dash", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				PlayDashSound();
 				DirCheck();
 				CreateDashFX(GetActorLocation());
@@ -189,6 +200,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("DashAir", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				PlayDashSound();
 				DirCheck();
 				CreateDashFX(GetActorLocation());
@@ -200,6 +212,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("AfterDashAir", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				DirCheck();
 				SetAvailableAddJumpVec(false);
 				SetJumpVec(GetPrevJumpVec());
@@ -211,6 +224,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("DownJump", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				DirCheck();
 				AddActorLocation(float4::Down * 30.0f);
 				SetAvailableAddJumpVec(false);
@@ -221,6 +235,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("FallDown", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				DirCheck();
 				SetAvailableAddJumpVec(false);
 				Renderer->ChangeAnimation("Player_Jump");
@@ -230,6 +245,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Aim_Up", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Up");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -238,6 +254,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Aim_DiagonalUp", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_DiagonalUp");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -246,6 +263,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Aim_Straight", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Straight");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -254,6 +272,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Aim_DiagonalDown", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_DiagonalDown");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -262,6 +281,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Aim_Down", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Aim_Down");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -271,6 +291,7 @@ void APlayer::StateInit()
 
 		State.SetStartFunction("Shoot_Up", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Up");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -279,6 +300,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Shoot_DiagonalUp", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_DiagonalUp");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -287,6 +309,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Shoot_Straight", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Straight");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -295,6 +318,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Shoot_DiagonalDown", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_DiagonalDown");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -303,6 +327,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Shoot_Down", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Shoot_Down");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -311,6 +336,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Shoot_Duck", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				ColInfoChange(true);
 				DirCheck();
 				SetSpeedVec(float4::Zero);
@@ -322,6 +348,7 @@ void APlayer::StateInit()
 
 		State.SetStartFunction("Run_Shoot_Straight", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Run_Shoot_Straight");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -330,6 +357,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Run_Shoot_DiagonalUp", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_Run_Shoot_DiagonalUp");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -340,6 +368,7 @@ void APlayer::StateInit()
 		
 		State.SetStartFunction("Ground_SS_Up", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Up");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -348,6 +377,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Ground_SS_DiagonalUp", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_DiagonalUp");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -356,6 +386,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Ground_SS_Straight", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Straight");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -364,6 +395,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Ground_SS_DiagonalDown", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_DiagonalDown");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -372,6 +404,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("Ground_SS_Down", [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Ground);
 				DirCheck();
 				Renderer->ChangeAnimation("Player_SSGround_Down");
 				AnimationDirSet(Renderer, PlayerDir);
@@ -381,6 +414,7 @@ void APlayer::StateInit()
 
 		State.SetStartFunction(CupheadStateName::Player_SSAir_Up, [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_Up);
@@ -389,6 +423,7 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_DiagonalUp, [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_DiagonalUp);
@@ -397,6 +432,7 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_Straight, [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_Straight);
@@ -405,6 +441,7 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_DiagonalDown, [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_DiagonalDown);
@@ -413,6 +450,7 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_SSAir_Down, [this]
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				SetAvailableAirSuperShoot(false);
 				DirCheck();
 				Renderer->ChangeAnimation(GAniName::Player_SSAir_Down);
@@ -422,6 +460,7 @@ void APlayer::StateInit()
 
 		State.SetStartFunction(CupheadStateName::After_SSAir, [this]()
 			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
 				DirCheck();
 				SetJumpVec(float4::Zero);
 				SetGravityVec(float4::Down * 100.0f);
@@ -430,6 +469,26 @@ void APlayer::StateInit()
 				AnimationDirSet(Renderer, PlayerDir);
 				SetShootType(EBulletShootType::JumpShoot);
 			});
+		State.SetStartFunction(CupheadStateName::Player_GetHit, [this]()
+			{
+				switch (WhereIsPlayer)
+				{
+				case EGroundOrAir::Ground:
+				{
+					Renderer->ChangeAnimation(GAniName::Player_GetHit_Ground);
+					break;
+				}
+				case EGroundOrAir::Air:
+				{
+					Renderer->ChangeAnimation(GAniName::Player_GetHit_Air);
+					break;
+				}
+				default:
+					MsgBoxAssert("도대체 어디에 있는겁니까...");
+					return;
+				}
+			});
+
 	}
 
 	{
@@ -556,6 +615,10 @@ EPlayerKeyDir APlayer::KeyDirCheck()
 
 void APlayer::Idle(float _DeltaTime)
 {
+	// 테스트용
+	CollisionCheck();
+	// 
+
 	SuperShootCheck(_DeltaTime);
 
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
