@@ -14,6 +14,8 @@
 #include "CallSeaDogs.h"
 #include "PirateLevelDebugWindow.h"
 
+std::shared_ptr<UPirateLevelDebugWindow> APirateLevelMode::DebugWindow = std::shared_ptr<UPirateLevelDebugWindow>();
+
 APirateLevelMode::APirateLevelMode()
 {
 }

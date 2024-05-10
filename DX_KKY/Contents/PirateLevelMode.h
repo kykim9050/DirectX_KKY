@@ -29,10 +29,10 @@ public:
 	APirateLevelMode& operator=(const APirateLevelMode& _Other) = delete;
 	APirateLevelMode& operator=(APirateLevelMode&& _Other) noexcept = delete;
 
+	static std::shared_ptr<UPirateLevelDebugWindow> DebugWindow;
 protected:
 
 private:
-	std::shared_ptr<UPirateLevelDebugWindow> DebugWindow;
 
 	UStateManager ModeState;
 

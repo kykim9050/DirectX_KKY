@@ -71,6 +71,11 @@ private:
 	int WinceTime = 5;
 	int WinceCount = 0;
 
+	// Debug
+	int PatternNum = -1;
+	float Dbg_PatternSwitchDelay = 0.5f;
+	float Dbg_PatternSwitchDelayInit = 0.5f;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -105,5 +110,9 @@ private:
 	void Pirate_Idle(float _DeltaTime);
 	void Pirate_OctoAtt_Idle(float _DeltaTime);
 	void Ship_Wince(float _DeltaTime);
+
+	// 디버그 모드
+	void Dbg_ChangePattern(int _PatternNum);
+	void Dbg_ChangeState();
 };
 
