@@ -53,6 +53,9 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			});
 		ShipState.SetStartFunction(PirateBossState::Ship_Phase1_CannonShoot, [this]()
 			{
+				UEngineSoundPlayer Sound = UEngineSound::SoundPlay("pirate_boat_cannon_chew.wav");
+				Sound.SetVolume(0.5f);
+
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_CannonAtt);
 			});
 		ShipState.SetStartFunction(PirateBossState::Ship_Wince, [this]()
