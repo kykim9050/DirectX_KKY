@@ -64,5 +64,7 @@ private:
 	void Appear_Step2(float _DeltaTime);
 	void Move(float _DeltaTime);
 	void Death(float _DeltaTime);
+
+	void PlayDeathSound();
 };
 

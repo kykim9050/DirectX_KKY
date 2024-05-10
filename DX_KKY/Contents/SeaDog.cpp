@@ -93,6 +93,8 @@ void ASeaDog::StateInit()
 	{
 		State.SetStartFunction(PirateBossState::SeaDog_Appear1, [this]()
 			{
+				UEngineSound::SoundPlay("pirate_dogfish_jump.wav");
+
 				SetJumpVec(float4::Up * JumpSpeed);
 				SetSpeedVec(float4::Left * Appear1Speed);
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear1);
@@ -115,11 +117,15 @@ void ASeaDog::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Move, [this]()
 			{
+				UEngineSound::SoundPlay("pirate_dogfish_slide.wav");
+
 				SetSpeedVec(float4::Left * MoveSpeed);
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Appear5);
 			});
 		State.SetStartFunction(PirateBossState::SeaDog_Death, [this]()
 			{
+				PlayDeathSound();
+
 				MainCollider->SetActive(false);
 				SetJumpVec(float4::Up * UpSpeed);
 				SeaDogRenderer->ChangeAnimation(PirateBossAniName::SeaDog_Death);
@@ -255,3 +261,13 @@ void ASeaDog::DeathCheck()
 		return;
 	}
 }
+
+void ASeaDog::PlayDeathSound()
+{
+	int RandomVal = UMath::RandomReturnInt(1, 2);
+
+	UEngineSound::SoundPlay("pirate_dogfish_death_flap.wav");
+	UEngineSound::SoundPlay("pirate_dogfish_death_poof_0" + std::to_string(RandomVal) + ".wav");
+}
+
+
