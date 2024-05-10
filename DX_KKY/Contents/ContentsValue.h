@@ -65,6 +65,7 @@ namespace GAniName
 	// Effect
 	const std::string ExplosionEffect = "ExplosionEffect";
 	const std::string ParryEffect = "ParryEffect";
+	const std::string PlayerHitEffect = "PlayerHitEffect";
 
 	// Screen Message
 	const std::string Ready_Message = "Ready_Message";
@@ -543,6 +544,8 @@ namespace GRendererPos
 	const float4 Shark_AppearEff_RelativePos = float4(200.0f, 0.0f, 0.0f);
 
 	const float4 ShipRipples_RelativePos = float4(50.0f, -150.0f, 0.0f);
+
+	const float4 PlayerHitEffect_RelativePos = float4(0.0f, 80.0f, 0.0f);
 }
 
 namespace GBoundaryPos

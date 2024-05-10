@@ -473,6 +473,8 @@ void APlayer::StateInit()
 			{
 				InvincibleToggle();
 
+				CreateHitEffect();
+
 				switch (WhereIsPlayer)
 				{
 				case EGroundOrAir::Ground:
