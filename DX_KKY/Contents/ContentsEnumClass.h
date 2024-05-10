@@ -18,6 +18,7 @@ enum class EActorType
 	Object,
 	ScreenMsg,
 	TimeScaleController,
+	UI,
 	Max,
 };
 
@@ -62,6 +63,7 @@ enum class ERenderingOrder
 	FrontLayer2,
 	DockLog,
 	Wave1,
+	PlayStageUI,
 	Message,
 	Iris,
 	HourGlass,

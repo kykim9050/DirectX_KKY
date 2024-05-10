@@ -11,6 +11,7 @@
 #include "Message.h"
 #include "TimeScaleControlUnit.h"
 #include "FlowerLevelDebugWindow.h"
+#include "PlayerUI.h"
 
 std::shared_ptr<UFlowerLevelDebugWindow> AFlowerLevelMode::DebugWindow = std::shared_ptr<UFlowerLevelDebugWindow>();
 
@@ -153,6 +154,8 @@ void AFlowerLevelMode::ObjectInit()
 	Platform3->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f));
 	Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
 	Platform3->SetActorLocation(FlowerBossStageValue::PlatformPos[2]);
+
+	UI = GetWorld()->SpawnActor<APlayerUI>("UI", EActorType::UI);
 }
 
 void AFlowerLevelMode::ObjectDelete()
