@@ -136,6 +136,8 @@ void AShark::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Shark_Chomp, [this]()
 			{
+				UEngineSound::SoundPlay("pirate_shark_attack.wav");
+
 				EffectRenderer->SetActive(true);
 				EffectRenderer->AnimationReset();
 				EffectRenderer->ChangeAnimation(PirateBossAniName::Shark_Appear_Effect);
@@ -144,6 +146,9 @@ void AShark::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Shark_Leave, [this]()
 			{
+				LeaveSound = UEngineSound::SoundPlay("pirate_shark_exit_normal_loop.wav");
+				LeaveSound.Loop();
+				
 				SetSpeedVec(float4::Left * LeaveSpeed);
 				SharkRenderer->ChangeAnimation(PirateBossAniName::Shark_Leave);
 			});
@@ -216,6 +221,7 @@ void AShark::Leave(float _DeltaTime)
 {
 	if (GetActorLocation().X < FinMoveBoundaryValue)
 	{
+		LeaveSound.Off();
 		Destroy();
 		return;
 	}
