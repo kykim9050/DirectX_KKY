@@ -14,6 +14,7 @@ class UImage;
 class APlayer;
 class ACagneyCarnation;
 class AMapBase;
+class APlayerUI;
 class AFlowerLevelMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -49,6 +50,7 @@ private:
 	std::shared_ptr<AMapBase> Map = nullptr;
 	std::shared_ptr<AMapBase> BackGroundObject = nullptr;
 	std::shared_ptr<AMapBase> ColMap = nullptr;
+	std::shared_ptr<APlayerUI> UI = nullptr;
 
 	std::shared_ptr<AFlowerPlatform> Platform1 = nullptr;
 	std::shared_ptr<AFlowerPlatform> Platform2 = nullptr;

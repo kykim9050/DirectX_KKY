@@ -45,6 +45,12 @@ namespace GSpriteName
 
 namespace GAniName
 {
+	// UI
+	const std::string Player_LifeUI_HP3 = "Player_LifeUI_HP3";
+	const std::string Player_LifeUI_HP2 = "Player_LifeUI_HP2";
+	const std::string Player_LifeUI_HP1 = "Player_LifeUI_HP1";
+	const std::string Player_LifeUI_HP0 = "Player_LifeUI_HP0";
+
 	// World Mode
 	const std::string FlowerLevel_GateAni = "FlowerLevel_GateAni";
 	const std::string PirateLevel_GateAni = "PirateLevel_GateAni";
@@ -546,6 +552,8 @@ namespace GRendererPos
 	const float4 ShipRipples_RelativePos = float4(50.0f, -150.0f, 0.0f);
 
 	const float4 PlayerHitEffect_RelativePos = float4(0.0f, 80.0f, 0.0f);
+
+	const float4 LifeUI_Pos = float4(-570.0f, -310.0f, 0.0f);
 }
 
 namespace GBoundaryPos
