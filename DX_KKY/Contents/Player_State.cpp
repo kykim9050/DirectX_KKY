@@ -471,6 +471,8 @@ void APlayer::StateInit()
 			});
 		State.SetStartFunction(CupheadStateName::Player_GetHit, [this]()
 			{
+				InvincibleToggle();
+
 				switch (WhereIsPlayer)
 				{
 				case EGroundOrAir::Ground:
@@ -487,6 +489,9 @@ void APlayer::StateInit()
 					MsgBoxAssert("도대체 어디에 있는겁니까...");
 					return;
 				}
+
+				DirCheck();
+				AnimationDirSet(Renderer, PlayerDir);
 			});
 
 	}
