@@ -15,6 +15,7 @@
 #include "BossAttackUnit.h"
 #include "TimeScaleControlUnit.h"
 #include "MonsterUnit.h"
+#include "PlayerUI.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -843,6 +844,7 @@ void APlayer::CollisionCheck()
 					return;
 				}
 
+				APlayerUI::SubLife();
 				State.ChangeState(CupheadStateName::Player_GetHit);
 				return;
 			}
@@ -857,12 +859,14 @@ void APlayer::CollisionCheck()
 					return;
 				}
 
+				APlayerUI::SubLife();
 				State.ChangeState(CupheadStateName::Player_GetHit);
 				return;
 			}
 
 			if (nullptr != Monster)
 			{
+				APlayerUI::SubLife();
 				State.ChangeState(CupheadStateName::Player_GetHit);
 				return;
 			}
@@ -879,6 +883,7 @@ void APlayer::CollisionCheck()
 				return;
 			}
 
+			APlayerUI::SubLife();
 			State.ChangeState(CupheadStateName::Player_GetHit);
 			return;
 		});

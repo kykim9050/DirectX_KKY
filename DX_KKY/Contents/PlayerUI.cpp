@@ -2,6 +2,9 @@
 
 #include "PlayerUI.h"
 
+int APlayerUI::PlayerLife = 3;
+UImage* APlayerUI::LifeUI = nullptr;
+
 APlayerUI::APlayerUI()
 {
 
@@ -36,4 +39,14 @@ void APlayerUI::UIInit()
 	LifeUI->CreateAnimation(GAniName::Player_LifeUI_HP0, "HP0");
 	LifeUI->ChangeAnimation(GAniName::Player_LifeUI_HP3);
 
+}
+
+void APlayerUI::SubLife()
+{
+	if (0 == PlayerLife)
+	{
+		return;
+	}
+
+	LifeUI->ChangeAnimation(GAniName::Player_LifeUI_HP + std::to_string(--PlayerLife));
 }
