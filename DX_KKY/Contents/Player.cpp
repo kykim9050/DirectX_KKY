@@ -75,6 +75,11 @@ void APlayer::Tick(float _DeltaTime)
 	MakeDebugMSG();
 }
 
+void APlayer::LevelEnd(ULevel* _NextLevel)
+{
+	ShootIdleSound.Off();
+}
+
 void APlayer::CreatePlayerAnimation()
 {
 	{
