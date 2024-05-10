@@ -46,6 +46,7 @@ namespace GSpriteName
 namespace GAniName
 {
 	// UI
+	const std::string Player_LifeUI_HP = "Player_LifeUI_HP";
 	const std::string Player_LifeUI_HP3 = "Player_LifeUI_HP3";
 	const std::string Player_LifeUI_HP2 = "Player_LifeUI_HP2";
 	const std::string Player_LifeUI_HP1 = "Player_LifeUI_HP1";
