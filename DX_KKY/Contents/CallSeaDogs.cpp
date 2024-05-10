@@ -34,6 +34,8 @@ void ACallSeaDogs::Tick(float _DeltaTime)
 
 void ACallSeaDogs::CreatePeriscope()
 {
+	UEngineSound::SoundPlay("pirate_periscope_warning.wav");
+
 	std::shared_ptr<AFXBase> Periscope = GetWorld()->SpawnActor<AFXBase>("Periscope", EActorType::FX);
 	Periscope->FXInit(ERenderingOrder::SubMonster1FX, FAniInfo(PirateBossAniName::SeaDog_Periscope, "SeaDog_Periscope.png", 0.0416f));
 	Periscope->SetImgPivot(EPivot::RIGHTBOTTOM);
