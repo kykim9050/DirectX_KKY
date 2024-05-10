@@ -117,6 +117,8 @@ void ACaptainBrineybeardPhase2::DebugUpdate()
 
 void ACaptainBrineybeardPhase2::CreateUvulaBubble()
 {
+	PlayShootBubbleSound();
+
 	AUvulaBubble* Bubble = GetWorld()->SpawnActor<AUvulaBubble>("Bubble", EActorType::MonsterBullet).get();
 	Bubble->SetActorLocation(GetActorLocation() + GActorPosValue::UvulaBubble_RelativePos);
 }
@@ -139,4 +141,12 @@ void ACaptainBrineybeardPhase2::AfterHitFlash()
 		{
 			UvulaRenderer->SetPlusColor(GColorValue::AttackRestoreColor);
 		});
+}
+
+void ACaptainBrineybeardPhase2::PlayShootBubbleSound()
+{
+	int RandomVal = UMath::RandomReturnInt(1, 4);
+
+	UEngineSoundPlayer Sound = UEngineSound::SoundPlay("pirate_boat_uvula_shoot_0" + std::to_string(RandomVal) + ".wav");
+	Sound.SetVolume(0.7f);
 }

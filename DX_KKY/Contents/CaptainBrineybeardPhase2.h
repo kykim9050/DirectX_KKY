@@ -83,5 +83,7 @@ private:
 
 	void CreateUvulaBubble();
 	void Dead(float _DeltaTime);
+
+	void PlayShootBubbleSound();
 };
 
