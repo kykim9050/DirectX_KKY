@@ -64,6 +64,8 @@ void ACaptainBrineybeardPhase2::StartFunctionSet()
 		});
 	ShipState.SetStartFunction(PirateBossState::Ship_Phase2_LazarAttack, [this]()
 		{
+			UEngineSound::SoundPlay("pirate_boat_beam_fire.wav");
+
 			ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase2_LazarAttack1);
 
 			LazarRenderer->AnimationReset();
