@@ -50,10 +50,10 @@ void UPirateLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 			OtherSetFunction(static_cast<int>(EPirateBossPattern::OctopusShootAtt));
 		}
 
-		if (true == ImGui::Button("Phase2"))
-		{
-			IsPhase2 = true;
-			OtherSetFunction(static_cast<int>(EPirateBossPattern::Phase2));
-		}
+		//if (true == ImGui::Button("Phase2"))
+		//{
+		//	IsPhase2 = true;
+		//	OtherSetFunction(static_cast<int>(EPirateBossPattern::Phase2));
+		//}
 	}
 }
