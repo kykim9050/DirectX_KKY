@@ -874,17 +874,8 @@ void APlayer::CollisionCheck()
 				return;
 			}
 
-			if (nullptr != MonsterAtt)
-			{
-				State.ChangeState(CupheadStateName::Player_GetHit);
-				return;
-			}
-
-			if (nullptr != Monster)
-			{
-				State.ChangeState(CupheadStateName::Player_GetHit);
-				return;
-			}
+			State.ChangeState(CupheadStateName::Player_GetHit);
+			return;
 		});
 
 }
@@ -1048,4 +1039,17 @@ void APlayer::PlaySuccessParrySound()
 	int RandomVal = UMath::RandomReturnInt(1, 2);
 	UEngineSound::SoundPlay("sfx_player_parry_power_up_hit_0" + std::to_string(RandomVal) + ".wav");
 	UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+}
+
+
+void APlayer::InvincibleToggle()
+{
+	BodyCollider->SetActive(false);
+	Renderer->SetMulColor(GColorValue::InvincibleMulColor);
+
+	DelayCallBack(1.5f, [this]()
+		{
+			BodyCollider->SetActive(true);
+			Renderer->SetMulColor(GColorValue::InvincibleMulRestoreColor);
+		});
 }

@@ -169,6 +169,7 @@ private:
 	void ShootSoundSwitch(bool _OnOrOff);
 	void PlayJumpSound();
 	void PlaySuccessParrySound();
+	void InvincibleToggle();
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)
