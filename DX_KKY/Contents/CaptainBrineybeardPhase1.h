@@ -45,8 +45,8 @@ private:
 	float BlinkDelayInit = 4.0f;
 
 	// Cannon
-	float CannonShootDelay = 5.0f;
-	float CannonShootDelayInit = 5.0f;
+	float CannonShootDelay = 3.0f;
+	float CannonShootDelayInit = 3.0f;
 
 	
 	// Laugh

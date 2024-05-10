@@ -214,11 +214,10 @@ void ACaptainBrineybeardPhase1::Dbg_ChangeState()
 	switch (PatternNum)
 	{
 	case static_cast<int>(EPirateBossPattern::OctopusShootAtt):
-	{
-		int a = 0;
+		PirateState.ChangeState(PirateBossState::OctopusShoot_Begin);
 		break;
-	}
 	case static_cast<int>(EPirateBossPattern::ShootCanonBall):
+		ShipState.ChangeState(PirateBossState::Ship_Phase1_CannonShoot);
 		break;
 	case static_cast<int>(EPirateBossPattern::Phase2):
 		break;

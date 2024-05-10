@@ -165,6 +165,17 @@ void ACaptainBrineybeardPhase1::EndFunctionSet()
 
 void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 {
+	if (static_cast<int>(EPirateBossPattern::ShootCanonBall) == PatternNum)
+	{
+		Dbg_PatternSwitchDelay -= _DeltaTime;
+
+		if (0.0f >= Dbg_PatternSwitchDelay)
+		{
+			Dbg_ChangeState();
+		}
+		return;
+	}
+
 	if (0 >= GetHp())
 	{
 		ShipState.ChangeState(PirateBossState::Ship_Wince);
@@ -199,7 +210,7 @@ void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 
 void ACaptainBrineybeardPhase1::Pirate_Idle(float _DeltaTime)
 {
-	if (-1 != PatternNum)
+	if (static_cast<int>(EPirateBossPattern::OctopusShootAtt) == PatternNum)
 	{
 		Dbg_PatternSwitchDelay -= _DeltaTime;
 
