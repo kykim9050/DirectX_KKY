@@ -45,11 +45,11 @@ void UFlowerLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 		{
 			PhaseSetFunction(static_cast<int>(EFlowerBossPattern::FaceAttack_Low));
 		}
-	}
 
-	if (true == ImGui::Button("Phase2"))
-	{
-		IsPhase2 = true;
-		PhaseSetFunction(static_cast<int>(EFlowerBossPattern::Phase2));
+		if (true == ImGui::Button("Phase2"))
+		{
+			IsPhase2 = true;
+			PhaseSetFunction(static_cast<int>(EFlowerBossPattern::Phase2));
+		}
 	}
 }

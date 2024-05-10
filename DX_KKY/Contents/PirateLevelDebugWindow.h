@@ -17,24 +17,38 @@ public:
 	UPirateLevelDebugWindow& operator=(const UPirateLevelDebugWindow& _Other) = delete;
 	UPirateLevelDebugWindow& operator=(UPirateLevelDebugWindow&& _Other) noexcept = delete;
 
-	void SetSharkAppearFunction(std::function<void()> _Function)
+
+	inline void ResetIsPhase2()
+	{
+		IsPhase2 = false;
+	}
+	inline void SetSharkAppearFunction(std::function<void()> _Function)
 	{
 		SharkAppearFunction = _Function;
 	}
-	void SetSeaDogAppearFunction(std::function<void()> _Function)
+	inline void SetSeaDogAppearFunction(std::function<void()> _Function)
 	{
 		SeaDogAppearFunction = _Function;
 	}
+	inline void SetOtherSetFunction(std::function<void(int)> _Function)
+	{
+		OtherSetFunction = _Function;
+	}
+
 
 protected:
+
+private:
+	std::function<void()> SharkAppearFunction = nullptr;
+	std::function<void()> SeaDogAppearFunction = nullptr;
+	std::function<void(int)> OtherSetFunction = nullptr;
+
+	bool IsPhase2 = false;
 
 private:
 	void Init() override;
 	void Tick(ULevel* Level, float _Delta) override;
 	void OnGui(ULevel* Level, float _Delta) override;
 
-	std::function<void()> SharkAppearFunction = nullptr;
-	std::function<void()> SeaDogAppearFunction = nullptr;
-	
 };
 
