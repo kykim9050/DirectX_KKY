@@ -4,6 +4,7 @@
 #include "MonsterUnit.h"
 
 // Ό³Έν :
+class UEngineSoundPlayer;
 class USpriteRenderer;
 class UCollision;
 class UDefaultSceneComponent;
@@ -31,6 +32,8 @@ private:
 	USpriteRenderer* FinRenderer = nullptr;
 	USpriteRenderer* EffectRenderer = nullptr;
 	UCollision* MainCollider = nullptr;
+
+	UEngineSoundPlayer LeaveSound = UEngineSoundPlayer();
 
 private:
 	float AppearIntroSpeed = 500.0f;
