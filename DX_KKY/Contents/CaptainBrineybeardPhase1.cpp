@@ -220,6 +220,7 @@ void ACaptainBrineybeardPhase1::Dbg_ChangeState()
 		ShipState.ChangeState(PirateBossState::Ship_Phase1_CannonShoot);
 		break;
 	case static_cast<int>(EPirateBossPattern::Phase2):
+		ShipState.ChangeState(PirateBossState::Ship_Wince);
 		break;
 	default:
 		MsgBoxAssert("지정되지 않은 패턴을 실행하려고 했습니다.");

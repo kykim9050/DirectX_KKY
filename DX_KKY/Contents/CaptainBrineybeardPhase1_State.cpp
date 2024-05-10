@@ -165,7 +165,9 @@ void ACaptainBrineybeardPhase1::EndFunctionSet()
 
 void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 {
-	if (static_cast<int>(EPirateBossPattern::ShootCanonBall) == PatternNum)
+	if (static_cast<int>(EPirateBossPattern::ShootCanonBall) == PatternNum
+		|| static_cast<int>(EPirateBossPattern::Phase2) == PatternNum
+		)
 	{
 		Dbg_PatternSwitchDelay -= _DeltaTime;
 
