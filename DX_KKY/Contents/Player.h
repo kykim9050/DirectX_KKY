@@ -170,6 +170,7 @@ private:
 	void PlayJumpSound();
 	void PlaySuccessParrySound();
 	void InvincibleToggle();
+	void CreateHitEffect();
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)

@@ -1053,3 +1053,14 @@ void APlayer::InvincibleToggle()
 			Renderer->SetMulColor(GColorValue::InvincibleMulRestoreColor);
 		});
 }
+
+void APlayer::CreateHitEffect()
+{
+	float RandomAngleValue = UMath::RandomReturnFloat(0.0f, 360.0f);
+	int RandomIntValue = UMath::RandomReturnInt(1, 3);
+
+	AFXBase* CupHeadHitEffect = GetWorld()->SpawnActor<AFXBase>("ExplosionEffect").get();
+	CupHeadHitEffect->FXInit(ERenderingOrder::FrontFX, FAniInfo(GAniName::PlayerHitEffect, "HitFX0" + std::to_string(RandomIntValue), 0.0416f), false);
+	CupHeadHitEffect->SetActorLocation(GetActorLocation() + GRendererPos::PlayerHitEffect_RelativePos);
+	CupHeadHitEffect->SetActorRotation(float4(0.0f, 0.0f, RandomAngleValue));
+}
