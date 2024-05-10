@@ -68,7 +68,7 @@ private:
 	float WhistleDelayInit = 5.0f;
 
 	// Wince
-	int WinceTime = 5;
+	int WinceTime = 4;
 	int WinceCount = 0;
 
 	// Debug

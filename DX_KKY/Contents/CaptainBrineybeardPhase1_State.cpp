@@ -60,6 +60,9 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			});
 		ShipState.SetStartFunction(PirateBossState::Ship_Wince, [this]()
 			{
+				UEngineSoundPlayer Sound = UEngineSound::SoundPlay("pirate_boat_transform.wav");
+				Sound.SetVolume(0.7f);
+				
 				ShipRenderer->ChangeAnimation(PirateBossAniName::Ship_Phase1_Wince_Begin);
 			});
 		ShipState.SetStartFunction(PirateBossState::Ship_Transform_Begin, [this]()
