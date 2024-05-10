@@ -89,6 +89,7 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			});
 		PirateState.SetStartFunction(PirateBossState::OctopusShoot_Begin, [this]()
 			{
+				UEngineSound::SoundPlay("pirate_gun_start.wav");
 				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Begin);
 				PirateRenderer->SetPosition(GRendererPos::Pirate_OctoPusAtt_ReletivePos);
 			});
@@ -100,14 +101,16 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			});
 		PirateState.SetStartFunction(PirateBossState::OctopusShoot_Attack, [this]()
 			{
-				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Attack);
+				PlayOctoBulletShootSound();
 
+				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Attack);
 				PirateTopRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_Attack_Top);
 			});
 		PirateState.SetStartFunction(PirateBossState::OctopusShoot_End, [this]()
 			{
-				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_End);
+				UEngineSound::SoundPlay("pirate_gun_end.wav");
 
+				PirateRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_End);
 				PirateTopRenderer->ChangeAnimation(PirateBossAniName::OctopusShoot_End_Top);
 			});
 		PirateState.SetStartFunction(PirateBossState::Pirate_Whistle, [this]()
