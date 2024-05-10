@@ -186,7 +186,7 @@ void APirateLevelMode::StateInit()
 			});
 		ModeState.SetStartFunction("GameEnd", [this]()
 			{
-				BGMPlayer.Off();
+				BGMPlayer.SetVolume(0.2f);
 
 				ScreenMsg->SetStageEndMsg();
 
