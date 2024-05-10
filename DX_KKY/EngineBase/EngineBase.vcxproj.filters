@@ -70,6 +70,15 @@
     <ClInclude Include="TCPSession.h">
       <Filter>Net</Filter>
     </ClInclude>
+    <ClInclude Include="EngineDispatcher.h">
+      <Filter>Net\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineProtocol.h">
+      <Filter>Net\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="NetObject.h">
+      <Filter>Net\Protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -138,6 +147,15 @@
     <ClCompile Include="TCPSession.cpp">
       <Filter>Net</Filter>
     </ClCompile>
+    <ClCompile Include="EngineDispatcher.cpp">
+      <Filter>Net\Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineProtocol.cpp">
+      <Filter>Net\Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="NetObject.cpp">
+      <Filter>Net\Protocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -166,6 +184,9 @@
     </Filter>
     <Filter Include="Net">
       <UniqueIdentifier>{a1e07dd3-9d70-4e7f-9451-77e38ea5cb13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Net\Protocol">
+      <UniqueIdentifier>{05715565-c981-4ddb-b2df-d62c8b96eb3c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
