@@ -115,6 +115,9 @@
     <Filter Include="Level\PlayLevel\FlowerLevel\DebugGUI">
       <UniqueIdentifier>{d7b7f32d-3cea-4b91-8109-1b800a48e4cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\PlayLevel\CommonObject\Player\UI">
+      <UniqueIdentifier>{e677b3c4-f7d3-4480-880d-1616b811b90a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -320,6 +323,9 @@
     </ClInclude>
     <ClInclude Include="FlowerLevelDebugWindow.h">
       <Filter>Level\PlayLevel\FlowerLevel\DebugGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>Level\PlayLevel\CommonObject\Player\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -544,6 +550,9 @@
     </ClCompile>
     <ClCompile Include="FlowerLevelDebugWindow.cpp">
       <Filter>Level\PlayLevel\FlowerLevel\DebugGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>Level\PlayLevel\CommonObject\Player\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
