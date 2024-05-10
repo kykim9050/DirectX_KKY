@@ -30,45 +30,6 @@ void ABossAttackUnit::BeginPlay()
 void ABossAttackUnit::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
-	if (true == Move)
-	{
-		switch (ChaseType)
-		{
-		case EChaseType::None:
-		{
-			break;
-		}
-		case EChaseType::Temporal:
-		{
-			if (false == IsSetTargetDir)
-			{
-				if (nullptr != VelocityGenerator)
-				{
-					Velocity = VelocityGenerator();
-				}
-
-				IsSetTargetDir = true;
-
-				float Speed = Velocity.Size2D();
-
-				float4 Direction = (UContentsFunction::GetStagePlayer()->GetActorLocation() - GetActorLocation()).Normalize2DReturn();
-				Velocity = Direction * Speed;
-				float Theta = UMath::DirectionToDeg(Direction);
-				SetActorRotation(float4(0.0f, 0.0f, Theta));
-			}
-			break;
-		}
-		case EChaseType::Permanent:
-			break;
-		default:
-			MsgBoxAssert("유효하지 않은 ChaseType입니다.");
-			return;
-		}
-
-		AddActorLocation(Velocity * _DeltaTime);
-	}
-	
 }
 
 

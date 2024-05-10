@@ -28,12 +28,6 @@ public:
 	ABossAttackUnit& operator=(const ABossAttackUnit& _Other) = delete;
 	ABossAttackUnit& operator=(ABossAttackUnit&& _Other) noexcept = delete;
 
-	inline void SetChaseType(EChaseType _ChaseType, AActor* _Target)
-	{
-		ChaseType = _ChaseType;
-		Target = _Target;
-		Move = true;
-	}
 	inline void SetRendererAutoSize()
 	{
 		Renderer->SetAutoSize(1.0f, true);
@@ -73,10 +67,6 @@ public:
 	{
 		Renderer->SetFrameCallback(_AnimationName, _Index, _Function);
 	}
-	inline void SetVelocityGenerator(std::function<float4()> _VelocityGenerator)
-	{
-		VelocityGenerator = _VelocityGenerator;
-	}
 
 	void SetRendererPivot(EPivot _Pivot);
 	void CreateAnimation(FAniInfo _Info, bool _Loop = true);
@@ -99,12 +89,9 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	EChaseType ChaseType = EChaseType::None;
-	AActor* Target = nullptr;
 	float4 BoundaryValue = float4::Zero;
 
 	float4 Velocity = FVector::Zero;
-	std::function<float4()> VelocityGenerator;
 	bool Loop = false;
 	bool Move = false;
 	bool IsSetTargetDir = false;
