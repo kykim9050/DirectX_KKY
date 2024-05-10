@@ -231,3 +231,10 @@ void ACaptainBrineybeardPhase1::Dbg_ChangeState()
 	PatternNum = -1;
 	return;
 }
+
+void ACaptainBrineybeardPhase1::PlayOctoBulletShootSound()
+{
+	int RandomVal = UMath::RandomReturnInt(1, 4);
+
+	UEngineSoundPlayer Sound = UEngineSound::SoundPlay("pirate_gun_shoot_0" + std::to_string(RandomVal) + ".wav");
+}

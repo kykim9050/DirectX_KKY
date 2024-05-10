@@ -114,5 +114,7 @@ private:
 	// 디버그 모드
 	void Dbg_ChangePattern(int _PatternNum);
 	void Dbg_ChangeState();
+
+	void PlayOctoBulletShootSound();
 };
 
