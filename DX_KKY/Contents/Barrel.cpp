@@ -181,6 +181,9 @@ void ABarrel::StateInit()
 			});
 		State.SetStartFunction(PirateBossState::Barrel_Drop, [this]()
 			{
+				UEngineSoundPlayer Sound = UEngineSound::SoundPlay("pirate_barrel_drop_attack.wav");
+				Sound.SetVolume(0.65f);
+
 				BarrelRenderer->ChangeAnimation(PirateBossAniName::Barrel_Drop_Begin);
 				MainCollider->SetPosition(GColliderPosInfo::Barrel_Drop_RelPos);
 				BarrelRenderer->SetPosition(GRendererPos::Barrel_Drop_RelativePos);
