@@ -1056,6 +1056,8 @@ void APlayer::InvincibleToggle()
 
 void APlayer::CreateHitEffect()
 {
+	PlayGetHitSound();
+
 	float RandomAngleValue = UMath::RandomReturnFloat(0.0f, 360.0f);
 	int RandomIntValue = UMath::RandomReturnInt(1, 3);
 
@@ -1063,4 +1065,11 @@ void APlayer::CreateHitEffect()
 	CupHeadHitEffect->FXInit(ERenderingOrder::FrontFX, FAniInfo(GAniName::PlayerHitEffect, "HitFX0" + std::to_string(RandomIntValue), 0.0416f), false);
 	CupHeadHitEffect->SetActorLocation(GetActorLocation() + GRendererPos::PlayerHitEffect_RelativePos);
 	CupHeadHitEffect->SetActorRotation(float4(0.0f, 0.0f, RandomAngleValue));
+}
+
+void APlayer::PlayGetHitSound()
+{
+	int RandomIntValue = UMath::RandomReturnInt(1, 5);
+
+	UEngineSound::SoundPlay("sfx_player_hit_0" + std::to_string(RandomIntValue) + ".wav");
 }

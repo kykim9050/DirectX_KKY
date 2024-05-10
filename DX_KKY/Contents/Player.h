@@ -88,6 +88,7 @@ private:
 	void StateInit();
 	void CreatePlayerAnimation();
 	void MakeDebugMSG();
+
 	/// <summary>
 	/// 방향이 다르면 false, 같으면 true
 	/// </summary>
@@ -164,13 +165,14 @@ private:
 	void AfterSuccessParrySetting();
 	void SetStopTimeScale();
 	void ColInfoChange(bool _IsDucking);
+	void InvincibleToggle();
+	void CreateHitEffect();
 
 	void PlayDashSound();
+	void PlayGetHitSound();
 	void ShootSoundSwitch(bool _OnOrOff);
 	void PlayJumpSound();
 	void PlaySuccessParrySound();
-	void InvincibleToggle();
-	void CreateHitEffect();
 
 
 	inline void SetMainPlayer(std::shared_ptr<APlayer> _Player)
