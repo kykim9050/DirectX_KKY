@@ -9,6 +9,8 @@
 #include "OctopusBullet.h"
 #include "Shark.h"
 #include "CallSeaDogs.h"
+#include "PirateLevelMode.h"
+#include "PirateLevelDebugWindow.h"
 
 ACaptainBrineybeardPhase1::ACaptainBrineybeardPhase1()
 {
@@ -28,6 +30,8 @@ ACaptainBrineybeardPhase1::~ACaptainBrineybeardPhase1()
 void ACaptainBrineybeardPhase1::BeginPlay()
 {
 	Super::BeginPlay();
+
+	APirateLevelMode::DebugWindow->SetOtherSetFunction(std::bind(&ACaptainBrineybeardPhase1::Dbg_ChangePattern, this, std::placeholders::_1));
 
 	AnimationInit();
 	SetAnimationCallback();
@@ -193,4 +197,37 @@ void ACaptainBrineybeardPhase1::AfterHitFlash()
 		{
 			PirateTopRenderer->SetPlusColor(GColorValue::AttackRestoreColor);
 		});		
+}
+
+void ACaptainBrineybeardPhase1::Dbg_ChangePattern(int _PatternNum)
+{
+	if (-1 != PatternNum)
+	{
+		return;
+	}
+
+	PatternNum = _PatternNum;
+}
+
+void ACaptainBrineybeardPhase1::Dbg_ChangeState()
+{
+	switch (PatternNum)
+	{
+	case static_cast<int>(EPirateBossPattern::OctopusShootAtt):
+	{
+		int a = 0;
+		break;
+	}
+	case static_cast<int>(EPirateBossPattern::ShootCanonBall):
+		break;
+	case static_cast<int>(EPirateBossPattern::Phase2):
+		break;
+	default:
+		MsgBoxAssert("지정되지 않은 패턴을 실행하려고 했습니다.");
+		break;
+	}
+
+	Dbg_PatternSwitchDelay = Dbg_PatternSwitchDelayInit;
+	PatternNum = -1;
+	return;
 }

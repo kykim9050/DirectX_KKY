@@ -199,6 +199,17 @@ void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 
 void ACaptainBrineybeardPhase1::Pirate_Idle(float _DeltaTime)
 {
+	if (-1 != PatternNum)
+	{
+		Dbg_PatternSwitchDelay -= _DeltaTime;
+
+		if (0.0f >= Dbg_PatternSwitchDelay)
+		{
+			Dbg_ChangeState();
+		}
+		return;
+	}
+
 	if (0 >= GetHp())
 	{
 		return;

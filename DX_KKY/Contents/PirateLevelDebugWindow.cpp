@@ -42,18 +42,18 @@ void UPirateLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 	{
 		if (true == ImGui::Button("ShootCannonBall"))
 		{
-
+			OtherSetFunction(static_cast<int>(EPirateBossPattern::ShootCanonBall));
 		}
 
 		if (true == ImGui::Button("OctopusShootAtt"))
 		{
-
+			OtherSetFunction(static_cast<int>(EPirateBossPattern::OctopusShootAtt));
 		}
 
 		if (true == ImGui::Button("Phase2"))
 		{
 			IsPhase2 = true;
-			//OtherSetFunction(static_cast<int>(EFlowerBossPattern::));
+			OtherSetFunction(static_cast<int>(EPirateBossPattern::Phase2));
 		}
 	}
 }
