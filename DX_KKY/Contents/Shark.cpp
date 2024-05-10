@@ -117,6 +117,11 @@ void AShark::StateInit()
 	{
 		State.SetStartFunction(PirateBossState::Shark_Appear_Intro, [this]()
 			{
+				DelayCallBack(0.5f, []()
+					{
+						UEngineSound::SoundPlay("pirate_shark_warning.wav");
+					});
+
 				SetSpeedVec(float4::Left * AppearIntroSpeed);
 				FinRenderer->SetActive(true);
 				FinRenderer->ChangeAnimation(PirateBossAniName::Shark_Before_Appear);

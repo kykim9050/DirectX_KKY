@@ -79,6 +79,9 @@ void ACaptainBrineybeardPhase1::StartFunctionSet()
 			});
 		PirateState.SetStartFunction(PirateBossState::Pirate_Laugh, [this]()
 			{
+				UEngineSoundPlayer Sound = UEngineSound::SoundPlay("pirate_laugh.wav");
+				Sound.SetVolume(0.5f);
+
 				Laughing = true;
 				PirateRenderer->ChangeAnimation(PirateBossAniName::Pirate_Laugh);
 			});

@@ -50,8 +50,7 @@ private:
 
 	
 	// Laugh
-	//int LaughNum = 7;
-	int LaughNum = 2;
+	int LaughNum = 5;
 	int LaughCount = 1;
 	bool Laughing = false;
 

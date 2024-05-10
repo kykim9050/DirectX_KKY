@@ -57,10 +57,6 @@ void ASeaDog::CreateAnimation()
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Appear5, "SeaDog_Appear.png", 0.057f, false, 20, 21);
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Move, "SeaDog_Move.png", 0.0417f);
 	SeaDogRenderer->CreateAnimation(PirateBossAniName::SeaDog_Death, "SeaDog_Death.png", 0.0417f);
-
-	
-	//UEngineSprite::CreateCutting("SeaDog_Appear_Effect.png", 6, 2);
-	//UEngineSprite::CreateCutting("SeaDog_Periscope.png", 10, 5);
 }
 
 void ASeaDog::SetAnimationCallback()

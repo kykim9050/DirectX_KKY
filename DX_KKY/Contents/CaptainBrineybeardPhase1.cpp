@@ -145,6 +145,8 @@ void ACaptainBrineybeardPhase1::MoveUpAndDown(float _DeltaTime)
 
 void ACaptainBrineybeardPhase1::CreateWhistleEffect()
 {
+	UEngineSound::SoundPlay("pirate_whistle.wav");
+
 	AFXBase* WhistleEffect = GetWorld()->SpawnActor<AFXBase>("WhistleEffect", static_cast<int>(EActorType::FX)).get();
 	WhistleEffect->FXInit(ERenderingOrder::BossMonsterFrontFX1, FAniInfo(PirateBossAniName::Pirate_Whistle_Effect, GSpriteName::Pirate_Whistle_Effect, 0.047f));
 	WhistleEffect->SetImgPivot(EPivot::RIGHT);
