@@ -37,4 +37,23 @@ void UPirateLevelDebugWindow::OnGui(ULevel* Level, float _Delta)
 			SeaDogAppearFunction();
 		}
 	}
+
+	if (false == IsPhase2)
+	{
+		if (true == ImGui::Button("ShootCannonBall"))
+		{
+
+		}
+
+		if (true == ImGui::Button("OctopusShootAtt"))
+		{
+
+		}
+
+		if (true == ImGui::Button("Phase2"))
+		{
+			IsPhase2 = true;
+			//OtherSetFunction(static_cast<int>(EFlowerBossPattern::));
+		}
+	}
 }

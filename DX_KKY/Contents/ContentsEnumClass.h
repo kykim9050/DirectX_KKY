@@ -135,3 +135,10 @@ enum class EFlowerBossPattern
 	FaceAttack_Low,
 	Phase2,
 };
+
+enum class EPirateBossPattern
+{
+	ShootCanonBall,
+	OctopusShootAtt,
+	Phase2,
+};

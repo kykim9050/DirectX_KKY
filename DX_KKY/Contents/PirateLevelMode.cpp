@@ -44,6 +44,7 @@ void APirateLevelMode::LevelEnd(ULevel* _NextLevel)
 
 	DeleteObject();
 
+	DebugWindow->ResetIsPhase2();
 	DebugWindow->Off();
 	BGMPlayer.Off();
 }
