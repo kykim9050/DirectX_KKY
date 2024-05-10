@@ -56,6 +56,8 @@ namespace GAniName
 	const std::string Player_SSAir_Down = "Player_SSAir_Down";
 	const std::string Player_SSAir_DiagonalUp = "Player_SSAir_DiagonalUp";
 	const std::string Player_SSAir_DiagonalDown = "Player_SSAir_DiagonalDown";
+	const std::string Player_GetHit_Ground = "Player_GetHit_Ground";
+	const std::string Player_GetHit_Air = "Player_GetHit_Air";
 	const std::string DashDust = "DashDust";
 	const std::string LandDust = "LandDust";
 	const std::string RunDust = "RunDust";
@@ -81,12 +83,15 @@ namespace GAniName
 
 namespace CupheadStateName
 {
+	const std::string Idle = "Idle";
+	const std::string FallDown = "FallDown";
 	const std::string Player_SSAir_Straight = "Player_SSAir_Straight";
 	const std::string Player_SSAir_Up = "Player_SSAir_Up";
 	const std::string Player_SSAir_Down = "Player_SSAir_Down";
 	const std::string Player_SSAir_DiagonalUp = "Player_SSAir_DiagonalUp";
 	const std::string Player_SSAir_DiagonalDown = "Player_SSAir_DiagonalDown";
 	const std::string After_SSAir = "After_SSAir";
+	const std::string Player_GetHit = "Player_GetHit";
 }
 
 namespace GStateName

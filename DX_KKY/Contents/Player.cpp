@@ -14,6 +14,7 @@
 #include "FlowerPlatform.h"
 #include "BossAttackUnit.h"
 #include "TimeScaleControlUnit.h"
+#include "MonsterUnit.h"
 
 std::shared_ptr<APlayer> APlayer::MainPlayer = std::shared_ptr<APlayer>();
 
@@ -116,7 +117,8 @@ void APlayer::CreatePlayerAnimation()
 		Renderer->CreateAnimation(GAniName::Player_SSAir_DiagonalUp, "CupHead_SSAir_DiagonalUp", 0.0416f, false);
 		Renderer->CreateAnimation(GAniName::Player_SSAir_DiagonalDown, "CupHead_SSAir_DiagonalDown", 0.0416f, false);
 
-		Renderer->CreateAnimation("Player_Hit_Ground", "CupHead_Hit_Ground", 0.05f, false);
+		Renderer->CreateAnimation(GAniName::Player_GetHit_Ground, "CupHead_Hit_Ground", 0.05f, false);
+		Renderer->CreateAnimation(GAniName::Player_GetHit_Air, "CupHead_Hit_Air", 0.05f, false);
 
 		Renderer->CreateAnimation("Player_Scared", "CupHead_Scared", 0.034f, false);
 	}
@@ -198,7 +200,14 @@ void APlayer::CreatePlayerAnimation()
 				State.ChangeState(CupheadStateName::After_SSAir);
 			}
 		);
-
+		Renderer->SetFrameCallback(GAniName::Player_GetHit_Ground, 6, [this]()
+			{
+				State.ChangeState(CupheadStateName::Idle);
+			});
+		Renderer->SetFrameCallback(GAniName::Player_GetHit_Air, 6, [this]()
+			{
+				State.ChangeState(CupheadStateName::FallDown);
+			});
 	}
 }
 
@@ -810,11 +819,12 @@ void APlayer::CollisionCheck()
 	BodyCollider->CollisionStay(ECollisionGroup::MonsterBullet, [this](std::shared_ptr<UCollision> _Collision)
 		{
 			ABulletUnit* Bullet = dynamic_cast<ABulletUnit*>(_Collision->GetActor());
-			ABossAttackUnit* Monster = dynamic_cast<ABossAttackUnit*>(_Collision->GetActor());
+			ABossAttackUnit* MonsterAtt = dynamic_cast<ABossAttackUnit*>(_Collision->GetActor());
+			AMonsterUnit* Monster = dynamic_cast<AMonsterUnit*>(_Collision->GetActor());
 
-			if (nullptr == Bullet && nullptr == Monster)
+			if (nullptr == Bullet && nullptr == MonsterAtt && nullptr == Monster)
 			{
-				MsgBoxAssert("충돌 대상이 Monster Bullet이 아닙니다.");
+				MsgBoxAssert("충돌 대상이 MonsterAtt or Monster or Bullet이 아닙니다.");
 				return;
 			}
 
@@ -827,19 +837,56 @@ void APlayer::CollisionCheck()
 					AfterSuccessParrySetting();
 					return;
 				}
+
+				State.ChangeState(CupheadStateName::Player_GetHit);
+				return;
 			}
 
-			if (nullptr != Monster)
+			if (nullptr != MonsterAtt)
 			{
-				if (true == GetParrying() && true == Monster->GetParryableObject())
+				if (true == GetParrying() && true == MonsterAtt->GetParryableObject())
 				{
-					Monster->Destroy();
+					MonsterAtt->Destroy();
 
 					AfterSuccessParrySetting();
 					return;
 				}
+
+				State.ChangeState(CupheadStateName::Player_GetHit);
+				return;
+			}
+
+			if (nullptr != Monster)
+			{
+				State.ChangeState(CupheadStateName::Player_GetHit);
+				return;
 			}
 		});
+
+	BodyCollider->CollisionStay(ECollisionGroup::Monster, [this](std::shared_ptr<UCollision> _Collision)
+		{
+			ABossAttackUnit* MonsterAtt = dynamic_cast<ABossAttackUnit*>(_Collision->GetActor());
+			AMonsterUnit* Monster = dynamic_cast<AMonsterUnit*>(_Collision->GetActor());
+
+			if (nullptr == MonsterAtt && nullptr == Monster)
+			{
+				MsgBoxAssert("충돌 대상이 MonsterAtt or Monster 아닙니다.");
+				return;
+			}
+
+			if (nullptr != MonsterAtt)
+			{
+				State.ChangeState(CupheadStateName::Player_GetHit);
+				return;
+			}
+
+			if (nullptr != Monster)
+			{
+				State.ChangeState(CupheadStateName::Player_GetHit);
+				return;
+			}
+		});
+
 }
 
 void APlayer::AfterSuccessParrySetting()
