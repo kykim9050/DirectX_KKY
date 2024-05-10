@@ -73,6 +73,9 @@ void AAcorn::StateInit()
 		});
 	State.SetStartFunction(FlowerBossState::Acorn_Death, [this]()
 		{
+			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_bullet_seed_poof.wav");
+			Sound.SetVolume(0.5f);
+
 			GetCollider()->SetActive(false);
 			ChangeAnimation(FlowerBossAniName::Acorn_Death);
 		});
