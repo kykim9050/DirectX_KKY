@@ -327,6 +327,9 @@
     <ClInclude Include="PlayerUI.h">
       <Filter>Level\PlayLevel\CommonObject\Player\UI</Filter>
     </ClInclude>
+    <ClInclude Include="BackGroundCloud.h">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
@@ -553,6 +556,9 @@
     </ClCompile>
     <ClCompile Include="PlayerUI.cpp">
       <Filter>Level\PlayLevel\CommonObject\Player\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGroundCloud.cpp">
+      <Filter>Level\PlayLevel\FlowerLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

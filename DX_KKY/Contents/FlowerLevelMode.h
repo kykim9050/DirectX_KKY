@@ -15,6 +15,7 @@ class APlayer;
 class ACagneyCarnation;
 class AMapBase;
 class APlayerUI;
+class ABackGroundCloud;
 class AFlowerLevelMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -55,6 +56,7 @@ private:
 	std::shared_ptr<AFlowerPlatform> Platform1 = nullptr;
 	std::shared_ptr<AFlowerPlatform> Platform2 = nullptr;
 	std::shared_ptr<AFlowerPlatform> Platform3 = nullptr;
+	std::shared_ptr<ABackGroundCloud> Cloud = nullptr;
 	std::vector<std::shared_ptr<APlatformShadow>> Shadows;
 	std::shared_ptr<AMessage> ScreenMsg = nullptr;
 

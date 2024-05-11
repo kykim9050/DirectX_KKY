@@ -12,6 +12,7 @@
 #include "TimeScaleControlUnit.h"
 #include "FlowerLevelDebugWindow.h"
 #include "PlayerUI.h"
+#include "BackGroundCloud.h"
 
 std::shared_ptr<UFlowerLevelDebugWindow> AFlowerLevelMode::DebugWindow = std::shared_ptr<UFlowerLevelDebugWindow>();
 
@@ -130,7 +131,7 @@ void AFlowerLevelMode::ObjectInit()
 	BackGroundObject->SetMapFile("Flower_Background_Cloud02.png");
 	BackGroundObject->SetAutoScale();
 	BackGroundObject->SetActorLocation(FVector(700.0f, -233.0f, 300.0f));
-	BackGroundObject->SetOrdering(ERenderingOrder::BackLayer2);
+	BackGroundObject->SetOrdering(ERenderingOrder::BackLayer3);
 
 	ColMap->SetMapFile("Flower_Background_PixelCheck.png");
 	ColMap->SetAutoScale();
@@ -154,6 +155,8 @@ void AFlowerLevelMode::ObjectInit()
 	Platform3->CreatePlatformAnimation(FAniInfo(FlowerBossAniName::FlowerPlatform, "FlowerPlatform2", 0.067f));
 	Platform3->ChangePlatformAnimation(FlowerBossAniName::FlowerPlatform);
 	Platform3->SetActorLocation(FlowerBossStageValue::PlatformPos[2]);
+
+	Cloud = GetWorld()->SpawnActor<ABackGroundCloud>("Cloud", EActorType::Object);
 
 	UI = GetWorld()->SpawnActor<APlayerUI>("UI", EActorType::UI);
 }
