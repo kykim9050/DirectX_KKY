@@ -3,7 +3,7 @@
 
 #include "PlayerBullet.h"
 #include "MonsterUnit.h"
-#include "UICalculator.h"
+#include "PlayerUI.h"
 
 APlayerBullet::APlayerBullet()
 {
@@ -142,7 +142,7 @@ void APlayerBullet::CollisionCheck()
 			Monster->ExcuteGetHitFunction();
 
 			// SuperMeter 충전
-			UUICalculator::SuperMeterCharging();
+			APlayerUI::SuperMeterCharging();
 			
 			UEngineSoundPlayer HitSound = UEngineSound::SoundPlay("sfx_player_shoot_hit.wav");
 			HitSound.SetVolume(0.3f);

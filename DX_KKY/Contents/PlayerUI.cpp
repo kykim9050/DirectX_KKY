@@ -7,10 +7,10 @@ int APlayerUI::PlayerLife = 3;
 UImage* APlayerUI::LifeUI = nullptr;
 
 int APlayerUI::CurSuperMeterIdx = 0;
-std::vector<UImage*> APlayerUI::SuperMeters = std::vector<UImage*>();
 int APlayerUI::SuperMeterNum = 5;
 int APlayerUI::ChargingCount = 0;
 int APlayerUI::ChargingMaxCount = 5;
+bool APlayerUI::SuperMeterInfoChange = false;
 
 APlayerUI::APlayerUI()
 {
@@ -25,11 +25,22 @@ APlayerUI::~APlayerUI()
 void APlayerUI::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CurSuperMeterIdx = 0;
+	ChargingCount = 0;
+	SuperMeterInfoChange = false;
 }
 
 void APlayerUI::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == SuperMeterInfoChange)
+	{
+		SuperMeterUpdate();
+		SuperMeterChargeEnd();
+		SuperMeterInfoChange = false;
+	}
 }
 
 void APlayerUI::LevelStart(ULevel* _PrevLevel)
@@ -93,21 +104,33 @@ void APlayerUI::SuperMetersUIInit()
 
 void APlayerUI::SuperMeterChargeEnd()
 {
-	if (SuperMeterNum <= CurSuperMeterIdx)
-	{
-		return;
-	}
-
-	SuperMeters[CurSuperMeterIdx]->SetActive(true);
-	SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCard");
-
 	++CurSuperMeterIdx;
 }
 
 void APlayerUI::ResetSuperMeterInfo()
 {
-	CurSuperMeterIdx = 0;
-	ChargingCount = 0;
-
 	SuperMeters.clear();
+}
+
+void APlayerUI::SuperMeterUpdate()
+{
+	SuperMeters[CurSuperMeterIdx]->SetActive(true);
+	SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCard");
+}
+
+void APlayerUI::SuperMeterCharging()
+{
+	if (SuperMeterNum <= CurSuperMeterIdx)
+	{
+		return;
+	}
+
+	AddChargingCount();
+
+	if (GetChargingCount() >= GetChargingMaxCount())
+	{
+		ResetChargingCount();
+
+		SuperMeterInfoChange = true;
+	}
 }

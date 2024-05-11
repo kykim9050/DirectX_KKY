@@ -11,19 +11,19 @@ UUICalculator::~UUICalculator()
 {
 }
 
-void UUICalculator::SuperMeterChargingCheck()
-{
-	if (APlayerUI::GetChargingCount() >= APlayerUI::GetChargingMaxCount())
-	{
-		APlayerUI::ResetChargingCount();
-
-		APlayerUI::SuperMeterChargeEnd();
-	}
-}
-
-void UUICalculator::SuperMeterCharging()
-{
-	APlayerUI::AddChargingCount();
-
-	SuperMeterChargingCheck();
-}
+//void UUICalculator::SuperMeterChargingCheck()
+//{
+//	if (APlayerUI::GetChargingCount() >= APlayerUI::GetChargingMaxCount())
+//	{
+//		APlayerUI::ResetChargingCount();
+//
+//		APlayerUI::SuperMeterChargeEnd();
+//	}
+//}
+//
+//void UUICalculator::SuperMeterCharging()
+//{
+//	APlayerUI::AddChargingCount();
+//
+//	SuperMeterChargingCheck();
+//}
