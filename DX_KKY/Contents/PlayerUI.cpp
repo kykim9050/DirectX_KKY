@@ -34,7 +34,6 @@ void APlayerUI::Tick(float _DeltaTime)
 	if (true == SuperMeterInfoChange)
 	{
 		SuperMeterUpdate();
-		SuperMeterChargeEnd();
 		SuperMeterInfoChange = false;
 	}
 
@@ -108,11 +107,6 @@ void APlayerUI::SuperMetersUIInit()
 	}
 }
 
-void APlayerUI::SuperMeterChargeEnd()
-{
-	++CurSuperMeterIdx;
-}
-
 void APlayerUI::ResetSuperMeterInfo()
 {
 	for (int i = 0; i < SuperMeterNum; i++)
@@ -127,6 +121,17 @@ void APlayerUI::SuperMeterUpdate()
 {
 	SuperMeters[CurSuperMeterIdx]->SetActive(true);
 	SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCard");
+	++CurSuperMeterIdx;
+
+	if (SuperMeterNum == (CurSuperMeterIdx))
+	{
+		UEngineSound::SoundPlay("sfx_player_parry_power_up_full.wav");
+	}
+	else
+	{
+		int RandVal = UMath::RandomReturnInt(1, 2);
+		UEngineSound::SoundPlay("sfx_player_parry_power_increment_p" + std::to_string(RandVal) + ".wav");
+	}
 }
 
 void APlayerUI::SuperMeterCharging()
