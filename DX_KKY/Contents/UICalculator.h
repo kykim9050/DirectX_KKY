@@ -20,8 +20,8 @@ private:
 	UUICalculator();
 	~UUICalculator();
 
-	static void SuperMeterChargingCheck();
-	static void SuperMeterCharging();
+	//static void SuperMeterChargingCheck();
+	//static void SuperMeterCharging();
 
 };
 

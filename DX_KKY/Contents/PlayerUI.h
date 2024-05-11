@@ -4,11 +4,15 @@
 // Ό³Έν :
 class UImage;
 class APlayer;
-class UUICalculator;
+//class UUICalculator;
+class APlayerBullet;
+class APlayerSSBullet;
 class APlayerUI : public AActor
 {
 	friend APlayer;
-	friend UUICalculator;
+	friend APlayerBullet;
+	friend APlayerSSBullet;
+	//friend UUICalculator;
 	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
@@ -28,7 +32,9 @@ private:
 	static UImage* LifeUI;
 	static int PlayerLife;
 
-	static std::vector<UImage*> SuperMeters;
+	std::vector<UImage*> SuperMeters = std::vector<UImage*>();
+
+	static bool SuperMeterInfoChange;
 	static int CurSuperMeterIdx;
 	static int SuperMeterNum;
 	static int ChargingCount;
@@ -45,9 +51,11 @@ private:
 	void LifeUIInit();
 	void SuperMetersUIInit();
 	void ResetSuperMeterInfo();
+	void SuperMeterUpdate();
 	
 	static void SubLife();
 	static void SuperMeterChargeEnd();
+	static void SuperMeterCharging();
 
 	inline static void AddChargingCount()
 	{

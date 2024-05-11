@@ -2,7 +2,7 @@
 
 #include "PlayerSSBullet.h"
 #include "MonsterUnit.h"
-#include "UICalculator.h"
+#include "PlayerUI.h"
 
 APlayerSSBullet::APlayerSSBullet()
 {
@@ -176,7 +176,7 @@ void APlayerSSBullet::CollisionCheck()
 			Monster->ExcuteGetHitFunction();
 
 			// Player의 SuperMeter 충전해주기
-			UUICalculator::SuperMeterCharging();
+			APlayerUI::SuperMeterCharging();
 
 		});
 }
