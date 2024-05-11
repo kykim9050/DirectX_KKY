@@ -11,6 +11,7 @@ int APlayerUI::SuperMeterNum = 5;
 int APlayerUI::ChargingCount = 0;
 int APlayerUI::ChargingMaxCount = 5;
 bool APlayerUI::SuperMeterInfoChange = false;
+bool APlayerUI::SuperMeterUse = false;
 
 APlayerUI::APlayerUI()
 {
@@ -41,6 +42,12 @@ void APlayerUI::Tick(float _DeltaTime)
 	{
 		SubLife();
 		LifeInfoChange = false;
+	}
+
+	if (true == SuperMeterUse)
+	{
+		SubSuperMeterCount();
+		SuperMeterUse = false;
 	}
 }
 
@@ -149,4 +156,14 @@ void APlayerUI::SuperMeterCharging()
 
 		SuperMeterInfoChange = true;
 	}
+}
+
+void APlayerUI::SubSuperMeterCount()
+{
+	if (0 >= CurSuperMeterIdx)
+	{
+		return;
+	}
+
+	SuperMeters[--CurSuperMeterIdx]->SetActive(false);
 }

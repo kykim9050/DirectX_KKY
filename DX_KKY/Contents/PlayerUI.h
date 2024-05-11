@@ -36,6 +36,7 @@ private:
 	std::vector<UImage*> SuperMeters = std::vector<UImage*>();
 
 	static bool SuperMeterInfoChange;
+	static bool SuperMeterUse;
 	static int CurSuperMeterIdx;
 	static int SuperMeterNum;
 	static int ChargingCount;
@@ -54,6 +55,7 @@ private:
 	void ResetSuperMeterInfo();
 	void SuperMeterUpdate();
 	void SubLife();
+	void SubSuperMeterCount();
 	
 	static void SuperMeterChargeEnd();
 	static void SuperMeterCharging();
@@ -81,6 +83,10 @@ private:
 	inline static int GetAvailableSuperMeterNum()
 	{
 		return CurSuperMeterIdx;
+	}
+	inline static void SetSuperMeterUse()
+	{
+		SuperMeterUse = true;
 	}
 };
 
