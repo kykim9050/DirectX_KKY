@@ -17,7 +17,7 @@ ACaptainBrineybeardPhase1::ACaptainBrineybeardPhase1()
 	Root = CreateDefaultSubObject<UDefaultSceneComponent>("Root");
 	SetRoot(Root);
 
-	SetHp(300);
+	SetHp(200);
 	RendererInit();
 	ColliderInit();
 	SetGetHitFunction(std::bind(&ACaptainBrineybeardPhase1::AfterHitFlash, this));

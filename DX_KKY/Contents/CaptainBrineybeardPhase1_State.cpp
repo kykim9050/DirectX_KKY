@@ -206,7 +206,7 @@ void ACaptainBrineybeardPhase1::Ship_Idle(float _DeltaTime)
 		return;
 	}
 
-	if (150.0f >= GetHp())
+	if (ShipAttackStartHp >= GetHp())
 	{
 		CannonShootDelay -= _DeltaTime;
 

@@ -29,8 +29,8 @@ private:
 	// Lazar 관련
 	int ChargingTime = 10;
 	int ChargingCount = 0;
-	float LazarShootDelay = 5.0f;
-	float LazarShootDelayInit = 5.0f;
+	float LazarShootDelay = 9.0f;
+	float LazarShootDelayInit = 9.0f;
 	int LazarAttTime = 17;
 	int LazarAttCount = 0;
 
@@ -40,8 +40,8 @@ private:
 	int RoarCount = 0;
 
 	// bubble shot 관련
-	float BubbleShootDelay = 2.0f;
-	float BubbleShootDelayInit = 2.0f;
+	float BubbleShootDelay = 2.8f;
+	float BubbleShootDelayInit = 2.8f;
 
 	// Dead 관련
 	float ExplosionEffDelay = 0.4f;

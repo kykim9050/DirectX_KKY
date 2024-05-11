@@ -9,7 +9,7 @@ bool APlayerUI::LifeInfoChange = false;
 int APlayerUI::CurSuperMeterIdx = 0;
 int APlayerUI::SuperMeterNum = 5;
 int APlayerUI::ChargingCount = 0;
-int APlayerUI::ChargingMaxCount = 5;
+int APlayerUI::ChargingMaxCount = 20;
 bool APlayerUI::SuperMeterInfoChange = false;
 bool APlayerUI::SuperMeterUse = false;
 
