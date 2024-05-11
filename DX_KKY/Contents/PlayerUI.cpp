@@ -1,9 +1,16 @@
 #include "PreCompile.h"
 
 #include "PlayerUI.h"
+#include "UICalculator.h"
 
 int APlayerUI::PlayerLife = 3;
 UImage* APlayerUI::LifeUI = nullptr;
+
+int APlayerUI::CurSuperMeterIdx = 0;
+std::vector<UImage*> APlayerUI::SuperMeters = std::vector<UImage*>();
+int APlayerUI::SuperMeterNum = 5;
+int APlayerUI::ChargingCount = 0;
+int APlayerUI::ChargingMaxCount = 5;
 
 APlayerUI::APlayerUI()
 {
@@ -18,8 +25,6 @@ APlayerUI::~APlayerUI()
 void APlayerUI::BeginPlay()
 {
 	Super::BeginPlay();
-
-	UIInit();
 }
 
 void APlayerUI::Tick(float _DeltaTime)
@@ -27,11 +32,18 @@ void APlayerUI::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 }
 
+void APlayerUI::LevelStart(ULevel* _PrevLevel)
+{
+	Super::LevelStart(_PrevLevel);
+
+	UIInit();
+}
+
 void APlayerUI::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 
-	SuperMeters.clear();
+	ResetSuperMeterInfo();
 }
 
 void APlayerUI::UIInit()
@@ -74,6 +86,28 @@ void APlayerUI::SuperMetersUIInit()
 		SuperMeters[i]->AddToViewPort(ERenderingOrder::PlayStageUI);
 		SuperMeters[i]->SetAutoSize(1.0f, true);
 		SuperMeters[i]->SetPosition(float4(-510.0f + 20.0f * i, -310.0f, 0.0f));
-		SuperMeters[i]->SetSprite("SuperMeterCard");
+		SuperMeters[i]->SetActive(false);
+		//SuperMeters[i]->SetSprite("SuperMeterCard");
 	}
+}
+
+void APlayerUI::SuperMeterChargeEnd()
+{
+	if (SuperMeterNum <= CurSuperMeterIdx)
+	{
+		return;
+	}
+
+	SuperMeters[CurSuperMeterIdx]->SetActive(true);
+	SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCard");
+
+	++CurSuperMeterIdx;
+}
+
+void APlayerUI::ResetSuperMeterInfo()
+{
+	CurSuperMeterIdx = 0;
+	ChargingCount = 0;
+
+	SuperMeters.clear();
 }

@@ -3,6 +3,7 @@
 
 #include "PlayerBullet.h"
 #include "MonsterUnit.h"
+#include "UICalculator.h"
 
 APlayerBullet::APlayerBullet()
 {
@@ -140,7 +141,8 @@ void APlayerBullet::CollisionCheck()
 
 			Monster->ExcuteGetHitFunction();
 
-			// Player의 SuperMeter 충전해주기
+			// SuperMeter 충전
+			UUICalculator::SuperMeterCharging();
 			
 			UEngineSoundPlayer HitSound = UEngineSound::SoundPlay("sfx_player_shoot_hit.wav");
 			HitSound.SetVolume(0.3f);
