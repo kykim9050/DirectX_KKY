@@ -25,10 +25,6 @@ APlayerUI::~APlayerUI()
 void APlayerUI::BeginPlay()
 {
 	Super::BeginPlay();
-
-	CurSuperMeterIdx = 0;
-	ChargingCount = 0;
-	SuperMeterInfoChange = false;
 }
 
 void APlayerUI::Tick(float _DeltaTime)
@@ -59,6 +55,10 @@ void APlayerUI::LevelEnd(ULevel* _NextLevel)
 
 void APlayerUI::UIInit()
 {
+	CurSuperMeterIdx = 0;
+	ChargingCount = 0;
+	SuperMeterInfoChange = false;
+
 	LifeUIInit();
 	SuperMetersUIInit();
 }
@@ -98,7 +98,6 @@ void APlayerUI::SuperMetersUIInit()
 		SuperMeters[i]->SetAutoSize(1.0f, true);
 		SuperMeters[i]->SetPosition(float4(-510.0f + 20.0f * i, -310.0f, 0.0f));
 		SuperMeters[i]->SetActive(false);
-		//SuperMeters[i]->SetSprite("SuperMeterCard");
 	}
 }
 
@@ -109,6 +108,11 @@ void APlayerUI::SuperMeterChargeEnd()
 
 void APlayerUI::ResetSuperMeterInfo()
 {
+	for (int i = 0; i < SuperMeterNum; i++)
+	{
+		SuperMeters[i]->SetActive(false);
+	}
+
 	SuperMeters.clear();
 }
 

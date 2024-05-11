@@ -84,6 +84,8 @@ void AFlowerLevelMode::WidgetInit()
 	Iris->CreateAnimation(GAniName::IrisRevAni, GSpriteName::Iris, 0.034f, false, 16, 0);
 	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
+
+	UI = GetWorld()->SpawnActor<APlayerUI>("UI", EActorType::UI);
 }
 
 void AFlowerLevelMode::CreateObject()
@@ -158,7 +160,6 @@ void AFlowerLevelMode::ObjectInit()
 
 	Cloud = GetWorld()->SpawnActor<ABackGroundCloud>("Cloud", EActorType::Object);
 
-	UI = GetWorld()->SpawnActor<APlayerUI>("UI", EActorType::UI);
 }
 
 void AFlowerLevelMode::ObjectDelete()
@@ -205,12 +206,6 @@ void AFlowerLevelMode::ObjectDelete()
 	{
 		ScreenMsg->Destroy();
 		ScreenMsg = nullptr;
-	}
-
-	if (nullptr != UI)
-	{
-		UI->Destroy();
-		UI = nullptr;
 	}
 }
 

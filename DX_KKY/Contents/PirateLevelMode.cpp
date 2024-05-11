@@ -85,6 +85,8 @@ void APirateLevelMode::WidgetInit()
 	Iris->CreateAnimation(GAniName::IrisRevAni, GSpriteName::Iris, 0.034f, false, 16, 0);
 	Iris->SetPosition(float4(0.0f, 0.0f, 0.0f));
 	Iris->SetScale(GEngine->EngineWindow.GetWindowScale());
+
+	UI = GetWorld()->SpawnActor<APlayerUI>("UI", EActorType::UI);
 }
 
 void APirateLevelMode::CreateObject()
@@ -109,7 +111,6 @@ void APirateLevelMode::ObjectInit()
 
 	ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
 
-	UI = GetWorld()->SpawnActor<APlayerUI>("UI", EActorType::UI);
 }
 
 void APirateLevelMode::DeleteObject()
@@ -155,12 +156,6 @@ void APirateLevelMode::DeleteObject()
 	{
 		Barrel->Destroy();
 		Barrel = nullptr;
-	}
-
-	if (nullptr != UI)
-	{
-		UI->Destroy();
-		UI = nullptr;
 	}
 }
 
