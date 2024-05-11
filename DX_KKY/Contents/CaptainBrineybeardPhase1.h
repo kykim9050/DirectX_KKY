@@ -39,6 +39,7 @@ private:
 	UCollision* MainCollider = nullptr;
 
 	float AccTime = 0.0f;
+	int ShipAttackStartHp = 100;
 
 	// blink
 	float BlinkDelay = 4.0f;
