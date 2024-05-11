@@ -175,9 +175,6 @@ void APlayerSSBullet::CollisionCheck()
 			Monster->SubHp(GetDamage());
 			Monster->ExcuteGetHitFunction();
 
-			// Player의 SuperMeter 충전해주기
-			APlayerUI::SuperMeterCharging();
-
 		});
 }
 

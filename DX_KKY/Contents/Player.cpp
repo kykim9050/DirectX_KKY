@@ -481,7 +481,7 @@ void APlayer::ShootCheck(float _DeltaTime)
 
 void APlayer::SuperShootCheck(float _DeltaTime)
 {
-	if (true == IsDown('V'))
+	if (0 != APlayerUI::GetAvailableSuperMeterNum() && true == IsDown('V'))
 	{
 		ChangeSuperShootState();
 		SuperShoot();
@@ -974,7 +974,7 @@ void APlayer::ColInfoChange(bool _IsDucking)
 
 void APlayer::JumpSuperShootCheck()
 {
-	if (true == GetAvailableAirSuperShoot() && true == IsDown('V'))
+	if (0 != APlayerUI::GetAvailableSuperMeterNum() && true == GetAvailableAirSuperShoot() && true == IsDown('V'))
 	{
 		// 먼저 애니메이션 부터 바꾸고
 		ChangeJumpSuperShootState();
