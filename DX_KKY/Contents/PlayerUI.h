@@ -29,8 +29,9 @@ public:
 protected:
 
 private:
-	static UImage* LifeUI;
+	UImage* LifeUI = nullptr;
 	static int PlayerLife;
+	static bool LifeInfoChange;
 
 	std::vector<UImage*> SuperMeters = std::vector<UImage*>();
 
@@ -52,11 +53,15 @@ private:
 	void SuperMetersUIInit();
 	void ResetSuperMeterInfo();
 	void SuperMeterUpdate();
+	void SubLife();
 	
-	static void SubLife();
 	static void SuperMeterChargeEnd();
 	static void SuperMeterCharging();
 
+	inline static void SetLifeInfoChange()
+	{
+		LifeInfoChange = true;
+	}
 	inline static void AddChargingCount()
 	{
 		++ChargingCount;
