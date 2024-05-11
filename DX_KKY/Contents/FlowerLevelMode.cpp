@@ -206,6 +206,12 @@ void AFlowerLevelMode::ObjectDelete()
 		ScreenMsg->Destroy();
 		ScreenMsg = nullptr;
 	}
+
+	if (nullptr != UI)
+	{
+		UI->Destroy();
+		UI = nullptr;
+	}
 }
 
 void AFlowerLevelMode::StateInit()
