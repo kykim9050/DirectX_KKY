@@ -75,6 +75,7 @@ void APirateLevelMap::RendererInit()
 	Wave3->SetOrder(ERenderingOrder::Wave3);
 	Wave4->SetOrder(ERenderingOrder::Wave4);
 
+
 	Wave1->SetPivot(EPivot::BOT);
 	Wave2->SetPivot(EPivot::BOT);
 	Wave3->SetPivot(EPivot::BOT);
@@ -84,6 +85,12 @@ void APirateLevelMap::RendererInit()
 	Wave2->SetPosition(GRendererPos::Wave2_Pos);
 	Wave3->SetPosition(GRendererPos::Wave3_Pos);
 	Wave4->SetPosition(GRendererPos::Wave4_Pos);
+
+	//Wave1->SetSamplering(ETextureSampling::LINEAR);
+	//Wave2->SetSamplering(ETextureSampling::LINEAR);
+	//Wave3->SetSamplering(ETextureSampling::LINEAR);
+	//Wave4->SetSamplering(ETextureSampling::LINEAR);
+
 
 	//Dock
 	Dock->SetAutoSize(1.0f, true);
@@ -154,6 +161,10 @@ void APirateLevelMap::AnimationInit()
 	MovingCloud1->SetSprite("pirate_clouds_A.png");
 	MovingCloud2->SetSprite("pirate_clouds_B.png");
 	MovingCloud3->SetSprite("pirate_clouds_C.png");
+
+	MovingCloud1->SetSamplering(ETextureSampling::LINEAR);
+	MovingCloud2->SetSamplering(ETextureSampling::LINEAR);
+	MovingCloud3->SetSamplering(ETextureSampling::LINEAR);
 
 	ColMap->SetSprite("Pirate_Background_PixelCheck.png");
 	UContentsValue::ColMapTexture = UEngineTexture::FindRes("Pirate_Background_PixelCheck.png");

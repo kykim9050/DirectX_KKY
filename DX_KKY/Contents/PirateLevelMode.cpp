@@ -13,6 +13,7 @@
 #include "Shark.h"
 #include "CallSeaDogs.h"
 #include "PirateLevelDebugWindow.h"
+#include "PlayerUI.h"
 
 std::shared_ptr<UPirateLevelDebugWindow> APirateLevelMode::DebugWindow = std::shared_ptr<UPirateLevelDebugWindow>();
 
@@ -107,6 +108,8 @@ void APirateLevelMode::ObjectInit()
 	TimeControlUnit = GetWorld()->SpawnActor<UTimeScaleControlUnit>("TimeControlUnit", EActorType::TimeScaleController);
 
 	ScreenMsg = GetWorld()->SpawnActor<AMessage>("ScreenMsg", EActorType::ScreenMsg);
+
+	UI = GetWorld()->SpawnActor<APlayerUI>("UI", EActorType::UI);
 }
 
 void APirateLevelMode::DeleteObject()
@@ -152,6 +155,12 @@ void APirateLevelMode::DeleteObject()
 	{
 		Barrel->Destroy();
 		Barrel = nullptr;
+	}
+
+	if (nullptr != UI)
+	{
+		UI->Destroy();
+		UI = nullptr;
 	}
 }
 
