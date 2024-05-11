@@ -78,5 +78,9 @@ private:
 	{
 		ChargingCount = 0;
 	}
+	inline static int GetAvailableSuperMeterNum()
+	{
+		return CurSuperMeterIdx;
+	}
 };
 
