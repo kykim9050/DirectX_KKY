@@ -116,7 +116,7 @@ void AFlowerLevelMode::ObjectInit()
 	Player = GetWorld()->SpawnActor<APlayer>("Player", EActorType::Player);
 
 	Camera->SetActorLocation(UContentsValue::ContentsCameraInitPos);
-	Player->SetActorLocation(FVector{ 640.0f, -400.0f, 100.0f });
+	Player->SetActorLocation(GActorPosValue::FL_Player_Init_Pos);
 
 	MapFrontObject->SetMapFile("Flower_Background_Front.png");
 	MapFrontObject->SetAutoScale();
