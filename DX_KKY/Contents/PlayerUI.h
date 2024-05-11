@@ -26,11 +26,17 @@ private:
 	static UImage* LifeUI;
 	static int PlayerLife;
 
+	std::vector<UImage*> SuperMeters = std::vector<UImage*>();
+	int SuperMeterNum = 5;
+
 private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	void LevelEnd(ULevel* _NextLevel) override;
 
 	void UIInit();
 	static void SubLife();
+	void LifeUIInit();
+	void SuperMetersUIInit();
 };
 
