@@ -32,7 +32,7 @@ void ABackGroundCloud::CloudMoving(float _DeltaTime)
 {
 	AccTime += _DeltaTime;
 
-	CloudRenderer->SetVertexUVPlus(float4(AccTime * 0.13f, 0.0f, 0.0f));
+	CloudRenderer->SetVertexUVPlus(float4(AccTime * 0.03f, 0.0f, 0.0f));
 }
 
 void ABackGroundCloud::RendererInit()
@@ -40,6 +40,7 @@ void ABackGroundCloud::RendererInit()
 	CloudRenderer->SetAutoSize(1.0f, true);
 	CloudRenderer->SetOrder(ERenderingOrder::BackLayer2);
 	CloudRenderer->SetPivot(EPivot::BOT);
-	CloudRenderer->SetPosition(GRendererPos::PirateLevel_Cloud1_Pos);
+	CloudRenderer->SetPosition(GRendererPos::FlowerLevel_Cloud_Pos);
 	CloudRenderer->SetSprite("Flower_Background_Cloud01.png");
+	CloudRenderer->SetSamplering(ETextureSampling::LINEAR);
 }

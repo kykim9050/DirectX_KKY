@@ -554,6 +554,8 @@ namespace GRendererPos
 
 	const float4 PlayerHitEffect_RelativePos = float4(0.0f, 80.0f, 0.0f);
 
+	const float4 FlowerLevel_Cloud_Pos = float4(640.0f, -400.0f, 0.0f);
+
 	const float4 LifeUI_Pos = float4(-570.0f, -310.0f, 0.0f);
 }
 
