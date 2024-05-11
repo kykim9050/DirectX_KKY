@@ -844,7 +844,7 @@ void APlayer::CollisionCheck()
 					return;
 				}
 
-				APlayerUI::SubLife();
+				APlayerUI::SetLifeInfoChange();
 				State.ChangeState(CupheadStateName::Player_GetHit);
 				return;
 			}
@@ -859,14 +859,14 @@ void APlayer::CollisionCheck()
 					return;
 				}
 
-				APlayerUI::SubLife();
+				APlayerUI::SetLifeInfoChange();
 				State.ChangeState(CupheadStateName::Player_GetHit);
 				return;
 			}
 
 			if (nullptr != Monster)
 			{
-				APlayerUI::SubLife();
+				APlayerUI::SetLifeInfoChange();
 				State.ChangeState(CupheadStateName::Player_GetHit);
 				return;
 			}
@@ -883,7 +883,7 @@ void APlayer::CollisionCheck()
 				return;
 			}
 
-			APlayerUI::SubLife();
+			APlayerUI::SetLifeInfoChange();
 			State.ChangeState(CupheadStateName::Player_GetHit);
 			return;
 		});

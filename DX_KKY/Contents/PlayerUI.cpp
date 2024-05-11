@@ -4,7 +4,7 @@
 #include "UICalculator.h"
 
 int APlayerUI::PlayerLife = 3;
-UImage* APlayerUI::LifeUI = nullptr;
+bool APlayerUI::LifeInfoChange = false;
 
 int APlayerUI::CurSuperMeterIdx = 0;
 int APlayerUI::SuperMeterNum = 5;
@@ -37,6 +37,12 @@ void APlayerUI::Tick(float _DeltaTime)
 		SuperMeterChargeEnd();
 		SuperMeterInfoChange = false;
 	}
+
+	if (true == LifeInfoChange)
+	{
+		SubLife();
+		LifeInfoChange = false;
+	}
 }
 
 void APlayerUI::LevelStart(ULevel* _PrevLevel)
@@ -55,6 +61,7 @@ void APlayerUI::LevelEnd(ULevel* _NextLevel)
 
 void APlayerUI::UIInit()
 {
+	PlayerLife = 3;
 	CurSuperMeterIdx = 0;
 	ChargingCount = 0;
 	SuperMeterInfoChange = false;
