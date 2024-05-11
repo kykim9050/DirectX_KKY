@@ -483,6 +483,7 @@ void APlayer::SuperShootCheck(float _DeltaTime)
 {
 	if (0 != APlayerUI::GetAvailableSuperMeterNum() && true == IsDown('V'))
 	{
+		APlayerUI::SetSuperMeterUse();
 		ChangeSuperShootState();
 		SuperShoot();
 	}
@@ -976,6 +977,7 @@ void APlayer::JumpSuperShootCheck()
 {
 	if (0 != APlayerUI::GetAvailableSuperMeterNum() && true == GetAvailableAirSuperShoot() && true == IsDown('V'))
 	{
+		APlayerUI::SetSuperMeterUse();
 		// 먼저 애니메이션 부터 바꾸고
 		ChangeJumpSuperShootState();
 		// 그 다음에 방향에 따라서 발사하는 위치 바꾸고
