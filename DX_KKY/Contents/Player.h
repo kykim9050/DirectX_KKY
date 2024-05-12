@@ -72,6 +72,7 @@ private:
 	bool OnTreadableObject = false;
 	bool Parrying = false;
 	bool AvailableAirSuperShoot = false;
+	bool AvailableDashAir = false;
 	bool IsShooting = false;
 
 	UEngineSoundPlayer ShootIdleSound = UEngineSoundPlayer();
@@ -140,7 +141,7 @@ private:
 	void SSAir_DiagonalDown(float _DeltaTime);
 	void SSAir_Down(float _DeltaTime);
 	void After_SSAir(float _DeltaTime);
-	void AfterGetHit(float _DeltaTime);
+	void AfterGetHitAir(float _DeltaTime);
 
 	void ShootBullet(float _DeltaTime);
 	void SuperShoot();
@@ -255,5 +256,13 @@ private:
 	inline void SetWhereIsPlayer(EGroundOrAir _Place)
 	{
 		WhereIsPlayer = _Place;
+	}
+	inline void SetAvailableDashAir(bool _Value)
+	{
+		AvailableDashAir = _Value;
+	}
+	inline bool GetAvailableDashAir() const
+	{
+		return AvailableDashAir;
 	}
 };

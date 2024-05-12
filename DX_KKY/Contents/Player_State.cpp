@@ -51,7 +51,7 @@ void APlayer::StateInit()
 		State.CreateState(CupheadStateName::Player_SSAir_DiagonalDown);
 		State.CreateState(CupheadStateName::After_SSAir);
 		State.CreateState(CupheadStateName::Player_GetHit);
-		State.CreateState(CupheadStateName::Player_AfterGetHit);
+		State.CreateState(CupheadStateName::Player_AfterGetHitAir);
 
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
@@ -96,11 +96,12 @@ void APlayer::StateInit()
 		State.SetUpdateFunction(CupheadStateName::Player_SSAir_Down, std::bind(&APlayer::SSAir_Down, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::After_SSAir, std::bind(&APlayer::After_SSAir, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::Player_GetHit, [](float){});
-		State.SetUpdateFunction(CupheadStateName::Player_AfterGetHit, std::bind(&APlayer::AfterGetHit, this, std::placeholders::_1));
+		State.SetUpdateFunction(CupheadStateName::Player_AfterGetHitAir, std::bind(&APlayer::AfterGetHitAir, this, std::placeholders::_1));
 
 
 		State.SetStartFunction("Idle", [this]
 			{
+				SetAvailableDashAir(true);
 				SetWhereIsPlayer(EGroundOrAir::Ground);
 				SetAvailableAirSuperShoot(true);
 				DirCheck();
@@ -202,6 +203,7 @@ void APlayer::StateInit()
 		);
 		State.SetStartFunction("DashAir", [this]
 			{
+				SetAvailableDashAir(false);
 				SetWhereIsPlayer(EGroundOrAir::Air);
 				PlayDashSound();
 				DirCheck();
@@ -497,7 +499,7 @@ void APlayer::StateInit()
 				DirCheck();
 				AnimationDirSet(Renderer, PlayerDir);
 			});
-		State.SetStartFunction(CupheadStateName::Player_AfterGetHit, [this]()
+		State.SetStartFunction(CupheadStateName::Player_AfterGetHitAir, [this]()
 			{
 				SetWhereIsPlayer(EGroundOrAir::Air);
 				DirCheck();
@@ -804,7 +806,7 @@ void APlayer::Jump(float _DeltaTime)
 		SetAvailableAddJumpVec(true);
 	}
 
-	if (true == IsDown(VK_SHIFT))
+	if (true == GetAvailableDashAir() && true == IsDown(VK_SHIFT))
 	{
 		State.ChangeState("DashAir");
 		return;
@@ -994,7 +996,7 @@ void APlayer::AfterParry(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown(VK_SHIFT))
+	if (true == GetAvailableDashAir() && true == IsDown(VK_SHIFT))
 	{
 		State.ChangeState("DashAir");
 		return;
@@ -1837,6 +1839,12 @@ void APlayer::FallDown(float _DeltaTime)
 		return;
 	}
 
+	if (true == GetAvailableDashAir() && true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("DashAir");
+		return;
+	}
+
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
 	{
 		DirCheck();
@@ -1924,7 +1932,7 @@ void APlayer::After_SSAir(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown(VK_SHIFT))
+	if (true == GetAvailableDashAir() && true == IsDown(VK_SHIFT))
 	{
 		State.ChangeState("DashAir");
 		return;
@@ -1945,7 +1953,7 @@ void APlayer::After_SSAir(float _DeltaTime)
 	ResultMovementUpdate(_DeltaTime);
 }
 
-void APlayer::AfterGetHit(float _DeltaTime)
+void APlayer::AfterGetHitAir(float _DeltaTime)
 {
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
@@ -1963,6 +1971,12 @@ void APlayer::AfterGetHit(float _DeltaTime)
 	if (true == GetAvailableParry() && true == IsDown('Z'))
 	{
 		State.ChangeState("Parry");
+		return;
+	}
+
+	if (true == GetAvailableDashAir() && true == IsDown(VK_SHIFT))
+	{
+		State.ChangeState("DashAir");
 		return;
 	}
 
