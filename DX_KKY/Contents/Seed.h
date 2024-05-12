@@ -1,13 +1,12 @@
 #pragma once
-#include "BossAttackUnit.h"
-
+#include "BulletUnit.h"
 
 // Ό³Έν :
 class UStateManager;
 class USpriteRenderer;
-class ASeed : public ABossAttackUnit 
+class ASeed : public ABulletUnit
 {
-	GENERATED_BODY(ABossAttackUnit)
+	GENERATED_BODY(ABulletUnit)
 public:
 	// constrcuter destructer
 	ASeed();
@@ -26,13 +25,12 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	UStateManager State = UStateManager();
 	USpriteRenderer* VineRenderer = nullptr;
 
 
 	ESeedColor Color = ESeedColor::None;
 	const float SeedFallEndValue = -620.0f;
-	const float SeedFallSpeed = 250.0f;
+	const float SeedFallSpeed = 120.0f;
 	const float ColliderYOffset = 20.0f;
 
 	void Fall(float _DeltaTime);
@@ -44,8 +42,8 @@ private:
 	void CreateMiniFlower();
 
 	void StateInit() override;
-	void RendererInit() override;
-	void ColliderInit() override;
-	void AnimationInit() override;
+	void RendererInit();
+	void ColliderInit();
+	void AnimationInit();
 };
 

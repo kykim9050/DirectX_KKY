@@ -43,7 +43,7 @@ void ASeed::StateInit()
 		Renderer->ChangeAnimation("Fall");
 		});
 	State.SetStartFunction("Plant", [this]() {
-		Collider->SetActive(false);
+		Collision->SetActive(false);
 		Renderer->ChangeAnimation("Plant");
 		});
 
@@ -59,7 +59,6 @@ void ASeed::StateInit()
 		{
 			if (ESeedColor::Pink == Color)
 			{
-				Collider->SetCollisionGroup(ECollisionGroup::MonsterBullet);
 				SetParryableObject();
 			}
 			AnimationInit();
@@ -212,10 +211,10 @@ void ASeed::ColliderInit()
 	float4 ColliderPos = GetActorLocation();
 	ColliderPos.Y += ColliderYOffset;
 
-	Collider->SetScale(FlowerBossStageValue::SeedColliderScale);
-	Collider->SetPosition(ColliderPos);
-	Collider->SetCollisionGroup(ECollisionGroup::Monster);
-	Collider->SetCollisionType(ECollisionType::Rect);
+	Collision->SetScale(FlowerBossStageValue::SeedColliderScale);
+	Collision->SetPosition(ColliderPos);
+	Collision->SetCollisionGroup(ECollisionGroup::MonsterBullet);
+	Collision->SetCollisionType(ECollisionType::Rect);
 }
 
 void ASeed::Plant(float _DeltaTime)

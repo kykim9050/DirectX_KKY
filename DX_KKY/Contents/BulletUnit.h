@@ -6,6 +6,7 @@
 // Ό³Έν :
 class UCollision;
 class USpriteRenderer;
+class UDefaultSceneComponent;
 class ABulletUnit : public UMoveUnit ,public UParryUnit
 {
 	GENERATED_BODY(UMoveUnit)
@@ -71,6 +72,7 @@ protected:
 		Damage = _DmgVal;
 	}
 
+	UDefaultSceneComponent* Root;
 	USpriteRenderer* Renderer;
 	UCollision* Collision;
 	UStateManager State = UStateManager();
