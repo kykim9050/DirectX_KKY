@@ -12,6 +12,7 @@ int APlayerUI::ChargingCount = 0;
 int APlayerUI::ChargingMaxCount = 20;
 bool APlayerUI::SuperMeterInfoChange = false;
 bool APlayerUI::SuperMeterUse = false;
+bool APlayerUI::SuperMeterGaugeAdding = false;
 
 APlayerUI::APlayerUI()
 {
@@ -31,6 +32,12 @@ void APlayerUI::BeginPlay()
 void APlayerUI::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == SuperMeterGaugeAdding)
+	{
+		SuperMeterGaugeUpdate();
+		SuperMeterGaugeAdding = false;
+	}
 
 	if (true == SuperMeterInfoChange)
 	{
@@ -156,6 +163,10 @@ void APlayerUI::SuperMeterCharging()
 
 		SuperMeterInfoChange = true;
 	}
+	else
+	{
+		SuperMeterGaugeAdding = true;
+	}
 }
 
 void APlayerUI::SubSuperMeterCount()
@@ -165,5 +176,58 @@ void APlayerUI::SubSuperMeterCount()
 		return;
 	}
 
-	SuperMeters[--CurSuperMeterIdx]->SetActive(false);
+	if (5 == CurSuperMeterIdx)
+	{
+		SuperMeters[--CurSuperMeterIdx]->SetActive(false);
+		return;
+	}
+
+	SuperMeters[--CurSuperMeterIdx]->SetSprite("SuperMeterCharge", SuperMeterStepInfo);
+	SuperMeters[CurSuperMeterIdx + 1]->SetActive(false);
+}
+
+void APlayerUI::SuperMeterGaugeUpdate()
+{
+	SuperMeters[CurSuperMeterIdx]->SetActive(true);
+
+	//for (int i = ChargingMaxCount - 1; i > 0 ; --i)
+	//{
+	//	if (static_cast<int>(ChargingMaxCount / 5 * i) < ChargingCount)
+	//	{
+	//		SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", i);
+	//		return;
+	//	}
+	//}
+	
+	
+	if (static_cast<int>(ChargingMaxCount/5 * 4) < ChargingCount)
+	{
+		SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 4);
+		SuperMeterStepInfo = 4;
+		return;
+	}
+	if (static_cast<int>(ChargingMaxCount / 5 * 3) < ChargingCount)
+	{
+		SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 3);
+		SuperMeterStepInfo = 3;
+		return;
+	}
+	if (static_cast<int>(ChargingMaxCount / 5 * 2) < ChargingCount)
+	{
+		SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 2);
+		SuperMeterStepInfo = 2;
+		return;
+	}
+	if (static_cast<int>(ChargingMaxCount / 5 * 1) < ChargingCount)
+	{
+		SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 1);
+		SuperMeterStepInfo = 1;
+		return;
+	}
+	if (static_cast<int>(ChargingMaxCount / 5 * 0) < ChargingCount)
+	{
+		SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 0);
+		SuperMeterStepInfo = 0;
+		return;
+	}
 }
