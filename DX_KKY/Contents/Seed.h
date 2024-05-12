@@ -42,8 +42,8 @@ private:
 	void CreateMiniFlower();
 
 	void StateInit() override;
-	void RendererInit();
-	void ColliderInit();
-	void AnimationInit();
+	void RendererInit() override;
+	void ColliderInit() override;
+	void AnimationInit() override;
 };
 
