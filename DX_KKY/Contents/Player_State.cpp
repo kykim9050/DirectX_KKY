@@ -622,10 +622,7 @@ EPlayerKeyDir APlayer::KeyDirCheck()
 
 void APlayer::Idle(float _DeltaTime)
 {
-	// 테스트용
 	CollisionCheck();
-	// 
-
 	SuperShootCheck(_DeltaTime);
 
 	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
@@ -684,6 +681,7 @@ void APlayer::Idle(float _DeltaTime)
 
 void APlayer::Run(float _DeltaTime)
 {
+	CollisionCheck();
 	CreateRunFX(_DeltaTime);
 	SuperShootCheck(_DeltaTime);
 
@@ -757,6 +755,7 @@ void APlayer::Run(float _DeltaTime)
 
 void APlayer::Jump(float _DeltaTime)
 {
+	CollisionCheck();
 	JumpSuperShootCheck();
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
@@ -815,6 +814,7 @@ void APlayer::Jump(float _DeltaTime)
 
 void APlayer::DuckIdle(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 
 	if (true == IsFree(VK_DOWN))
@@ -874,6 +874,7 @@ void APlayer::DuckIdle(float _DeltaTime)
 
 void APlayer::Duck(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 
 	if (true == IsUp(VK_DOWN))
@@ -959,6 +960,7 @@ void APlayer::Parry(float _DeltaTime)
 
 void APlayer::AfterParry(float _DeltaTime)
 {
+	CollisionCheck();
 	JumpSuperShootCheck();
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
@@ -1002,6 +1004,7 @@ void APlayer::AfterParry(float _DeltaTime)
 
 void APlayer::Dash(float _DeltaTime)
 {
+	CollisionCheck();
 	float Speed = 0;
 
 	if (true == WallCheck())
@@ -1018,6 +1021,7 @@ void APlayer::Dash(float _DeltaTime)
 
 void APlayer::DashAir(float _DeltaTime)
 {
+	CollisionCheck();
 	float Speed = 0;
 
 	if (true == WallCheck())
@@ -1035,6 +1039,7 @@ void APlayer::DashAir(float _DeltaTime)
 
 void APlayer::AfterDashAir(float _DeltaTime)
 {
+	CollisionCheck();
 	JumpSuperShootCheck();
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
@@ -1072,6 +1077,7 @@ void APlayer::AfterDashAir(float _DeltaTime)
 
 void APlayer::Aim_Up(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 
 	// Aim 끼리 상태 변화
@@ -1132,6 +1138,7 @@ void APlayer::Aim_Up(float _DeltaTime)
 
 void APlayer::Aim_DiagonalUp(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 
 	// Aim 끼리 상태 변화
@@ -1179,6 +1186,7 @@ void APlayer::Aim_DiagonalUp(float _DeltaTime)
 
 void APlayer::Aim_Straight(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 	
 	// Aim 끼리 상태 변화
@@ -1245,6 +1253,7 @@ void APlayer::Aim_Straight(float _DeltaTime)
 
 void APlayer::Aim_DiagonalDown(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 
 	if (true == IsDown('Z'))
@@ -1292,6 +1301,7 @@ void APlayer::Aim_DiagonalDown(float _DeltaTime)
 
 void APlayer::Aim_Down(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 
 	if (true == IsDown('Z'))
@@ -1343,6 +1353,7 @@ void APlayer::Aim_Down(float _DeltaTime)
 
 void APlayer::IdleShoot_Up(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
@@ -1384,6 +1395,7 @@ void APlayer::IdleShoot_Up(float _DeltaTime)
 
 void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
@@ -1428,6 +1440,7 @@ void APlayer::IdleShoot_DiagonalUp(float _DeltaTime)
 
 void APlayer::IdleShoot_Straight(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
@@ -1509,6 +1522,7 @@ void APlayer::IdleShoot_Straight(float _DeltaTime)
 
 void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
@@ -1550,6 +1564,7 @@ void APlayer::IdleShoot_DiagonalDown(float _DeltaTime)
 
 void APlayer::IdleShoot_Down(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
@@ -1586,6 +1601,7 @@ void APlayer::IdleShoot_Down(float _DeltaTime)
 
 void APlayer::IdleShoot_Duck(float _DeltaTime)
 {
+	CollisionCheck();
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
 
@@ -1645,6 +1661,7 @@ void APlayer::IdleShoot_Duck(float _DeltaTime)
 
 void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 {
+	CollisionCheck();
 	CreateRunFX(_DeltaTime);
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
@@ -1706,6 +1723,7 @@ void APlayer::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 void APlayer::Run_Shoot_Straight(float _DeltaTime)
 {
+	CollisionCheck();
 	CreateRunFX(_DeltaTime);
 	SuperShootCheck(_DeltaTime);
 	ShootCheck(_DeltaTime);
@@ -1769,6 +1787,7 @@ void APlayer::Run_Shoot_Straight(float _DeltaTime)
 
 void APlayer::DownJump(float _DeltaTime)
 {
+	CollisionCheck();
 	ShootCheck(_DeltaTime);
 
 	float4 Pos = GetActorLocation();
@@ -1786,6 +1805,7 @@ void APlayer::DownJump(float _DeltaTime)
 
 void APlayer::FallDown(float _DeltaTime)
 {
+	CollisionCheck();
 	ShootCheck(_DeltaTime);
 
 	float4 Pos = GetActorLocation();
@@ -1821,59 +1841,63 @@ void APlayer::FallDown(float _DeltaTime)
 
 void APlayer::Ground_SS_Up(float _DeltaTime)
 {
-
+	CollisionCheck();
 }
 
 void APlayer::Ground_SS_DiagonalUp(float _DeltaTime)
 {
+	CollisionCheck();
 	DirCheck();
 	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::Ground_SS_Straight(float _DeltaTime)
 {
+	CollisionCheck();
 	DirCheck();
 	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::Ground_SS_DiagonalDown(float _DeltaTime)
 {
+	CollisionCheck();
 	DirCheck();
 	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::Ground_SS_Down(float _DeltaTime)
 {
-
+	CollisionCheck();
 }
 
 void APlayer::SSAir_Up(float _DeltaTime)
 {
-
+	CollisionCheck();
 }
 
 void APlayer::SSAir_DiagonalUp(float _DeltaTime)
 {
-
+	CollisionCheck();
 }
 
 void APlayer::SSAir_Straight(float _DeltaTime)
 {
-
+	CollisionCheck();
 }
 
 void APlayer::SSAir_DiagonalDown(float _DeltaTime)
 {
-
+	CollisionCheck();
 }
 
 void APlayer::SSAir_Down(float _DeltaTime)
 {
-
+	CollisionCheck();
 }
 
 void APlayer::After_SSAir(float _DeltaTime)
 {
+	CollisionCheck();
 	ShootCheck(_DeltaTime);
 	FootColOnOff();
 
