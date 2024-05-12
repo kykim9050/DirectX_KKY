@@ -889,6 +889,21 @@ void APlayer::CollisionCheck()
 			return;
 		});
 
+	BodyCollider->CollisionStay(ECollisionGroup::Trap, [this](std::shared_ptr<UCollision> _Collision)
+		{
+			UMoveUnit* Trap = dynamic_cast<UMoveUnit*>(_Collision->GetActor());
+
+			if (nullptr == Trap)
+			{
+				MsgBoxAssert("충돌 대상이 Trapdl 아닙니다.");
+				return;
+			}
+
+			APlayerUI::SetLifeInfoChange();
+			State.ChangeState(CupheadStateName::Player_GetHit);
+			return;
+		});
+
 }
 
 void APlayer::AfterSuccessParrySetting()
