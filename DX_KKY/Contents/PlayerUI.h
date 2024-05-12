@@ -37,6 +37,7 @@ private:
 
 	static bool SuperMeterInfoChange;
 	static bool SuperMeterUse;
+	static bool SuperMeterAdd;
 	static bool SuperMeterGaugeAdding;
 	static int CurSuperMeterIdx;
 	static int SuperMeterNum;
@@ -60,8 +61,8 @@ private:
 	void SubLife();
 	void SubSuperMeterCount();
 	void SuperMeterGaugeUpdate();
+	void AddSuperMeter();
 	
-	static void SuperMeterChargeEnd();
 	static void SuperMeterCharging();
 
 	inline static void SetLifeInfoChange()
@@ -91,6 +92,10 @@ private:
 	inline static void SetSuperMeterUse()
 	{
 		SuperMeterUse = true;
+	}
+	inline static void SetSuperMeterAdd()
+	{
+		SuperMeterAdd = true;
 	}
 };
 

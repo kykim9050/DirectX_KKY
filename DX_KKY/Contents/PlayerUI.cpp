@@ -13,6 +13,7 @@ int APlayerUI::ChargingMaxCount = 20;
 bool APlayerUI::SuperMeterInfoChange = false;
 bool APlayerUI::SuperMeterUse = false;
 bool APlayerUI::SuperMeterGaugeAdding = false;
+bool APlayerUI::SuperMeterAdd = false;
 
 APlayerUI::APlayerUI()
 {
@@ -33,6 +34,20 @@ void APlayerUI::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	if (true == SuperMeterAdd)
+	{
+		AddSuperMeter();
+		SuperMeterAdd = false;
+		return;
+	}
+
+	if (true == SuperMeterUse)
+	{
+		SubSuperMeterCount();
+		SuperMeterUse = false;
+		return;
+	}
+
 	if (true == SuperMeterGaugeAdding)
 	{
 		SuperMeterGaugeUpdate();
@@ -49,12 +64,6 @@ void APlayerUI::Tick(float _DeltaTime)
 	{
 		SubLife();
 		LifeInfoChange = false;
-	}
-
-	if (true == SuperMeterUse)
-	{
-		SubSuperMeterCount();
-		SuperMeterUse = false;
 	}
 }
 
@@ -174,24 +183,36 @@ void APlayerUI::SubSuperMeterCount()
 {
 	if (0 >= CurSuperMeterIdx)
 	{
+		CurSuperMeterIdx = 0;
+		return;
+	}
+
+	if (5 < CurSuperMeterIdx)
+	{
+		CurSuperMeterIdx = 5;
 		return;
 	}
 
 	if (5 == CurSuperMeterIdx)
 	{
-		SuperMeters[--CurSuperMeterIdx]->SetActive(false);
+		SuperMeterStepInfo = -1;
+		SuperMeters[--CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 0);
 		return;
 	}
 
-	if (SuperMeterStepInfo == -1)
+	if (1 <= CurSuperMeterIdx && 4 >= CurSuperMeterIdx)
 	{
-		SuperMeters[--CurSuperMeterIdx]->SetActive(false);
-	}
-	else
-	{
+		if (SuperMeterStepInfo == -1)
+		{
+			SuperMeters[--CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 0);
+			SuperMeters[CurSuperMeterIdx + 1]->SetActive(false);
+			return;
+		}
+
 		SuperMeters[--CurSuperMeterIdx]->SetSprite("SuperMeterCharge", SuperMeterStepInfo);
+		SuperMeters[CurSuperMeterIdx + 1]->SetActive(false);
+		return;
 	}
-	SuperMeters[CurSuperMeterIdx + 1]->SetActive(false);
 }
 
 void APlayerUI::SuperMeterGaugeUpdate()
@@ -236,6 +257,49 @@ void APlayerUI::SuperMeterGaugeUpdate()
 	{
 		SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 0);
 		SuperMeterStepInfo = 0;
+		return;
+	}
+}
+
+void APlayerUI::AddSuperMeter()
+{
+	if (5 <= CurSuperMeterIdx)
+	{
+		CurSuperMeterIdx = 5;
+		return;
+	}
+
+	if (0 > CurSuperMeterIdx)
+	{
+		CurSuperMeterIdx = 0;
+		return;
+	}
+
+	if (4 == CurSuperMeterIdx)
+	{
+		SuperMeters[CurSuperMeterIdx++]->SetSprite("SuperMeterCard");
+		return;
+	}
+
+
+	if (3 >= CurSuperMeterIdx)
+	{
+		if (-1 == SuperMeterStepInfo)
+		{
+			if (0 == CurSuperMeterIdx)
+			{
+				SuperMeters[CurSuperMeterIdx]->SetActive(true);
+			}
+
+			SuperMeters[++CurSuperMeterIdx]->SetActive(true);
+			SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", 0);
+			SuperMeters[CurSuperMeterIdx - 1]->SetSprite("SuperMeterCard");
+			return;
+		}
+
+		SuperMeters[++CurSuperMeterIdx]->SetActive(true);
+		SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCharge", SuperMeterStepInfo);
+		SuperMeters[CurSuperMeterIdx - 1]->SetSprite("SuperMeterCard");
 		return;
 	}
 }
