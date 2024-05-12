@@ -1,12 +1,12 @@
 #pragma once
-#include "BossAttackUnit.h"
+#include "BulletUnit.h"
 #include <EngineCore/StateManager.h>
 
 // Ό³Έν :
 class UEngineSoundPlayer;
-class ABoomerang : public ABossAttackUnit
+class ABoomerang : public ABulletUnit
 {
-	GENERATED_BODY(ABossAttackUnit)
+	GENERATED_BODY(ABulletUnit)
 public:
 	// constrcuter destructer
 	ABoomerang();
@@ -27,9 +27,8 @@ public:
 protected:
 
 private:
-	UStateManager State = UStateManager();
 	float4 ThrowingDir = float4::Left;
-	float ThrowingSpeed = 550.0f;
+	float ThrowingSpeed = 375.0f;
 	float4 BoundaryValue = float4::Zero;
 	UEngineSoundPlayer Sound = UEngineSoundPlayer();
 
