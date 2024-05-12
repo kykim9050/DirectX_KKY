@@ -841,6 +841,7 @@ void APlayer::CollisionCheck()
 				{
 					Bullet->Destroy();
 
+					APlayerUI::SetSuperMeterAdd();
 					AfterSuccessParrySetting();
 					return;
 				}
@@ -856,6 +857,7 @@ void APlayer::CollisionCheck()
 				{
 					MonsterAtt->Destroy();
 
+					APlayerUI::SetSuperMeterAdd();
 					AfterSuccessParrySetting();
 					return;
 				}
