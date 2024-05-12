@@ -38,7 +38,7 @@ void AAcorn::StateInit()
 	State.SetStartFunction(FlowerBossState::Acorn_Init, []() {});
 	State.SetStartFunction(FlowerBossState::Acorn_Spawn, [this]()
 		{
-			ChangeAnimation(FlowerBossAniName::Acorn_Spawn);
+			Renderer->ChangeAnimation(FlowerBossAniName::Acorn_Spawn);
 		});
 	State.SetStartFunction(FlowerBossState::Acorn_Fly, [this]()
 		{
@@ -69,15 +69,15 @@ void AAcorn::StateInit()
 			SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
 			FlyEffect->SetActorRotation(float4(0.0f, 0.0f, Theta + 180.0f));
 
-			ChangeAnimation(FlowerBossAniName::Acorn_Fly);
+			Renderer->ChangeAnimation(FlowerBossAniName::Acorn_Fly);
 		});
 	State.SetStartFunction(FlowerBossState::Acorn_Death, [this]()
 		{
 			UEngineSoundPlayer Sound = UEngineSound::SoundPlay("sfx_flower_bullet_seed_poof.wav");
 			Sound.SetVolume(0.5f);
 
-			GetCollider()->SetActive(false);
-			ChangeAnimation(FlowerBossAniName::Acorn_Death);
+			Collision->SetActive(false);
+			Renderer->ChangeAnimation(FlowerBossAniName::Acorn_Death);
 		});
 	
 
@@ -96,25 +96,25 @@ void AAcorn::StateInit()
 
 void AAcorn::RendererInit()
 {
-	SetRendererAutoSize();
-	SetRendererOrder(ERenderingOrder::MonsterBullet);
+	Renderer->SetAutoSize(1.0f, true);
+	Renderer->SetOrder(ERenderingOrder::MonsterBullet);
 }
 
 void AAcorn::ColliderInit()
 {
-	SetColScale(GColliderScale::Acorn_ColScale);
-	SetColGroup(ECollisionGroup::Monster);
-	SetColType(ECollisionType::Rect);
-	SetColPosition(float4(0.0f,0.0f,0.0f));
+	Collision->SetScale(GColliderScale::Acorn_ColScale);
+	Collision->SetCollisionGroup(ECollisionGroup::MonsterBullet);
+	Collision->SetCollisionType(ECollisionType::Rect);
+	Collision->SetPosition(float4(0.0f, 0.0f, 0.0f));
 }
 
 void AAcorn::AnimationInit()
 {
-	CreateAnimation(FAniInfo(FlowerBossAniName::Acorn_Spawn, GSpriteName::Acorn_Spawn, 0.034f));
-	CreateAnimation(FAniInfo(FlowerBossAniName::Acorn_Fly, GSpriteName::Acorn_Fly, 0.034f));
-	CreateAnimation(FAniInfo(FlowerBossAniName::Acorn_Death, GSpriteName::Acorn_Death, 0.0416f), false);
+	Renderer->CreateAnimation(FlowerBossAniName::Acorn_Spawn, GSpriteName::Acorn_Spawn, 0.034f);
+	Renderer->CreateAnimation(FlowerBossAniName::Acorn_Fly, GSpriteName::Acorn_Fly, 0.034f);
+	Renderer->CreateAnimation(FlowerBossAniName::Acorn_Death, GSpriteName::Acorn_Death, 0.0416f, false);
 
-	SetRendererFrameCallback(FlowerBossAniName::Acorn_Death, 9, [this]()
+	Renderer->SetFrameCallback(FlowerBossAniName::Acorn_Death, 9, [this]()
 		{
 			Destroy();
 		});

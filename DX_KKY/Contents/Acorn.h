@@ -1,11 +1,11 @@
 #pragma once
-#include "BossAttackUnit.h"
+#include "BulletUnit.h"
 #include <EngineCore/StateManager.h>
 
 // Ό³Έν :
-class AAcorn : public ABossAttackUnit
+class AAcorn : public ABulletUnit
 {
-	GENERATED_BODY(ABossAttackUnit)
+	GENERATED_BODY(ABulletUnit)
 public:
 	// constrcuter destructer
 	AAcorn();
@@ -26,8 +26,7 @@ public:
 protected:
 
 private:
-	UStateManager State;
-	float BulletSpeed = 400.0f;
+	float BulletSpeed = 250.0f;
 	float4 ResVelocity = float4::Zero;
 	float4 BoundaryValue = float4::Zero;
 
