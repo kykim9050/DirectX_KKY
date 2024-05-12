@@ -37,10 +37,13 @@ private:
 
 	static bool SuperMeterInfoChange;
 	static bool SuperMeterUse;
+	static bool SuperMeterGaugeAdding;
 	static int CurSuperMeterIdx;
 	static int SuperMeterNum;
 	static int ChargingCount;
 	static int ChargingMaxCount;
+	int ChargingStep = 5;
+	int SuperMeterStepInfo = -1;
 
 private:
 	void BeginPlay() override;
@@ -56,6 +59,7 @@ private:
 	void SuperMeterUpdate();
 	void SubLife();
 	void SubSuperMeterCount();
+	void SuperMeterGaugeUpdate();
 	
 	static void SuperMeterChargeEnd();
 	static void SuperMeterCharging();
