@@ -40,7 +40,7 @@ void ABoomerang::StateInit()
 			Sound = UEngineSound::SoundPlay("sfx_flower_boomerang_projectile.wav");
 			Sound.Loop();
 
-			ChangeAnimation(FlowerBossAniName::Boomerang_Rotate);
+			Renderer->ChangeAnimation(FlowerBossAniName::Boomerang_Rotate);
 		});
 	State.SetStartFunction(FlowerBossState::Boomerang_Throw, [this]()
 		{
@@ -51,7 +51,7 @@ void ABoomerang::StateInit()
 			AddActorLocation(float4(0.0f, -250.0f, 0.0f));
 			ThrowingDir = float4::Right;
 			SetSpeedVec(ThrowingDir * ThrowingSpeed);
-			DelayCallBack(3.5f, [this]
+			DelayCallBack(2.5f, [this]
 				{
 					Sound.Off();
 					Destroy();
@@ -73,21 +73,21 @@ void ABoomerang::StateInit()
 
 void ABoomerang::RendererInit()
 {
-	SetRendererAutoSize();
-	SetRendererOrder(ERenderingOrder::MonsterBullet);
+	Renderer->SetAutoSize(1.0f, true);
+	Renderer->SetOrder(ERenderingOrder::MonsterBullet);
 }
 
 void ABoomerang::ColliderInit()
 {
-	SetColScale(GColliderScale::Boomerang_ColScale);
-	SetColGroup(ECollisionGroup::Monster);
-	SetColType(ECollisionType::Rect);
-	SetColPosition(float4(0.0f, 0.0f, 0.0f));
+	Collision->SetScale(GColliderScale::Boomerang_ColScale);
+	Collision->SetCollisionGroup(ECollisionGroup::MonsterBullet);
+	Collision->SetCollisionType(ECollisionType::Rect);
+	Collision->SetPosition(float4(0.0f, 0.0f, 0.0f));
 }
 
 void ABoomerang::AnimationInit()
 {
-	CreateAnimation(FAniInfo(FlowerBossAniName::Boomerang_Rotate, GSpriteName::Boomerang_Rotate, 0.0416f));
+	Renderer->CreateAnimation(FlowerBossAniName::Boomerang_Rotate, GSpriteName::Boomerang_Rotate, 0.0416f);
 }
 
 void ABoomerang::Throwing(float _DeltaTime)
