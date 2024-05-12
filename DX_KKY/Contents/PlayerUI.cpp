@@ -136,6 +136,7 @@ void APlayerUI::SuperMeterUpdate()
 	SuperMeters[CurSuperMeterIdx]->SetActive(true);
 	SuperMeters[CurSuperMeterIdx]->SetSprite("SuperMeterCard");
 	++CurSuperMeterIdx;
+	SuperMeterStepInfo = -1;
 
 	if (SuperMeterNum == (CurSuperMeterIdx))
 	{
@@ -182,7 +183,14 @@ void APlayerUI::SubSuperMeterCount()
 		return;
 	}
 
-	SuperMeters[--CurSuperMeterIdx]->SetSprite("SuperMeterCharge", SuperMeterStepInfo);
+	if (SuperMeterStepInfo == -1)
+	{
+		SuperMeters[--CurSuperMeterIdx]->SetActive(false);
+	}
+	else
+	{
+		SuperMeters[--CurSuperMeterIdx]->SetSprite("SuperMeterCharge", SuperMeterStepInfo);
+	}
 	SuperMeters[CurSuperMeterIdx + 1]->SetActive(false);
 }
 
