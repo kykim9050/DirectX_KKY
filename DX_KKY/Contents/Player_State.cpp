@@ -1899,16 +1899,22 @@ void APlayer::SSAir_Up(float _DeltaTime)
 void APlayer::SSAir_DiagonalUp(float _DeltaTime)
 {
 	CollisionCheck();
+	DirCheck();
+	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::SSAir_Straight(float _DeltaTime)
 {
 	CollisionCheck();
+	DirCheck();
+	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::SSAir_DiagonalDown(float _DeltaTime)
 {
 	CollisionCheck();
+	DirCheck();
+	AddActorLocation(-MoveDir(PlayerDir) * _DeltaTime * SSReboundSpeed);
 }
 
 void APlayer::SSAir_Down(float _DeltaTime)
