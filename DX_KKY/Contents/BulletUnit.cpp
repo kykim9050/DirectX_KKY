@@ -5,7 +5,7 @@
 
 ABulletUnit::ABulletUnit()
 {
-	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("BulletRoot");
+	Root = CreateDefaultSubObject<UDefaultSceneComponent>("BulletRoot");
 	SetRoot(Root);
 
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
