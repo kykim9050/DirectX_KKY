@@ -100,6 +100,7 @@ namespace CupheadStateName
 	const std::string Player_SSAir_DiagonalDown = "Player_SSAir_DiagonalDown";
 	const std::string After_SSAir = "After_SSAir";
 	const std::string Player_GetHit = "Player_GetHit";
+	const std::string Player_AfterGetHit = "Player_AfterGetHit";
 }
 
 namespace GStateName
