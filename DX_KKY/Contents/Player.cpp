@@ -212,7 +212,7 @@ void APlayer::CreatePlayerAnimation()
 			});
 		Renderer->SetFrameCallback(GAniName::Player_GetHit_Air, 6, [this]()
 			{
-				State.ChangeState(CupheadStateName::FallDown);
+				State.ChangeState(CupheadStateName::Player_AfterGetHit);
 			});
 	}
 }

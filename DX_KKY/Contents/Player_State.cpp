@@ -51,6 +51,7 @@ void APlayer::StateInit()
 		State.CreateState(CupheadStateName::Player_SSAir_DiagonalDown);
 		State.CreateState(CupheadStateName::After_SSAir);
 		State.CreateState(CupheadStateName::Player_GetHit);
+		State.CreateState(CupheadStateName::Player_AfterGetHit);
 
 
 		State.SetUpdateFunction("Idle", std::bind(&APlayer::Idle, this, std::placeholders::_1));
@@ -95,6 +96,7 @@ void APlayer::StateInit()
 		State.SetUpdateFunction(CupheadStateName::Player_SSAir_Down, std::bind(&APlayer::SSAir_Down, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::After_SSAir, std::bind(&APlayer::After_SSAir, this, std::placeholders::_1));
 		State.SetUpdateFunction(CupheadStateName::Player_GetHit, [](float){});
+		State.SetUpdateFunction(CupheadStateName::Player_AfterGetHit, std::bind(&APlayer::AfterGetHit, this, std::placeholders::_1));
 
 
 		State.SetStartFunction("Idle", [this]
@@ -494,6 +496,17 @@ void APlayer::StateInit()
 
 				DirCheck();
 				AnimationDirSet(Renderer, PlayerDir);
+			});
+		State.SetStartFunction(CupheadStateName::Player_AfterGetHit, [this]()
+			{
+				SetWhereIsPlayer(EGroundOrAir::Air);
+				DirCheck();
+				SetJumpVec(float4::Zero);
+				SetGravityVec(float4::Down * 100.0f);
+				SetAvailableAddJumpVec(false);
+				Renderer->ChangeAnimation("Player_Jump");
+				AnimationDirSet(Renderer, PlayerDir);
+				SetShootType(EBulletShootType::JumpShoot);
 			});
 
 	}
@@ -1914,6 +1927,42 @@ void APlayer::After_SSAir(float _DeltaTime)
 	if (true == IsDown(VK_SHIFT))
 	{
 		State.ChangeState("DashAir");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT))
+	{
+		DirCheck();
+		SetSpeedVec(MoveDir(PlayerDir) * GetRunSpeed());
+		AnimationDirSet(Renderer, PlayerDir);
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		SetSpeedVec(float4::Zero);
+	}
+
+	ResultMovementUpdate(_DeltaTime);
+}
+
+void APlayer::AfterGetHit(float _DeltaTime)
+{
+	ShootCheck(_DeltaTime);
+	FootColOnOff();
+
+	float4 Pos = GetActorLocation();
+	Pos.Y = -Pos.Y;
+
+	if (true == PixelCheck(Pos, Color8Bit::Black) || true == PixelCheck(Pos, Color8Bit::Blue))
+	{
+		CreateLandFX(GetActorLocation());
+		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == GetAvailableParry() && true == IsDown('Z'))
+	{
+		State.ChangeState("Parry");
 		return;
 	}
 
